@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Trupi Report">
+    <meta name="author" content="Trupi Reporting">
+
+    <title>Scenario Details - ${element.name}</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link href="../css/trupi-template.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/jquery.fancybox.min.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header w-100">
+            <h3 class="navbar-text float-lg-left">Scenario Details</h3>
+            <p class="navbar-text float-lg-right">
+                <a href="javascript:history.back();" class="text-light">Back to Overview</a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="trupi-template">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Scenario Result Chart</div>
+                    <div class="card-body">
+                        <div id="canvas-holder" class="w-100 text-center">
+                            <canvas id="chart-area" class="w50"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Scenario Information</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Total Time: ${element.totalDurationString}</li>
+                            <#list element.tags as tag>
+                                <li class="list-group-item">${tag.name}</li>
+                            </#list>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header text-capitalize">${element.name}</div>
+                    <#if element.description != "">
+                        <div class="card-header text-capitalize text-secondary">${element.description}</div>
+                    </#if>
+                    <div class="card-body">
+                        <div class="container">
+                            <#list element.steps as step>
+                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                    <div class="col-1 text-left">
+                                        ${step?counter}
+                                    </div>
+                                    <div class="col-7 text-left">
+                                        ${step.keyword} ${step.name}
+                                    </div>
+                                    <div class="col-2 text-left">
+                                        ${step.result.durationString}
+                                    </div>
+                                    <div class="col-2 text-left">
+                                        <#if step.result.status == "failed">
+                                            <#assign class = "text-danger" />
+                                            <#elseif step.result.status == "skipped"/>
+                                            <#assign class = "text-warning" />
+                                            <#else/>
+                                            <#assign class = "text-success" />
+                                        </#if>
+                                        <span class="${class}">${step.result.status}</span>
+                                    </div>
+                                </div>
+                                <#if step.result.status == "failed">
+                                    <div class="row border border-top-0 border-left-0 border-right-0">
+                                        <div class="col-1">
+                                        </div>
+                                        <div class="col-11 text-left">
+                                            <code>${step.result.errorMessage}</code>
+                                        </div>
+                                    </div>
+                                </#if>
+                                <#list step.embeddings as embedding>
+                                    <div class="row border border-top-0 border-left-0 border-right-0">
+                                        <div class="col-12 text-left">
+                                            <#if embedding.mimeType == "image/png">
+                                                <a class="grouped_elements" rel="images"
+                                                   href="../attachments/${embedding.filename}">
+                                                    <img src="../attachments/${embedding.filename}"
+                                                         style="width: 100%"/>
+                                                </a>
+                                            </#if>
+                                        </div>
+                                    </div>
+                                </#list>
+                            </#list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="text-muted">Generated by ${reportDetails.generatorName}, ${reportDetails.date}.</span>
+    </div>
+</footer>
+
+<script src="../js/jquery-3.2.1.slim.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.fancybox.min.js"></script>
+<script src="../js/Chart.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("a.grouped_elements").fancybox();
+
+        var ctx = document.getElementById('chart-area').getContext("2d");
+        new Chart(ctx, eval(${reportDetails.chartJson}));
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Trupi Report">
+    <meta name="author" content="Trupi Reporting">
+
+    <title>Test Suite Overview - ${reportDetails.date}</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/trupi-template.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header w-100">
+            <h3 class="navbar-text float-lg-left">Test Suite Overview - ${reportDetails.date}</h3>
+        </div>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="trupi-template">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Test Suite Result Chart</div>
+                    <div class="card-body">
+                        <div id="canvas-holder" class="w-100 text-center">
+                            <canvas id="chart-area" class="w50"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">Test Suite Summary</div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">${totalNumberOfScenarios} scenarios in ${totalNumberOfFeatures}
+                                features.
+                            </li>
+                            <li class="list-group-item">${totalNumberOfPassedScenarios} passed.</li>
+                            <li class="list-group-item">${totalNumberOfFailedScenarios} failed.</li>
+                            <li class="list-group-item">${totalNumberOfSkippedScenarios} skipped.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <#if hasFailedScenarios()>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card border-danger">
+                        <div class="card-header border-danger bg-danger text-white">Failed Scenarios</div>
+                        <div class="card-body">
+                            <table id="results_failed" class="table table-hover" data-link="row">
+                                <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Scenario</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#list reports as report>
+                                    <#list report.elements as element>
+                                        <#if element.status.status == "failed">
+                                            <tr>
+                                                <td class="text-left text-capitalize">${report.name}</td>
+                                                <td class="text-left text-capitalize">
+                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
+                                                </td>
+                                            </tr>
+                                        </#if>
+                                    </#list>
+                                </#list>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
+        <#if hasSkippedScenarios()>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card border-warning">
+                        <div class="card-header border-warning bg-warning">Skipped Scenarios</div>
+                        <div class="card-body">
+                            <table id="results_skipped" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Scenario</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#list reports as report>
+                                    <#list report.elements as element>
+                                        <#if element.status.status == "skipped">
+                                            <tr>
+                                                <td class="text-left text-capitalize">${report.name}</td>
+                                                <td class="text-left text-capitalize">
+                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
+                                                </td>
+                                            </tr>
+                                        </#if>
+                                    </#list>
+                                </#list>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
+        <#if hasPassedScenarios()>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card border-success">
+                        <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
+                        <div class="card-body">
+                            <table id="results_passed" class="table table-hover" data-link="row">
+                                <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Scenario</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <#list reports as report>
+                                    <#list report.elements as element>
+                                        <#if element.status.status == "passed">
+                                            <tr>
+                                                <td class="text-left text-capitalize">${report.name}</td>
+                                                <td class="text-left text-capitalize">
+                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
+                                                </td>
+                                            </tr>
+                                        </#if>
+                                    </#list>
+                                </#list>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+    </div>
+</main>
+
+<footer class="footer navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="text-muted">Generated by ${reportDetails.generatorName}, ${reportDetails.date}.</span>
+    </div>
+</footer>
+
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap4.min.js"></script>
+<script src="js/Chart.bundle.min.js"></script>
+
+<script>
+    // Data tables
+    $(document).ready(function () {
+        $('#results_failed').DataTable();
+        $('#results_skipped').DataTable();
+        $('#results_passed').DataTable();
+
+        var ctx = document.getElementById('chart-area').getContext("2d");
+        new Chart(ctx, eval(${reportDetails.chartJson}));
+    })
+</script>
+
+</body>
+</html>
