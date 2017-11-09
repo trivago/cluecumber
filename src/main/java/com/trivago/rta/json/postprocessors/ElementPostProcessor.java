@@ -1,13 +1,14 @@
-package com.trivago.rta.json.processors;
+package com.trivago.rta.json.postprocessors;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.FileCreationException;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Embedding;
 import com.trivago.rta.json.pojo.Step;
+import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import io.gsonfire.PostProcessor;
 import org.codehaus.plexus.util.Base64;
@@ -22,18 +23,20 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     private final PropertyManager propertyManager;
     private final FileIO fileIO;
+    private CluecumberLogger logger;
 
     private int scenarioIndex = 0;
     private int attachmentIndex = 0;
-    private String durationChartJson;
 
     @Inject
     public ElementPostProcessor(
             final PropertyManager propertyManager,
-            final FileIO fileIO
-    ) {
+            final FileIO fileIO,
+            final CluecumberLogger logger
+            ) {
         this.propertyManager = propertyManager;
         this.fileIO = fileIO;
+        this.logger = logger;
     }
 
     @Override
@@ -41,13 +44,13 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         addScenarioIndex(element);
         try {
             processAttachments(element.getSteps());
-        } catch (TrupiReportingPluginException e) {
-            e.printStackTrace();
+        } catch (CluecumberPluginException e) {
+            // If an attachment cannot be processed, don't stop the report generation.
+            logger.warn(e.getMessage());
         }
-        element.setDurationChartJson(getDurationChartJson());
     }
 
-    private void processAttachments(final List<Step> steps) throws TrupiReportingPluginException {
+    private void processAttachments(final List<Step> steps) throws CluecumberPluginException {
         for (Step step : steps) {
             List<Embedding> embeddings = step.getEmbeddings();
             for (Embedding embedding : embeddings) {
@@ -58,7 +61,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         }
     }
 
-    private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) throws TrupiReportingPluginException {
+    private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) throws CluecumberPluginException {
         String fileEnding;
         switch (embedding.getMimeType()) {
             case "image/png":
@@ -77,8 +80,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         try {
             fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
         } catch (FileCreationException e) {
-            e.printStackTrace();
-            throw new TrupiReportingPluginException("Could not process attachment of type " + embedding.getMimeType());
+            throw new CluecumberPluginException("Could not process attachment of type " + embedding.getMimeType());
         }
         return filename;
     }
@@ -88,11 +90,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         element.setScenarioIndex(scenarioIndex);
         scenarioIndex++;
     }
-
-    public String getDurationChartJson() {
-        return durationChartJson;
-    }
-
+    
     @Override
     public void postSerialize(final JsonElement jsonElement, final Element element, final Gson gson) {
         // not used

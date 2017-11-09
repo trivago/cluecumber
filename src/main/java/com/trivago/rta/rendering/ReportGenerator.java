@@ -1,12 +1,12 @@
 package com.trivago.rta.rendering;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.FileCreationException;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.filesystem.FileSystemManager;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.logging.TrupiLogger;
+import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
@@ -32,7 +32,7 @@ public class ReportGenerator {
             final FileIO fileIO,
             final PropertyManager propertyManager,
             final FileSystemManager fileSystemManager,
-            final TrupiLogger logger
+            final CluecumberLogger logger
     ) {
         this.templateEngine = templateEngine;
         this.fileIO = fileIO;
@@ -40,7 +40,7 @@ public class ReportGenerator {
         this.fileSystemManager = fileSystemManager;
     }
 
-    public void generateReports(final StartPageCollection startPageCollection) throws TrupiReportingPluginException {
+    public void generateReports(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         templateEngine.init(getClass(), BASE_PACKAGE_PATH);
         copyResources();
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + SCENARIO_DETAIL_DIR);
@@ -65,7 +65,7 @@ public class ReportGenerator {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + fileName);
     }
 
-    private void copyResources() throws TrupiReportingPluginException {
+    private void copyResources() throws CluecumberPluginException {
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory());
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/js");
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/img");
@@ -73,7 +73,7 @@ public class ReportGenerator {
 
         // Copy CSS resources
         copyResource("/css/bootstrap.min.css");
-        copyResource("/css/trupi-template.css");
+        copyResource("/css/cluecumber.css");
         copyResource("/css/dataTables.bootstrap4.min.css");
         copyResource("/css/jquery.fancybox.min.css");
 
@@ -87,7 +87,7 @@ public class ReportGenerator {
         copyResource("/js/jquery.fancybox.min.js");
     }
 
-    private void copyResource(final String fileName) throws TrupiReportingPluginException {
+    private void copyResource(final String fileName) throws CluecumberPluginException {
         fileSystemManager.exportResource(getClass(),
                 BASE_PACKAGE_PATH + fileName,
                 propertyManager.getGeneratedHtmlReportDirectory() + fileName);

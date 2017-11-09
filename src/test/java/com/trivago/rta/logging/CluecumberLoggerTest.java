@@ -8,15 +8,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class CucableLoggerTest {
+public class CluecumberLoggerTest {
 
     private Log mockedLogger;
-    private TrupiLogger logger;
+    private CluecumberLogger logger;
 
     @Before
     public void setup() {
         mockedLogger = mock(Log.class);
-        logger = new TrupiLogger();
+        logger = new CluecumberLogger();
         logger.setMojoLogger(mockedLogger);
     }
 
@@ -25,5 +25,12 @@ public class CucableLoggerTest {
         logger.info("Test");
         verify(mockedLogger, times(1))
                 .info("Test");
+    }
+
+    @Test
+    public void warnTest() {
+        logger.warn("Test");
+        verify(mockedLogger, times(1))
+                .warn("Test");
     }
 }

@@ -1,5 +1,7 @@
 package com.trivago.rta.rendering.pages.pojos;
 
+import com.trivago.rta.constants.PluginSettings;
+
 public class ReportDetails {
     private String overviewChartJson;
     private String date;
@@ -21,6 +23,6 @@ public class ReportDetails {
     }
 
     public String getGeneratorName() {
-        return "Cluecumber Report Plugin";
+        return PluginSettings.NAME;
     }
 }

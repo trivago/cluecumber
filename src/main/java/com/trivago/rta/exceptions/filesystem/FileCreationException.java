@@ -1,11 +1,11 @@
 package com.trivago.rta.exceptions.filesystem;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 
 /**
  * Thrown when a file cannot be created.
  */
-public class FileCreationException extends TrupiReportingPluginException {
+public class FileCreationException extends CluecumberPluginException {
     /**
      * Constructor.
      *

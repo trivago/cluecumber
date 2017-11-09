@@ -141,14 +141,6 @@ public class Element {
         return String.format("%dm %02ds %03d", minutes, seconds, milliseconds);
     }
 
-    public String getDurationChartJson() {
-        return durationChartJson;
-    }
-
-    public void setDurationChartJson(final String durationChartJson) {
-        this.durationChartJson = durationChartJson;
-    }
-
     @Override
     public String toString() {
         return "Element{" +

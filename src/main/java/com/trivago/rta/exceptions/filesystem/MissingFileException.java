@@ -1,11 +1,11 @@
 package com.trivago.rta.exceptions.filesystem;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 
 /**
  * Thrown when a file is not found.
  */
-public class MissingFileException extends TrupiReportingPluginException {
+public class MissingFileException extends CluecumberPluginException {
     /**
      * Constructor.
      *

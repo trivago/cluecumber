@@ -6,7 +6,7 @@ import be.ceau.chart.data.PieData;
 import be.ceau.chart.dataset.PieDataset;
 import be.ceau.chart.options.PieOptions;
 import com.trivago.rta.constants.ScenarioStatus;
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
@@ -22,7 +22,7 @@ public class StartPageRenderer extends PageRenderer {
 
     public String getRenderedContent(
             final StartPageCollection startPageCollection, final Template template)
-            throws TrupiReportingPluginException {
+            throws CluecumberPluginException {
 
         ReportDetails reportDetails = new ReportDetails();
         addChartJsonToReportDetails(startPageCollection, reportDetails);
@@ -33,7 +33,7 @@ public class StartPageRenderer extends PageRenderer {
         try {
             template.process(startPageCollection, stringWriter);
         } catch (TemplateException | IOException e) {
-            throw new TrupiReportingPluginException(e.getMessage());
+            throw new CluecumberPluginException(e.getMessage());
         }
         return stringWriter.toString();
     }

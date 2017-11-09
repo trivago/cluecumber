@@ -1,13 +1,13 @@
 package com.trivago.rta.exceptions.properties;
 
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 
 /**
  * Thrown when an expected plugin property is not found or wrong
  * (typically set inside a configuration block within the pom file).
  */
-public class WrongOrMissingPropertyException extends TrupiReportingPluginException {
+public class WrongOrMissingPropertyException extends CluecumberPluginException {
     /**
      * Constructor.
      *

@@ -5,7 +5,7 @@ import org.apache.maven.plugin.logging.Log;
 import javax.inject.Singleton;
 
 @Singleton
-public class TrupiLogger {
+public class CluecumberLogger {
 
     private Log mojoLogger;
 
@@ -13,11 +13,11 @@ public class TrupiLogger {
         this.mojoLogger = mojoLogger;
     }
 
-    public void debug(final CharSequence charSequence) {
-        mojoLogger.debug(charSequence);
-    }
-
     public void info(final CharSequence charSequence) {
         mojoLogger.info(charSequence);
+    }
+
+    public void warn(final CharSequence charSequence) {
+        mojoLogger.warn(charSequence);
     }
 }

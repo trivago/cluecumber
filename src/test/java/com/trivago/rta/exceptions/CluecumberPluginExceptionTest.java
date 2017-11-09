@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class CluecumberPluginExceptionTest {
     @Test
     public void testErrorMessage() {
-        TrupiReportingPluginException exception = new TrupiReportingPluginException("This is a test");
+        CluecumberPluginException exception = new CluecumberPluginException("This is a test");
         assertThat(exception.getMessage(), is("This is a test"));
     }
 }

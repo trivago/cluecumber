@@ -1,8 +1,8 @@
 package com.trivago.rta.properties;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.properties.WrongOrMissingPropertyException;
-import com.trivago.rta.logging.TrupiLogger;
+import com.trivago.rta.logging.CluecumberLogger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -10,13 +10,13 @@ import javax.inject.Singleton;
 @Singleton
 public class PropertyManager {
 
-    private final TrupiLogger logger;
+    private final CluecumberLogger logger;
 
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
 
     @Inject
-    public PropertyManager(final TrupiLogger logger) {
+    public PropertyManager(final CluecumberLogger logger) {
         this.logger = logger;
     }
 
@@ -39,10 +39,10 @@ public class PropertyManager {
     /**
      * Checks the pom settings for the plugin.
      *
-     * @throws TrupiReportingPluginException Thrown when a required setting
+     * @throws CluecumberPluginException Thrown when a required setting
      *                                       is not specified in the pom.
      */
-    public void validateSettings() throws TrupiReportingPluginException {
+    public void validateSettings() throws CluecumberPluginException {
         String missingProperty = null;
         if (sourceJsonReportDirectory.equals("")) {
             missingProperty = "sourceJsonReportDirectory";

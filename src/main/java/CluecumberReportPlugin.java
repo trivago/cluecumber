@@ -1,9 +1,9 @@
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.filesystem.FileSystemManager;
 import com.trivago.rta.json.JsonPojoConverter;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.logging.TrupiLogger;
+import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.ReportGenerator;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
@@ -21,7 +21,7 @@ import java.util.List;
 @Mojo(name = "reporting")
 public final class CluecumberReportPlugin extends AbstractMojo {
 
-    private final TrupiLogger logger;
+    private final CluecumberLogger logger;
     private final PropertyManager propertyManager;
     private final FileSystemManager fileSystemManager;
     private final FileIO fileIO;
@@ -42,7 +42,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
 
     @Inject
     public CluecumberReportPlugin(
-            final TrupiLogger logger,
+            final CluecumberLogger logger,
             final PropertyManager propertyManager,
             final FileSystemManager fileSystemManager,
             final FileIO fileIO,
@@ -58,11 +58,11 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     }
 
     /**
-     * Trupi Reporting start method.
+     * Cluecumber Report start method.
      *
-     * @throws TrupiReportingPluginException When thrown, the plugin execution is stopped.
+     * @throws CluecumberPluginException When thrown, the plugin execution is stopped.
      */
-    public void execute() throws TrupiReportingPluginException {
+    public void execute() throws CluecumberPluginException {
         // Initialize logger to be available outside the AbstractMojo class
         logger.setMojoLogger(getLog());
 
@@ -71,9 +71,9 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.validateSettings();
 
-        logger.info("---------------------------------------");
-        logger.info(" Trupi Cucumber Reporting Maven Plugin ");
-        logger.info("---------------------------------------");
+        logger.info("--------------------------------");
+        logger.info(" Cluecumber Report Maven Plugin ");
+        logger.info("--------------------------------");
 
         propertyManager.logProperties();
 

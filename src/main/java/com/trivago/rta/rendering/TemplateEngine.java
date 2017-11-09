@@ -1,6 +1,6 @@
 package com.trivago.rta.rendering;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.DetailPageRenderer;
 import com.trivago.rta.rendering.pages.StartPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
@@ -39,11 +39,11 @@ public class TemplateEngine {
         cfg.setLogTemplateExceptions(false);
     }
 
-    String getRenderedStartPage(final StartPageCollection startPageCollection) throws TrupiReportingPluginException {
+    String getRenderedStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         return startPageRenderer.getRenderedContent(startPageCollection, getTemplate(START_PAGE_TEMPLATE));
     }
 
-    String getRenderedDetailPage(final DetailPageCollection detailPageCollection) throws TrupiReportingPluginException {
+    String getRenderedDetailPage(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
         return detailPageRenderer.getRenderedContent(detailPageCollection, getTemplate(DETAIL_PAGE_TEMPLATE));
     }
 

@@ -1,3 +1,20 @@
+![cluecumber logo](documentation/img/cluecumber.png)
+
+[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
+  - [Example POM snippet](#example-pom-snippet)
+  - [Parameters](#parameters)
+  - [Prerequisites](#prerequisites)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 # Cluecumber Report Maven Plugin
 
 This plugin creates test reports from Cucumber JSON files.
@@ -42,6 +59,6 @@ Typically, both properties point to directories inside the Maven ```target``` di
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in your Cucumber runner configuration:
 ```
 @CucumberOptions(
-    format = {"json:target/trupi-basic-report/cucumber.json"}
+    format = {"json:target/cucumber-report/cucumber.json"}
 )
 ```

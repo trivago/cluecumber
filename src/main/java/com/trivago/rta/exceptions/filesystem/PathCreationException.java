@@ -1,11 +1,11 @@
 package com.trivago.rta.exceptions.filesystem;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 
 /**
  * Thrown when a path cannot be created.
  */
-public class PathCreationException extends TrupiReportingPluginException {
+public class PathCreationException extends CluecumberPluginException {
     /**
      * Constructor.
      *

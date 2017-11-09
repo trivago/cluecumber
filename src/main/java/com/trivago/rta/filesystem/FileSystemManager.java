@@ -1,6 +1,6 @@
 package com.trivago.rta.filesystem;
 
-import com.trivago.rta.exceptions.TrupiReportingPluginException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.PathCreationException;
 import com.trivago.rta.properties.PropertyManager;
 
@@ -28,7 +28,7 @@ public class FileSystemManager {
         this.propertyManager = propertyManager;
     }
 
-    public List<Path> getJsonFilePaths() throws TrupiReportingPluginException {
+    public List<Path> getJsonFilePaths() throws CluecumberPluginException {
         String sourceJsonReportDirectory = propertyManager.getSourceJsonReportDirectory();
         List<Path> jsonFilePaths;
         try {
@@ -39,7 +39,7 @@ public class FileSystemManager {
                             .collect(Collectors.toList());
 
         } catch (IOException e) {
-            throw new TrupiReportingPluginException(
+            throw new CluecumberPluginException(
                     "Unable to traverse JSON files in " + sourceJsonReportDirectory);
         }
         return jsonFilePaths;
@@ -63,9 +63,9 @@ public class FileSystemManager {
      * @param baseClass    jar base class.
      * @param resourceName path to the embedded resource.
      * @param destination  full path to the destination resource.
-     * @throws TrupiReportingPluginException (see {@link TrupiReportingPluginException}.
+     * @throws CluecumberPluginException (see {@link CluecumberPluginException}.
      */
-    public void exportResource(final Class baseClass, final String resourceName, final String destination) throws TrupiReportingPluginException {
+    public void exportResource(final Class baseClass, final String resourceName, final String destination) throws CluecumberPluginException {
         InputStream stream = null;
         OutputStream resStreamOut = null;
         String jarFolder;
@@ -82,7 +82,7 @@ public class FileSystemManager {
                 resStreamOut.write(buffer, 0, readBytes);
             }
         } catch (Exception e) {
-            throw new TrupiReportingPluginException(e.getMessage());
+            throw new CluecumberPluginException(e.getMessage());
         } finally {
             try {
                 if (stream != null) {
@@ -92,7 +92,7 @@ public class FileSystemManager {
                     resStreamOut.close();
                 }
             } catch (IOException e) {
-                throw new TrupiReportingPluginException(e.getMessage());
+                throw new CluecumberPluginException(e.getMessage());
             }
         }
     }

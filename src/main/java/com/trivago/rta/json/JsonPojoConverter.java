@@ -3,7 +3,7 @@ package com.trivago.rta.json;
 import com.google.gson.Gson;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.json.processors.ElementPostProcessor;
+import com.trivago.rta.json.postprocessors.ElementPostProcessor;
 import io.gsonfire.GsonFireBuilder;
 
 import javax.inject.Inject;
@@ -16,10 +16,8 @@ public class JsonPojoConverter {
 
     @Inject
     public JsonPojoConverter(final ElementPostProcessor elementPostProcessor) {
-
         GsonFireBuilder builder = new GsonFireBuilder()
                 .registerPostProcessor(Element.class, elementPostProcessor);
-
         gsonParser = builder.createGson();
     }
 
