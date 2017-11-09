@@ -19,6 +19,9 @@
 
 This plugin creates test reports from Cucumber JSON files.
 
+![report_overview](documentation/img/report_overview.png)
+![report_detail](documentation/img/report_detail.png)
+
 ## Example POM snippet
 
 ```xml
