@@ -1,5 +1,7 @@
 package com.trivago.rta.json.pojo;
 
+import com.trivago.rta.constants.Status;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,10 @@ public class Step extends ResultMatch {
 
     public void setEmbeddings(final List<Embedding> embeddings) {
         this.embeddings = embeddings;
+    }
+
+    public Status getStatus() {
+        return Status.fromString(getResult().getStatus());
     }
 
     @Override

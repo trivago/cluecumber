@@ -46,41 +46,62 @@ public class ElementPostProcessor implements PostProcessor<Element> {
             processAttachments(element.getSteps());
         } catch (CluecumberPluginException e) {
             // If an attachment cannot be processed, don't stop the report generation.
-            logger.warn(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
+    /**
+     * Save images to files, clear their Base64 content from JSON and store their filenames in order to save memory.
+     *
+     * @param steps
+     * @throws CluecumberPluginException
+     */
     private void processAttachments(final List<Step> steps) throws CluecumberPluginException {
         for (Step step : steps) {
             List<Embedding> embeddings = step.getEmbeddings();
             for (Embedding embedding : embeddings) {
-                String filename = saveEmbeddingToFileAndGetFilename(embedding);
-                embedding.setFilename(filename);
+                if (embedding.isImage()) {
+                    String filename = saveImageEmbeddingToFileAndGetFilename(embedding);
+                    embedding.setFilename(filename);
+                }
                 attachmentIndex++;
             }
         }
     }
 
-    private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) throws CluecumberPluginException {
+    private String saveImageEmbeddingToFileAndGetFilename(final Embedding embedding) throws CluecumberPluginException {
+        if (!embedding.isImage()) {
+            return "";
+        }
+
         String fileEnding;
         switch (embedding.getMimeType()) {
             case "image/png":
                 fileEnding = ".png";
                 break;
-            case "image/jpg":
+            case "image/jpeg":
                 fileEnding = ".jpg";
+                break;
+            case "image/gif":
+                fileEnding = ".gif";
+                break;
+            case "image/svg+xml":
+                fileEnding = "svg";
                 break;
             default:
                 fileEnding = ".unknown";
         }
 
         byte[] dataBytes = Base64.decodeBase64(embedding.getData().getBytes(StandardCharsets.UTF_8));
+
+        // Clear attachment data to reduce memory
         embedding.setData("");
+
         String filename = String.format("attachment%03d%s", attachmentIndex, fileEnding);
         try {
             fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
         } catch (FileCreationException e) {
-            throw new CluecumberPluginException("Could not process attachment of type " + embedding.getMimeType());
+            logger.error("Could not process image " + filename + " but will continue report generation...");
         }
         return filename;
     }

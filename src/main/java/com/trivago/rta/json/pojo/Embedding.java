@@ -33,4 +33,13 @@ public class Embedding {
     public void setFilename(final String filename) {
         this.filename = filename;
     }
+
+    public boolean isImage() {
+        return
+                mimeType.equalsIgnoreCase("image/png") ||
+                mimeType.equalsIgnoreCase("image/jpeg") ||
+                mimeType.equalsIgnoreCase("image/gif") ||
+                mimeType.equalsIgnoreCase("image/svg+xml");
+
+    }
 }

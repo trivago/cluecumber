@@ -1,6 +1,6 @@
 package com.trivago.rta.json.pojo;
 
-import com.trivago.rta.constants.ScenarioStatus;
+import com.trivago.rta.constants.Status;
 
 import java.time.Duration;
 import java.util.List;
@@ -104,18 +104,27 @@ public class Element {
         return type.equals("scenario");
     }
 
-    public ScenarioStatus getStatus() {
-        int totalSteps = steps.size();
-        int skippedSteps = (int) steps.stream().filter(step -> step.getResult().getStatus().equals(ScenarioStatus.SKIPPED.getStatus())).count();
-        int passedSteps = (int) steps.stream().filter(step -> step.getResult().getStatus().equals(ScenarioStatus.PASSED.getStatus())).count();
+    public boolean isFailed(){
+        return getStatus() == Status.FAILED;
+    }
 
-        if (skippedSteps == totalSteps) {
-            return ScenarioStatus.SKIPPED;
-        } else if (passedSteps == totalSteps) {
-            return ScenarioStatus.PASSED;
-        } else {
-            return ScenarioStatus.FAILED;
+    public boolean isPassed(){
+        return getStatus() == Status.PASSED;
+    }
+
+    public boolean isSkipped(){
+        return getStatus() == Status.SKIPPED;
+    }
+
+    public Status getStatus() {
+        int totalSteps = steps.size();
+        for (Status status : Status.values()) {
+            int stepNumber = (int) steps.stream().filter(step -> step.getStatus() == status).count();
+            if (totalSteps == stepNumber) {
+                return status;
+            }
         }
+        return Status.FAILED;
     }
 
     public int getScenarioIndex() {

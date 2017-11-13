@@ -45,9 +45,10 @@ public class DetailPageRenderer extends PageRenderer {
         for (Step step : element.getSteps()) {
             barData.addLabel("Step " + stepCounter);
             barDataSet.addData(step.getResult().getDurationInMilliseconds());
+            barDataSet.addBackgroundColor(com.trivago.rta.constants.Color.getChartColorByStatus(step.getStatus()));
             stepCounter++;
         }
-        barDataSet.setLabel("Step run time");
+        barDataSet.setLabel("Step runtime");
         barData.addDataset(barDataSet);
 
         LinearTicks ticks = new LinearTicks().setMin(0);

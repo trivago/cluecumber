@@ -68,7 +68,7 @@
                                 <tbody>
                                 <#list reports as report>
                                     <#list report.elements as element>
-                                        <#if element.status.status == "failed">
+                                        <#if element.status.statusString == "failed">
                                             <tr>
                                                 <td class="text-left text-capitalize">${report.name}</td>
                                                 <td class="text-left text-capitalize">
@@ -102,7 +102,7 @@
                                 <tbody>
                                 <#list reports as report>
                                     <#list report.elements as element>
-                                        <#if element.status.status == "skipped">
+                                        <#if element.status.statusString == "skipped">
                                             <tr>
                                                 <td class="text-left text-capitalize">${report.name}</td>
                                                 <td class="text-left text-capitalize">
@@ -136,7 +136,7 @@
                                 <tbody>
                                 <#list reports as report>
                                     <#list report.elements as element>
-                                        <#if element.status.status == "passed">
+                                        <#if element.status.statusString == "passed">
                                             <tr>
                                                 <td class="text-left text-capitalize">${report.name}</td>
                                                 <td class="text-left text-capitalize">

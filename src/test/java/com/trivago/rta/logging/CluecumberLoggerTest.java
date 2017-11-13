@@ -28,9 +28,9 @@ public class CluecumberLoggerTest {
     }
 
     @Test
-    public void warnTest() {
-        logger.warn("Test");
+    public void errorTest() {
+        logger.error("Test");
         verify(mockedLogger, times(1))
-                .warn("Test");
+                .error("Test");
     }
 }

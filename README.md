@@ -19,7 +19,31 @@
 
 This plugin creates test reports from Cucumber JSON files.
 
+This project was created because
+- some other projects are using legacy technology and/or were not maintained at all
+- some other projects generate partial or even full HTML code in Java making it hard to maintain
+- the reporting generated from other plugins showed too much unneeded or even wrong information
+- it will allow to completely customize the report appearance and information
+
+## Test suite overview page
+
+This page shows the most important information about the test suite:
+- run time
+- number of passed, failed and skipped scenarios
+- grouped scenarios by status
+
 ![report_overview](documentation/img/report_overview.png)
+
+## Scenario detail pages
+
+The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
+
+It shows:
+- scenario name and description
+- step runtimes and status
+- stack traces of failed steps
+- screenshots
+
 ![report_detail](documentation/img/report_detail.png)
 
 ## Example POM snippet

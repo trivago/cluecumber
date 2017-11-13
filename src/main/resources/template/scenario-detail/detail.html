@@ -18,9 +18,9 @@
     <div class="container-fluid">
         <div class="navbar-header w-100">
             <h5 class="navbar-text float-lg-left">Scenario Details</h5>
-            <p class="navbar-text float-lg-right">
+            <span class="navbar-text float-lg-right">
                 <a href="javascript:history.back();" class="text-light">Back to Overview</a>
-            </p>
+            </span>
         </div>
     </div>
 </nav>
@@ -75,14 +75,14 @@
                                         ${step.result.durationString}
                                     </div>
                                     <div class="col-2 text-left">
-                                        <#if step.result.status == "failed">
+                                        <#if step.status.statusString == "failed">
                                             <#assign class = "text-danger" />
-                                            <#elseif step.result.status == "skipped"/>
+                                            <#elseif step.status.statusString == "skipped"/>
                                             <#assign class = "text-warning" />
                                             <#else/>
                                             <#assign class = "text-success" />
                                         </#if>
-                                        <span class="${class}">${step.result.status}</span>
+                                        <span class="${class}">${step.status.statusString}</span>
                                     </div>
                                 </div>
                                 <#if step.result.status == "failed">

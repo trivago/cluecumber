@@ -1,6 +1,6 @@
 package com.trivago.rta.rendering.pages.pojos;
 
-import com.trivago.rta.constants.ScenarioStatus;
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 
@@ -42,18 +42,18 @@ public class StartPageCollection {
     }
 
     public int getTotalNumberOfPassedScenarios() {
-        return getNumberOfScenariosWithStatus(ScenarioStatus.PASSED);
+        return getNumberOfScenariosWithStatus(Status.PASSED);
     }
 
     public int getTotalNumberOfFailedScenarios() {
-        return getNumberOfScenariosWithStatus(ScenarioStatus.FAILED);
+        return getNumberOfScenariosWithStatus(Status.FAILED);
     }
 
     public int getTotalNumberOfSkippedScenarios() {
-        return getNumberOfScenariosWithStatus(ScenarioStatus.SKIPPED);
+        return getNumberOfScenariosWithStatus(Status.SKIPPED);
     }
 
-    private int getNumberOfScenariosWithStatus(final ScenarioStatus status) {
+    private int getNumberOfScenariosWithStatus(final Status status) {
         return reports.stream().mapToInt(
                 report -> (int) report.getElements().stream().filter(
                         element -> element.getStatus().equals(status)

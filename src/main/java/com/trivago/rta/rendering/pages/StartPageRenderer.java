@@ -5,7 +5,7 @@ import be.ceau.chart.color.Color;
 import be.ceau.chart.data.PieData;
 import be.ceau.chart.dataset.PieDataset;
 import be.ceau.chart.options.PieOptions;
-import com.trivago.rta.constants.ScenarioStatus;
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
@@ -46,26 +46,14 @@ public class StartPageRenderer extends PageRenderer {
                 startPageCollection.getTotalNumberOfSkippedScenarios()
         );
 
-        final int failedR = 220;
-        final int failedG = 53;
-        final int failedB = 69;
-
-        final int skippedR = 255;
-        final int skippedG = 193;
-        final int skippedB = 7;
-
-        final int passedR = 40;
-        final int passedG = 167;
-        final int passedB = 69;
-
-        Color failedColor = new Color(failedR, failedG, failedB);
-        Color skippedColor = new Color(skippedR, skippedG, skippedB);
-        Color passedColor = new Color(passedR, passedG, passedB);
+        Color passedColor = com.trivago.rta.constants.Color.getChartColorByStatus(Status.PASSED);
+        Color failedColor = com.trivago.rta.constants.Color.getChartColorByStatus(Status.FAILED);
+        Color skippedColor = com.trivago.rta.constants.Color.getChartColorByStatus(Status.SKIPPED);
 
         pieDataset.addBackgroundColors(passedColor, failedColor, skippedColor);
         PieData pieData = new PieData();
         pieData.addDataset(pieDataset);
-        pieData.addLabels(ScenarioStatus.PASSED.getStatus(), ScenarioStatus.FAILED.getStatus(), ScenarioStatus.SKIPPED.getStatus());
+        pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
         PieOptions pieOptions = new PieOptions();
 
         reportDetails.setChartJson(new PieChart(pieData, pieOptions).toJson());

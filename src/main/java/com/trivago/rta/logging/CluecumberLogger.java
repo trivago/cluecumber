@@ -17,7 +17,7 @@ public class CluecumberLogger {
         mojoLogger.info(charSequence);
     }
 
-    public void warn(final CharSequence charSequence) {
-        mojoLogger.warn(charSequence);
+    public void error(final CharSequence charSequence) {
+        mojoLogger.error(charSequence);
     }
 }
