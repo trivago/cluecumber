@@ -128,17 +128,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
-                <configuration>
-                    <configLocation>
-                        http://artifactory.rta.trivago.trv:8081/artifactory/libs-release-local/com/trivago/rta/trupi-code-style/1.0.0/trupi_checks.xml
-                    </configLocation>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
