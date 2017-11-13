@@ -23,7 +23,7 @@ This project was created because
 - some other projects are using legacy technology and/or were not maintained at all
 - some other projects generate partial or even full HTML code in Java making it hard to maintain
 - the reporting generated from other plugins showed too much unneeded or even wrong information
-- some other projects 
+- some other projects consume a large amount of memory when generating reports from large JSON files
 - it will allow to completely customize the report appearance and information
 
 ## Test suite overview page
