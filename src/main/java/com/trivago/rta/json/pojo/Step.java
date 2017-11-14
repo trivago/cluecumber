@@ -63,6 +63,18 @@ public class Step extends ResultMatch {
         return Status.fromString(getResult().getStatus());
     }
 
+    public boolean isFailed(){
+        return getStatus() == Status.FAILED;
+    }
+
+    public boolean isPassed(){
+        return getStatus() == Status.PASSED;
+    }
+
+    public boolean isSkipped(){
+        return getStatus() == Status.SKIPPED;
+    }
+
     @Override
     public String toString() {
         return "Step{" +

@@ -22,6 +22,7 @@ import be.ceau.chart.dataset.BarDataset;
 import be.ceau.chart.options.BarOptions;
 import be.ceau.chart.options.scales.BarScale;
 import be.ceau.chart.options.ticks.LinearTicks;
+import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Step;
@@ -61,7 +62,7 @@ public class DetailPageRenderer extends PageRenderer {
         for (Step step : element.getSteps()) {
             barData.addLabel("Step " + stepCounter);
             barDataSet.addData(step.getResult().getDurationInMilliseconds());
-            barDataSet.addBackgroundColor(com.trivago.rta.constants.Color.getChartColorByStatus(step.getStatus()));
+            barDataSet.addBackgroundColor(ChartColor.getChartColorByStatus(step.getStatus()));
             stepCounter++;
         }
         barDataSet.setLabel("Step runtime");

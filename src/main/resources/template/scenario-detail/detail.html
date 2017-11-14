@@ -91,9 +91,9 @@ limitations under the License.
                                         ${step.result.durationString}
                                     </div>
                                     <div class="col-2 text-left">
-                                        <#if step.status.statusString == "failed">
+                                        <#if step.failed>
                                             <#assign class = "text-danger" />
-                                            <#elseif step.status.statusString == "skipped"/>
+                                            <#elseif step.skipped/>
                                             <#assign class = "text-warning" />
                                             <#else/>
                                             <#assign class = "text-success" />

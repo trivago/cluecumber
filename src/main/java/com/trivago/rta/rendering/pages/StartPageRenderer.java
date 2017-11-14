@@ -21,6 +21,7 @@ import be.ceau.chart.color.Color;
 import be.ceau.chart.data.PieData;
 import be.ceau.chart.dataset.PieDataset;
 import be.ceau.chart.options.PieOptions;
+import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
@@ -62,9 +63,9 @@ public class StartPageRenderer extends PageRenderer {
                 startPageCollection.getTotalNumberOfSkippedScenarios()
         );
 
-        Color passedColor = com.trivago.rta.constants.Color.getChartColorByStatus(Status.PASSED);
-        Color failedColor = com.trivago.rta.constants.Color.getChartColorByStatus(Status.FAILED);
-        Color skippedColor = com.trivago.rta.constants.Color.getChartColorByStatus(Status.SKIPPED);
+        Color passedColor = ChartColor.getChartColorByStatus(Status.PASSED);
+        Color failedColor = ChartColor.getChartColorByStatus(Status.FAILED);
+        Color skippedColor = ChartColor.getChartColorByStatus(Status.SKIPPED);
 
         pieDataset.addBackgroundColors(passedColor, failedColor, skippedColor);
         PieData pieData = new PieData();

@@ -84,7 +84,7 @@ limitations under the License.
                                 <tbody>
                                 <#list reports as report>
                                     <#list report.elements as element>
-                                        <#if element.status.statusString == "failed">
+                                        <#if element.failed>
                                             <tr>
                                                 <td class="text-left text-capitalize">${report.name}</td>
                                                 <td class="text-left text-capitalize">
@@ -118,7 +118,7 @@ limitations under the License.
                                 <tbody>
                                 <#list reports as report>
                                     <#list report.elements as element>
-                                        <#if element.status.statusString == "skipped">
+                                        <#if element.skipped>
                                             <tr>
                                                 <td class="text-left text-capitalize">${report.name}</td>
                                                 <td class="text-left text-capitalize">
@@ -152,7 +152,7 @@ limitations under the License.
                                 <tbody>
                                 <#list reports as report>
                                     <#list report.elements as element>
-                                        <#if element.status.statusString == "passed">
+                                        <#if element.passed>
                                             <tr>
                                                 <td class="text-left text-capitalize">${report.name}</td>
                                                 <td class="text-left text-capitalize">

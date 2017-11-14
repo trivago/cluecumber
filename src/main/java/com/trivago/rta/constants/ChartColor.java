@@ -16,14 +16,14 @@
 
 package com.trivago.rta.constants;
 
-public enum Color {
+public enum ChartColor {
     PASSED(40, 167, 69), FAILED(220, 53, 69), SKIPPED(255, 193, 7);
 
     private final int r;
     private final int g;
     private final int b;
 
-    Color(final int r, final int g, final int b) {
+    ChartColor(final int r, final int g, final int b) {
         this.r = r;
         this.g = g;
         this.b = b;
