@@ -7,6 +7,7 @@
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
     <version>0.0.2</version>
+    <url>https://github.com/trivago/cluecumber-report-plugin</url>
 
     <name>Cluecumber Maven Plugin for Cucumber Reports</name>
     <description>Plugin for reporting Cucumber results.</description>
