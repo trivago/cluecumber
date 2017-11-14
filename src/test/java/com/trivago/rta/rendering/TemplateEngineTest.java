@@ -1,0 +1,58 @@
+package com.trivago.rta.rendering;
+
+import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.rendering.pages.DetailPageRenderer;
+import com.trivago.rta.rendering.pages.StartPageRenderer;
+import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import freemarker.template.Template;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class TemplateEngineTest {
+    private StartPageRenderer startPageRenderer;
+    private DetailPageRenderer detailPageRenderer;
+    private TemplateConfiguration templateConfiguration;
+
+    private TemplateEngine templateEngine;
+
+    @Before
+    public void setup() {
+        startPageRenderer = mock(StartPageRenderer.class);
+        detailPageRenderer = mock(DetailPageRenderer.class);
+        templateConfiguration = mock(TemplateConfiguration.class);
+        templateEngine = new TemplateEngine(
+                templateConfiguration, startPageRenderer, detailPageRenderer
+        );
+    }
+
+    @Test
+    public void validInitTest() {
+        templateEngine.init(this.getClass(), "bla");
+    }
+
+    @Test
+    public void getRenderedStartPageTest() throws CluecumberPluginException {
+        StartPageCollection startPageCollection = new StartPageCollection();
+        Template template = mock(Template.class);
+        when(templateConfiguration.getTemplate("index.html")).thenReturn(template);
+        when(startPageRenderer.getRenderedContent(startPageCollection, template)).thenReturn("START_PAGE_CONTENT");
+        String renderedStartPage = templateEngine.getRenderedStartPage(startPageCollection);
+        assertThat(renderedStartPage, is("START_PAGE_CONTENT"));
+    }
+
+    @Test
+    public void getRenderedDetailPageTest() throws CluecumberPluginException {
+        DetailPageCollection detailPageCollection = new DetailPageCollection(null);
+        Template template = mock(Template.class);
+        when(templateConfiguration.getTemplate("scenario-detail/detail.html")).thenReturn(template);
+        when(detailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
+        String renderedDetailPage = templateEngine.getRenderedDetailPage(detailPageCollection);
+        assertThat(renderedDetailPage, is("DETAIL_PAGE_CONTENT"));
+    }
+}

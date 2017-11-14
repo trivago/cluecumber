@@ -56,13 +56,13 @@ public class PropertyManager {
      * Checks the pom settings for the plugin.
      *
      * @throws CluecumberPluginException Thrown when a required setting
-     *                                       is not specified in the pom.
+     *                                   is not specified in the pom.
      */
     public void validateSettings() throws CluecumberPluginException {
         String missingProperty = null;
-        if (sourceJsonReportDirectory.equals("")) {
+        if (sourceJsonReportDirectory == null || sourceJsonReportDirectory.equals("")) {
             missingProperty = "sourceJsonReportDirectory";
-        } else if (generatedHtmlReportDirectory.equals("")) {
+        } else if (generatedHtmlReportDirectory == null || generatedHtmlReportDirectory.equals("")) {
             missingProperty = "generatedHtmlReportDirectory";
         }
 

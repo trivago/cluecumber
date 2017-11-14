@@ -39,6 +39,5 @@ public enum ChartColor {
             default:
                 return new be.ceau.chart.color.Color(PASSED.r, PASSED.g, PASSED.b);
         }
-
     }
 }

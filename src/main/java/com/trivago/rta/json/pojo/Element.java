@@ -163,7 +163,7 @@ public class Element {
         long minutes = durationMilliseconds.toMinutes();
         long seconds = durationMilliseconds.minusMinutes(minutes).getSeconds();
         long milliseconds = durationMilliseconds.minusMinutes(minutes).minusSeconds(seconds).toMillis();
-        return String.format("%dm %02ds %03d", minutes, seconds, milliseconds);
+        return String.format("%dm %02ds %03dms", minutes, seconds, milliseconds);
     }
 
     @Override
