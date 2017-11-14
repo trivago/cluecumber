@@ -11,6 +11,8 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
+  - [Test suite overview page](#test-suite-overview-page)
+  - [Scenario detail pages](#scenario-detail-pages)
   - [Example POM snippet](#example-pom-snippet)
   - [Parameters](#parameters)
   - [Prerequisites](#prerequisites)
