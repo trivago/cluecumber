@@ -72,7 +72,7 @@ public class Step extends ResultMatch {
     }
 
     public boolean isSkipped(){
-        return getStatus() == Status.SKIPPED;
+        return getStatus() == Status.SKIPPED || getStatus() == Status.UNDEFINED;
     }
 
     @Override

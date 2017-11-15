@@ -59,6 +59,7 @@ public class DetailPageRenderer extends PageRenderer {
 
         BarData barData = new BarData();
         int stepCounter = 1;
+
         for (Step step : element.getSteps()) {
             barData.addLabel("Step " + stepCounter);
             barDataSet.addData(step.getResult().getDurationInMilliseconds());

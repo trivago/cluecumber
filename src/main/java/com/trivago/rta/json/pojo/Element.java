@@ -19,19 +19,20 @@ package com.trivago.rta.json.pojo;
 import com.trivago.rta.constants.Status;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Element {
-    private List<Before> before;
+    private List<Before> before = new ArrayList<>();
     private int line;
     private String name;
     private String description;
     private String id;
-    private List<After> after;
+    private List<After> after = new ArrayList<>();
     private String type;
     private String keyword;
-    private List<Step> steps;
-    private List<Tag> tags;
+    private List<Step> steps = new ArrayList<>();
+    private List<Tag> tags = new ArrayList<>();
 
     private transient int scenarioIndex;
     private transient String durationChartJson = "";
@@ -120,24 +121,33 @@ public class Element {
         return type.equals("scenario");
     }
 
-    public boolean isFailed(){
+    public boolean isFailed() {
         return getStatus() == Status.FAILED;
     }
 
-    public boolean isPassed(){
+    public boolean isPassed() {
         return getStatus() == Status.PASSED;
     }
 
-    public boolean isSkipped(){
+    public boolean isSkipped() {
         return getStatus() == Status.SKIPPED;
     }
 
     public Status getStatus() {
         int totalSteps = steps.size();
+
+        if (totalSteps == 0) {
+            return Status.SKIPPED;
+        }
+
         for (Status status : Status.values()) {
             int stepNumber = (int) steps.stream().filter(step -> step.getStatus() == status).count();
             if (totalSteps == stepNumber) {
-                return status;
+                if (status != Status.UNDEFINED) {
+                    return status;
+                } else {
+                    return Status.SKIPPED;
+                }
             }
         }
         return Status.FAILED;

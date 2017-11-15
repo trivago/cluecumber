@@ -17,7 +17,7 @@
 package com.trivago.rta.constants;
 
 public enum Status {
-    PASSED("passed"), FAILED("failed"), SKIPPED("skipped");
+    PASSED("passed"), FAILED("failed"), SKIPPED("skipped"), UNDEFINED("undefined");
 
     private final String status;
 
