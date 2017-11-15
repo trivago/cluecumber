@@ -11,9 +11,15 @@ Back to [Readme](README.md).
 - Support for non-image attachments
 - Increased unit test coverage
 
+## [0.0.3] - 2017-11-15
+
+- fixed handling of scenarios without steps
+- fixed handling of undefined steps
+
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
 
-[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.0.2...HEAD
+[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.0.3...HEAD
+[0.0.3]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.3
 [0.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.2
