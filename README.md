@@ -49,7 +49,7 @@ This will generate JSON results for all Cucumber tests.
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
-    <version>0.0.2</version>
+    <version>Check the version number above</version>
     <executions>
         <execution>
             <id>report</id>
