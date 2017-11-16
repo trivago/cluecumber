@@ -16,6 +16,9 @@
 
 package com.trivago.rta.constants;
 
+/**
+ * Holder class for static plugin settings
+ */
 public class PluginSettings {
     public final static String NAME = "Cluecumber Report Plugin";
 }

@@ -28,8 +28,18 @@ import java.nio.file.Paths;
 
 import static java.nio.file.Files.readAllBytes;
 
+/**
+ * This class manages reading from and writing to files.
+ */
 @Singleton
 public class FileIO {
+    /**
+     * Write string content to a file.
+     *
+     * @param content  the string content to be written.
+     * @param filePath the complete path to the target file.
+     * @throws FileCreationException a {@link FileCreationException} in case the file cannot be created.
+     */
     public void writeContentToFile(final String content, final String filePath) throws FileCreationException {
         try (PrintStream ps = new PrintStream(filePath)) {
             ps.println(content);
@@ -38,6 +48,13 @@ public class FileIO {
         }
     }
 
+    /**
+     * Write byte array content to a file.
+     *
+     * @param content  the byte array content to be written.
+     * @param filePath the complete path to the target file.
+     * @throws FileCreationException a {@link FileCreationException} in case the file cannot be created.
+     */
     public void writeContentToFile(final byte[] content, final String filePath) throws FileCreationException {
         Path path = Paths.get(filePath);
         try {
@@ -47,6 +64,13 @@ public class FileIO {
         }
     }
 
+    /**
+     * Read string content from a file.
+     *
+     * @param filePath the complete path to the source file.
+     * @return the file contents as a string.
+     * @throws MissingFileException a {@link MissingFileException} in case the file does not exist.
+     */
     public String readContentFromFile(final String filePath) throws MissingFileException {
         try {
             byte[] bytes = readAllBytes(Paths.get(filePath));

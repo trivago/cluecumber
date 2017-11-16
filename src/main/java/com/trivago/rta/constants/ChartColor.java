@@ -16,6 +16,9 @@
 
 package com.trivago.rta.constants;
 
+/**
+ * This enum manages the colors for the overview and detail charts that correspond to the passed in {@link Status} value.
+ */
 public enum ChartColor {
     PASSED(40, 167, 69), FAILED(220, 53, 69), SKIPPED(255, 193, 7);
 
@@ -29,6 +32,12 @@ public enum ChartColor {
         this.b = b;
     }
 
+    /**
+     * Get the corresponding chart color for the passed {@link Status}.
+     *
+     * @param status the {@link Status}.
+     * @return the matching {@link be.ceau.chart.color.Color}.
+     */
     public static be.ceau.chart.color.Color getChartColorByStatus(Status status) {
         switch (status) {
             case FAILED:
