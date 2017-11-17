@@ -23,7 +23,7 @@
 
 # Cluecumber Report Maven Plugin
 
-This plugin creates test reports from Cucumber JSON files.
+This plugin creates aggregated test reports from Cucumber JSON files.
 
 This project was created because
 - some other projects are using legacy technology and/or were not maintained at all
@@ -31,6 +31,8 @@ This project was created because
 - the reporting generated from other plugins showed too much unneeded or even wrong information
 - some other projects consume a large amount of memory when generating reports from large JSON files
 - it will allow to completely customize the report appearance and information
+
+**Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
 
 ## Prerequisites
 
