@@ -11,12 +11,14 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
-  - [Prerequisites](#prerequisites)
-  - [Maven POM settings](#maven-pom-settings)
-    - [Configuration Parameters](#configuration-parameters)
-  - [Generated pages](#generated-pages)
-    - [Test suite overview page](#test-suite-overview-page)
-    - [Scenario detail pages](#scenario-detail-pages)
+- [Prerequisites](#prerequisites)
+- [Maven POM settings](#maven-pom-settings)
+  - [Configuration Parameters](#configuration-parameters)
+- [Generated pages](#generated-pages)
+  - [Test suite overview page](#test-suite-overview-page)
+  - [Scenario detail pages](#scenario-detail-pages)
+- [Building](#building)
+- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -31,6 +33,8 @@ This project was created because
 - the reporting generated from other plugins showed too much unneeded or even wrong information
 - some other projects consume a large amount of memory when generating reports from large JSON files
 - it will allow to completely customize the report appearance and information
+
+**Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
 
 # Prerequisites
 
