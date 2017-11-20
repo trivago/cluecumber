@@ -16,11 +16,12 @@
 
 package com.trivago.rta.json.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Report {
     private int line;
-    private List<Element> elements;
+    private List<Element> elements = new ArrayList<>();
     private String name;
     private String description;
     private String id;

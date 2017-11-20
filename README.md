@@ -25,7 +25,7 @@
 
 # Cluecumber Report Maven Plugin
 
-This plugin creates test reports from Cucumber JSON files.
+This plugin creates aggregated test reports from Cucumber JSON files.
 
 This project was created because
 - some other projects are using legacy technology and/or were not maintained at all
@@ -62,8 +62,8 @@ This will generate JSON results for all Cucumber tests.
                 <goal>reporting</goal>
             </goals>
             <configuration>
-                <sourceJsonReportDirectory>${project.basedir}/src/main/resources/cucumber-report</sourceJsonReportDirectory>
-                <generatedHtmlReportDirectory>${project.build.directory}/cluecumber-report</generatedHtmlReportDirectory>
+                <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
+                <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
             </configuration>
         </execution>
     </executions>

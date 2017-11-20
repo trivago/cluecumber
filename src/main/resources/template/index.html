@@ -79,6 +79,7 @@ limitations under the License.
                                 <tr>
                                     <th>Feature</th>
                                     <th>Scenario</th>
+                                    <th>Duration</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -86,10 +87,11 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if element.failed>
                                             <tr>
-                                                <td class="text-left text-capitalize">${report.name}</td>
+                                                <td class="text-left text-capitalize"><span data-toggle="tooltip" title="${report.uri}">${report.name}</span></td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
                                                 </td>
+                                                <td class="text-left text-capitalize" data-order="${element.totalDuration}">${element.totalDurationString}</td>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -113,6 +115,7 @@ limitations under the License.
                                 <tr>
                                     <th>Feature</th>
                                     <th>Scenario</th>
+                                    <th>Duration</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -120,10 +123,11 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if element.skipped>
                                             <tr>
-                                                <td class="text-left text-capitalize">${report.name}</td>
+                                                <td class="text-left text-capitalize"><span data-toggle="tooltip" title="${report.uri}">${report.name}</span></td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
                                                 </td>
+                                                <td class="text-left text-capitalize" data-order="${element.totalDuration}">${element.totalDurationString}</td>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -147,6 +151,7 @@ limitations under the License.
                                 <tr>
                                     <th>Feature</th>
                                     <th>Scenario</th>
+                                    <th>Duration</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -154,10 +159,11 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if element.passed>
                                             <tr>
-                                                <td class="text-left text-capitalize">${report.name}</td>
+                                                <td class="text-left text-capitalize"><span data-toggle="tooltip" title="${report.uri}">${report.name}</span></td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
                                                 </td>
+                                                <td class="text-left text-capitalize" data-order="${element.totalDuration}">${element.totalDurationString}</td>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -191,6 +197,8 @@ limitations under the License.
         $('#results_failed').DataTable();
         $('#results_skipped').DataTable();
         $('#results_passed').DataTable();
+
+        $('[data-toggle="tooltip"]').tooltip();
 
         var ctx = document.getElementById('chart-area').getContext("2d");
         new Chart(ctx, eval(${reportDetails.chartJson}));

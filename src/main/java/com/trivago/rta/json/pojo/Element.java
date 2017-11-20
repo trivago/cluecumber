@@ -34,8 +34,7 @@ public class Element {
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
 
-    private transient int scenarioIndex;
-    private transient String durationChartJson = "";
+    private transient int scenarioIndex = -1;
 
     public List<Tag> getTags() {
         return tags;
@@ -161,14 +160,17 @@ public class Element {
         this.scenarioIndex = scenarioIndex;
     }
 
-    public String getTotalDurationString() {
-        long totalDurationMillis = 0;
+    public long getTotalDuration() {
+        long totalDurationMicroseconds = 0;
         for (Step step : steps) {
-            totalDurationMillis += step.getResult().getDuration();
+            totalDurationMicroseconds += step.getResult().getDuration();
         }
+        return totalDurationMicroseconds;
+    }
 
+    public String getTotalDurationString() {
         final int microsecondFactor = 1000000;
-        Duration durationMilliseconds = Duration.ofMillis(totalDurationMillis / microsecondFactor);
+        Duration durationMilliseconds = Duration.ofMillis(getTotalDuration() / microsecondFactor);
 
         long minutes = durationMilliseconds.toMinutes();
         long seconds = durationMilliseconds.minusMinutes(minutes).getSeconds();

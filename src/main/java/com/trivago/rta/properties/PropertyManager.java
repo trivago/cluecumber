@@ -72,7 +72,7 @@ public class PropertyManager {
     }
 
     public void logProperties() {
-        logger.info("─ sourceJsonReportDirectory     : " + sourceJsonReportDirectory);
-        logger.info("─ generatedHtmlReportDirectory  : " + generatedHtmlReportDirectory);
+        logger.info("- sourceJsonReportDirectory     : " + sourceJsonReportDirectory);
+        logger.info("- generatedHtmlReportDirectory  : " + generatedHtmlReportDirectory);
     }
 }

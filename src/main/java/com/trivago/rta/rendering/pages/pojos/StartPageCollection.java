@@ -33,6 +33,9 @@ public class StartPageCollection {
     }
 
     public void addReports(final Report[] reportList) {
+        if (reportList == null){
+            return;
+        }
         this.reports.addAll(Arrays.asList(reportList));
     }
 
