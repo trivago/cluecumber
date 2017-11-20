@@ -60,8 +60,8 @@ This will generate JSON results for all Cucumber tests.
                 <goal>reporting</goal>
             </goals>
             <configuration>
-                <sourceJsonReportDirectory>${project.basedir}/src/main/resources/cucumber-report</sourceJsonReportDirectory>
-                <generatedHtmlReportDirectory>${project.build.directory}/cluecumber-report</generatedHtmlReportDirectory>
+                <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
+                <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
             </configuration>
         </execution>
     </executions>
