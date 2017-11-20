@@ -148,7 +148,7 @@
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>${maven.plugin.plugin.version}</version>
                 <configuration>
-                    <goalPrefix>cucable</goalPrefix>
+                    <goalPrefix>cluecumber-report</goalPrefix>
                     <skipErrorNoDescriptorsFound>false</skipErrorNoDescriptorsFound>
                 </configuration>
                 <executions>
