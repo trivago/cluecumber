@@ -11,12 +11,14 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
-  - [Prerequisites](#prerequisites)
-  - [Maven POM settings](#maven-pom-settings)
-    - [Configuration Parameters](#configuration-parameters)
-  - [Generated pages](#generated-pages)
-    - [Test suite overview page](#test-suite-overview-page)
-    - [Scenario detail pages](#scenario-detail-pages)
+- [Prerequisites](#prerequisites)
+- [Maven POM settings](#maven-pom-settings)
+  - [Configuration Parameters](#configuration-parameters)
+- [Generated pages](#generated-pages)
+  - [Test suite overview page](#test-suite-overview-page)
+  - [Scenario detail pages](#scenario-detail-pages)
+- [Building](#building)
+- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -34,7 +36,7 @@ This project was created because
 
 **Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
 
-## Prerequisites
+# Prerequisites
 
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in your Cucumber runner configuration:
 ```
@@ -45,7 +47,7 @@ In order to have the JSON files as a source for the Cluecumber Report generation
 
 This will generate JSON results for all Cucumber tests.
 
-## Maven POM settings
+# Maven POM settings
 
 ```xml
 <plugin>
@@ -68,7 +70,7 @@ This will generate JSON results for all Cucumber tests.
 </plugin>
 ```
 
-### Configuration Parameters
+## Configuration Parameters
 
 There are two parameters that have to be specified:
 
@@ -80,9 +82,9 @@ There are two parameters that have to be specified:
 **Note:**
 Typically, both properties point to directories inside the Maven ```target``` directory.
 
-## Generated pages
+# Generated pages
 
-### Test suite overview page
+## Test suite overview page
 
 This page shows the most important information about the test suite:
 - run time
@@ -91,7 +93,7 @@ This page shows the most important information about the test suite:
 
 ![report_overview](documentation/img/report_overview.png)
 
-### Scenario detail pages
+## Scenario detail pages
 
 The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
 
@@ -102,3 +104,17 @@ It shows:
 - screenshots
 
 ![report_detail](documentation/img/report_detail.png)
+
+# Building
+
+Cluecumber requires Java 8 and Maven 3.3.9. It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+
+# License
+
+Copyright 2017 trivago NV
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
