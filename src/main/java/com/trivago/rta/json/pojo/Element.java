@@ -34,8 +34,7 @@ public class Element {
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
 
-    private transient int scenarioIndex;
-    private transient String durationChartJson = "";
+    private transient int scenarioIndex = -1;
 
     public List<Tag> getTags() {
         return tags;
