@@ -17,6 +17,8 @@
 package com.trivago.rta.json;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.postprocessors.ElementPostProcessor;
@@ -37,7 +39,13 @@ public class JsonPojoConverter {
         gsonParser = builder.createGson();
     }
 
-    public Report[] convertJsonToReportPojos(final String json) {
-        return gsonParser.fromJson(json, Report[].class);
+    public Report[] convertJsonToReportPojos(final String json) throws CluecumberPluginException {
+        Report[] reports = null;
+        try {
+            reports = gsonParser.fromJson(json, Report[].class);
+        } catch (JsonParseException e) {
+            throw new CluecumberPluginException(e.getMessage());
+        }
+        return reports;
     }
 }

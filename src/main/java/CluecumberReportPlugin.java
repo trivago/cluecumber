@@ -100,8 +100,12 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths();
         for (Path jsonFilePath : jsonFilePaths) {
             String jsonString = fileIO.readContentFromFile(jsonFilePath.toString());
-            Report[] reports = jsonPojoConverter.convertJsonToReportPojos(jsonString);
-            startPageCollection.addReports(reports);
+            try {
+                Report[] reports = jsonPojoConverter.convertJsonToReportPojos(jsonString);
+                startPageCollection.addReports(reports);
+            } catch (CluecumberPluginException e) {
+                logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
+            }
         }
         reportGenerator.generateReports(startPageCollection);
         logger.info("Converted " + startPageCollection.getTotalNumberOfFeatures() + " features into test report.");
