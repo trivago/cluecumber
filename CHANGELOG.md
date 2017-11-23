@@ -16,6 +16,9 @@ Back to [Readme](README.md).
 
 ### Fixed
 
+- Tooltips are rendered correctly on data table page switch
+- html encoding in stacktraces fixed
+
 ### Added
 
 - Before and After hooks are displayed in the report
