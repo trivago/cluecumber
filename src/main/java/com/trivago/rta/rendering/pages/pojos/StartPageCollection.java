@@ -19,6 +19,7 @@ package com.trivago.rta.rendering.pages.pojos;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.rendering.RenderingUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +34,7 @@ public class StartPageCollection {
     }
 
     public void addReports(final Report[] reportList) {
-        if (reportList == null){
+        if (reportList == null) {
             return;
         }
         this.reports.addAll(Arrays.asList(reportList));
@@ -77,6 +78,18 @@ public class StartPageCollection {
                 report -> (int) report.getElements().stream().filter(
                         element -> element.getStatus().equals(status)
                 ).count()).sum();
+    }
+
+    public long getTotalDuration() {
+        long totalDurationMicroseconds = 0;
+        for (Report report : reports) {
+            totalDurationMicroseconds += report.getTotalDuration();
+        }
+        return totalDurationMicroseconds;
+    }
+
+    public String getTotalDurationString() {
+        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
     public ReportDetails getReportDetails() {

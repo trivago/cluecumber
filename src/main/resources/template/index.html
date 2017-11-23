@@ -62,6 +62,7 @@ limitations under the License.
                             <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed.</li>
                             <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed.</li>
                             <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped.</li>
+                            <li class="list-group-item">Time: <strong>${totalDurationString}</strong></li>
                         </ul>
                     </div>
                 </div>
@@ -87,11 +88,16 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if element.failed>
                                             <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip" title="${report.uri}">${report.name}</span></td>
+                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
+                                                                                            title="${report.uri}">${report.name}</span>
+                                                </td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
                                                 </td>
-                                                <td class="text-left text-capitalize" data-order="${element.totalDuration}">${element.totalDurationString}</td>
+                                                <td class="text-left text-capitalize"
+                                                    data-order="${element.totalDuration}">
+                                                    <nobr>${element.totalDurationString}</nobr>
+                                                </td>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -123,11 +129,16 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if element.skipped>
                                             <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip" title="${report.uri}">${report.name}</span></td>
+                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
+                                                                                            title="${report.uri}">${report.name}</span>
+                                                </td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
                                                 </td>
-                                                <td class="text-left text-capitalize" data-order="${element.totalDuration}">${element.totalDurationString}</td>
+                                                <td class="text-left text-capitalize"
+                                                    data-order="${element.totalDuration}">
+                                                    <nobr>${element.totalDurationString}</nobr>
+                                                </td>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -159,11 +170,16 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if element.passed>
                                             <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip" title="${report.uri}">${report.name}</span></td>
+                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
+                                                                                            title="${report.uri}">${report.name}</span>
+                                                </td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
                                                 </td>
-                                                <td class="text-left text-capitalize" data-order="${element.totalDuration}">${element.totalDurationString}</td>
+                                                <td class="text-left text-capitalize"
+                                                    data-order="${element.totalDuration}">
+                                                    <nobr>${element.totalDurationString}</nobr>
+                                                </td>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -192,14 +208,16 @@ limitations under the License.
 <script src="js/Chart.bundle.min.js"></script>
 
 <script>
-    // Data tables
     $(document).ready(function () {
-        $('#results_failed').DataTable();
-        $('#results_skipped').DataTable();
-        $('#results_passed').DataTable();
+        // Data tables
+        $('table').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        }).DataTable();
 
+        // Tool tips
         $('[data-toggle="tooltip"]').tooltip();
 
+        // Chart
         var ctx = document.getElementById('chart-area').getContext("2d");
         new Chart(ctx, eval(${reportDetails.chartJson}));
     })

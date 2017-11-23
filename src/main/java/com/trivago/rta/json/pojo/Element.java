@@ -17,8 +17,8 @@
 package com.trivago.rta.json.pojo;
 
 import com.trivago.rta.constants.Status;
+import com.trivago.rta.rendering.RenderingUtils;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,20 +162,20 @@ public class Element {
 
     public long getTotalDuration() {
         long totalDurationMicroseconds = 0;
+        for (Before beforeStep : before) {
+            totalDurationMicroseconds += beforeStep.getResult().getDuration();
+        }
         for (Step step : steps) {
             totalDurationMicroseconds += step.getResult().getDuration();
+        }
+        for (After afterStep : after) {
+            totalDurationMicroseconds += afterStep.getResult().getDuration();
         }
         return totalDurationMicroseconds;
     }
 
     public String getTotalDurationString() {
-        final int microsecondFactor = 1000000;
-        Duration durationMilliseconds = Duration.ofMillis(getTotalDuration() / microsecondFactor);
-
-        long minutes = durationMilliseconds.toMinutes();
-        long seconds = durationMilliseconds.minusMinutes(minutes).getSeconds();
-        long milliseconds = durationMilliseconds.minusMinutes(minutes).minusSeconds(seconds).toMillis();
-        return String.format("%dm %02ds %03dms", minutes, seconds, milliseconds);
+        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
     @Override

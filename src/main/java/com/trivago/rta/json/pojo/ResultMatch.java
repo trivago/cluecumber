@@ -16,12 +16,14 @@
 
 package com.trivago.rta.json.pojo;
 
+import com.trivago.rta.constants.Status;
+
 class ResultMatch {
     private Result result;
     private Match match;
 
     public Result getResult() {
-        return result;
+        return result != null ? result : new Result();
     }
 
     public void setResult(final Result result) {
@@ -29,11 +31,27 @@ class ResultMatch {
     }
 
     public Match getMatch() {
-        return match;
+        return match != null ? match : new Match();
     }
 
     public void setMatch(final Match match) {
         this.match = match;
+    }
+
+    public Status getStatus() {
+        return Status.fromString(result.getStatus());
+    }
+
+    public boolean isFailed() {
+        return getStatus() == Status.FAILED;
+    }
+
+    public boolean isPassed() {
+        return getStatus() == Status.PASSED;
+    }
+
+    public boolean isSkipped() {
+        return getStatus() == Status.SKIPPED || getStatus() == Status.PENDING || getStatus() == Status.UNDEFINED;
     }
 
     @Override
