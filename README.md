@@ -13,7 +13,12 @@
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
-  - [Configuration Parameters](#configuration-parameters)
+  - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
+    - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
+    - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
+  - [Optional Configuration Parameters](#optional-configuration-parameters)
+    - [CustomParameters](#customparameters)
+      - [Example](#example)
 - [Generated pages](#generated-pages)
   - [Test suite overview page](#test-suite-overview-page)
   - [Scenario detail pages](#scenario-detail-pages)
@@ -108,9 +113,11 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 ## Test suite overview page
 
 This page shows the most important information about the test suite:
+
 - run time
 - number of passed, failed and skipped scenarios
 - grouped scenarios by status
+- optional custom parameters
 
 ![report_overview](documentation/img/report_overview.png)
 
@@ -119,8 +126,10 @@ This page shows the most important information about the test suite:
 The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
 
 It shows:
+
 - scenario name and description
 - step runtimes and status
+- before and after steps
 - stack traces of failed steps
 - screenshots
 
