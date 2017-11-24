@@ -35,7 +35,7 @@ limitations under the License.
         <div class="navbar-header w-100">
             <h5 class="navbar-text float-lg-left">Scenario Details | ${reportDetails.date}</h5>
             <span class="navbar-text float-lg-right">
-                <a href="javascript:goBack();" class="text-light">Back to Overview</a>
+                <a id="backLink" class="text-light">Back to Overview</a>
             </span>
         </div>
     </div>
@@ -215,13 +215,13 @@ limitations under the License.
 
 <script>
     $(document).ready(function () {
-        function goBack() {
+        $("#backLink").click(function(e) {
             if (window.frameElement) {
                 window.parent.frames[1].history.back();
             } else {
                 window.history.back();
             }
-        }
+        });
 
         // Lightbox
         $("a.grouped_elements").fancybox();

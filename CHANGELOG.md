@@ -18,11 +18,13 @@ Back to [Readme](README.md).
 
 - Tooltips are rendered correctly on data table page switch
 - html encoding in stacktraces fixed
+- back link also supports iframes
 
 ### Added
 
 - Before and After hooks are displayed in the report
 - Total test time is shown in the start page
+- Custom properties can be added to the report, URL will automatically be clickable
 
 ## [0.0.4] - 2017-11-20
 

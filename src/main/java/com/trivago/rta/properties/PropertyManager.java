@@ -86,7 +86,7 @@ public class PropertyManager {
         logger.info("- generatedHtmlReportDirectory  : " + generatedHtmlReportDirectory);
         if (customParameters != null && !customParameters.isEmpty()) {
             for (Map.Entry<String, String> entry : customParameters.entrySet()) {
-                logger.info("- custom parameters             : " +
+                logger.info("- custom parameter              : " +
                         entry.getKey() + " -> " + entry.getValue());
             }
         }
