@@ -24,7 +24,7 @@ public class TemplateConfiguration {
         try {
             template = cfg.getTemplate(templateName);
         } catch (Exception e) {
-            throw new CluecumberPluginException("Template '" + templateName + "' was not found.");
+            throw new CluecumberPluginException("Template '" + templateName + "' was not found or not parsable: " + e.getMessage());
         }
         return template;
     }

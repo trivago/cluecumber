@@ -40,9 +40,32 @@ limitations under the License.
 
 <main role="main" class="container">
     <div class="cluecumber-template">
+        <#if hasCustomParameters()>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card h-100">
+                        <div class="card-header">Custom Parameters</div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <#list customParameters as parameter>
+                                    <li class="list-group-item"><strong>${parameter.key}:</strong>
+                                        <#if parameter.url>
+                                            <a href="${parameter.value}" target="_blank">${parameter.value}</a>
+                                            <#else/>
+                                            ${parameter.value}
+                                        </#if>
+                                    </li>
+                                </#list>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </#if>
+
         <div class="row">
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-header">Test Suite Result Chart</div>
                     <div class="card-body">
                         <div id="canvas-holder" class="w-100 text-center">
@@ -52,17 +75,18 @@ limitations under the License.
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card h-100">
                     <div class="card-header">Test Suite Summary</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> scenarios in <strong>${totalNumberOfFeatures}</strong>
                                 features.
                             </li>
-                            <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed.</li>
-                            <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed.</li>
-                            <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped.</li>
-                            <li class="list-group-item">Time: <strong>${totalDurationString}</strong></li>
+                            <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed /
+                                <strong>${totalNumberOfFailedScenarios}</strong> failed / <strong>${totalNumberOfSkippedScenarios}</strong>
+                                skipped.
+                            </li>
+                            <li class="list-group-item"><strong>Total Time:</strong> ${totalDurationString}</li>
                         </ul>
                     </div>
                 </div>

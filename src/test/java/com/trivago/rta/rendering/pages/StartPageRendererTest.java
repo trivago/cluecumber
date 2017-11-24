@@ -1,6 +1,7 @@
 package com.trivago.rta.rendering.pages;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
@@ -13,8 +14,9 @@ public class StartPageRendererTest {
     private StartPageRenderer startPageRenderer;
 
     @Before
-    public void setup(){
-        startPageRenderer = new StartPageRenderer();
+    public void setup() {
+        PropertyManager propertyManager = mock(PropertyManager.class);
+        startPageRenderer = new StartPageRenderer(propertyManager);
     }
 
     @Test

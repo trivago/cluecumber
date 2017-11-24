@@ -28,6 +28,7 @@ import java.util.List;
 public class StartPageCollection {
     private List<Report> reports = new ArrayList<>();
     private ReportDetails reportDetails;
+    private List<CustomParameter> customParameters;
 
     public List<Report> getReports() {
         return reports;
@@ -98,5 +99,17 @@ public class StartPageCollection {
 
     public void setReportDetails(final ReportDetails reportDetails) {
         this.reportDetails = reportDetails;
+    }
+
+    public void setCustomParameters(final List<CustomParameter> customParameters) {
+        this.customParameters = customParameters;
+    }
+
+    public List<CustomParameter> getCustomParameters() {
+        return customParameters;
+    }
+
+    public boolean hasCustomParameters(){
+        return customParameters != null && !customParameters.isEmpty();
     }
 }

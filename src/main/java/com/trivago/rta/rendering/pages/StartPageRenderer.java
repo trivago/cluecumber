@@ -24,18 +24,31 @@ import be.ceau.chart.options.PieOptions;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.properties.PropertyManager;
+import com.trivago.rta.rendering.pages.pojos.CustomParameter;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Singleton
 public class StartPageRenderer extends PageRenderer {
+
+    private PropertyManager propertyManager;
+
+    @Inject
+    public StartPageRenderer(PropertyManager propertyManager) {
+        this.propertyManager = propertyManager;
+    }
 
     public String getRenderedContent(
             final StartPageCollection startPageCollection, final Template template)
@@ -44,6 +57,7 @@ public class StartPageRenderer extends PageRenderer {
         ReportDetails reportDetails = new ReportDetails();
         addChartJsonToReportDetails(startPageCollection, reportDetails);
         addCurrentDateToReportDetails(reportDetails);
+        addCustomParametersToReportDetails(startPageCollection);
         startPageCollection.setReportDetails(reportDetails);
 
         Writer stringWriter = new StringWriter();
@@ -74,5 +88,19 @@ public class StartPageRenderer extends PageRenderer {
         PieOptions pieOptions = new PieOptions();
 
         reportDetails.setChartJson(new PieChart(pieData, pieOptions).toJson());
+    }
+
+    private void addCustomParametersToReportDetails(final StartPageCollection startPageCollection) {
+        Map<String, String> customParameterMap = propertyManager.getCustomParameters();
+        if (customParameterMap == null || customParameterMap.isEmpty()) {
+            return;
+        }
+        List<CustomParameter> customParameters = new ArrayList<>();
+        for (Map.Entry<String, String> stringStringEntry : customParameterMap.entrySet()) {
+            String key = stringStringEntry.getKey().replace("_", " ");
+            CustomParameter customParameter = new CustomParameter(key, stringStringEntry.getValue());
+            customParameters.add(customParameter);
+        }
+        startPageCollection.setCustomParameters(customParameters);
     }
 }
