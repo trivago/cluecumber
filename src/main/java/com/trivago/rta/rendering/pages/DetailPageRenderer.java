@@ -45,8 +45,6 @@ public class DetailPageRenderer extends PageRenderer {
         addCurrentDateToReportDetails(reportDetails);
         detailPageCollection.setReportDetails(reportDetails);
 
-        System.out.println("Rendering " + detailPageCollection.getElement().getName());
-
         Writer stringWriter = new StringWriter();
         try {
             template.process(detailPageCollection, stringWriter);

@@ -33,7 +33,7 @@ limitations under the License.
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <div class="navbar-header w-100">
-            <h5 class="navbar-text float-lg-left">Scenario Details - ${reportDetails.date}</h5>
+            <h5 class="navbar-text float-lg-left">Scenario Details | ${reportDetails.date}</h5>
             <span class="navbar-text float-lg-right">
                 <a href="javascript:history.back();" class="text-light">Back to Overview</a>
             </span>
@@ -85,10 +85,10 @@ limitations under the License.
                                     <div class="col-1 text-left">
                                     </div>
                                     <div class="col-7 text-left">
-                                        <i>${before.match.location}</i>
+                                        <i>${before.glueMethodName}</i>
                                     </div>
                                     <div class="col-2 text-left">
-                                        ${before.result.durationString}
+                                        <nobr>${before.result.durationString}</nobr>
                                     </div>
                                     <div class="col-2 text-left">
                                         <#if before.failed>
@@ -120,7 +120,7 @@ limitations under the License.
                                     </div>
                                     <div class="col-7 text-left">
                                         <span data-toggle="tooltip"
-                                              title="${step.match.location}">${step.keyword} ${step.name}</span>
+                                              title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
                                     </div>
                                     <div class="col-2 text-left">
                                         <nobr>${step.result.durationString}</nobr>
@@ -167,10 +167,10 @@ limitations under the License.
                                     <div class="col-1 text-left">
                                     </div>
                                     <div class="col-7 text-left">
-                                        <i>${after.match.location}</i>
+                                        <i>${after.glueMethodName}</i>
                                     </div>
                                     <div class="col-2 text-left">
-                                        ${after.result.durationString}
+                                        <nobr>${after.result.durationString}</nobr>
                                     </div>
                                     <div class="col-2 text-left">
                                         <#if after.failed>

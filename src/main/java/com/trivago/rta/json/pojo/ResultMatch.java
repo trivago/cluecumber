@@ -23,7 +23,7 @@ class ResultMatch {
     private Match match;
 
     public Result getResult() {
-        return result != null ? result : new Result();
+        return result;
     }
 
     public void setResult(final Result result) {
@@ -31,11 +31,15 @@ class ResultMatch {
     }
 
     public Match getMatch() {
-        return match != null ? match : new Match();
+        return match;
     }
 
     public void setMatch(final Match match) {
         this.match = match;
+    }
+
+    public String getGlueMethodName(){
+        return match != null ? match.getLocation() : "";
     }
 
     public Status getStatus() {

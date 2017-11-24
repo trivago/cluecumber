@@ -55,3 +55,8 @@ code {
 .row {
     padding: 1rem;
 }
+
+div.tooltip-inner {
+    max-width: 100%;
+    white-space: nowrap;
+}

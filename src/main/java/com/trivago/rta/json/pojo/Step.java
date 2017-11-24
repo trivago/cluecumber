@@ -16,8 +16,6 @@
 
 package com.trivago.rta.json.pojo;
 
-import com.trivago.rta.constants.Status;
-
 import java.util.ArrayList;
 import java.util.List;
 
