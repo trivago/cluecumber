@@ -22,9 +22,11 @@ Back to [Readme](README.md).
 
 ### Added
 
+- Custom properties can be added to the report, URL will automatically be clickable
 - Before and After hooks are displayed in the report
 - Total test time is shown in the start page
-- Custom properties can be added to the report, URL will automatically be clickable
+- Tool tips for feature file names
+- Tool tips for scenario step method signatures
 
 ## [0.0.4] - 2017-11-20
 

@@ -70,17 +70,38 @@ This will generate JSON results for all Cucumber tests.
 </plugin>
 ```
 
-## Configuration Parameters
+## Mandatory Configuration Parameters
 
-There are two parameters that have to be specified:
+There are two mandatory parameters that have to be specified within the Maven POM ```configuration``` section:
 
-| Parameter | Explanation |
-|---|---|
-| sourceJsonReportDirectory | This specifies source folder of the Cucumber JSON result files |
-| generatedHtmlReportDirectory | This points to the root directory of the generated Cluecumber HTML report. |
+__Note:__ Typically, both properties point to directories inside the Maven ```target``` directory.
 
-**Note:**
-Typically, both properties point to directories inside the Maven ```target``` directory.
+### sourceJsonReportDirectory
+
+This specifies the source folder of the Cucumber JSON result files.
+
+### generatedHtmlReportDirectory
+
+This points to the root directory of the generated Cluecumber HTML report.
+
+## Optional Configuration Parameters
+
+### CustomParameters
+
+The ```CustomParameters``` block can be used to define custom information that should be displayed on the report start page.
+
+__Note:__ Underscores in the parameter names are automatically turned into spaces in the report.
+Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
+
+#### Example
+```
+<customParameters>
+    <My_Custom_Parameter>My custom value</My_Custom_Parameter>
+    <Test_Parameter>http://www.google.de</Test_Parameter>
+</customParameters>
+```
+
+![custom parameters](documentation/img/custom_params.png)
 
 # Generated pages
 
