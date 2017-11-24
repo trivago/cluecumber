@@ -22,6 +22,7 @@ import com.trivago.rta.logging.CluecumberLogger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.Map;
 
 @Singleton
 public class PropertyManager {
@@ -30,6 +31,7 @@ public class PropertyManager {
 
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
+    private Map<String, String> customParameters;
 
     @Inject
     public PropertyManager(final CluecumberLogger logger) {
@@ -50,6 +52,14 @@ public class PropertyManager {
 
     public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory) {
         this.generatedHtmlReportDirectory = generatedHtmlReportDirectory;
+    }
+
+    public Map<String, String> getCustomParameters() {
+        return customParameters;
+    }
+
+    public void setCustomParameters(final Map<String, String> customParameters) {
+        this.customParameters = customParameters;
     }
 
     /**
@@ -74,5 +84,11 @@ public class PropertyManager {
     public void logProperties() {
         logger.info("- sourceJsonReportDirectory     : " + sourceJsonReportDirectory);
         logger.info("- generatedHtmlReportDirectory  : " + generatedHtmlReportDirectory);
+        if (customParameters != null && !customParameters.isEmpty()) {
+            for (Map.Entry<String, String> entry : customParameters.entrySet()) {
+                logger.info("- custom parameter              : " +
+                        entry.getKey() + " -> " + entry.getValue());
+            }
+        }
     }
 }

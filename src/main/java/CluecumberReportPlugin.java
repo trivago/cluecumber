@@ -30,6 +30,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import javax.inject.Inject;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The main plugin class.
@@ -55,6 +56,12 @@ public final class CluecumberReportPlugin extends AbstractMojo {
      */
     @Parameter(property = "reporting.generatedHtmlReportDirectory", required = true)
     private String generatedHtmlReportDirectory = "";
+
+    /**
+     * Custom parameters to add to the report.
+     */
+    @Parameter(property = "reporting.customParameters", required = true)
+    private Map<String, String> customParameters;
 
     @Inject
     public CluecumberReportPlugin(
@@ -85,6 +92,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         // Initialize and validate passed pom properties
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
+        propertyManager.setCustomParameters(customParameters);
         propertyManager.validateSettings();
 
         logger.info("--------------------------------");

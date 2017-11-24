@@ -19,6 +19,7 @@ package com.trivago.rta.rendering.pages.pojos;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.rendering.RenderingUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,13 +28,14 @@ import java.util.List;
 public class StartPageCollection {
     private List<Report> reports = new ArrayList<>();
     private ReportDetails reportDetails;
+    private List<CustomParameter> customParameters;
 
     public List<Report> getReports() {
         return reports;
     }
 
     public void addReports(final Report[] reportList) {
-        if (reportList == null){
+        if (reportList == null) {
             return;
         }
         this.reports.addAll(Arrays.asList(reportList));
@@ -79,11 +81,35 @@ public class StartPageCollection {
                 ).count()).sum();
     }
 
+    public long getTotalDuration() {
+        long totalDurationMicroseconds = 0;
+        for (Report report : reports) {
+            totalDurationMicroseconds += report.getTotalDuration();
+        }
+        return totalDurationMicroseconds;
+    }
+
+    public String getTotalDurationString() {
+        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+    }
+
     public ReportDetails getReportDetails() {
         return reportDetails;
     }
 
     public void setReportDetails(final ReportDetails reportDetails) {
         this.reportDetails = reportDetails;
+    }
+
+    public void setCustomParameters(final List<CustomParameter> customParameters) {
+        this.customParameters = customParameters;
+    }
+
+    public List<CustomParameter> getCustomParameters() {
+        return customParameters;
+    }
+
+    public boolean hasCustomParameters(){
+        return customParameters != null && !customParameters.isEmpty();
     }
 }

@@ -13,7 +13,12 @@
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
-  - [Configuration Parameters](#configuration-parameters)
+  - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
+    - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
+    - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
+  - [Optional Configuration Parameters](#optional-configuration-parameters)
+    - [CustomParameters](#customparameters)
+      - [Example](#example)
 - [Generated pages](#generated-pages)
   - [Test suite overview page](#test-suite-overview-page)
   - [Scenario detail pages](#scenario-detail-pages)
@@ -70,26 +75,49 @@ This will generate JSON results for all Cucumber tests.
 </plugin>
 ```
 
-## Configuration Parameters
+## Mandatory Configuration Parameters
 
-There are two parameters that have to be specified:
+There are two mandatory parameters that have to be specified within the Maven POM ```configuration``` section:
 
-| Parameter | Explanation |
-|---|---|
-| sourceJsonReportDirectory | This specifies source folder of the Cucumber JSON result files |
-| generatedHtmlReportDirectory | This points to the root directory of the generated Cluecumber HTML report. |
+__Note:__ Typically, both properties point to directories inside the Maven ```target``` directory.
 
-**Note:**
-Typically, both properties point to directories inside the Maven ```target``` directory.
+### sourceJsonReportDirectory
+
+This specifies the source folder of the Cucumber JSON result files.
+
+### generatedHtmlReportDirectory
+
+This points to the root directory of the generated Cluecumber HTML report.
+
+## Optional Configuration Parameters
+
+### CustomParameters
+
+The ```CustomParameters``` block can be used to define custom information that should be displayed on the report start page.
+
+__Note:__ Underscores in the parameter names are automatically turned into spaces in the report.
+Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
+
+#### Example
+```
+<customParameters>
+    <My_Custom_Parameter>My custom value</My_Custom_Parameter>
+    <Test_Parameter>http://www.google.de</Test_Parameter>
+</customParameters>
+```
+
+![custom parameters](documentation/img/custom_params.png)
 
 # Generated pages
 
 ## Test suite overview page
 
 This page shows the most important information about the test suite:
+
 - run time
 - number of passed, failed and skipped scenarios
 - grouped scenarios by status
+- optional custom parameters
 
 ![report_overview](documentation/img/report_overview.png)
 
@@ -98,8 +126,10 @@ This page shows the most important information about the test suite:
 The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
 
 It shows:
+
 - scenario name and description
 - step runtimes and status
+- before and after steps
 - stack traces of failed steps
 - screenshots
 

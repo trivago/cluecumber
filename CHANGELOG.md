@@ -12,6 +12,22 @@ Back to [Readme](README.md).
 - Support for non-image attachments
 - Increased unit test coverage
 
+## [0.0.5] - 2017-11-20
+
+### Fixed
+
+- Tooltips are rendered correctly on data table page switch
+- html encoding in stacktraces fixed
+- back link also supports iframes
+
+### Added
+
+- Custom properties can be added to the report, URL will automatically be clickable
+- Before and After hooks are displayed in the report
+- Total test time is shown in the start page
+- Tool tips for feature file names
+- Tool tips for scenario step method signatures
+
 ## [0.0.4] - 2017-11-20
 
 ### Added
@@ -34,7 +50,8 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
-[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.0.4...HEAD
+[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.0.5...HEAD
+[0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
 [0.0.4]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4
 [0.0.3]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.3
 [0.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.2

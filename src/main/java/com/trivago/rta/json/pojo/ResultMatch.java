@@ -16,6 +16,8 @@
 
 package com.trivago.rta.json.pojo;
 
+import com.trivago.rta.constants.Status;
+
 class ResultMatch {
     private Result result;
     private Match match;
@@ -34,6 +36,26 @@ class ResultMatch {
 
     public void setMatch(final Match match) {
         this.match = match;
+    }
+
+    public String getGlueMethodName(){
+        return match != null ? match.getLocation() : "";
+    }
+
+    public Status getStatus() {
+        return Status.fromString(result.getStatus());
+    }
+
+    public boolean isFailed() {
+        return getStatus() == Status.FAILED;
+    }
+
+    public boolean isPassed() {
+        return getStatus() == Status.PASSED;
+    }
+
+    public boolean isSkipped() {
+        return getStatus() == Status.SKIPPED || getStatus() == Status.PENDING || getStatus() == Status.UNDEFINED;
     }
 
     @Override

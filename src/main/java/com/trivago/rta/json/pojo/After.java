@@ -16,6 +16,7 @@
 
 package com.trivago.rta.json.pojo;
 
-public class After extends ResultMatch {
+import com.trivago.rta.constants.Status;
 
+public class After extends ResultMatch {
 }

@@ -33,9 +33,9 @@ limitations under the License.
 <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <div class="navbar-header w-100">
-            <h5 class="navbar-text float-lg-left">Scenario Details - ${reportDetails.date}</h5>
+            <h5 class="navbar-text float-lg-left">Scenario Details | ${reportDetails.date}</h5>
             <span class="navbar-text float-lg-right">
-                <a href="javascript:history.back();" class="text-light">Back to Overview</a>
+                <a href="javascript:goBack();" id="backLink" class="text-light">Back to Overview</a>
             </span>
         </div>
     </div>
@@ -77,18 +77,53 @@ limitations under the License.
                     <#if element.description != "">
                         <div class="card-header text-capitalize text-secondary">${element.description}</div>
                     </#if>
+
                     <div class="card-body">
+                        <div class="container">
+                            <#list element.before as before>
+                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                    <div class="col-1 text-left">
+                                    </div>
+                                    <div class="col-7 text-left">
+                                        <i>${before.glueMethodName}</i>
+                                    </div>
+                                    <div class="col-2 text-left">
+                                        <nobr>${before.result.durationString}</nobr>
+                                    </div>
+                                    <div class="col-2 text-left">
+                                        <#if before.failed>
+                                            <#assign class = "text-danger" />
+                                            <#elseif before.skipped/>
+                                            <#assign class = "text-warning" />
+                                            <#else/>
+                                            <#assign class = "text-success" />
+                                        </#if>
+                                        <span class="${class}">${before.status.statusString}</span>
+                                    </div>
+                                </div>
+                                <#if before.failed>
+                                    <div class="row border border-top-0 border-left-0 border-right-0">
+                                        <div class="col-1">
+                                        </div>
+                                        <div class="col-11 text-left">
+                                            <code>${before.result.encodedErrorMessage}</code>
+                                        </div>
+                                    </div>
+                                </#if>
+                            </#list>
+                        </div>
                         <div class="container">
                             <#list element.steps as step>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
-                                        Step ${step?counter}
+                                        <nobr>Step ${step?counter}</nobr>
                                     </div>
                                     <div class="col-7 text-left">
-                                        ${step.keyword} ${step.name}
+                                        <span data-toggle="tooltip"
+                                              title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
                                     </div>
                                     <div class="col-2 text-left">
-                                        ${step.result.durationString}
+                                        <nobr>${step.result.durationString}</nobr>
                                     </div>
                                     <div class="col-2 text-left">
                                         <#if step.failed>
@@ -101,12 +136,12 @@ limitations under the License.
                                         <span class="${class}">${step.status.statusString}</span>
                                     </div>
                                 </div>
-                                <#if step.result.status == "failed">
+                                <#if step.failed>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-1">
                                         </div>
                                         <div class="col-11 text-left">
-                                            <code>${step.result.errorMessage}</code>
+                                            <code>${step.result.encodedErrorMessage}</code>
                                         </div>
                                     </div>
                                 </#if>
@@ -123,6 +158,40 @@ limitations under the License.
                                         </div>
                                     </div>
                                 </#list>
+                            </#list>
+                        </div>
+
+                        <div class="container">
+                            <#list element.after as after>
+                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                    <div class="col-1 text-left">
+                                    </div>
+                                    <div class="col-7 text-left">
+                                        <i>${after.glueMethodName}</i>
+                                    </div>
+                                    <div class="col-2 text-left">
+                                        <nobr>${after.result.durationString}</nobr>
+                                    </div>
+                                    <div class="col-2 text-left">
+                                        <#if after.failed>
+                                            <#assign class = "text-danger" />
+                                            <#elseif after.skipped/>
+                                            <#assign class = "text-warning" />
+                                            <#else/>
+                                            <#assign class = "text-success" />
+                                        </#if>
+                                        <span class="${class}">${after.status.statusString}</span>
+                                    </div>
+                                </div>
+                                <#if after.failed>
+                                    <div class="row border border-top-0 border-left-0 border-right-0">
+                                        <div class="col-1">
+                                        </div>
+                                        <div class="col-11 text-left">
+                                            <code>${after.result.encodedErrorMessage}</code>
+                                        </div>
+                                    </div>
+                                </#if>
                             </#list>
                         </div>
                     </div>
@@ -145,9 +214,22 @@ limitations under the License.
 <script src="../js/Chart.bundle.min.js"></script>
 
 <script>
+    function goBack() {
+        if (window.frameElement) {
+            window.parent.frames[1].history.back();
+        } else {
+            window.history.back();
+        }
+    }
+
     $(document).ready(function () {
+        // Lightbox
         $("a.grouped_elements").fancybox();
 
+        // Tool tips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Chart
         var ctx = document.getElementById('chart-area').getContext("2d");
         new Chart(ctx, eval(${reportDetails.chartJson}));
     })

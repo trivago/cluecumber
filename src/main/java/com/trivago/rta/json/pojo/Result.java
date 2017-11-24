@@ -17,11 +17,11 @@
 package com.trivago.rta.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.rta.rendering.RenderingUtils;
 
 import java.time.Duration;
 
 public class Result {
-    private static final int MICROSECONDS_FACTOR = 1000000;
 
     private long duration;
     private String status;
@@ -51,20 +51,20 @@ public class Result {
         return errorMessage;
     }
 
+    public String getEncodedErrorMessage() {
+        return RenderingUtils.escapeHTML(errorMessage);
+    }
+
     public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
     public long getDurationInMilliseconds() {
-        return Duration.ofMillis(duration / MICROSECONDS_FACTOR).toMillis();
+        return RenderingUtils.convertMicrosecondsToMilliseconds(duration);
     }
 
     public String getDurationString() {
-        Duration durationMilliseconds = Duration.ofMillis(duration / MICROSECONDS_FACTOR);
-        long minutes = durationMilliseconds.toMinutes();
-        long seconds = durationMilliseconds.minusMinutes(minutes).getSeconds();
-        long milliseconds = durationMilliseconds.minusMinutes(minutes).minusSeconds(seconds).toMillis();
-        return String.format("%dm %02ds %03dms", minutes, seconds, milliseconds);
+        return RenderingUtils.convertMicrosecondsToTimeString(duration);
     }
 
     @Override

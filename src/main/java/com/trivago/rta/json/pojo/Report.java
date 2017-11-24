@@ -16,6 +16,7 @@
 
 package com.trivago.rta.json.pojo;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +83,14 @@ public class Report {
 
     public void setUri(final String uri) {
         this.uri = uri;
+    }
+
+    public long getTotalDuration() {
+        long totalDurationMicroseconds = 0;
+        for (Element element : elements) {
+            totalDurationMicroseconds += element.getTotalDuration();
+        }
+        return totalDurationMicroseconds;
     }
 
     @Override
