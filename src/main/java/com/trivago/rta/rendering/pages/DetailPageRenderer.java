@@ -40,8 +40,6 @@ public class DetailPageRenderer extends PageRenderer {
     public String getRenderedContent(final DetailPageCollection detailPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        System.out.println(detailPageCollection.getElement().getName());
-
         ReportDetails reportDetails = new ReportDetails();
         addChartJsonToReportDetails(detailPageCollection.getElement(), reportDetails);
         addCurrentDateToReportDetails(reportDetails);
