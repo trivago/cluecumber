@@ -10,7 +10,13 @@ Back to [Readme](README.md).
 ## [Unreleased]
 - Ability to use custom templates
 - Support for non-image attachments
-- Increased unit test coverage
+
+## [0.0.6] - 2017-11-29
+
+### Fixed
+
+- missing hook durations could crash during report generation
+- back link fix for iframed report
 
 ## [0.0.5] - 2017-11-20
 
@@ -50,7 +56,8 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
-[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.0.5...HEAD
+[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.0.6...HEAD
+[0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6
 [0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
 [0.0.4]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4
 [0.0.3]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.3

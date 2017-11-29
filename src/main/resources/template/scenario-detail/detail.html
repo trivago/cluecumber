@@ -216,7 +216,7 @@ limitations under the License.
 <script>
     function goBack() {
         if (window.frameElement) {
-            window.parent.frames[1].history.back();
+            window.parent.frames[0].history.back();
         } else {
             window.history.back();
         }
