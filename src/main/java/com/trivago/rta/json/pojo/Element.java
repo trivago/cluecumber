@@ -174,7 +174,7 @@ public class Element {
         return totalDurationMicroseconds;
     }
 
-    public String getTotalDurationString() {
+    public String returnTotalDurationString() {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 

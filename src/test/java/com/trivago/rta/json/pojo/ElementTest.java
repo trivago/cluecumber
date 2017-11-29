@@ -73,6 +73,6 @@ public class ElementTest {
         element.setSteps(steps);
 
         assertThat(element.getTotalDuration(), is(10114667785L));
-        assertThat(element.getTotalDurationString(), is("0m 10s 114ms"));
+        assertThat(element.returnTotalDurationString(), is("0m 10s 114ms"));
     }
 }

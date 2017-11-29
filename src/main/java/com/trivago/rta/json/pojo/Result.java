@@ -19,8 +19,6 @@ package com.trivago.rta.json.pojo;
 import com.google.gson.annotations.SerializedName;
 import com.trivago.rta.rendering.RenderingUtils;
 
-import java.time.Duration;
-
 public class Result {
 
     private long duration;
@@ -63,7 +61,7 @@ public class Result {
         return RenderingUtils.convertMicrosecondsToMilliseconds(duration);
     }
 
-    public String getDurationString() {
+    public String returnDurationString() {
         return RenderingUtils.convertMicrosecondsToTimeString(duration);
     }
 
