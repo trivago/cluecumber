@@ -17,12 +17,13 @@
 package com.trivago.rta.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.rendering.RenderingUtils;
 
 public class Result {
 
-    private long duration;
-    private String status;
+    private long duration = 0;
+    private String status = Status.UNDEFINED.toString();
 
     @SerializedName("error_message")
     private String errorMessage;

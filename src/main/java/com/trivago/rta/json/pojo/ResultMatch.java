@@ -23,7 +23,7 @@ class ResultMatch {
     private Match match;
 
     public Result getResult() {
-        return result;
+        return result != null ? result : new Result();
     }
 
     public void setResult(final Result result) {
@@ -31,7 +31,7 @@ class ResultMatch {
     }
 
     public Match getMatch() {
-        return match;
+        return match != null ? match : new Match();
     }
 
     public void setMatch(final Match match) {
