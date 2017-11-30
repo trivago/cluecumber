@@ -16,7 +16,5 @@
 
 package com.trivago.rta.json.pojo;
 
-import com.trivago.rta.constants.Status;
-
 public class Before extends ResultMatch {
 }

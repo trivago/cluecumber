@@ -18,6 +18,10 @@ Back to [Readme](README.md).
 - missing hook durations could crash during report generation
 - back link fix for iframed report
 
+### Added
+
+- More unit tests
+
 ## [0.0.5] - 2017-11-20
 
 ### Fixed

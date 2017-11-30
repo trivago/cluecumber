@@ -16,8 +16,12 @@
 
 package com.trivago.rta.json.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Match {
     private String location;
+    private List<Argument> arguments = new ArrayList<>();
 
     public String getLocation() {
         return location;
@@ -27,10 +31,19 @@ public class Match {
         this.location = location;
     }
 
+    public List<Argument> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(final List<Argument> arguments) {
+        this.arguments = arguments;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
                 "location='" + location + '\'' +
+                ", arguments=" + arguments +
                 '}';
     }
 }
