@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 @Singleton
 public class FileSystemManager {
 
-    public static final int BYTE_BLOCK = 4096;
+    private static final int BYTE_BLOCK = 4096;
     private final PropertyManager propertyManager;
 
     @Inject

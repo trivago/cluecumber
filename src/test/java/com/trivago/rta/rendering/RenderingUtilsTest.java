@@ -23,4 +23,10 @@ public class RenderingUtilsTest {
         String escapedHtml = RenderingUtils.escapeHTML("<a href='test'>test</a>");
         assertThat(escapedHtml, is("&#60;a href='test'&#62;test&#60;/a&#62;"));
     }
+
+    @Test
+    public void getPluginVersionTest(){
+        String version = RenderingUtils.getPluginVersion();
+        assertThat(version, is("unknown"));
+    }
 }

@@ -17,17 +17,18 @@
 package com.trivago.rta.rendering.pages.pojos;
 
 import com.trivago.rta.constants.PluginSettings;
+import com.trivago.rta.rendering.RenderingUtils;
 
 public class ReportDetails {
-    private String overviewChartJson;
+    private String chartJson;
     private String date;
 
     public void setChartJson(final String chartJson) {
-        this.overviewChartJson = chartJson;
+        this.chartJson = chartJson;
     }
 
     public String getChartJson() {
-        return overviewChartJson;
+        return chartJson;
     }
 
     public String getDate() {
@@ -40,6 +41,6 @@ public class ReportDetails {
 
     public String getGeneratorName() {
         return String.format("%s [%s]",
-                PluginSettings.NAME, getClass().getPackage().getImplementationVersion());
+                PluginSettings.NAME, RenderingUtils.getPluginVersion());
     }
 }

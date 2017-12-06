@@ -47,4 +47,12 @@ public class RenderingUtils {
         }
         return out.toString();
     }
+
+    public static String getPluginVersion(){
+        String version = RenderingUtils.class.getPackage().getImplementationVersion();
+        if (version == null){
+            version = "unknown";
+        }
+        return version;
+    }
 }
