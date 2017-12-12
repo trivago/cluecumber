@@ -77,13 +77,11 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     private void processAttachments(final List<Step> steps, List<After> afterHooks) throws CluecumberPluginException {
         // Process step attachments
         for (Step step : steps) {
-            System.out.println("Found attachment in step");
             processEmbedding(step.getEmbeddings());
         }
 
         // Process after hook attachments (Cucumber 2)
         for (After afterHook : afterHooks) {
-            System.out.println("Found attachment in after hook");
             processEmbedding(afterHook.getEmbeddings());
         }
     }

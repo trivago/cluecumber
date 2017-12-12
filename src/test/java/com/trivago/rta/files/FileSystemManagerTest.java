@@ -34,7 +34,6 @@ public class FileSystemManagerTest {
     @Test
     public void validSourceFeaturesTest() throws Exception {
         String jsonPath = testFolder.getRoot().getPath();
-
         when(propertyManager.getSourceJsonReportDirectory()).thenReturn(jsonPath);
         fileSystemManager.getJsonFilePaths();
     }
@@ -44,5 +43,10 @@ public class FileSystemManagerTest {
         fileSystemManager.createDirectory("");
     }
 
+    @Test(expected = CluecumberPluginException.class)
+    public void exportResourceTest() throws Exception {
+        Class baseClass = this.getClass();
+        fileSystemManager.exportResource(baseClass, "resource", "destination");
+    }
 
 }
