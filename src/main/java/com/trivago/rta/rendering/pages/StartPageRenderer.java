@@ -95,12 +95,15 @@ public class StartPageRenderer extends PageRenderer {
         if (customParameterMap == null || customParameterMap.isEmpty()) {
             return;
         }
+
+        // <customParameters> in the pom configuration section
         List<CustomParameter> customParameters = new ArrayList<>();
         for (Map.Entry<String, String> stringStringEntry : customParameterMap.entrySet()) {
             String key = stringStringEntry.getKey().replace("_", " ");
             CustomParameter customParameter = new CustomParameter(key, stringStringEntry.getValue());
             customParameters.add(customParameter);
         }
+
         startPageCollection.setCustomParameters(customParameters);
     }
 }

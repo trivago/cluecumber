@@ -148,7 +148,7 @@ limitations under the License.
                                 <#list step.embeddings as embedding>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-12 text-left">
-                                            <#if embedding.mimeType == "image/png">
+                                            <#if embedding.image>
                                                 <a class="grouped_elements" rel="images"
                                                    href="../attachments/${embedding.filename}">
                                                     <img src="../attachments/${embedding.filename}"
@@ -192,6 +192,19 @@ limitations under the License.
                                         </div>
                                     </div>
                                 </#if>
+                                <#list after.embeddings as embedding>
+                                    <div class="row border border-top-0 border-left-0 border-right-0">
+                                        <div class="col-12 text-left">
+                                            <#if embedding.image>
+                                                <a class="grouped_elements" rel="images"
+                                                   href="../attachments/${embedding.filename}">
+                                                    <img src="../attachments/${embedding.filename}"
+                                                         style="width: 100%"/>
+                                                    </a>
+                                            </#if>
+                                        </div>
+                                    </div>
+                                </#list>
                             </#list>
                         </div>
                     </div>

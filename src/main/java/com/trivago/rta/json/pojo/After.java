@@ -16,5 +16,18 @@
 
 package com.trivago.rta.json.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class After extends ResultMatch {
+    // Cucumber 2
+    private List<Embedding> embeddings = new ArrayList<>();
+
+    public List<Embedding> getEmbeddings() {
+        return embeddings;
+    }
+
+    public void setEmbeddings(final List<Embedding> embeddings) {
+        this.embeddings = embeddings;
+    }
 }

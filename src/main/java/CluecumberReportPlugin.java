@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.filesystem.FileSystemManager;
@@ -116,7 +117,8 @@ public final class CluecumberReportPlugin extends AbstractMojo {
             }
         }
         reportGenerator.generateReports(startPageCollection);
-        logger.info("Converted " + startPageCollection.getTotalNumberOfFeatures() + " features into test report.");
+        logger.info("Converted " + startPageCollection.getTotalNumberOfFeatures() + " features into test report:");
+        logger.info("- " + propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.START_PAGE_NAME);
     }
 }
 

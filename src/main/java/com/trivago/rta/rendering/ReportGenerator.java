@@ -16,6 +16,7 @@
 
 package com.trivago.rta.rendering;
 
+import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.FileCreationException;
 import com.trivago.rta.filesystem.FileIO;
@@ -72,7 +73,7 @@ public class ReportGenerator {
         }
 
         String renderedStartPage = templateEngine.getRenderedStartPage(startPageCollection);
-        fileIO.writeContentToFile(renderedStartPage, propertyManager.getGeneratedHtmlReportDirectory() + "/index.html");
+        fileIO.writeContentToFile(renderedStartPage, propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.START_PAGE_NAME);
     }
 
     private void savePage(final String renderedDetailPage, final String fileName) throws FileCreationException {
