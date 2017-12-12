@@ -21,6 +21,7 @@ import com.google.gson.JsonElement;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.FileCreationException;
 import com.trivago.rta.filesystem.FileIO;
+import com.trivago.rta.json.pojo.After;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Embedding;
 import com.trivago.rta.json.pojo.Step;
@@ -49,7 +50,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
             final PropertyManager propertyManager,
             final FileIO fileIO,
             final CluecumberLogger logger
-            ) {
+    ) {
         this.propertyManager = propertyManager;
         this.fileIO = fileIO;
         this.logger = logger;
@@ -59,7 +60,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
         addScenarioIndex(element);
         try {
-            processAttachments(element.getSteps());
+            processAttachments(element.getSteps(), element.getAfter());
         } catch (CluecumberPluginException e) {
             // If an attachment cannot be processed, don't stop the report generation.
             logger.error(e.getMessage());
@@ -67,24 +68,51 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     }
 
     /**
-     * Save images to files, clear their Base64 content from JSON and store their filenames in order to save memory.
+     * Process attachments in steps and after hooks.
      *
-     * @param steps
-     * @throws CluecumberPluginException
+     * @param steps The {@link Step} list.
+     * @param afterHooks The {@link After} list.
+     * @throws CluecumberPluginException Exception if the attachments cannot be processed.
      */
-    private void processAttachments(final List<Step> steps) throws CluecumberPluginException {
+    private void processAttachments(final List<Step> steps, List<After> afterHooks) throws CluecumberPluginException {
+        System.out.println("Process attachments");
+
+        // Process step attachments
         for (Step step : steps) {
-            List<Embedding> embeddings = step.getEmbeddings();
-            for (Embedding embedding : embeddings) {
-                if (embedding.isImage()) {
-                    String filename = saveImageEmbeddingToFileAndGetFilename(embedding);
-                    embedding.setFilename(filename);
-                }
-                attachmentIndex++;
-            }
+            System.out.println("Found attachment in step");
+            processEmbedding(step.getEmbeddings());
+        }
+
+        // Process after hook attachments
+        for (After afterHook : afterHooks) {
+            System.out.println("Found attachment in after hook");
+            processEmbedding(afterHook.getEmbeddings());
         }
     }
 
+    /**
+     * Save images to files, clear their Base64 content from JSON and store their filenames in order to save memory
+     *
+     * @param embeddings The {@link Embedding} list.
+     * @throws CluecumberPluginException The exception if the attachment cannot be processed.
+     */
+    private void processEmbedding(final List<Embedding> embeddings) throws CluecumberPluginException {
+        for (Embedding embedding : embeddings) {
+            if (embedding.isImage()) {
+                String filename = saveImageEmbeddingToFileAndGetFilename(embedding);
+                embedding.setFilename(filename);
+            }
+            attachmentIndex++;
+        }
+    }
+
+    /**
+     * Saves image attachments to a file and returns the filename.
+     *
+     * @param embedding The {@link Embedding} to process.
+     * @return The filename to the processed image.
+     * @throws CluecumberPluginException The exception if an image cannot be processed.
+     */
     private String saveImageEmbeddingToFileAndGetFilename(final Embedding embedding) throws CluecumberPluginException {
         if (!embedding.isImage()) {
             return "";
@@ -122,12 +150,15 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         return filename;
     }
 
+    /**
+     * Add index to elements (used for link creation to the detail reports).
+     * @param element The current {@link Element}.
+     */
     private void addScenarioIndex(final Element element) {
-        // Add index to elements (used for link creation to the detail reports).
         element.setScenarioIndex(scenarioIndex);
         scenarioIndex++;
     }
-    
+
     @Override
     public void postSerialize(final JsonElement jsonElement, final Element element, final Gson gson) {
         // not used
