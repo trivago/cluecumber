@@ -21,4 +21,6 @@ package com.trivago.rta.constants;
  */
 public class PluginSettings {
     public final static String NAME = "Cluecumber Report Plugin";
+    public final static String START_PAGE_NAME = "index.html";
+    public final static String DETAIL_PAGE_NAME = "scenario-detail/detail.html";
 }
