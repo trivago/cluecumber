@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [0.1.1] - 2017-12-12
+
+# Removed
+
+- Unnecessary log outputs for attachments
+
 ## [0.1.0] - 2017-12-12
 
 # Added
@@ -62,7 +68,8 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
-[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
 [0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0
 [0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6
 [0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
