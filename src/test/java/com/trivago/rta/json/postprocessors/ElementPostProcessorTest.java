@@ -1,11 +1,18 @@
 package com.trivago.rta.json.postprocessors;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.json.pojo.Element;
+import com.trivago.rta.json.pojo.Embedding;
+import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -28,8 +35,35 @@ public class ElementPostProcessorTest {
     @Test
     public void postDesiralizeAddScenarioIndexTest(){
         Element element = new Element();
+        JsonElement jsonElement = null;
+        Gson gson = null;
+
         assertThat(element.getScenarioIndex(), is(-1));
         elementPostProcessor.postDeserialize(element, null, null);
         assertThat(element.getScenarioIndex(), is(0));
+    }
+
+    @Test
+    public void postDeserializeTest(){
+        Element element = new Element();
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        List<Embedding> embeddings = new ArrayList<>();
+        Embedding embedding = new Embedding();
+        embedding.setMimeType("image/png");
+        embedding.setData("123");
+        embeddings.add(embedding);
+        step.setEmbeddings(embeddings);
+        steps.add(step);
+        element.setSteps(steps);
+        JsonElement jsonElement = null;
+        Gson gson = null;
+
+        assertThat(embedding.getData(), is("123"));
+
+        elementPostProcessor.postDeserialize(element, jsonElement, gson);
+
+        assertThat(embedding.getData(), is(""));
+        assertThat(embedding.getFilename(), is("attachment000.png"));
     }
 }
