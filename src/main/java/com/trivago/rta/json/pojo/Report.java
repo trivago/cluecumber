@@ -24,11 +24,11 @@ import java.util.List;
 public class Report {
     private int line;
     private List<Element> elements = new ArrayList<>();
-    private String name;
-    private String description;
-    private String id;
-    private String keyword;
-    private String uri;
+    private String name = "";
+    private String description = "";
+    private String id = "";
+    private String keyword = "";
+    private String uri = "";
 
     public int getLine() {
         return line;
@@ -51,7 +51,7 @@ public class Report {
     }
 
     public String getName() {
-        return name;
+        return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {

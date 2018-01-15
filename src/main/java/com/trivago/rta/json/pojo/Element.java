@@ -65,7 +65,7 @@ public class Element {
     }
 
     public String getName() {
-        return name;
+        return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {

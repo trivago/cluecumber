@@ -21,8 +21,8 @@ import java.util.List;
 
 public class Step extends ResultMatch {
     private int line;
-    private String name;
-    private String keyword;
+    private String name = "";
+    private String keyword = "";
     private List<Embedding> embeddings = new ArrayList<>();
 
     public int getLine() {
@@ -34,7 +34,7 @@ public class Step extends ResultMatch {
     }
 
     public String getName() {
-        return name;
+        return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {
