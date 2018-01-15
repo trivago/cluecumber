@@ -22,7 +22,7 @@ limitations under the License.
     <meta name="description" content="${reportDetails.generatorName} - Scenario Detail">
     <meta name="author" content="${reportDetails.generatorName}">
 
-    <title>Scenario Details - ${element.name} - ${reportDetails.date}</title>
+    <title>Scenario Details - ${element.encodedName} - ${reportDetails.date}</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link href="../css/cluecumber.css" rel="stylesheet" type="text/css">
@@ -73,9 +73,9 @@ limitations under the License.
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header text-capitalize">${element.name}</div>
+                    <div class="card-header text-capitalize">${element.encodedName}</div>
                     <#if element.description != "">
-                        <div class="card-header text-capitalize text-secondary">${element.description}</div>
+                        <div class="card-header text-capitalize text-secondary">${element.encodedDescription}</div>
                     </#if>
 
                     <div class="card-body">
@@ -136,7 +136,7 @@ limitations under the License.
                                         <span class="${class}">${step.status.statusString}</span>
                                     </div>
                                 </div>
-                                <#if step.failed>
+                                <#if step.result.hasErrorMessage()>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-1">
                                         </div>

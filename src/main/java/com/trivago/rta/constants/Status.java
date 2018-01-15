@@ -20,7 +20,12 @@ package com.trivago.rta.constants;
  * Enum to manage all states for steps and scenarios.
  */
 public enum Status {
-    PASSED("passed"), FAILED("failed"), SKIPPED("skipped"), PENDING("pending"), UNDEFINED("undefined");
+    PASSED("passed"),
+    FAILED("failed"),
+    SKIPPED("skipped"),
+    PENDING("pending"),
+    UNDEFINED("undefined"),
+    AMBIGUOUS("ambiguous");
 
     private final String status;
 

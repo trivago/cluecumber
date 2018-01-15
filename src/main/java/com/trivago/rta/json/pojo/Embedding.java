@@ -22,7 +22,7 @@ public class Embedding {
     private String data;
 
     @SerializedName("mime_type")
-    private String mimeType;
+    private String mimeType = "unknown";
 
     private transient String filename;
 

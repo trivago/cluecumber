@@ -47,12 +47,12 @@ limitations under the License.
                         <div class="card-header">Custom Parameters</div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <#list customParameters as parameter>
-                                    <li class="list-group-item"><strong>${parameter.key}:</strong>
-                                        <#if parameter.url>
-                                            <a href="${parameter.value}" target="_blank">${parameter.value}</a>
+                                <#list customParameters as customParameter>
+                                    <li class="list-group-item"><strong>${customParameter.key}:</strong>
+                                        <#if customParameter.url>
+                                            <a href="${customParameter.value}" target="_blank">${customParameter.value}</a>
                                             <#else/>
-                                            ${parameter.value}
+                                            ${customParameter.value}
                                         </#if>
                                     </li>
                                 </#list>
@@ -113,10 +113,10 @@ limitations under the License.
                                         <#if element.failed>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name}</span>
+                                                                                            title="${report.uri}">${report.encodedName}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
+                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">
@@ -154,10 +154,10 @@ limitations under the License.
                                         <#if element.skipped>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name}</span>
+                                                                                            title="${report.uri}">${report.encodedName}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
+                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">
@@ -195,10 +195,10 @@ limitations under the License.
                                         <#if element.passed>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name}</span>
+                                                                                            title="${report.uri}">${report.encodedName}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.name}</a>
+                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">

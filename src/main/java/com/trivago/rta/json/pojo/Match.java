@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Match {
-    private String location;
+    private String location = "";
     private List<Argument> arguments = new ArrayList<>();
 
     public String getLocation() {
