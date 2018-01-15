@@ -1,5 +1,5 @@
 <!--
-Copyright 2017 trivago N.V.
+Copyright 2018 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -30,14 +30,20 @@ limitations under the License.
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header w-100">
-            <h5 class="navbar-text float-lg-left">Scenario Details | ${reportDetails.date}</h5>
-            <span class="navbar-text float-lg-right">
-                <a href="javascript:goBack();" id="backLink" class="text-light">Back to Overview</a>
-            </span>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <span class="navbar-brand">Scenario Details</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">Overview</a>
+            </li>
+        </ul>
+        <span class="text-light">${reportDetails.date}</span>
     </div>
 </nav>
 
@@ -83,6 +89,7 @@ limitations under the License.
                             <#list element.before as before>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
+                                        <span class="text-secondary"><nobr>Before</nobr></span>
                                     </div>
                                     <div class="col-7 text-left">
                                         <i>${before.glueMethodName}</i>
@@ -154,6 +161,14 @@ limitations under the License.
                                                     <img src="../attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                 </a>
+                                            <#else>
+                                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                                    <div class="col-1">
+                                                    </div>
+                                                    <div class="col-11 text-left">
+                                                        <pre>${embedding.encodedData}</pre>
+                                                    </div>
+                                                </div>
                                             </#if>
                                         </div>
                                     </div>
@@ -165,6 +180,7 @@ limitations under the License.
                             <#list element.after as after>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
+                                        <span class="text-secondary"><nobr>After</nobr></span>
                                     </div>
                                     <div class="col-7 text-left">
                                         <i>${after.glueMethodName}</i>
@@ -201,6 +217,14 @@ limitations under the License.
                                                     <img src="../attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                     </a>
+                                            <#else>
+                                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                                    <div class="col-1">
+                                                    </div>
+                                                    <div class="col-11 text-left">
+                                                        <pre>${embedding.encodedData}</pre>
+                                                    </div>
+                                                </div>
                                             </#if>
                                         </div>
                                     </div>
@@ -227,14 +251,6 @@ limitations under the License.
 <script src="../js/Chart.bundle.min.js"></script>
 
 <script>
-    function goBack() {
-        if (window.frameElement) {
-            window.parent.frames[0].history.back();
-        } else {
-            window.history.back();
-        }
-    }
-
     $(document).ready(function () {
         // Lightbox
         $("a.grouped_elements").fancybox();
