@@ -77,6 +77,9 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     private void processAttachments(final List<Step> steps, List<After> afterHooks) throws CluecumberPluginException {
         // Process step attachments
         for (Step step : steps) {
+
+            System.out.println("STEP " + step.getName() + " -> " + step);
+
             processEmbedding(step.getEmbeddings());
         }
 

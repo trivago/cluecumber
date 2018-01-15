@@ -23,6 +23,7 @@ public class Step extends ResultMatch {
     private int line;
     private String name = "";
     private String keyword = "";
+    private List<Row> rows;
     private List<Embedding> embeddings = new ArrayList<>();
 
     public int getLine() {
@@ -57,12 +58,22 @@ public class Step extends ResultMatch {
         this.embeddings = embeddings;
     }
 
+    public List<Row> getRows() {
+        return rows;
+    }
+
+    public void setRows(final List<Row> rows) {
+        this.rows = rows;
+    }
+
     @Override
     public String toString() {
         return "Step{" +
                 "line=" + line +
                 ", name='" + name + '\'' +
                 ", keyword='" + keyword + '\'' +
+                ", rows=" + rows +
+                ", embeddings=" + embeddings +
                 '}';
     }
 }
