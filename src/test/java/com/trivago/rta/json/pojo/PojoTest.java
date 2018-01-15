@@ -13,7 +13,7 @@ import org.junit.Test;
 import java.util.List;
 
 public class PojoTest {
-    private static final int EXPECTED_CLASS_COUNT = 14;
+    private static final int EXPECTED_CLASS_COUNT = 15;
     private static final String POJO_PACKAGE = "com.trivago.rta.json.pojo";
 
     @Test

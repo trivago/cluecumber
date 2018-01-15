@@ -25,7 +25,7 @@ public class ReportTest {
 
     @Test
     public void getEncodedDescriptionTest() {
-        report.setName("<Description/>");
+        report.setDescription("<Description/>");
         assertThat(report.getEncodedDescription(), is("&#60;Description/&#62;"));
     }
 
