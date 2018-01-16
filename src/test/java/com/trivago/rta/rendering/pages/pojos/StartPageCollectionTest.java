@@ -2,6 +2,8 @@ package com.trivago.rta.rendering.pages.pojos;
 
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.json.pojo.Result;
+import com.trivago.rta.json.pojo.Step;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,4 +65,94 @@ public class StartPageCollectionTest {
         assertThat(totalDuration, is(0L));
     }
 
+    @Test
+    public void hasFailedScenariosTest() {
+        assertThat(startPageCollection.hasFailedScenarios(), is(false));
+        assertThat(startPageCollection.hasPassedScenarios(), is(false));
+        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+
+        Report[] reportList = new Report[1];
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+        Element element = new Element();
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("failed");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+        elements.add(element);
+        report.setElements(elements);
+        reportList[0] = report;
+        startPageCollection.addReports(reportList);
+
+        assertThat(startPageCollection.hasFailedScenarios(), is(true));
+        assertThat(startPageCollection.hasPassedScenarios(), is(false));
+        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+    }
+
+    @Test
+    public void hasPassedScenariosTest() {
+        assertThat(startPageCollection.hasFailedScenarios(), is(false));
+        assertThat(startPageCollection.hasPassedScenarios(), is(false));
+        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+
+        Report[] reportList = new Report[1];
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+        Element element = new Element();
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+        elements.add(element);
+        report.setElements(elements);
+        reportList[0] = report;
+        startPageCollection.addReports(reportList);
+
+        assertThat(startPageCollection.hasFailedScenarios(), is(false));
+        assertThat(startPageCollection.hasPassedScenarios(), is(true));
+        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+    }
+
+    @Test
+    public void hasSkippedScenariosTest() {
+        assertThat(startPageCollection.hasFailedScenarios(), is(false));
+        assertThat(startPageCollection.hasPassedScenarios(), is(false));
+        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+
+        Report[] reportList = new Report[1];
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+        Element element = new Element();
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("skipped");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+        elements.add(element);
+        report.setElements(elements);
+        reportList[0] = report;
+        startPageCollection.addReports(reportList);
+
+        assertThat(startPageCollection.hasFailedScenarios(), is(false));
+        assertThat(startPageCollection.hasPassedScenarios(), is(false));
+        assertThat(startPageCollection.hasSkippedScenarios(), is(true));
+    }
+
+    @Test
+    public void hasCustomParametersTest() {
+        assertThat(startPageCollection.hasCustomParameters(), is(false));
+        List<CustomParameter> customParameters = new ArrayList<>();
+        CustomParameter parameter = new CustomParameter("key", "value");
+        customParameters.add(parameter);
+        startPageCollection.setCustomParameters(customParameters);
+        assertThat(startPageCollection.hasCustomParameters(), is(true));
+    }
 }
