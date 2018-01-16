@@ -60,3 +60,7 @@ div.tooltip-inner {
     max-width: 100%;
     white-space: nowrap;
 }
+
+table.compact{
+    width: min-content;
+}

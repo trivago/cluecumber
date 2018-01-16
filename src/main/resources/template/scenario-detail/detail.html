@@ -128,6 +128,17 @@ limitations under the License.
                                     <div class="col-7 text-left">
                                         <span data-toggle="tooltip"
                                               title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
+                                        <#if (step.rows?size > 0) >
+                                            <table class="table table-bordered table-sm compact">
+                                                <#list step.rows as row>
+                                                    <tr>
+                                                        <#list row.cells as cell>
+                                                            <td>${cell}</td>
+                                                        </#list>
+                                                    </tr>
+                                                </#list>
+                                            </table>
+                                        </#if>
                                     </div>
                                     <div class="col-2 text-left">
                                         <nobr>${step.result.returnDurationString()}</nobr>

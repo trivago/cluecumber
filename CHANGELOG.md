@@ -7,7 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [0.1.1] - 2017-12-12
+## [0.2.0] - 2017-12-12
+
+# Added
+
+- Support for data tables within steps
+- Cleaner report headers
+
+# Removed
+
+- Javascript back method is replaced with simple links on the detail pages
+
+# Fixed
+
+- Report generation is now much more resilient if information is missing in the JSON sources
+
+## [0.1.1] - 2018-01-16
 
 # Removed
 
@@ -68,7 +83,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
-[Unreleased]: https://github.com/trivago/cluecumber-report-plugin/compare/0.1.1...HEAD
+[0.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0
 [0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
 [0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0
 [0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6

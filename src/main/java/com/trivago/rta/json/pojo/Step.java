@@ -23,7 +23,7 @@ public class Step extends ResultMatch {
     private int line;
     private String name = "";
     private String keyword = "";
-    private List<Row> rows;
+    private List<Row> rows = new ArrayList<>();
     private List<Embedding> embeddings = new ArrayList<>();
 
     public int getLine() {
