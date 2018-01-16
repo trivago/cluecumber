@@ -11,6 +11,7 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
+  - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
   - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
@@ -40,6 +41,10 @@ This project was created because
 - it will allow to completely customize the report appearance and information
 
 **Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
+
+## Changelog
+
+All changes are documented in the [full changelog](CHANGELOG.md).
 
 # Prerequisites
 
