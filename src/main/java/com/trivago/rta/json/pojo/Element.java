@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,12 @@ import java.util.List;
 public class Element {
     private List<Before> before = new ArrayList<>();
     private int line;
-    private String name;
-    private String description;
-    private String id;
+    private String name = "";
+    private String description = "";
+    private String id = "";
     private List<After> after = new ArrayList<>();
-    private String type;
-    private String keyword;
+    private String type = "";
+    private String keyword = "";
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
 
@@ -60,12 +60,20 @@ public class Element {
         this.line = line;
     }
 
+    public String getEncodedName(){
+        return RenderingUtils.escapeHTML(getName());
+    }
+
     public String getName() {
-        return name;
+        return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getEncodedDescription(){
+        return RenderingUtils.escapeHTML(getDescription());
     }
 
     public String getDescription() {
@@ -149,6 +157,7 @@ public class Element {
                 }
             }
         }
+
         return Status.FAILED;
     }
 

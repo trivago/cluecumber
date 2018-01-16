@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,7 @@ public class Result {
     private String status = Status.UNDEFINED.toString();
 
     @SerializedName("error_message")
-    private String errorMessage;
-
-    private transient String durationString;
+    private String errorMessage = "";
 
     public long getDuration() {
         return duration;
@@ -44,6 +42,10 @@ public class Result {
 
     public String getStatus() {
         return status;
+    }
+
+    public boolean hasErrorMessage() {
+        return !errorMessage.isEmpty();
     }
 
     public String getErrorMessage() {
@@ -72,7 +74,6 @@ public class Result {
                 "duration=" + duration +
                 ", status='" + status + '\'' +
                 ", errorMessage='" + errorMessage + '\'' +
-                ", durationString='" + durationString + '\'' +
                 '}';
     }
 }

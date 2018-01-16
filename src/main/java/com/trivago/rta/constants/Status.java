@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,12 @@ package com.trivago.rta.constants;
  * Enum to manage all states for steps and scenarios.
  */
 public enum Status {
-    PASSED("passed"), FAILED("failed"), SKIPPED("skipped"), PENDING("pending"), UNDEFINED("undefined");
+    PASSED("passed"),
+    FAILED("failed"),
+    SKIPPED("skipped"),
+    PENDING("pending"),
+    UNDEFINED("undefined"),
+    AMBIGUOUS("ambiguous");
 
     private final String status;
 

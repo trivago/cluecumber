@@ -1,5 +1,5 @@
 <!--
-Copyright 2017 trivago N.V.
+Copyright 2018 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ limitations under the License.
     <meta name="description" content="${reportDetails.generatorName} - Scenario Detail">
     <meta name="author" content="${reportDetails.generatorName}">
 
-    <title>Scenario Details - ${element.name} - ${reportDetails.date}</title>
+    <title>Scenario Details - ${element.encodedName} - ${reportDetails.date}</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link href="../css/cluecumber.css" rel="stylesheet" type="text/css">
@@ -30,14 +30,20 @@ limitations under the License.
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header w-100">
-            <h5 class="navbar-text float-lg-left">Scenario Details | ${reportDetails.date}</h5>
-            <span class="navbar-text float-lg-right">
-                <a href="javascript:goBack();" id="backLink" class="text-light">Back to Overview</a>
-            </span>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <span class="navbar-brand">Scenario Details</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">Overview</a>
+            </li>
+        </ul>
+        <span class="text-light">${reportDetails.date}</span>
     </div>
 </nav>
 
@@ -73,9 +79,9 @@ limitations under the License.
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header text-capitalize">${element.name}</div>
+                    <div class="card-header text-capitalize">${element.encodedName}</div>
                     <#if element.description != "">
-                        <div class="card-header text-capitalize text-secondary">${element.description}</div>
+                        <div class="card-header text-capitalize text-secondary">${element.encodedDescription}</div>
                     </#if>
 
                     <div class="card-body">
@@ -83,6 +89,7 @@ limitations under the License.
                             <#list element.before as before>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
+                                        <span class="text-secondary"><nobr>Before</nobr></span>
                                     </div>
                                     <div class="col-7 text-left">
                                         <i>${before.glueMethodName}</i>
@@ -121,6 +128,17 @@ limitations under the License.
                                     <div class="col-7 text-left">
                                         <span data-toggle="tooltip"
                                               title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
+                                        <#if (step.rows?size > 0) >
+                                            <table class="table table-bordered table-sm compact">
+                                                <#list step.rows as row>
+                                                    <tr>
+                                                        <#list row.cells as cell>
+                                                            <td>${cell}</td>
+                                                        </#list>
+                                                    </tr>
+                                                </#list>
+                                            </table>
+                                        </#if>
                                     </div>
                                     <div class="col-2 text-left">
                                         <nobr>${step.result.returnDurationString()}</nobr>
@@ -136,7 +154,7 @@ limitations under the License.
                                         <span class="${class}">${step.status.statusString}</span>
                                     </div>
                                 </div>
-                                <#if step.failed>
+                                <#if step.result.hasErrorMessage()>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-1">
                                         </div>
@@ -154,6 +172,14 @@ limitations under the License.
                                                     <img src="../attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                 </a>
+                                            <#else>
+                                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                                    <div class="col-1">
+                                                    </div>
+                                                    <div class="col-11 text-left">
+                                                        <pre>${embedding.encodedData}</pre>
+                                                    </div>
+                                                </div>
                                             </#if>
                                         </div>
                                     </div>
@@ -165,6 +191,7 @@ limitations under the License.
                             <#list element.after as after>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
+                                        <span class="text-secondary"><nobr>After</nobr></span>
                                     </div>
                                     <div class="col-7 text-left">
                                         <i>${after.glueMethodName}</i>
@@ -201,6 +228,14 @@ limitations under the License.
                                                     <img src="../attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                     </a>
+                                            <#else>
+                                                <div class="row border border-top-0 border-left-0 border-right-0">
+                                                    <div class="col-1">
+                                                    </div>
+                                                    <div class="col-11 text-left">
+                                                        <pre>${embedding.encodedData}</pre>
+                                                    </div>
+                                                </div>
                                             </#if>
                                         </div>
                                     </div>
@@ -227,14 +262,6 @@ limitations under the License.
 <script src="../js/Chart.bundle.min.js"></script>
 
 <script>
-    function goBack() {
-        if (window.frameElement) {
-            window.parent.frames[0].history.back();
-        } else {
-            window.history.back();
-        }
-    }
-
     $(document).ready(function () {
         // Lightbox
         $("a.grouped_elements").fancybox();

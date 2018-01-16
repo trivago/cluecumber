@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,9 @@ import java.util.List;
 
 public class Step extends ResultMatch {
     private int line;
-    private String name;
-    private String keyword;
+    private String name = "";
+    private String keyword = "";
+    private List<Row> rows = new ArrayList<>();
     private List<Embedding> embeddings = new ArrayList<>();
 
     public int getLine() {
@@ -34,7 +35,7 @@ public class Step extends ResultMatch {
     }
 
     public String getName() {
-        return name;
+        return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {
@@ -57,12 +58,22 @@ public class Step extends ResultMatch {
         this.embeddings = embeddings;
     }
 
+    public List<Row> getRows() {
+        return rows;
+    }
+
+    public void setRows(final List<Row> rows) {
+        this.rows = rows;
+    }
+
     @Override
     public String toString() {
         return "Step{" +
                 "line=" + line +
                 ", name='" + name + '\'' +
                 ", keyword='" + keyword + '\'' +
+                ", rows=" + rows +
+                ", embeddings=" + embeddings +
                 '}';
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,12 @@ import java.time.Duration;
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
 
+    /**
+     * Convert microseconds to a human readable time string.
+     *
+     * @param microseconds The amount of microseconds.
+     * @return The human readable string representation.
+     */
     public static String convertMicrosecondsToTimeString(final long microseconds) {
         Duration durationMilliseconds = Duration.ofMillis(microseconds / MICROSECOND_FACTOR);
         long minutes = durationMilliseconds.toMinutes();
@@ -29,28 +35,45 @@ public class RenderingUtils {
         return String.format("%dm %02ds %03dms", minutes, seconds, milliseconds);
     }
 
+    /**
+     * Convert microseconds to milliseconds.
+     *
+     * @param microseconds The amount of microseconds.
+     * @return The millisecond representation.
+     */
     public static long convertMicrosecondsToMilliseconds(final long microseconds) {
         return Duration.ofMillis(microseconds / MICROSECOND_FACTOR).toMillis();
     }
 
-    public static String escapeHTML(final String htmlString) {
-        StringBuilder out = new StringBuilder(Math.max(16, htmlString.length()));
-        for (int i = 0; i < htmlString.length(); i++) {
-            char c = htmlString.charAt(i);
-            if (c > 127 || c == '"' || c == '<' || c == '>' || c == '&') {
-                out.append("&#");
-                out.append((int) c);
-                out.append(';');
+    /**
+     * Escape HTML tags in a string.
+     *
+     * @param sourceString The source string.
+     * @return The escaped string.
+     */
+    public static String escapeHTML(final String sourceString) {
+        StringBuilder stringBuilder = new StringBuilder(Math.max(16, sourceString.length()));
+        for (int i = 0; i < sourceString.length(); i++) {
+            char character = sourceString.charAt(i);
+            if (character > 127 || character == '"' || character == '<' || character == '>' || character == '&') {
+                stringBuilder.append("&#");
+                stringBuilder.append((int) character);
+                stringBuilder.append(';');
             } else {
-                out.append(c);
+                stringBuilder.append(character);
             }
         }
-        return out.toString();
+        return stringBuilder.toString();
     }
 
-    public static String getPluginVersion(){
+    /**
+     * Return the current Cluecumber version.
+     *
+     * @return The version string.
+     */
+    public static String getPluginVersion() {
         String version = RenderingUtils.class.getPackage().getImplementationVersion();
-        if (version == null){
+        if (version == null) {
             version = "unknown";
         }
         return version;

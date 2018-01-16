@@ -16,7 +16,7 @@ public class CustomParameter {
     }
 
     public String getValue() {
-        return value;
+        return value != null ? value : "";
     }
 
     public boolean isUrl() {

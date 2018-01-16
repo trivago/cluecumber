@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,14 +17,19 @@
 package com.trivago.rta.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.rta.rendering.RenderingUtils;
 
 public class Embedding {
     private String data;
 
     @SerializedName("mime_type")
-    private String mimeType;
+    private String mimeType = "unknown";
 
     private transient String filename;
+
+    public String getEncodedData(){
+        return RenderingUtils.escapeHTML(getData());
+    }
 
     public String getData() {
         return data;
@@ -57,5 +62,9 @@ public class Embedding {
                 mimeType.equalsIgnoreCase("image/gif") ||
                 mimeType.equalsIgnoreCase("image/svg+xml");
 
+    }
+
+    public boolean isPlainText(){
+        return mimeType.equalsIgnoreCase("text/plain");
     }
 }

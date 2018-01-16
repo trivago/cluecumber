@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,12 +38,12 @@ class ResultMatch {
         this.match = match;
     }
 
-    public String getGlueMethodName(){
-        return match != null ? match.getLocation() : "";
+    public String getGlueMethodName() {
+        return getMatch().getLocation();
     }
 
     public Status getStatus() {
-        return Status.fromString(result.getStatus());
+        return Status.fromString(getResult().getStatus());
     }
 
     public boolean isFailed() {
@@ -55,7 +55,10 @@ class ResultMatch {
     }
 
     public boolean isSkipped() {
-        return getStatus() == Status.SKIPPED || getStatus() == Status.PENDING || getStatus() == Status.UNDEFINED;
+        return getStatus() == Status.SKIPPED ||
+                getStatus() == Status.PENDING ||
+                getStatus() == Status.UNDEFINED ||
+                getStatus() == Status.AMBIGUOUS;
     }
 
     @Override

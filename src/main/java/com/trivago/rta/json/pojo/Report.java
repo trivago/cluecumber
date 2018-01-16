@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 trivago N.V.
+ * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,19 @@
 
 package com.trivago.rta.json.pojo;
 
-import java.time.Duration;
+import com.trivago.rta.rendering.RenderingUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Report {
     private int line;
     private List<Element> elements = new ArrayList<>();
-    private String name;
-    private String description;
-    private String id;
-    private String keyword;
-    private String uri;
+    private String name = "";
+    private String description = "";
+    private String id = "";
+    private String keyword = "";
+    private String uri = "";
 
     public int getLine() {
         return line;
@@ -45,12 +46,20 @@ public class Report {
         this.elements = elements;
     }
 
+    public String getEncodedName() {
+        return RenderingUtils.escapeHTML(getName());
+    }
+
     public String getName() {
-        return name;
+        return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getEncodedDescription() {
+        return RenderingUtils.escapeHTML(getDescription());
     }
 
     public String getDescription() {
