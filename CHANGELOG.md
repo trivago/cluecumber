@@ -7,9 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [0.3.0] - 2018-01-??
+## [0.3.0] - 2018-02-03
 
-tbd.
+# Added
+
+* Tag statistics page
+
+# Fixed
+
+* Background elements are now merged to the following element.
+
+# Changed
+
+* Internal organization of page types allows easier extension.
 
 ## [0.2.0] - 2018-01-16
 
