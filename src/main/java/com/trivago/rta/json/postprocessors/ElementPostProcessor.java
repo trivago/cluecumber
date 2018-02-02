@@ -58,7 +58,6 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
-        System.out.println("Handle Element");
         addScenarioIndex(element);
 
         try {

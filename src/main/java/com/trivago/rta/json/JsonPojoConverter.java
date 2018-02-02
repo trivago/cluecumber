@@ -35,7 +35,6 @@ public class JsonPojoConverter {
 
     @Inject
     public JsonPojoConverter(final ReportPostProcessor reportPostProcessor, final ElementPostProcessor elementPostProcessor) {
-
         GsonFireBuilder builder = new GsonFireBuilder()
                 .registerPostProcessor(Report.class, reportPostProcessor)
                 .registerPostProcessor(Element.class, elementPostProcessor);
