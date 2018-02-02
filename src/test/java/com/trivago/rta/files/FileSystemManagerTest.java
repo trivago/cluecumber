@@ -48,5 +48,4 @@ public class FileSystemManagerTest {
         Class baseClass = this.getClass();
         fileSystemManager.exportResource(baseClass, "resource", "destination");
     }
-
 }
