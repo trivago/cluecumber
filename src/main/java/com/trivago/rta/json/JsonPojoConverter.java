@@ -22,6 +22,7 @@ import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.postprocessors.ElementPostProcessor;
+import com.trivago.rta.json.postprocessors.ReportPostProcessor;
 import io.gsonfire.GsonFireBuilder;
 
 import javax.inject.Inject;
@@ -33,8 +34,10 @@ public class JsonPojoConverter {
     private final Gson gsonParser;
 
     @Inject
-    public JsonPojoConverter(final ElementPostProcessor elementPostProcessor) {
+    public JsonPojoConverter(final ReportPostProcessor reportPostProcessor, final ElementPostProcessor elementPostProcessor) {
+
         GsonFireBuilder builder = new GsonFireBuilder()
+                .registerPostProcessor(Report.class, reportPostProcessor)
                 .registerPostProcessor(Element.class, elementPostProcessor);
         gsonParser = builder.createGson();
     }

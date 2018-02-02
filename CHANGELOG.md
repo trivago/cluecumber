@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [0.2.0] - 2017-12-12
+## [0.3.0] - 2018-01-??
+
+tbd.
+
+## [0.2.0] - 2018-01-16
 
 # Added
 
@@ -22,7 +26,7 @@ Back to [Readme](README.md).
 
 - Report generation is now much more resilient if information is missing in the JSON sources
 
-## [0.1.1] - 2018-01-16
+## [0.1.1] - 2017-12-12
 
 # Removed
 
@@ -83,6 +87,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[0.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.3.0
 [0.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0
 [0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
 [0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0

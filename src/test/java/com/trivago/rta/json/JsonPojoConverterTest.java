@@ -3,6 +3,7 @@ package com.trivago.rta.json;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.postprocessors.ElementPostProcessor;
+import com.trivago.rta.json.postprocessors.ReportPostProcessor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,12 +14,12 @@ import static org.mockito.Mockito.mock;
 
 public class JsonPojoConverterTest {
     private JsonPojoConverter pojoConverter;
-    private ElementPostProcessor elementPostProcessor;
 
     @Before
     public void setup() {
-        elementPostProcessor = mock(ElementPostProcessor.class);
-        pojoConverter = new JsonPojoConverter(elementPostProcessor);
+        ElementPostProcessor elementPostProcessor = mock(ElementPostProcessor.class);
+        ReportPostProcessor reportPostProcessor = mock(ReportPostProcessor.class);
+        pojoConverter = new JsonPojoConverter(reportPostProcessor, elementPostProcessor);
     }
 
     @Test

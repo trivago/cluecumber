@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class DetailPageRenderer extends PageRenderer {
+public class ScenarioDetailPageRenderer extends PageRenderer {
 
     public String getRenderedContent(final DetailPageCollection detailPageCollection, final Template template)
             throws CluecumberPluginException {

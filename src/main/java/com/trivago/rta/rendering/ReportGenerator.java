@@ -35,13 +35,11 @@ import java.util.List;
 @Singleton
 public class ReportGenerator {
 
-    private static final String BASE_PACKAGE_PATH = "/template";
-    private static final String SCENARIO_DETAIL_DIR = "/scenario-detail";
-
     private TemplateEngine templateEngine;
     private FileIO fileIO;
     private PropertyManager propertyManager;
     private FileSystemManager fileSystemManager;
+    private CluecumberLogger logger;
 
     @Inject
     public ReportGenerator(
@@ -55,12 +53,13 @@ public class ReportGenerator {
         this.fileIO = fileIO;
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
+        this.logger = logger;
     }
 
     public void generateReports(final StartPageCollection startPageCollection) throws CluecumberPluginException {
-        templateEngine.init(getClass(), BASE_PACKAGE_PATH);
-        copyResources();
-        fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + SCENARIO_DETAIL_DIR);
+        templateEngine.init(getClass(), PluginSettings.BASE_TEMPLATE_PATH);
+        copyReportAssets();
+        fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIR);
 
         List<Report> reports = startPageCollection.getReports();
         DetailPageCollection detailPageCollection;
@@ -68,7 +67,7 @@ public class ReportGenerator {
             for (Element element : report.getElements()) {
                 detailPageCollection = new DetailPageCollection(element);
                 String renderedDetailPage = templateEngine.getRenderedDetailPage(detailPageCollection);
-                savePage(renderedDetailPage, SCENARIO_DETAIL_DIR + "/scenario_" + element.getScenarioIndex() + ".html");
+                savePage(renderedDetailPage, PluginSettings.PAGES_DIR + "/scenario_" + element.getScenarioIndex() + ".html");
             }
         }
 
@@ -82,31 +81,31 @@ public class ReportGenerator {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + fileName);
     }
 
-    private void copyResources() throws CluecumberPluginException {
+    private void copyReportAssets() throws CluecumberPluginException {
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory());
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/js");
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/img");
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/css");
 
         // Copy CSS resources
-        copyResource("/css/bootstrap.min.css");
-        copyResource("/css/cluecumber.css");
-        copyResource("/css/dataTables.bootstrap4.min.css");
-        copyResource("/css/jquery.fancybox.min.css");
+        copyFileFromJarToFilesystemDestination("/css/bootstrap.min.css");
+        copyFileFromJarToFilesystemDestination("/css/cluecumber.css");
+        copyFileFromJarToFilesystemDestination("/css/dataTables.bootstrap4.min.css");
+        copyFileFromJarToFilesystemDestination("/css/jquery.fancybox.min.css");
 
         // Copy Javascript resources
-        copyResource("/js/jquery-3.2.1.slim.min.js");
-        copyResource("/js/bootstrap.min.js");
-        copyResource("/js/popper.min.js");
-        copyResource("/js/Chart.bundle.min.js");
-        copyResource("/js/dataTables.bootstrap4.min.js");
-        copyResource("/js/jquery.dataTables.min.js");
-        copyResource("/js/jquery.fancybox.min.js");
+        copyFileFromJarToFilesystemDestination("/js/jquery-3.2.1.slim.min.js");
+        copyFileFromJarToFilesystemDestination("/js/bootstrap.min.js");
+        copyFileFromJarToFilesystemDestination("/js/popper.min.js");
+        copyFileFromJarToFilesystemDestination("/js/Chart.bundle.min.js");
+        copyFileFromJarToFilesystemDestination("/js/dataTables.bootstrap4.min.js");
+        copyFileFromJarToFilesystemDestination("/js/jquery.dataTables.min.js");
+        copyFileFromJarToFilesystemDestination("/js/jquery.fancybox.min.js");
     }
 
-    private void copyResource(final String fileName) throws CluecumberPluginException {
+    private void copyFileFromJarToFilesystemDestination(final String fileName) throws CluecumberPluginException {
         fileSystemManager.exportResource(getClass(),
-                BASE_PACKAGE_PATH + fileName,
+                PluginSettings.BASE_TEMPLATE_PATH + fileName,
                 propertyManager.getGeneratedHtmlReportDirectory() + fileName);
     }
 }

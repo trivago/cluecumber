@@ -18,7 +18,7 @@ package com.trivago.rta.rendering;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.rendering.pages.DetailPageRenderer;
+import com.trivago.rta.rendering.pages.ScenarioDetailPageRenderer;
 import com.trivago.rta.rendering.pages.StartPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
@@ -30,17 +30,17 @@ import javax.inject.Singleton;
 public class TemplateEngine {
     private TemplateConfiguration templateConfiguration;
     private final StartPageRenderer startPageRenderer;
-    private final DetailPageRenderer detailPageRenderer;
+    private final ScenarioDetailPageRenderer scenarioDetailPageRenderer;
 
     @Inject
     public TemplateEngine(
             final TemplateConfiguration templateConfiguration,
             final StartPageRenderer startPageRenderer,
-            final DetailPageRenderer detailPageRenderer
+            final ScenarioDetailPageRenderer scenarioDetailPageRenderer
     ) {
         this.templateConfiguration = templateConfiguration;
         this.startPageRenderer = startPageRenderer;
-        this.detailPageRenderer = detailPageRenderer;
+        this.scenarioDetailPageRenderer = scenarioDetailPageRenderer;
     }
 
     void init(final Class rootClass, final String basePath) {
@@ -55,7 +55,7 @@ public class TemplateEngine {
     }
 
     String getRenderedDetailPage(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
-        return detailPageRenderer.getRenderedContent(
+        return scenarioDetailPageRenderer.getRenderedContent(
                 detailPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.DETAIL_PAGE_NAME)
         );

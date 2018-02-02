@@ -56,6 +56,15 @@ public class PropertyManagerTest {
     }
 
     @Test
+    public void customParametersTest() {
+        Map<String, String> customParameters = new HashMap<>();
+        customParameters.put("key", "value");
+        propertyManager.setCustomParameters(customParameters);
+        assertThat(propertyManager.getCustomParameters().size(), is(1));
+        assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+
+    @Test
     public void logFullPropertiesTest() {
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key1", "value1");

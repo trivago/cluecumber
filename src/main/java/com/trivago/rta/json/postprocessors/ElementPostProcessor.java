@@ -58,7 +58,9 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
+        System.out.println("Handle Element");
         addScenarioIndex(element);
+
         try {
             processAttachments(element.getSteps(), element.getAfter());
         } catch (CluecumberPluginException e) {
@@ -70,7 +72,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     /**
      * Process attachments in steps and after hooks.
      *
-     * @param steps The {@link Step} list.
+     * @param steps      The {@link Step} list.
      * @param afterHooks The {@link After} list.
      * @throws CluecumberPluginException Exception if the attachments cannot be processed.
      */
@@ -148,6 +150,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     /**
      * Add index to elements (used for link creation to the detail reports).
+     *
      * @param element The current {@link Element}.
      */
     private void addScenarioIndex(final Element element) {
