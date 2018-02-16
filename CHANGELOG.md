@@ -11,11 +11,12 @@ Back to [Readme](README.md).
 
 # Added
 
-* Tag statistics page
+* Scenario.output is now displayed in the scenario details
 
 # Fixed
 
-* Background elements are now merged to the following element.
+* Scenarios with pending and skipped steps are also considered skipped.
+* Background scenarios are now merged to the following scenarios.
 
 # Changed
 
