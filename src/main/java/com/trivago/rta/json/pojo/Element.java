@@ -147,6 +147,7 @@ public class Element {
             return Status.SKIPPED;
         }
 
+        // If all steps have the same status, return this as the scenario status.
         for (Status status : Status.values()) {
             int stepNumber = (int) steps.stream().filter(step -> step.getStatus() == status).count();
             if (totalSteps == stepNumber) {
@@ -156,6 +157,14 @@ public class Element {
                     return Status.SKIPPED;
                 }
             }
+        }
+
+        // Skip scenario if it contains a mixture of pending and skipped steps.
+        int totalSkippedSteps = (int) steps.stream().filter(
+                step -> step.getStatus() == Status.PENDING || step.getStatus() == Status.SKIPPED
+        ).count();
+        if (totalSkippedSteps == totalSteps){
+            return Status.SKIPPED;
         }
 
         return Status.FAILED;

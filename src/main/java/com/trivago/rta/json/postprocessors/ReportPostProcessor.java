@@ -51,15 +51,15 @@ public class ReportPostProcessor implements PostProcessor<Report> {
         for (Element element : report.getElements()) {
             if (element.getType().equalsIgnoreCase("background")) {
                 currentBackgroundElement = element;
-            } else if (currentBackgroundElement != null) {
-                for (Step step : currentBackgroundElement.getSteps()) {
-                    element.getSteps().add(0, step);
+            } else {
+                if (currentBackgroundElement != null) {
+                    for (Step step : currentBackgroundElement.getSteps()) {
+                        element.getSteps().add(0, step);
+                    }
                 }
                 cleanedUpElements.add(element);
-                currentBackgroundElement = null;
             }
         }
-
         report.setElements(cleanedUpElements);
     }
 
