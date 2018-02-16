@@ -178,6 +178,28 @@ public class Element {
         this.scenarioIndex = scenarioIndex;
     }
 
+    public int getTotalNumberOfSteps() {
+        return getSteps().size();
+    }
+
+    public int getTotalNumberOfPassedSteps() {
+        return getNumberOfStepsWithStatus(Status.PASSED);
+    }
+
+    public int getTotalNumberOfFailedSteps() {
+        return getNumberOfStepsWithStatus(Status.FAILED) +
+                getNumberOfStepsWithStatus(Status.UNDEFINED) +
+                getNumberOfStepsWithStatus(Status.AMBIGUOUS);
+    }
+
+    public int getTotalNumberOfSkippedSteps() {
+        return getNumberOfStepsWithStatus(Status.SKIPPED) + getNumberOfStepsWithStatus(Status.PENDING);
+    }
+
+    private int getNumberOfStepsWithStatus(final Status status) {
+        return (int) getSteps().stream().filter(step -> step.getStatus() == status).count();
+    }
+
     public long getTotalDuration() {
         long totalDurationMicroseconds = 0;
         for (Before beforeStep : before) {

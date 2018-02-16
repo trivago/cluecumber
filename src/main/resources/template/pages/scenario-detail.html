@@ -65,10 +65,12 @@ limitations under the License.
                     <div class="card-header">Scenario Information</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>${totalNumberOfSteps}</strong> Steps:
-                                <strong></strong>${totalNumberOfPassedSteps} passed /
-                                ${totalNumberOfFailedSteps} failed / ${totalNumberOfSkippedSteps} skipped</li>
-                            <li class="list-group-item"><strong>Total Time:</strong> ${element.returnTotalDurationString()}</li>
+                            <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Steps:
+                                <strong>${element.totalNumberOfPassedSteps}</strong> passed /
+                                <strong>${element.totalNumberOfFailedSteps}</strong> failed /
+                                <strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
+                            <li class="list-group-item"><strong>Total Time:</strong>
+                                ${element.returnTotalDurationString()}</li>
                             <#list element.tags as tag>
                                 <li class="list-group-item">${tag.name}</li>
                             </#list>
@@ -88,7 +90,7 @@ limitations under the License.
                     </#if>
 
                     <div class="card-body">
-                        <div class="container">
+                        <div class="container" style="border-bottom: black 2px dotted">
                             <#list element.before as before>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
@@ -123,7 +125,8 @@ limitations under the License.
                                 </#if>
                             </#list>
                         </div>
-                        <div class="container">
+
+                        <div class="container" style="border-bottom: black 2px dotted">
                             <#list element.steps as step>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">

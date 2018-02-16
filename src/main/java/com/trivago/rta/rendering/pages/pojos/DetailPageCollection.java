@@ -16,7 +16,6 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
-import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 
 public class DetailPageCollection {
@@ -37,27 +36,5 @@ public class DetailPageCollection {
 
     public void setReportDetails(final ReportDetails reportDetails) {
         this.reportDetails = reportDetails;
-    }
-
-    public int getTotalNumberOfSteps() {
-        return element.getSteps().size();
-    }
-
-    public int getTotalNumberOfPassedSteps() {
-        return getNumberOfStepsWithStatus(Status.PASSED);
-    }
-
-    public int getTotalNumberOfFailedSteps() {
-        return getNumberOfStepsWithStatus(Status.FAILED) +
-                getNumberOfStepsWithStatus(Status.UNDEFINED) +
-                getNumberOfStepsWithStatus(Status.AMBIGUOUS);
-    }
-
-    public int getTotalNumberOfSkippedSteps() {
-        return getNumberOfStepsWithStatus(Status.SKIPPED) + getNumberOfStepsWithStatus(Status.PENDING);
-    }
-
-    private int getNumberOfStepsWithStatus(final Status status) {
-        return (int) element.getSteps().stream().filter(step -> step.getStatus() == status).count();
     }
 }
