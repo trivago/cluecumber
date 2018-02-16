@@ -65,6 +65,9 @@ limitations under the License.
                     <div class="card-header">Scenario Information</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>${totalNumberOfSteps}</strong> Steps:
+                                <strong></strong>${totalNumberOfPassedSteps} passed /
+                                ${totalNumberOfFailedSteps} failed / ${totalNumberOfSkippedSteps} skipped</li>
                             <li class="list-group-item"><strong>Total Time:</strong> ${element.returnTotalDurationString()}</li>
                             <#list element.tags as tag>
                                 <li class="list-group-item">${tag.name}</li>
