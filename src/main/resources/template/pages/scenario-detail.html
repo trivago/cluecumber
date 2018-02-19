@@ -27,6 +27,12 @@ limitations under the License.
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link href="../css/cluecumber.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/jquery.fancybox.min.css"/>
+
+    <script>
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+        }
+    </script>
 </head>
 <body>
 
@@ -90,7 +96,7 @@ limitations under the License.
                     </#if>
 
                     <div class="card-body">
-                        <div class="container" style="border-bottom: black 2px dotted">
+                        <div class="container" style="border-bottom: black 2px dotted; opacity: 0.5;">
                             <#list element.before as before>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
@@ -115,10 +121,7 @@ limitations under the License.
                                 </div>
                                 <#if before.failed>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
-                                        <div class="col-1">
-                                            <code><nobr>Error</nobr></code>
-                                        </div>
-                                        <div class="col-11 text-left">
+                                        <div class="col-12 text-left">
                                             <code>${before.result.encodedErrorMessage}</code>
                                         </div>
                                     </div>
@@ -163,10 +166,7 @@ limitations under the License.
                                 </div>
                                 <#if step.result.hasErrorMessage()>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
-                                        <div class="col-1">
-                                            <nobr><i class="text-danger">Error</i></nobr>
-                                        </div>
-                                        <div class="col-11 text-left">
+                                        <div class="col-12 text-left">
                                             <code>${step.result.encodedErrorMessage}</code>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@ limitations under the License.
                             </#list>
                         </div>
 
-                        <div class="container">
+                        <div class="container" style="opacity: 0.5;">
                             <#list element.after as after>
                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                     <div class="col-1 text-left">
@@ -225,10 +225,7 @@ limitations under the License.
                                 </div>
                                 <#if after.failed>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
-                                        <div class="col-1">
-                                            <code><nobr>Error</nobr></code>
-                                        </div>
-                                        <div class="col-11 text-left">
+                                        <div class="col-12 text-left">
                                             <code>${after.result.encodedErrorMessage}</code>
                                         </div>
                                     </div>
@@ -287,10 +284,6 @@ limitations under the License.
         var ctx = document.getElementById('chart-area').getContext("2d");
         new Chart(ctx, eval(${reportDetails.chartJson}));
     })
-
-    function resizeIframe(obj) {
-        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-    }
 </script>
 </body>
 </html>
