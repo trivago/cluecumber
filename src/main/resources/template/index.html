@@ -36,12 +36,6 @@ limitations under the License.
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-        </ul>
-        <span class="text-light">${reportDetails.date}</span>
-    </div>
 </nav>
 
 <main role="main" class="container">
@@ -85,8 +79,8 @@ limitations under the License.
                     <div class="card-header">Test Suite Summary</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> scenarios in <strong>${totalNumberOfFeatures}</strong>
-                                features.
+                            <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios in <strong>${totalNumberOfFeatures}</strong>
+                                Features.
                             </li>
                             <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed /
                                 <strong>${totalNumberOfFailedScenarios}</strong> failed / <strong>${totalNumberOfSkippedScenarios}</strong>
@@ -122,7 +116,7 @@ limitations under the License.
                                                                                             title="${report.uri}">${report.encodedName}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
+                                                    <a href="pages/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">
@@ -163,7 +157,7 @@ limitations under the License.
                                                                                             title="${report.uri}">${report.encodedName}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
+                                                    <a href="pages/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">
@@ -204,7 +198,7 @@ limitations under the License.
                                                                                             title="${report.uri}">${report.encodedName}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
+                                                    <a href="pages/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">

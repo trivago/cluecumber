@@ -82,30 +82,29 @@ public class FileSystemManager {
      * @throws CluecumberPluginException (see {@link CluecumberPluginException}.
      */
     public void exportResource(final Class baseClass, final String resourceName, final String destination) throws CluecumberPluginException {
-        InputStream stream = null;
-        OutputStream resStreamOut = null;
-        String jarFolder;
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
         try {
-            stream = baseClass.getResourceAsStream(resourceName);
-            if (stream == null) {
-                throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
+            inputStream = baseClass.getResourceAsStream(resourceName);
+            if (inputStream == null) {
+                throw new Exception("Cannot get resource \"" + resourceName + "\".");
             }
 
             int readBytes;
             byte[] buffer = new byte[BYTE_BLOCK];
-            resStreamOut = new FileOutputStream(destination);
-            while ((readBytes = stream.read(buffer)) > 0) {
-                resStreamOut.write(buffer, 0, readBytes);
+            outputStream = new FileOutputStream(destination);
+            while ((readBytes = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, readBytes);
             }
         } catch (Exception e) {
             throw new CluecumberPluginException(e.getMessage());
         } finally {
             try {
-                if (stream != null) {
-                    stream.close();
+                if (inputStream != null) {
+                    inputStream.close();
                 }
-                if (resStreamOut != null) {
-                    resStreamOut.close();
+                if (outputStream != null) {
+                    outputStream.close();
                 }
             } catch (IOException e) {
                 throw new CluecumberPluginException(e.getMessage());

@@ -13,13 +13,13 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
-public class DetailPageRendererTest {
+public class ScenarioDetailPageRendererTest {
 
-    private DetailPageRenderer detailPageRenderer;
+    private ScenarioDetailPageRenderer scenarioDetailPageRenderer;
 
     @Before
     public void setup(){
-        detailPageRenderer = new DetailPageRenderer();
+        scenarioDetailPageRenderer = new ScenarioDetailPageRenderer();
     }
 
     @Test
@@ -29,6 +29,6 @@ public class DetailPageRendererTest {
         List<Step> steps = new ArrayList<>();
         element.setSteps(steps);
         DetailPageCollection detailPageCollection = new DetailPageCollection(element);
-        detailPageRenderer.getRenderedContent(detailPageCollection, template);
+        scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template);
     }
 }

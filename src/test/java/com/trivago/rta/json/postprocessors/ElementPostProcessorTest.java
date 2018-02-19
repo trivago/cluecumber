@@ -1,7 +1,5 @@
 package com.trivago.rta.json.postprocessors;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Embedding;
@@ -19,14 +17,11 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
 public class ElementPostProcessorTest {
-    private PropertyManager propertyManager;
-    private FileIO fileIO;
-    private CluecumberLogger logger;
     private ElementPostProcessor elementPostProcessor;
 
     @Before
     public void setup() {
-        propertyManager = mock(PropertyManager.class);
+        PropertyManager propertyManager = mock(PropertyManager.class);
         FileIO fileIO = mock(FileIO.class);
         CluecumberLogger logger = new CluecumberLogger();
         elementPostProcessor = new ElementPostProcessor(propertyManager, fileIO, logger);
@@ -35,8 +30,6 @@ public class ElementPostProcessorTest {
     @Test
     public void postDesiralizeAddScenarioIndexTest(){
         Element element = new Element();
-        JsonElement jsonElement = null;
-        Gson gson = null;
 
         assertThat(element.getScenarioIndex(), is(-1));
         elementPostProcessor.postDeserialize(element, null, null);
@@ -56,12 +49,10 @@ public class ElementPostProcessorTest {
         step.setEmbeddings(embeddings);
         steps.add(step);
         element.setSteps(steps);
-        JsonElement jsonElement = null;
-        Gson gson = null;
 
         assertThat(embedding.getData(), is("123"));
 
-        elementPostProcessor.postDeserialize(element, jsonElement, gson);
+        elementPostProcessor.postDeserialize(element, null, null);
 
         assertThat(embedding.getData(), is(""));
         assertThat(embedding.getFilename(), is("attachment000.png"));

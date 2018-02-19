@@ -3,6 +3,7 @@ package com.trivago.rta.json;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.postprocessors.ElementPostProcessor;
+import com.trivago.rta.json.postprocessors.ReportPostProcessor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,12 +14,12 @@ import static org.mockito.Mockito.mock;
 
 public class JsonPojoConverterTest {
     private JsonPojoConverter pojoConverter;
-    private ElementPostProcessor elementPostProcessor;
 
     @Before
     public void setup() {
-        elementPostProcessor = mock(ElementPostProcessor.class);
-        pojoConverter = new JsonPojoConverter(elementPostProcessor);
+        ElementPostProcessor elementPostProcessor = mock(ElementPostProcessor.class);
+        ReportPostProcessor reportPostProcessor = mock(ReportPostProcessor.class);
+        pojoConverter = new JsonPojoConverter(reportPostProcessor, elementPostProcessor);
     }
 
     @Test
@@ -113,6 +114,11 @@ public class JsonPojoConverterTest {
         Report report = reports[0];
         assertThat(report.getName(), is("Test"));
         assertThat(report.getId(), is("test"));
-        assertThat(report.toString(), is("Report{line=1, elements=[Element{before=[ResultMatch{result=Result{duration=5554929, status='passed', errorMessage=''}, match=Match{location='BeforeAfterScenario.before(Scenario)', arguments=[]}}], line=5, name='Test feature', description='', id='test;id', after=[ResultMatch{result=Result{duration=153270, status='passed', errorMessage=''}, match=Match{location='BeforeAfterScenario.after(Scenario)', arguments=[]}}], type='scenario', keyword='Scenario', steps=[Step{line=7, name='the start page is opened', keyword='Given ', rows=[], embeddings=[]}, Step{line=8, name='I see something', keyword='Then ', rows=[], embeddings=[]}], tags=[Tag{name='@sometag'}, Tag{name='@someothertag'}], scenarioIndex=-1}], name='Test', description='', id='test', keyword='Feature', uri='parallel/features/Test.feature'}"));
+        assertThat(report.toString(), is("Report{line=1, elements=[Element{before=[ResultMatch{result=Result{duration=5554929, status='passed', errorMessage=''}, match=Match{location='BeforeAfterScenario.before(Scenario)', arguments=[]}}], line=5, name='Test feature', description='', id='test;id', after=[ResultMatch{result=Result{duration=153270, status='passed', errorMessage=''}, match=Match{location='BeforeAfterScenario.after(Scenario)', arguments=[]}}], type='scenario', keyword='Scenario', steps=[Step{line=7, name='the start page is opened', keyword='Given ', output=[], rows=[], embeddings=[]}, Step{line=8, name='I see something', keyword='Then ', output=[], rows=[], embeddings=[]}], tags=[Tag{name='@sometag'}, Tag{name='@someothertag'}], scenarioIndex=-1}], name='Test', description='', id='test', keyword='Feature', uri='parallel/features/Test.feature'}"));
+    }
+
+    @Test(expected = CluecumberPluginException.class)
+    public void convertJsonToReportPojosInvalidTest() throws CluecumberPluginException {
+        pojoConverter.convertJsonToReportPojos("!$%&§/");
     }
 }

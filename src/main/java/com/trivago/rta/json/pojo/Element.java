@@ -147,6 +147,7 @@ public class Element {
             return Status.SKIPPED;
         }
 
+        // If all steps have the same status, return this as the scenario status.
         for (Status status : Status.values()) {
             int stepNumber = (int) steps.stream().filter(step -> step.getStatus() == status).count();
             if (totalSteps == stepNumber) {
@@ -158,6 +159,14 @@ public class Element {
             }
         }
 
+        // Skip scenario if it contains a mixture of pending and skipped steps.
+        int totalSkippedSteps = (int) steps.stream().filter(
+                step -> step.getStatus() == Status.PENDING || step.getStatus() == Status.SKIPPED
+        ).count();
+        if (totalSkippedSteps == totalSteps){
+            return Status.SKIPPED;
+        }
+
         return Status.FAILED;
     }
 
@@ -167,6 +176,28 @@ public class Element {
 
     public void setScenarioIndex(final int scenarioIndex) {
         this.scenarioIndex = scenarioIndex;
+    }
+
+    public int getTotalNumberOfSteps() {
+        return getSteps().size();
+    }
+
+    public int getTotalNumberOfPassedSteps() {
+        return getNumberOfStepsWithStatus(Status.PASSED);
+    }
+
+    public int getTotalNumberOfFailedSteps() {
+        return getNumberOfStepsWithStatus(Status.FAILED) +
+                getNumberOfStepsWithStatus(Status.UNDEFINED) +
+                getNumberOfStepsWithStatus(Status.AMBIGUOUS);
+    }
+
+    public int getTotalNumberOfSkippedSteps() {
+        return getNumberOfStepsWithStatus(Status.SKIPPED) + getNumberOfStepsWithStatus(Status.PENDING);
+    }
+
+    private int getNumberOfStepsWithStatus(final Status status) {
+        return (int) getSteps().stream().filter(step -> step.getStatus() == status).count();
     }
 
     public long getTotalDuration() {
