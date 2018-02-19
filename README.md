@@ -138,7 +138,7 @@ It shows:
 - stack traces of failed steps
 - screenshots
 
-![report_detail](documentation/img/report_detail.png)
+![report_detail](documentation/img/report_details.png)
 
 # Building
 
