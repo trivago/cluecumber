@@ -120,4 +120,42 @@ public class ElementTest {
         assertThat(element.getTotalDuration(), is(10117667785L));
         assertThat(element.returnTotalDurationString(), is("0m 10s 117ms"));
     }
+
+    @Test
+    public void stepSummaryTest(){
+        List<Step> steps = new ArrayList<>();
+
+        Step step1 = new Step();
+        Result result1 = new Result();
+        result1.setStatus("passed");
+        step1.setResult(result1);
+        steps.add(step1);
+        steps.add(step1);
+        steps.add(step1);
+
+        Step step2 = new Step();
+        Result result2 = new Result();
+        result2.setStatus("skipped");
+        step2.setResult(result2);
+        steps.add(step2);
+
+        Step step3 = new Step();
+        Result result3 = new Result();
+        result3.setStatus("pending");
+        step3.setResult(result3);
+        steps.add(step3);
+
+        Step step4 = new Step();
+        Result result4 = new Result();
+        result4.setStatus("failed");
+        step4.setResult(result4);
+        steps.add(step4);
+
+        element.setSteps(steps);
+
+        assertThat(element.getTotalNumberOfSteps(), is(6));
+        assertThat(element.getTotalNumberOfPassedSteps(), is(3));
+        assertThat(element.getTotalNumberOfFailedSteps(), is(1));
+        assertThat(element.getTotalNumberOfSkippedSteps(), is(2));
+    }
 }
