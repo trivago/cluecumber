@@ -51,9 +51,18 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 # Prerequisites
 
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in your Cucumber runner configuration:
+
+*Cucumber 1.x:*
 ```
 @CucumberOptions(
     format = {"json:target/cucumber-report/cucumber.json"}
+)
+```
+
+*Cucumber 2.x:*
+```
+@CucumberOptions(
+    plugin = {"json:target/cucumber-report/cucumber.json"}
 )
 ```
 
@@ -144,7 +153,7 @@ It shows:
 
 # Building
 
-Cluecumber requires Java 8 and Maven 3.3.9. It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+Cluecumber requires Java >= 8 and Maven >= 3.3.9. It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
 
 # License
 
