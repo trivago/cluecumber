@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.logging.CluecumberLogger;
 import io.gsonfire.PostProcessor;
 
@@ -53,9 +52,7 @@ public class ReportPostProcessor implements PostProcessor<Report> {
                 currentBackgroundElement = element;
             } else {
                 if (currentBackgroundElement != null) {
-                    for (Step step : currentBackgroundElement.getSteps()) {
-                        element.getSteps().add(0, step);
-                    }
+                    element.getSteps().addAll(0, currentBackgroundElement.getSteps());
                 }
                 cleanedUpElements.add(element);
             }
