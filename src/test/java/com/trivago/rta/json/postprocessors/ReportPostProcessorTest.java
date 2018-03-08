@@ -30,9 +30,15 @@ public class ReportPostProcessorTest {
 
         Element backgroundElement = new Element();
         List<Step> backgroundSteps = new ArrayList<>();
-        Step backgroundStep = new Step();
-        backgroundStep.setName("background step");
-        backgroundSteps.add(backgroundStep);
+
+        Step backgroundStep1 = new Step();
+        backgroundStep1.setName("background step 1");
+        backgroundSteps.add(backgroundStep1);
+
+        Step backgroundStep2 = new Step();
+        backgroundStep2.setName("background step 2");
+        backgroundSteps.add(backgroundStep2);
+
         backgroundElement.setSteps(backgroundSteps);
         backgroundElement.setType("background");
         elements.add(backgroundElement);
@@ -53,6 +59,11 @@ public class ReportPostProcessorTest {
         assertThat(report.getElements().size(), is(2));
         reportPostProcessor.postDeserialize(report, null,null);
         assertThat(report.getElements().size(), is(1));
-        assertThat(report.getElements().get(0).getSteps().size(), is(3));
+        List<Step> firstElementSteps = report.getElements().get(0).getSteps();
+        assertThat(firstElementSteps.size(), is(4));
+        assertThat(firstElementSteps.get(0).getName(), is("background step 1"));
+        assertThat(firstElementSteps.get(1).getName(), is("background step 2"));
+        assertThat(firstElementSteps.get(2).getName(), is("element step 1"));
+        assertThat(firstElementSteps.get(3).getName(), is("element step 2"));
     }
 }
