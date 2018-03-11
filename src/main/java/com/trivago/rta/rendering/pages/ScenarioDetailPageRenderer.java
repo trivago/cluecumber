@@ -49,7 +49,7 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         try {
             template.process(detailPageCollection, stringWriter);
         } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException(e.getMessage());
+            throw new CluecumberPluginException("Could not render scenario detail page content: " + e.getMessage());
         }
         return stringWriter.toString();
     }

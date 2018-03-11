@@ -61,10 +61,10 @@ public class ReportGeneratorTest {
         Report[] reportList = {report1, report2};
         startPageCollection.addReports(reportList);
 
-        when(templateEngine.getRenderedStartPage(startPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
-        when(templateEngine.getRenderedDetailPage(any(DetailPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
+        when(templateEngine.getRenderedStartPageContent(startPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
+        when(templateEngine.getRenderedDetailPageContent(any(DetailPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
 
-        reportGenerator.generateReports(startPageCollection);
+        reportGenerator.generateReport(startPageCollection);
 
         verify(fileSystemManager, times(4)).createDirectory(anyString());
         verify(fileSystemManager, times(11)).exportResource(any(Class.class), anyString(), anyString());

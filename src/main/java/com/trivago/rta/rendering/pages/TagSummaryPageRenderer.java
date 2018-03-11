@@ -18,7 +18,6 @@ package com.trivago.rta.rendering.pages;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
-import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
@@ -35,7 +34,7 @@ public class TagSummaryPageRenderer extends PageRenderer {
     }
 
     public String getRenderedContent(
-            final StartPageCollection startPageCollection, final Template template)
+            final Template template)
             throws CluecumberPluginException {
         return "Tag Summary";
     }

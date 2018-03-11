@@ -64,7 +64,7 @@ public class StartPageRenderer extends PageRenderer {
         try {
             template.process(startPageCollection, stringWriter);
         } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException(e.getMessage());
+            throw new CluecumberPluginException("Could not render start page content: " + e.getMessage());
         }
         return stringWriter.toString();
     }

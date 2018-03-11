@@ -12,7 +12,7 @@ public class TemplateConfiguration {
     private Configuration cfg;
 
     void init(final Class rootClass, final String basePath) {
-        cfg = new Configuration(Configuration.VERSION_2_3_26);
+        cfg = new Configuration(Configuration.VERSION_2_3_27);
         cfg.setClassForTemplateLoading(rootClass, basePath);
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
@@ -24,7 +24,8 @@ public class TemplateConfiguration {
         try {
             template = cfg.getTemplate(templateName);
         } catch (Exception e) {
-            throw new CluecumberPluginException("Template '" + templateName + "' was not found or not parsable: " + e.getMessage());
+            throw new CluecumberPluginException("Template '" + templateName + "' was not found or not parsable: " +
+                    e.getMessage());
         }
         return template;
     }
