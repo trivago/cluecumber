@@ -16,16 +16,5 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
-import com.trivago.rta.json.pojo.Element;
-
-public class DetailPageCollection extends PageCollection {
-    private Element element;
-
-    public DetailPageCollection(final Element element) {
-        this.element = element;
-    }
-
-    public Element getElement() {
-        return element;
-    }
+public class TagSummaryPageCollection extends PageCollection {
 }

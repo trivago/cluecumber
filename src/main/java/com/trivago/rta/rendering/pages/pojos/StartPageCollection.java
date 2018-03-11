@@ -25,9 +25,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StartPageCollection {
+public class StartPageCollection extends PageCollection {
     private List<Report> reports = new ArrayList<>();
-    private ReportDetails reportDetails;
     private List<CustomParameter> customParameters;
 
     public List<Report> getReports() {
@@ -93,14 +92,6 @@ public class StartPageCollection {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
-    public ReportDetails getReportDetails() {
-        return reportDetails;
-    }
-
-    public void setReportDetails(final ReportDetails reportDetails) {
-        this.reportDetails = reportDetails;
-    }
-
     public void setCustomParameters(final List<CustomParameter> customParameters) {
         this.customParameters = customParameters;
     }
@@ -109,7 +100,7 @@ public class StartPageCollection {
         return customParameters;
     }
 
-    public boolean hasCustomParameters(){
+    public boolean hasCustomParameters() {
         return customParameters != null && !customParameters.isEmpty();
     }
 }

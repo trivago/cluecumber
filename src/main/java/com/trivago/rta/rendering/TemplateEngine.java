@@ -23,6 +23,7 @@ import com.trivago.rta.rendering.pages.StartPageRenderer;
 import com.trivago.rta.rendering.pages.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -63,8 +64,9 @@ public class TemplateEngine {
         );
     }
 
-    String getRenderedTagSummaryPageContent() throws CluecumberPluginException {
+    String getRenderedTagSummaryPageContent(final TagSummaryPageCollection tagSummaryPageCollection) throws CluecumberPluginException {
         return tagSummaryPageRenderer.getRenderedContent(
+                tagSummaryPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_PAGE_NAME)
         );
     }

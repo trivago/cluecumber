@@ -26,6 +26,7 @@ import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -66,10 +67,10 @@ public class ReportGenerator {
     }
 
     private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection();
         fileIO.writeContentToFile(
-                templateEngine.getRenderedTagSummaryPageContent(),
+                templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.TAG_SUMMARY_PAGE_NAME);
-
     }
 
     private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
