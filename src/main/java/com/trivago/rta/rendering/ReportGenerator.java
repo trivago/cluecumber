@@ -57,24 +57,39 @@ public class ReportGenerator {
 
     public void generateReport(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         copyReportAssets();
-        fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIR);
+        fileSystemManager.createDirectory(
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIR);
 
-        List<Report> reports = startPageCollection.getReports();
+        generateScenarioDetailPages(startPageCollection.getReports());
+        generateStartPage(startPageCollection);
+        generateTagSummaryPage(startPageCollection.getReports());
+    }
+
+    private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedTagSummaryPageContent(),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.TAG_SUMMARY_PAGE_NAME);
+
+    }
+
+    private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedStartPageContent(startPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.START_PAGE_NAME);
+    }
+
+    private void generateScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
         DetailPageCollection detailPageCollection;
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 detailPageCollection = new DetailPageCollection(element);
-                String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
                 fileIO.writeContentToFile(
-                        renderedDetailPage,
+                        templateEngine.getRenderedDetailPageContent(detailPageCollection),
                         propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                                PluginSettings.PAGES_DIR + "/scenario_" + element.getScenarioIndex() + ".html");
+                                PluginSettings.PAGES_DIR + "/scenario-detail/scenario_" +
+                                element.getScenarioIndex() + ".html");
             }
         }
-
-        String renderedStartPage = templateEngine.getRenderedStartPageContent(startPageCollection);
-        fileIO.writeContentToFile(renderedStartPage, propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                PluginSettings.START_PAGE_NAME);
     }
 
     private void copyReportAssets() throws CluecumberPluginException {

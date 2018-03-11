@@ -47,7 +47,7 @@ public class TemplateEngineTest {
     public void getRenderedDetailPageTest() throws CluecumberPluginException {
         DetailPageCollection detailPageCollection = new DetailPageCollection(null);
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate("pages/scenario-detail.html")).thenReturn(template);
+        when(templateConfiguration.getTemplate("pages/scenario-detail/scenario-detail.html")).thenReturn(template);
         when(scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
         String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
         assertThat(renderedDetailPage, is("DETAIL_PAGE_CONTENT"));

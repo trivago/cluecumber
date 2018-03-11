@@ -24,13 +24,13 @@ limitations under the License.
 
     <title>Scenario Details - ${element.encodedName} - ${reportDetails.date}</title>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link href="../css/cluecumber.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/jquery.fancybox.min.css"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+    <link href="../../css/cluecumber.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../css/jquery.fancybox.min.css"/>
 
     <script>
         function resizeIframe(obj) {
-            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+            obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
         }
     </script>
 </head>
@@ -46,7 +46,7 @@ limitations under the License.
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">Overview</a>
+                <a class="nav-link" href="../../index.html">Overview</a>
             </li>
         </ul>
         <span class="text-light">${reportDetails.date}</span>
@@ -77,10 +77,9 @@ limitations under the License.
                                 <strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
                             <li class="list-group-item"><strong>Total Time:</strong>
                                 ${element.returnTotalDurationString()}</li>
-                            <#list element.tags as tag>
+                             <#list element.tags as tag>
                                 <li class="list-group-item">${tag.name}</li>
-                            </#list>
-                            </li>
+                             </#list>
                         </ul>
                     </div>
                 </div>
@@ -181,8 +180,8 @@ limitations under the License.
                                         <div class="col-12 text-left">
                                             <#if embedding.image>
                                                 <a class="grouped_elements" rel="images"
-                                                   href="../attachments/${embedding.filename}">
-                                                    <img src="../attachments/${embedding.filename}"
+                                                   href="../../attachments/${embedding.filename}">
+                                                    <img src="../../attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                 </a>
                                             <#else>
@@ -235,8 +234,8 @@ limitations under the License.
                                         <div class="col-12 text-left">
                                             <#if embedding.image>
                                                 <a class="grouped_elements" rel="images"
-                                                   href="../attachments/${embedding.filename}">
-                                                    <img src="../attachments/${embedding.filename}"
+                                                   href="../../attachments/${embedding.filename}">
+                                                    <img src="../../attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                     </a>
                                             <#else>
@@ -266,11 +265,11 @@ limitations under the License.
     </div>
 </footer>
 
-<script src="../js/jquery-3.2.1.slim.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.fancybox.min.js"></script>
-<script src="../js/Chart.bundle.min.js"></script>
+<script src="../../js/jquery-3.2.1.slim.min.js"></script>
+<script src="../../js/popper.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.fancybox.min.js"></script>
+<script src="../../js/Chart.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {

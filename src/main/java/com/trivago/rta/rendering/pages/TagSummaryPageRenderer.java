@@ -19,9 +19,13 @@ package com.trivago.rta.rendering.pages;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 
 @Singleton
 public class TagSummaryPageRenderer extends PageRenderer {
@@ -36,6 +40,14 @@ public class TagSummaryPageRenderer extends PageRenderer {
     public String getRenderedContent(
             final Template template)
             throws CluecumberPluginException {
-        return "Tag Summary";
+
+        Writer stringWriter = new StringWriter();
+        try {
+            template.process(new Object(), stringWriter);
+        } catch (TemplateException | IOException e) {
+            throw new CluecumberPluginException("Could not render start page content: " + e.getMessage());
+        }
+        return stringWriter.toString();
+
     }
 }
