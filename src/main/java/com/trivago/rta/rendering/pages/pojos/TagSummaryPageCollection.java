@@ -16,5 +16,27 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
+import com.trivago.rta.json.pojo.Element;
+import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.json.pojo.Tag;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TagSummaryPageCollection extends PageCollection {
+    private List<Report> reports;
+
+    public TagSummaryPageCollection(List<Report> reports) {
+        this.reports = reports;
+    }
+
+    public List<Tag> getTags(){
+        List<Tag> tags = new ArrayList<>();
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                tags.addAll(element.getTags());
+            }
+        }
+        return tags;
+    }
 }

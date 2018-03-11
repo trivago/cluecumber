@@ -67,7 +67,7 @@ public class ReportGenerator {
     }
 
     private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
-        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection();
+        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.TAG_SUMMARY_PAGE_NAME);

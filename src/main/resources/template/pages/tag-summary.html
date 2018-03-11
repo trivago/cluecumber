@@ -48,7 +48,21 @@ limitations under the License.
     </div>
 </nav>
 
-Tag Page Placeholder
-
+<main role="main" class="container">
+    <div class="cluecumber-template">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul>
+                            <#list tags as tag>
+                                ${tag.name}<br>
+                            </#list>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
