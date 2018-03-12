@@ -29,12 +29,8 @@ import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 import javax.inject.Singleton;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 
 @Singleton
 public class ScenarioDetailPageRenderer extends PageRenderer {
@@ -47,13 +43,7 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         addCurrentDateToReportDetails(reportDetails);
         detailPageCollection.setReportDetails(reportDetails);
 
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(detailPageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException("Could not render scenario detail page content: " + e.getMessage());
-        }
-        return stringWriter.toString();
+        return processedContent(template, detailPageCollection);
     }
 
     private void addChartJsonToReportDetails(final Element element, final ReportDetails reportDetails) {

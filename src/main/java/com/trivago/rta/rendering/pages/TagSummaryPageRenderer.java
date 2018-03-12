@@ -27,12 +27,8 @@ import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 import javax.inject.Singleton;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 
 @Singleton
 public class TagSummaryPageRenderer extends PageRenderer {
@@ -46,14 +42,7 @@ public class TagSummaryPageRenderer extends PageRenderer {
         addCurrentDateToReportDetails(reportDetails);
         tagSummaryPageCollection.setReportDetails(reportDetails);
 
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(tagSummaryPageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException("Could not render tag summary page content: " + e.getMessage());
-        }
-        return stringWriter.toString();
-
+        return processedContent(template, tagSummaryPageCollection);
     }
 
     private void addChartJsonToReportDetails(final TagSummaryPageCollection tagSummaryPageCollection,

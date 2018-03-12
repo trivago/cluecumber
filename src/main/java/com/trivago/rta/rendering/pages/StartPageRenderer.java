@@ -29,13 +29,9 @@ import com.trivago.rta.rendering.pages.pojos.CustomParameter;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -60,13 +56,7 @@ public class StartPageRenderer extends PageRenderer {
         addCustomParametersToReportDetails(startPageCollection);
         startPageCollection.setReportDetails(reportDetails);
 
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(startPageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException("Could not render start page content: " + e.getMessage());
-        }
-        return stringWriter.toString();
+        return processedContent(template, startPageCollection);
     }
 
     private void addChartJsonToReportDetails(final StartPageCollection startPageCollection, final ReportDetails reportDetails) {

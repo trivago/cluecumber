@@ -1,6 +1,6 @@
 package com.trivago.rta.rendering.pages.pojos;
 
-class PageCollection {
+public class PageCollection {
     private ReportDetails reportDetails;
 
     public ReportDetails getReportDetails() {
