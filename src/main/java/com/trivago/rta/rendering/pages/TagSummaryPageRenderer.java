@@ -16,6 +16,13 @@
 
 package com.trivago.rta.rendering.pages;
 
+import be.ceau.chart.PieChart;
+import be.ceau.chart.color.Color;
+import be.ceau.chart.data.PieData;
+import be.ceau.chart.dataset.PieDataset;
+import be.ceau.chart.options.PieOptions;
+import com.trivago.rta.constants.ChartColor;
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
@@ -35,6 +42,7 @@ public class TagSummaryPageRenderer extends PageRenderer {
             throws CluecumberPluginException {
 
         ReportDetails reportDetails = new ReportDetails();
+        addChartJsonToReportDetails(tagSummaryPageCollection, reportDetails);
         addCurrentDateToReportDetails(reportDetails);
         tagSummaryPageCollection.setReportDetails(reportDetails);
 
@@ -46,5 +54,25 @@ public class TagSummaryPageRenderer extends PageRenderer {
         }
         return stringWriter.toString();
 
+    }
+
+    private void addChartJsonToReportDetails(final TagSummaryPageCollection tagSummaryPageCollection,
+                                             final ReportDetails reportDetails) {
+        PieDataset pieDataset = new PieDataset();
+        pieDataset.setData(
+                2, 3, 4
+        );
+
+        Color passedColor = ChartColor.getChartColorByStatus(Status.PASSED);
+        Color failedColor = ChartColor.getChartColorByStatus(Status.FAILED);
+        Color skippedColor = ChartColor.getChartColorByStatus(Status.SKIPPED);
+
+        pieDataset.addBackgroundColors(passedColor, failedColor, skippedColor);
+        PieData pieData = new PieData();
+        pieData.addDataset(pieDataset);
+        pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
+        PieOptions pieOptions = new PieOptions();
+
+        reportDetails.setChartJson(new PieChart(pieData, pieOptions).toJson());
     }
 }
