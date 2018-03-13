@@ -24,7 +24,6 @@ import be.ceau.chart.options.PieOptions;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 import freemarker.template.Template;
 
@@ -37,16 +36,12 @@ public class TagSummaryPageRenderer extends PageRenderer {
             final TagSummaryPageCollection tagSummaryPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        ReportDetails reportDetails = new ReportDetails();
-        addChartJsonToReportDetails(tagSummaryPageCollection, reportDetails);
-        addCurrentDateToReportDetails(reportDetails);
-        tagSummaryPageCollection.setReportDetails(reportDetails);
+        addChartJsonToReportDetails(tagSummaryPageCollection);
 
         return processedContent(template, tagSummaryPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final TagSummaryPageCollection tagSummaryPageCollection,
-                                             final ReportDetails reportDetails) {
+    private void addChartJsonToReportDetails(final TagSummaryPageCollection tagSummaryPageCollection) {
         PieDataset pieDataset = new PieDataset();
         pieDataset.setData(
                 2, 3, 4
@@ -62,6 +57,6 @@ public class TagSummaryPageRenderer extends PageRenderer {
         pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
         PieOptions pieOptions = new PieOptions();
 
-        reportDetails.setChartJson(new PieChart(pieData, pieOptions).toJson());
+        tagSummaryPageCollection.getReportDetails().setChartJson(new PieChart(pieData, pieOptions).toJson());
     }
 }

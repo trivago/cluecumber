@@ -19,9 +19,19 @@ package com.trivago.rta.rendering.pages.pojos;
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.rendering.RenderingUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ReportDetails {
     private String chartJson;
     private String date;
+
+    public ReportDetails() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        this.date = dateFormat.format(date);
+    }
 
     public void setChartJson(final String chartJson) {
         this.chartJson = chartJson;
@@ -33,10 +43,6 @@ public class ReportDetails {
 
     public String getDate() {
         return date;
-    }
-
-    public void setDate(final String date) {
-        this.date = date;
     }
 
     public String getGeneratorName() {

@@ -26,7 +26,6 @@ import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
-import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
 
@@ -50,16 +49,13 @@ public class StartPageRenderer extends PageRenderer {
             final StartPageCollection startPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        ReportDetails reportDetails = new ReportDetails();
-        addChartJsonToReportDetails(startPageCollection, reportDetails);
-        addCurrentDateToReportDetails(reportDetails);
+        addChartJsonToReportDetails(startPageCollection);
         addCustomParametersToReportDetails(startPageCollection);
-        startPageCollection.setReportDetails(reportDetails);
 
         return processedContent(template, startPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final StartPageCollection startPageCollection, final ReportDetails reportDetails) {
+    private void addChartJsonToReportDetails(final StartPageCollection startPageCollection) {
         PieDataset pieDataset = new PieDataset();
         pieDataset.setData(
                 startPageCollection.getTotalNumberOfPassedScenarios(),
@@ -77,7 +73,7 @@ public class StartPageRenderer extends PageRenderer {
         pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
         PieOptions pieOptions = new PieOptions();
 
-        reportDetails.setChartJson(new PieChart(pieData, pieOptions).toJson());
+        startPageCollection.getReportDetails().setChartJson(new PieChart(pieData, pieOptions).toJson());
     }
 
     private void addCustomParametersToReportDetails(final StartPageCollection startPageCollection) {

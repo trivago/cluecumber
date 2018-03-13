@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -19,10 +18,8 @@ public class PageRendererTest {
     }
 
     @Test
-    public void addDateToReportDetailsTest() {
+    public void reportDetailsDateTest() {
         ReportDetails reportDetails = new ReportDetails();
-        assertThat(reportDetails.getDate(), is(nullValue()));
-        pageRenderer.addCurrentDateToReportDetails(reportDetails);
         assertThat(reportDetails.getDate(), is(notNullValue()));
     }
 }

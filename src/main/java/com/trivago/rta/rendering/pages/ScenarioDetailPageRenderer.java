@@ -24,7 +24,6 @@ import be.ceau.chart.options.scales.BarScale;
 import be.ceau.chart.options.ticks.LinearTicks;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.ReportDetails;
@@ -39,20 +38,18 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
             throws CluecumberPluginException {
 
         ReportDetails reportDetails = new ReportDetails();
-        addChartJsonToReportDetails(detailPageCollection.getElement(), reportDetails);
-        addCurrentDateToReportDetails(reportDetails);
-        detailPageCollection.setReportDetails(reportDetails);
+        addChartJsonToReportDetails(detailPageCollection);
 
         return processedContent(template, detailPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final Element element, final ReportDetails reportDetails) {
+    private void addChartJsonToReportDetails(final DetailPageCollection detailPageCollection) {
         BarDataset barDataSet = new BarDataset();
 
         BarData barData = new BarData();
         int stepCounter = 1;
 
-        for (Step step : element.getSteps()) {
+        for (Step step : detailPageCollection.getElement().getSteps()) {
             barData.addLabel("Step " + stepCounter);
             barDataSet.addData(step.getResult().getDurationInMilliseconds());
             barDataSet.addBackgroundColor(ChartColor.getChartColorByStatus(step.getStatus()));
@@ -66,6 +63,6 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
                 .addyAxes(BarScale.yAxis().setTicks(ticks));
         BarOptions barOptions = new BarOptions().setScales(scale);
 
-        reportDetails.setChartJson(new BarChart(barData, barOptions).toJson());
+        detailPageCollection.getReportDetails().setChartJson(new BarChart(barData, barOptions).toJson());
     }
 }
