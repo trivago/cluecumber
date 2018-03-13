@@ -16,12 +16,14 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Tag;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TagSummaryPageCollection extends PageCollection {
     private List<Report> reports;
@@ -30,13 +32,21 @@ public class TagSummaryPageCollection extends PageCollection {
         this.reports = reports;
     }
 
-    public List<Tag> getTags(){
-        List<Tag> tags = new ArrayList<>();
+    public Map<String, TagStats> getTagStats() {
+        Map<String, TagStats> tagStats = new HashMap<>();
         for (Report report : reports) {
             for (Element element : report.getElements()) {
-                tags.addAll(element.getTags());
+                Status scenarioStatus = element.getStatus();
+                for (Tag tag : element.getTags()) {
+                    if (!tagStats.containsKey(tag.getName())) {
+                        int passed = 0;
+                        int failed = 0;
+                        int skipped = 0;
+                        tagStats.put(tag.getName(), new TagStats(tag, passed, failed, skipped));
+                    }
+                }
             }
         }
-        return tags;
+        return tagStats;
     }
 }

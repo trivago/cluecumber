@@ -51,7 +51,6 @@ public class StartPageRenderer extends PageRenderer {
 
         addChartJsonToReportDetails(startPageCollection);
         addCustomParametersToReportDetails(startPageCollection);
-
         return processedContent(template, startPageCollection);
     }
 

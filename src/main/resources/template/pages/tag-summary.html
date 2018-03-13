@@ -77,7 +77,7 @@ limitations under the License.
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header border-danger bg-danger text-white">Tag Summary</div>
+                    <div class="card-header">Tag Summary</div>
                     <div class="card-body">
 
                         <table id="tag_summary" class="table table-hover" data-link="row">
@@ -90,14 +90,17 @@ limitations under the License.
                                 <th>Skipped</th>
                             </tr>
                             </thead>
-                            <tbody>
+
+                            <#list tagStats as tag, tagStat>
                             <tr>
-                                <td class="text-left">Tag</td>
+                                <td class="text-left">${tag}</td>
                                 <td class="text-left">123</td>
                                 <td class="text-left">120</td>
                                 <td class="text-left">2</td>
                                 <td class="text-left">1</td>
                             </tr>
+                            </#list>
+
                             </tbody>
                         </table>
                     </div>

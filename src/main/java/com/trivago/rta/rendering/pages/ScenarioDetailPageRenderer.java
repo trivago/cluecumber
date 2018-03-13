@@ -26,7 +26,6 @@ import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
-import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import freemarker.template.Template;
 
 import javax.inject.Singleton;
@@ -37,9 +36,7 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
     public String getRenderedContent(final DetailPageCollection detailPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        ReportDetails reportDetails = new ReportDetails();
         addChartJsonToReportDetails(detailPageCollection);
-
         return processedContent(template, detailPageCollection);
     }
 

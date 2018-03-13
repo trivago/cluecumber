@@ -37,7 +37,6 @@ public class TagSummaryPageRenderer extends PageRenderer {
             throws CluecumberPluginException {
 
         addChartJsonToReportDetails(tagSummaryPageCollection);
-
         return processedContent(template, tagSummaryPageCollection);
     }
 
