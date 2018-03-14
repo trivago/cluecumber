@@ -17,6 +17,8 @@ limitations under the License.
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="../..">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="${reportDetails.generatorName} - Scenario Detail">
@@ -24,9 +26,9 @@ limitations under the License.
 
     <title>Scenario Details - ${element.encodedName} - ${reportDetails.date}</title>
 
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
-    <link href="../../css/cluecumber.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../../css/jquery.fancybox.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href="css/cluecumber.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
 
     <script>
         function resizeIframe(obj) {
@@ -49,7 +51,7 @@ limitations under the License.
                 <a class="nav-link" href="../tag-summary.html">Tag Summary</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../../index.html">Overview</a>
+                <a class="nav-link" href="index.html">Overview</a>
             </li>
         </ul>
         <span class="text-light">${reportDetails.date}</span>
@@ -183,8 +185,8 @@ limitations under the License.
                                         <div class="col-12 text-left">
                                             <#if embedding.image>
                                                 <a class="grouped_elements" rel="images"
-                                                   href="../../attachments/${embedding.filename}">
-                                                    <img src="../../attachments/${embedding.filename}"
+                                                   href="attachments/${embedding.filename}">
+                                                    <img src="attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                 </a>
                                             <#else>
@@ -237,8 +239,8 @@ limitations under the License.
                                         <div class="col-12 text-left">
                                             <#if embedding.image>
                                                 <a class="grouped_elements" rel="images"
-                                                   href="../../attachments/${embedding.filename}">
-                                                    <img src="../../attachments/${embedding.filename}"
+                                                   href="attachments/${embedding.filename}">
+                                                    <img src="attachments/${embedding.filename}"
                                                          style="width: 100%"/>
                                                     </a>
                                             <#else>
@@ -268,11 +270,11 @@ limitations under the License.
     </div>
 </footer>
 
-<script src="../../js/jquery-3.2.1.slim.min.js"></script>
-<script src="../../js/popper.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/jquery.fancybox.min.js"></script>
-<script src="../../js/Chart.bundle.min.js"></script>
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/Chart.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {

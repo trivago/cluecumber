@@ -16,7 +16,6 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
-import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Tag;
@@ -32,18 +31,32 @@ public class TagSummaryPageCollection extends PageCollection {
         this.reports = reports;
     }
 
-    public Map<String, TagStats> getTagStats() {
-        Map<String, TagStats> tagStats = new HashMap<>();
+    public Map<String, TagStat> getTagStats() {
+        Map<String, TagStat> tagStats = new HashMap<>();
         for (Report report : reports) {
             for (Element element : report.getElements()) {
-                Status scenarioStatus = element.getStatus();
                 for (Tag tag : element.getTags()) {
-                    if (!tagStats.containsKey(tag.getName())) {
-                        int passed = 0;
-                        int failed = 0;
-                        int skipped = 0;
-                        tagStats.put(tag.getName(), new TagStats(tag, passed, failed, skipped));
+                    TagStat tagStat = tagStats.get(tag.getName());
+                    if (tagStat == null) {
+                        tagStat = new TagStat();
                     }
+
+                    switch (element.getStatus()) {
+                        case PASSED:
+                            tagStat.addPassed(1);
+                            break;
+                        case FAILED:
+                            tagStat.addFailed(1);
+                            break;
+                        case SKIPPED:
+                        case PENDING:
+                        case UNDEFINED:
+                        case AMBIGUOUS:
+                            tagStat.addSkipped(1);
+                            break;
+                    }
+
+                    tagStats.put(tag.getName(), tagStat);
                 }
             }
         }

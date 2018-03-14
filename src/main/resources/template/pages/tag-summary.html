@@ -17,6 +17,8 @@ limitations under the License.
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="..">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="${reportDetails.generatorName} - Scenario Detail">
@@ -24,9 +26,9 @@ limitations under the License.
 
     <title>Tag Summary - ${reportDetails.date}</title>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link href="../css/cluecumber.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/jquery.fancybox.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href="css/cluecumber.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
 
 </head>
 <body>
@@ -41,7 +43,7 @@ limitations under the License.
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">Overview</a>
+                <a class="nav-link" href="index.html">Overview</a>
             </li>
         </ul>
         <span class="text-light">${reportDetails.date}</span>
@@ -52,23 +54,13 @@ limitations under the License.
     <div class="cluecumber-template">
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="card h-100">
                     <div class="card-header">Tag Summary Result Chart</div>
                     <div class="card-body">
                         <div id="canvas-holder" class="w-100 text-center">
-                            <canvas id="chart-area" class="w50"></canvas>
+                            <canvas id="chart-area" class="w-100"></canvas>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card h-100">
-                    <div class="card-header">Test Suite Summary</div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Data</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -90,17 +82,16 @@ limitations under the License.
                                 <th>Skipped</th>
                             </tr>
                             </thead>
-
-                            <#list tagStats as tag, tagStat>
-                            <tr>
-                                <td class="text-left">${tag}</td>
-                                <td class="text-left">123</td>
-                                <td class="text-left">120</td>
-                                <td class="text-left">2</td>
-                                <td class="text-left">1</td>
-                            </tr>
-                            </#list>
-
+                            <tbody>
+                                <#list tagStats as tag, tagStat>
+                                <tr>
+                                    <td class="text-left">${tag}</td>
+                                    <td class="text-left"><strong>${tagStat.total}</strong></td>
+                                    <td class="text-left">${tagStat.passed}</td>
+                                    <td class="text-left">${tagStat.failed}</td>
+                                    <td class="text-left">${tagStat.skipped}</td>
+                                </tr>
+                                </#list>
                             </tbody>
                         </table>
                     </div>
@@ -116,12 +107,12 @@ limitations under the License.
     </div>
 </footer>
 
-<script src="../js/jquery-3.2.1.slim.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.dataTables.min.js"></script>
-<script src="../js/dataTables.bootstrap4.min.js"></script>
-<script src="../js/Chart.bundle.min.js"></script>
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.bootstrap4.min.js"></script>
+<script src="js/Chart.bundle.min.js"></script>
 
 <script>
     $(document).ready(function () {
