@@ -151,11 +151,11 @@ It shows:
 - stack traces of failed steps
 - screenshots
 
+![report_detail](documentation/img/report_details.png)
+
 ## Tag statistics page
 
 The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
-
-![report_detail](documentation/img/report_details.png)
 
 # Building
 
