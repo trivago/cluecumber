@@ -13,6 +13,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
@@ -26,6 +27,7 @@
 - [Generated pages](#generated-pages)
   - [Test suite overview page](#test-suite-overview-page)
   - [Scenario detail pages](#scenario-detail-pages)
+  - [Tag statistics page](#tag-statistics-page)
 - [Building](#building)
 - [License](#license)
 
@@ -148,6 +150,10 @@ It shows:
 - before and after steps
 - stack traces of failed steps
 - screenshots
+
+## Tag statistics page
+
+The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
 
 ![report_detail](documentation/img/report_details.png)
 
