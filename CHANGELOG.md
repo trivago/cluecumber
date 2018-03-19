@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [0.5.0] - 2018-03-08
+## [0.5.0] - 2018-03-19
+
+# Added
+
+* Tag summary page
 
 # Fixed
 
 * Background Scenario steps are now rendered correctly
+* Various small bug fixes
 
 ## [0.3.0] - 2018-02-19
 

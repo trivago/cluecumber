@@ -25,7 +25,7 @@ public class PluginSettings {
     public static final String BASE_TEMPLATE_PATH = "/template";
     public static final String PAGES_DIR = "pages";
 
-    public final static String DETAIL_PAGE_NAME = PAGES_DIR + "/scenario-detail.html";
-    public final static String TAG_PAGE_NAME = PAGES_DIR + "/tag-summary.html";
+    public final static String DETAIL_PAGE_NAME = PAGES_DIR + "/scenario-detail/scenario-detail.html";
+    public final static String TAG_SUMMARY_PAGE_NAME = PAGES_DIR + "/tag-summary.html";
     public final static String START_PAGE_NAME = "index.html";
 }

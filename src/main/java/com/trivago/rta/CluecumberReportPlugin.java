@@ -1,4 +1,4 @@
-/*
+package com.trivago.rta;/*
  * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -96,14 +96,14 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setCustomParameters(customParameters);
         propertyManager.validateSettings();
 
-        logger.info("--------------------------------");
-        logger.info(" Cluecumber Report Maven Plugin ");
-        logger.info("--------------------------------");
+        logger.info("-----------------------------------------------");
+        logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
+        logger.info("-----------------------------------------------");
 
         propertyManager.logProperties();
 
-        // Create attachments directory for json attachment saving
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");
+        fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/pages/scenario-detail");
 
         StartPageCollection startPageCollection = new StartPageCollection();
         List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths();
@@ -116,7 +116,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
                 logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
-        reportGenerator.generateReports(startPageCollection);
+        reportGenerator.generateReport(startPageCollection);
         logger.info("Converted " + startPageCollection.getTotalNumberOfFeatures() + " features into test report:");
         logger.info("- " + propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.START_PAGE_NAME);
     }

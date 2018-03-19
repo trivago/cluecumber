@@ -18,7 +18,6 @@ package com.trivago.rta.rendering;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.exceptions.filesystem.FileCreationException;
 import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.filesystem.FileSystemManager;
 import com.trivago.rta.json.pojo.Element;
@@ -27,6 +26,7 @@ import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -56,29 +56,41 @@ public class ReportGenerator {
         this.logger = logger;
     }
 
-    public void generateReports(final StartPageCollection startPageCollection) throws CluecumberPluginException {
-        templateEngine.init(getClass(), PluginSettings.BASE_TEMPLATE_PATH);
+    public void generateReport(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         copyReportAssets();
-        fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIR);
+        fileSystemManager.createDirectory(
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIR);
 
-        List<Report> reports = startPageCollection.getReports();
+        generateScenarioDetailPages(startPageCollection.getReports());
+        generateStartPage(startPageCollection);
+        generateTagSummaryPage(startPageCollection.getReports());
+    }
+
+    private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.TAG_SUMMARY_PAGE_NAME);
+    }
+
+    private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedStartPageContent(startPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.START_PAGE_NAME);
+    }
+
+    private void generateScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
         DetailPageCollection detailPageCollection;
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 detailPageCollection = new DetailPageCollection(element);
-                String renderedDetailPage = templateEngine.getRenderedDetailPage(detailPageCollection);
-                savePage(renderedDetailPage, PluginSettings.PAGES_DIR + "/scenario_" + element.getScenarioIndex() + ".html");
+                fileIO.writeContentToFile(
+                        templateEngine.getRenderedDetailPageContent(detailPageCollection),
+                        propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                                PluginSettings.PAGES_DIR + "/scenario-detail/scenario_" +
+                                element.getScenarioIndex() + ".html");
             }
         }
-
-        String renderedStartPage = templateEngine.getRenderedStartPage(startPageCollection);
-        fileIO.writeContentToFile(renderedStartPage, propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.START_PAGE_NAME);
-    }
-
-    private void savePage(final String renderedDetailPage, final String fileName) throws FileCreationException {
-        fileIO.writeContentToFile(
-                renderedDetailPage,
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + fileName);
     }
 
     private void copyReportAssets() throws CluecumberPluginException {
@@ -88,22 +100,22 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/css");
 
         // Copy CSS resources
-        copyFileFromJarToFilesystemDestination("/css/bootstrap.min.css");
-        copyFileFromJarToFilesystemDestination("/css/cluecumber.css");
-        copyFileFromJarToFilesystemDestination("/css/dataTables.bootstrap4.min.css");
-        copyFileFromJarToFilesystemDestination("/css/jquery.fancybox.min.css");
+        copyFileFromJarToFilesystem("/css/bootstrap.min.css");
+        copyFileFromJarToFilesystem("/css/cluecumber.css");
+        copyFileFromJarToFilesystem("/css/dataTables.bootstrap4.min.css");
+        copyFileFromJarToFilesystem("/css/jquery.fancybox.min.css");
 
         // Copy Javascript resources
-        copyFileFromJarToFilesystemDestination("/js/jquery-3.2.1.slim.min.js");
-        copyFileFromJarToFilesystemDestination("/js/bootstrap.min.js");
-        copyFileFromJarToFilesystemDestination("/js/popper.min.js");
-        copyFileFromJarToFilesystemDestination("/js/Chart.bundle.min.js");
-        copyFileFromJarToFilesystemDestination("/js/dataTables.bootstrap4.min.js");
-        copyFileFromJarToFilesystemDestination("/js/jquery.dataTables.min.js");
-        copyFileFromJarToFilesystemDestination("/js/jquery.fancybox.min.js");
+        copyFileFromJarToFilesystem("/js/jquery-3.2.1.slim.min.js");
+        copyFileFromJarToFilesystem("/js/bootstrap.min.js");
+        copyFileFromJarToFilesystem("/js/popper.min.js");
+        copyFileFromJarToFilesystem("/js/Chart.bundle.min.js");
+        copyFileFromJarToFilesystem("/js/dataTables.bootstrap4.min.js");
+        copyFileFromJarToFilesystem("/js/jquery.dataTables.min.js");
+        copyFileFromJarToFilesystem("/js/jquery.fancybox.min.js");
     }
 
-    private void copyFileFromJarToFilesystemDestination(final String fileName) throws CluecumberPluginException {
+    private void copyFileFromJarToFilesystem(final String fileName) throws CluecumberPluginException {
         fileSystemManager.exportResource(getClass(),
                 PluginSettings.BASE_TEMPLATE_PATH + fileName,
                 propertyManager.getGeneratedHtmlReportDirectory() + fileName);

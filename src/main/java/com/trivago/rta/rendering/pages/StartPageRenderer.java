@@ -26,16 +26,11 @@ import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
-import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -54,22 +49,12 @@ public class StartPageRenderer extends PageRenderer {
             final StartPageCollection startPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        ReportDetails reportDetails = new ReportDetails();
-        addChartJsonToReportDetails(startPageCollection, reportDetails);
-        addCurrentDateToReportDetails(reportDetails);
+        addChartJsonToReportDetails(startPageCollection);
         addCustomParametersToReportDetails(startPageCollection);
-        startPageCollection.setReportDetails(reportDetails);
-
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(startPageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException(e.getMessage());
-        }
-        return stringWriter.toString();
+        return processedContent(template, startPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final StartPageCollection startPageCollection, final ReportDetails reportDetails) {
+    private void addChartJsonToReportDetails(final StartPageCollection startPageCollection) {
         PieDataset pieDataset = new PieDataset();
         pieDataset.setData(
                 startPageCollection.getTotalNumberOfPassedScenarios(),
@@ -87,7 +72,7 @@ public class StartPageRenderer extends PageRenderer {
         pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
         PieOptions pieOptions = new PieOptions();
 
-        reportDetails.setChartJson(new PieChart(pieData, pieOptions).toJson());
+        startPageCollection.getReportDetails().setChartJson(new PieChart(pieData, pieOptions).toJson());
     }
 
     private void addCustomParametersToReportDetails(final StartPageCollection startPageCollection) {

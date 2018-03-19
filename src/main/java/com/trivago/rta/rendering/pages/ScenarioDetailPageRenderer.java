@@ -21,46 +21,35 @@ import be.ceau.chart.data.BarData;
 import be.ceau.chart.dataset.BarDataset;
 import be.ceau.chart.options.BarOptions;
 import be.ceau.chart.options.scales.BarScale;
+import be.ceau.chart.options.scales.XAxis;
 import be.ceau.chart.options.ticks.LinearTicks;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
-import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
+@Singleton
 public class ScenarioDetailPageRenderer extends PageRenderer {
 
     public String getRenderedContent(final DetailPageCollection detailPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        ReportDetails reportDetails = new ReportDetails();
-        addChartJsonToReportDetails(detailPageCollection.getElement(), reportDetails);
-        addCurrentDateToReportDetails(reportDetails);
-        detailPageCollection.setReportDetails(reportDetails);
-
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(detailPageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException(e.getMessage());
-        }
-        return stringWriter.toString();
+        addChartJsonToReportDetails(detailPageCollection);
+        return processedContent(template, detailPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final Element element, final ReportDetails reportDetails) {
+    private void addChartJsonToReportDetails(final DetailPageCollection detailPageCollection) {
         BarDataset barDataSet = new BarDataset();
 
         BarData barData = new BarData();
         int stepCounter = 1;
 
-        for (Step step : element.getSteps()) {
+        for (Step step : detailPageCollection.getElement().getSteps()) {
             barData.addLabel("Step " + stepCounter);
             barDataSet.addData(step.getResult().getDurationInMilliseconds());
             barDataSet.addBackgroundColor(ChartColor.getChartColorByStatus(step.getStatus()));
@@ -69,11 +58,13 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         barDataSet.setLabel("Step runtime");
         barData.addDataset(barDataSet);
 
-        LinearTicks ticks = new LinearTicks().setMin(0);
-        BarScale scale = new BarScale()
-                .addyAxes(BarScale.yAxis().setTicks(ticks));
-        BarOptions barOptions = new BarOptions().setScales(scale);
+        BarScale barScale = new BarScale();
+        List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
+        xAxisList.add(new XAxis<LinearTicks>().setTicks(new LinearTicks().setMin(0)));
+        barScale.setxAxes(xAxisList);
 
-        reportDetails.setChartJson(new BarChart(barData, barOptions).toJson());
+        BarOptions barOptions = new BarOptions().setScales(barScale);
+
+        detailPageCollection.getReportDetails().setChartJson(new BarChart(barData, barOptions).toJson());
     }
 }

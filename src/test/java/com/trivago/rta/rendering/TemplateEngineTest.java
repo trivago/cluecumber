@@ -3,6 +3,7 @@ package com.trivago.rta.rendering;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.ScenarioDetailPageRenderer;
 import com.trivago.rta.rendering.pages.StartPageRenderer;
+import com.trivago.rta.rendering.pages.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import freemarker.template.Template;
@@ -26,14 +27,10 @@ public class TemplateEngineTest {
         startPageRenderer = mock(StartPageRenderer.class);
         scenarioDetailPageRenderer = mock(ScenarioDetailPageRenderer.class);
         templateConfiguration = mock(TemplateConfiguration.class);
+        TagSummaryPageRenderer tagSummaryPageRenderer = mock(TagSummaryPageRenderer.class);
         templateEngine = new TemplateEngine(
-                templateConfiguration, startPageRenderer, scenarioDetailPageRenderer
+                templateConfiguration, startPageRenderer, scenarioDetailPageRenderer, tagSummaryPageRenderer
         );
-    }
-
-    @Test
-    public void validInitTest() {
-        templateEngine.init(this.getClass(), "bla");
     }
 
     @Test
@@ -42,7 +39,7 @@ public class TemplateEngineTest {
         Template template = mock(Template.class);
         when(templateConfiguration.getTemplate("index.html")).thenReturn(template);
         when(startPageRenderer.getRenderedContent(startPageCollection, template)).thenReturn("START_PAGE_CONTENT");
-        String renderedStartPage = templateEngine.getRenderedStartPage(startPageCollection);
+        String renderedStartPage = templateEngine.getRenderedStartPageContent(startPageCollection);
         assertThat(renderedStartPage, is("START_PAGE_CONTENT"));
     }
 
@@ -50,9 +47,9 @@ public class TemplateEngineTest {
     public void getRenderedDetailPageTest() throws CluecumberPluginException {
         DetailPageCollection detailPageCollection = new DetailPageCollection(null);
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate("pages/scenario-detail.html")).thenReturn(template);
+        when(templateConfiguration.getTemplate("pages/scenario-detail/scenario-detail.html")).thenReturn(template);
         when(scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
-        String renderedDetailPage = templateEngine.getRenderedDetailPage(detailPageCollection);
+        String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
         assertThat(renderedDetailPage, is("DETAIL_PAGE_CONTENT"));
     }
 }

@@ -20,44 +20,54 @@ import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.ScenarioDetailPageRenderer;
 import com.trivago.rta.rendering.pages.StartPageRenderer;
+import com.trivago.rta.rendering.pages.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
 public class TemplateEngine {
-    private TemplateConfiguration templateConfiguration;
+    private final TemplateConfiguration templateConfiguration;
     private final StartPageRenderer startPageRenderer;
     private final ScenarioDetailPageRenderer scenarioDetailPageRenderer;
+    private final TagSummaryPageRenderer tagSummaryPageRenderer;
 
     @Inject
     public TemplateEngine(
             final TemplateConfiguration templateConfiguration,
             final StartPageRenderer startPageRenderer,
-            final ScenarioDetailPageRenderer scenarioDetailPageRenderer
+            final ScenarioDetailPageRenderer scenarioDetailPageRenderer,
+            final TagSummaryPageRenderer tagSummaryPageRenderer
     ) {
         this.templateConfiguration = templateConfiguration;
+        templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
+
         this.startPageRenderer = startPageRenderer;
         this.scenarioDetailPageRenderer = scenarioDetailPageRenderer;
+        this.tagSummaryPageRenderer = tagSummaryPageRenderer;
     }
 
-    void init(final Class rootClass, final String basePath) {
-        templateConfiguration.init(rootClass, basePath);
-    }
-
-    String getRenderedStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+    String getRenderedStartPageContent(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         return startPageRenderer.getRenderedContent(
                 startPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.START_PAGE_NAME)
         );
     }
 
-    String getRenderedDetailPage(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
+    String getRenderedDetailPageContent(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
         return scenarioDetailPageRenderer.getRenderedContent(
                 detailPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.DETAIL_PAGE_NAME)
+        );
+    }
+
+    String getRenderedTagSummaryPageContent(final TagSummaryPageCollection tagSummaryPageCollection) throws CluecumberPluginException {
+        return tagSummaryPageRenderer.getRenderedContent(
+                tagSummaryPageCollection,
+                templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_PAGE_NAME)
         );
     }
 }
