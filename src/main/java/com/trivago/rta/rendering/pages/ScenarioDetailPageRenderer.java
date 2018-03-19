@@ -21,6 +21,7 @@ import be.ceau.chart.data.BarData;
 import be.ceau.chart.dataset.BarDataset;
 import be.ceau.chart.options.BarOptions;
 import be.ceau.chart.options.scales.BarScale;
+import be.ceau.chart.options.scales.XAxis;
 import be.ceau.chart.options.ticks.LinearTicks;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.exceptions.CluecumberPluginException;
@@ -29,6 +30,8 @@ import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class ScenarioDetailPageRenderer extends PageRenderer {
@@ -56,9 +59,14 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         barData.addDataset(barDataSet);
 
         LinearTicks ticks = new LinearTicks().setMin(0);
-        BarScale scale = new BarScale()
-                .addyAxes(BarScale.yAxis().setTicks(ticks));
-        BarOptions barOptions = new BarOptions().setScales(scale);
+
+        BarScale barScale = new BarScale();
+
+        List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
+        xAxisList.add(new XAxis<LinearTicks>());
+        barScale.setxAxes(xAxisList);
+
+        BarOptions barOptions = new BarOptions().setScales(barScale);
 
         detailPageCollection.getReportDetails().setChartJson(new BarChart(barData, barOptions).toJson());
     }

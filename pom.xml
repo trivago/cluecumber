@@ -81,7 +81,7 @@
 
         <gson.version>2.8.2</gson.version>
         <gsonfire.version>1.8.1</gsonfire.version>
-        <chart.version>2.2.0</chart.version>
+        <chart.version>2.3.1</chart.version>
         <freemarker.version>2.3.27-incubating</freemarker.version>
     </properties>
 

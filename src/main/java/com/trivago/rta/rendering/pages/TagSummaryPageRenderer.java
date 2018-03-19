@@ -16,18 +16,26 @@
 
 package com.trivago.rta.rendering.pages;
 
-import be.ceau.chart.PieChart;
-import be.ceau.chart.color.Color;
-import be.ceau.chart.data.PieData;
-import be.ceau.chart.dataset.PieDataset;
-import be.ceau.chart.options.PieOptions;
+import be.ceau.chart.BarChart;
+import be.ceau.chart.data.BarData;
+import be.ceau.chart.dataset.BarDataset;
+import be.ceau.chart.options.BarOptions;
+import be.ceau.chart.options.scales.BarScale;
+import be.ceau.chart.options.scales.XAxis;
+import be.ceau.chart.options.scales.YAxis;
+import be.ceau.chart.options.ticks.LinearTicks;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.rendering.pages.pojos.TagStat;
 import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Singleton;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Singleton
 public class TagSummaryPageRenderer extends PageRenderer {
@@ -41,21 +49,44 @@ public class TagSummaryPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final TagSummaryPageCollection tagSummaryPageCollection) {
-        PieDataset pieDataset = new PieDataset();
-        pieDataset.setData(
-                2, 3, 4
-        );
+        List<BarDataset> barDatasets = new ArrayList<>();
 
-        Color passedColor = ChartColor.getChartColorByStatus(Status.PASSED);
-        Color failedColor = ChartColor.getChartColorByStatus(Status.FAILED);
-        Color skippedColor = ChartColor.getChartColorByStatus(Status.SKIPPED);
+        List<BigDecimal> passed = new ArrayList<>();
+        List<BigDecimal> failed = new ArrayList<>();
+        List<BigDecimal> skipped = new ArrayList<>();
 
-        pieDataset.addBackgroundColors(passedColor, failedColor, skippedColor);
-        PieData pieData = new PieData();
-        pieData.addDataset(pieDataset);
-        pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
-        PieOptions pieOptions = new PieOptions();
+        for (Map.Entry<String, TagStat> entry : tagSummaryPageCollection.getTagStats().entrySet()) {
+            passed.add(BigDecimal.valueOf(entry.getValue().getPassed()));
+            failed.add(BigDecimal.valueOf(entry.getValue().getFailed()));
+            skipped.add(BigDecimal.valueOf(entry.getValue().getSkipped()));
+        }
 
-        tagSummaryPageCollection.getReportDetails().setChartJson(new PieChart(pieData, pieOptions).toJson());
+        barDatasets.add(new BarDataset().setLabel("passed").setData(passed)
+                .setBackgroundColor(ChartColor.getChartColorByStatus(Status.PASSED)));
+        barDatasets.add(new BarDataset().setLabel("failed")
+                .setData(failed).setBackgroundColor(ChartColor.getChartColorByStatus(Status.FAILED)));
+        barDatasets.add(new BarDataset().setLabel("skipped").setData(skipped)
+                .setBackgroundColor(ChartColor.getChartColorByStatus(Status.SKIPPED)));
+
+        BarData barData = new BarData();
+        barData.setDatasets(barDatasets);
+        barData.setLabels(tagSummaryPageCollection.getTagStats().keySet());
+
+        BarOptions barOptions = new BarOptions();
+        BarScale barScale = new BarScale();
+
+        List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
+        xAxisList.add(new XAxis<LinearTicks>().setStacked(true));
+        barScale.setxAxes(xAxisList);
+
+        List<YAxis<LinearTicks>> yAxisList = new ArrayList<>();
+        yAxisList.add(new YAxis<LinearTicks>().setStacked(true).setTicks(new LinearTicks().setStepSize(1)));
+        barScale.setyAxes(yAxisList);
+
+        barOptions.setScales(barScale);
+
+        String chartJson = new BarChart(barData, barOptions).toJson();
+        tagSummaryPageCollection.getReportDetails().setChartJson(chartJson);
     }
 }
+
