@@ -58,12 +58,9 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         barDataSet.setLabel("Step runtime");
         barData.addDataset(barDataSet);
 
-        LinearTicks ticks = new LinearTicks().setMin(0);
-
         BarScale barScale = new BarScale();
-
         List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
-        xAxisList.add(new XAxis<LinearTicks>());
+        xAxisList.add(new XAxis<LinearTicks>().setTicks(new LinearTicks().setMin(0)));
         barScale.setxAxes(xAxisList);
 
         BarOptions barOptions = new BarOptions().setScales(barScale);

@@ -55,10 +55,13 @@ public class TagSummaryPageRenderer extends PageRenderer {
         List<BigDecimal> failed = new ArrayList<>();
         List<BigDecimal> skipped = new ArrayList<>();
 
+        int maxY = 0;
+
         for (Map.Entry<String, TagStat> entry : tagSummaryPageCollection.getTagStats().entrySet()) {
             passed.add(BigDecimal.valueOf(entry.getValue().getPassed()));
             failed.add(BigDecimal.valueOf(entry.getValue().getFailed()));
             skipped.add(BigDecimal.valueOf(entry.getValue().getSkipped()));
+            maxY = entry.getValue().getTotal();
         }
 
         barDatasets.add(new BarDataset().setLabel("passed").setData(passed)
@@ -76,11 +79,11 @@ public class TagSummaryPageRenderer extends PageRenderer {
         BarScale barScale = new BarScale();
 
         List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
-        xAxisList.add(new XAxis<LinearTicks>().setStacked(true));
+        xAxisList.add(new XAxis<LinearTicks>().setStacked(true).setTicks(new LinearTicks().setMin(0)));
         barScale.setxAxes(xAxisList);
 
         List<YAxis<LinearTicks>> yAxisList = new ArrayList<>();
-        yAxisList.add(new YAxis<LinearTicks>().setStacked(true).setTicks(new LinearTicks().setStepSize(1)));
+        yAxisList.add(new YAxis<LinearTicks>().setStacked(true).setTicks(new LinearTicks().setMin(0).setStepSize(maxY)));
         barScale.setyAxes(yAxisList);
 
         barOptions.setScales(barScale);
