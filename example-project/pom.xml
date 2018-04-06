@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.benjamin-bischoff</groupId>
+    <artifactId>cluecumber-test-project</artifactId>
+    <version>0.6.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.failsafe.plugin.version>2.20.1</maven.failsafe.plugin.version>
+        <maven.build.helper.plugin.version>3.0.0</maven.build.helper.plugin.version>
+        <junit.version>4.12</junit.version>
+        <cucumber.version>2.3.1</cucumber.version>
+
+        <generated.runner.directory>${project.build.directory}/parallel/runners</generated.runner.directory>
+        <generated.feature.directory>${project.build.directory}/parallel/features</generated.feature.directory>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.trivago.rta</groupId>
+                <artifactId>cluecumber-report-plugin</artifactId>
+                <version>${project.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
