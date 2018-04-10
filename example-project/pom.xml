@@ -11,13 +11,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.failsafe.plugin.version>2.20.1</maven.failsafe.plugin.version>
-        <maven.build.helper.plugin.version>3.0.0</maven.build.helper.plugin.version>
-        <junit.version>4.12</junit.version>
-        <cucumber.version>2.3.1</cucumber.version>
 
-        <generated.runner.directory>${project.build.directory}/parallel/runners</generated.runner.directory>
-        <generated.feature.directory>${project.build.directory}/parallel/features</generated.feature.directory>
+        <cucumber.report.json.location>${project.basedir}/json</cucumber.report.json.location>
+        <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
     </properties>
 
     <build>
@@ -26,6 +22,24 @@
                 <groupId>com.trivago.rta</groupId>
                 <artifactId>cluecumber-report-plugin</artifactId>
                 <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>reporting</goal>
+                        </goals>
+                        <configuration>
+                            <sourceJsonReportDirectory>${cucumber.report.json.location}
+                            </sourceJsonReportDirectory>
+                            <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
+                            <customParameters>
+                                <Custom_Parameter>This is a test</Custom_Parameter>
+                                <Custom_URL>http://www.google.com</Custom_URL>
+                            </customParameters>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
