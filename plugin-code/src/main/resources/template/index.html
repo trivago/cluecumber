@@ -13,9 +13,7 @@
 
     <title>Suite Overview - ${reportDetails.date}</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/cluecumber.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+    <#include "snippets/css.ftl">
 </head>
 <body>
 
@@ -97,7 +95,7 @@
                     <div class="card border-danger">
                         <div class="card-header border-danger bg-danger text-white">Failed Scenarios</div>
                         <div class="card-body">
-                            <table id="results_failed" class="table table-hover" data-link="row">
+                            <table id="results_failed" class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>Feature</th>
@@ -179,7 +177,7 @@
                     <div class="card border-success">
                         <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
                         <div class="card-body">
-                            <table id="results_passed" class="table table-hover" data-link="row">
+                            <table id="results_passed" class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>Feature</th>

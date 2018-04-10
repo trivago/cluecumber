@@ -13,10 +13,7 @@
 
     <title>Tag Summary - ${reportDetails.date}</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link href="css/cluecumber.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
-
+    <#include "../snippets/css.ftl">
 </head>
 <body>
 
@@ -58,8 +55,7 @@
                 <div class="card">
                     <div class="card-header">Tag Summary</div>
                     <div class="card-body">
-
-                        <table id="tag_summary" class="table table-hover" data-link="row">
+                        <table id="tag_summary" class="table table-hover">
                             <thead>
                             <tr>
                                 <th>Tag</th>
@@ -71,13 +67,13 @@
                             </thead>
                             <tbody>
                                 <#list tagStats as tag, tagStat>
-                                <tr>
-                                    <td class="text-left">${tag}</td>
-                                    <td class="text-left"><strong>${tagStat.total}</strong></td>
-                                    <td class="text-left">${tagStat.passed}</td>
-                                    <td class="text-left">${tagStat.failed}</td>
-                                    <td class="text-left">${tagStat.skipped}</td>
-                                </tr>
+                                    <tr>
+                                        <td class="text-left">${tag}</td>
+                                        <td class="text-left"><strong>${tagStat.total}</strong></td>
+                                        <td class="text-left">${tagStat.passed}</td>
+                                        <td class="text-left">${tagStat.failed}</td>
+                                        <td class="text-left">${tagStat.skipped}</td>
+                                    </tr>
                                 </#list>
                             </tbody>
                         </table>
@@ -94,7 +90,9 @@
 <script>
     $(document).ready(function () {
         // Data tables
-        $('table').DataTable();
+        $('table').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        }).DataTable();
 
         // Chart
         var ctx = document.getElementById('chart-area').getContext("2d");
