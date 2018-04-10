@@ -85,12 +85,12 @@ This will generate JSON results for all Cucumber tests.
             <goals>
                 <goal>reporting</goal>
             </goals>
-            <configuration>
-                <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
-                <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
-            </configuration>
         </execution>
     </executions>
+	<configuration>
+		<sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
+        <generatedHtmlReportDirectory>${project.build.directory}/generated-report</generatedHtmlReportDirectory>
+	</configuration>    
 </plugin>
 ```
 
