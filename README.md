@@ -28,9 +28,11 @@
   - [Test suite overview page](#test-suite-overview-page)
   - [Scenario detail pages](#scenario-detail-pages)
   - [Tag statistics page](#tag-statistics-page)
-- [Building](#building)
-- [License](#license)
-- [Credits](#credits)
+- [Example project](#example-project)
+- [Additional Information](#additional-information)
+  - [Building](#building)
+  - [License](#license)
+  - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
