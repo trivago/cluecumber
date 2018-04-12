@@ -53,21 +53,21 @@ public class TemplateEngine {
     String getRenderedStartPageContent(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         return startPageRenderer.getRenderedContent(
                 startPageCollection,
-                templateConfiguration.getTemplate(PluginSettings.START_PAGE_NAME)
+                templateConfiguration.getTemplate(PluginSettings.SUITE_OVERVIEW_PAGE_PATH)
         );
     }
 
     String getRenderedDetailPageContent(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
         return scenarioDetailPageRenderer.getRenderedContent(
                 detailPageCollection,
-                templateConfiguration.getTemplate(PluginSettings.DETAIL_PAGE_NAME)
+                templateConfiguration.getTemplate(PluginSettings.SCENATIO_DETAIL_PAGE_PATH)
         );
     }
 
     String getRenderedTagSummaryPageContent(final TagSummaryPageCollection tagSummaryPageCollection) throws CluecumberPluginException {
         return tagSummaryPageRenderer.getRenderedContent(
                 tagSummaryPageCollection,
-                templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_PAGE_NAME)
+                templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_PAGE_PATH)
         );
     }
 }

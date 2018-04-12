@@ -23,9 +23,14 @@ public class PluginSettings {
     public final static String NAME = "Cluecumber Report Plugin";
 
     public static final String BASE_TEMPLATE_PATH = "/template";
-    public static final String PAGES_DIR = "pages";
+    public static final String PAGES_DIRECTORY = "pages";
 
-    public final static String DETAIL_PAGE_NAME = PAGES_DIR + "/scenario-detail/scenario-detail.html";
-    public final static String TAG_SUMMARY_PAGE_NAME = PAGES_DIR + "/tag-summary.html";
-    public final static String START_PAGE_NAME = "index.html";
+    public final static String SCENARIO_DETAIL_PAGE_NAME = "Suite Overview";
+    public final static String SCENATIO_DETAIL_PAGE_PATH = PAGES_DIRECTORY + "/scenario-detail/scenario-detail.html";
+
+    public final static String SUITE_OVERVIEW_PAGE_NAME = "Suite Overview";
+    public final static String SUITE_OVERVIEW_PAGE_PATH = "index.html";
+
+    public final static String TAG_SUMMARY_PAGE_NAME = "Tag Summary";
+    public final static String TAG_SUMMARY_PAGE_PATH = PAGES_DIRECTORY + "/tag-summary.html";
 }

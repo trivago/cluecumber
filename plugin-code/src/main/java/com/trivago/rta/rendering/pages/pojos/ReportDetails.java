@@ -26,8 +26,10 @@ import java.util.Date;
 public class ReportDetails {
     private String chartJson;
     private String date;
+    private String pageName;
 
-    public ReportDetails() {
+    public ReportDetails(final String pageName) {
+        this.pageName = pageName;
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         this.date = dateFormat.format(date);
@@ -48,5 +50,9 @@ public class ReportDetails {
     public String getGeneratorName() {
         return String.format("%s [%s]",
                 PluginSettings.NAME, RenderingUtils.getPluginVersion());
+    }
+
+    public String getPageName() {
+        return pageName;
     }
 }

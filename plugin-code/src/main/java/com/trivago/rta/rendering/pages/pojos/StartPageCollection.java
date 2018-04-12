@@ -16,6 +16,7 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
+import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
@@ -28,6 +29,10 @@ import java.util.List;
 public class StartPageCollection extends PageCollection {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
+
+    public StartPageCollection() {
+        super(PluginSettings.SUITE_OVERVIEW_PAGE_NAME);
+    }
 
     public List<Report> getReports() {
         return reports;

@@ -16,12 +16,14 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
+import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.json.pojo.Element;
 
 public class DetailPageCollection extends PageCollection {
     private Element element;
 
     public DetailPageCollection(final Element element) {
+        super(PluginSettings.SCENARIO_DETAIL_PAGE_NAME);
         this.element = element;
     }
 

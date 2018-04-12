@@ -10,12 +10,16 @@ public class ReportDetailsTest {
 
     @Before
     public void setup(){
-        reportDetails = new ReportDetails();
+        reportDetails = new ReportDetails("Page Name");
     }
 
     @Test
     public void getGeneratorNameTest(){
-        String generatorName = reportDetails.getGeneratorName();
-        MatcherAssert.assertThat(generatorName, CoreMatchers.is("Cluecumber Report Plugin [unknown]"));
+        MatcherAssert.assertThat(reportDetails.getGeneratorName(), CoreMatchers.is("Cluecumber Report Plugin [unknown]"));
+    }
+
+    @Test
+    public void getPageNameTest(){
+        MatcherAssert.assertThat(reportDetails.getPageName(), CoreMatchers.is("Page Name"));
     }
 }

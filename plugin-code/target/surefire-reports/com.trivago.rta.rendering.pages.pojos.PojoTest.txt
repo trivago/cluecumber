@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.trivago.rta.rendering.pages.pojos.PojoTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.02 sec

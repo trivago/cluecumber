@@ -4,22 +4,8 @@
 <html lang="en">
 <head>
     <base href="../..">
-
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="${reportDetails.generatorName} - Scenario Detail">
-    <meta name="author" content="${reportDetails.generatorName}">
-
-    <title>Scenario Details - ${element.encodedName} - ${reportDetails.date}</title>
-
+    <#include "../../snippets/common_headers.ftl">
     <#include "../../snippets/css.ftl">
-
-    <script>
-        function resizeIframe(obj) {
-            obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
-        }
-    </script>
 </head>
 <body>
 
@@ -253,6 +239,10 @@
 <#include "../../snippets/js.ftl">
 
 <script>
+    function resizeIframe(obj) {
+        obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
+    }
+
     $(document).ready(function () {
         // Lightbox
         $("a.grouped_elements").fancybox();

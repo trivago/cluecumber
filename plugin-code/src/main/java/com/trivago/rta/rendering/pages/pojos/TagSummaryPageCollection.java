@@ -16,6 +16,7 @@
 
 package com.trivago.rta.rendering.pages.pojos;
 
+import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Tag;
@@ -28,6 +29,7 @@ public class TagSummaryPageCollection extends PageCollection {
     private List<Report> reports;
 
     public TagSummaryPageCollection(List<Report> reports) {
+        super(PluginSettings.TAG_SUMMARY_PAGE_NAME);
         this.reports = reports;
     }
 
