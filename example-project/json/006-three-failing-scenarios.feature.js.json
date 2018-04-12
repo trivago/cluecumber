@@ -1,0 +1,121 @@
+[
+  {
+    "elements": [
+      {
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "support/js/env.js:7"
+            },
+            "name": "this step fails",
+            "result": {
+              "duration": 9,
+              "error_message": "Error: this step failed\n    at World.<anonymous> (/Users/aslakhellesoy/git/cucumber/cucumber-json-formatter/support/js/env.js:8:12)",
+              "status": "failed"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "match": {
+              "location": "support/js/env.js:3"
+            },
+            "name": "this step passes",
+            "result": {
+              "duration": 1,
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "match": {
+              "location": "support/js/env.js:7"
+            },
+            "name": "this step fails",
+            "result": {
+              "error_message": "Error: this step failed\n    at World.<anonymous> (/Users/aslakhellesoy/git/cucumber/cucumber-json-formatter/support/js/env.js:8:12)",
+              "status": "failed"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "match": {
+              "location": "support/js/env.js:3"
+            },
+            "name": "this step passes",
+            "result": {
+              "duration": 1,
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "match": {
+              "location": "support/js/env.js:3"
+            },
+            "name": "this step passes",
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "match": {
+              "location": "support/js/env.js:7"
+            },
+            "name": "this step fails",
+            "result": {
+              "duration": 1,
+              "error_message": "Error: this step failed\n    at World.<anonymous> (/Users/aslakhellesoy/git/cucumber/cucumber-json-formatter/support/js/env.js:8:12)",
+              "status": "failed"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "",
+    "tags": [],
+    "uri": "features/006-three-failing-scenarios.feature"
+  }
+]

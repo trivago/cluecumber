@@ -1,0 +1,35 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "/Users/aslakhellesoy/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/cucumber-core-1.5.0/lib/cucumber/core/test/filters/activate_steps_for_self_test.rb:18"
+            },
+            "name": "this step fails",
+            "result": {
+              "duration": 34879,
+              "error_message": "Cucumber::Core::Test::Filters::ActivateStepsForSelfTest::Failure (Cucumber::Core::Test::Filters::ActivateStepsForSelfTest::Failure)\n/Users/aslakhellesoy/.rbenv/versions/2.4.0/bin/bundle:22:in `load'\n/Users/aslakhellesoy/.rbenv/versions/2.4.0/bin/bundle:22:in `<main>'\nfeatures/003-one-failing-scenario.feature:3:in `Given this step fails'",
+              "status": "failed"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "",
+    "uri": "features/003-one-failing-scenario.feature"
+  }
+]

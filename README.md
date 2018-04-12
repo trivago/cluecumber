@@ -158,11 +158,18 @@ It shows:
 
 The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
 
-# Building
+# Example project
+
+You can test the complete flow and POM configuration by checking out the [Cucable example project](example-project).
+
+# Additional Information
+
+## Building
 
 Cluecumber requires Java >= 8 and Maven >= 3.3.9. It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
 
-# License
+## License
 
 Copyright 2018 trivago NV
 
@@ -172,7 +179,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
-# Credits
+## Credits
 
 This project is being tested on
 

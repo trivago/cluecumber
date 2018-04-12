@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.benjamin-bischoff</groupId>
+    <artifactId>cluecumber-test-project</artifactId>
+    <version>0.6.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <cucumber.report.json.location>${project.basedir}/json</cucumber.report.json.location>
+        <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.trivago.rta</groupId>
+                <artifactId>cluecumber-report-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>reporting</goal>
+                        </goals>
+                        <configuration>
+                            <sourceJsonReportDirectory>${cucumber.report.json.location}
+                            </sourceJsonReportDirectory>
+                            <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
+                            <customParameters>
+                                <Custom_Parameter>This is a test</Custom_Parameter>
+                                <Custom_URL>http://www.google.com</Custom_URL>
+                            </customParameters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
