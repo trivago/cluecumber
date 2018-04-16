@@ -79,18 +79,5 @@
 <#include "../snippets/footer.ftl">
 <#include "../snippets/js.ftl">
 
-<script>
-    $(document).ready(function () {
-        // Data tables
-        $('table').on('draw.dt', function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        }).DataTable();
-
-        // Chart
-        var ctx = document.getElementById('chart-area').getContext("2d");
-        new Chart(ctx, eval(${reportDetails.chartJson}));
-    })
-</script>
-
 </body>
 </html>

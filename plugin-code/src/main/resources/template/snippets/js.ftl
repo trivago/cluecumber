@@ -5,3 +5,26 @@
 <script src="js/dataTables.bootstrap4.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
 <script src="js/Chart.bundle.min.js"></script>
+
+<script>
+    function resizeIframe(obj) {
+        obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
+    }
+
+    $(document).ready(function () {
+        // Data tables
+        $('table').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        }).DataTable();
+
+        // Lightbox
+        $("a.grouped_elements").fancybox();
+
+        // Tool tips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Chart
+        var ctx = document.getElementById('chart-area').getContext("2d");
+        new Chart(ctx, eval(${reportDetails.chartJson}));
+    })
+</script>

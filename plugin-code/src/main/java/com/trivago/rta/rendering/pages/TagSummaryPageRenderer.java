@@ -44,6 +44,8 @@ public class TagSummaryPageRenderer extends PageRenderer {
             final TagSummaryPageCollection tagSummaryPageCollection, final Template template)
             throws CluecumberPluginException {
 
+        System.out.println("getRenderedContent");
+
         addChartJsonToReportDetails(tagSummaryPageCollection);
         return processedContent(template, tagSummaryPageCollection);
     }

@@ -6,6 +6,7 @@ import com.trivago.rta.rendering.pages.StartPageRenderer;
 import com.trivago.rta.rendering.pages.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,7 @@ public class TemplateEngineTest {
     private StartPageRenderer startPageRenderer;
     private ScenarioDetailPageRenderer scenarioDetailPageRenderer;
     private TemplateConfiguration templateConfiguration;
+    private TagSummaryPageRenderer tagSummaryPageRenderer;
 
     private TemplateEngine templateEngine;
 
@@ -26,8 +28,9 @@ public class TemplateEngineTest {
     public void setup() {
         startPageRenderer = mock(StartPageRenderer.class);
         scenarioDetailPageRenderer = mock(ScenarioDetailPageRenderer.class);
+        tagSummaryPageRenderer = mock(TagSummaryPageRenderer.class);
         templateConfiguration = mock(TemplateConfiguration.class);
-        TagSummaryPageRenderer tagSummaryPageRenderer = mock(TagSummaryPageRenderer.class);
+        tagSummaryPageRenderer = mock(TagSummaryPageRenderer.class);
         templateEngine = new TemplateEngine(
                 templateConfiguration, startPageRenderer, scenarioDetailPageRenderer, tagSummaryPageRenderer
         );
@@ -37,7 +40,7 @@ public class TemplateEngineTest {
     public void getRenderedStartPageTest() throws CluecumberPluginException {
         StartPageCollection startPageCollection = new StartPageCollection();
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate("index.html")).thenReturn(template);
+        when(templateConfiguration.getTemplate("index")).thenReturn(template);
         when(startPageRenderer.getRenderedContent(startPageCollection, template)).thenReturn("START_PAGE_CONTENT");
         String renderedStartPage = templateEngine.getRenderedStartPageContent(startPageCollection);
         assertThat(renderedStartPage, is("START_PAGE_CONTENT"));
@@ -47,9 +50,19 @@ public class TemplateEngineTest {
     public void getRenderedDetailPageTest() throws CluecumberPluginException {
         DetailPageCollection detailPageCollection = new DetailPageCollection(null);
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate("pages/scenario-detail/scenario-detail.html")).thenReturn(template);
+        when(templateConfiguration.getTemplate("pages/scenario-detail/scenario-detail")).thenReturn(template);
         when(scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
         String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
         assertThat(renderedDetailPage, is("DETAIL_PAGE_CONTENT"));
+    }
+
+    @Test
+    public void getRenderedTagPageTest() throws CluecumberPluginException {
+        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(null);
+        Template template = mock(Template.class);
+        when(templateConfiguration.getTemplate("pages/tag-summary")).thenReturn(template);
+        when(tagSummaryPageRenderer.getRenderedContent(tagSummaryPageCollection, template)).thenReturn("TAG_PAGE_CONTENT");
+        String renderedTagSummaryPage = templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection);
+        assertThat(renderedTagSummaryPage, is("TAG_PAGE_CONTENT"));
     }
 }

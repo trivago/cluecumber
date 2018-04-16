@@ -238,22 +238,5 @@
 <#include "../../snippets/footer.ftl">
 <#include "../../snippets/js.ftl">
 
-<script>
-    function resizeIframe(obj) {
-        obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
-    }
-
-    $(document).ready(function () {
-        // Lightbox
-        $("a.grouped_elements").fancybox();
-
-        // Tool tips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Chart
-        var ctx = document.getElementById('chart-area').getContext("2d");
-        new Chart(ctx, eval(${reportDetails.chartJson}));
-    })
-</script>
 </body>
 </html>

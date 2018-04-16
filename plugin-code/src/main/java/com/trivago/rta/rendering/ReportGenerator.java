@@ -70,13 +70,15 @@ public class ReportGenerator {
         TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.TAG_SUMMARY_PAGE_PATH);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                        PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         fileIO.writeContentToFile(
                 templateEngine.getRenderedStartPageContent(startPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.SUITE_OVERVIEW_PAGE_PATH);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                        PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     private void generateScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
@@ -87,8 +89,8 @@ public class ReportGenerator {
                 fileIO.writeContentToFile(
                         templateEngine.getRenderedDetailPageContent(detailPageCollection),
                         propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                                PluginSettings.PAGES_DIRECTORY + "/scenario-detail/scenario_" +
-                                element.getScenarioIndex() + ".html");
+                                PluginSettings.PAGES_DIRECTORY + PluginSettings.SCENARIO_DETAIL_PAGE_FRAGMENT +
+                                element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
             }
         }
     }
