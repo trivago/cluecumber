@@ -38,8 +38,9 @@
                                 <#list customParameters as customParameter>
                                     <li class="list-group-item"><strong>${customParameter.key}:</strong>
                                         <#if customParameter.url>
-                                            <a href="${customParameter.value}" target="_blank">${customParameter.value}</a>
-                                            <#else/>
+                                            <a href="${customParameter.value}"
+                                               target="_blank">${customParameter.value}</a>
+                                        <#else>
                                             ${customParameter.value}
                                         </#if>
                                     </li>
@@ -67,11 +68,13 @@
                     <div class="card-header">Test Suite Summary</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios in <strong>${totalNumberOfFeatures}</strong>
+                            <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios in
+                                <strong>${totalNumberOfFeatures}</strong>
                                 Features.
                             </li>
                             <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed /
-                                <strong>${totalNumberOfFailedScenarios}</strong> failed / <strong>${totalNumberOfSkippedScenarios}</strong>
+                                <strong>${totalNumberOfFailedScenarios}</strong> failed /
+                                <strong>${totalNumberOfSkippedScenarios}</strong>
                                 skipped.
                             </li>
                             <li class="list-group-item"><strong>Total Time:</strong> ${totalDurationString}</li>

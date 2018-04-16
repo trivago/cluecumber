@@ -59,13 +59,13 @@
                             </thead>
                             <tbody>
                                 <#list tagStats as tag, tagStat>
-                                    <tr>
-                                        <td class="text-left">${tag}</td>
-                                        <td class="text-left"><strong>${tagStat.total}</strong></td>
-                                        <td class="text-left">${tagStat.passed}</td>
-                                        <td class="text-left">${tagStat.failed}</td>
-                                        <td class="text-left">${tagStat.skipped}</td>
-                                    </tr>
+                                <tr>
+                                    <td class="text-left">${tag}</td>
+                                    <td class="text-left"><strong>${tagStat.total}</strong></td>
+                                    <td class="text-left">${tagStat.passed}</td>
+                                    <td class="text-left">${tagStat.failed}</td>
+                                    <td class="text-left">${tagStat.skipped}</td>
+                                </tr>
                                 </#list>
                             </tbody>
                         </table>

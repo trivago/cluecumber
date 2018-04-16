@@ -50,9 +50,10 @@
                             <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Steps:
                                 <strong>${element.totalNumberOfPassedSteps}</strong> passed /
                                 <strong>${element.totalNumberOfFailedSteps}</strong> failed /
-                                <strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
+                                <strong>${element.totalNumberOfSkippedSteps}</strong> skipped
+                            </li>
                             <li class="list-group-item"><strong>Total Time:</strong>
-                                ${element.returnTotalDurationString()}</li>
+                            ${element.returnTotalDurationString()}</li>
                              <#list element.tags as tag>
                                 <li class="list-group-item">${tag.name}</li>
                              </#list>
@@ -86,9 +87,9 @@
                                     <div class="col-2 text-left">
                                         <#if before.failed>
                                             <#assign class = "text-danger" />
-                                            <#elseif before.skipped/>
+                                        <#elseif before.skipped/>
                                             <#assign class = "text-warning" />
-                                            <#else/>
+                                        <#else/>
                                             <#assign class = "text-success" />
                                         </#if>
                                         <span class="${class}">${before.status.statusString}</span>
@@ -131,9 +132,9 @@
                                     <div class="col-2 text-left">
                                         <#if step.failed>
                                             <#assign class = "text-danger" />
-                                            <#elseif step.skipped/>
+                                        <#elseif step.skipped/>
                                             <#assign class = "text-warning" />
-                                            <#else/>
+                                        <#else/>
                                             <#assign class = "text-success" />
                                         </#if>
                                         <span class="${class}">${step.status.statusString}</span>
@@ -148,7 +149,8 @@
                                 </#if>
                                 <#list step.output as output>
                                     <div class="col-12">
-                                        <iframe srcdoc="${output?html}" width="100%" height="0" frameborder="0" scrolling="no" onload="resizeIframe(this);"></iframe>
+                                        <iframe srcdoc="${output?html}" width="100%" height="0" frameborder="0"
+                                                scrolling="no" onload="resizeIframe(this);"></iframe>
                                     </div>
                                 </#list>
                                 <#list step.embeddings as embedding>
@@ -190,9 +192,9 @@
                                     <div class="col-2 text-left">
                                         <#if after.failed>
                                             <#assign class = "text-danger" />
-                                            <#elseif after.skipped/>
+                                        <#elseif after.skipped/>
                                             <#assign class = "text-warning" />
-                                            <#else/>
+                                        <#else/>
                                             <#assign class = "text-success" />
                                         </#if>
                                         <span class="${class}">${after.status.statusString}</span>
@@ -213,7 +215,7 @@
                                                    href="attachments/${embedding.filename}">
                                                     <img src="attachments/${embedding.filename}"
                                                          style="width: 100%"/>
-                                                    </a>
+                                                </a>
                                             <#else>
                                                 <div class="row border border-top-0 border-left-0 border-right-0">
                                                     <div class="col-1">
