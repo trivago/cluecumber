@@ -168,7 +168,7 @@ You can test the complete flow and POM configuration by checking out the [Cucabl
 
 ## Building
 
-Cluecumber requires Java >= 8 and Maven >= 3.3.9. It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+Cluecumber requires Java >= 8 and Maven >= 3.3.9.
 It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
 
 ## License
