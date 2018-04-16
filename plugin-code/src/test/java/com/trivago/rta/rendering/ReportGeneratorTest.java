@@ -8,6 +8,7 @@ import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,12 +64,14 @@ public class ReportGeneratorTest {
 
         when(templateEngine.getRenderedStartPageContent(startPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
         when(templateEngine.getRenderedDetailPageContent(any(DetailPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
+        when(templateEngine.getRenderedTagSummaryPageContent(any(TagSummaryPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
 
         reportGenerator.generateReport(startPageCollection);
 
         verify(fileSystemManager, times(4)).createDirectory(anyString());
-        verify(fileSystemManager, times(11)).exportResource(any(Class.class), anyString(), anyString());
+        verify(fileSystemManager, times(10)).exportResource(any(Class.class), anyString(), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
         verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
+        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
     }
 }
