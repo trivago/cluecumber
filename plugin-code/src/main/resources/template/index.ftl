@@ -1,5 +1,7 @@
 <!-- <#include "snippets/license.ftl"> -->
 
+<#import "macros/scenario.ftl" as scenarioMacros>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,35 +92,7 @@
                     <div class="card border-danger">
                         <div class="card-header border-danger bg-danger text-white">Failed Scenarios</div>
                         <div class="card-body">
-                            <table id="results_failed" class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Feature</th>
-                                    <th>Scenario</th>
-                                    <th>Duration</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <#list reports as report>
-                                    <#list report.elements as element>
-                                        <#if element.failed>
-                                            <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name?html}</span>
-                                                </td>
-                                                <td class="text-left text-capitalize">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
-                                                </td>
-                                                <td class="text-left text-capitalize"
-                                                    data-order="${element.totalDuration}">
-                                                    <nobr>${element.returnTotalDurationString()}</nobr>
-                                                </td>
-                                            </tr>
-                                        </#if>
-                                    </#list>
-                                </#list>
-                                </tbody>
-                            </table>
+                           <@scenarioMacros.table status="failed"/>
                         </div>
                     </div>
                 </div>
@@ -131,35 +105,7 @@
                     <div class="card border-warning">
                         <div class="card-header border-warning bg-warning">Skipped Scenarios</div>
                         <div class="card-body">
-                            <table id="results_skipped" class="table table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Feature</th>
-                                    <th>Scenario</th>
-                                    <th>Duration</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <#list reports as report>
-                                    <#list report.elements as element>
-                                        <#if element.skipped>
-                                            <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name?html}</span>
-                                                </td>
-                                                <td class="text-left text-capitalize">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
-                                                </td>
-                                                <td class="text-left text-capitalize"
-                                                    data-order="${element.totalDuration}">
-                                                    <nobr>${element.returnTotalDurationString()}</nobr>
-                                                </td>
-                                            </tr>
-                                        </#if>
-                                    </#list>
-                                </#list>
-                                </tbody>
-                            </table>
+                            <@scenarioMacros.table status="skipped"/>
                         </div>
                     </div>
                 </div>
@@ -172,35 +118,7 @@
                     <div class="card border-success">
                         <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
                         <div class="card-body">
-                            <table id="results_passed" class="table table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Feature</th>
-                                    <th>Scenario</th>
-                                    <th>Duration</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <#list reports as report>
-                                    <#list report.elements as element>
-                                        <#if element.passed>
-                                            <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name?html}</span>
-                                                </td>
-                                                <td class="text-left text-capitalize">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
-                                                </td>
-                                                <td class="text-left text-capitalize"
-                                                    data-order="${element.totalDuration}">
-                                                    <nobr>${element.returnTotalDurationString()}</nobr>
-                                                </td>
-                                            </tr>
-                                        </#if>
-                                    </#list>
-                                </#list>
-                                </tbody>
-                            </table>
+                           <@scenarioMacros.table status="passed"/>
                         </div>
                     </div>
                 </div>
