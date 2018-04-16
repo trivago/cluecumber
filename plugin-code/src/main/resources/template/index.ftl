@@ -101,10 +101,10 @@
                                         <#if element.failed>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.encodedName}</span>
+                                                                                            title="${report.uri}">${report.name?html}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
+                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">
@@ -142,10 +142,10 @@
                                         <#if element.skipped>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.encodedName}</span>
+                                                                                            title="${report.uri}">${report.name?html}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
+                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">
@@ -183,10 +183,10 @@
                                         <#if element.passed>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.encodedName}</span>
+                                                                                            title="${report.uri}">${report.name?html}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.encodedName}</a>
+                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
                                                 <td class="text-left text-capitalize"
                                                     data-order="${element.totalDuration}">

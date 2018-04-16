@@ -22,12 +22,6 @@ public class ResultTest {
     }
 
     @Test
-    public void encodedErrorMessageTest() {
-        result.setErrorMessage("Error finding element <button>");
-        assertThat(result.getEncodedErrorMessage(), is("Error finding element &#60;button&#62;"));
-    }
-
-    @Test
     public void durationTest() {
         result.setDuration(1234567890);
         assertThat(result.getDurationInMilliseconds(), is(1234L));

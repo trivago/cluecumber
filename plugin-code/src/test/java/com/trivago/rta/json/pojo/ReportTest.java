@@ -10,23 +10,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ReportTest {
-    Report report;
+    private Report report;
 
     @Before
     public void setup() {
         report = new Report();
-    }
-
-    @Test
-    public void getEncodedNameTest() {
-        report.setName("<Name/>");
-        assertThat(report.getEncodedName(), is("&#60;Name/&#62;"));
-    }
-
-    @Test
-    public void getEncodedDescriptionTest() {
-        report.setDescription("<Description/>");
-        assertThat(report.getEncodedDescription(), is("&#60;Description/&#62;"));
     }
 
     @Test

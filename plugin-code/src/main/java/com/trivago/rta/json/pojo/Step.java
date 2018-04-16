@@ -16,8 +16,6 @@
 
 package com.trivago.rta.json.pojo;
 
-import com.trivago.rta.rendering.RenderingUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,14 +69,6 @@ public class Step extends ResultMatch {
 
     public List<String> getOutput() {
         return output;
-    }
-
-    public List<String> getEncodedOutput() {
-        List<String> encodedOutput = new ArrayList<>();
-        for (String outputString : output) {
-            encodedOutput.add(RenderingUtils.escapeHTML(outputString));
-        }
-        return encodedOutput;
     }
 
     public void setOutput(final List<String> output) {

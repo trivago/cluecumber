@@ -13,7 +13,7 @@ public class TemplateConfiguration {
     private Configuration cfg;
 
     void init(final Class rootClass, final String basePath) {
-        cfg = new Configuration(Configuration.VERSION_2_3_27);
+        cfg = new Configuration(Configuration.VERSION_2_3_28);
         cfg.setClassForTemplateLoading(rootClass, basePath);
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);

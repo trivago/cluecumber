@@ -65,9 +65,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header text-capitalize">${element.encodedName}</div>
+                    <div class="card-header text-capitalize">${element.name?html}</div>
                     <#if element.description != "">
-                        <div class="card-header text-capitalize text-secondary">${element.encodedDescription}</div>
+                        <div class="card-header text-capitalize text-secondary">${element.description?html}</div>
                     </#if>
 
                     <div class="card-body">
@@ -97,7 +97,7 @@
                                 <#if before.failed>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-12 text-left">
-                                            <code>${before.result.encodedErrorMessage}</code>
+                                            <code>${before.result.errorMessage?html}</code>
                                         </div>
                                     </div>
                                 </#if>
@@ -142,13 +142,13 @@
                                 <#if step.result.hasErrorMessage()>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-12 text-left">
-                                            <code>${step.result.encodedErrorMessage}</code>
+                                            <code>${step.result.errorMessage?html}</code>
                                         </div>
                                     </div>
                                 </#if>
-                                <#list step.encodedOutput as output>
+                                <#list step.output as output>
                                     <div class="col-12">
-                                        <iframe srcdoc="${output}" width="100%" height="0" frameborder="0" scrolling="no" onload="resizeIframe(this);"></iframe>
+                                        <iframe srcdoc="${output?html}" width="100%" height="0" frameborder="0" scrolling="no" onload="resizeIframe(this);"></iframe>
                                     </div>
                                 </#list>
                                 <#list step.embeddings as embedding>
@@ -165,7 +165,7 @@
                                                     <div class="col-1">
                                                     </div>
                                                     <div class="col-11 text-left">
-                                                        <pre>${embedding.encodedData}</pre>
+                                                        <pre>${embedding.data?html}</pre>
                                                     </div>
                                                 </div>
                                             </#if>
@@ -201,7 +201,7 @@
                                 <#if after.failed>
                                     <div class="row border border-top-0 border-left-0 border-right-0">
                                         <div class="col-12 text-left">
-                                            <code>${after.result.encodedErrorMessage}</code>
+                                            <code>${after.result.errorMessage?html}</code>
                                         </div>
                                     </div>
                                 </#if>
@@ -219,7 +219,7 @@
                                                     <div class="col-1">
                                                     </div>
                                                     <div class="col-11 text-left">
-                                                        <pre>${embedding.encodedData}</pre>
+                                                        <pre>${embedding.data?html}</pre>
                                                     </div>
                                                 </div>
                                             </#if>

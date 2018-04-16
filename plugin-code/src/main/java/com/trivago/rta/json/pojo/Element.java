@@ -60,20 +60,12 @@ public class Element {
         this.line = line;
     }
 
-    public String getEncodedName(){
-        return RenderingUtils.escapeHTML(getName());
-    }
-
     public String getName() {
         return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {
         this.name = name;
-    }
-
-    public String getEncodedDescription(){
-        return RenderingUtils.escapeHTML(getDescription());
     }
 
     public String getDescription() {
