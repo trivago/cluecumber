@@ -107,9 +107,10 @@ public class ReportGenerator {
         copyFileFromJarToFilesystem("/css/cluecumber.css");
         copyFileFromJarToFilesystem("/css/datatables.min.css");
         copyFileFromJarToFilesystem("/css/jquery.fancybox.min.css");
+        copyFileFromJarToFilesystem("/css/dataTables.bootstrap4.min.css");
 
         // Copy Javascript resources
-        copyFileFromJarToFilesystem("/js/jquery-3.2.1.slim.min.js");
+        copyFileFromJarToFilesystem("/js/jquery.min.js");
         copyFileFromJarToFilesystem("/js/bootstrap.min.js");
         copyFileFromJarToFilesystem("/js/popper.min.js");
         copyFileFromJarToFilesystem("/js/Chart.bundle.min.js");

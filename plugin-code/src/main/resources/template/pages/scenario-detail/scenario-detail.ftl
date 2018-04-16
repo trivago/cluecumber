@@ -115,7 +115,7 @@
                                         <span data-toggle="tooltip"
                                               title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
                                         <#if (step.rows?size > 0) >
-                                            <table class="table table-bordered table-sm compact">
+                                            <table class="table table-hover table-sm compact">
                                                 <#list step.rows as row>
                                                     <tr>
                                                         <#list row.cells as cell>

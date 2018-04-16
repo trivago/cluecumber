@@ -131,7 +131,7 @@
                     <div class="card border-warning">
                         <div class="card-header border-warning bg-warning">Skipped Scenarios</div>
                         <div class="card-body">
-                            <table id="results_skipped" class="table table-hover">
+                            <table id="results_skipped" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>Feature</th>
@@ -172,7 +172,7 @@
                     <div class="card border-success">
                         <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
                         <div class="card-body">
-                            <table id="results_passed" class="table table-hover">
+                            <table id="results_passed" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
                                     <th>Feature</th>
