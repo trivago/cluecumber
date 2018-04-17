@@ -70,7 +70,7 @@ public class ReportGenerator {
         TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 

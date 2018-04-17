@@ -50,7 +50,7 @@ public class TemplateEngineTest {
     public void getRenderedDetailPageTest() throws CluecumberPluginException {
         DetailPageCollection detailPageCollection = new DetailPageCollection(null);
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate("pages/scenario-detail/scenario-detail")).thenReturn(template);
+        when(templateConfiguration.getTemplate("scenario-detail")).thenReturn(template);
         when(scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
         String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
         assertThat(renderedDetailPage, is("DETAIL_PAGE_CONTENT"));
@@ -60,7 +60,7 @@ public class TemplateEngineTest {
     public void getRenderedTagPageTest() throws CluecumberPluginException {
         TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(null);
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate("pages/tag-summary")).thenReturn(template);
+        when(templateConfiguration.getTemplate("tag-summary")).thenReturn(template);
         when(tagSummaryPageRenderer.getRenderedContent(tagSummaryPageCollection, template)).thenReturn("TAG_PAGE_CONTENT");
         String renderedTagSummaryPage = templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection);
         assertThat(renderedTagSummaryPage, is("TAG_PAGE_CONTENT"));

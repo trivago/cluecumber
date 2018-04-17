@@ -28,12 +28,12 @@ public class PluginSettings {
     public static final String PAGES_DIRECTORY = "pages";
 
     public final static String SCENARIO_DETAIL_PAGE_NAME = "Scenario Details";
-    public final static String SCENATIO_DETAIL_PAGE_PATH = PAGES_DIRECTORY + "/scenario-detail/scenario-detail";
+    public final static String SCENATIO_DETAIL_PAGE_PATH = "scenario-detail";
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/scenario-detail/scenario_";
 
     public final static String SUITE_OVERVIEW_PAGE_NAME = "Suite Overview";
     public final static String SUITE_OVERVIEW_PAGE_PATH = "index";
 
     public final static String TAG_SUMMARY_PAGE_NAME = "Tag Summary";
-    public final static String TAG_SUMMARY_PAGE_PATH = PAGES_DIRECTORY + "/tag-summary";
+    public final static String TAG_SUMMARY_PAGE_PATH = "tag-summary";
 }
