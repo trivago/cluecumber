@@ -27,7 +27,7 @@ public class PluginSettings {
     public static final String BASE_TEMPLATE_PATH = "/template";
     public static final String PAGES_DIRECTORY = "pages";
 
-    public final static String SCENARIO_DETAIL_PAGE_NAME = "Suite Overview";
+    public final static String SCENARIO_DETAIL_PAGE_NAME = "Scenario Details";
     public final static String SCENATIO_DETAIL_PAGE_PATH = PAGES_DIRECTORY + "/scenario-detail/scenario-detail";
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/scenario-detail/scenario_";
 

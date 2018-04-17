@@ -1,5 +1,7 @@
 <!-- <#include "../snippets/license.ftl"> -->
 
+<#import "../macros/navigation.ftl" as navigation>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,22 +11,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <span class="navbar-brand">Tag Summary</span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Suite Overview</a>
-            </li>
-        </ul>
-        <span class="text-light">${reportDetails.date}</span>
-    </div>
-</nav>
+<@navigation.build links=["suite_overview"] />
 
 <main role="main" class="container">
     <div class="cluecumber-template">
