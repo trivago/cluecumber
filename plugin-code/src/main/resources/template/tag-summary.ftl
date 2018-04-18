@@ -27,10 +27,10 @@
                     <#list tagStats as tag, tagStat>
                     <tr>
                         <td class="text-left">${tag}</td>
-                        <td class="text-left"><strong>${tagStat.total}</strong></td>
-                        <td class="text-left">${tagStat.passed}</td>
-                        <td class="text-left">${tagStat.failed}</td>
-                        <td class="text-left">${tagStat.skipped}</td>
+                        <td class="text-right"><strong>${tagStat.total}</strong></td>
+                        <td class="text-right">${tagStat.passed}</td>
+                        <td class="text-right">${tagStat.failed}</td>
+                        <td class="text-right">${tagStat.skipped}</td>
                     </tr>
                     </#list>
                 </tbody>

@@ -24,8 +24,8 @@
                         <table id="results_skipped" class="table table-hover">
                             <thead>
                             <tr>
-                                <th>Feature</th>
-                                <th>Scenario</th>
+                                <th class="text-left">Feature</th>
+                                <th class="text-left">Scenario</th>
                                 <th>Duration</th>
                             </tr>
                             </thead>
@@ -40,7 +40,7 @@
                                                 <td class="text-left text-capitalize">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
-                                                <td class="text-left text-capitalize"
+                                                <td class="text-right text-capitalize"
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>

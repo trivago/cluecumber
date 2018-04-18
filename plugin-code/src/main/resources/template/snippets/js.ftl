@@ -6,10 +6,6 @@
 <script src="js/Chart.bundle.min.js"></script>
 
 <script>
-    function resizeIframe(obj) {
-        obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
-    }
-
     $(document).ready(function () {
         // Data tables
         $('table').on('draw.dt', function () {
