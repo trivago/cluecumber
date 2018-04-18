@@ -7,7 +7,7 @@
         "id": ";",
         "keyword": "Scenario",
         "line": 2,
-        "name": "",
+        "name": "This is a failing scenario",
         "steps": [
           {
             "keyword": "Given ",
@@ -29,7 +29,7 @@
     "id": "",
     "keyword": "Feature",
     "line": 1,
-    "name": "",
+    "name": "Feature 2",
     "uri": "features/003-one-failing-scenario.feature"
   }
 ]

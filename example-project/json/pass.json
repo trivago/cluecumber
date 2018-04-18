@@ -1,35 +1,39 @@
 [
   {
+    "description": "",
     "elements": [
       {
+        "description": "",
         "id": ";",
         "keyword": "Scenario",
         "line": 2,
-        "name": "",
+        "name": "This scenario passes",
         "steps": [
           {
-            "arguments": [],
             "keyword": "Given ",
             "line": 3,
             "match": {
-              "location": "support/js/env.js:3"
+              "location": "NativeConstructorAccessorImpl.java:-2"
             },
             "name": "this step passes",
             "result": {
-              "duration": 6,
+              "duration": 244280571,
               "status": "passed"
             }
           }
         ],
-        "tags": [],
+        "tags": [
+          {
+            "name": "@test"
+          }
+        ],
         "type": "scenario"
       }
     ],
     "id": "",
     "keyword": "Feature",
     "line": 1,
-    "name": "",
-    "tags": [],
+    "name": "Feature 1",
     "uri": "features/001-one-passing-scenario.feature"
   }
 ]
