@@ -160,6 +160,8 @@ It shows:
 
 The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
 
+![tags](documentation/img/tags.png)
+
 # Example project
 
 You can test the complete flow and POM configuration by checking out the [Cucable example project](example-project).
