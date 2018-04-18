@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [0.7.0] - 2018-04-18
+
+# Changed
+
+* Unified report design
+* Updated all dependencies
+* Completely changed freemarker code to be better extensible
+
 ## [0.6.0] - 2018-04-12
 
 # Added
