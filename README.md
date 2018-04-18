@@ -60,7 +60,7 @@ This page shows the most important information about the test suite:
 - grouped scenarios by status
 - optional custom parameters
 
-![report_overview](documentation/img/report_overview.png)
+![report_overview](documentation/img/suite.png)
 
 ## Scenario detail pages
 
@@ -74,7 +74,7 @@ It shows:
 - stack traces of failed steps
 - screenshots
 
-![report_detail](documentation/img/report_details.png)
+![report_detail](documentation/img/details.png)
 
 ## Tag statistics page
 
