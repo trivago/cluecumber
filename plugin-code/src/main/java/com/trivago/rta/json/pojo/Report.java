@@ -16,8 +16,6 @@
 
 package com.trivago.rta.json.pojo;
 
-import com.trivago.rta.rendering.RenderingUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,20 +44,12 @@ public class Report {
         this.elements = elements;
     }
 
-    public String getEncodedName() {
-        return RenderingUtils.escapeHTML(getName());
-    }
-
     public String getName() {
         return !name.isEmpty() ? name : "[Unnamed]";
     }
 
     public void setName(final String name) {
         this.name = name;
-    }
-
-    public String getEncodedDescription() {
-        return RenderingUtils.escapeHTML(getDescription());
     }
 
     public String getDescription() {

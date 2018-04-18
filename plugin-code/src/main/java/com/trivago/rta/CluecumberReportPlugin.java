@@ -118,7 +118,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         }
         reportGenerator.generateReport(startPageCollection);
         logger.info("Converted " + startPageCollection.getTotalNumberOfFeatures() + " features into test report:");
-        logger.info("- " + propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.SUITE_OVERVIEW_PAGE_PATH);
+        logger.info("- " + propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 }
 

@@ -46,27 +46,6 @@ public class RenderingUtils {
     }
 
     /**
-     * Escape HTML tags in a string.
-     *
-     * @param sourceString The source string.
-     * @return The escaped string.
-     */
-    public static String escapeHTML(final String sourceString) {
-        StringBuilder stringBuilder = new StringBuilder(Math.max(16, sourceString.length()));
-        for (int i = 0; i < sourceString.length(); i++) {
-            char character = sourceString.charAt(i);
-            if (character > 127 || character == '"' || character == '<' || character == '>' || character == '&') {
-                stringBuilder.append("&#");
-                stringBuilder.append((int) character);
-                stringBuilder.append(';');
-            } else {
-                stringBuilder.append(character);
-            }
-        }
-        return stringBuilder.toString();
-    }
-
-    /**
      * Return the current Cluecumber version.
      *
      * @return The version string.

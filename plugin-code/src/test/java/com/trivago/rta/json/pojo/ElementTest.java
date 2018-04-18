@@ -1,8 +1,6 @@
 package com.trivago.rta.json.pojo;
 
 import com.trivago.rta.constants.Status;
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,18 +16,6 @@ public class ElementTest {
     @Before
     public void setup() {
         element = new Element();
-    }
-
-    @Test
-    public void getEncodedNameTest() {
-        element.setName("<Name/>");
-        Assert.assertThat(element.getEncodedName(), CoreMatchers.is("&#60;Name/&#62;"));
-    }
-
-    @Test
-    public void getEncodedDescriptionTest() {
-        element.setName("<Description/>");
-        Assert.assertThat(element.getEncodedName(), CoreMatchers.is("&#60;Description/&#62;"));
     }
 
     @Test

@@ -52,10 +52,6 @@ public class Result {
         return errorMessage;
     }
 
-    public String getEncodedErrorMessage() {
-        return RenderingUtils.escapeHTML(errorMessage);
-    }
-
     public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
