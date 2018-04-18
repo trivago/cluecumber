@@ -15,6 +15,10 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
+- [Generated pages](#generated-pages)
+  - [Test suite overview page](#test-suite-overview-page)
+  - [Scenario detail pages](#scenario-detail-pages)
+  - [Tag statistics page](#tag-statistics-page)
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
@@ -24,10 +28,6 @@
   - [Optional Configuration Parameters](#optional-configuration-parameters)
     - [CustomParameters](#customparameters)
       - [Example](#example)
-- [Generated pages](#generated-pages)
-  - [Test suite overview page](#test-suite-overview-page)
-  - [Scenario detail pages](#scenario-detail-pages)
-  - [Tag statistics page](#tag-statistics-page)
 - [Example project](#example-project)
 - [Additional Information](#additional-information)
   - [Building](#building)
@@ -48,6 +48,39 @@ This project was created because
 - it will allow to completely customize the report appearance and information
 
 **Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
+
+# Generated pages
+
+## Test suite overview page
+
+This page shows the most important information about the test suite:
+
+- run time
+- number of passed, failed and skipped scenarios
+- grouped scenarios by status
+- optional custom parameters
+
+![report_overview](documentation/img/report_overview.png)
+
+## Scenario detail pages
+
+The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
+
+It shows:
+
+- scenario name and description
+- step runtimes and status
+- before and after steps
+- stack traces of failed steps
+- screenshots
+
+![report_detail](documentation/img/report_details.png)
+
+## Tag statistics page
+
+The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
+
+![tags](documentation/img/tags.png)
 
 ## Changelog
 
@@ -128,39 +161,6 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 ```
 
 ![custom parameters](documentation/img/custom_params.png)
-
-# Generated pages
-
-## Test suite overview page
-
-This page shows the most important information about the test suite:
-
-- run time
-- number of passed, failed and skipped scenarios
-- grouped scenarios by status
-- optional custom parameters
-
-![report_overview](documentation/img/report_overview.png)
-
-## Scenario detail pages
-
-The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
-
-It shows:
-
-- scenario name and description
-- step runtimes and status
-- before and after steps
-- stack traces of failed steps
-- screenshots
-
-![report_detail](documentation/img/report_details.png)
-
-## Tag statistics page
-
-The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
-
-![tags](documentation/img/tags.png)
 
 # Example project
 
