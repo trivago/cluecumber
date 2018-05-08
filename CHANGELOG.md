@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [0.7.1] - 2018-05-08
+
+# Added
+
+* Feature description is now shown in the feature tool tip on hover
+
+# Fixed
+
+* Chart was not rendered when a scenario contained step data tables
+
 ## [0.7.0] - 2018-04-18
 
 # Changed

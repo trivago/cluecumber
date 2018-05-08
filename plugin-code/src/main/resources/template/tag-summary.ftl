@@ -13,7 +13,7 @@
 
     <div class="row">
         <@page.card width="12" title="Tag Summary" subtitle="">
-            <table id="tag_summary" class="table table-hover">
+            <table id="tag_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Tag</th>

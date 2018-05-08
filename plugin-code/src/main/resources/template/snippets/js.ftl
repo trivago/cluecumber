@@ -8,7 +8,7 @@
 <script>
     $(document).ready(function () {
         // Data tables
-        $('table').on('draw.dt', function () {
+        $('.renderAsDataTable').on('draw.dt', function () {
             $('[data-toggle="tooltip"]').tooltip();
         }).DataTable();
 
