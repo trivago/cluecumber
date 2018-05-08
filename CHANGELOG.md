@@ -11,7 +11,7 @@ Back to [Readme](README.md).
 
 # Added
 
-Feature description is now shown in the feature tool tip on hover
+* Feature description is now shown in the feature tool tip on hover
 
 # Fixed
 
