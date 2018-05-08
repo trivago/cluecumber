@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>0.7.0</version>
+    <version>0.7.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -6,7 +6,7 @@
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
-    <version>0.7.0</version>
+    <version>0.7.1</version>
     <url>https://github.com/trivago/cluecumber-report-plugin</url>
 
     <name>Cluecumber Maven Plugin for Cucumber Reports</name>
@@ -132,6 +132,7 @@
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>

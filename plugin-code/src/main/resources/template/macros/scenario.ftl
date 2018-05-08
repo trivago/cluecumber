@@ -21,7 +21,7 @@
                     </#switch>
 
                     <div class="card-body">
-                        <table id="results_skipped" class="table table-hover">
+                        <table id="results_${status}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
                                 <th class="text-left">Feature</th>
@@ -31,11 +31,18 @@
                             </thead>
                             <tbody>
                                 <#list reports as report>
+
+                                    <#assign tooltipText = "">
+                                    <#if report.description?has_content>
+                                        <#assign tooltipText = "${report.description} | ">
+                                    </#if>
+                                    <#assign tooltipText = "${tooltipText}${report.uri}">
+
                                     <#list report.elements as element>
                                         <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
                                             <tr>
                                                 <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${report.uri}">${report.name?html}</span>
+                                                                                            title="${tooltipText}">${report.name?html}</span>
                                                 </td>
                                                 <td class="text-left text-capitalize">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
