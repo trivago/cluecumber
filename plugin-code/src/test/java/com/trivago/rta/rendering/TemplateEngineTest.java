@@ -43,7 +43,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate("index")).thenReturn(template);
         when(startPageRenderer.getRenderedContent(startPageCollection, template)).thenReturn("START_PAGE_CONTENT");
         String renderedStartPage = templateEngine.getRenderedStartPageContent(startPageCollection);
-        assertThat(renderedStartPage, is("START_PAGE_CONTENT"));
+        assertThat(renderedStartPage, is("<html>\n <head></head>\n <body>\n  START_PAGE_CONTENT\n </body>\n</html>"));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate("scenario-detail")).thenReturn(template);
         when(scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
         String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
-        assertThat(renderedDetailPage, is("DETAIL_PAGE_CONTENT"));
+        assertThat(renderedDetailPage, is("<html>\n <head></head>\n <body>\n  DETAIL_PAGE_CONTENT\n </body>\n</html>"));
     }
 
     @Test
@@ -63,6 +63,6 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate("tag-summary")).thenReturn(template);
         when(tagSummaryPageRenderer.getRenderedContent(tagSummaryPageCollection, template)).thenReturn("TAG_PAGE_CONTENT");
         String renderedTagSummaryPage = templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection);
-        assertThat(renderedTagSummaryPage, is("TAG_PAGE_CONTENT"));
+        assertThat(renderedTagSummaryPage, is("<html>\n <head></head>\n <body>\n  TAG_PAGE_CONTENT\n </body>\n</html>"));
     }
 }

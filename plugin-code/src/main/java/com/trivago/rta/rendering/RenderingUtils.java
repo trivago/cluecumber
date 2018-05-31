@@ -16,6 +16,9 @@
 
 package com.trivago.rta.rendering;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.time.Duration;
 
 public class RenderingUtils {
@@ -43,6 +46,17 @@ public class RenderingUtils {
      */
     public static long convertMicrosecondsToMilliseconds(final long microseconds) {
         return Duration.ofMillis(microseconds / MICROSECOND_FACTOR).toMillis();
+    }
+
+    /**
+     * Returns prettified HTML
+     *
+     * @param html The source html.
+     * @return The prettified HTML.
+     */
+    static String prettifyHtml(String html) {
+        Document parse = Jsoup.parse(html);
+        return parse.toString().trim();
     }
 
     /**
