@@ -25,7 +25,7 @@
         <div class="card h-100">
             <div class="card-header">${title}</div>
             <#if subtitle != "">
-                <div class="card-header text-capitalize text-secondary">${subtitle}</div>
+                <div class="card-header text-secondary">${subtitle}</div>
             </#if>
             <div class="card-body">
                 <#nested>

@@ -41,13 +41,13 @@
                                     <#list report.elements as element>
                                         <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
                                             <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
+                                                <td class="text-left"><span data-toggle="tooltip"
                                                                                             title="${tooltipText}">${report.name?html}</span>
                                                 </td>
-                                                <td class="text-left text-capitalize">
+                                                <td class="text-left">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
-                                                <td class="text-right text-capitalize"
+                                                <td class="text-right"
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>
