@@ -42,7 +42,7 @@
                                         <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
                                             <tr>
                                                 <td class="text-left"><span data-toggle="tooltip"
-                                                                                            title="${tooltipText}">${report.name?html}</span>
+                                                                            title="${tooltipText}">${report.name?html}</span>
                                                 </td>
                                                 <td class="text-left">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
@@ -61,5 +61,27 @@
                 </div>
             </div>
         </div>
+    </#if>
+</#macro>
+
+<#macro attachments attachments>
+    <#if (attachments?size > 0)>
+        <#list attachments as attachment>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 text-left">
+                    <#if attachment.image>
+                        <a class="grouped_elements" rel="images"
+                           href="attachments/${attachment.filename}">
+                            <img src="attachments/${attachment.filename}"
+                                 style="width: 100%"/>
+                        </a>
+                    <#else>
+                        ${attachment.data?html}
+                    </#if>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </#list>
     </#if>
 </#macro>

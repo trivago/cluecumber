@@ -1,5 +1,5 @@
 <#import "macros/page.ftl"as page>
-<#import "macros/scenario.ftl" as scenarioMacros>
+<#import "macros/scenario.ftl" as scenario>
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page base="../.." links=["tag_summary", "suite_overview"]>
@@ -126,23 +126,8 @@
                                 <div class="col-1"></div>
                             </div>
                         </#list>
-                        <#list step.embeddings as embedding>
-                            <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-10 text-left">
-                                    <#if embedding.image>
-                                        <a class="grouped_elements" rel="images"
-                                           href="attachments/${embedding.filename}">
-                                            <img src="attachments/${embedding.filename}"
-                                                 style="width: 100%"/>
-                                        </a>
-                                    <#else>
-                                        ${embedding.data?html}
-                                    </#if>
-                                </div>
-                                <div class="col-1"></div>
-                            </div>
-                        </#list>
+
+                        <@scenario.attachments attachments=step.embeddings/>
                     </#list>
                 </li>
             </#if>
@@ -180,23 +165,8 @@
                                 <div class="col-1"></div>
                             </div>
                         </#if>
-                        <#list after.embeddings as embedding>
-                            <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-10 text-left">
-                                    <#if embedding.image>
-                                        <a class="grouped_elements" rel="images"
-                                           href="attachments/${embedding.filename}">
-                                            <img src="attachments/${embedding.filename}"
-                                                 style="width: 100%"/>
-                                        </a>
-                                    <#else>
-                                        ${embedding.data?html}
-                                    </#if>
-                                </div>
-                                <div class="col-1"></div>
-                            </div>
-                        </#list>
+
+                        <@scenario.attachments attachments=after.embeddings/>
                     </#list>
                 </li>
             </#if>
