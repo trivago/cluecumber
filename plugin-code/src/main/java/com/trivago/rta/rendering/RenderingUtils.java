@@ -17,7 +17,6 @@
 package com.trivago.rta.rendering;
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import java.time.Duration;
 
@@ -55,8 +54,7 @@ public class RenderingUtils {
      * @return The prettified HTML.
      */
     static String prettifyHtml(String html) {
-        Document parse = Jsoup.parse(html);
-        return parse.toString().trim();
+        return Jsoup.parse(html).toString().trim();
     }
 
     /**
