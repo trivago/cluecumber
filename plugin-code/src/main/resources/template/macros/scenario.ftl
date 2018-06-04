@@ -64,9 +64,9 @@
     </#if>
 </#macro>
 
-<#macro attachments attachments>
-    <#if (attachments?size > 0)>
-        <#list attachments as attachment>
+<#macro attachments step>
+    <#if step.embeddings??>
+        <#list step.embeddings as attachment>
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10 text-left">
@@ -82,6 +82,44 @@
                 </div>
                 <div class="col-1"></div>
             </div>
+        </#list>
+    </#if>
+</#macro>
+
+<#macro status step>
+    <#if step.failed>
+        <#assign class = "text-danger" />
+    <#elseif step.skipped>
+        <#assign class = "text-warning" />
+    <#else>
+        <#assign class = "text-success" />
+    </#if>
+    <span class="${class}">${step.status.statusString}</span>
+</#macro>
+
+<#macro errorMessage step>
+    <#if step.result.hasErrorMessage()>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left border border-danger">
+                <code>${step.result.errorMessage?html}</code>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </#if>
+</#macro>
+
+<#macro output step>
+    <#if step.output??>
+        <#list step.output as output>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left">
+                <iframe srcdoc="${output?html}" width="100%" height="0" frameborder="1"
+                        scrolling="no" onload="resizeIframe(this);"></iframe>
+            </div>
+            <div class="col-1"></div>
+        </div>
         </#list>
     </#if>
 </#macro>

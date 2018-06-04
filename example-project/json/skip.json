@@ -34,6 +34,18 @@
             }
           }
         ],
+        "after": [
+          {
+            "match": {
+              "location": "After.java:6"
+            },
+            "result": {
+              "duration": 1452264732,
+              "error_message": "Some errors",
+              "status": "failed"
+            }
+          }
+        ],
         "tags": [
           {
             "name": "@failing-before"

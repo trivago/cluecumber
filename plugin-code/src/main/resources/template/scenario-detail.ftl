@@ -48,25 +48,12 @@
                                 <nobr>${before.result.returnDurationString()}</nobr>
                             </div>
                             <div class="col-2 text-right">
-                                <#if before.failed>
-                                    <#assign class = "text-danger" />
-                                <#elseif before.skipped>
-                                    <#assign class = "text-warning" />
-                                <#else>
-                                    <#assign class = "text-success" />
-                                </#if>
-                                <span class="${class}">${before.status.statusString}</span>
+                                <@scenario.status step=before/>
                             </div>
                         </div>
-                        <#if before.result.hasErrorMessage()>
-                            <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-10 text-left border border-danger">
-                                    <code>${before.result.errorMessage?html}</code>
-                                </div>
-                                <div class="col-1"></div>
-                            </div>
-                        </#if>
+                        <@scenario.errorMessage step=before/>
+                        <@scenario.output step=before/>
+                        <@scenario.attachments step=before/>
                     </#list>
                 </li>
             </#if>
@@ -97,37 +84,12 @@
                                 <nobr>${step.result.returnDurationString()}</nobr>
                             </div>
                             <div class="col-2 text-right">
-                                <#if step.failed>
-                                    <#assign class = "text-danger" />
-                                <#elseif step.skipped>
-                                    <#assign class = "text-warning" />
-                                <#else>
-                                    <#assign class = "text-success" />
-                                </#if>
-                                <span class="${class}">${step.status.statusString}</span>
+                                <@scenario.status step=step/>
                             </div>
                         </div>
-                        <#if step.result.hasErrorMessage()>
-                          <div class="row">
-                              <div class="col-1"></div>
-                              <div class="col-10 text-left border border-danger">
-                                  <code>${step.result.errorMessage?html}</code>
-                              </div>
-                              <div class="col-1"></div>
-                          </div>
-                        </#if>
-                        <#list step.output as output>
-                            <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-10 text-left">
-                                    <iframe srcdoc="${output?html}" width="100%" height="0" frameborder="1"
-                                            scrolling="no" onload="resizeIframe(this);"></iframe>
-                                </div>
-                                <div class="col-1"></div>
-                            </div>
-                        </#list>
-
-                        <@scenario.attachments attachments=step.embeddings/>
+                        <@scenario.errorMessage step=step/>
+                        <@scenario.output step=step/>
+                        <@scenario.attachments step=step/>
                     </#list>
                 </li>
             </#if>
@@ -146,27 +108,12 @@
                                 <nobr>${after.result.returnDurationString()}</nobr>
                             </div>
                             <div class="col-2 text-right">
-                                <#if after.failed>
-                                    <#assign class = "text-danger" />
-                                <#elseif after.skipped>
-                                    <#assign class = "text-warning" />
-                                <#else>
-                                    <#assign class = "text-success" />
-                                </#if>
-                                <span class="${class}">${after.status.statusString}</span>
+                                <@scenario.status step=after/>
                             </div>
                         </div>
-                        <#if after.result.hasErrorMessage()>
-                            <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-10 text-left border border-danger">
-                                    <code>${after.result.errorMessage?html}</code>
-                                </div>
-                                <div class="col-1"></div>
-                            </div>
-                        </#if>
-
-                        <@scenario.attachments attachments=after.embeddings/>
+                        <@scenario.errorMessage step=after/>
+                        <@scenario.output step=after/>
+                        <@scenario.attachments step=after/>
                     </#list>
                 </li>
             </#if>
