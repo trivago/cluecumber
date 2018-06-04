@@ -99,7 +99,6 @@ public class ReportGenerator {
         String reportDirectory = propertyManager.getGeneratedHtmlReportDirectory();
         fileSystemManager.createDirectory(reportDirectory);
         fileSystemManager.createDirectory(reportDirectory + "/js");
-        fileSystemManager.createDirectory(reportDirectory + "/img");
         fileSystemManager.createDirectory(reportDirectory + "/css");
 
         // Copy CSS resources
