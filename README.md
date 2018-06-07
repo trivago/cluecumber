@@ -164,7 +164,7 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 
 # Example project
 
-You can test the complete flow and POM configuration by checking out the [Cucable example project](example-project).
+You can test the complete flow and POM configuration by checking out the [Cluecumber example project](example-project).
 
 # Additional Information
 
