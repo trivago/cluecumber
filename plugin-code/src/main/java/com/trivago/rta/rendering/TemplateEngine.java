@@ -51,23 +51,23 @@ public class TemplateEngine {
     }
 
     String getRenderedStartPageContent(final StartPageCollection startPageCollection) throws CluecumberPluginException {
-        return startPageRenderer.getRenderedContent(
+        return RenderingUtils.prettifyHtml(startPageRenderer.getRenderedContent(
                 startPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SUITE_OVERVIEW_PAGE_PATH)
-        );
+        ));
     }
 
     String getRenderedDetailPageContent(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
-        return scenarioDetailPageRenderer.getRenderedContent(
+        return RenderingUtils.prettifyHtml(scenarioDetailPageRenderer.getRenderedContent(
                 detailPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENATIO_DETAIL_PAGE_PATH)
-        );
+        ));
     }
 
     String getRenderedTagSummaryPageContent(final TagSummaryPageCollection tagSummaryPageCollection) throws CluecumberPluginException {
-        return tagSummaryPageRenderer.getRenderedContent(
+        return RenderingUtils.prettifyHtml(tagSummaryPageRenderer.getRenderedContent(
                 tagSummaryPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_PAGE_PATH)
-        );
+        ));
     }
 }

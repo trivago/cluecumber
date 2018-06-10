@@ -41,13 +41,13 @@
                                     <#list report.elements as element>
                                         <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
                                             <tr>
-                                                <td class="text-left text-capitalize"><span data-toggle="tooltip"
-                                                                                            title="${tooltipText}">${report.name?html}</span>
+                                                <td class="text-left"><span data-toggle="tooltip"
+                                                                            title="${tooltipText}">${report.name?html}</span>
                                                 </td>
-                                                <td class="text-left text-capitalize">
+                                                <td class="text-left">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
-                                                <td class="text-right text-capitalize"
+                                                <td class="text-right"
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>
@@ -61,5 +61,67 @@
                 </div>
             </div>
         </div>
+    </#if>
+</#macro>
+
+<#macro attachments step>
+    <#if step.embeddings??>
+        <#list step.embeddings as attachment>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 text-left">
+                    <#if attachment.image>
+                        <a class="grouped_elements" rel="images"
+                           href="attachments/${attachment.filename}">
+                            <img src="attachments/${attachment.filename}"
+                                 style="width: 100%"/>
+                        </a>
+                    <#else>
+                        ${attachment.data?html}
+                    </#if>
+                </div>
+                <div class="col-1"></div>
+            </div>
+        </#list>
+    </#if>
+</#macro>
+
+<#macro status step>
+    <#if step.failed>
+        <#assign class = "text-danger" />
+    <#elseif step.skipped>
+        <#assign class = "text-warning" />
+    <#else>
+        <#assign class = "text-success" />
+    </#if>
+    <span class="${class}">${step.status.statusString}</span>
+</#macro>
+
+<#macro errorMessage step>
+    <#if step.result.hasErrorMessage()>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 text-left border border-danger">
+                <code>${step.result.errorMessage?html}</code>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </#if>
+</#macro>
+
+<#macro output step>
+    <#if step.output??>
+        <#list step.output as output>
+            <#if output?has_content>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10 text-left">
+                        <iframe srcdoc="${output?html}" width="100%" height="1"
+                                scrolling="yes" onload="resizeIframe(this);"></iframe>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </#if>
+        </#list>
     </#if>
 </#macro>

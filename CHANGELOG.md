@@ -7,19 +7,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [0.8.0] - 2018-06-10
+
+### Fixed
+
+* Scenario.write outputs with null values lead to rendering exceptions
+* Scenario.write outputs are not shown in before and after steps
+
+### Added
+
+* Support for Before and After hock attachments
+* Updated example JSON files in example project
+
+### Removed
+
+* Capitalization of scenario names
+
 ## [0.7.1] - 2018-05-08
 
-# Added
+### Added
 
 * Feature description is now shown in the feature tool tip on hover
 
-# Fixed
+### Fixed
 
 * Chart was not rendered when a scenario contained step data tables
 
 ## [0.7.0] - 2018-04-18
 
-# Changed
+### Changed
 
 * Unified report design
 * Updated all dependencies
@@ -27,69 +43,69 @@ Back to [Readme](README.md).
 
 ## [0.6.0] - 2018-04-12
 
-# Added
+### Added
 
 * Example project
 
-# Changed
+### Changed
 
 * Cluecumber is now a monorepo
 
-# Fixed
+### Fixed
 
 * Table header error on tab overview page
 
 ## [0.5.0] - 2018-03-19
 
-# Added
+### Added
 
 * Tag summary page
 
-# Fixed
+### Fixed
 
 * Background Scenario steps are now rendered correctly
 * Various small bug fixes
 
 ## [0.3.0] - 2018-02-19
 
-# Added
+### Added
 
 * Scenario.output is now displayed in the scenario details
 
-# Fixed
+### Fixed
 
 * Scenarios with pending and skipped steps are also considered skipped.
 * Background scenarios are now merged to the following scenarios.
 
-# Changed
+### Changed
 
 * Before and after steps have a lower opacity to focus on test steps.
 * Internal organization of page types allows easier extension.
 
 ## [0.2.0] - 2018-01-16
 
-# Added
+### Added
 
 - Support for data tables within steps
 - Cleaner report headers
 
-# Removed
+### Removed
 
 - Javascript back method is replaced with simple links on the detail pages
 
-# Fixed
+### Fixed
 
 - Report generation is now much more resilient if information is missing in the JSON sources
 
 ## [0.1.1] - 2017-12-12
 
-# Removed
+### Removed
 
 - Unnecessary log outputs for attachments
 
 ## [0.1.0] - 2017-12-12
 
-# Added
+### Added
 
 - Support for Cucumber 2 attachments
 
@@ -142,6 +158,8 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[0.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0
+[0.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.7.1
 [0.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.6.0
 [0.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.5.0
 [0.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.3.0

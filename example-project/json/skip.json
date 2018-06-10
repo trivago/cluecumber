@@ -8,6 +8,10 @@
             "match": {
               "location": "Steps.java:6"
             },
+            "output": [
+              "Output 1",
+              "Output 2"
+            ],
             "result": {
               "duration": 1452264732,
               "error_message": "java.lang.RuntimeException: failing before hook\n\tat Steps.lambda$new$0(Steps.java:7)\n\tat cucumber.runtime.java8.Java8HookDefinition.lambda$execute$0(Java8HookDefinition.java:51)",
@@ -31,7 +35,27 @@
             "result": {
               "duration": 2552264732,
               "status": "skipped"
-            }
+            },
+            "output": [
+              "Output 5",
+              "Output 6"
+            ]
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "After.java:6"
+            },
+            "result": {
+              "duration": 1452264732,
+              "error_message": "Some errors",
+              "status": "failed"
+            },
+            "output": [
+              "Output 3",
+              "Output 4"
+            ]
           }
         ],
         "tags": [

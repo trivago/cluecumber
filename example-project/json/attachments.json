@@ -1,0 +1,72 @@
+[
+  {
+    "description": "This is an attachment test",
+    "elements": [
+      {
+        "description": "Attachment in every step",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "This scenario passes",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "someMethod()"
+            },
+            "name": "this step has an attachment",
+            "result": {
+              "duration": 244280571,
+              "status": "passed"
+            },
+            "embeddings": [
+              {
+                "mime_type": "image/png",
+                "data": "Zm9v"
+              }
+            ]
+          },
+          {
+            "keyword": "And ",
+            "line": 3,
+            "match": {
+              "location": "someMethod2()"
+            },
+            "name": "this step has also an attachment",
+            "output": [
+              "Output 1",
+              null,
+              "Output 3"
+            ],
+            "result": {
+              "duration": 3923468231,
+              "status": "passed"
+            },
+            "embeddings": [
+              {
+                "mime_type": "image/png",
+                "data": "Zm9v"
+              },
+              {
+                "mime_type": "image/png",
+                "data": "Zm9v"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          {
+            "name": "@test"
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Feature 1",
+    "uri": "features/attachments.feature"
+  }
+]

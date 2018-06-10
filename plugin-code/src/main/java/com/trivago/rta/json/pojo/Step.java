@@ -23,9 +23,7 @@ public class Step extends ResultMatch {
     private int line;
     private String name = "";
     private String keyword = "";
-    private List<String> output = new ArrayList<>();
     private List<Row> rows = new ArrayList<>();
-    private List<Embedding> embeddings = new ArrayList<>();
 
     public int getLine() {
         return line;
@@ -51,13 +49,6 @@ public class Step extends ResultMatch {
         this.keyword = keyword;
     }
 
-    public List<Embedding> getEmbeddings() {
-        return embeddings;
-    }
-
-    public void setEmbeddings(final List<Embedding> embeddings) {
-        this.embeddings = embeddings;
-    }
 
     public List<Row> getRows() {
         return rows;
@@ -67,23 +58,13 @@ public class Step extends ResultMatch {
         this.rows = rows;
     }
 
-    public List<String> getOutput() {
-        return output;
-    }
-
-    public void setOutput(final List<String> output) {
-        this.output = output;
-    }
-
     @Override
     public String toString() {
         return "Step{" +
                 "line=" + line +
                 ", name='" + name + '\'' +
                 ", keyword='" + keyword + '\'' +
-                ", output=" + output +
                 ", rows=" + rows +
-                ", embeddings=" + embeddings +
                 '}';
     }
 }
