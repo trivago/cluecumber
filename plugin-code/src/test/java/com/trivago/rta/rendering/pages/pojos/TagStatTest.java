@@ -36,4 +36,12 @@ public class TagStatTest {
         assertThat(tagStat.getFailed(), is(0));
         assertThat(tagStat.getSkipped(), is(5));
     }
+
+    @Test
+    public void getTotalTest() {
+        tagStat.addSkipped(100);
+        tagStat.addFailed(20);
+        tagStat.addPassed(7);
+        assertThat(tagStat.getTotal(), is(127));
+    }
 }
