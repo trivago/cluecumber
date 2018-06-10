@@ -34,6 +34,10 @@
               "location": "someMethod2()"
             },
             "name": "this step has also an attachment",
+            "output": [
+              "Output 1",
+              "Output 2"
+            ],
             "result": {
               "duration": 3923468231,
               "status": "passed"

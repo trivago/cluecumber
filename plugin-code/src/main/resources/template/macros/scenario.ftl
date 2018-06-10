@@ -112,14 +112,14 @@
 <#macro output step>
     <#if step.output??>
         <#list step.output as output>
-        <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 text-left">
-                <iframe srcdoc="${output?html}" width="100%" height="0" frameborder="1"
-                        scrolling="no" onload="resizeIframe(this);"></iframe>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 text-left">
+                    <iframe srcdoc="${output?html}" width="100%" height="1"
+                            scrolling="yes" onload="resizeIframe(this);"></iframe>
+                </div>
+                <div class="col-1"></div>
             </div>
-            <div class="col-1"></div>
-        </div>
         </#list>
     </#if>
 </#macro>

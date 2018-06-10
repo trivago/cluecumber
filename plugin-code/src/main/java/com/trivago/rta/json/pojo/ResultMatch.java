@@ -18,9 +18,15 @@ package com.trivago.rta.json.pojo;
 
 import com.trivago.rta.constants.Status;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class ResultMatch {
     private Result result;
     private Match match;
+
+    private List<String> output = new ArrayList<>();
+    private List<Embedding> embeddings = new ArrayList<>();
 
     public Result getResult() {
         return result != null ? result : new Result();
@@ -36,6 +42,22 @@ class ResultMatch {
 
     public void setMatch(final Match match) {
         this.match = match;
+    }
+
+    public List<Embedding> getEmbeddings() {
+        return embeddings;
+    }
+
+    public void setEmbeddings(final List<Embedding> embeddings) {
+        this.embeddings = embeddings;
+    }
+
+    public List<String> getOutput() {
+        return output;
+    }
+
+    public void setOutput(final List<String> output) {
+        this.output = output;
     }
 
     public String getGlueMethodName() {
@@ -66,6 +88,8 @@ class ResultMatch {
         return "ResultMatch{" +
                 "result=" + result +
                 ", match=" + match +
+                ", output=" + output +
+                ", embeddings=" + embeddings +
                 '}';
     }
 }
