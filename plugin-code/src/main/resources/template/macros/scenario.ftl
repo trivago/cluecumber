@@ -115,8 +115,10 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10 text-left">
-                    <iframe srcdoc="${output?html}" width="100%" height="1"
-                            scrolling="yes" onload="resizeIframe(this);"></iframe>
+                    <#if output?has_content>
+                        <iframe srcdoc="${output?html}" width="100%" height="1"
+                                scrolling="yes" onload="resizeIframe(this);"></iframe>
+                    </#if>
                 </div>
                 <div class="col-1"></div>
             </div>
