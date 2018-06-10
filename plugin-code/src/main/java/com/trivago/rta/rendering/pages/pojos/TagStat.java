@@ -11,15 +11,15 @@ public class TagStat {
         this.skipped = 0;
     }
 
-    public void addPassed(int passedCount) {
+    void addPassed(int passedCount) {
         this.passed += passedCount;
     }
 
-    public void addFailed(int failedCount) {
+    void addFailed(int failedCount) {
         this.failed += failedCount;
     }
 
-    public void addSkipped(int skippedCount) {
+    void addSkipped(int skippedCount) {
         this.skipped += skippedCount;
     }
 
