@@ -9,14 +9,15 @@ Back to [Readme](README.md).
 
 ## [0.8.0] - 2018-06-10
 
-### Added
-
-Support for Before and After hock attachments
-
 ### Fixed
 
 * Scenario.write outputs with null values lead to rendering exceptions
 * Scenario.write outputs are not shown in before and after steps
+
+### Added
+
+* Support for Before and After hock attachments
+* Updated example JSON files in example project
 
 ### Removed
 
