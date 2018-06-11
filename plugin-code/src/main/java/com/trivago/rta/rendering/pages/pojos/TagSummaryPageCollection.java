@@ -33,16 +33,17 @@ public class TagSummaryPageCollection extends PageCollection {
         this.reports = reports;
     }
 
+    /**
+     * Get a map of {@link TagStat} lists connected to tag names.
+     *
+     * @return a map of {@link TagStat} lists with tag names as keys.
+     */
     public Map<String, TagStat> getTagStats() {
         Map<String, TagStat> tagStats = new HashMap<>();
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 for (Tag tag : element.getTags()) {
-                    TagStat tagStat = tagStats.get(tag.getName());
-                    if (tagStat == null) {
-                        tagStat = new TagStat();
-                    }
-
+                    TagStat tagStat = tagStats.getOrDefault(tag.getName(), new TagStat());
                     switch (element.getStatus()) {
                         case PASSED:
                             tagStat.addPassed(1);
@@ -57,7 +58,6 @@ public class TagSummaryPageCollection extends PageCollection {
                             tagStat.addSkipped(1);
                             break;
                     }
-
                     tagStats.put(tag.getName(), tagStat);
                 }
             }

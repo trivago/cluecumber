@@ -38,4 +38,13 @@ public class TagStat {
     public int getTotal() {
         return passed + failed + skipped;
     }
+
+    @Override
+    public String toString() {
+        return "TagStat{" +
+                "passed=" + passed +
+                ", failed=" + failed +
+                ", skipped=" + skipped +
+                '}';
+    }
 }
