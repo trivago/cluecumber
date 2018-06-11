@@ -20,6 +20,9 @@ package com.trivago.rta.constants;
  * Holder class for static plugin settings
  */
 public class PluginSettings {
+    public PluginSettings() {
+    }
+
     public final static String NAME = "Cluecumber Report Plugin";
     public static final String TEMPLATE_FILE_EXTENSION = ".ftl";
     public static final String HTML_FILE_EXTENSION = ".html";
