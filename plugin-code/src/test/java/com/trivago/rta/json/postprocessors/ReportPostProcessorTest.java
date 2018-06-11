@@ -66,4 +66,9 @@ public class ReportPostProcessorTest {
         assertThat(firstElementSteps.get(2).getName(), is("element step 1"));
         assertThat(firstElementSteps.get(3).getName(), is("element step 2"));
     }
+
+    @Test
+    public void postSerializeTest(){
+        reportPostProcessor.postSerialize(null, null, null);
+    }
 }
