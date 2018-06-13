@@ -34,7 +34,7 @@
 
     <@page.card width="12" title="${element.name?html}" subtitle="${element.description?html}">
         <ul class="list-group list-group-flush">
-            <#if (element.before?size > 0)>
+        <#if (element.before?size > 0)>
                 <li class="list-group-item" style="opacity:.8">
                     <#list element.before as before>
                         <div class="row">
@@ -56,67 +56,74 @@
                         <@scenario.attachments step=before/>
                     </#list>
                 </li>
-            </#if>
+        </#if>
 
-            <#if (element.steps?size > 0)>
+        <#if (element.steps?size > 0)>
                 <li class="list-group-item">
-                    <#list element.steps as step>
-                        <div class="row">
-                            <div class="col-1 text-left">
-                                <nobr>Step ${step?counter}</nobr>
-                            </div>
-                            <div class="col-7 text-left">
+            <#list element.steps as step>
+                <div class="row">
+                    <div class="col-1 text-left">
+                        <nobr>Step ${step?counter}</nobr>
+                    </div>
+                    <div class="col-7 text-left">
+                       <#if (step.arguments??)>
+                           <#list step.arguments as argument>
+                               <#if (step.name?contains(argument.val))>
                                 <span data-toggle="tooltip"
-                                      title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
-                                <#if (step.rows?size > 0) >
-                                    <table class="table table-hover table-sm compact">
-                                        <#list step.rows as row>
-                                            <tr>
-                                                <#list row.cells as cell>
-                                                    <td>${cell}</td>
-                                                </#list>
-                                            </tr>
+                                      title="${step.glueMethodName}">${step.keyword} ${(step.name)?replace(argument.val, "<strong>bulldozer</strong>")}
+                                </span>
+                               </#if>
+                           </#list>
+                       </#if>
+                     <#if (step.rows?size > 0) >
+                            <table class="table table-hover table-sm compact">
+                                <#list step.rows as row>
+                                    <tr>
+                                        <#list row.cells as cell>
+                                            <td>${cell}</td>
                                         </#list>
-                                    </table>
-                                </#if>
-                            </div>
-                            <div class="col-2 text-left">
-                                <nobr>${step.result.returnDurationString()}</nobr>
-                            </div>
-                            <div class="col-2 text-right">
+                                    </tr>
+                                </#list>
+                            </table>
+                     </#if>
+                    </div>
+                    <div class="col-2 text-left">
+                        <nobr>${step.result.returnDurationString()}</nobr>
+                    </div>
+                    <div class="col-2 text-right">
                                 <@scenario.status step=step/>
-                            </div>
-                        </div>
-                        <@scenario.errorMessage step=step/>
-                        <@scenario.output step=step/>
-                        <@scenario.attachments step=step/>
-                    </#list>
+                    </div>
+                </div>
+            <@scenario.errorMessage step=step/>
+            <@scenario.output step=step/>
+            <@scenario.attachments step=step/>
+            </#list>
                 </li>
-            </#if>
+        </#if>
 
-            <#if (element.after?size > 0)>
+<#if (element.after?size > 0)>
                 <li class="list-group-item" style="opacity:.8">
-                    <#list element.after as after>
-                        <div class="row">
-                            <div class="col-1 text-left">
-                                <span class="text-secondary"><nobr>After</nobr></span>
-                            </div>
-                            <div class="col-7 text-left">
-                                <i>${after.glueMethodName}</i>
-                            </div>
-                            <div class="col-2 text-left">
-                                <nobr>${after.result.returnDurationString()}</nobr>
-                            </div>
-                            <div class="col-2 text-right">
-                                <@scenario.status step=after/>
-                            </div>
+                <#list element.after as after>
+                    <div class="row">
+                        <div class="col-1 text-left">
+                            <span class="text-secondary"><nobr>After</nobr></span>
                         </div>
-                        <@scenario.errorMessage step=after/>
-                        <@scenario.output step=after/>
-                        <@scenario.attachments step=after/>
-                    </#list>
+                        <div class="col-7 text-left">
+                            <i>${after.glueMethodName}</i>
+                        </div>
+                        <div class="col-2 text-left">
+                            <nobr>${after.result.returnDurationString()}</nobr>
+                        </div>
+                        <div class="col-2 text-right">
+                        <@scenario.status step=after/>
+                        </div>
+                    </div>
+                <@scenario.errorMessage step=after/>
+                <@scenario.output step=after/>
+                <@scenario.attachments step=after/>
+                </#list>
                 </li>
-            </#if>
+</#if>
         </ul>
     </@page.card>
 </@page.page>

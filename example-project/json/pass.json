@@ -7,12 +7,18 @@
         "id": ";",
         "keyword": "Scenario",
         "line": 2,
-        "name": "This scenario passes",
+        "name": "This scenario passes not attachment",
         "steps": [
           {
             "keyword": "Given ",
             "line": 3,
             "match": {
+              "arguments": [
+                {
+                  "val": "passes",
+                  "offset": 20
+                }
+              ],
               "location": "NativeConstructorAccessorImpl.java:-2"
             },
             "name": "this step passes",

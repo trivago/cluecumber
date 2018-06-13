@@ -64,6 +64,10 @@ class ResultMatch {
         return getMatch().getLocation();
     }
 
+    public List<Argument> getArguments() {
+        return getMatch().getArguments();
+    }
+
     public Status getStatus() {
         return Status.fromString(getResult().getStatus());
     }
