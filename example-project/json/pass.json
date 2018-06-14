@@ -13,12 +13,6 @@
             "keyword": "Given ",
             "line": 3,
             "match": {
-              "arguments": [
-                {
-                  "val": "passes",
-                  "offset": 20
-                }
-              ],
               "location": "NativeConstructorAccessorImpl.java:-2"
             },
             "name": "this step passes",

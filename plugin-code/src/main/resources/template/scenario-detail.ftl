@@ -66,15 +66,14 @@
                         <nobr>Step ${step?counter}</nobr>
                     </div>
                     <div class="col-7 text-left">
-                       <#if (step.arguments??)>
-                           <#list step.arguments as argument>
-                               <#if (step.name?contains(argument.val))>
-                                <span data-toggle="tooltip"
-                                      title="${step.glueMethodName}">${step.keyword} ${(step.name)?replace(argument.val, "<strong>bulldozer</strong>")}
-                                </span>
-                               </#if>
-                           </#list>
-                       </#if>
+                        <#assign stepName=step.name>
+                        <#list step.arguments as argument>
+                            <#assign stepName=stepName?replace("\\b${argument.val}\\b", "<strong>${argument.val}</strong>", "r")>
+                        </#list>
+                        <span data-toggle="tooltip"
+                              title="${step.glueMethodName}">
+                               ${step.keyword} ${stepName}
+                        </span>
                      <#if (step.rows?size > 0) >
                             <table class="table table-hover table-sm compact">
                                 <#list step.rows as row>
