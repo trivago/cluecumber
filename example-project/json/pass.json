@@ -7,7 +7,7 @@
         "id": ";",
         "keyword": "Scenario",
         "line": 2,
-        "name": "This scenario passes not attachment",
+        "name": "This scenario passes",
         "steps": [
           {
             "keyword": "Given ",
@@ -18,6 +18,28 @@
             "name": "this step passes",
             "result": {
               "duration": 244280571,
+              "status": "passed"
+            }
+          },
+          {
+            "keyword": "And ",
+            "line": 4,
+            "match": {
+              "arguments": [
+                {
+                  "val": "argument 1",
+                  "offset": 23
+                },
+                {
+                  "val": "argument 2",
+                  "offset": 38
+                }
+              ],
+              "location": "NativeConstructorAccessorImpl.java:-2"
+            },
+            "name": "this step passes with argument 1 and argument 2 as arguments",
+            "result": {
+              "duration": 255261782,
               "status": "passed"
             }
           }
