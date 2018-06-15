@@ -13,13 +13,13 @@ import org.junit.Test;
 import java.util.List;
 
 public class PojoTest {
-    private static final int EXPECTED_CLASS_COUNT = 16;
+    private static final int EXPECTED_CLASS_COUNT = 12;
     private static final String POJO_PACKAGE = "com.trivago.rta.json.pojo";
 
     @Test
     public void ensureExpectedPojoCount() {
         List<PojoClass> pojoClasses = PojoClassFactory.getPojoClasses(POJO_PACKAGE,
-                new FilterPackageInfo());
+                pojoClass -> !pojoClass.getSourcePath().contains("/test-classes/"));
         Affirm.affirmEquals("Classes added / removed?", EXPECTED_CLASS_COUNT, pojoClasses.size());
     }
 
