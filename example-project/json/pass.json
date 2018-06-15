@@ -20,6 +20,28 @@
               "duration": 244280571,
               "status": "passed"
             }
+          },
+          {
+            "keyword": "And ",
+            "line": 4,
+            "match": {
+              "arguments": [
+                {
+                  "val": "argument1",
+                  "offset": 23
+                },
+                {
+                  "val": "argument2",
+                  "offset": 38
+                }
+              ],
+              "location": "NativeConstructorAccessorImpl.java:-2"
+            },
+            "name": "this step passes with argument1 and argument2 as arguments",
+            "result": {
+              "duration": 255261782,
+              "status": "passed"
+            }
           }
         ],
         "tags": [
