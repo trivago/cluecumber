@@ -17,6 +17,9 @@
                             <#case "tag_summary">
                                 <a class="nav-link" href="pages/tag-summary.html">Tag Summary</a>
                                 <#break>
+                            <#case "feature_summary">
+                                <a class="nav-link" href="pages/feature-summary.html">Feature Summary</a>
+                                <#break>
                         </#switch>
                     </li>
                 </#list>

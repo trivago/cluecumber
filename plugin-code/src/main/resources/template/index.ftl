@@ -2,7 +2,7 @@
 <#import "macros/scenario.ftl" as scenarioMacros>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base="." links=["tag_summary"]>
+<@page.page base="." links=["feature_summary", "tag_summary"]>
     <#if hasCustomParameters()>
         <div class="row">
             <@page.card width="12" title="Custom Parameters" subtitle="">

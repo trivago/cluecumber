@@ -25,6 +25,7 @@ import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.FeatureSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 
@@ -61,9 +62,21 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
 
-        generateScenarioDetailPages(startPageCollection.getReports());
+        List<Report> reports = startPageCollection.getReports();
+        generateFeatureSummaryPage(reports);
+        generateTagSummaryPage(reports);
+        generateScenarioDetailPages(reports);
         generateStartPage(startPageCollection);
-        generateTagSummaryPage(startPageCollection.getReports());
+    }
+
+    private void generateFeatureSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+        System.out.println("GENERATE FEATURE SUMMARY");
+        FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(reports);
+        System.out.println("FEATURE SUMMARY: " + featureSummaryPageCollection);
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedFeatureSummaryPageContent(featureSummaryPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
@@ -72,13 +85,6 @@ public class ReportGenerator {
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
-    }
-
-    private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedStartPageContent(startPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     private void generateScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
@@ -93,6 +99,13 @@ public class ReportGenerator {
                                 element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
             }
         }
+    }
+
+    private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedStartPageContent(startPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                        PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     private void copyReportAssets() throws CluecumberPluginException {

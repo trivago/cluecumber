@@ -39,4 +39,7 @@ public class PluginSettings {
 
     public final static String TAG_SUMMARY_PAGE_NAME = "Tag Summary";
     public final static String TAG_SUMMARY_PAGE_PATH = "tag-summary";
+
+    public final static String FEATURE_SUMMARY_PAGE_NAME = "Feature Summary";
+    public final static String FEATURE_SUMMARY_PAGE_PATH = "feature-summary";
 }

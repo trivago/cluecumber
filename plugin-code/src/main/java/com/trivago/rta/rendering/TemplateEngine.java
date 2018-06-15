@@ -18,10 +18,12 @@ package com.trivago.rta.rendering;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.rendering.pages.FeatureSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.ScenarioDetailPageRenderer;
 import com.trivago.rta.rendering.pages.StartPageRenderer;
 import com.trivago.rta.rendering.pages.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.FeatureSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
 import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
 
@@ -31,23 +33,26 @@ import javax.inject.Singleton;
 @Singleton
 public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
-    private final StartPageRenderer startPageRenderer;
-    private final ScenarioDetailPageRenderer scenarioDetailPageRenderer;
+    private final FeatureSummaryPageRenderer featureSummaryPageRenderer;
     private final TagSummaryPageRenderer tagSummaryPageRenderer;
+    private final ScenarioDetailPageRenderer scenarioDetailPageRenderer;
+    private final StartPageRenderer startPageRenderer;
 
     @Inject
     public TemplateEngine(
             final TemplateConfiguration templateConfiguration,
-            final StartPageRenderer startPageRenderer,
+            final FeatureSummaryPageRenderer featureSummaryPageRenderer,
+            final TagSummaryPageRenderer tagSummaryPageRenderer,
             final ScenarioDetailPageRenderer scenarioDetailPageRenderer,
-            final TagSummaryPageRenderer tagSummaryPageRenderer
+            final StartPageRenderer startPageRenderer
     ) {
         this.templateConfiguration = templateConfiguration;
-        templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
-
+        this.featureSummaryPageRenderer = featureSummaryPageRenderer;
         this.startPageRenderer = startPageRenderer;
         this.scenarioDetailPageRenderer = scenarioDetailPageRenderer;
         this.tagSummaryPageRenderer = tagSummaryPageRenderer;
+
+        templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
     }
 
     String getRenderedStartPageContent(final StartPageCollection startPageCollection) throws CluecumberPluginException {
@@ -68,6 +73,13 @@ public class TemplateEngine {
         return RenderingUtils.prettifyHtml(tagSummaryPageRenderer.getRenderedContent(
                 tagSummaryPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_PAGE_PATH)
+        ));
+    }
+
+    String getRenderedFeatureSummaryPageContent(final FeatureSummaryPageCollection featureSummaryPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(featureSummaryPageRenderer.getRenderedContent(
+                featureSummaryPageCollection,
+                templateConfiguration.getTemplate(PluginSettings.FEATURE_SUMMARY_PAGE_PATH)
         ));
     }
 }
