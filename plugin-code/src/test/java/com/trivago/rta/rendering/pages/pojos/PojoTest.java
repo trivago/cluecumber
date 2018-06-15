@@ -1,4 +1,4 @@
-/*package com.trivago.rta.rendering.pages.pojos;
+package com.trivago.rta.rendering.pages.pojos;
 
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterPackageInfo;
@@ -32,4 +32,4 @@ public class PojoTest {
 
         validator.validate(POJO_PACKAGE, new FilterPackageInfo());
     }
-}*/
+}

@@ -1,12 +1,14 @@
 <#import "macros/page.ftl"as page>
 <#import "macros/scenario.ftl" as scenario>
 <#import "macros/navigation.ftl" as navigation>
+
 <@page.page base="../.." links=["tag_summary", "suite_overview"]>
     <script>
         function resizeIframe(obj) {
             obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
         }
     </script>
+
     <div class="row">
         <@page.card width="7" title="Scenario Result Chart" subtitle="">
             <div id="canvas-holder" class="w-100 text-center">
@@ -30,6 +32,7 @@
             </ul>
         </@page.card>
     </div>
+
     <@page.card width="12" title="${element.name?html}" subtitle="${element.description?html}">
         <ul class="list-group list-group-flush">
             <#if (element.before?size > 0)>
@@ -57,6 +60,7 @@
                     </#list>
                 </li>
             </#if>
+
             <#if (element.steps?size > 0)>
                 <li class="list-group-item">
                     <#list element.steps as step>
@@ -98,6 +102,7 @@
                     </#list>
                 </li>
             </#if>
+
             <#if (element.after?size > 0)>
                 <li class="list-group-item" style="opacity:.8">
                     <#list element.after as after>
