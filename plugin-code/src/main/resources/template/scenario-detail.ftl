@@ -24,10 +24,11 @@
                     <strong>${element.totalNumberOfSkippedSteps}</strong> skipped
                 </li>
                 <li class="list-group-item"><strong>Total Time:</strong>
-                    ${element.returnTotalDurationString()}</li>
-                 <#list element.tags as tag>
+                    ${element.returnTotalDurationString()}
+                </li>
+                <#list element.tags as tag>
                     <li class="list-group-item">${tag.name}</li>
-                 </#list>
+                </#list>
             </ul>
         </@page.card>
     </div>
@@ -39,7 +40,9 @@
                     <#list element.before as before>
                         <div class="row">
                             <div class="col-1 text-left">
-                                <span class="text-secondary"><nobr>Before</nobr></span>
+                                <span class="text-secondary">
+                                    <nobr>Before</nobr>
+                                </span>
                             </div>
                             <div class="col-7 text-left">
                                 <i>${before.glueMethodName}</i>
@@ -66,8 +69,14 @@
                                 <nobr>Step ${step?counter}</nobr>
                             </div>
                             <div class="col-7 text-left">
+                                <#assign stepName=step.name>
+                                <#list step.arguments as argument>
+                                    <#assign stepName=stepName?replace("\\b${argument.val}\\b", "<strong>${argument.val}</strong>", "r")>
+                                </#list>
                                 <span data-toggle="tooltip"
-                                      title="${step.glueMethodName}">${step.keyword} ${step.name}</span>
+                                      title="${step.glueMethodName}">
+                                    ${step.keyword} ${stepName}
+                                </span>
                                 <#if (step.rows?size > 0) >
                                     <table class="table table-hover table-sm compact">
                                         <#list step.rows as row>
@@ -99,7 +108,9 @@
                     <#list element.after as after>
                         <div class="row">
                             <div class="col-1 text-left">
-                                <span class="text-secondary"><nobr>After</nobr></span>
+                                <span class="text-secondary">
+                                    <nobr>After</nobr>
+                                </span>
                             </div>
                             <div class="col-7 text-left">
                                 <i>${after.glueMethodName}</i>
