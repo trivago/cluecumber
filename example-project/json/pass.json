@@ -27,11 +27,11 @@
             "match": {
               "arguments": [
                 {
-                  "val": "argument 1",
+                  "val": "argument1",
                   "offset": 23
                 },
                 {
-                  "val": "argument 2",
+                  "val": "argument2",
                   "offset": 38
                 }
               ],
