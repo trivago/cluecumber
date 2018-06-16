@@ -1,4 +1,4 @@
-package com.trivago.rta.rendering.pages;
+package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Element;

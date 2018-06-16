@@ -70,9 +70,7 @@ public class ReportGenerator {
     }
 
     private void generateFeatureSummaryPage(final List<Report> reports) throws CluecumberPluginException {
-        System.out.println("GENERATE FEATURE SUMMARY");
         FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(reports);
-        System.out.println("FEATURE SUMMARY: " + featureSummaryPageCollection);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedFeatureSummaryPageContent(featureSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +

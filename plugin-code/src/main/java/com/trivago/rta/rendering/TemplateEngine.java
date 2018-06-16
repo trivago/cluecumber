@@ -18,10 +18,10 @@ package com.trivago.rta.rendering;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.rendering.pages.FeatureSummaryPageRenderer;
-import com.trivago.rta.rendering.pages.ScenarioDetailPageRenderer;
-import com.trivago.rta.rendering.pages.StartPageRenderer;
-import com.trivago.rta.rendering.pages.TagSummaryPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.FeatureSummaryPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.ScenarioDetailPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.StartPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.FeatureSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.StartPageCollection;

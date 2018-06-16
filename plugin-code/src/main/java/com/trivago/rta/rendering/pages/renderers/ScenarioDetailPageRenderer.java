@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.trivago.rta.rendering.pages;
+package com.trivago.rta.rendering.pages.renderers;
 
 import be.ceau.chart.BarChart;
 import be.ceau.chart.data.BarData;

@@ -14,28 +14,20 @@
  * limitations under the License.
  */
 
-package com.trivago.rta.rendering.pages;
+package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.rendering.pages.pojos.PageCollection;
+import com.trivago.rta.rendering.pages.pojos.FeatureSummaryPageCollection;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
+import javax.inject.Singleton;
 
-class PageRenderer {
-
-    String processedContent(final Template template, final PageCollection pageCollection)
+@Singleton
+public class FeatureSummaryPageRenderer extends PageRenderer {
+    public String getRenderedContent(
+            final FeatureSummaryPageCollection featureSummaryPageCollection, final Template template)
             throws CluecumberPluginException {
-
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(pageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException("Could not render page content: " + e.getMessage());
-        }
-        return stringWriter.toString();
+        return processedContent(template, featureSummaryPageCollection);
     }
 }
+
