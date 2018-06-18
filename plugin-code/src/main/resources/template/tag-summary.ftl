@@ -2,7 +2,7 @@
 <#import "macros/scenario.ftl" as scenarioMacros>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base=".." links=["feature_summary", "suite_overview"]>
+<@page.page base=".." links=["feature_summary", "scenario_summary"]>
     <div class="row">
         <@page.card width="7" title="Tag Summary Result Chart" subtitle="">
             <div id="canvas-holder" class="w-100 text-center">
@@ -32,7 +32,7 @@
                 <tbody>
                     <#list tagStats as tag, tagStat>
                     <tr>
-                        <td class="text-left">${tag}</td>
+                        <td class="text-left"><a href="index.htm">${tag}</a></td>
                         <td class="text-right"><strong>${tagStat.total}</strong></td>
                         <td class="text-right">${tagStat.passed}</td>
                         <td class="text-right">${tagStat.failed}</td>

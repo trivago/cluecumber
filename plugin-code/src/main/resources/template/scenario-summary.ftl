@@ -24,12 +24,12 @@
     </#if>
 
     <div class="row">
-        <@page.card width="7" title="Test Suite Result Chart" subtitle="">
+        <@page.card width="7" title="Scenario Result Chart" subtitle="">
             <div id="canvas-holder" class="w-100 text-center">
                 <canvas id="chart-area" class="w50"></canvas>
             </div>
         </@page.card>
-        <@page.card width="5" title="Test Suite Summary" subtitle="">
+        <@page.card width="5" title="Scenario Summary" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios in
                     <strong>${totalNumberOfFeatures}</strong> Features

@@ -132,7 +132,7 @@ public class ReportGenerator {
         fileIO.writeContentToFile(
                 templateEngine.getRenderedStartPageContent(startPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                        PluginSettings.SCENARIO_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     /**

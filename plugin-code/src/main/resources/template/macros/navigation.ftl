@@ -11,8 +11,8 @@
                 <#list links as link>
                     <li class="nav-item">
                         <#switch link>
-                            <#case "suite_overview">
-                                <a class="nav-link" href="index.html">Suite Overview</a>
+                            <#case "scenario_summary">
+                                <a class="nav-link" href="index.html">Scenario Summary</a>
                                 <#break>
                             <#case "tag_summary">
                                 <a class="nav-link" href="pages/tag-summary.html">Tag Summary</a>
