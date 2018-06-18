@@ -4,10 +4,16 @@
 
 <@page.page base=".." links=["feature_summary", "suite_overview"]>
     <div class="row">
-        <@page.card width="12" title="Tag Summary Result Chart" subtitle="">
+        <@page.card width="7" title="Tag Summary Result Chart" subtitle="">
             <div id="canvas-holder" class="w-100 text-center">
                 <canvas id="chart-area" class="w-100"></canvas>
             </div>
+        </@page.card>
+        <@page.card width="5" title="Tag Summary" subtitle="">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>${tagStats?size}</strong> Tags
+                </li>
+            </ul>
         </@page.card>
     </div>
 

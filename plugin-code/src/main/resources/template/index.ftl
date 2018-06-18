@@ -4,14 +4,6 @@
 
 
 <@page.page base="." links=["feature_summary", "tag_summary"]>
-    <h1>FilterByFeature: <span id="filterByFeature">Nothing</span></h1>
-    <script>
-        function param(name) {
-            return (location.search.split(name + '=')[1] || '').split('&')[0];
-        }
-        window.alert(param("filterByFeature"));
-    </script>
-
     <#if hasCustomParameters()>
         <div class="row">
             <@page.card width="12" title="Custom Parameters" subtitle="">

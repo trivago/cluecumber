@@ -63,30 +63,10 @@ public class ReportGenerator {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
 
         List<Report> reports = startPageCollection.getReports();
-        generateFeatureSummaryPage(reports);
-        generateFeatureScenarioDetailPages(reports);
-        generateTagSummaryPages(reports);
-        generateTagScenarioDetailPages(reports);
         generateScenarioDetailPages(reports);
+        generateFeatureSummaryPage(reports);
+        generateTagSummaryPage(reports);
         generateStartPage(startPageCollection);
-    }
-
-    /**
-     * Generate detail pages for scenarios by tag.
-     *
-     * @param reports The {@link Report} list.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateTagScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
-    }
-
-    /**
-     * Generate detail pages for scenarios by feature.
-     *
-     * @param reports The {@link Report} list.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateFeatureScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
     }
 
     /**
@@ -96,6 +76,11 @@ public class ReportGenerator {
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
     private void generateFeatureSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                System.out.println("Feature: " + report.getId() + " => " + report.getName());
+            }
+        }
         FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedFeatureSummaryPageContent(featureSummaryPageCollection),
@@ -109,7 +94,7 @@ public class ReportGenerator {
      * @param reports The {@link Report} list.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
-    private void generateTagSummaryPages(final List<Report> reports) throws CluecumberPluginException {
+    private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
         TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
