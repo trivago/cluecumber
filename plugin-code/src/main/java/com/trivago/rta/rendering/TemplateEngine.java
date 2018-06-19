@@ -22,10 +22,10 @@ import com.trivago.rta.rendering.pages.renderers.FeatureSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.ScenarioDetailPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.StartPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.TagSummaryPageRenderer;
-import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
-import com.trivago.rta.rendering.pages.pojos.FeatureSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
-import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

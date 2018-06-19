@@ -20,7 +20,8 @@ package com.trivago.rta.constants;
  * Holder class for static plugin settings
  */
 public class PluginSettings {
-    public PluginSettings() {
+
+    PluginSettings() {
     }
 
     public final static String NAME = "Cluecumber Report Plugin";
@@ -32,7 +33,8 @@ public class PluginSettings {
 
     public final static String SCENARIO_DETAIL_PAGE_NAME = "Scenario Details";
     public final static String SCENARIO_DETAIL_TEMPLATE = "scenario-detail";
-    public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/scenario-detail/scenario_";
+    public final static String SCENARIO_DETAIL_PAGE_PATH = "scenario-detail";
+    public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/" + SCENARIO_DETAIL_PAGE_PATH + "/scenario_";
 
     public final static String SCENARIO_OVERVIEW_PAGE_NAME = "Scenario Summary";
     public final static String SCENARIO_OVERVIEW_TEMPLATE = "scenario-summary";
@@ -45,4 +47,10 @@ public class PluginSettings {
     public final static String FEATURE_SUMMARY_PAGE_NAME = "Feature Summary";
     public final static String FEATURE_SUMMARY_TEMPLATE = "feature-summary";
     public final static String FEATURE_SUMMARY_PAGE_PATH = "feature-summary";
+
+    public static final String FEATURE_SCENARIOS_PAGE_PATH = "feature-scenarios";
+    public static final String FEATURE_SCENARIOS_PAGE_FRAGMENT = "/" + FEATURE_SCENARIOS_PAGE_PATH + "/feature_";
+
+    public static final String TAG_SCENARIO_PAGE_PATH = "tag-scenarios";
+    public static final String TAG_SCENARIO_PAGE_FRAGMENT = "/" + TAG_SCENARIO_PAGE_PATH + "/tag_";
 }

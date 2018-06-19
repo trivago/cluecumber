@@ -27,8 +27,9 @@ import be.ceau.chart.options.ticks.LinearTicks;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.rendering.pages.pojos.TagStat;
-import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
+import com.trivago.rta.json.pojo.Tag;
+import com.trivago.rta.rendering.pages.pojos.ResultCount;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Singleton;
@@ -57,7 +58,7 @@ public class TagSummaryPageRenderer extends PageRenderer {
 
         int maxY = 0;
 
-        for (Map.Entry<String, TagStat> entry : tagSummaryPageCollection.getTagStats().entrySet()) {
+        for (Map.Entry<Tag, ResultCount> entry : tagSummaryPageCollection.getTagResultCounts().entrySet()) {
             passed.add(BigDecimal.valueOf(entry.getValue().getPassed()));
             failed.add(BigDecimal.valueOf(entry.getValue().getFailed()));
             skipped.add(BigDecimal.valueOf(entry.getValue().getSkipped()));
@@ -73,7 +74,12 @@ public class TagSummaryPageRenderer extends PageRenderer {
 
         BarData barData = new BarData();
         barData.setDatasets(barDatasets);
-        barData.setLabels(tagSummaryPageCollection.getTagStats().keySet());
+
+        List<String> keys = new ArrayList<>();
+        for (Tag tag : tagSummaryPageCollection.getTagResultCounts().keySet()) {
+            keys.add(tag.getName());
+        }
+        barData.setLabels(keys);
 
         BarOptions barOptions = new BarOptions();
         BarScale barScale = new BarScale();

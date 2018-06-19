@@ -1,9 +1,11 @@
-package com.trivago.rta.rendering.pages.pojos;
+package com.trivago.rta.rendering.pages.pojos.pagecollections;
+
+import com.trivago.rta.rendering.pages.pojos.ReportDetails;
 
 public class PageCollection {
     private ReportDetails reportDetails;
 
-    public PageCollection(String pageName) {
+    PageCollection(String pageName) {
         this.reportDetails = new ReportDetails(pageName);
     }
 

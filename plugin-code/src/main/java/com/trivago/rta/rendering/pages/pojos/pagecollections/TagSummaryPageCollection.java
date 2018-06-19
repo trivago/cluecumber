@@ -14,32 +14,33 @@
  * limitations under the License.
  */
 
-package com.trivago.rta.rendering.pages.pojos;
+package com.trivago.rta.rendering.pages.pojos.pagecollections;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Tag;
+import com.trivago.rta.rendering.pages.pojos.ResultCount;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TagSummaryPageCollection extends PageCollection {
-    private Map<String, TagStat> tagStats;
+    private Map<Tag, ResultCount> tagResultCounts;
 
     public TagSummaryPageCollection(List<Report> reports) {
         super(PluginSettings.TAG_SUMMARY_PAGE_NAME);
-        calculateTagStats(reports);
+        calculateTagResultCounts(reports);
     }
 
     /**
-     * Get a map of {@link TagStat} lists connected to tag names.
+     * Get a map of {@link ResultCount} lists connected to tag names.
      *
-     * @return a map of {@link TagStat} lists with tag names as keys.
+     * @return a map of {@link ResultCount} lists with tag names as keys.
      */
-    public Map<String, TagStat> getTagStats() {
-        return tagStats;
+    public Map<Tag, ResultCount> getTagResultCounts() {
+        return tagResultCounts;
     }
 
     /**
@@ -47,28 +48,28 @@ public class TagSummaryPageCollection extends PageCollection {
      *
      * @param reports The {@link Report} list.
      */
-    private void calculateTagStats(final List<Report> reports) {
+    private void calculateTagResultCounts(final List<Report> reports) {
         if (reports == null) return;
-        tagStats = new HashMap<>();
+        tagResultCounts = new HashMap<>();
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 for (Tag tag : element.getTags()) {
-                    TagStat tagStat = tagStats.getOrDefault(tag.getName(), new TagStat());
+                    ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
                     switch (element.getStatus()) {
                         case PASSED:
-                            tagStat.addPassed(1);
+                            tagResultCount.addPassed(1);
                             break;
                         case FAILED:
-                            tagStat.addFailed(1);
+                            tagResultCount.addFailed(1);
                             break;
                         case SKIPPED:
                         case PENDING:
                         case UNDEFINED:
                         case AMBIGUOUS:
-                            tagStat.addSkipped(1);
+                            tagResultCount.addSkipped(1);
                             break;
                     }
-                    tagStats.put(tag.getName(), tagStat);
+                    tagResultCounts.put(tag, tagResultCount);
                 }
             }
         }

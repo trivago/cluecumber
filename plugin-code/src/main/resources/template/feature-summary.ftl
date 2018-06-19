@@ -13,7 +13,28 @@
 
     <div class="row">
         <@page.card width="12" title="Feature Summary" subtitle="">
-            FEATURE SUMMARY
+            <table id="feature_summary" class="table table-hover renderAsDataTable">
+                <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Total</th>
+                    <th>Passed</th>
+                    <th>Failed</th>
+                    <th>Skipped</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <#list featureResultCounts as feature, featureResultCount>
+                    <tr>
+                        <td class="text-left"><a href="feature-scenarios/feature-${feature.id}.htm">${feature.name}</a></td>
+                        <td class="text-right"><strong>${featureResultCount.total}</strong></td>
+                        <td class="text-right">${featureResultCount.passed}</td>
+                        <td class="text-right">${featureResultCount.failed}</td>
+                        <td class="text-right">${featureResultCount.skipped}</td>
+                    </tr>
+                    </#list>
+                </tbody>
+            </table>
         </@page.card>
     </div>
 </@page.page>

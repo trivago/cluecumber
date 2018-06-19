@@ -1,9 +1,11 @@
-package com.trivago.rta.rendering.pages.pojos;
+package com.trivago.rta.rendering.pages.pojos.pagecollections;
 
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Result;
 import com.trivago.rta.json.pojo.Step;
+import com.trivago.rta.rendering.pages.pojos.CustomParameter;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
 import org.junit.Before;
 import org.junit.Test;
 

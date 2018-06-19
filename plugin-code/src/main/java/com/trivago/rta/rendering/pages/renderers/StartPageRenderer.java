@@ -26,7 +26,7 @@ import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
-import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;

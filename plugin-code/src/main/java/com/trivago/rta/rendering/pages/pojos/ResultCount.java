@@ -1,25 +1,25 @@
 package com.trivago.rta.rendering.pages.pojos;
 
-public class TagStat {
+public class ResultCount {
     private int passed;
     private int failed;
     private int skipped;
 
-    TagStat() {
+    public ResultCount() {
         this.passed = 0;
         this.failed = 0;
         this.skipped = 0;
     }
 
-    void addPassed(int passedCount) {
+    public void addPassed(int passedCount) {
         this.passed += passedCount;
     }
 
-    void addFailed(int failedCount) {
+    public void addFailed(int failedCount) {
         this.failed += failedCount;
     }
 
-    void addSkipped(int skippedCount) {
+    public void addSkipped(int skippedCount) {
         this.skipped += skippedCount;
     }
 
@@ -41,7 +41,7 @@ public class TagStat {
 
     @Override
     public String toString() {
-        return "TagStat{" +
+        return "ResultCount{" +
                 "passed=" + passed +
                 ", failed=" + failed +
                 ", skipped=" + skipped +

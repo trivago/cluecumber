@@ -17,7 +17,7 @@
 package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.rendering.pages.pojos.FeatureSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Singleton;

@@ -24,13 +24,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <#list tagStats as tag, tagStat>
+                    <#list tagResultCounts as tag, tagResultCount>
                     <tr>
-                        <td class="text-left"><a href="tag-scenarios.htm">${tag}</a></td>
-                        <td class="text-right"><strong>${tagStat.total}</strong></td>
-                        <td class="text-right">${tagStat.passed}</td>
-                        <td class="text-right">${tagStat.failed}</td>
-                        <td class="text-right">${tagStat.skipped}</td>
+                        <td class="text-left"><a href="tag-scenarios/tag-${tag.getUrlFriendlyName()}.htm">${tag.name}</a></td>
+                        <td class="text-right"><strong>${tagResultCount.total}</strong></td>
+                        <td class="text-right">${tagResultCount.passed}</td>
+                        <td class="text-right">${tagResultCount.failed}</td>
+                        <td class="text-right">${tagResultCount.skipped}</td>
                     </tr>
                     </#list>
                 </tbody>

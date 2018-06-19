@@ -2,7 +2,7 @@ package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
 import org.junit.Test;

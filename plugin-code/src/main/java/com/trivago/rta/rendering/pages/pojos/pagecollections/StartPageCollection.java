@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.trivago.rta.rendering.pages.pojos;
+package com.trivago.rta.rendering.pages.pojos.pagecollections;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.rendering.RenderingUtils;
+import com.trivago.rta.rendering.pages.pojos.CustomParameter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
