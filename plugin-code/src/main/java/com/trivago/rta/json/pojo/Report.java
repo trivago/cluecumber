@@ -28,6 +28,8 @@ public class Report {
     private String keyword = "";
     private String uri = "";
 
+    private transient int featureIndex = -1;
+
     public int getLine() {
         return line;
     }
@@ -84,6 +86,14 @@ public class Report {
         this.uri = uri;
     }
 
+    public int getFeatureIndex() {
+        return featureIndex;
+    }
+
+    public void setFeatureIndex(final int featureIndex) {
+        this.featureIndex = featureIndex;
+    }
+
     public long getTotalDuration() {
         long totalDurationMicroseconds = 0;
         for (Element element : elements) {
@@ -102,6 +112,7 @@ public class Report {
                 ", id='" + id + '\'' +
                 ", keyword='" + keyword + '\'' +
                 ", uri='" + uri + '\'' +
+                ", featureIndex=" + featureIndex +
                 '}';
     }
 }

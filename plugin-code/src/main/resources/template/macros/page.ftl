@@ -1,5 +1,7 @@
 <#macro page base links>
-    <!-- <#include "../snippets/license.ftl"> -->
+    <!--
+    <#include "../snippets/license.ftl">
+    -->
     <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">

@@ -32,15 +32,28 @@ import java.util.List;
 public class ReportPostProcessor implements PostProcessor<Report> {
 
     private final CluecumberLogger logger;
+    private List<String> featureUris;
 
     @Inject
     public ReportPostProcessor(final CluecumberLogger logger) {
         this.logger = logger;
+        featureUris = new ArrayList<>();
     }
 
     @Override
     public void postDeserialize(final Report report, final JsonElement jsonElement, final Gson gson) {
         mergeBackgroundScenarios(report);
+        addFeatureIndex(report);
+    }
+
+    private void addFeatureIndex(final Report report) {
+        if (report == null) return;
+
+        String featureUri = report.getUri();
+        if (!featureUris.contains(featureUri)){
+            featureUris.add(featureUri);
+        }
+        report.setFeatureIndex(featureUris.indexOf(featureUri));
     }
 
     private void mergeBackgroundScenarios(final Report report) {

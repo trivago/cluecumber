@@ -2,8 +2,13 @@
 <#import "macros/scenario.ftl" as scenarioMacros>
 <#import "macros/navigation.ftl" as navigation>
 
-
 <@page.page base="." links=["feature_summary", "tag_summary"]>
+
+    <@page.card width="12" title="Filters" subtitle="">
+        <p>Tag: ${filterTag!"none"}</p>
+        <p>Feature: ${filterFeature!"none"}</p>
+    </@page.card>
+
     <#if hasCustomParameters()>
         <div class="row">
             <@page.card width="12" title="Custom Parameters" subtitle="">

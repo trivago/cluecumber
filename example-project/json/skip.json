@@ -73,6 +73,6 @@
     "keyword": "Feature",
     "line": 1,
     "name": "Feature 2",
-    "uri": "features/005-failing-before-hook.feature"
+    "uri": "features/feature2.feature"
   }
 ]

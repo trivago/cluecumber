@@ -66,7 +66,7 @@ public class ReportGenerator {
         generateScenarioDetailPages(reports);
         generateFeatureSummaryPage(reports);
         generateTagSummaryPage(reports);
-        generateStartPage(startPageCollection);
+        generateScenarioOverviewPage(startPageCollection);
     }
 
     /**
@@ -128,7 +128,7 @@ public class ReportGenerator {
      * @param startPageCollection The {@link StartPageCollection}.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
-    private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+    private void generateScenarioOverviewPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
         fileIO.writeContentToFile(
                 templateEngine.getRenderedStartPageContent(startPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" +

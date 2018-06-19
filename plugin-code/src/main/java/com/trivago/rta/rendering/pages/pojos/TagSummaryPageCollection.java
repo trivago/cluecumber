@@ -26,11 +26,11 @@ import java.util.List;
 import java.util.Map;
 
 public class TagSummaryPageCollection extends PageCollection {
-    private List<Report> reports;
+    private Map<String, TagStat> tagStats;
 
     public TagSummaryPageCollection(List<Report> reports) {
         super(PluginSettings.TAG_SUMMARY_PAGE_NAME);
-        this.reports = reports;
+        calculateTagStats(reports);
     }
 
     /**
@@ -39,7 +39,17 @@ public class TagSummaryPageCollection extends PageCollection {
      * @return a map of {@link TagStat} lists with tag names as keys.
      */
     public Map<String, TagStat> getTagStats() {
-        Map<String, TagStat> tagStats = new HashMap<>();
+        return tagStats;
+    }
+
+    /**
+     * Calculate the numbers of failures, successes and skips per tag name.
+     *
+     * @param reports The {@link Report} list.
+     */
+    private void calculateTagStats(final List<Report> reports) {
+        if (reports == null) return;
+        tagStats = new HashMap<>();
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 for (Tag tag : element.getTags()) {
@@ -62,6 +72,5 @@ public class TagSummaryPageCollection extends PageCollection {
                 }
             }
         }
-        return tagStats;
     }
 }

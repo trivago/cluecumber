@@ -30,6 +30,6 @@
     "keyword": "Feature",
     "line": 1,
     "name": "Feature 2",
-    "uri": "features/003-one-failing-scenario.feature"
+    "uri": "features/feature2.feature"
   }
 ]
