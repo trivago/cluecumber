@@ -26,7 +26,7 @@ import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
@@ -46,20 +46,20 @@ public class StartPageRenderer extends PageRenderer {
     }
 
     public String getRenderedContent(
-            final StartPageCollection startPageCollection, final Template template)
+            final ScenarioSummaryPageCollection scenarioSummaryPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        addChartJsonToReportDetails(startPageCollection);
-        addCustomParametersToReportDetails(startPageCollection);
-        return processedContent(template, startPageCollection);
+        addChartJsonToReportDetails(scenarioSummaryPageCollection);
+        addCustomParametersToReportDetails(scenarioSummaryPageCollection);
+        return processedContent(template, scenarioSummaryPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final StartPageCollection startPageCollection) {
+    private void addChartJsonToReportDetails(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) {
         PieDataset pieDataset = new PieDataset();
         pieDataset.setData(
-                startPageCollection.getTotalNumberOfPassedScenarios(),
-                startPageCollection.getTotalNumberOfFailedScenarios(),
-                startPageCollection.getTotalNumberOfSkippedScenarios()
+                scenarioSummaryPageCollection.getTotalNumberOfPassedScenarios(),
+                scenarioSummaryPageCollection.getTotalNumberOfFailedScenarios(),
+                scenarioSummaryPageCollection.getTotalNumberOfSkippedScenarios()
         );
 
         Color passedColor = ChartColor.getChartColorByStatus(Status.PASSED);
@@ -72,10 +72,10 @@ public class StartPageRenderer extends PageRenderer {
         pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
         PieOptions pieOptions = new PieOptions();
 
-        startPageCollection.getReportDetails().setChartJson(new PieChart(pieData, pieOptions).toJson());
+        scenarioSummaryPageCollection.getReportDetails().setChartJson(new PieChart(pieData, pieOptions).toJson());
     }
 
-    private void addCustomParametersToReportDetails(final StartPageCollection startPageCollection) {
+    private void addCustomParametersToReportDetails(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) {
         Map<String, String> customParameterMap = propertyManager.getCustomParameters();
         if (customParameterMap == null || customParameterMap.isEmpty()) {
             return;
@@ -89,6 +89,6 @@ public class StartPageRenderer extends PageRenderer {
             customParameters.add(customParameter);
         }
 
-        startPageCollection.setCustomParameters(customParameters);
+        scenarioSummaryPageCollection.setCustomParameters(customParameters);
     }
 }

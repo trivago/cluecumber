@@ -2,7 +2,7 @@ package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.properties.PropertyManager;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class StartPageRendererTest {
     @Test
     public void testContentRendering() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        StartPageCollection startPageCollection = new StartPageCollection();
-        startPageRenderer.getRenderedContent(startPageCollection, template);
+        ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
+        startPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template);
     }
 }

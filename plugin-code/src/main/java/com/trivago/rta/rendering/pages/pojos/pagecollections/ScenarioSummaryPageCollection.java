@@ -27,11 +27,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StartPageCollection extends PageCollection {
+public class ScenarioSummaryPageCollection extends PageCollection {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
 
-    public StartPageCollection() {
+    public ScenarioSummaryPageCollection() {
         super(PluginSettings.SCENARIO_OVERVIEW_PAGE_NAME);
     }
 

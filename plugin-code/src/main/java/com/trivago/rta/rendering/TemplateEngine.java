@@ -24,7 +24,7 @@ import com.trivago.rta.rendering.pages.renderers.StartPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.TagSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 
 import javax.inject.Inject;
@@ -55,9 +55,9 @@ public class TemplateEngine {
         templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
     }
 
-    String getRenderedStartPageContent(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+    String getRenderedStartPageContent(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
         return RenderingUtils.prettifyHtml(startPageRenderer.getRenderedContent(
-                startPageCollection,
+                scenarioSummaryPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_OVERVIEW_TEMPLATE)
         ));
     }

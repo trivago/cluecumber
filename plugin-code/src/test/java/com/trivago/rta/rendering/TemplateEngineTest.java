@@ -4,7 +4,7 @@ import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 import com.trivago.rta.rendering.pages.renderers.FeatureSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.ScenarioDetailPageRenderer;
@@ -76,11 +76,11 @@ public class TemplateEngineTest {
 
     @Test
     public void getRenderedStartPageTest() throws CluecumberPluginException {
-        StartPageCollection startPageCollection = new StartPageCollection();
+        ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
         Template template = mock(Template.class);
         when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_OVERVIEW_TEMPLATE)).thenReturn(template);
-        when(startPageRenderer.getRenderedContent(startPageCollection, template)).thenReturn("START_PAGE_CONTENT");
-        String renderedStartPage = templateEngine.getRenderedStartPageContent(startPageCollection);
+        when(startPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template)).thenReturn("START_PAGE_CONTENT");
+        String renderedStartPage = templateEngine.getRenderedStartPageContent(scenarioSummaryPageCollection);
         assertThat(renderedStartPage, is("<html>\n <head></head>\n <body>\n  START_PAGE_CONTENT\n </body>\n</html>"));
     }
 }

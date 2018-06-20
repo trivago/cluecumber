@@ -5,7 +5,6 @@ import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Result;
 import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,21 +14,21 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class StartPageCollectionTest {
+public class ScenarioSummaryPageCollectionTest {
 
-    private StartPageCollection startPageCollection;
+    private ScenarioSummaryPageCollection scenarioSummaryPageCollection;
 
     @Before
     public void setup() {
-        startPageCollection = new StartPageCollection();
+        scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
     }
 
     @Test
     public void addReportsNullReportListTest() {
-        startPageCollection.addReports(null);
-        assertThat(startPageCollection.getReports().size(), is(0));
-        assertThat(startPageCollection.getTotalNumberOfFeatures(), is(0));
-        assertThat(startPageCollection.getTotalNumberOfScenarios(), is(0));
+        scenarioSummaryPageCollection.addReports(null);
+        assertThat(scenarioSummaryPageCollection.getReports().size(), is(0));
+        assertThat(scenarioSummaryPageCollection.getTotalNumberOfFeatures(), is(0));
+        assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(0));
     }
 
     @Test
@@ -37,10 +36,10 @@ public class StartPageCollectionTest {
         Report[] reportList = new Report[2];
         reportList[0] = new Report();
         reportList[1] = new Report();
-        startPageCollection.addReports(reportList);
-        assertThat(startPageCollection.getReports().size(), is(2));
-        assertThat(startPageCollection.getTotalNumberOfFeatures(), is(2));
-        assertThat(startPageCollection.getTotalNumberOfScenarios(), is(0));
+        scenarioSummaryPageCollection.addReports(reportList);
+        assertThat(scenarioSummaryPageCollection.getReports().size(), is(2));
+        assertThat(scenarioSummaryPageCollection.getTotalNumberOfFeatures(), is(2));
+        assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(0));
     }
 
     @Test
@@ -55,23 +54,23 @@ public class StartPageCollectionTest {
         report1.setElements(elements);
         reportList[0] = report1;
 
-        startPageCollection.addReports(reportList);
-        assertThat(startPageCollection.getReports().size(), is(1));
-        assertThat(startPageCollection.getTotalNumberOfFeatures(), is(1));
-        assertThat(startPageCollection.getTotalNumberOfScenarios(), is(1));
+        scenarioSummaryPageCollection.addReports(reportList);
+        assertThat(scenarioSummaryPageCollection.getReports().size(), is(1));
+        assertThat(scenarioSummaryPageCollection.getTotalNumberOfFeatures(), is(1));
+        assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(1));
     }
 
     @Test
     public void getTotalDurationDefaultValueTest() {
-        long totalDuration = startPageCollection.getTotalDuration();
+        long totalDuration = scenarioSummaryPageCollection.getTotalDuration();
         assertThat(totalDuration, is(0L));
     }
 
     @Test
     public void hasFailedScenariosTest() {
-        assertThat(startPageCollection.hasFailedScenarios(), is(false));
-        assertThat(startPageCollection.hasPassedScenarios(), is(false));
-        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
 
         Report[] reportList = new Report[1];
         Report report = new Report();
@@ -87,18 +86,18 @@ public class StartPageCollectionTest {
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;
-        startPageCollection.addReports(reportList);
+        scenarioSummaryPageCollection.addReports(reportList);
 
-        assertThat(startPageCollection.hasFailedScenarios(), is(true));
-        assertThat(startPageCollection.hasPassedScenarios(), is(false));
-        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(true));
+        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
     }
 
     @Test
     public void hasPassedScenariosTest() {
-        assertThat(startPageCollection.hasFailedScenarios(), is(false));
-        assertThat(startPageCollection.hasPassedScenarios(), is(false));
-        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
 
         Report[] reportList = new Report[1];
         Report report = new Report();
@@ -114,18 +113,18 @@ public class StartPageCollectionTest {
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;
-        startPageCollection.addReports(reportList);
+        scenarioSummaryPageCollection.addReports(reportList);
 
-        assertThat(startPageCollection.hasFailedScenarios(), is(false));
-        assertThat(startPageCollection.hasPassedScenarios(), is(true));
-        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(true));
+        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
     }
 
     @Test
     public void hasSkippedScenariosTest() {
-        assertThat(startPageCollection.hasFailedScenarios(), is(false));
-        assertThat(startPageCollection.hasPassedScenarios(), is(false));
-        assertThat(startPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
 
         Report[] reportList = new Report[1];
         Report report = new Report();
@@ -141,20 +140,20 @@ public class StartPageCollectionTest {
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;
-        startPageCollection.addReports(reportList);
+        scenarioSummaryPageCollection.addReports(reportList);
 
-        assertThat(startPageCollection.hasFailedScenarios(), is(false));
-        assertThat(startPageCollection.hasPassedScenarios(), is(false));
-        assertThat(startPageCollection.hasSkippedScenarios(), is(true));
+        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(true));
     }
 
     @Test
     public void hasCustomParametersTest() {
-        assertThat(startPageCollection.hasCustomParameters(), is(false));
+        assertThat(scenarioSummaryPageCollection.hasCustomParameters(), is(false));
         List<CustomParameter> customParameters = new ArrayList<>();
         CustomParameter parameter = new CustomParameter("key", "value");
         customParameters.add(parameter);
-        startPageCollection.setCustomParameters(customParameters);
-        assertThat(startPageCollection.hasCustomParameters(), is(true));
+        scenarioSummaryPageCollection.setCustomParameters(customParameters);
+        assertThat(scenarioSummaryPageCollection.hasCustomParameters(), is(true));
     }
 }

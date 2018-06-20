@@ -26,7 +26,7 @@ import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 
 import javax.inject.Inject;
@@ -57,14 +57,14 @@ public class ReportGenerator {
         this.logger = logger;
     }
 
-    public void generateReport(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+    public void generateReport(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
         copyReportAssets();
 
-        List<Report> reports = startPageCollection.getReports();
+        List<Report> reports = scenarioSummaryPageCollection.getReports();
         generateScenarioDetailPages(reports);
         generateFeaturePages(reports);
         generateTagPages(reports);
-        generateScenarioOverviewPage(startPageCollection);
+        generateScenarioOverviewPage(scenarioSummaryPageCollection);
     }
 
     /**
@@ -118,12 +118,12 @@ public class ReportGenerator {
     /**
      * Generate overview page for scenarios (this is the report start page).
      *
-     * @param startPageCollection The {@link StartPageCollection}.
+     * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
-    private void generateScenarioOverviewPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+    private void generateScenarioOverviewPage(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
         fileIO.writeContentToFile(
-                templateEngine.getRenderedStartPageContent(startPageCollection),
+                templateEngine.getRenderedStartPageContent(scenarioSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                         PluginSettings.SCENARIO_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }

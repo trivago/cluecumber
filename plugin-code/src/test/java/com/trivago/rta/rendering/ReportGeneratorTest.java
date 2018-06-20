@@ -8,7 +8,7 @@ import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class ReportGeneratorTest {
 
     @Test
     public void fileOperationsTest() throws Exception {
-        StartPageCollection startPageCollection = new StartPageCollection();
+        ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
 
         Report report1 = new Report();
         List<Element> elements1 = new ArrayList<>();
@@ -61,14 +61,14 @@ public class ReportGeneratorTest {
         report2.setElements(elements2);
 
         Report[] reportList = {report1, report2};
-        startPageCollection.addReports(reportList);
+        scenarioSummaryPageCollection.addReports(reportList);
 
-        when(templateEngine.getRenderedStartPageContent(startPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
+        when(templateEngine.getRenderedStartPageContent(scenarioSummaryPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
         when(templateEngine.getRenderedDetailPageContent(any(DetailPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
         when(templateEngine.getRenderedTagSummaryPageContent(any(TagSummaryPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
         when(templateEngine.getRenderedFeatureSummaryPageContent(any(FeatureSummaryPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
 
-        reportGenerator.generateReport(startPageCollection);
+        reportGenerator.generateReport(scenarioSummaryPageCollection);
 
         verify(fileSystemManager, times(6)).createDirectory(anyString());
         verify(fileSystemManager, times(11)).exportResource(any(Class.class), anyString(), anyString());

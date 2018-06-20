@@ -17,6 +17,7 @@
 package com.trivago.rta.rendering.pages.pojos.pagecollections;
 
 import com.trivago.rta.constants.PluginSettings;
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Tag;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TagSummaryPageCollection extends PageCollection {
+public class TagSummaryPageCollection extends SummaryPageCollection {
     private Map<Tag, ResultCount> tagResultCounts;
 
     public TagSummaryPageCollection(List<Report> reports) {
@@ -37,10 +38,26 @@ public class TagSummaryPageCollection extends PageCollection {
     /**
      * Get a map of {@link ResultCount} lists connected to tag names.
      *
-     * @return a map of {@link ResultCount} lists with tag names as keys.
+     * @return a map of {@link ResultCount} lists with tags as keys.
      */
     public Map<Tag, ResultCount> getTagResultCounts() {
         return tagResultCounts;
+    }
+
+    public int getTotalNumberOfTags() {
+        return tagResultCounts.size();
+    }
+
+    public int getTotalNumberOfPassedTags() {
+        return getNumberOfResultsWithStatus(tagResultCounts.values(), Status.PASSED);
+    }
+
+    public int getTotalNumberOfFailedTags() {
+        return getNumberOfResultsWithStatus(tagResultCounts.values(), Status.FAILED);
+    }
+
+    public int getTotalNumberOfSkippedTags() {
+        return getNumberOfResultsWithStatus(tagResultCounts.values(), Status.SKIPPED);
     }
 
     /**

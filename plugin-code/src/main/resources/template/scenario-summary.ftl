@@ -39,10 +39,9 @@
                 <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios in
                     <strong>${totalNumberOfFeatures}</strong> Features
                 </li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed /
-                    <strong>${totalNumberOfFailedScenarios}</strong> failed /
-                    <strong>${totalNumberOfSkippedScenarios}</strong> skipped
-                </li>
+                <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed</li>
+                <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed</li>
+                <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped</li>
                 <li class="list-group-item"><strong>Total Time:</strong> ${totalDurationString}</li>
             </ul>
         </@page.card>
