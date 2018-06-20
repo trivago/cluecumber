@@ -55,20 +55,7 @@ public class TagSummaryPageCollection extends PageCollection {
             for (Element element : report.getElements()) {
                 for (Tag tag : element.getTags()) {
                     ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
-                    switch (element.getStatus()) {
-                        case PASSED:
-                            tagResultCount.addPassed(1);
-                            break;
-                        case FAILED:
-                            tagResultCount.addFailed(1);
-                            break;
-                        case SKIPPED:
-                        case PENDING:
-                        case UNDEFINED:
-                        case AMBIGUOUS:
-                            tagResultCount.addSkipped(1);
-                            break;
-                    }
+                    updateResultCount(tagResultCount, element.getStatus());
                     tagResultCounts.put(tag, tagResultCount);
                 }
             }

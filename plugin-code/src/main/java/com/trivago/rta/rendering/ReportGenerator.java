@@ -62,8 +62,8 @@ public class ReportGenerator {
 
         List<Report> reports = startPageCollection.getReports();
         generateScenarioDetailPages(reports);
-        generateFeatureSummaryPage(reports);
-        generateTagSummaryPage(reports);
+        generateFeaturePages(reports);
+        generateTagPages(reports);
         generateScenarioOverviewPage(startPageCollection);
     }
 
@@ -73,7 +73,7 @@ public class ReportGenerator {
      * @param reports The {@link Report} list.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
-    private void generateFeatureSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+    private void generateFeaturePages(final List<Report> reports) throws CluecumberPluginException {
         FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedFeatureSummaryPageContent(featureSummaryPageCollection),
@@ -87,7 +87,7 @@ public class ReportGenerator {
      * @param reports The {@link Report} list.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
-    private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
+    private void generateTagPages(final List<Report> reports) throws CluecumberPluginException {
         TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),

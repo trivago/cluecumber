@@ -1,6 +1,7 @@
 package com.trivago.rta.rendering.pages.pojos.pagecollections;
 
 import com.trivago.rta.constants.PluginSettings;
+import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.rendering.pages.pojos.Feature;
 import com.trivago.rta.rendering.pages.pojos.ResultCount;
@@ -37,6 +38,9 @@ public class FeatureSummaryPageCollection extends PageCollection {
         for (Report report : reports) {
             Feature feature = new Feature(report.getName(), report.getFeatureIndex());
             ResultCount featureResultCount = this.featureResultCounts.getOrDefault(feature, new ResultCount());
+            for (Element element : report.getElements()) {
+                updateResultCount(featureResultCount, element.getStatus());
+            }
             this.featureResultCounts.put(feature, featureResultCount);
         }
     }
