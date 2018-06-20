@@ -78,9 +78,9 @@ public class TemplateEngineTest {
     public void getRenderedStartPageTest() throws CluecumberPluginException {
         ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
         Template template = mock(Template.class);
-        when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_OVERVIEW_TEMPLATE)).thenReturn(template);
+        when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE)).thenReturn(template);
         when(startPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template)).thenReturn("START_PAGE_CONTENT");
-        String renderedStartPage = templateEngine.getRenderedStartPageContent(scenarioSummaryPageCollection);
+        String renderedStartPage = templateEngine.getRenderedScenarioSummaryPageContent(scenarioSummaryPageCollection);
         assertThat(renderedStartPage, is("<html>\n <head></head>\n <body>\n  START_PAGE_CONTENT\n </body>\n</html>"));
     }
 }

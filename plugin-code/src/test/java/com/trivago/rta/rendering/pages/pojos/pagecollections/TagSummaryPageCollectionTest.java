@@ -29,6 +29,45 @@ public class TagSummaryPageCollectionTest {
 
     @Test
     public void getTagStatsTest() {
+        tagSummaryPageCollection = new TagSummaryPageCollection(getTestReports());
+        Map<Tag, ResultCount> tagStats = tagSummaryPageCollection.getTagResultCounts();
+        assertThat(tagStats.size(), is(3));
+
+        Tag tag1 = new Tag();
+        tag1.setName("tag1");
+        ResultCount tag1Stats = tagStats.get(tag1);
+        assertThat(tag1Stats.getTotal(), is(1));
+        assertThat(tag1Stats.getPassed(), is(0));
+        assertThat(tag1Stats.getFailed(), is(1));
+        assertThat(tag1Stats.getSkipped(), is(0));
+
+        Tag tag2 = new Tag();
+        tag2.setName("tag2");
+        ResultCount tag2Stats = tagStats.get(tag2);
+        assertThat(tag2Stats.getTotal(), is(2));
+        assertThat(tag2Stats.getPassed(), is(1));
+        assertThat(tag2Stats.getFailed(), is(1));
+        assertThat(tag2Stats.getSkipped(), is(0));
+
+        Tag tag3 = new Tag();
+        tag3.setName("tag3");
+        ResultCount tag3Stats = tagStats.get(tag3);
+        assertThat(tag3Stats.getTotal(), is(1));
+        assertThat(tag3Stats.getPassed(), is(0));
+        assertThat(tag3Stats.getFailed(), is(0));
+        assertThat(tag3Stats.getSkipped(), is(1));
+    }
+
+    @Test
+    public void getTagResultsTest(){
+        tagSummaryPageCollection = new TagSummaryPageCollection(getTestReports());
+        assertThat(tagSummaryPageCollection.getTotalNumberOfTags(), is(3));
+        assertThat(tagSummaryPageCollection.getTotalNumberOfFailedTags(), is(2));
+        assertThat(tagSummaryPageCollection.getTotalNumberOfPassedTags(), is(1));
+        assertThat(tagSummaryPageCollection.getTotalNumberOfSkippedTags(), is(1));
+    }
+
+    private List<Report> getTestReports() {
         List<Report> reports = new ArrayList<>();
 
         Report report = new Report();
@@ -86,38 +125,6 @@ public class TagSummaryPageCollectionTest {
         report.setElements(elements);
 
         reports.add(report);
-
-        tagSummaryPageCollection = new TagSummaryPageCollection(reports);
-        Map<Tag, ResultCount> tagStats = tagSummaryPageCollection.getTagResultCounts();
-
-        assertThat(tagStats.size(), is(3));
-
-        for (Map.Entry<Tag, ResultCount> tagResultCountEntry : tagStats.entrySet()) {
-            System.out.println("TAG " + tagResultCountEntry.getKey() + " => " + tagResultCountEntry.getValue());
-        }
-
-        Tag tag1 = new Tag();
-        tag1.setName("tag1");
-        ResultCount tag1Stats = tagStats.get(tag1);
-        assertThat(tag1Stats.getTotal(), is(1));
-        assertThat(tag1Stats.getPassed(), is(0));
-        assertThat(tag1Stats.getFailed(), is(1));
-        assertThat(tag1Stats.getSkipped(), is(0));
-
-        Tag tag2 = new Tag();
-        tag2.setName("tag2");
-        ResultCount tag2Stats = tagStats.get(tag2);
-        assertThat(tag2Stats.getTotal(), is(2));
-        assertThat(tag2Stats.getPassed(), is(1));
-        assertThat(tag2Stats.getFailed(), is(1));
-        assertThat(tag2Stats.getSkipped(), is(0));
-
-        Tag tag3 = new Tag();
-        tag3.setName("tag3");
-        ResultCount tag3Stats = tagStats.get(tag3);
-        assertThat(tag3Stats.getTotal(), is(1));
-        assertThat(tag3Stats.getPassed(), is(0));
-        assertThat(tag3Stats.getFailed(), is(0));
-        assertThat(tag3Stats.getSkipped(), is(1));
+        return reports;
     }
 }

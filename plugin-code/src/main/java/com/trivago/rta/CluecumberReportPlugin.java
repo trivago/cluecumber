@@ -123,7 +123,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
                         " features into test report:");
         logger.info(
                 "- " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SCENARIO_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 }
 

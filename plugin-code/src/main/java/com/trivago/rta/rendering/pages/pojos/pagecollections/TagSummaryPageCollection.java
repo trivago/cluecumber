@@ -26,6 +26,7 @@ import com.trivago.rta.rendering.pages.pojos.ResultCount;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TagSummaryPageCollection extends SummaryPageCollection {
     private Map<Tag, ResultCount> tagResultCounts;
@@ -42,6 +43,10 @@ public class TagSummaryPageCollection extends SummaryPageCollection {
      */
     public Map<Tag, ResultCount> getTagResultCounts() {
         return tagResultCounts;
+    }
+
+    public Set<Tag> getTags(){
+        return tagResultCounts.keySet();
     }
 
     public int getTotalNumberOfTags() {

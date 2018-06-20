@@ -32,7 +32,7 @@ public class ScenarioSummaryPageCollection extends PageCollection {
     private List<CustomParameter> customParameters;
 
     public ScenarioSummaryPageCollection() {
-        super(PluginSettings.SCENARIO_OVERVIEW_PAGE_NAME);
+        super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
     }
 
     public List<Report> getReports() {

@@ -10,6 +10,7 @@ import com.trivago.rta.rendering.pages.pojos.ResultCount;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class FeatureSummaryPageCollection extends SummaryPageCollection {
     private Map<Feature, ResultCount> resultCounts;
@@ -26,6 +27,10 @@ public class FeatureSummaryPageCollection extends SummaryPageCollection {
      */
     public Map<Feature, ResultCount> getFeatureResultCounts() {
         return resultCounts;
+    }
+
+    public Set<Feature> getFeatures(){
+        return resultCounts.keySet();
     }
 
     public int getTotalNumberOfFeatures() {

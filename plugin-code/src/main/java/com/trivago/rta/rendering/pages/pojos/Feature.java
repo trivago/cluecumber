@@ -4,26 +4,26 @@ import java.util.Objects;
 
 public class Feature {
     private String name;
-    private int id;
+    private int index;
 
-    public Feature(final String name, final int id) {
+    public Feature(final String name, final int index) {
         this.name = name;
-        this.id = id;
+        this.index = index;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getId() {
-        return id;
+    public int getIndex() {
+        return index;
     }
 
     @Override
     public String toString() {
         return "Feature{" +
                 "name='" + name + '\'' +
-                ", id='" + id + '\'' +
+                ", index='" + index + '\'' +
                 '}';
     }
 
@@ -32,12 +32,12 @@ public class Feature {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Feature feature = (Feature) o;
-        return id == feature.id &&
+        return index == feature.index &&
                 Objects.equals(name, feature.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id);
+        return Objects.hash(name, index);
     }
 }

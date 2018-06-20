@@ -55,10 +55,10 @@ public class TemplateEngine {
         templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
     }
 
-    String getRenderedStartPageContent(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
+    String getRenderedScenarioSummaryPageContent(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
         return RenderingUtils.prettifyHtml(startPageRenderer.getRenderedContent(
                 scenarioSummaryPageCollection,
-                templateConfiguration.getTemplate(PluginSettings.SCENARIO_OVERVIEW_TEMPLATE)
+                templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE)
         ));
     }
 

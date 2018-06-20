@@ -36,3 +36,8 @@
     </div>
 </#macro>
 
+<#macro graph>
+    <div id="canvas-holder" class="w-100 text-center">
+        <canvas id="chart-area" class="w-100"></canvas>
+    </div>
+</#macro>

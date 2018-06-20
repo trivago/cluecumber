@@ -36,9 +36,9 @@ public class PluginSettings {
     public final static String SCENARIO_DETAIL_PAGE_PATH = "scenario-detail";
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/" + SCENARIO_DETAIL_PAGE_PATH + "/scenario_";
 
-    public final static String SCENARIO_OVERVIEW_PAGE_NAME = "Scenario Summary";
-    public final static String SCENARIO_OVERVIEW_TEMPLATE = "scenario-summary";
-    public final static String SCENARIO_OVERVIEW_PAGE_PATH = "index";
+    public final static String SCENARIO_SUMMARY_PAGE_NAME = "Scenario Summary";
+    public final static String SCENARIO_SUMMARY_TEMPLATE = "scenario-summary";
+    public final static String SCENARIO_SUMMARY_PAGE_PATH = "index";
 
     public final static String TAG_SUMMARY_PAGE_NAME = "Tag Summary";
     public final static String TAG_SUMMARY_TEMPLATE = "tag-summary";

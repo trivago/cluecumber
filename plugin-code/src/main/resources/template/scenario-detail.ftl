@@ -10,24 +10,18 @@
     </script>
 
     <div class="row">
-        <@page.card width="7" title="Scenario Result Chart" subtitle="">
-            <div id="canvas-holder" class="w-100 text-center">
-                <canvas id="chart-area" class="w50"></canvas>
-            </div>
+        <@page.card width="8" title="Scenario Result Chart" subtitle="">
+            <@page.graph />
         </@page.card>
-        <@page.card width="5" title="Scenario Information" subtitle="">
+        <@page.card width="4" title="Scenario Information" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Steps</li>
-                <li class="list-group-item">
-                    <strong>${element.totalNumberOfPassedSteps}</strong> passed /
-                    <strong>${element.totalNumberOfFailedSteps}</strong> failed /
-                    <strong>${element.totalNumberOfSkippedSteps}</strong> skipped
-                </li>
-                <li class="list-group-item"><strong>Total Time:</strong>
-                    ${element.returnTotalDurationString()}
-                </li>
+                <li class="list-group-item"><strong>${element.totalNumberOfPassedSteps}</strong> passed</li>
+                <li class="list-group-item"><strong>${element.totalNumberOfFailedSteps}</strong> failed</li>
+                <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
+                <li class="list-group-item"><strong>Time:</strong> ${element.returnTotalDurationString()}</li>
                 <#list element.tags as tag>
-                    <li class="list-group-item">${tag.name}</li>
+                    <li class="list-group-item"><a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></li>
                 </#list>
             </ul>
         </@page.card>

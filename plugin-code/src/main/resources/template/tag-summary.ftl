@@ -4,12 +4,10 @@
 
 <@page.page base=".." links=["feature_summary", "scenario_summary"]>
     <div class="row">
-        <@page.card width="7" title="Tag Summary Result Chart" subtitle="">
-            <div id="canvas-holder" class="w-100 text-center">
-                <canvas id="chart-area" class="w-100"></canvas>
-            </div>
+        <@page.card width="8" title="Tag Summary Result Chart" subtitle="">
+            <@page.graph />
         </@page.card>
-        <@page.card width="5" title="Tag Summary" subtitle="">
+        <@page.card width="4" title="Tag Summary" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${totalNumberOfTags}</strong> Tags</li>
                 <li class="list-group-item"><strong>${totalNumberOfPassedTags}</strong> passed</li>
@@ -20,8 +18,8 @@
     </div>
 
     <div class="row">
-        <@page.card width="12" title="Tag Summary" subtitle="">
-            <table id="tag_summary" class="table table-hover renderAsDataTable">
+        <@page.card width="12" title="Available Tags" subtitle="">
+            <table index="tag_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Tag</th>
@@ -34,7 +32,7 @@
                 <tbody>
                     <#list tagResultCounts as tag, tagResultCount>
                     <tr>
-                        <td class="text-left"><a href="tag-scenarios/tag-${tag.getUrlFriendlyName()}.htm">${tag.name}</a></td>
+                        <td class="text-left"><a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
                         <td class="text-right">${tagResultCount.passed}</td>
                         <td class="text-right">${tagResultCount.failed}</td>

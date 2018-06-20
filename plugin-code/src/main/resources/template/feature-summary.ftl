@@ -4,12 +4,10 @@
 
 <@page.page base=".." links=["tag_summary", "scenario_summary"]>
     <div class="row">
-        <@page.card width="7" title="Feature Summary Result Chart" subtitle="">
-            <div id="canvas-holder" class="w-100 text-center">
-                <canvas id="chart-area" class="w-100"></canvas>
-            </div>
+        <@page.card width="8" title="Feature Summary Result Chart" subtitle="">
+            <@page.graph />
         </@page.card>
-        <@page.card width="5" title="Feature Summary" subtitle="">
+        <@page.card width="4" title="Feature Summary" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${totalNumberOfFeatures}</strong> Features</li>
                 <li class="list-group-item"><strong>${totalNumberOfPassedFeatures}</strong> passed</li>
@@ -20,8 +18,8 @@
     </div>
 
     <div class="row">
-        <@page.card width="12" title="Feature Summary" subtitle="">
-            <table id="feature_summary" class="table table-hover renderAsDataTable">
+        <@page.card width="12" title="Available Features" subtitle="">
+            <table index="feature_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Feature</th>
@@ -34,7 +32,8 @@
                 <tbody>
                     <#list featureResultCounts as feature, featureResultCount>
                     <tr>
-                        <td class="text-left"><a href="feature-scenarios/feature-${feature.id}.htm">${feature.name}</a>
+                        <td class="text-left"><a
+                                href="pages/feature-scenarios/feature_${feature.index}.html">${feature.name}</a>
                         </td>
                         <td class="text-right"><strong>${featureResultCount.total}</strong></td>
                         <td class="text-right">${featureResultCount.passed}</td>

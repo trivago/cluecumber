@@ -29,12 +29,10 @@
     </#if>
 
     <div class="row">
-        <@page.card width="7" title="Scenario Result Chart" subtitle="">
-            <div id="canvas-holder" class="w-100 text-center">
-                <canvas id="chart-area" class="w50"></canvas>
-            </div>
+        <@page.card width="8" title="Scenario Result Chart" subtitle="">
+            <@page.graph />
         </@page.card>
-        <@page.card width="5" title="Scenario Summary" subtitle="">
+        <@page.card width="4" title="Scenario Summary" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios in
                     <strong>${totalNumberOfFeatures}</strong> Features
@@ -42,7 +40,7 @@
                 <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed</li>
                 <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed</li>
                 <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped</li>
-                <li class="list-group-item"><strong>Total Time:</strong> ${totalDurationString}</li>
+                <li class="list-group-item"><strong>Time:</strong> ${totalDurationString}</li>
             </ul>
         </@page.card>
     </div>
