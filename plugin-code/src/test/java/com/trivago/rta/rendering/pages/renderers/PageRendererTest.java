@@ -7,6 +7,7 @@ import freemarker.template.TemplateException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.io.Writer;
 
 import static org.hamcrest.core.Is.is;
@@ -41,5 +42,12 @@ public class PageRendererTest {
         assertThat(processedContent, is(""));
     }
 
-
+    @Test(expected = CluecumberPluginException.class)
+    public void processedContentIoExceptionTest() throws Exception {
+        Template template = mock(Template.class);
+        doThrow(new IOException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
+        PageCollection pageCollection = mock(PageCollection.class);
+        String processedContent = pageRenderer.processedContent(template, pageCollection);
+        assertThat(processedContent, is(""));
+    }
 }
