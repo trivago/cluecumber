@@ -1,4 +1,4 @@
-<#macro page base links>
+<#macro page base links headline>
     <!--
     <#include "../snippets/license.ftl">
     -->
@@ -13,6 +13,9 @@
         <@navigation.build links=links />
     <main role="main" class="container">
         <div class="cluecumber-template">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                <h3>${headline}</h3>
+            </div>
             <#nested>
         </div>
     </main>

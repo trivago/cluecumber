@@ -64,7 +64,7 @@ public class ReportGeneratorTest {
         scenarioSummaryPageCollection.addReports(reportList);
 
         when(templateEngine.getRenderedScenarioSummaryPageContent(scenarioSummaryPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
-        when(templateEngine.getRenderedDetailPageContent(any(DetailPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
+        when(templateEngine.getRenderedScenarioDetailPageContent(any(DetailPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
         when(templateEngine.getRenderedTagSummaryPageContent(any(TagSummaryPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
         when(templateEngine.getRenderedFeatureSummaryPageContent(any(FeatureSummaryPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
 
@@ -72,7 +72,7 @@ public class ReportGeneratorTest {
 
         verify(fileSystemManager, times(6)).createDirectory(anyString());
         verify(fileSystemManager, times(11)).exportResource(any(Class.class), anyString(), anyString());
-        verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
+        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
         verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_FEATURE_PAGE_CONTENT"), anyString());

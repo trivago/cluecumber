@@ -2,7 +2,7 @@
 <#import "macros/scenario.ftl" as scenarioMacros>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base=".." links=["feature_summary", "scenario_summary"]>
+<@page.page base=".." links=["feature_summary", "scenario_summary"] headline="All Tags">
     <div class="row">
         <@page.card width="8" title="Tag Summary Result Chart" subtitle="">
             <@page.graph />

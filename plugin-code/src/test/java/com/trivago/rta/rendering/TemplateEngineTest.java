@@ -8,7 +8,7 @@ import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPage
 import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 import com.trivago.rta.rendering.pages.renderers.FeatureSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.ScenarioDetailPageRenderer;
-import com.trivago.rta.rendering.pages.renderers.StartPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.ScenarioSummaryPageRenderer;
 import com.trivago.rta.rendering.pages.renderers.TagSummaryPageRenderer;
 import freemarker.template.Template;
 import org.junit.Before;
@@ -24,7 +24,7 @@ public class TemplateEngineTest {
     private FeatureSummaryPageRenderer featureSummaryPageRenderer;
     private TagSummaryPageRenderer tagSummaryPageRenderer;
     private ScenarioDetailPageRenderer scenarioDetailPageRenderer;
-    private StartPageRenderer startPageRenderer;
+    private ScenarioSummaryPageRenderer scenarioSummaryPageRenderer;
 
     private TemplateEngine templateEngine;
 
@@ -34,13 +34,13 @@ public class TemplateEngineTest {
         featureSummaryPageRenderer = mock(FeatureSummaryPageRenderer.class);
         tagSummaryPageRenderer = mock(TagSummaryPageRenderer.class);
         scenarioDetailPageRenderer = mock(ScenarioDetailPageRenderer.class);
-        startPageRenderer = mock(StartPageRenderer.class);
+        scenarioSummaryPageRenderer = mock(ScenarioSummaryPageRenderer.class);
         templateEngine = new TemplateEngine(
                 templateConfiguration,
                 featureSummaryPageRenderer,
                 tagSummaryPageRenderer,
                 scenarioDetailPageRenderer,
-                startPageRenderer
+                scenarioSummaryPageRenderer
         );
     }
 
@@ -70,7 +70,7 @@ public class TemplateEngineTest {
         Template template = mock(Template.class);
         when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_DETAIL_TEMPLATE)).thenReturn(template);
         when(scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
-        String renderedDetailPage = templateEngine.getRenderedDetailPageContent(detailPageCollection);
+        String renderedDetailPage = templateEngine.getRenderedScenarioDetailPageContent(detailPageCollection);
         assertThat(renderedDetailPage, is("<html>\n <head></head>\n <body>\n  DETAIL_PAGE_CONTENT\n </body>\n</html>"));
     }
 
@@ -79,7 +79,7 @@ public class TemplateEngineTest {
         ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
         Template template = mock(Template.class);
         when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE)).thenReturn(template);
-        when(startPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template)).thenReturn("START_PAGE_CONTENT");
+        when(scenarioSummaryPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template)).thenReturn("START_PAGE_CONTENT");
         String renderedStartPage = templateEngine.getRenderedScenarioSummaryPageContent(scenarioSummaryPageCollection);
         assertThat(renderedStartPage, is("<html>\n <head></head>\n <body>\n  START_PAGE_CONTENT\n </body>\n</html>"));
     }

@@ -21,11 +21,16 @@ import be.ceau.chart.color.Color;
 import be.ceau.chart.data.PieData;
 import be.ceau.chart.dataset.PieDataset;
 import be.ceau.chart.options.PieOptions;
+import com.rits.cloning.Cloner;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.json.pojo.Element;
+import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.json.pojo.Tag;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
+import com.trivago.rta.rendering.pages.pojos.Feature;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import freemarker.template.Template;
 
@@ -36,13 +41,18 @@ import java.util.List;
 import java.util.Map;
 
 @Singleton
-public class StartPageRenderer extends PageRenderer {
+public class ScenarioSummaryPageRenderer extends PageRenderer {
+    public enum Filter {
+        TAG, FEATURE
+    }
 
     private PropertyManager propertyManager;
+    private Cloner cloner;
 
     @Inject
-    public StartPageRenderer(PropertyManager propertyManager) {
+    public ScenarioSummaryPageRenderer(PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
+        cloner = new Cloner();
     }
 
     public String getRenderedContent(
@@ -53,6 +63,47 @@ public class StartPageRenderer extends PageRenderer {
         addCustomParametersToReportDetails(scenarioSummaryPageCollection);
         return processedContent(template, scenarioSummaryPageCollection);
     }
+
+    public String getRenderedContentByTagFilter(
+            final ScenarioSummaryPageCollection scenarioSummaryPageCollection,
+            final Template template,
+            final Tag tag) throws CluecumberPluginException {
+
+        ScenarioSummaryPageCollection scenarioSummaryPageCollectionClone = cloner.deepClone(scenarioSummaryPageCollection);
+        scenarioSummaryPageCollectionClone.setTagFilter(tag);
+        for (Report report : scenarioSummaryPageCollectionClone.getReports()) {
+            List<Element> elements = new ArrayList<>();
+            for (Element element : report.getElements()) {
+                if (element.getTags().contains(tag)){
+                    elements.add(element);
+                }
+            }
+            report.setElements(elements);
+        }
+        addChartJsonToReportDetails(scenarioSummaryPageCollectionClone);
+        return processedContent(template, scenarioSummaryPageCollectionClone);
+    }
+
+    public String getRenderedContentByFeatureFilter(
+            final ScenarioSummaryPageCollection scenarioSummaryPageCollection,
+            final Template template,
+            final Feature feature) throws CluecumberPluginException {
+
+        ScenarioSummaryPageCollection scenarioSummaryPageCollectionClone = cloner.deepClone(scenarioSummaryPageCollection);
+        scenarioSummaryPageCollectionClone.setFeatureFilter(feature);
+        List<Report> reports = new ArrayList<>();
+        for (Report report : scenarioSummaryPageCollectionClone.getReports()) {
+            if(report.getFeatureIndex() == feature.getIndex()){
+                reports.add(report);
+            }
+        }
+        Report[] reportArray = reports.toArray(new Report[0]);
+        scenarioSummaryPageCollectionClone.clearReports();
+        scenarioSummaryPageCollectionClone.addReports(reportArray);
+        addChartJsonToReportDetails(scenarioSummaryPageCollectionClone);
+        return processedContent(template, scenarioSummaryPageCollectionClone);
+    }
+
 
     private void addChartJsonToReportDetails(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) {
         PieDataset pieDataset = new PieDataset();

@@ -9,20 +9,20 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
 
-public class StartPageRendererTest {
+public class ScenarioSummaryPageRendererTest {
 
-    private StartPageRenderer startPageRenderer;
+    private ScenarioSummaryPageRenderer scenarioSummaryPageRenderer;
 
     @Before
     public void setup() {
         PropertyManager propertyManager = mock(PropertyManager.class);
-        startPageRenderer = new StartPageRenderer(propertyManager);
+        scenarioSummaryPageRenderer = new ScenarioSummaryPageRenderer(propertyManager);
     }
 
     @Test
     public void testContentRendering() throws CluecumberPluginException {
         Template template = mock(Template.class);
         ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
-        startPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template);
+        scenarioSummaryPageRenderer.getRenderedContent(scenarioSummaryPageCollection, template);
     }
 }

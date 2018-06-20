@@ -27,7 +27,6 @@ public class ScenarioSummaryPageCollectionTest {
     public void addReportsNullReportListTest() {
         scenarioSummaryPageCollection.addReports(null);
         assertThat(scenarioSummaryPageCollection.getReports().size(), is(0));
-        assertThat(scenarioSummaryPageCollection.getTotalNumberOfFeatures(), is(0));
         assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(0));
     }
 
@@ -38,7 +37,6 @@ public class ScenarioSummaryPageCollectionTest {
         reportList[1] = new Report();
         scenarioSummaryPageCollection.addReports(reportList);
         assertThat(scenarioSummaryPageCollection.getReports().size(), is(2));
-        assertThat(scenarioSummaryPageCollection.getTotalNumberOfFeatures(), is(2));
         assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(0));
     }
 
@@ -56,7 +54,6 @@ public class ScenarioSummaryPageCollectionTest {
 
         scenarioSummaryPageCollection.addReports(reportList);
         assertThat(scenarioSummaryPageCollection.getReports().size(), is(1));
-        assertThat(scenarioSummaryPageCollection.getTotalNumberOfFeatures(), is(1));
         assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(1));
     }
 

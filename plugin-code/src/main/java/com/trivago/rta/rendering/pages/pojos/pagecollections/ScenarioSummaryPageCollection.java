@@ -20,8 +20,10 @@ import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.json.pojo.Tag;
 import com.trivago.rta.rendering.RenderingUtils;
 import com.trivago.rta.rendering.pages.pojos.CustomParameter;
+import com.trivago.rta.rendering.pages.pojos.Feature;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +32,8 @@ import java.util.List;
 public class ScenarioSummaryPageCollection extends PageCollection {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
+    private Tag tagFilter;
+    private Feature featureFilter;
 
     public ScenarioSummaryPageCollection() {
         super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
@@ -39,15 +43,15 @@ public class ScenarioSummaryPageCollection extends PageCollection {
         return reports;
     }
 
+    public List<Report> clearReports() {
+        return reports = new ArrayList<>();
+    }
+
     public void addReports(final Report[] reportList) {
         if (reportList == null) {
             return;
         }
         this.reports.addAll(Arrays.asList(reportList));
-    }
-
-    public int getTotalNumberOfFeatures() {
-        return reports.size();
     }
 
     public int getTotalNumberOfScenarios() {
@@ -108,5 +112,21 @@ public class ScenarioSummaryPageCollection extends PageCollection {
 
     public boolean hasCustomParameters() {
         return customParameters != null && !customParameters.isEmpty();
+    }
+
+    public Tag getTagFilter() {
+        return tagFilter;
+    }
+
+    public void setTagFilter(final Tag tagFilter) {
+        this.tagFilter = tagFilter;
+    }
+
+    public Feature getFeatureFilter() {
+        return featureFilter;
+    }
+
+    public void setFeatureFilter(final Feature featureFilter) {
+        this.featureFilter = featureFilter;
     }
 }

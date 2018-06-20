@@ -2,7 +2,7 @@
 <#import "macros/scenario.ftl" as scenario>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"]>
+<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario '${element.name?html}'">
     <script>
         function resizeIframe(obj) {
             obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';

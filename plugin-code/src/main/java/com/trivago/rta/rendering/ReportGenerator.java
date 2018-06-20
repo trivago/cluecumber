@@ -67,22 +67,23 @@ public class ReportGenerator {
     }
 
     /**
-     * Generate overview pages for features.
+     * Generate pages for features.
      *
      * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
     private void generateFeaturePages(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
+        // Feature summary page
         FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(scenarioSummaryPageCollection.getReports());
         fileIO.writeContentToFile(
                 templateEngine.getRenderedFeatureSummaryPageContent(featureSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 
-
+        // Feature scenario list pages
         for (Feature feature : featureSummaryPageCollection.getFeatures()) {
             fileIO.writeContentToFile(
-                    templateEngine.getRenderedScenarioSummaryPageContent(scenarioSummaryPageCollection),
+                    templateEngine.getRenderedScenarioSummaryPageContentByFeatureFilter(scenarioSummaryPageCollection, feature),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                             PluginSettings.PAGES_DIRECTORY + PluginSettings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
                             feature.getIndex() + PluginSettings.HTML_FILE_EXTENSION);
@@ -90,21 +91,23 @@ public class ReportGenerator {
     }
 
     /**
-     * Generate overview page for tags.
+     * Generate pages for tags.
      *
      * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
     private void generateTagPages(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
+        // Tag summary page
         TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(scenarioSummaryPageCollection.getReports());
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 
+        // Tag scenario list pages
         for (Tag tag : tagSummaryPageCollection.getTags()) {
             fileIO.writeContentToFile(
-                    templateEngine.getRenderedScenarioSummaryPageContent(scenarioSummaryPageCollection),
+                    templateEngine.getRenderedScenarioSummaryPageContentByTagFilter(scenarioSummaryPageCollection, tag),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                             PluginSettings.PAGES_DIRECTORY + PluginSettings.TAG_SCENARIO_PAGE_FRAGMENT +
                             tag.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
@@ -123,7 +126,7 @@ public class ReportGenerator {
             for (Element element : report.getElements()) {
                 detailPageCollection = new DetailPageCollection(element);
                 fileIO.writeContentToFile(
-                        templateEngine.getRenderedDetailPageContent(detailPageCollection),
+                        templateEngine.getRenderedScenarioDetailPageContent(detailPageCollection),
                         propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                                 PluginSettings.PAGES_DIRECTORY + PluginSettings.SCENARIO_DETAIL_PAGE_FRAGMENT +
                                 element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
