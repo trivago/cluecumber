@@ -28,7 +28,9 @@
 <#macro card width title subtitle>
     <div class="col-sm-${width}">
         <div class="card h-100">
-            <div class="card-header">${title}</div>
+            <#if title != "">
+                <div class="card-header">${title}</div>
+            </#if>
             <#if subtitle != "">
                 <div class="card-header text-secondary">${subtitle}</div>
             </#if>

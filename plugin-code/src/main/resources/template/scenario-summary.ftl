@@ -4,19 +4,22 @@
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios with Tag ${tagFilter.name}">
+    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
+    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
     <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
+    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
+    <#assign links = ["feature_summary", "tag_summary"]>
 </#if>
 
-<@page.page base=base links=["feature_summary", "tag_summary"] headline=headline>
+<@page.page base=base links=links headline=headline>
     <#if hasCustomParameters()>
         <div class="row">
-            <@page.card width="12" title="Custom Parameters" subtitle="">
+            <@page.card width="12" title="" subtitle="">
                 <ul class="list-group list-group-flush">
                 <#list customParameters as customParameter>
                     <li class="list-group-item"><strong>${customParameter.key}:</strong>

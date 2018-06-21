@@ -12,13 +12,13 @@
                     <li class="nav-item">
                         <#switch link>
                             <#case "scenario_summary">
-                                <a class="nav-link" href="index.html">Scenario Summary</a>
+                                <a class="nav-link" href="index.html">All Scenarios</a>
                                 <#break>
                             <#case "tag_summary">
-                                <a class="nav-link" href="pages/tag-summary.html">Tag Summary</a>
+                                <a class="nav-link" href="pages/tag-summary.html">All Tags</a>
                                 <#break>
                             <#case "feature_summary">
-                                <a class="nav-link" href="pages/feature-summary.html">Feature Summary</a>
+                                <a class="nav-link" href="pages/feature-summary.html">All Features</a>
                                 <#break>
                         </#switch>
                     </li>
