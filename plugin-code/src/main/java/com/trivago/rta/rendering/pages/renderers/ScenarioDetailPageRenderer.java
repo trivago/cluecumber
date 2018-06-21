@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.trivago.rta.rendering.pages;
+package com.trivago.rta.rendering.pages.renderers;
 
 import be.ceau.chart.BarChart;
 import be.ceau.chart.data.BarData;
@@ -26,7 +26,7 @@ import be.ceau.chart.options.ticks.LinearTicks;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Step;
-import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Singleton;

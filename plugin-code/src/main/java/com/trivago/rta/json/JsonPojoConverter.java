@@ -32,19 +32,21 @@ import javax.inject.Singleton;
 public class JsonPojoConverter {
 
     private final Gson gsonParser;
+    private final Gson gsonParserWithProcessors;
 
     @Inject
     public JsonPojoConverter(final ReportPostProcessor reportPostProcessor, final ElementPostProcessor elementPostProcessor) {
         GsonFireBuilder builder = new GsonFireBuilder()
                 .registerPostProcessor(Report.class, reportPostProcessor)
                 .registerPostProcessor(Element.class, elementPostProcessor);
-        gsonParser = builder.createGson();
+        gsonParserWithProcessors = builder.createGson();
+        gsonParser = new Gson();
     }
 
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberPluginException {
         Report[] reports = null;
         try {
-            reports = gsonParser.fromJson(json, Report[].class);
+            reports = gsonParserWithProcessors.fromJson(json, Report[].class);
         } catch (JsonParseException e) {
             throw new CluecumberPluginException(e.getMessage());
         }

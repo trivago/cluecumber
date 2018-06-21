@@ -23,7 +23,7 @@ import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.ReportGenerator;
-import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -99,26 +99,27 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         logger.info("-----------------------------------------------");
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
         logger.info("-----------------------------------------------");
-
         propertyManager.logProperties();
 
+        // Create attachment directory here since they are handled during json generation.
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");
-        fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/pages/scenario-detail");
 
-        StartPageCollection startPageCollection = new StartPageCollection();
+        ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
         List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths();
         for (Path jsonFilePath : jsonFilePaths) {
             String jsonString = fileIO.readContentFromFile(jsonFilePath.toString());
             try {
                 Report[] reports = jsonPojoConverter.convertJsonToReportPojos(jsonString);
-                startPageCollection.addReports(reports);
+                scenarioSummaryPageCollection.addReports(reports);
             } catch (CluecumberPluginException e) {
                 logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
-        reportGenerator.generateReport(startPageCollection);
-        logger.info("Converted " + startPageCollection.getTotalNumberOfFeatures() + " features into test report:");
-        logger.info("- " + propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+        reportGenerator.generateReport(scenarioSummaryPageCollection);
+        logger.info(
+                "Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 }
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.trivago.rta.rendering.pages.pojos;
+package com.trivago.rta.rendering.pages.pojos.pagecollections;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.json.pojo.Element;

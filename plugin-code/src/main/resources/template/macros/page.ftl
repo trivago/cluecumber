@@ -1,5 +1,7 @@
-<#macro page base links>
-    <!-- <#include "../snippets/license.ftl"> -->
+<#macro page base links headline>
+    <!--
+    <#include "../snippets/license.ftl">
+    -->
     <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">
@@ -11,6 +13,9 @@
         <@navigation.build links=links />
     <main role="main" class="container">
         <div class="cluecumber-template">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                <h3>${headline}</h3>
+            </div>
             <#nested>
         </div>
     </main>
@@ -23,7 +28,9 @@
 <#macro card width title subtitle>
     <div class="col-sm-${width}">
         <div class="card h-100">
-            <div class="card-header">${title}</div>
+            <#if title != "">
+                <div class="card-header">${title}</div>
+            </#if>
             <#if subtitle != "">
                 <div class="card-header text-secondary">${subtitle}</div>
             </#if>
@@ -34,3 +41,8 @@
     </div>
 </#macro>
 
+<#macro graph>
+    <div id="canvas-holder" class="w-100 text-center">
+        <canvas id="chart-area" class="w-100"></canvas>
+    </div>
+</#macro>

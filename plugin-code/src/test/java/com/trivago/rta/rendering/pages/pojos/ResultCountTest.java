@@ -6,12 +6,12 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class TagStatTest {
-    private TagStat tagStat;
+public class ResultCountTest {
+    private ResultCount tagStat;
 
     @Before
     public void setup() {
-        tagStat = new TagStat();
+        tagStat = new ResultCount();
     }
 
     @Test

@@ -6,16 +6,19 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" index="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <#list links as link>
                     <li class="nav-item">
                         <#switch link>
-                            <#case "suite_overview">
-                                <a class="nav-link" href="index.html">Suite Overview</a>
+                            <#case "scenario_summary">
+                                <a class="nav-link" href="index.html">All Scenarios</a>
                                 <#break>
                             <#case "tag_summary">
-                                <a class="nav-link" href="pages/tag-summary.html">Tag Summary</a>
+                                <a class="nav-link" href="pages/tag-summary.html">All Tags</a>
+                                <#break>
+                            <#case "feature_summary">
+                                <a class="nav-link" href="pages/feature-summary.html">All Features</a>
                                 <#break>
                         </#switch>
                     </li>

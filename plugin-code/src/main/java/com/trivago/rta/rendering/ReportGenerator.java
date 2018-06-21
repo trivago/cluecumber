@@ -22,15 +22,17 @@ import com.trivago.rta.filesystem.FileIO;
 import com.trivago.rta.filesystem.FileSystemManager;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.json.pojo.Tag;
 import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
-import com.trivago.rta.rendering.pages.pojos.DetailPageCollection;
-import com.trivago.rta.rendering.pages.pojos.StartPageCollection;
-import com.trivago.rta.rendering.pages.pojos.TagSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.Feature;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.List;
 
 @Singleton
 public class ReportGenerator {
@@ -56,38 +58,75 @@ public class ReportGenerator {
         this.logger = logger;
     }
 
-    public void generateReport(final StartPageCollection startPageCollection) throws CluecumberPluginException {
+    public void generateReport(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
         copyReportAssets();
-        fileSystemManager.createDirectory(
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
-
-        generateScenarioDetailPages(startPageCollection.getReports());
-        generateStartPage(startPageCollection);
-        generateTagSummaryPage(startPageCollection.getReports());
+        generateScenarioDetailPages(scenarioSummaryPageCollection);
+        generateFeaturePages(scenarioSummaryPageCollection);
+        generateTagPages(scenarioSummaryPageCollection);
+        generateScenarioSummaryPage(scenarioSummaryPageCollection);
     }
 
-    private void generateTagSummaryPage(final List<Report> reports) throws CluecumberPluginException {
-        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(reports);
+    /**
+     * Generate pages for features.
+     *
+     * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateFeaturePages(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
+        // Feature summary page
+        FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(scenarioSummaryPageCollection.getReports());
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedFeatureSummaryPageContent(featureSummaryPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+        // Feature scenario list pages
+        for (Feature feature : featureSummaryPageCollection.getFeatures()) {
+            fileIO.writeContentToFile(
+                    templateEngine.getRenderedScenarioSummaryPageContentByFeatureFilter(scenarioSummaryPageCollection, feature),
+                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                            PluginSettings.PAGES_DIRECTORY + PluginSettings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
+                            feature.getIndex() + PluginSettings.HTML_FILE_EXTENSION);
+        }
+    }
+
+    /**
+     * Generate pages for tags.
+     *
+     * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateTagPages(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
+        // Tag summary page
+        TagSummaryPageCollection tagSummaryPageCollection = new TagSummaryPageCollection(scenarioSummaryPageCollection.getReports());
         fileIO.writeContentToFile(
                 templateEngine.getRenderedTagSummaryPageContent(tagSummaryPageCollection),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+        // Tag scenario list pages
+        for (Tag tag : tagSummaryPageCollection.getTags()) {
+            fileIO.writeContentToFile(
+                    templateEngine.getRenderedScenarioSummaryPageContentByTagFilter(scenarioSummaryPageCollection, tag),
+                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                            PluginSettings.PAGES_DIRECTORY + PluginSettings.TAG_SCENARIO_PAGE_FRAGMENT +
+                            tag.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
+        }
     }
 
-    private void generateStartPage(final StartPageCollection startPageCollection) throws CluecumberPluginException {
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedStartPageContent(startPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SUITE_OVERVIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
-    }
-
-    private void generateScenarioDetailPages(final List<Report> reports) throws CluecumberPluginException {
+    /**
+     * Generate detail pages for scenarios.
+     *
+     * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateScenarioDetailPages(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
         DetailPageCollection detailPageCollection;
-        for (Report report : reports) {
+        for (Report report : scenarioSummaryPageCollection.getReports()) {
             for (Element element : report.getElements()) {
                 detailPageCollection = new DetailPageCollection(element);
                 fileIO.writeContentToFile(
-                        templateEngine.getRenderedDetailPageContent(detailPageCollection),
+                        templateEngine.getRenderedScenarioDetailPageContent(detailPageCollection),
                         propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                                 PluginSettings.PAGES_DIRECTORY + PluginSettings.SCENARIO_DETAIL_PAGE_FRAGMENT +
                                 element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
@@ -95,29 +134,58 @@ public class ReportGenerator {
         }
     }
 
+    /**
+     * Generate overview page for scenarios (this is the report start page).
+     *
+     * @param scenarioSummaryPageCollection The {@link ScenarioSummaryPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateScenarioSummaryPage(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedScenarioSummaryPageContent(scenarioSummaryPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+    }
+
+    /**
+     * Copy all needed report assets to the specified target directory.
+     *
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
     private void copyReportAssets() throws CluecumberPluginException {
         String reportDirectory = propertyManager.getGeneratedHtmlReportDirectory();
         fileSystemManager.createDirectory(reportDirectory);
+        fileSystemManager.createDirectory(
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
+        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
+        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
+        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.TAG_SCENARIO_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/js");
         fileSystemManager.createDirectory(reportDirectory + "/css");
 
         // Copy CSS resources
-        copyFileFromJarToFilesystem("/css/bootstrap.min.css");
-        copyFileFromJarToFilesystem("/css/cluecumber.css");
-        copyFileFromJarToFilesystem("/css/datatables.min.css");
-        copyFileFromJarToFilesystem("/css/jquery.fancybox.min.css");
-        copyFileFromJarToFilesystem("/css/dataTables.bootstrap4.min.css");
+        copyFileFromJarToReportDirectory("/css/bootstrap.min.css");
+        copyFileFromJarToReportDirectory("/css/cluecumber.css");
+        copyFileFromJarToReportDirectory("/css/datatables.min.css");
+        copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
+        copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
 
         // Copy Javascript resources
-        copyFileFromJarToFilesystem("/js/jquery.min.js");
-        copyFileFromJarToFilesystem("/js/bootstrap.min.js");
-        copyFileFromJarToFilesystem("/js/popper.min.js");
-        copyFileFromJarToFilesystem("/js/Chart.bundle.min.js");
-        copyFileFromJarToFilesystem("/js/datatables.min.js");
-        copyFileFromJarToFilesystem("/js/jquery.fancybox.min.js");
+        copyFileFromJarToReportDirectory("/js/jquery.min.js");
+        copyFileFromJarToReportDirectory("/js/bootstrap.min.js");
+        copyFileFromJarToReportDirectory("/js/popper.min.js");
+        copyFileFromJarToReportDirectory("/js/Chart.bundle.min.js");
+        copyFileFromJarToReportDirectory("/js/datatables.min.js");
+        copyFileFromJarToReportDirectory("/js/jquery.fancybox.min.js");
     }
 
-    private void copyFileFromJarToFilesystem(final String fileName) throws CluecumberPluginException {
+    /**
+     * Copy a specific resource from the jar file to the report directory.
+     *
+     * @param fileName The file name of the source inside of the jar.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void copyFileFromJarToReportDirectory(final String fileName) throws CluecumberPluginException {
         fileSystemManager.exportResource(getClass(),
                 PluginSettings.BASE_TEMPLATE_PATH + fileName,
                 propertyManager.getGeneratedHtmlReportDirectory() + fileName);

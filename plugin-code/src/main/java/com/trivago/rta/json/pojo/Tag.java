@@ -16,6 +16,10 @@
 
 package com.trivago.rta.json.pojo;
 
+import com.trivago.rta.rendering.RenderingUtils;
+
+import java.util.Objects;
+
 public class Tag {
     private String name;
 
@@ -27,10 +31,28 @@ public class Tag {
         this.name = name;
     }
 
+    public String getUrlFriendlyName() {
+        return RenderingUtils.escapeHTML(name).replace("@", "");
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return Objects.equals(name, tag.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name);
     }
 }

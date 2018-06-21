@@ -56,6 +56,6 @@
     "keyword": "Feature",
     "line": 1,
     "name": "Feature 1",
-    "uri": "features/001-one-passing-scenario.feature"
+    "uri": "features/feature1.feature"
   }
 ]

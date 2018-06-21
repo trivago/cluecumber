@@ -8,9 +8,13 @@
 <script>
     $(document).ready(function () {
         // Data tables
-        $('.renderAsDataTable').on('draw.dt', function () {
+        var dataTable = $('.renderAsDataTable').on('draw.dt', function () {
             $('[data-toggle="tooltip"]').tooltip();
-        }).DataTable();
+        }).DataTable({
+            "oLanguage": {
+                "sSearch": "Search all columns:"
+            }
+        });
 
         // Lightbox
         $("a.grouped_elements").fancybox();
@@ -19,7 +23,9 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         // Chart
-        var ctx = document.getElementById('chart-area').getContext("2d");
-        new Chart(ctx, eval(${reportDetails.chartJson}));
+        <#if (reportDetails.chartJson?has_content)>
+            var ctx = document.getElementById('chart-area').getContext("2d");
+            new Chart(ctx, eval(${reportDetails.chartJson}));
+        </#if>
     })
 </script>
