@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.0.0] - 2018-06-21
+
+### Added
+
+* New page "All Features"
+* New page "All Tags"
+* New page "Scenarios by Tag"
+* New page "Scenarios by Feature"
+* Parameters in steps are now highlighted
+
 ## [0.8.0] - 2018-06-10
 
 ### Fixed
@@ -158,6 +168,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0
 [0.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0
 [0.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.7.1
 [0.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.6.0

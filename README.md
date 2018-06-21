@@ -83,10 +83,6 @@ This project was created because
 
 ![report_detail](documentation/img/page_scenarios_by_feature.png)
 
-**All scenarios**
-
-![report_detail](documentation/img/page_all_scenarios.png)
-
 ## Changelog
 
 All changes are documented in the [full changelog](CHANGELOG.md).
