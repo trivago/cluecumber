@@ -49,11 +49,11 @@ public class ReportPostProcessor implements PostProcessor<Report> {
     private void addFeatureIndex(final Report report) {
         if (report == null) return;
 
-        String featureUri = report.getUri();
-        if (!featureUris.contains(featureUri)){
-            featureUris.add(featureUri);
+        String featureName = report.getName();
+        if (!featureUris.contains(featureName)){
+            featureUris.add(featureName);
         }
-        report.setFeatureIndex(featureUris.indexOf(featureUri));
+        report.setFeatureIndex(featureUris.indexOf(featureName));
     }
 
     private void mergeBackgroundScenarios(final Report report) {
