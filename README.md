@@ -2,6 +2,8 @@
 
 ### Clear and Concise Cucumber Reporting
 
+
+
 [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-report-plugin.svg)](http://repo1.maven.org/maven2/com/trivago/rta/cluecumber-report-plugin/)
 [![Build Status](https://travis-ci.org/trivago/cluecumber-report-plugin.svg?branch=master)](https://travis-ci.org/trivago/cluecumber-report-plugin)
@@ -16,9 +18,13 @@
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
 - [Generated pages](#generated-pages)
-  - [Test suite overview page](#test-suite-overview-page)
-  - [Scenario detail pages](#scenario-detail-pages)
-  - [Tag statistics page](#tag-statistics-page)
+  - [Scenario pages](#scenario-pages)
+    - [All Scenarios](#all-scenarios)
+    - [Scenario Details](#scenario-details)
+    - [All Features](#all-features)
+    - [All Tags](#all-tags)
+    - [Scenarios for a specific tag](#scenarios-for-a-specific-tag)
+    - [Scenarios for a specific feature](#scenarios-for-a-specific-feature)
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
@@ -51,36 +57,35 @@ This project was created because
 
 # Generated pages
 
-## Test suite overview page
+## Scenario pages
 
-This page shows the most important information about the test suite:
+### All Scenarios
 
-- run time
-- number of passed, failed and skipped scenarios
-- grouped scenarios by status
-- optional custom parameters
+![All Scenarios](documentation/img/page_all_scenarios.png)
 
-![report_overview](documentation/img/suite.png)
+### Scenario Details
 
-## Scenario detail pages
+![Scenario Details](documentation/img/page_scenario_details.png)
 
-The scenario detail pages can be reached by clicking on the scenario name in the test suite overview page.
+### All Features
 
-It shows:
+![All Features](documentation/img/page_all_features.png)
 
-- scenario name and description
-- step runtimes and status
-- before and after steps
-- stack traces of failed steps
-- screenshots
+### All Tags
 
-![report_detail](documentation/img/details.png)
+![All Tags](documentation/img/page_all_tags.png)
 
-## Tag statistics page
+### Scenarios for a specific tag
 
-The tag statistics page shows an overview about the used tags and passed, failed and skipped scenarios with those tags.
+![Scenarios by tag](documentation/img/page_scenarios_by_tag.png)
 
-![tags](documentation/img/tags.png)
+### Scenarios for a specific feature
+
+![report_detail](documentation/img/page_scenarios_by_feature.png)
+
+**All scenarios**
+
+![report_detail](documentation/img/page_all_scenarios.png)
 
 ## Changelog
 

@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [cluecumber-test-project](#cluecumber-test-project)
+  - [Change plugin configuration](#change-plugin-configuration)
+  - [Run the project](#run-the-project)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # cluecumber-test-project
 
 Test project to simulate the behavior of Cluecumber - a Maven plugin that generates test reports from [Cucumber](https://cucumber.io) JSON files.
