@@ -72,6 +72,10 @@ class ResultMatch {
         return Status.fromString(getResult().getStatus());
     }
 
+    public String getStatusString() {
+        return getStatus().getStatusString();
+    }
+
     public boolean isFailed() {
         return getStatus() == Status.FAILED;
     }

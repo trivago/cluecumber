@@ -21,7 +21,8 @@
                 <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
                 <li class="list-group-item"><strong>Time:</strong> ${element.returnTotalDurationString()}</li>
                 <#list element.tags as tag>
-                    <li class="list-group-item"><a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></li>
+                    <li class="list-group-item"><a
+                            href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></li>
                 </#list>
             </ul>
         </@page.card>
@@ -32,7 +33,7 @@
             <#if (element.before?size > 0)>
                 <li class="list-group-item" style="opacity:.8">
                     <#list element.before as before>
-                        <div class="row">
+                        <div class="row row_${before.statusString}">
                             <div class="col-1 text-left">
                                 <span class="text-secondary">
                                     <nobr>Before</nobr>
@@ -47,10 +48,10 @@
                             <div class="col-2 text-right">
                                 <@scenario.status step=before/>
                             </div>
-                        </div>
                         <@scenario.errorMessage step=before/>
                         <@scenario.output step=before/>
                         <@scenario.attachments step=before/>
+                        </div>
                     </#list>
                 </li>
             </#if>
@@ -58,7 +59,7 @@
             <#if (element.steps?size > 0)>
                 <li class="list-group-item">
                     <#list element.steps as step>
-                        <div class="row">
+                        <div class="row row_${step.statusString}">
                             <div class="col-1 text-left">
                                 <nobr>Step ${step?counter}</nobr>
                             </div>
@@ -89,10 +90,10 @@
                             <div class="col-2 text-right">
                                 <@scenario.status step=step/>
                             </div>
-                        </div>
                         <@scenario.errorMessage step=step/>
                         <@scenario.output step=step/>
                         <@scenario.attachments step=step/>
+                        </div>
                     </#list>
                 </li>
             </#if>
@@ -100,7 +101,7 @@
             <#if (element.after?size > 0)>
                 <li class="list-group-item" style="opacity:.8">
                     <#list element.after as after>
-                        <div class="row">
+                        <div class="row row_${after.statusString}">
                             <div class="col-1 text-left">
                                 <span class="text-secondary">
                                     <nobr>After</nobr>
@@ -115,10 +116,10 @@
                             <div class="col-2 text-right">
                                 <@scenario.status step=after/>
                             </div>
-                        </div>
                         <@scenario.errorMessage step=after/>
                         <@scenario.output step=after/>
                         <@scenario.attachments step=after/>
+                        </div>
                     </#list>
                 </li>
             </#if>

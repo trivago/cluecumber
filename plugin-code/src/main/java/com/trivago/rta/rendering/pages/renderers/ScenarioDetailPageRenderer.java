@@ -64,7 +64,6 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         barScale.setxAxes(xAxisList);
 
         BarOptions barOptions = new BarOptions().setScales(barScale);
-
         detailPageCollection.getReportDetails().setChartJson(new BarChart(barData, barOptions).toJson());
     }
 }

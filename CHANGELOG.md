@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.1.0 - Unreleased]
+
+* Sync charts and displayed data
+
 ## [1.0.0] - 2018-06-21
 
 ### Added
