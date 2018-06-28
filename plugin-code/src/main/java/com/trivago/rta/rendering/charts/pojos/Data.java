@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Data {
     private List<String> labels;
-    private List<DataSet> dataSets;
+    private List<Dataset> datasets;
 
     public List<String> getLabels() {
         return labels;
@@ -14,19 +14,19 @@ public class Data {
         this.labels = labels;
     }
 
-    public List<DataSet> getDataSets() {
-        return dataSets;
+    public List<Dataset> getDatasets() {
+        return datasets;
     }
 
-    public void setDataSets(final List<DataSet> dataSets) {
-        this.dataSets = dataSets;
+    public void setDatasets(final List<Dataset> datasets) {
+        this.datasets = datasets;
     }
 
     @Override
     public String toString() {
         return "Data{" +
                 "labels=" + labels +
-                ", dataSets=" + dataSets +
+                ", datasets=" + datasets +
                 '}';
     }
 }

@@ -16,6 +16,9 @@
 
 package com.trivago.rta.constants;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Enum to manage all states for steps and scenarios.
  */
@@ -26,6 +29,8 @@ public enum Status {
     PENDING("pending"),
     UNDEFINED("undefined"),
     AMBIGUOUS("ambiguous");
+
+    public static final List<Status> BASIC_STATES = Arrays.asList(Status.PASSED, Status.FAILED, Status.SKIPPED);
 
     private final String status;
 

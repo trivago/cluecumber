@@ -4,7 +4,7 @@ import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.rendering.charts.pojos.Axis;
 import com.trivago.rta.rendering.charts.pojos.Chart;
 import com.trivago.rta.rendering.charts.pojos.Data;
-import com.trivago.rta.rendering.charts.pojos.DataSet;
+import com.trivago.rta.rendering.charts.pojos.Dataset;
 import com.trivago.rta.rendering.charts.pojos.Options;
 import com.trivago.rta.rendering.charts.pojos.Scales;
 import com.trivago.rta.rendering.charts.pojos.Ticks;
@@ -30,7 +30,7 @@ public class ChartTest {
                 "      \"5\",\n" +
                 "      \"6\"\n" +
                 "    ],\n" +
-                "    \"dataSets\": [\n" +
+                "    \"datasets\": [\n" +
                 "      {\n" +
                 "        \"data\": [\n" +
                 "          340,\n" +
@@ -103,9 +103,9 @@ public class ChartTest {
         labels.add("6");
         data.setLabels(labels);
 
-        List<DataSet> dataSets = new ArrayList<>();
+        List<Dataset> datasets = new ArrayList<>();
 
-        DataSet dataSet1 = new DataSet();
+        Dataset dataset1 = new Dataset();
 
         List<Integer> data1 = new ArrayList<>();
         data1.add(340);
@@ -114,13 +114,13 @@ public class ChartTest {
         data1.add(440);
         data1.add(340);
         data1.add(0);
-        dataSet1.setData(data1);
-        dataSet1.setLabel("failed");
-        dataSet1.setStack("complete");
-        dataSet1.setBackgroundColor("rgba(240,0,0,1.000)");
-        dataSets.add(dataSet1);
+        dataset1.setData(data1);
+        dataset1.setLabel("failed");
+        dataset1.setStack("complete");
+        dataset1.setBackgroundColor("rgba(240,0,0,1.000)");
+        datasets.add(dataset1);
 
-        DataSet dataSet2 = new DataSet();
+        Dataset dataset2 = new Dataset();
         List<Integer> data2 = new ArrayList<>();
         data2.add(0);
         data2.add(340);
@@ -128,13 +128,13 @@ public class ChartTest {
         data2.add(0);
         data2.add(0);
         data2.add(340);
-        dataSet2.setData(data2);
-        dataSet2.setLabel("passed");
-        dataSet2.setStack("complete");
-        dataSet2.setBackgroundColor("rgba(0,240,0,1.000)");
-        dataSets.add(dataSet2);
+        dataset2.setData(data2);
+        dataset2.setLabel("passed");
+        dataset2.setStack("complete");
+        dataset2.setBackgroundColor("rgba(0,240,0,1.000)");
+        datasets.add(dataset2);
 
-        data.setDataSets(dataSets);
+        data.setDatasets(datasets);
 
         chart.setData(data);
 

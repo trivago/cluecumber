@@ -2,7 +2,7 @@ package com.trivago.rta.rendering.charts.pojos;
 
 import java.util.List;
 
-public class DataSet {
+public class Dataset {
     private List<Integer> data;
     private String backgroundColor;
     private String label;

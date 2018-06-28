@@ -32,6 +32,18 @@ public enum ChartColor {
         this.b = b;
     }
 
+    public static String getChartColorStringByStatus(Status status){
+        switch (status) {
+            case FAILED:
+                return String.format("rgba(%d, %d, %d, 1.000)", FAILED.r, FAILED.g, FAILED.b);
+            case SKIPPED:
+                return String.format("rgba(%d, %d, %d, 1.000)", SKIPPED.r, SKIPPED.g, SKIPPED.b);
+            case PASSED:
+            default:
+                return String.format("rgba(%d, %d, %d, 1.000)", PASSED.r, PASSED.g, PASSED.b);
+        }
+    }
+
     /**
      * Get the corresponding chart color for the passed {@link Status}.
      *

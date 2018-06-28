@@ -16,18 +16,18 @@
 
 package com.trivago.rta.rendering.pages.renderers;
 
-import be.ceau.chart.BarChart;
-import be.ceau.chart.data.BarData;
-import be.ceau.chart.dataset.BarDataset;
-import be.ceau.chart.options.BarOptions;
-import be.ceau.chart.options.scales.BarScale;
-import be.ceau.chart.options.scales.XAxis;
-import be.ceau.chart.options.scales.YAxis;
-import be.ceau.chart.options.ticks.LinearTicks;
+import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Step;
+import com.trivago.rta.rendering.charts.pojos.Axis;
+import com.trivago.rta.rendering.charts.pojos.Chart;
+import com.trivago.rta.rendering.charts.pojos.Data;
+import com.trivago.rta.rendering.charts.pojos.Dataset;
+import com.trivago.rta.rendering.charts.pojos.Options;
+import com.trivago.rta.rendering.charts.pojos.Scales;
+import com.trivago.rta.rendering.charts.pojos.Ticks;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import freemarker.template.Template;
 
@@ -47,43 +47,67 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
 
     private void addChartJsonToReportDetails(final DetailPageCollection detailPageCollection) {
 
-        BarData data = getDataSetFor(detailPageCollection, Status.PASSED);
+        Chart chart = new Chart();
 
-        BarScale barScale = new BarScale();
-        List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
-        XAxis<LinearTicks> xAxis = new XAxis<>();
-        xAxis.setTicks(new LinearTicks().setMin(0));
-        xAxisList.add(xAxis);
-        barScale.setxAxes(xAxisList);
-
-        List<YAxis<LinearTicks>> yAxisList = new ArrayList<>();
-        YAxis<LinearTicks> yAxis = new YAxis<>();
-
-        LinearTicks ticks = new LinearTicks();
-        ticks.setMin(0);
-        ticks.setDisplay(true);
-        yAxis.setTicks(ticks);
-
-        yAxis.setStacked(true);
-        yAxisList.add(yAxis);
-        barScale.setyAxes(yAxisList);
-
-        BarOptions barOptions = new BarOptions().setScales(barScale);
-        detailPageCollection.getReportDetails().setChartJson(new BarChart(data, barOptions).toJson());
-    }
-
-    private BarData getDataSetFor(final DetailPageCollection detailPageCollection, final Status status) {
-        int stepCounter = 1;
-        BarDataset barDataSet = new BarDataset();
-        BarData data = new BarData();
-        for (Step step : detailPageCollection.getElement().getSteps()) {
-            data.addLabel(String.valueOf(stepCounter));
-            barDataSet.addData(step.getResult().getDurationInMilliseconds());
-            barDataSet.addBackgroundColor(ChartColor.getChartColorByStatus(step.getStatus()));
-            stepCounter++;
+        List<String> labels = new ArrayList<>();
+        for (int i = 1; i <= detailPageCollection.getElement().getSteps().size(); i++) {
+            labels.add(String.valueOf(i));
         }
-        barDataSet.setLabel(status.getStatusString());
-        data.addDataset(barDataSet);
-        return data;
+        Data data = new Data();
+        data.setLabels(labels);
+
+        List<Dataset> datasets = new ArrayList<>();
+        for (Status status : Status.BASIC_STATES) {
+            Dataset dataset = new Dataset();
+            List<Integer> dataList = new ArrayList<>();
+            for (Step step : detailPageCollection.getElement().getSteps()) {
+                if (step.getStatus() == status) {
+                    dataList.add((int) step.getResult().getDurationInMilliseconds());
+                } else {
+                    dataList.add(0);
+                }
+            }
+            dataset.setData(dataList);
+            dataset.setLabel(status.getStatusString());
+            dataset.setStack("complete");
+            dataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(status));
+            datasets.add(dataset);
+        }
+
+        data.setDatasets(datasets);
+        chart.setData(data);
+
+        Options options = new Options();
+        Scales scales = new Scales();
+        List<Axis> xAxes = new ArrayList<>();
+        Axis xAxis = new Axis();
+        xAxis.setStacked(true);
+        Ticks xTicks = new Ticks();
+        xAxis.setTicks(xTicks);
+        ScaleLabel xScaleLabel = new ScaleLabel();
+        xScaleLabel.setDisplay(true);
+        xScaleLabel.setLabelString("Step Number");
+        xAxis.setScaleLabel(xScaleLabel);
+        xAxes.add(xAxis);
+        scales.setxAxes(xAxes);
+
+        List<Axis> yAxes = new ArrayList<>();
+        Axis yAxis = new Axis();
+        yAxis.setStacked(true);
+        Ticks yTicks = new Ticks();
+        yAxis.setTicks(yTicks);
+        ScaleLabel yScaleLabel = new ScaleLabel();
+        yScaleLabel.setDisplay(true);
+        yScaleLabel.setLabelString("Step Runtime");
+        yAxis.setScaleLabel(yScaleLabel);
+        yAxes.add(yAxis);
+        scales.setyAxes(yAxes);
+
+        options.setScales(scales);
+        chart.setOptions(options);
+
+        chart.setType("bar");
+
+        detailPageCollection.getReportDetails().setChartJson(chart.getJson());
     }
 }
