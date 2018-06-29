@@ -50,6 +50,7 @@ public enum ChartColor {
      * @param status the {@link Status}.
      * @return the matching {@link be.ceau.chart.color.Color}.
      */
+    @Deprecated
     public static be.ceau.chart.color.Color getChartColorByStatus(Status status) {
         switch (status) {
             case FAILED:
