@@ -64,7 +64,7 @@
                                 <nobr>Step ${step?counter}</nobr>
                             </div>
                             <div class="col-7 text-left">
-                                <#assign stepName=step.name>
+                                <#assign stepName=step.nameWithArguments>
                                 <#list step.arguments as argument>
                                     <#assign stepName=stepName>
                                 </#list>
