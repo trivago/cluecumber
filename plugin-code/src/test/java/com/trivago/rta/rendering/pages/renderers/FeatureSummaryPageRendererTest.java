@@ -2,6 +2,7 @@ package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Report;
+import com.trivago.rta.rendering.charts.ChartJsonConverter;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
@@ -18,7 +19,8 @@ public class FeatureSummaryPageRendererTest {
 
     @Before
     public void setup() {
-        featureSummaryPageRenderer = new FeatureSummaryPageRenderer();
+        ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
+        featureSummaryPageRenderer = new FeatureSummaryPageRenderer(chartJsonConverter);
     }
 
     @Test

@@ -16,30 +16,39 @@
 
 package com.trivago.rta.rendering.pages.renderers;
 
-import be.ceau.chart.BarChart;
-import be.ceau.chart.data.BarData;
-import be.ceau.chart.dataset.BarDataset;
-import be.ceau.chart.options.BarOptions;
-import be.ceau.chart.options.scales.BarScale;
-import be.ceau.chart.options.scales.XAxis;
-import be.ceau.chart.options.scales.YAxis;
-import be.ceau.chart.options.ticks.LinearTicks;
+import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.rendering.charts.ChartJsonConverter;
+import com.trivago.rta.rendering.charts.pojos.Axis;
+import com.trivago.rta.rendering.charts.pojos.Chart;
+import com.trivago.rta.rendering.charts.pojos.Data;
+import com.trivago.rta.rendering.charts.pojos.Dataset;
+import com.trivago.rta.rendering.charts.pojos.Options;
+import com.trivago.rta.rendering.charts.pojos.Scales;
+import com.trivago.rta.rendering.charts.pojos.Ticks;
 import com.trivago.rta.rendering.pages.pojos.Feature;
 import com.trivago.rta.rendering.pages.pojos.ResultCount;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
 import freemarker.template.Template;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Singleton
 public class FeatureSummaryPageRenderer extends PageRenderer {
+
+    private ChartJsonConverter chartJsonConverter;
+
+    @Inject
+    public FeatureSummaryPageRenderer(final ChartJsonConverter chartJsonConverter) {
+        this.chartJsonConverter = chartJsonConverter;
+    }
+
     public String getRenderedContent(
             final FeatureSummaryPageCollection featureSummaryPageCollection, final Template template)
             throws CluecumberPluginException {
@@ -49,92 +58,84 @@ public class FeatureSummaryPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final FeatureSummaryPageCollection featureSummaryPageCollection) {
-        /*
-        {
-  "data" : {
-    "labels" : [ "login page", "Feature 2", "Feature 1" ],
-    "datasets" : [ {
-      "data" : [ 1, 0, 2 ],
-      "backgroundColor" : "rgba(40,167,69,1.000)",
-      "label" : "passed"
-    }, {
-      "data" : [ 0, 2, 0 ],
-      "backgroundColor" : "rgba(220,53,69,1.000)",
-      "label" : "failed"
-    }, {
-      "data" : [ 0, 1, 0 ],
-      "backgroundColor" : "rgba(255,193,7,1.000)",
-      "label" : "skipped"
-    } ]
-  },
-  "options" : {
-    "scales" : {
-      "xAxes" : [ {
-        "ticks" : {
-          "min" : 0
-        },
-        "stacked" : true
-      } ],
-      "yAxes" : [ {
-        "ticks" : {
-          "min" : 0,
-          "stepSize" : 2
-        },
-        "stacked" : true
-      } ]
-    }
-  },
-  "type" : "bar"
-}
-         */
 
+        Chart chart = new Chart();
+        Data data = new Data();
+        chart.setData(data);
 
-        List<BarDataset> barDatasets = new ArrayList<>();
+        List<Dataset> datasets = new ArrayList<>();
 
-        List<BigDecimal> passed = new ArrayList<>();
-        List<BigDecimal> failed = new ArrayList<>();
-        List<BigDecimal> skipped = new ArrayList<>();
+        List<Integer> passed = new ArrayList<>();
+        List<Integer> failed = new ArrayList<>();
+        List<Integer> skipped = new ArrayList<>();
 
         int maxY = 0;
-
         for (Map.Entry<Feature, ResultCount> entry : featureSummaryPageCollection.getFeatureResultCounts().entrySet()) {
-            passed.add(BigDecimal.valueOf(entry.getValue().getPassed()));
-            failed.add(BigDecimal.valueOf(entry.getValue().getFailed()));
-            skipped.add(BigDecimal.valueOf(entry.getValue().getSkipped()));
+            passed.add(entry.getValue().getPassed());
+            failed.add(entry.getValue().getFailed());
+            skipped.add(entry.getValue().getSkipped());
             maxY = entry.getValue().getTotal();
         }
 
-        barDatasets.add(new BarDataset().setLabel("passed").setData(passed)
-                .setBackgroundColor(ChartColor.getChartColorByStatus(Status.PASSED)));
-        barDatasets.add(new BarDataset().setLabel("failed")
-                .setData(failed).setBackgroundColor(ChartColor.getChartColorByStatus(Status.FAILED)));
-        barDatasets.add(new BarDataset().setLabel("skipped").setData(skipped)
-                .setBackgroundColor(ChartColor.getChartColorByStatus(Status.SKIPPED)));
+        Dataset passedDataset = new Dataset();
+        passedDataset.setLabel("passed");
+        passedDataset.setData(passed);
+        passedDataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(Status.PASSED));
+        datasets.add(passedDataset);
 
-        BarData barData = new BarData();
-        barData.setDatasets(barDatasets);
+        Dataset failedDataset = new Dataset();
+        failedDataset.setLabel("failed");
+        failedDataset.setData(failed);
+        failedDataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(Status.FAILED));
+        datasets.add(failedDataset);
+
+        Dataset skippedDataset = new Dataset();
+        skippedDataset.setLabel("passed");
+        skippedDataset.setData(skipped);
+        skippedDataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(Status.SKIPPED));
+        datasets.add(skippedDataset);
+
+        data.setDatasets(datasets);
 
         List<String> keys = new ArrayList<>();
         for (Feature feature : featureSummaryPageCollection.getFeatureResultCounts().keySet()) {
             keys.add(feature.getName());
         }
-        barData.setLabels(keys);
+        data.setLabels(keys);
 
-        BarOptions barOptions = new BarOptions();
-        BarScale barScale = new BarScale();
+        Options options = new Options();
+        Scales scales = new Scales();
+        List<Axis> xAxes = new ArrayList<>();
+        Axis xAxis = new Axis();
+        xAxis.setStacked(true);
+        Ticks xTicks = new Ticks();
+        xAxis.setTicks(xTicks);
+        ScaleLabel xScaleLabel = new ScaleLabel();
+        xScaleLabel.setDisplay(true);
+        xScaleLabel.setLabelString("Features");
+        xAxis.setScaleLabel(xScaleLabel);
+        xAxes.add(xAxis);
+        scales.setxAxes(xAxes);
 
-        List<XAxis<LinearTicks>> xAxisList = new ArrayList<>();
-        xAxisList.add(new XAxis<LinearTicks>().setStacked(true).setTicks(new LinearTicks().setMin(0)));
-        barScale.setxAxes(xAxisList);
+        List<Axis> yAxes = new ArrayList<>();
+        Axis yAxis = new Axis();
+        yAxis.setStacked(true);
+        Ticks yTicks = new Ticks();
+        yAxis.setTicks(yTicks);
+        ScaleLabel yScaleLabel = new ScaleLabel();
+        yScaleLabel.setDisplay(true);
+        yScaleLabel.setLabelString("Number of Scenarios");
+        yAxis.setScaleLabel(yScaleLabel);
+        yAxis.setStepSize(maxY);
+        yAxes.add(yAxis);
+        scales.setyAxes(yAxes);
 
-        List<YAxis<LinearTicks>> yAxisList = new ArrayList<>();
-        yAxisList.add(new YAxis<LinearTicks>().setStacked(true).setTicks(new LinearTicks().setMin(0).setStepSize(maxY)));
-        barScale.setyAxes(yAxisList);
+        options.setScales(scales);
+        chart.setOptions(options);
 
-        barOptions.setScales(barScale);
+        chart.setType("bar");
 
-        String chartJson = new BarChart(barData, barOptions).toJson();
-        featureSummaryPageCollection.getReportDetails().setChartJson(chartJson);
+        featureSummaryPageCollection.getReportDetails().setChartJson(chartJsonConverter.convertChartToJson(chart));
     }
 }
 

@@ -78,7 +78,8 @@ public class ChartJsonConverterTest {
                 "          \"scaleLabel\": {\n" +
                 "            \"display\": true,\n" +
                 "            \"labelString\": \"Step Number\"\n" +
-                "          }\n" +
+                "          },\n" +
+                "          \"stepSize\": 0.0\n" +
                 "        }\n" +
                 "      ],\n" +
                 "      \"yAxes\": [\n" +
@@ -90,7 +91,8 @@ public class ChartJsonConverterTest {
                 "          \"scaleLabel\": {\n" +
                 "            \"display\": true,\n" +
                 "            \"labelString\": \"Step Runtime\"\n" +
-                "          }\n" +
+                "          },\n" +
+                "          \"stepSize\": 0.0\n" +
                 "        }\n" +
                 "      ]\n" +
                 "    }\n" +

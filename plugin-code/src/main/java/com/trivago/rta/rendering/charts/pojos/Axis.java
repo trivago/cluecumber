@@ -6,6 +6,7 @@ public class Axis {
     private Ticks ticks;
     private boolean stacked;
     private ScaleLabel scaleLabel;
+    private float stepSize;
 
     public Ticks getTicks() {
         return ticks;
@@ -29,5 +30,13 @@ public class Axis {
 
     public void setScaleLabel(final ScaleLabel scaleLabel) {
         this.scaleLabel = scaleLabel;
+    }
+
+    public float getStepSize() {
+        return stepSize;
+    }
+
+    public void setStepSize(final float stepSize) {
+        this.stepSize = stepSize;
     }
 }
