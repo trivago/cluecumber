@@ -74,7 +74,7 @@ public class ScenarioSummaryPageRenderer extends PageRenderer {
         for (Report report : scenarioSummaryPageCollectionClone.getReports()) {
             List<Element> elements = new ArrayList<>();
             for (Element element : report.getElements()) {
-                if (element.getTags().contains(tag)){
+                if (element.getTags().contains(tag)) {
                     elements.add(element);
                 }
             }
@@ -93,7 +93,7 @@ public class ScenarioSummaryPageRenderer extends PageRenderer {
         scenarioSummaryPageCollectionClone.setFeatureFilter(feature);
         List<Report> reports = new ArrayList<>();
         for (Report report : scenarioSummaryPageCollectionClone.getReports()) {
-            if(report.getFeatureIndex() == feature.getIndex()){
+            if (report.getFeatureIndex() == feature.getIndex()) {
                 reports.add(report);
             }
         }
@@ -106,6 +106,21 @@ public class ScenarioSummaryPageRenderer extends PageRenderer {
 
 
     private void addChartJsonToReportDetails(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) {
+
+        /*
+        {
+  "type" : "pie",
+  "data" : {
+    "labels" : [ "passed", "failed", "skipped" ],
+    "datasets" : [ {
+      "data" : [ 3, 2, 1 ],
+      "backgroundColor" : [ "rgba(40,167,69,1.000)", "rgba(220,53,69,1.000)", "rgba(255,193,7,1.000)" ]
+    } ]
+  },
+  "options" : { }
+}
+         */
+
         PieDataset pieDataset = new PieDataset();
         pieDataset.setData(
                 scenarioSummaryPageCollection.getTotalNumberOfPassedScenarios(),

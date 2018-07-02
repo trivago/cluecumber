@@ -49,6 +49,46 @@ public class FeatureSummaryPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final FeatureSummaryPageCollection featureSummaryPageCollection) {
+        /*
+        {
+  "data" : {
+    "labels" : [ "login page", "Feature 2", "Feature 1" ],
+    "datasets" : [ {
+      "data" : [ 1, 0, 2 ],
+      "backgroundColor" : "rgba(40,167,69,1.000)",
+      "label" : "passed"
+    }, {
+      "data" : [ 0, 2, 0 ],
+      "backgroundColor" : "rgba(220,53,69,1.000)",
+      "label" : "failed"
+    }, {
+      "data" : [ 0, 1, 0 ],
+      "backgroundColor" : "rgba(255,193,7,1.000)",
+      "label" : "skipped"
+    } ]
+  },
+  "options" : {
+    "scales" : {
+      "xAxes" : [ {
+        "ticks" : {
+          "min" : 0
+        },
+        "stacked" : true
+      } ],
+      "yAxes" : [ {
+        "ticks" : {
+          "min" : 0,
+          "stepSize" : 2
+        },
+        "stacked" : true
+      } ]
+    }
+  },
+  "type" : "bar"
+}
+         */
+
+
         List<BarDataset> barDatasets = new ArrayList<>();
 
         List<BigDecimal> passed = new ArrayList<>();

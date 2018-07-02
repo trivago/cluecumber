@@ -10,9 +10,9 @@
         <@page.card width="4" title="Tag Summary" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${totalNumberOfTags}</strong> Tags</li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedTags}</strong> passed</li>
-                <li class="list-group-item"><strong>${totalNumberOfFailedTags}</strong> failed</li>
-                <li class="list-group-item"><strong>${totalNumberOfSkippedTags}</strong> skipped</li>
+                <li class="list-group-item"><strong>${totalNumberOfPassedTags}</strong> passed Scenarios</li>
+                <li class="list-group-item"><strong>${totalNumberOfFailedTags}</strong> failed Scenarios</li>
+                <li class="list-group-item"><strong>${totalNumberOfSkippedTags}</strong> skipped Scenarios</li>
             </ul>
         </@page.card>
     </div>
@@ -34,9 +34,9 @@
                     <tr>
                         <td class="text-left"><a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
-                        <td class="text-right">${tagResultCount.passed} Scenarios</td>
-                        <td class="text-right">${tagResultCount.failed} Scenarios</td>
-                        <td class="text-right">${tagResultCount.skipped} Scenarios</td>
+                        <td class="text-right">${tagResultCount.passed}</td>
+                        <td class="text-right">${tagResultCount.failed}</td>
+                        <td class="text-right">${tagResultCount.skipped}</td>
                     </tr>
                     </#list>
                 </tbody>

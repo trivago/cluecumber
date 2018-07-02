@@ -50,6 +50,45 @@ public class TagSummaryPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final TagSummaryPageCollection tagSummaryPageCollection) {
+        /*
+        {
+  "data" : {
+    "labels" : [ "@Firefox", "@Chrome", "@IE", "@test", "@failing-before" ],
+    "datasets" : [ {
+      "data" : [ 1, 1, 1, 2, 0 ],
+      "backgroundColor" : "rgba(40,167,69,1.000)",
+      "label" : "passed"
+    }, {
+      "data" : [ 0, 0, 0, 0, 0 ],
+      "backgroundColor" : "rgba(220,53,69,1.000)",
+      "label" : "failed"
+    }, {
+      "data" : [ 0, 0, 0, 1, 1 ],
+      "backgroundColor" : "rgba(255,193,7,1.000)",
+      "label" : "skipped"
+    } ]
+  },
+  "options" : {
+    "scales" : {
+      "xAxes" : [ {
+        "ticks" : {
+          "min" : 0
+        },
+        "stacked" : true
+      } ],
+      "yAxes" : [ {
+        "ticks" : {
+          "min" : 0,
+          "stepSize" : 1
+        },
+        "stacked" : true
+      } ]
+    }
+  },
+  "type" : "bar"
+}
+         */
+
         List<BarDataset> barDatasets = new ArrayList<>();
 
         List<BigDecimal> passed = new ArrayList<>();
