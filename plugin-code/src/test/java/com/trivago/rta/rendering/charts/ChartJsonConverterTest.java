@@ -1,4 +1,4 @@
-package com.trivago.rta.rendering;
+package com.trivago.rta.rendering.charts;
 
 import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.rendering.charts.pojos.Axis;
@@ -8,6 +8,7 @@ import com.trivago.rta.rendering.charts.pojos.Dataset;
 import com.trivago.rta.rendering.charts.pojos.Options;
 import com.trivago.rta.rendering.charts.pojos.Scales;
 import com.trivago.rta.rendering.charts.pojos.Ticks;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,7 +17,14 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ChartTest {
+public class ChartJsonConverterTest {
+
+    private ChartJsonConverter chartJsonConverter;
+
+    @Before
+    public void setup() {
+        chartJsonConverter = new ChartJsonConverter();
+    }
 
     @Test
     public void getJsonTest() {
@@ -168,7 +176,7 @@ public class ChartTest {
 
         chart.setType("bar");
 
-        assertThat(chart.getJson(), is(expected));
+        assertThat(chartJsonConverter.convertChartToJson(chart), is(expected));
     }
 
 }

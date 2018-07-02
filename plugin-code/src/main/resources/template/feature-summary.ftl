@@ -10,9 +10,9 @@
         <@page.card width="4" title="Feature Summary" subtitle="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>${totalNumberOfFeatures}</strong> Features</li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedFeatures}</strong> passed</li>
-                <li class="list-group-item"><strong>${totalNumberOfFailedFeatures}</strong> failed</li>
-                <li class="list-group-item"><strong>${totalNumberOfSkippedFeatures}</strong> skipped</li>
+                <li class="list-group-item"><strong>${totalNumberOfPassedFeatures}</strong> passed Scenarios</li>
+                <li class="list-group-item"><strong>${totalNumberOfFailedFeatures}</strong> failed Scenarios</li>
+                <li class="list-group-item"><strong>${totalNumberOfSkippedFeatures}</strong> skipped Scenarios</li>
             </ul>
         </@page.card>
     </div>

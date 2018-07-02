@@ -1,4 +1,4 @@
-package com.trivago.rta.json.pojo;
+package com.trivago.rta.rendering.charts.pojos;
 
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterPackageInfo;
@@ -13,8 +13,8 @@ import org.junit.Test;
 import java.util.List;
 
 public class PojoTest {
-    private static final int EXPECTED_CLASS_COUNT = 13;
-    private static final String POJO_PACKAGE = "com.trivago.rta.json.pojo";
+    private static final int EXPECTED_CLASS_COUNT = 8;
+    private static final String POJO_PACKAGE = "com.trivago.rta.rendering.charts.pojos";
 
     @Test
     public void ensureExpectedPojoCount() {

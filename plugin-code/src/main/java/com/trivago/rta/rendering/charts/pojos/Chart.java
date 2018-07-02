@@ -1,8 +1,5 @@
 package com.trivago.rta.rendering.charts.pojos;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 public class Chart {
     private Data data;
     private Options options;
@@ -14,11 +11,6 @@ public class Chart {
 
     public void setData(final Data data) {
         this.data = data;
-    }
-
-    public String getJson(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        return gson.toJson(this);
     }
 
     public String getType() {

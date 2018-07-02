@@ -21,6 +21,7 @@ import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Step;
+import com.trivago.rta.rendering.charts.ChartJsonConverter;
 import com.trivago.rta.rendering.charts.pojos.Axis;
 import com.trivago.rta.rendering.charts.pojos.Chart;
 import com.trivago.rta.rendering.charts.pojos.Data;
@@ -31,12 +32,20 @@ import com.trivago.rta.rendering.charts.pojos.Ticks;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
 import freemarker.template.Template;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
 public class ScenarioDetailPageRenderer extends PageRenderer {
+
+    private ChartJsonConverter chartJsonConverter;
+
+    @Inject
+    public ScenarioDetailPageRenderer(final ChartJsonConverter chartJsonConverter) {
+        this.chartJsonConverter = chartJsonConverter;
+    }
 
     public String getRenderedContent(final DetailPageCollection detailPageCollection, final Template template)
             throws CluecumberPluginException {
@@ -46,7 +55,6 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final DetailPageCollection detailPageCollection) {
-
         Chart chart = new Chart();
 
         List<String> labels = new ArrayList<>();
@@ -61,7 +69,7 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
             Dataset dataset = new Dataset();
             List<Integer> dataList = new ArrayList<>();
             for (Step step : detailPageCollection.getElement().getSteps()) {
-                if (step.getStatus() == status) {
+                if (step.getConsolidatedStatus() == status) {
                     dataList.add((int) step.getResult().getDurationInMilliseconds());
                 } else {
                     dataList.add(0);
@@ -108,6 +116,6 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
 
         chart.setType("bar");
 
-        detailPageCollection.getReportDetails().setChartJson(chart.getJson());
+        detailPageCollection.getReportDetails().setChartJson(chartJsonConverter.convertChartToJson(chart));
     }
 }

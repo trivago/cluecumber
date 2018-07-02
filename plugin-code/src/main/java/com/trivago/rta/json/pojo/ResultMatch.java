@@ -84,11 +84,20 @@ class ResultMatch {
         return getStatus() == Status.PASSED;
     }
 
+    public Status getConsolidatedStatus() {
+        switch (getStatus()) {
+            case SKIPPED:
+            case PENDING:
+            case UNDEFINED:
+            case AMBIGUOUS:
+                return Status.SKIPPED;
+            default:
+                return getStatus();
+        }
+    }
+
     public boolean isSkipped() {
-        return getStatus() == Status.SKIPPED ||
-                getStatus() == Status.PENDING ||
-                getStatus() == Status.UNDEFINED ||
-                getStatus() == Status.AMBIGUOUS;
+        return getConsolidatedStatus() == Status.SKIPPED;
     }
 
     @Override
