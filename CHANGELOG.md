@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [1.1.0 - Unreleased]
+## [1.1.0] - 2018-07-03
 
-* Sync charts and displayed data
+### Added
+
+* Synchronize charts and displayed data for "All Scenarios" and "Scenario Details" pages
+* Improved highlighting of steps on mouseover
+
+### Changed
+
+* Charts now show more relevant information
+
+### Fixed
+
+* Parameter highlighting with regex characters does not crash report generation
+* Correct chart labels for steps
 
 ## [1.0.0] - 2018-06-21
 
@@ -172,6 +184,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
 [1.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0
 [0.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0
 [0.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.7.1
