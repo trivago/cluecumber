@@ -18,7 +18,7 @@ public class ReportTest {
     }
 
     @Test
-    public void getTotalDurationTest(){
+    public void getTotalDurationTest() {
         List<Element> elements = new ArrayList<>();
         Element element = new Element();
         List<Step> steps = new ArrayList<>();

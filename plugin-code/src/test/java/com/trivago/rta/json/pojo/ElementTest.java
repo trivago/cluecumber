@@ -108,7 +108,7 @@ public class ElementTest {
     }
 
     @Test
-    public void stepSummaryTest(){
+    public void stepSummaryTest() {
         List<Step> steps = new ArrayList<>();
 
         Step step1 = new Step();

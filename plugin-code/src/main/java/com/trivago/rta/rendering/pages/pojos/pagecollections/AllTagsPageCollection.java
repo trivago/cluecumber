@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class TagSummaryPageCollection extends SummaryPageCollection {
+public class AllTagsPageCollection extends SummaryPageCollection {
     private Map<Tag, ResultCount> tagResultCounts;
 
-    public TagSummaryPageCollection(List<Report> reports) {
+    public AllTagsPageCollection(List<Report> reports) {
         super(PluginSettings.TAG_SUMMARY_PAGE_NAME);
         calculateTagResultCounts(reports);
     }
@@ -45,7 +45,7 @@ public class TagSummaryPageCollection extends SummaryPageCollection {
         return tagResultCounts;
     }
 
-    public Set<Tag> getTags(){
+    public Set<Tag> getTags() {
         return tagResultCounts.keySet();
     }
 

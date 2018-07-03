@@ -14,20 +14,20 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class ScenarioSummaryPageCollectionTest {
+public class AllScenariosPageCollectionTest {
 
-    private ScenarioSummaryPageCollection scenarioSummaryPageCollection;
+    private AllScenariosPageCollection allScenariosPageCollection;
 
     @Before
     public void setup() {
-        scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
+        allScenariosPageCollection = new AllScenariosPageCollection();
     }
 
     @Test
     public void addReportsNullReportListTest() {
-        scenarioSummaryPageCollection.addReports(null);
-        assertThat(scenarioSummaryPageCollection.getReports().size(), is(0));
-        assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(0));
+        allScenariosPageCollection.addReports(null);
+        assertThat(allScenariosPageCollection.getReports().size(), is(0));
+        assertThat(allScenariosPageCollection.getTotalNumberOfScenarios(), is(0));
     }
 
     @Test
@@ -35,9 +35,9 @@ public class ScenarioSummaryPageCollectionTest {
         Report[] reportList = new Report[2];
         reportList[0] = new Report();
         reportList[1] = new Report();
-        scenarioSummaryPageCollection.addReports(reportList);
-        assertThat(scenarioSummaryPageCollection.getReports().size(), is(2));
-        assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(0));
+        allScenariosPageCollection.addReports(reportList);
+        assertThat(allScenariosPageCollection.getReports().size(), is(2));
+        assertThat(allScenariosPageCollection.getTotalNumberOfScenarios(), is(0));
     }
 
     @Test
@@ -52,22 +52,22 @@ public class ScenarioSummaryPageCollectionTest {
         report1.setElements(elements);
         reportList[0] = report1;
 
-        scenarioSummaryPageCollection.addReports(reportList);
-        assertThat(scenarioSummaryPageCollection.getReports().size(), is(1));
-        assertThat(scenarioSummaryPageCollection.getTotalNumberOfScenarios(), is(1));
+        allScenariosPageCollection.addReports(reportList);
+        assertThat(allScenariosPageCollection.getReports().size(), is(1));
+        assertThat(allScenariosPageCollection.getTotalNumberOfScenarios(), is(1));
     }
 
     @Test
     public void getTotalDurationDefaultValueTest() {
-        long totalDuration = scenarioSummaryPageCollection.getTotalDuration();
+        long totalDuration = allScenariosPageCollection.getTotalDuration();
         assertThat(totalDuration, is(0L));
     }
 
     @Test
     public void hasFailedScenariosTest() {
-        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasFailedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasPassedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasSkippedScenarios(), is(false));
 
         Report[] reportList = new Report[1];
         Report report = new Report();
@@ -83,18 +83,18 @@ public class ScenarioSummaryPageCollectionTest {
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;
-        scenarioSummaryPageCollection.addReports(reportList);
+        allScenariosPageCollection.addReports(reportList);
 
-        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(true));
-        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasFailedScenarios(), is(true));
+        assertThat(allScenariosPageCollection.hasPassedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasSkippedScenarios(), is(false));
     }
 
     @Test
     public void hasPassedScenariosTest() {
-        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasFailedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasPassedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasSkippedScenarios(), is(false));
 
         Report[] reportList = new Report[1];
         Report report = new Report();
@@ -110,18 +110,18 @@ public class ScenarioSummaryPageCollectionTest {
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;
-        scenarioSummaryPageCollection.addReports(reportList);
+        allScenariosPageCollection.addReports(reportList);
 
-        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(true));
-        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasFailedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasPassedScenarios(), is(true));
+        assertThat(allScenariosPageCollection.hasSkippedScenarios(), is(false));
     }
 
     @Test
     public void hasSkippedScenariosTest() {
-        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasFailedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasPassedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasSkippedScenarios(), is(false));
 
         Report[] reportList = new Report[1];
         Report report = new Report();
@@ -137,20 +137,20 @@ public class ScenarioSummaryPageCollectionTest {
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;
-        scenarioSummaryPageCollection.addReports(reportList);
+        allScenariosPageCollection.addReports(reportList);
 
-        assertThat(scenarioSummaryPageCollection.hasFailedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasPassedScenarios(), is(false));
-        assertThat(scenarioSummaryPageCollection.hasSkippedScenarios(), is(true));
+        assertThat(allScenariosPageCollection.hasFailedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasPassedScenarios(), is(false));
+        assertThat(allScenariosPageCollection.hasSkippedScenarios(), is(true));
     }
 
     @Test
     public void hasCustomParametersTest() {
-        assertThat(scenarioSummaryPageCollection.hasCustomParameters(), is(false));
+        assertThat(allScenariosPageCollection.hasCustomParameters(), is(false));
         List<CustomParameter> customParameters = new ArrayList<>();
         CustomParameter parameter = new CustomParameter("key", "value");
         customParameters.add(parameter);
-        scenarioSummaryPageCollection.setCustomParameters(customParameters);
-        assertThat(scenarioSummaryPageCollection.hasCustomParameters(), is(true));
+        allScenariosPageCollection.setCustomParameters(customParameters);
+        assertThat(allScenariosPageCollection.hasCustomParameters(), is(true));
     }
 }

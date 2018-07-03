@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class FeatureSummaryPageCollection extends SummaryPageCollection {
+public class AllFeaturesPageCollection extends SummaryPageCollection {
     private Map<Feature, ResultCount> resultCounts;
 
-    public FeatureSummaryPageCollection(final List<Report> reports) {
+    public AllFeaturesPageCollection(final List<Report> reports) {
         super(PluginSettings.FEATURE_SUMMARY_PAGE_NAME);
         calculateFeatureResultCounts(reports);
     }
@@ -29,7 +29,7 @@ public class FeatureSummaryPageCollection extends SummaryPageCollection {
         return resultCounts;
     }
 
-    public Set<Feature> getFeatures(){
+    public Set<Feature> getFeatures() {
         return resultCounts.keySet();
     }
 

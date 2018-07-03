@@ -1,7 +1,5 @@
 package com.trivago.rta.rendering.charts.pojos;
 
-import be.ceau.chart.options.scales.ScaleLabel;
-
 public class Axis {
     private Ticks ticks;
     private boolean stacked;

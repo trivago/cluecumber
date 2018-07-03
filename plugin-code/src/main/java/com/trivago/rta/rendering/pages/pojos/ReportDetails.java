@@ -35,12 +35,12 @@ public class ReportDetails {
         this.date = dateFormat.format(date);
     }
 
-    public void setChartJson(final String chartJson) {
-        this.chartJson = chartJson;
-    }
-
     public String getChartJson() {
         return chartJson;
+    }
+
+    public void setChartJson(final String chartJson) {
+        this.chartJson = chartJson;
     }
 
     public String getDate() {

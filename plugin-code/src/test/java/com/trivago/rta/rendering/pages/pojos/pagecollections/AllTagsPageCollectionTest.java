@@ -16,21 +16,21 @@ import java.util.Map;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class TagSummaryPageCollectionTest {
-    private TagSummaryPageCollection tagSummaryPageCollection;
+public class AllTagsPageCollectionTest {
+    private AllTagsPageCollection allTagsPageCollection;
 
     @Test
     public void getEmptyTagStatsTest() {
         List<Report> reports = new ArrayList<>();
-        tagSummaryPageCollection = new TagSummaryPageCollection(reports);
-        Map<Tag, ResultCount> tagStats = tagSummaryPageCollection.getTagResultCounts();
+        allTagsPageCollection = new AllTagsPageCollection(reports);
+        Map<Tag, ResultCount> tagStats = allTagsPageCollection.getTagResultCounts();
         assertThat(tagStats.size(), is(0));
     }
 
     @Test
     public void getTagStatsTest() {
-        tagSummaryPageCollection = new TagSummaryPageCollection(getTestReports());
-        Map<Tag, ResultCount> tagStats = tagSummaryPageCollection.getTagResultCounts();
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        Map<Tag, ResultCount> tagStats = allTagsPageCollection.getTagResultCounts();
         assertThat(tagStats.size(), is(3));
 
         Tag tag1 = new Tag();
@@ -59,12 +59,12 @@ public class TagSummaryPageCollectionTest {
     }
 
     @Test
-    public void getTagResultsTest(){
-        tagSummaryPageCollection = new TagSummaryPageCollection(getTestReports());
-        assertThat(tagSummaryPageCollection.getTotalNumberOfTags(), is(3));
-        assertThat(tagSummaryPageCollection.getTotalNumberOfFailedTags(), is(2));
-        assertThat(tagSummaryPageCollection.getTotalNumberOfPassedTags(), is(1));
-        assertThat(tagSummaryPageCollection.getTotalNumberOfSkippedTags(), is(1));
+    public void getTagResultsTest() {
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        assertThat(allTagsPageCollection.getTotalNumberOfTags(), is(3));
+        assertThat(allTagsPageCollection.getTotalNumberOfFailedTags(), is(2));
+        assertThat(allTagsPageCollection.getTotalNumberOfPassedTags(), is(1));
+        assertThat(allTagsPageCollection.getTotalNumberOfSkippedTags(), is(1));
     }
 
     private List<Report> getTestReports() {

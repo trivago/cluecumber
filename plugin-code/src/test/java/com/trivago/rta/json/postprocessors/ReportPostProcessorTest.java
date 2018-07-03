@@ -23,7 +23,7 @@ public class ReportPostProcessorTest {
     }
 
     @Test
-    public void postDeserializeTest(){
+    public void postDeserializeTest() {
         Report report = new Report();
 
         List<Element> elements = new ArrayList<>();
@@ -57,7 +57,7 @@ public class ReportPostProcessorTest {
         report.setElements(elements);
 
         assertThat(report.getElements().size(), is(2));
-        reportPostProcessor.postDeserialize(report, null,null);
+        reportPostProcessor.postDeserialize(report, null, null);
         assertThat(report.getElements().size(), is(1));
         List<Step> firstElementSteps = report.getElements().get(0).getSteps();
         assertThat(firstElementSteps.size(), is(4));
@@ -68,7 +68,7 @@ public class ReportPostProcessorTest {
     }
 
     @Test
-    public void postSerializeTest(){
+    public void postSerializeTest() {
         reportPostProcessor.postSerialize(null, null, null);
     }
 }

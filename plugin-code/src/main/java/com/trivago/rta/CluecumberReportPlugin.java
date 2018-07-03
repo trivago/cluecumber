@@ -23,7 +23,7 @@ import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.ReportGenerator;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -104,19 +104,19 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         // Create attachment directory here since they are handled during json generation.
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");
 
-        ScenarioSummaryPageCollection scenarioSummaryPageCollection = new ScenarioSummaryPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
         List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths();
         for (Path jsonFilePath : jsonFilePaths) {
             String jsonString = fileIO.readContentFromFile(jsonFilePath.toString());
             try {
                 Report[] reports = jsonPojoConverter.convertJsonToReportPojos(jsonString);
-                scenarioSummaryPageCollection.addReports(reports);
+                allScenariosPageCollection.addReports(reports);
             } catch (CluecumberPluginException e) {
                 logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
 
-        reportGenerator.generateReport(scenarioSummaryPageCollection);
+        reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                         PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);

@@ -20,14 +20,14 @@ import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Tag;
 import com.trivago.rta.rendering.pages.pojos.Feature;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioSummaryPageCollection;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.TagSummaryPageCollection;
-import com.trivago.rta.rendering.pages.renderers.FeatureSummaryPageRenderer;
-import com.trivago.rta.rendering.pages.renderers.ScenarioDetailPageRenderer;
-import com.trivago.rta.rendering.pages.renderers.ScenarioSummaryPageRenderer;
-import com.trivago.rta.rendering.pages.renderers.TagSummaryPageRenderer;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
+import com.trivago.rta.rendering.pages.renderers.AllFeaturesPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.AllScenariosPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.AllTagsPageRenderer;
+import com.trivago.rta.rendering.pages.renderers.ScenarioDetailsPageRenderer;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -35,74 +35,74 @@ import javax.inject.Singleton;
 @Singleton
 public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
-    private final FeatureSummaryPageRenderer featureSummaryPageRenderer;
-    private final TagSummaryPageRenderer tagSummaryPageRenderer;
-    private final ScenarioDetailPageRenderer scenarioDetailPageRenderer;
-    private final ScenarioSummaryPageRenderer scenarioSummaryPageRenderer;
+    private final AllFeaturesPageRenderer allFeaturesPageRenderer;
+    private final AllTagsPageRenderer allTagsPageRenderer;
+    private final ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
+    private final AllScenariosPageRenderer allScenariosPageRenderer;
 
     @Inject
     public TemplateEngine(
             final TemplateConfiguration templateConfiguration,
-            final FeatureSummaryPageRenderer featureSummaryPageRenderer,
-            final TagSummaryPageRenderer tagSummaryPageRenderer,
-            final ScenarioDetailPageRenderer scenarioDetailPageRenderer,
-            final ScenarioSummaryPageRenderer scenarioSummaryPageRenderer
+            final AllFeaturesPageRenderer allFeaturesPageRenderer,
+            final AllTagsPageRenderer allTagsPageRenderer,
+            final ScenarioDetailsPageRenderer scenarioDetailsPageRenderer,
+            final AllScenariosPageRenderer allScenariosPageRenderer
     ) {
         this.templateConfiguration = templateConfiguration;
-        this.featureSummaryPageRenderer = featureSummaryPageRenderer;
-        this.scenarioSummaryPageRenderer = scenarioSummaryPageRenderer;
-        this.scenarioDetailPageRenderer = scenarioDetailPageRenderer;
-        this.tagSummaryPageRenderer = tagSummaryPageRenderer;
+        this.allFeaturesPageRenderer = allFeaturesPageRenderer;
+        this.allScenariosPageRenderer = allScenariosPageRenderer;
+        this.scenarioDetailsPageRenderer = scenarioDetailsPageRenderer;
+        this.allTagsPageRenderer = allTagsPageRenderer;
 
         templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
     }
 
-    String getRenderedScenarioSummaryPageContent(final ScenarioSummaryPageCollection scenarioSummaryPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(scenarioSummaryPageRenderer.getRenderedContent(
-                scenarioSummaryPageCollection,
+    String getRenderedScenarioSummaryPageContent(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContent(
+                allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE)
         ));
     }
 
     String getRenderedScenarioSummaryPageContentByTagFilter(
-            final ScenarioSummaryPageCollection scenarioSummaryPageCollection,
+            final AllScenariosPageCollection allScenariosPageCollection,
             final Tag tag) throws CluecumberPluginException {
 
-        return RenderingUtils.prettifyHtml(scenarioSummaryPageRenderer.getRenderedContentByTagFilter(
-                scenarioSummaryPageCollection,
+        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContentByTagFilter(
+                allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
                 tag
         ));
     }
 
     String getRenderedScenarioSummaryPageContentByFeatureFilter(
-            final ScenarioSummaryPageCollection scenarioSummaryPageCollection,
+            final AllScenariosPageCollection allScenariosPageCollection,
             final Feature feature) throws CluecumberPluginException {
 
-        return RenderingUtils.prettifyHtml(scenarioSummaryPageRenderer.getRenderedContentByFeatureFilter(
-                scenarioSummaryPageCollection,
+        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContentByFeatureFilter(
+                allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
                 feature
         ));
     }
 
-    String getRenderedScenarioDetailPageContent(final DetailPageCollection detailPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(scenarioDetailPageRenderer.getRenderedContent(
-                detailPageCollection,
+    String getRenderedScenarioDetailPageContent(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(scenarioDetailsPageRenderer.getRenderedContent(
+                scenarioDetailsPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_DETAIL_TEMPLATE)
         ));
     }
 
-    String getRenderedTagSummaryPageContent(final TagSummaryPageCollection tagSummaryPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(tagSummaryPageRenderer.getRenderedContent(
-                tagSummaryPageCollection,
+    String getRenderedTagSummaryPageContent(final AllTagsPageCollection allTagsPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(allTagsPageRenderer.getRenderedContent(
+                allTagsPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_TEMPLATE)
         ));
     }
 
-    String getRenderedFeatureSummaryPageContent(final FeatureSummaryPageCollection featureSummaryPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(featureSummaryPageRenderer.getRenderedContent(
-                featureSummaryPageCollection,
+    String getRenderedFeatureSummaryPageContent(final AllFeaturesPageCollection allFeaturesPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(allFeaturesPageRenderer.getRenderedContent(
+                allFeaturesPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.FEATURE_SUMMARY_TEMPLATE)
         ));
     }

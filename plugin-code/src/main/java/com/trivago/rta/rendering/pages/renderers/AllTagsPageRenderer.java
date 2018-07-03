@@ -16,48 +16,47 @@
 
 package com.trivago.rta.rendering.pages.renderers;
 
-import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.json.pojo.Tag;
 import com.trivago.rta.rendering.charts.ChartJsonConverter;
 import com.trivago.rta.rendering.charts.pojos.Axis;
 import com.trivago.rta.rendering.charts.pojos.Chart;
 import com.trivago.rta.rendering.charts.pojos.Data;
 import com.trivago.rta.rendering.charts.pojos.Dataset;
 import com.trivago.rta.rendering.charts.pojos.Options;
+import com.trivago.rta.rendering.charts.pojos.ScaleLabel;
 import com.trivago.rta.rendering.charts.pojos.Scales;
 import com.trivago.rta.rendering.charts.pojos.Ticks;
-import com.trivago.rta.rendering.pages.pojos.Feature;
 import com.trivago.rta.rendering.pages.pojos.ResultCount;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 @Singleton
-public class FeatureSummaryPageRenderer extends PageRenderer {
-
-    private ChartJsonConverter chartJsonConverter;
+public class AllTagsPageRenderer extends PageRenderer {
 
     @Inject
-    public FeatureSummaryPageRenderer(final ChartJsonConverter chartJsonConverter) {
-        this.chartJsonConverter = chartJsonConverter;
+    public AllTagsPageRenderer(final ChartJsonConverter chartJsonConverter) {
+        super(chartJsonConverter);
     }
 
     public String getRenderedContent(
-            final FeatureSummaryPageCollection featureSummaryPageCollection, final Template template)
+            final AllTagsPageCollection allTagsPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        addChartJsonToReportDetails(featureSummaryPageCollection);
-        return processedContent(template, featureSummaryPageCollection);
+        addChartJsonToReportDetails(allTagsPageCollection);
+        return processedContent(template, allTagsPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final FeatureSummaryPageCollection featureSummaryPageCollection) {
+    private void addChartJsonToReportDetails(final AllTagsPageCollection allTagsPageCollection) {
 
         Chart chart = new Chart();
         Data data = new Data();
@@ -70,7 +69,7 @@ public class FeatureSummaryPageRenderer extends PageRenderer {
         List<Integer> skipped = new ArrayList<>();
 
         int maxY = 0;
-        for (Map.Entry<Feature, ResultCount> entry : featureSummaryPageCollection.getFeatureResultCounts().entrySet()) {
+        for (Map.Entry<Tag, ResultCount> entry : allTagsPageCollection.getTagResultCounts().entrySet()) {
             passed.add(entry.getValue().getPassed());
             failed.add(entry.getValue().getFailed());
             skipped.add(entry.getValue().getSkipped());
@@ -80,26 +79,29 @@ public class FeatureSummaryPageRenderer extends PageRenderer {
         Dataset passedDataset = new Dataset();
         passedDataset.setLabel("passed");
         passedDataset.setData(passed);
-        passedDataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(Status.PASSED));
+        List<String> passedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.PASSED)));
+        passedDataset.setBackgroundColor(passedBG);
         datasets.add(passedDataset);
 
         Dataset failedDataset = new Dataset();
         failedDataset.setLabel("failed");
         failedDataset.setData(failed);
-        failedDataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(Status.FAILED));
+        List<String> failedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.FAILED)));
+        failedDataset.setBackgroundColor(failedBG);
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
         skippedDataset.setLabel("passed");
         skippedDataset.setData(skipped);
-        skippedDataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(Status.SKIPPED));
+        List<String> skippedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
+        skippedDataset.setBackgroundColor(skippedBG);
         datasets.add(skippedDataset);
 
         data.setDatasets(datasets);
 
         List<String> keys = new ArrayList<>();
-        for (Feature feature : featureSummaryPageCollection.getFeatureResultCounts().keySet()) {
-            keys.add(feature.getName());
+        for (Tag tag : allTagsPageCollection.getTagResultCounts().keySet()) {
+            keys.add(tag.getName());
         }
         data.setLabels(keys);
 
@@ -112,7 +114,7 @@ public class FeatureSummaryPageRenderer extends PageRenderer {
         xAxis.setTicks(xTicks);
         ScaleLabel xScaleLabel = new ScaleLabel();
         xScaleLabel.setDisplay(true);
-        xScaleLabel.setLabelString("Features");
+        xScaleLabel.setLabelString(allTagsPageCollection.getTotalNumberOfTags() + " Tag(s)");
         xAxis.setScaleLabel(xScaleLabel);
         xAxes.add(xAxis);
         scales.setxAxes(xAxes);
@@ -135,7 +137,7 @@ public class FeatureSummaryPageRenderer extends PageRenderer {
 
         chart.setType("bar");
 
-        featureSummaryPageCollection.getReportDetails().setChartJson(chartJsonConverter.convertChartToJson(chart));
+        allTagsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }
 }
 

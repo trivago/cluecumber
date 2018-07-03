@@ -10,7 +10,7 @@ public class ResultTest {
     private Result result;
 
     @Before
-    public void setup(){
+    public void setup() {
         result = new Result();
     }
 

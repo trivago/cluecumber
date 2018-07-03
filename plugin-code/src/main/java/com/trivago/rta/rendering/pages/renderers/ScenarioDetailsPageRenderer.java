@@ -16,7 +16,6 @@
 
 package com.trivago.rta.rendering.pages.renderers;
 
-import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
@@ -27,38 +26,38 @@ import com.trivago.rta.rendering.charts.pojos.Chart;
 import com.trivago.rta.rendering.charts.pojos.Data;
 import com.trivago.rta.rendering.charts.pojos.Dataset;
 import com.trivago.rta.rendering.charts.pojos.Options;
+import com.trivago.rta.rendering.charts.pojos.ScaleLabel;
 import com.trivago.rta.rendering.charts.pojos.Scales;
 import com.trivago.rta.rendering.charts.pojos.Ticks;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Singleton
-public class ScenarioDetailPageRenderer extends PageRenderer {
-
-    private ChartJsonConverter chartJsonConverter;
+public class ScenarioDetailsPageRenderer extends PageRenderer {
 
     @Inject
-    public ScenarioDetailPageRenderer(final ChartJsonConverter chartJsonConverter) {
-        this.chartJsonConverter = chartJsonConverter;
+    public ScenarioDetailsPageRenderer(final ChartJsonConverter chartJsonConverter) {
+        super(chartJsonConverter);
     }
 
-    public String getRenderedContent(final DetailPageCollection detailPageCollection, final Template template)
+    public String getRenderedContent(final ScenarioDetailsPageCollection scenarioDetailsPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        addChartJsonToReportDetails(detailPageCollection);
-        return processedContent(template, detailPageCollection);
+        addChartJsonToReportDetails(scenarioDetailsPageCollection);
+        return processedContent(template, scenarioDetailsPageCollection);
     }
 
-    private void addChartJsonToReportDetails(final DetailPageCollection detailPageCollection) {
+    private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {
         Chart chart = new Chart();
 
         List<String> labels = new ArrayList<>();
-        for (int i = 1; i <= detailPageCollection.getElement().getSteps().size(); i++) {
+        for (int i = 1; i <= scenarioDetailsPageCollection.getElement().getSteps().size(); i++) {
             labels.add(String.valueOf(i));
         }
         Data data = new Data();
@@ -68,7 +67,7 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
         for (Status status : Status.BASIC_STATES) {
             Dataset dataset = new Dataset();
             List<Integer> dataList = new ArrayList<>();
-            for (Step step : detailPageCollection.getElement().getSteps()) {
+            for (Step step : scenarioDetailsPageCollection.getElement().getSteps()) {
                 if (step.getConsolidatedStatus() == status) {
                     dataList.add((int) step.getResult().getDurationInMilliseconds());
                 } else {
@@ -78,7 +77,7 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
             dataset.setData(dataList);
             dataset.setLabel(status.getStatusString());
             dataset.setStack("complete");
-            dataset.setBackgroundColor(ChartColor.getChartColorStringByStatus(status));
+            dataset.setBackgroundColor(new ArrayList<String>(Collections.nCopies(dataList.size(), ChartColor.getChartColorStringByStatus(status))));
             datasets.add(dataset);
         }
 
@@ -116,6 +115,6 @@ public class ScenarioDetailPageRenderer extends PageRenderer {
 
         chart.setType("bar");
 
-        detailPageCollection.getReportDetails().setChartJson(chartJsonConverter.convertChartToJson(chart));
+        scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }
 }

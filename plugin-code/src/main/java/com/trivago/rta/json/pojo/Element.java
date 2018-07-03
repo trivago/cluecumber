@@ -155,7 +155,7 @@ public class Element {
         int totalSkippedSteps = (int) steps.stream().filter(
                 step -> step.getStatus() == Status.PENDING || step.getStatus() == Status.SKIPPED
         ).count();
-        if (totalSkippedSteps == totalSteps){
+        if (totalSkippedSteps == totalSteps) {
             return Status.SKIPPED;
         }
 

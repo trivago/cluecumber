@@ -32,7 +32,8 @@
                 <tbody>
                     <#list tagResultCounts as tag, tagResultCount>
                     <tr>
-                        <td class="text-left"><a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
+                        <td class="text-left"><a
+                                href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
                         <td class="text-right">${tagResultCount.passed}</td>
                         <td class="text-right">${tagResultCount.failed}</td>

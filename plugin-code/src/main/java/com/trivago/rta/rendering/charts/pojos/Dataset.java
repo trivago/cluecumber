@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Dataset {
     private List<Integer> data;
-    private String backgroundColor;
+    private List<String> backgroundColor;
     private String label;
     private String stack;
 
@@ -16,11 +16,11 @@ public class Dataset {
         this.data = data;
     }
 
-    public String getBackgroundColor() {
+    public List<String> getBackgroundColor() {
         return backgroundColor;
     }
 
-    public void setBackgroundColor(final String backgroundColor) {
+    public void setBackgroundColor(final List<String> backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 

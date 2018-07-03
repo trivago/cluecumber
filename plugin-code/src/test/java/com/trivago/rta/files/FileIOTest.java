@@ -11,10 +11,9 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class FileIOTest {
-    private FileIO fileIO = new FileIO();
-
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder();
+    private FileIO fileIO = new FileIO();
 
     @Test(expected = FileCreationException.class)
     public void writeToInvalidFileTest() throws Exception {

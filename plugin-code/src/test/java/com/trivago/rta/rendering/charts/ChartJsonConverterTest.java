@@ -1,17 +1,18 @@
 package com.trivago.rta.rendering.charts;
 
-import be.ceau.chart.options.scales.ScaleLabel;
 import com.trivago.rta.rendering.charts.pojos.Axis;
 import com.trivago.rta.rendering.charts.pojos.Chart;
 import com.trivago.rta.rendering.charts.pojos.Data;
 import com.trivago.rta.rendering.charts.pojos.Dataset;
 import com.trivago.rta.rendering.charts.pojos.Options;
+import com.trivago.rta.rendering.charts.pojos.ScaleLabel;
 import com.trivago.rta.rendering.charts.pojos.Scales;
 import com.trivago.rta.rendering.charts.pojos.Ticks;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -48,7 +49,9 @@ public class ChartJsonConverterTest {
                 "          340,\n" +
                 "          0\n" +
                 "        ],\n" +
-                "        \"backgroundColor\": \"rgba(240,0,0,1.000)\",\n" +
+                "        \"backgroundColor\": [\n" +
+                "          \"rgba(240,0,0,1.000)\"\n" +
+                "        ],\n" +
                 "        \"label\": \"failed\",\n" +
                 "        \"stack\": \"complete\"\n" +
                 "      },\n" +
@@ -61,7 +64,9 @@ public class ChartJsonConverterTest {
                 "          0,\n" +
                 "          340\n" +
                 "        ],\n" +
-                "        \"backgroundColor\": \"rgba(0,240,0,1.000)\",\n" +
+                "        \"backgroundColor\": [\n" +
+                "          \"rgba(0,240,0,1.000)\"\n" +
+                "        ],\n" +
                 "        \"label\": \"passed\",\n" +
                 "        \"stack\": \"complete\"\n" +
                 "      }\n" +
@@ -127,7 +132,7 @@ public class ChartJsonConverterTest {
         dataset1.setData(data1);
         dataset1.setLabel("failed");
         dataset1.setStack("complete");
-        dataset1.setBackgroundColor("rgba(240,0,0,1.000)");
+        dataset1.setBackgroundColor(new ArrayList<>(Collections.singletonList("rgba(240,0,0,1.000)")));
         datasets.add(dataset1);
 
         Dataset dataset2 = new Dataset();
@@ -141,7 +146,7 @@ public class ChartJsonConverterTest {
         dataset2.setData(data2);
         dataset2.setLabel("passed");
         dataset2.setStack("complete");
-        dataset2.setBackgroundColor("rgba(0,240,0,1.000)");
+        dataset2.setBackgroundColor(new ArrayList<>(Collections.singletonList("rgba(0,240,0,1.000)")));
         datasets.add(dataset2);
 
         data.setDatasets(datasets);
@@ -177,6 +182,8 @@ public class ChartJsonConverterTest {
         chart.setOptions(options);
 
         chart.setType("bar");
+
+        System.out.println(chartJsonConverter.convertChartToJson(chart));
 
         assertThat(chartJsonConverter.convertChartToJson(chart), is(expected));
     }

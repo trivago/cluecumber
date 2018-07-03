@@ -50,7 +50,7 @@ public class ReportPostProcessor implements PostProcessor<Report> {
         if (report == null) return;
 
         String featureName = report.getName();
-        if (!featureUris.contains(featureName)){
+        if (!featureUris.contains(featureName)) {
             featureUris.add(featureName);
         }
         report.setFeatureIndex(featureUris.indexOf(featureName));

@@ -4,7 +4,7 @@ import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.rendering.charts.ChartJsonConverter;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.DetailPageCollection;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,14 +14,14 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
-public class ScenarioDetailPageRendererTest {
+public class ScenarioDetailsPageRendererTest {
 
-    private ScenarioDetailPageRenderer scenarioDetailPageRenderer;
+    private ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
 
     @Before
-    public void setup(){
+    public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
-        scenarioDetailPageRenderer = new ScenarioDetailPageRenderer(chartJsonConverter);
+        scenarioDetailsPageRenderer = new ScenarioDetailsPageRenderer(chartJsonConverter);
     }
 
     @Test
@@ -30,7 +30,7 @@ public class ScenarioDetailPageRendererTest {
         Element element = new Element();
         List<Step> steps = new ArrayList<>();
         element.setSteps(steps);
-        DetailPageCollection detailPageCollection = new DetailPageCollection(element);
-        scenarioDetailPageRenderer.getRenderedContent(detailPageCollection, template);
+        ScenarioDetailsPageCollection scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element);
+        scenarioDetailsPageRenderer.getRenderedContent(scenarioDetailsPageCollection, template);
     }
 }

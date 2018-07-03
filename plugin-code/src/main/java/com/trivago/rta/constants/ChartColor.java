@@ -22,6 +22,8 @@ package com.trivago.rta.constants;
 public enum ChartColor {
     PASSED(40, 167, 69), FAILED(220, 53, 69), SKIPPED(255, 193, 7);
 
+    private static final String COLOR_FORMAT = "rgba(%d, %d, %d, 1.000)";
+
     private final int r;
     private final int g;
     private final int b;
@@ -32,34 +34,21 @@ public enum ChartColor {
         this.b = b;
     }
 
-    public static String getChartColorStringByStatus(Status status){
-        switch (status) {
-            case FAILED:
-                return String.format("rgba(%d, %d, %d, 1.000)", FAILED.r, FAILED.g, FAILED.b);
-            case SKIPPED:
-                return String.format("rgba(%d, %d, %d, 1.000)", SKIPPED.r, SKIPPED.g, SKIPPED.b);
-            case PASSED:
-            default:
-                return String.format("rgba(%d, %d, %d, 1.000)", PASSED.r, PASSED.g, PASSED.b);
-        }
-    }
-
     /**
-     * Get the corresponding chart color for the passed {@link Status}.
+     * Get the corresponding chart color string for the passed {@link Status}.
      *
      * @param status the {@link Status}.
-     * @return the matching {@link be.ceau.chart.color.Color}.
+     * @return the matching color string.
      */
-    @Deprecated
-    public static be.ceau.chart.color.Color getChartColorByStatus(Status status) {
+    public static String getChartColorStringByStatus(Status status) {
         switch (status) {
             case FAILED:
-                return new be.ceau.chart.color.Color(FAILED.r, FAILED.g, FAILED.b);
+                return String.format(COLOR_FORMAT, FAILED.r, FAILED.g, FAILED.b);
             case SKIPPED:
-                return new be.ceau.chart.color.Color(SKIPPED.r, SKIPPED.g, SKIPPED.b);
+                return String.format(COLOR_FORMAT, SKIPPED.r, SKIPPED.g, SKIPPED.b);
             case PASSED:
             default:
-                return new be.ceau.chart.color.Color(PASSED.r, PASSED.g, PASSED.b);
+                return String.format(COLOR_FORMAT, PASSED.r, PASSED.g, PASSED.b);
         }
     }
 }
