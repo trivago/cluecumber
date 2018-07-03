@@ -84,6 +84,10 @@ class ResultMatch {
         return getStatus() == Status.PASSED;
     }
 
+    public boolean isSkipped() {
+        return getConsolidatedStatus() == Status.SKIPPED;
+    }
+
     public Status getConsolidatedStatus() {
         switch (getStatus()) {
             case SKIPPED:
@@ -94,10 +98,6 @@ class ResultMatch {
             default:
                 return getStatus();
         }
-    }
-
-    public boolean isSkipped() {
-        return getConsolidatedStatus() == Status.SKIPPED;
     }
 
     @Override
