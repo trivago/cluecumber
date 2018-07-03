@@ -65,9 +65,6 @@
                             </div>
                             <div class="col-7 text-left">
                                 <#assign stepName=step.nameWithArguments>
-                                <#list step.arguments as argument>
-                                    <#assign stepName=stepName>
-                                </#list>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
                                     ${step.keyword} ${stepName}
