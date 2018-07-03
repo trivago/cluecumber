@@ -1,6 +1,7 @@
 package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.rendering.charts.ChartJsonConverter;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -22,7 +23,8 @@ public class PageRendererTest {
 
     @Before
     public void setup() {
-        pageRenderer = new PageRenderer();
+        ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
+        pageRenderer = new PageRenderer(chartJsonConverter);
     }
 
     @Test

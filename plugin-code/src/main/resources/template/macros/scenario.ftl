@@ -4,7 +4,7 @@
     <#assign passedRequested = status == "passed">
 
     <#if (skippedRequested && hasSkippedScenarios()) || (failedRequested && hasFailedScenarios()) || (passedRequested && hasPassedScenarios())>
-        <div class="row">
+        <div class="row" id="card_${status}">
             <div class="col-sm-12">
                 <div class="card">
 
@@ -67,7 +67,7 @@
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="row">
+            <div class="row col-12">
                 <div class="col-1"></div>
                 <div class="col-10 text-left">
                     <#if attachment.image>
@@ -99,7 +99,7 @@
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="row">
+        <div class="row col-12">
             <div class="col-1"></div>
             <div class="col-10 text-left border border-danger">
                 <code>${step.result.errorMessage?html}</code>
@@ -113,7 +113,7 @@
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="row">
+                <div class="row col-12">
                     <div class="col-1"></div>
                     <div class="col-10 text-left">
                         <iframe srcdoc="${output?html}" width="100%" height="1"

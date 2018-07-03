@@ -19,4 +19,12 @@ public class Argument {
     public void setOffset(final int offset) {
         this.offset = offset;
     }
+
+    @Override
+    public String toString() {
+        return "Argument{" +
+                "val='" + val + '\'' +
+                ", offset=" + offset +
+                '}';
+    }
 }

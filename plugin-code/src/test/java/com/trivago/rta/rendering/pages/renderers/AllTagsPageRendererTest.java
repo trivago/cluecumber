@@ -2,7 +2,8 @@ package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.rendering.pages.pojos.pagecollections.FeatureSummaryPageCollection;
+import com.trivago.rta.rendering.charts.ChartJsonConverter;
+import com.trivago.rta.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,13 +13,14 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
-public class FeatureSummaryPageRendererTest {
+public class AllTagsPageRendererTest {
 
-    private FeatureSummaryPageRenderer featureSummaryPageRenderer;
+    private AllTagsPageRenderer allTagsPageRenderer;
 
     @Before
     public void setup() {
-        featureSummaryPageRenderer = new FeatureSummaryPageRenderer();
+        ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
+        allTagsPageRenderer = new AllTagsPageRenderer(chartJsonConverter);
     }
 
     @Test
@@ -27,7 +29,7 @@ public class FeatureSummaryPageRendererTest {
         Report report = new Report();
         List<Report> reports = new ArrayList<>();
         reports.add(report);
-        FeatureSummaryPageCollection featureSummaryPageCollection = new FeatureSummaryPageCollection(reports);
-        featureSummaryPageRenderer.getRenderedContent(featureSummaryPageCollection, template);
+        AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(reports);
+        allTagsPageRenderer.getRenderedContent(allTagsPageCollection, template);
     }
 }

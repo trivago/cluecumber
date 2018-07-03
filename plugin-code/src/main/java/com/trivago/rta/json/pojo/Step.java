@@ -18,6 +18,7 @@ package com.trivago.rta.json.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Step extends ResultMatch {
     private int line;
@@ -39,6 +40,16 @@ public class Step extends ResultMatch {
 
     public void setName(final String name) {
         this.name = name;
+    }
+
+    public String getNameWithArguments() {
+        String tmpName = name;
+        List<Argument> arguments = getArguments();
+        for (int i = arguments.size() - 1; i >= 0; i--) {
+            String argument = arguments.get(i).getVal();
+            tmpName = tmpName.replaceFirst(Pattern.quote(argument), "<strong>" + argument + "</strong>");
+        }
+        return tmpName;
     }
 
     public String getKeyword() {

@@ -72,6 +72,10 @@ class ResultMatch {
         return Status.fromString(getResult().getStatus());
     }
 
+    public String getStatusString() {
+        return getStatus().getStatusString();
+    }
+
     public boolean isFailed() {
         return getStatus() == Status.FAILED;
     }
@@ -81,10 +85,19 @@ class ResultMatch {
     }
 
     public boolean isSkipped() {
-        return getStatus() == Status.SKIPPED ||
-                getStatus() == Status.PENDING ||
-                getStatus() == Status.UNDEFINED ||
-                getStatus() == Status.AMBIGUOUS;
+        return getConsolidatedStatus() == Status.SKIPPED;
+    }
+
+    public Status getConsolidatedStatus() {
+        switch (getStatus()) {
+            case SKIPPED:
+            case PENDING:
+            case UNDEFINED:
+            case AMBIGUOUS:
+                return Status.SKIPPED;
+            default:
+                return getStatus();
+        }
     }
 
     @Override

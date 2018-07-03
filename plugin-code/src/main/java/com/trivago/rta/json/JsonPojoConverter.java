@@ -31,7 +31,6 @@ import javax.inject.Singleton;
 @Singleton
 public class JsonPojoConverter {
 
-    private final Gson gsonParser;
     private final Gson gsonParserWithProcessors;
 
     @Inject
@@ -40,11 +39,10 @@ public class JsonPojoConverter {
                 .registerPostProcessor(Report.class, reportPostProcessor)
                 .registerPostProcessor(Element.class, elementPostProcessor);
         gsonParserWithProcessors = builder.createGson();
-        gsonParser = new Gson();
     }
 
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberPluginException {
-        Report[] reports = null;
+        Report[] reports;
         try {
             reports = gsonParserWithProcessors.fromJson(json, Report[].class);
         } catch (JsonParseException e) {

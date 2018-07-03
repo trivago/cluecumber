@@ -29,13 +29,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ScenarioSummaryPageCollection extends PageCollection {
+public class AllScenariosPageCollection extends PageCollection {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
     private Tag tagFilter;
     private Feature featureFilter;
 
-    public ScenarioSummaryPageCollection() {
+    public AllScenariosPageCollection() {
         super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
     }
 
@@ -102,12 +102,12 @@ public class ScenarioSummaryPageCollection extends PageCollection {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
-    public void setCustomParameters(final List<CustomParameter> customParameters) {
-        this.customParameters = customParameters;
-    }
-
     public List<CustomParameter> getCustomParameters() {
         return customParameters;
+    }
+
+    public void setCustomParameters(final List<CustomParameter> customParameters) {
+        this.customParameters = customParameters;
     }
 
     public boolean hasCustomParameters() {

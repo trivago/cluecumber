@@ -17,15 +17,25 @@
 package com.trivago.rta.rendering.pages.renderers;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.rendering.charts.ChartJsonConverter;
+import com.trivago.rta.rendering.charts.pojos.Chart;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
 class PageRenderer {
+
+    private ChartJsonConverter chartJsonConverter;
+
+    @Inject
+    public PageRenderer(final ChartJsonConverter chartJsonConverter) {
+        this.chartJsonConverter = chartJsonConverter;
+    }
 
     String processedContent(final Template template, final PageCollection pageCollection)
             throws CluecumberPluginException {
@@ -38,4 +48,9 @@ class PageRenderer {
         }
         return stringWriter.toString();
     }
+
+    String convertChartToJson(final Chart chart) {
+        return chartJsonConverter.convertChartToJson(chart);
+    }
+
 }

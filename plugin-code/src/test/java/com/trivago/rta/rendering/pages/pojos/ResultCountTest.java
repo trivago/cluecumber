@@ -21,6 +21,7 @@ public class ResultCountTest {
         assertThat(tagStat.getFailed(), is(0));
         assertThat(tagStat.getSkipped(), is(0));
     }
+
     @Test
     public void addFailedTest() {
         tagStat.addFailed(4);

@@ -28,7 +28,7 @@ public class ElementPostProcessorTest {
     }
 
     @Test
-    public void postDesiralizeAddScenarioIndexTest(){
+    public void postDesiralizeAddScenarioIndexTest() {
         Element element = new Element();
 
         assertThat(element.getScenarioIndex(), is(-1));
@@ -37,7 +37,7 @@ public class ElementPostProcessorTest {
     }
 
     @Test
-    public void postDeserializeTest(){
+    public void postDeserializeTest() {
         Element element = new Element();
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
@@ -59,7 +59,7 @@ public class ElementPostProcessorTest {
     }
 
     @Test
-    public void postSerializeTest(){
+    public void postSerializeTest() {
         elementPostProcessor.postSerialize(null, null, null);
     }
 }

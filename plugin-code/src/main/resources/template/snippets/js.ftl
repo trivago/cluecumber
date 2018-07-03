@@ -24,8 +24,29 @@
 
         // Chart
         <#if (reportDetails.chartJson?has_content)>
-            var ctx = document.getElementById('chart-area').getContext("2d");
-            new Chart(ctx, eval(${reportDetails.chartJson}));
+            var canvas = document.getElementById('chart-area');
+            var ctx = canvas.getContext("2d");
+            var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
+
+            var original;
+            switch (chart.config.type) {
+                case "pie":
+                    original = Chart.defaults.pie.legend.onClick;
+                    break;
+                default:
+                    original = Chart.defaults.global.legend.onClick;
+                    break;
+            }
+
+            chart.options.legend.onClick = function (evt, label) {
+                original.call(this, evt, label);
+
+                var card = $("#card_" + label.text);
+                label.hidden ? card.show() : card.hide();
+
+                var row = $(".row_" + label.text);
+                label.hidden ? row.show() : row.hide();
+            };
         </#if>
     })
 </script>

@@ -36,12 +36,12 @@ public class Result {
         this.duration = duration;
     }
 
-    public void setStatus(final String status) {
-        this.status = status;
-    }
-
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(final String status) {
+        this.status = status;
     }
 
     public boolean hasErrorMessage() {

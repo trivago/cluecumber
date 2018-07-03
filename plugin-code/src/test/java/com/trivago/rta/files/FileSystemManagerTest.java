@@ -13,14 +13,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class FileSystemManagerTest {
+    @Rule
+    public TemporaryFolder testFolder = new TemporaryFolder();
     private PropertyManager propertyManager;
     private FileSystemManager fileSystemManager;
 
-    @Rule
-    public TemporaryFolder testFolder = new TemporaryFolder();
-
     @Before
-    public void setup(){
+    public void setup() {
         propertyManager = mock(PropertyManager.class);
         fileSystemManager = new FileSystemManager(propertyManager);
     }

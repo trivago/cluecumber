@@ -53,13 +53,13 @@ public class Embedding {
     public boolean isImage() {
         return
                 mimeType.equalsIgnoreCase("image/png") ||
-                mimeType.equalsIgnoreCase("image/jpeg") ||
-                mimeType.equalsIgnoreCase("image/gif") ||
-                mimeType.equalsIgnoreCase("image/svg+xml");
+                        mimeType.equalsIgnoreCase("image/jpeg") ||
+                        mimeType.equalsIgnoreCase("image/gif") ||
+                        mimeType.equalsIgnoreCase("image/svg+xml");
 
     }
 
-    public boolean isPlainText(){
+    public boolean isPlainText() {
         return mimeType.equalsIgnoreCase("text/plain");
     }
 }

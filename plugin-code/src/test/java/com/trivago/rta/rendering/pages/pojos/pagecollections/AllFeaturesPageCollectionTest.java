@@ -12,14 +12,14 @@ import java.util.Map;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class FeatureSummaryPageCollectionTest {
-    private FeatureSummaryPageCollection featureSummaryPageCollection;
+public class AllFeaturesPageCollectionTest {
+    private AllFeaturesPageCollection allFeaturesPageCollection;
 
     @Test
     public void getEmptyTagStatsTest() {
         List<Report> reports = new ArrayList<>();
-        featureSummaryPageCollection = new FeatureSummaryPageCollection(reports);
-        Map<Feature, ResultCount> featureStats = featureSummaryPageCollection.getFeatureResultCounts();
+        allFeaturesPageCollection = new AllFeaturesPageCollection(reports);
+        Map<Feature, ResultCount> featureStats = allFeaturesPageCollection.getFeatureResultCounts();
         assertThat(featureStats.size(), is(0));
     }
 }
