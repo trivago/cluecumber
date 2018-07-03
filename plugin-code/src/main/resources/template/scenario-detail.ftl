@@ -15,7 +15,7 @@
         </@page.card>
         <@page.card width="4" title="Scenario Information" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Steps</li>
+                <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Step(s)</li>
                 <li class="list-group-item"><strong>${element.totalNumberOfPassedSteps}</strong> passed</li>
                 <li class="list-group-item"><strong>${element.totalNumberOfFailedSteps}</strong> failed</li>
                 <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>

@@ -9,10 +9,10 @@
         </@page.card>
         <@page.card width="4" title="Tag Summary" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${totalNumberOfTags}</strong> Tags</li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedTags}</strong> passed Scenarios</li>
-                <li class="list-group-item"><strong>${totalNumberOfFailedTags}</strong> failed Scenarios</li>
-                <li class="list-group-item"><strong>${totalNumberOfSkippedTags}</strong> skipped Scenarios</li>
+                <li class="list-group-item"><strong>${totalNumberOfTags}</strong> Tag(s)</li>
+                <li class="list-group-item"><strong>${totalNumberOfPassedTags}</strong> passed Scenario(s)</li>
+                <li class="list-group-item"><strong>${totalNumberOfFailedTags}</strong> failed Scenario(s)</li>
+                <li class="list-group-item"><strong>${totalNumberOfSkippedTags}</strong> skipped Scenario(s)</li>
             </ul>
         </@page.card>
     </div>

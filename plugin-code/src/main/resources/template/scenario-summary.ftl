@@ -42,7 +42,7 @@
         </@page.card>
         <@page.card width="4" title="Scenario Summary" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenarios</li>
+                <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenario(s)</li>
                 <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed</li>
                 <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed</li>
                 <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped</li>
