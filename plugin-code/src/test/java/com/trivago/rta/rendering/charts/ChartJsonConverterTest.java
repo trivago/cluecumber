@@ -183,8 +183,6 @@ public class ChartJsonConverterTest {
 
         chart.setType("bar");
 
-        System.out.println(chartJsonConverter.convertChartToJson(chart));
-
         assertThat(chartJsonConverter.convertChartToJson(chart), is(expected));
     }
 

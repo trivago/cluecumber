@@ -1,4 +1,4 @@
-package com.trivago.rta;/*
+/*
  * Copyright 2018 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,8 @@ package com.trivago.rta;/*
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package com.trivago.rta;
 
 import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.exceptions.CluecumberPluginException;
