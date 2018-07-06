@@ -28,6 +28,7 @@
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
+  - [Running the reporting goal directly through the command line](#running-the-reporting-goal-directly-through-the-command-line)
   - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
@@ -129,6 +130,15 @@ This will generate JSON results for all Cucumber tests.
     </configuration>    
 </plugin>
 ```
+
+## Running the reporting goal directly through the command line
+
+In some cases it may be desirable to run the reporting as a completely separate step, e.g. in CI pipelines.
+This can be done by running
+
+`mvn cluecumber-report:reporting`
+
+directly from the command line.
 
 ## Mandatory Configuration Parameters
 
