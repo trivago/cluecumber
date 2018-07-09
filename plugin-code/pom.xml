@@ -79,7 +79,7 @@
         <maven.plugin.annotations.version>3.5</maven.plugin.annotations.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <plexus.utilities.version>3.1.0</plexus.utilities.version>
-        <mockito.version>2.9.0</mockito.version>
+        <mockito.version>2.12.0</mockito.version>
         <junit.version>4.12</junit.version>
         <openpojo.version>0.8.6</openpojo.version>
 
