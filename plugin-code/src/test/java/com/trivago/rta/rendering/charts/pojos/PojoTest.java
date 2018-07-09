@@ -8,6 +8,7 @@ import com.openpojo.validation.ValidatorBuilder;
 import com.openpojo.validation.affirm.Affirm;
 import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,6 +16,11 @@ import java.util.List;
 public class PojoTest {
     private static final int EXPECTED_CLASS_COUNT = 8;
     private static final String POJO_PACKAGE = "com.trivago.rta.rendering.charts.pojos";
+
+    @BeforeClass
+    public static void setSystemProperty() {
+        System.setProperty("sun.boot.class.path", System.getProperty("java.class.path"));
+    }
 
     @Test
     public void ensureExpectedPojoCount() {
