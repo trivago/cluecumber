@@ -57,11 +57,11 @@
               "status": "passed"
             },
             "line": 13,
-            "name": "the list should contain 1 element on \"pf1\" with a value in !]0,100[",
+            "name": "the list should contain $ element on \"pf1\" with a value in !]0,100[",
             "match": {
               "arguments": [
                 {
-                  "val": "1",
+                  "val": "$",
                   "offset": 30
                 },
                 {

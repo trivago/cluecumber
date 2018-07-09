@@ -80,7 +80,7 @@ limitations under the License.
                                 <nobr>Step ${step?counter}</nobr>
                             </div>
                             <div class="col-7 text-left">
-                                <#assign stepName=step.nameWithArguments>
+                                <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
                                     ${step.keyword} ${stepName}

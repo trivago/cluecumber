@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.1.1] - 2018-07-03
+
+### Fixed
+
+* Page rendering error on certain step name characters
+
 ## [1.1.0] - 2018-07-03
 
 ### Added
@@ -184,6 +190,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
 [1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
 [1.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0
 [0.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0
