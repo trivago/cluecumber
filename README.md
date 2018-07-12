@@ -62,27 +62,27 @@ This project was created because
 
 ### All Scenarios
 
-![All Scenarios](documentation/img/page_all_scenarios.png)
+![All Scenarios](documentation/img/AllScenarios.png)
 
 ### Scenario Details
 
-![Scenario Details](documentation/img/page_scenario_details.png)
+![Scenario Details](documentation/img/ScenarioDetails.png)
 
 ### All Features
 
-![All Features](documentation/img/page_all_features.png)
+![All Features](documentation/img/AllFeatures.png)
 
 ### All Tags
 
-![All Tags](documentation/img/page_all_tags.png)
+![All Tags](documentation/img/AllTags.png)
 
 ### Scenarios for a specific tag
 
-![Scenarios by tag](documentation/img/page_scenarios_by_tag.png)
+![Scenarios by tag](documentation/img/TagDetails.png)
 
 ### Scenarios for a specific feature
 
-![report_detail](documentation/img/page_scenarios_by_feature.png)
+![report_detail](documentation/img/FeatureDetails.png)
 
 ## Changelog
 
