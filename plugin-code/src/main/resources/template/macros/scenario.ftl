@@ -37,7 +37,7 @@ limitations under the License.
                     </#switch>
 
                     <div class="card-body">
-                        <table index="results_${status}" class="table table-hover renderAsDataTable">
+                        <table id="results_${status}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
                                 <th class="text-left">Feature</th>

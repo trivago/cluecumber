@@ -40,7 +40,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     private final PropertyManager propertyManager;
     private final FileIO fileIO;
-    private CluecumberLogger logger;
+    private final CluecumberLogger logger;
 
     private int scenarioIndex = 0;
     private int attachmentIndex = 0;
@@ -109,9 +109,8 @@ public class ElementPostProcessor implements PostProcessor<Element> {
      *
      * @param embedding The {@link Embedding} to process.
      * @return The filename to the processed image.
-     * @throws CluecumberPluginException The exception if an image cannot be processed.
      */
-    private String saveImageEmbeddingToFileAndGetFilename(final Embedding embedding) throws CluecumberPluginException {
+    private String saveImageEmbeddingToFileAndGetFilename(final Embedding embedding) {
         if (!embedding.isImage()) {
             return "";
         }

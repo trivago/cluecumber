@@ -35,7 +35,7 @@ limitations under the License.
 
     <div class="row">
         <@page.card width="12" title="Available Tags" subtitle="">
-            <table index="tag_summary" class="table table-hover renderAsDataTable">
+            <table id="tag_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Tag</th>

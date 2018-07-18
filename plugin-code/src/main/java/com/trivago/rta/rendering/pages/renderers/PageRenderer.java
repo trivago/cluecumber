@@ -30,7 +30,7 @@ import java.io.Writer;
 
 class PageRenderer {
 
-    private ChartJsonConverter chartJsonConverter;
+    private final ChartJsonConverter chartJsonConverter;
 
     @Inject
     public PageRenderer(final ChartJsonConverter chartJsonConverter) {

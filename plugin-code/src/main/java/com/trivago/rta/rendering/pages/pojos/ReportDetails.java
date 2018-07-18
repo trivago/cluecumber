@@ -25,8 +25,8 @@ import java.util.Date;
 
 public class ReportDetails {
     private String chartJson;
-    private String date;
-    private String pageName;
+    private final String date;
+    private final String pageName;
 
     public ReportDetails(final String pageName) {
         this.pageName = pageName;

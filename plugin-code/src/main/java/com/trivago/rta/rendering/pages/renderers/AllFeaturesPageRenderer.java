@@ -78,21 +78,21 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         Dataset passedDataset = new Dataset();
         passedDataset.setLabel(Status.PASSED.getStatusString());
         passedDataset.setData(passed);
-        List<String> passedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.PASSED)));
+        List<String> passedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.PASSED)));
         passedDataset.setBackgroundColor(passedBG);
         datasets.add(passedDataset);
 
         Dataset failedDataset = new Dataset();
         failedDataset.setLabel(Status.FAILED.getStatusString());
         failedDataset.setData(failed);
-        List<String> failedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.FAILED)));
+        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.FAILED)));
         failedDataset.setBackgroundColor(failedBG);
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
         skippedDataset.setLabel(Status.SKIPPED.getStatusString());
         skippedDataset.setData(skipped);
-        List<String> skippedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
+        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
         skippedDataset.setBackgroundColor(skippedBG);
         datasets.add(skippedDataset);
 

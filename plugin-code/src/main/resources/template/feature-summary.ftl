@@ -35,7 +35,7 @@ limitations under the License.
 
     <div class="row">
         <@page.card width="12" title="Available Features" subtitle="">
-            <table index="feature_summary" class="table table-hover renderAsDataTable">
+            <table id="feature_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Feature</th>

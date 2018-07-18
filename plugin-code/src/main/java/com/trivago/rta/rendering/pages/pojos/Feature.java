@@ -19,8 +19,8 @@ package com.trivago.rta.rendering.pages.pojos;
 import java.util.Objects;
 
 public class Feature {
-    private String name;
-    private int index;
+    private final String name;
+    private final int index;
 
     public Feature(final String name, final int index) {
         this.name = name;

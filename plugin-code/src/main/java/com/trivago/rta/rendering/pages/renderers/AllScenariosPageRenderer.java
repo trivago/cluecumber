@@ -42,8 +42,8 @@ import java.util.Map;
 @Singleton
 public class AllScenariosPageRenderer extends PageRenderer {
 
-    private PropertyManager propertyManager;
-    private Cloner cloner;
+    private final PropertyManager propertyManager;
+    private final Cloner cloner;
 
     @Inject
     public AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
