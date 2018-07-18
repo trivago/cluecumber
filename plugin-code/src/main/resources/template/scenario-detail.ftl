@@ -36,10 +36,10 @@ limitations under the License.
                 <li class="list-group-item"><strong>${element.totalNumberOfFailedSteps}</strong> failed</li>
                 <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
                 <li class="list-group-item"><strong>Time:</strong> ${element.returnTotalDurationString()}</li>
-                <#list element.tags as tag>
-                    <li class="list-group-item"><a
-                            href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></li>
+                <li class="list-group-item"><#list element.tags as tag>
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                 </#list>
+                </li>
             </ul>
         </@page.card>
     </div>

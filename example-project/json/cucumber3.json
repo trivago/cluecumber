@@ -1,0 +1,132 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 189889559,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.isReady()"
+            }
+          }
+        ],
+        "line": 5,
+        "name": "Cucumber 3 Scenario",
+        "description": "",
+        "id": "some-id",
+        "after": [
+          {
+            "result": {
+              "duration": 656686,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.embedScreenshots(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 18931,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.reportToALM(Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1298445883,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.cleanUp()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 5466433151,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I open the \"Start\" page",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Start",
+                  "offset": 12
+                }
+              ],
+              "location": "Steps.openScreen(String)"
+            },
+            "after": [
+              {
+                "result": {
+                  "error_message": "some.AssertError: some stack trace for the after step hook\r\n",
+                  "duration": 6236342,
+                  "status": "failed"
+                },
+                "match": {
+                  "location": "Hooks.afterStepErrorHandling()"
+                }
+              }
+            ],
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@tag1"
+          },
+          {
+            "name": "@tag2"
+          },
+          {
+            "name": "@tag3"
+          },
+          {
+            "name": "@tag4"
+          }
+        ]
+      }
+    ],
+    "name": "Cucumber 3",
+    "description": "",
+    "id": "some-scenario",
+    "keyword": "Feature",
+    "uri": "src/test/resources/features/cucumber3/Foo.feature",
+    "tags": [
+      {
+        "name": "@tag1",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      },
+      {
+        "name": "@tag2",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 6
+        }
+      },
+      {
+        "name": "@tag3",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 15
+        }
+      }
+    ]
+  }
+]

@@ -22,10 +22,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Step extends ResultMatch {
+    private List<Before> before;
     private int line;
     private String name = "";
     private String keyword = "";
     private List<Row> rows = new ArrayList<>();
+    private List<After> after;
+
+    public List<Before> getBefore() {
+        return before;
+    }
+
+    public void setBefore(final List<Before> before) {
+        this.before = before;
+    }
 
     public int getLine() {
         return line;
@@ -70,13 +80,23 @@ public class Step extends ResultMatch {
         this.rows = rows;
     }
 
+    public List<After> getAfter() {
+        return after;
+    }
+
+    public void setAfter(final List<After> after) {
+        this.after = after;
+    }
+
     @Override
     public String toString() {
         return "Step{" +
-                "line=" + line +
+                "before=" + before +
+                ", line=" + line +
                 ", name='" + name + '\'' +
                 ", keyword='" + keyword + '\'' +
                 ", rows=" + rows +
+                ", after=" + after +
                 '}';
     }
 }
