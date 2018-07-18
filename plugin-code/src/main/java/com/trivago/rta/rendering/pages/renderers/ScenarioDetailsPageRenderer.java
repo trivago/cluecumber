@@ -19,7 +19,8 @@ package com.trivago.rta.rendering.pages.renderers;
 import com.trivago.rta.constants.ChartColor;
 import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
-import com.trivago.rta.json.pojo.Step;
+import com.trivago.rta.json.pojo.Element;
+import com.trivago.rta.json.pojo.ResultMatch;
 import com.trivago.rta.rendering.charts.ChartJsonConverter;
 import com.trivago.rta.rendering.charts.pojos.Axis;
 import com.trivago.rta.rendering.charts.pojos.Chart;
@@ -56,9 +57,16 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
     private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {
         Chart chart = new Chart();
 
+        Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
-        for (int i = 1; i <= scenarioDetailsPageCollection.getElement().getSteps().size(); i++) {
-            labels.add(String.valueOf(i));
+        for (int i = 1; i <= element.getBefore().size(); i++) {
+            labels.add("Before " + String.valueOf(i));
+        }
+        for (int i = 1; i <= element.getSteps().size(); i++) {
+            labels.add("Step " + String.valueOf(i));
+        }
+        for (int i = 1; i <= element.getBefore().size(); i++) {
+            labels.add("After " + String.valueOf(i));
         }
         Data data = new Data();
         data.setLabels(labels);
@@ -67,9 +75,9 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         for (Status status : Status.BASIC_STATES) {
             Dataset dataset = new Dataset();
             List<Integer> dataList = new ArrayList<>();
-            for (Step step : scenarioDetailsPageCollection.getElement().getSteps()) {
-                if (step.getConsolidatedStatus() == status) {
-                    dataList.add((int) step.getResult().getDurationInMilliseconds());
+            for (ResultMatch resultMatch : element.getAllResultMatches()) {
+                if (resultMatch.getConsolidatedStatus() == status) {
+                    dataList.add((int) resultMatch.getResult().getDurationInMilliseconds());
                 } else {
                     dataList.add(0);
                 }
@@ -77,7 +85,7 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
             dataset.setData(dataList);
             dataset.setLabel(status.getStatusString());
             dataset.setStack("complete");
-            dataset.setBackgroundColor(new ArrayList<String>(Collections.nCopies(dataList.size(), ChartColor.getChartColorStringByStatus(status))));
+            dataset.setBackgroundColor(new ArrayList<>(Collections.nCopies(dataList.size(), ChartColor.getChartColorStringByStatus(status))));
             datasets.add(dataset);
         }
 
@@ -93,7 +101,7 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         xAxis.setTicks(xTicks);
         ScaleLabel xScaleLabel = new ScaleLabel();
         xScaleLabel.setDisplay(true);
-        xScaleLabel.setLabelString("Step Number");
+        xScaleLabel.setLabelString("Step(s)");
         xAxis.setScaleLabel(xScaleLabel);
         xAxes.add(xAxis);
         scales.setxAxes(xAxes);

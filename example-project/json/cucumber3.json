@@ -34,7 +34,7 @@
               "status": "passed"
             },
             "match": {
-              "location": "Hooks.reportToALM(Scenario)"
+              "location": "Hooks.sendReport(Scenario)"
             }
           },
           {
