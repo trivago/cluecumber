@@ -38,10 +38,10 @@ import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
-
     @Inject
     public ScenarioDetailsPageRenderer(final ChartJsonConverter chartJsonConverter) {
         super(chartJsonConverter);
@@ -59,15 +59,10 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
-        for (int i = 1; i <= element.getBefore().size(); i++) {
-            labels.add("Before " + String.valueOf(i));
-        }
-        for (int i = 1; i <= element.getSteps().size(); i++) {
-            labels.add("Step " + String.valueOf(i));
-        }
-        for (int i = 1; i <= element.getBefore().size(); i++) {
-            labels.add("After " + String.valueOf(i));
-        }
+        IntStream.rangeClosed(1, element.getBefore().size()).mapToObj(i -> "Before " + i).forEachOrdered(labels::add);
+        IntStream.rangeClosed(1, element.getSteps().size()).mapToObj(i -> "Step " + i).forEachOrdered(labels::add);
+        IntStream.rangeClosed(1, element.getAfter().size()).mapToObj(i -> "After " + i).forEachOrdered(labels::add);
+
         Data data = new Data();
         data.setLabels(labels);
 
@@ -121,7 +116,7 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType("bar");
+        chart.setType(Chart.ChartType.bar);
 
         scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

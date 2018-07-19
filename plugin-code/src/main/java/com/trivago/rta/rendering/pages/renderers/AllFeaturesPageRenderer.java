@@ -134,7 +134,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType("bar");
+        chart.setType(Chart.ChartType.bar);
 
         allFeaturesPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

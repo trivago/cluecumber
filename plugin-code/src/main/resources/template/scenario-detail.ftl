@@ -52,7 +52,7 @@ limitations under the License.
                         <div class="row row_${before.statusString}">
                             <div class="col-1 text-left">
                                 <span class="text-secondary">
-                                    <nobr>Before</nobr>
+                                    <nobr>Before ${before?counter}</nobr>
                                 </span>
                             </div>
                             <div class="col-7 text-left">
@@ -117,7 +117,7 @@ limitations under the License.
                         <div class="row row_${after.statusString}">
                             <div class="col-1 text-left">
                                 <span class="text-secondary">
-                                    <nobr>After</nobr>
+                                    <nobr>After ${after?counter}</nobr>
                                 </span>
                             </div>
                             <div class="col-7 text-left">

@@ -135,7 +135,7 @@ public class AllTagsPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType("bar");
+        chart.setType(Chart.ChartType.bar);
 
         allTagsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

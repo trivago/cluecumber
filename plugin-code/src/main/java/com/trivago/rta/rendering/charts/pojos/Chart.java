@@ -17,9 +17,11 @@
 package com.trivago.rta.rendering.charts.pojos;
 
 public class Chart {
+    public enum ChartType {bar, pie}
+
     private Data data;
     private Options options;
-    private String type;
+    private ChartType type;
 
     public Data getData() {
         return data;
@@ -29,11 +31,11 @@ public class Chart {
         this.data = data;
     }
 
-    public String getType() {
+    public ChartType getType() {
         return type;
     }
 
-    public void setType(final String type) {
+    public void setType(final ChartType type) {
         this.type = type;
     }
 

@@ -181,7 +181,7 @@ public class ChartJsonConverterTest {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType("bar");
+        chart.setType(Chart.ChartType.bar);
 
         assertThat(chartJsonConverter.convertChartToJson(chart), is(expected));
     }
