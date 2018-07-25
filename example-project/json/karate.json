@@ -1,0 +1,146 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 142,
+        "name": "Karate Response check",
+        "description": "",
+        "id": "api-checks;response",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 1654804969,
+              "status": "passed"
+            },
+            "line": 143,
+            "name": "url domain",
+            "match": {
+              "arguments": [
+                {
+                  "val": "domain",
+                  "offset": 4
+                }
+              ],
+              "location": "StepDefs.url(String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 894455,
+              "status": "passed"
+            },
+            "line": 144,
+            "name": "path url_path",
+            "match": {
+              "arguments": [
+                {
+                  "val": "url_path",
+                  "offset": 5
+                }
+              ],
+              "location": "StepDefs.path(String\u003e)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 155884252,
+              "status": "passed"
+            },
+            "line": 145,
+            "name": "params { flags: \u00271083\u0027, q: \u0027北京市\u0027, tld: \u0027#(locale)\u0027 }",
+            "match": {
+              "arguments": [
+                {
+                  "val": "{ flags: \u00271083\u0027, q: \u0027北京市\u0027, tld: \u0027#(locale)\u0027 }",
+                  "offset": 7
+                }
+              ],
+              "location": "StepDefs.params(String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 1440772946,
+              "status": "passed"
+            },
+            "line": 146,
+            "name": "method get",
+            "match": {
+              "arguments": [
+                {
+                  "val": "get",
+                  "offset": 7
+                }
+              ],
+              "location": "StepDefs.method(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 728564,
+              "status": "passed"
+            },
+            "line": 147,
+            "name": "status 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 7
+                }
+              ],
+              "location": "StepDefs.status(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 26220471,
+              "status": "passed"
+            },
+            "line": 148,
+            "name": "match $.search \u003d\u003d 0",
+            "match": {
+              "arguments": [
+                {},
+                {
+                  "val": "$.search",
+                  "offset": 6
+                },
+                {},
+                {
+                  "val": "\u003d\u003d",
+                  "offset": 15
+                },
+                {
+                  "val": "0",
+                  "offset": 18
+                }
+              ],
+              "location": "StepDefs.matchEquals(String,String,String,String,String)"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "line": 141,
+            "name": "@cn"
+          }
+        ]
+      }
+    ],
+    "name": "feature/Karate.feature",
+    "description": "ReqRes API checks",
+    "id": "reqres-api-checks",
+    "keyword": "Feature",
+    "uri": "feature/Karate.feature"
+  }
+]

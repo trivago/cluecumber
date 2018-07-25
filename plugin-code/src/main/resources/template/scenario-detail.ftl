@@ -50,12 +50,12 @@ limitations under the License.
                 <li class="list-group-item" style="opacity:.8">
                     <#list element.before as before>
                         <div class="row row_${before.statusString}">
-                            <div class="col-1 text-left">
+                            <div class="col-2 text-left">
                                 <span class="text-secondary">
                                     <nobr>Before ${before?counter}</nobr>
                                 </span>
                             </div>
-                            <div class="col-7 text-left">
+                            <div class="col-6 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
                             <div class="col-2 text-left">
@@ -76,10 +76,10 @@ limitations under the License.
                 <li class="list-group-item">
                     <#list element.steps as step>
                         <div class="row row_${step.statusString}">
-                            <div class="col-1 text-left">
+                            <div class="col-2 text-left">
                                 <nobr>Step ${step?counter}</nobr>
                             </div>
-                            <div class="col-7 text-left">
+                            <div class="col-6 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
@@ -115,12 +115,12 @@ limitations under the License.
                 <li class="list-group-item" style="opacity:.8">
                     <#list element.after as after>
                         <div class="row row_${after.statusString}">
-                            <div class="col-1 text-left">
+                            <div class="col-2 text-left">
                                 <span class="text-secondary">
                                     <nobr>After ${after?counter}</nobr>
                                 </span>
                             </div>
-                            <div class="col-7 text-left">
+                            <div class="col-6 text-left">
                                 <i>${after.glueMethodName}</i>
                             </div>
                             <div class="col-2 text-left">

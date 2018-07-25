@@ -83,9 +83,8 @@ limitations under the License.
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="row col-12">
-                <div class="col-1"></div>
-                <div class="col-10 text-left">
+            <div class="w-100 mt-3">
+                <div class="col-9 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
@@ -96,7 +95,6 @@ limitations under the License.
                         ${attachment.data?html}
                     </#if>
                 </div>
-                <div class="col-1"></div>
             </div>
         </#list>
     </#if>
@@ -115,12 +113,10 @@ limitations under the License.
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="row col-12">
-            <div class="col-1"></div>
-            <div class="col-10 text-left border border-danger">
+        <div class="w-100 mt-3">
+            <div class="col-9 text-left border border-danger m-auto">
                 <code>${step.result.errorMessage?html}</code>
             </div>
-            <div class="col-1"></div>
         </div>
     </#if>
 </#macro>
@@ -129,13 +125,11 @@ limitations under the License.
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="row col-12">
-                    <div class="col-1"></div>
-                    <div class="col-10 text-left">
+                <div class="w-100 mt-3">
+                    <div class="col-9 text-left m-auto">
                         <iframe srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>
                     </div>
-                    <div class="col-1"></div>
                 </div>
             </#if>
         </#list>
