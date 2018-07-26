@@ -100,6 +100,10 @@ public class ResultMatch {
         }
     }
 
+    public String getConsolidatedStatusString() {
+        return getConsolidatedStatus().getStatusString();
+    }
+
     @Override
     public String toString() {
         return "ResultMatch{" +

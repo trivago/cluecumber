@@ -32,7 +32,7 @@ limitations under the License.
     <#assign links = ["feature_summary", "tag_summary"]>
 </#if>
 
-<@page.page base=base links=links headline=headline>
+<@page.page base=base links=links headline=headline subheadline="">
     <#if hasCustomParameters()>
         <div class="row">
             <@page.card width="12" title="" subtitle="">

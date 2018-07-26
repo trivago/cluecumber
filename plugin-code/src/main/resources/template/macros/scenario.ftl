@@ -89,7 +89,7 @@ limitations under the License.
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
                             <img src="attachments/${attachment.filename}"
-                                 style="width: 100%"/>
+                                 style="max-width: 100%"/>
                         </a>
                     <#else>
                         ${attachment.data?html}
@@ -133,5 +133,18 @@ limitations under the License.
                 </div>
             </#if>
         </#list>
+    </#if>
+</#macro>
+
+<#macro stepHook step>
+    <#if step.result.hasErrorMessage()>
+        <div class="row w-100">
+            <div class="col-3 text-left border border-danger">
+                Karalljo
+            </div>
+            <div class="col-9 text-left border border-danger">
+                <code>${step.result.errorMessage?html}</code>
+            </div>
+        </div>
     </#if>
 </#macro>
