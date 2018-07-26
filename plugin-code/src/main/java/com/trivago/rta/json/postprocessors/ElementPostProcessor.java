@@ -127,6 +127,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
                 fileEnding = ".gif";
                 break;
             case "image/svg+xml":
+            case "image/svg":
                 fileEnding = ".svg";
                 break;
             default:
