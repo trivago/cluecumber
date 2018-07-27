@@ -12,15 +12,16 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Support for parameter highlighting in [Karate](https://github.com/intuit/karate/) tests
+* Hiding skipped steps from the scenario detail chart now also hides steps that are _considered_ skipped but have a status other than `skipped`
 
 ### Added
 
-* Failed Cucumber 3 BeforeStep and AfterStep hooks are shown on failure
+* Failed Cucumber 3 `BeforeStep` and `AfterStep` hooks are shown on failure
 * SVG attachment support
 
 ### Changed
 
-* Separated Before and After hooks from steps in detail view
+* Separated `Before` and `After` hooks from steps in detail view
 * Cleaned up "All Features" and "All Tags" charts
 
 ## [1.1.1] - 2018-07-03
