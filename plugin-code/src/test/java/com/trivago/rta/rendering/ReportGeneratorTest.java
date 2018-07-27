@@ -40,7 +40,7 @@ public class ReportGeneratorTest {
         CluecumberLogger logger = mock(CluecumberLogger.class);
         PropertyManager propertyManager = new PropertyManager(logger);
         reportGenerator = new ReportGenerator(
-                templateEngine, fileIO, propertyManager, fileSystemManager, logger
+                templateEngine, fileIO, propertyManager, fileSystemManager
         );
     }
 

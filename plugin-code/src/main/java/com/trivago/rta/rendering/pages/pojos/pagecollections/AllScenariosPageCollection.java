@@ -43,8 +43,8 @@ public class AllScenariosPageCollection extends PageCollection {
         return reports;
     }
 
-    public List<Report> clearReports() {
-        return reports = new ArrayList<>();
+    public void clearReports() {
+        reports = new ArrayList<>();
     }
 
     public void addReports(final Report[] reportList) {

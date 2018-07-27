@@ -27,7 +27,7 @@ public class ResultMatchTest {
     }
 
     @Test
-    public void ArgumentsTest() {
+    public void argumentsTest() {
         Match match = new Match();
         List<Argument> arguments = new ArrayList<>();
         Argument argument = new Argument();

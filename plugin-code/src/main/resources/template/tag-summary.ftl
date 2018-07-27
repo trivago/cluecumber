@@ -18,7 +18,7 @@ limitations under the License.
 <#import "macros/scenario.ftl" as scenarioMacros>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base=".." links=["feature_summary", "scenario_summary"] headline="All Tags">
+<@page.page base=".." links=["feature_summary", "scenario_summary"] headline="All Tags" subheadline="">
     <div class="row">
         <@page.card width="8" title="Tag Summary Result Chart" subtitle="">
             <@page.graph />
@@ -35,7 +35,7 @@ limitations under the License.
 
     <div class="row">
         <@page.card width="12" title="Available Tags" subtitle="">
-            <table index="tag_summary" class="table table-hover renderAsDataTable">
+            <table id="tag_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Tag</th>

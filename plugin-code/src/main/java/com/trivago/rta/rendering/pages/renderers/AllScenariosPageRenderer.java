@@ -41,8 +41,10 @@ import java.util.Map;
 
 @Singleton
 public class AllScenariosPageRenderer extends PageRenderer {
-    private PropertyManager propertyManager;
-    private Cloner cloner;
+
+    private final PropertyManager propertyManager;
+    private final Cloner cloner;
+
     @Inject
     public AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
         super(chartJsonConverter);
@@ -126,41 +128,9 @@ public class AllScenariosPageRenderer extends PageRenderer {
         dataset.setBackgroundColor(backgroundColors);
         data.setDatasets(datasets);
 
-
         chart.setData(data);
-        chart.setType("pie");
+        chart.setType(Chart.ChartType.pie);
 
-        /*
-        {
-  "type" : "pie",
-  "data" : {
-    "labels" : [ "passed", "failed", "skipped" ],
-    "datasets" : [ {
-      "data" : [ 3, 2, 1 ],
-      "backgroundColor" : [ "rgba(40,167,69,1.000)", "rgba(220,53,69,1.000)", "rgba(255,193,7,1.000)" ]
-    } ]
-  },
-  "options" : { }
-}
-         */
-//
-//        PieDataset pieDataset = new PieDataset();
-//        pieDataset.setData(
-//                allScenariosPageCollection.getTotalNumberOfPassedScenarios(),
-//                allScenariosPageCollection.getTotalNumberOfFailedScenarios(),
-//                allScenariosPageCollection.getTotalNumberOfSkippedScenarios()
-//        );
-//
-//        Color passedColor = ChartColor.getChartColorByStatus(Status.PASSED);
-//        Color failedColor = ChartColor.getChartColorByStatus(Status.FAILED);
-//        Color skippedColor = ChartColor.getChartColorByStatus(Status.SKIPPED);
-//
-//        pieDataset.addBackgroundColors(passedColor, failedColor, skippedColor);
-//        PieData pieData = new PieData();
-//        pieData.addDataset(pieDataset);
-//        pieData.addLabels(Status.PASSED.getStatusString(), Status.FAILED.getStatusString(), Status.SKIPPED.getStatusString());
-//        PieOptions pieOptions = new PieOptions();
-//
         allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }
 

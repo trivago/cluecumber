@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#macro page base links headline>
+<#macro page base links headline subheadline>
     <!DOCTYPE html>
     <!--
     Copyright 2018 trivago N.V.
@@ -39,14 +39,17 @@ limitations under the License.
     </head>
     <body>
         <@navigation.build links=links />
-    <main role="main" class="container">
-        <div class="cluecumber-template">
-            <div class="pb-2 mt-4 mb-2 border-bottom">
-                <h3>${headline}</h3>
+        <main role="main" class="container">
+            <div class="cluecumber-template">
+                <div class="pb-2 mt-4 mb-2 border-bottom">
+                    <h3>${headline}</h3>
+                    <#if subheadline != "">
+                        <h5>${subheadline}</h5>
+                    </#if>
+                </div>
+                <#nested>
             </div>
-            <#nested>
-        </div>
-    </main>
+        </main>
         <#include "../snippets/footer.ftl">
         <#include "../snippets/js.ftl">
     </body>

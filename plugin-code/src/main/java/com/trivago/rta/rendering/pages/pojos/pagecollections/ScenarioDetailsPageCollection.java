@@ -20,7 +20,7 @@ import com.trivago.rta.constants.PluginSettings;
 import com.trivago.rta.json.pojo.Element;
 
 public class ScenarioDetailsPageCollection extends PageCollection {
-    private Element element;
+    private final Element element;
 
     public ScenarioDetailsPageCollection(final Element element) {
         super(PluginSettings.SCENARIO_DETAIL_PAGE_NAME);

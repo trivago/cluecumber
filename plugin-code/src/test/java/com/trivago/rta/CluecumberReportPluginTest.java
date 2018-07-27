@@ -17,7 +17,7 @@ public class CluecumberReportPluginTest {
     private CluecumberReportPlugin cluecumberReportPlugin;
 
     @Before
-    public void setup() throws CluecumberPluginException {
+    public void setup() {
         CluecumberLogger cluecumberLogger = mock(CluecumberLogger.class);
         PropertyManager propertyManager = mock(PropertyManager.class);
         FileSystemManager fileSystemManager = mock(FileSystemManager.class);

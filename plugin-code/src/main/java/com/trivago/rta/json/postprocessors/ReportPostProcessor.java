@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
-import com.trivago.rta.logging.CluecumberLogger;
 import io.gsonfire.PostProcessor;
 
 import javax.inject.Inject;
@@ -31,12 +30,10 @@ import java.util.List;
 @Singleton
 public class ReportPostProcessor implements PostProcessor<Report> {
 
-    private final CluecumberLogger logger;
-    private List<String> featureUris;
+    private final List<String> featureUris;
 
     @Inject
-    public ReportPostProcessor(final CluecumberLogger logger) {
-        this.logger = logger;
+    public ReportPostProcessor() {
         featureUris = new ArrayList<>();
     }
 

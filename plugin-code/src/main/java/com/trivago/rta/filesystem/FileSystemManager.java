@@ -51,7 +51,7 @@ public class FileSystemManager {
             jsonFilePaths =
                     Files.walk(Paths.get(sourceJsonReportDirectory))
                             .filter(Files::isRegularFile)
-                            .filter(p -> p.toString().endsWith(".json"))
+                            .filter(p -> p.toString().toLowerCase().endsWith(".json"))
                             .collect(Collectors.toList());
 
         } catch (IOException e) {

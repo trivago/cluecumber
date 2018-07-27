@@ -77,7 +77,8 @@ public class ChartJsonConverterTest {
                 "      \"xAxes\": [\n" +
                 "        {\n" +
                 "          \"ticks\": {\n" +
-                "            \"min\": 0\n" +
+                "            \"min\": 0,\n" +
+                "            \"display\": true\n" +
                 "          },\n" +
                 "          \"stacked\": false,\n" +
                 "          \"scaleLabel\": {\n" +
@@ -90,7 +91,8 @@ public class ChartJsonConverterTest {
                 "      \"yAxes\": [\n" +
                 "        {\n" +
                 "          \"ticks\": {\n" +
-                "            \"min\": 0\n" +
+                "            \"min\": 0,\n" +
+                "            \"display\": true\n" +
                 "          },\n" +
                 "          \"stacked\": true,\n" +
                 "          \"scaleLabel\": {\n" +
@@ -181,7 +183,7 @@ public class ChartJsonConverterTest {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType("bar");
+        chart.setType(Chart.ChartType.bar);
 
         assertThat(chartJsonConverter.convertChartToJson(chart), is(expected));
     }

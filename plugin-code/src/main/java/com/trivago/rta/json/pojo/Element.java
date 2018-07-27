@@ -210,6 +210,13 @@ public class Element {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
+    public List<ResultMatch> getAllResultMatches(){
+        List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
+        resultMatches.addAll(getSteps());
+        resultMatches.addAll(getAfter());
+        return resultMatches;
+    }
+
     @Override
     public String toString() {
         return "Element{" +

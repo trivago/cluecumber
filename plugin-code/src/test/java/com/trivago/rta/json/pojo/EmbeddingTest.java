@@ -33,8 +33,14 @@ public class EmbeddingTest {
     }
 
     @Test
-    public void isImageSvgTest() {
+    public void isImageSvgXmlTest() {
         embedding.setMimeType("image/svg+xml");
+        assertThat(embedding.isImage(), is(true));
+    }
+
+    @Test
+    public void isImageSvgTest() {
+        embedding.setMimeType("image/svg");
         assertThat(embedding.isImage(), is(true));
     }
 

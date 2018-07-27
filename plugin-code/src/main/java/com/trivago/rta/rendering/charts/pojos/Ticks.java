@@ -18,6 +18,7 @@ package com.trivago.rta.rendering.charts.pojos;
 
 public class Ticks {
     private int min;
+    private boolean display = true;
 
     public int getMin() {
         return min;
@@ -25,5 +26,13 @@ public class Ticks {
 
     public void setMin(final int min) {
         this.min = min;
+    }
+
+    public boolean isDisplay() {
+        return display;
+    }
+
+    public void setDisplay(final boolean display) {
+        this.display = display;
     }
 }

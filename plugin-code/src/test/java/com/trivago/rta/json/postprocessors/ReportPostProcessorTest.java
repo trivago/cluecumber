@@ -3,7 +3,6 @@ package com.trivago.rta.json.postprocessors;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Step;
-import com.trivago.rta.logging.CluecumberLogger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,8 +17,7 @@ public class ReportPostProcessorTest {
 
     @Before
     public void setup() {
-        CluecumberLogger logger = new CluecumberLogger();
-        reportPostProcessor = new ReportPostProcessor(logger);
+        reportPostProcessor = new ReportPostProcessor();
     }
 
     @Test
