@@ -45,7 +45,7 @@ public class Result {
     }
 
     public boolean hasErrorMessage() {
-        return !errorMessage.isEmpty();
+        return errorMessage != null && !errorMessage.trim().isEmpty();
     }
 
     public String getErrorMessage() {

@@ -32,6 +32,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 import javax.inject.Inject;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +65,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
      * Custom parameters to add to the report.
      */
     @Parameter(property = "reporting.customParameters", required = true)
-    private Map<String, String> customParameters;
+    private Map<String, String> customParameters = new HashMap<>();
 
     @Inject
     public CluecumberReportPlugin(
@@ -120,7 +121,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
 
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
-                "Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                "* Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                         PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 }

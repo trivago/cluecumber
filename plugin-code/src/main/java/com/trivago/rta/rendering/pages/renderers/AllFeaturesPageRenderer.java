@@ -78,21 +78,21 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         Dataset passedDataset = new Dataset();
         passedDataset.setLabel(Status.PASSED.getStatusString());
         passedDataset.setData(passed);
-        List<String> passedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.PASSED)));
+        List<String> passedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.PASSED)));
         passedDataset.setBackgroundColor(passedBG);
         datasets.add(passedDataset);
 
         Dataset failedDataset = new Dataset();
         failedDataset.setLabel(Status.FAILED.getStatusString());
         failedDataset.setData(failed);
-        List<String> failedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.FAILED)));
+        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.FAILED)));
         failedDataset.setBackgroundColor(failedBG);
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
         skippedDataset.setLabel(Status.SKIPPED.getStatusString());
         skippedDataset.setData(skipped);
-        List<String> skippedBG = new ArrayList<String>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
+        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
         skippedDataset.setBackgroundColor(skippedBG);
         datasets.add(skippedDataset);
 
@@ -105,11 +105,13 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         data.setLabels(keys);
 
         Options options = new Options();
+
         Scales scales = new Scales();
         List<Axis> xAxes = new ArrayList<>();
         Axis xAxis = new Axis();
         xAxis.setStacked(true);
         Ticks xTicks = new Ticks();
+        xTicks.setDisplay(false);
         xAxis.setTicks(xTicks);
         ScaleLabel xScaleLabel = new ScaleLabel();
         xScaleLabel.setDisplay(true);
@@ -134,7 +136,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType("bar");
+        chart.setType(Chart.ChartType.bar);
 
         allFeaturesPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

@@ -55,8 +55,8 @@ public class Embedding {
                 mimeType.equalsIgnoreCase("image/png") ||
                         mimeType.equalsIgnoreCase("image/jpeg") ||
                         mimeType.equalsIgnoreCase("image/gif") ||
+                        mimeType.equalsIgnoreCase("image/svg") ||
                         mimeType.equalsIgnoreCase("image/svg+xml");
-
     }
 
     public boolean isPlainText() {

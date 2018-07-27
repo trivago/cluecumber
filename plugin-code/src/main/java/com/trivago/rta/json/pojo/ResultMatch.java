@@ -21,7 +21,7 @@ import com.trivago.rta.constants.Status;
 import java.util.ArrayList;
 import java.util.List;
 
-class ResultMatch {
+public class ResultMatch {
     private Result result;
     private Match match;
 
@@ -98,6 +98,10 @@ class ResultMatch {
             default:
                 return getStatus();
         }
+    }
+
+    public String getConsolidatedStatusString() {
+        return getConsolidatedStatus().getStatusString();
     }
 
     @Override

@@ -23,7 +23,6 @@ import com.trivago.rta.filesystem.FileSystemManager;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.pojo.Tag;
-import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
 import com.trivago.rta.rendering.pages.pojos.Feature;
 import com.trivago.rta.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
@@ -37,25 +36,22 @@ import javax.inject.Singleton;
 @Singleton
 public class ReportGenerator {
 
-    private TemplateEngine templateEngine;
-    private FileIO fileIO;
-    private PropertyManager propertyManager;
-    private FileSystemManager fileSystemManager;
-    private CluecumberLogger logger;
+    private final TemplateEngine templateEngine;
+    private final FileIO fileIO;
+    private final PropertyManager propertyManager;
+    private final FileSystemManager fileSystemManager;
 
     @Inject
     public ReportGenerator(
             final TemplateEngine templateEngine,
             final FileIO fileIO,
             final PropertyManager propertyManager,
-            final FileSystemManager fileSystemManager,
-            final CluecumberLogger logger
+            final FileSystemManager fileSystemManager
     ) {
         this.templateEngine = templateEngine;
         this.fileIO = fileIO;
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
-        this.logger = logger;
     }
 
     public void generateReport(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {

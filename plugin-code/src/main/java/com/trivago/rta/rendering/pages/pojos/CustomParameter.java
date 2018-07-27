@@ -19,8 +19,8 @@ package com.trivago.rta.rendering.pages.pojos;
 import java.net.URL;
 
 public class CustomParameter {
-    private String key;
-    private String value;
+    private final String key;
+    private final String value;
 
     public CustomParameter(final String key, final String value) {
         this.key = key;

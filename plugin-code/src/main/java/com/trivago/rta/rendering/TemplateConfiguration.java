@@ -37,7 +37,7 @@ public class TemplateConfiguration {
     }
 
     Template getTemplate(final String templateName) throws CluecumberPluginException {
-        Template template = null;
+        Template template;
         try {
             template = cfg.getTemplate(templateName + PluginSettings.TEMPLATE_FILE_EXTENSION);
         } catch (Exception e) {

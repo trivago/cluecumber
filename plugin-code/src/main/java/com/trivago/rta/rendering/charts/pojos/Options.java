@@ -18,6 +18,7 @@ package com.trivago.rta.rendering.charts.pojos;
 
 public class Options {
     private Scales scales;
+    private Legend legend;
 
     public Scales getScales() {
         return scales;
@@ -25,5 +26,13 @@ public class Options {
 
     public void setScales(final Scales scales) {
         this.scales = scales;
+    }
+
+    public Legend getLegend() {
+        return legend;
+    }
+
+    public void setLegend(final Legend legend) {
+        this.legend = legend;
     }
 }

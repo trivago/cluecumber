@@ -37,7 +37,7 @@ limitations under the License.
                     </#switch>
 
                     <div class="card-body">
-                        <table index="results_${status}" class="table table-hover renderAsDataTable">
+                        <table id="results_${status}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
                                 <th class="text-left">Feature</th>
@@ -83,20 +83,18 @@ limitations under the License.
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="row col-12">
-                <div class="col-1"></div>
-                <div class="col-10 text-left">
+            <div class="w-100 mt-3">
+                <div class="col-9 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
                             <img src="attachments/${attachment.filename}"
-                                 style="width: 100%"/>
+                                 style="max-width: 100%"/>
                         </a>
                     <#else>
                         ${attachment.data?html}
                     </#if>
                 </div>
-                <div class="col-1"></div>
             </div>
         </#list>
     </#if>
@@ -115,12 +113,10 @@ limitations under the License.
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="row col-12">
-            <div class="col-1"></div>
-            <div class="col-10 text-left border border-danger">
+        <div class="w-100 mt-3">
+            <div class="col-9 text-left border border-danger m-auto">
                 <code>${step.result.errorMessage?html}</code>
             </div>
-            <div class="col-1"></div>
         </div>
     </#if>
 </#macro>
@@ -129,15 +125,35 @@ limitations under the License.
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="row col-12">
-                    <div class="col-1"></div>
-                    <div class="col-10 text-left">
+                <div class="w-100 mt-3">
+                    <div class="col-9 text-left m-auto">
                         <iframe srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>
                     </div>
-                    <div class="col-1"></div>
                 </div>
             </#if>
         </#list>
     </#if>
+</#macro>
+
+<#macro stepHooks hooks>
+    <#list hooks as hook>
+        <#if (hook.failed)>
+            <div class="row row_${hook.consolidatedStatusString}">
+                <div class="col-2"></div>
+                <div class="col-6 text-left">
+                    <i>${hook.glueMethodName}</i>
+                </div>
+                <div class="col-2 text-left">
+                    <nobr>${hook.result.returnDurationString()}</nobr>
+                </div>
+                <div class="col-2 text-right">
+                    <@scenario.status step=hook/>
+                </div>
+                <@scenario.errorMessage step=hook/>
+                <@scenario.output step=hook/>
+                <@scenario.attachments step=hook/>
+            </div>
+        </#if>
+    </#list>
 </#macro>

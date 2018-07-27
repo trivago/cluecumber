@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.2.0] - 2018-07-27
+
+### Fixed
+
+* Support for parameter highlighting in [Karate](https://github.com/intuit/karate/) tests
+* Hiding skipped steps from the scenario detail chart now also hides steps that are _considered_ skipped but have a status other than `skipped`
+
+### Added
+
+* Failed Cucumber 3 `BeforeStep` and `AfterStep` hooks are shown on failure
+* SVG attachment support
+
+### Changed
+
+* Separated `Before` and `After` hooks from steps in detail view
+* Cleaned up "All Features" and "All Tags" charts
+* Aligned and streamlined design on all pages
+
 ## [1.1.1] - 2018-07-03
 
 ### Fixed
@@ -190,6 +208,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
 [1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
 [1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
 [1.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0

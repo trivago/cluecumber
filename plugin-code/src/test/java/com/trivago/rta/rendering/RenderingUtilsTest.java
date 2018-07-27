@@ -8,13 +8,13 @@ import static org.hamcrest.core.Is.is;
 public class RenderingUtilsTest {
     @Test
     public void convertMicrosecondsToTimeStringTest() {
-        String timeString = RenderingUtils.convertMicrosecondsToTimeString(1234567890000l);
+        String timeString = RenderingUtils.convertMicrosecondsToTimeString(1234567890000L);
         assertThat(timeString, is("20m 34s 567ms"));
     }
 
     @Test
     public void convertMicrosecondsToMillisecondsTest() {
-        long milliseconds = RenderingUtils.convertMicrosecondsToMilliseconds(1234567890000l);
+        long milliseconds = RenderingUtils.convertMicrosecondsToMilliseconds(1234567890000L);
         assertThat(milliseconds, is(1234567L));
     }
 

@@ -18,7 +18,8 @@ limitations under the License.
 <#import "macros/scenario.ftl" as scenario>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario '${element.name?html}'">
+<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
+
     <script>
         function resizeIframe(obj) {
             obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
@@ -36,26 +37,26 @@ limitations under the License.
                 <li class="list-group-item"><strong>${element.totalNumberOfFailedSteps}</strong> failed</li>
                 <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
                 <li class="list-group-item"><strong>Time:</strong> ${element.returnTotalDurationString()}</li>
-                <#list element.tags as tag>
-                    <li class="list-group-item"><a
-                            href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></li>
+                <li class="list-group-item"><#list element.tags as tag>
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                 </#list>
+                </li>
             </ul>
         </@page.card>
     </div>
 
-    <@page.card width="12" title="${element.name?html}" subtitle="${element.description?html}">
-        <ul class="list-group list-group-flush">
-            <#if (element.before?size > 0)>
-                <li class="list-group-item" style="opacity:.8">
+    <ul class="list-group list-group-flush">
+        <#if (element.before?size > 0)>
+            <@page.card width="12" title="Before Hooks" subtitle="">
+                <li class="list-group-item">
                     <#list element.before as before>
-                        <div class="row row_${before.statusString}">
-                            <div class="col-1 text-left">
+                        <div class="row row_${before.consolidatedStatusString}">
+                            <div class="col-2 text-left">
                                 <span class="text-secondary">
-                                    <nobr>Before</nobr>
+                                    <nobr>Before ${before?counter}</nobr>
                                 </span>
                             </div>
-                            <div class="col-7 text-left">
+                            <div class="col-6 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
                             <div class="col-2 text-left">
@@ -70,16 +71,21 @@ limitations under the License.
                         </div>
                     </#list>
                 </li>
-            </#if>
+            </@page.card>
+        </#if>
 
-            <#if (element.steps?size > 0)>
+        <#if (element.steps?size > 0)>
+            <@page.card width="12" title="Steps" subtitle="">
                 <li class="list-group-item">
                     <#list element.steps as step>
-                        <div class="row row_${step.statusString}">
-                            <div class="col-1 text-left">
+
+                        <@scenario.stepHooks step.before />
+
+                        <div class="row row_${step.consolidatedStatusString}">
+                            <div class="col-2 text-left">
                                 <nobr>Step ${step?counter}</nobr>
                             </div>
-                            <div class="col-7 text-left">
+                            <div class="col-6 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
@@ -103,24 +109,29 @@ limitations under the License.
                             <div class="col-2 text-right">
                                 <@scenario.status step=step/>
                             </div>
-                        <@scenario.errorMessage step=step/>
-                        <@scenario.output step=step/>
-                        <@scenario.attachments step=step/>
+                            <@scenario.errorMessage step=step/>
+                            <@scenario.output step=step/>
+                            <@scenario.attachments step=step/>
                         </div>
+
+                        <@scenario.stepHooks step.after />
+
                     </#list>
                 </li>
-            </#if>
+            </@page.card>
+        </#if>
 
-            <#if (element.after?size > 0)>
-                <li class="list-group-item" style="opacity:.8">
+        <#if (element.after?size > 0)>
+            <@page.card width="12" title="After Hooks" subtitle="">
+                <li class="list-group-item">
                     <#list element.after as after>
-                        <div class="row row_${after.statusString}">
-                            <div class="col-1 text-left">
+                        <div class="row row_${after.consolidatedStatusString}">
+                            <div class="col-2 text-left">
                                 <span class="text-secondary">
-                                    <nobr>After</nobr>
+                                    <nobr>After ${after?counter}</nobr>
                                 </span>
                             </div>
-                            <div class="col-7 text-left">
+                            <div class="col-6 text-left">
                                 <i>${after.glueMethodName}</i>
                             </div>
                             <div class="col-2 text-left">
@@ -135,7 +146,7 @@ limitations under the License.
                         </div>
                     </#list>
                 </li>
-            </#if>
-        </ul>
-    </@page.card>
+            </@page.card>
+        </#if>
+    </ul>
 </@page.page>

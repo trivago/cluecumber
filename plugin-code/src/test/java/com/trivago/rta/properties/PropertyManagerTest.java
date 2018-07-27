@@ -26,7 +26,7 @@ public class PropertyManagerTest {
     }
 
     @Test
-    public void generatedHtmlReportDirectoryTest() throws Exception {
+    public void generatedHtmlReportDirectoryTest() {
         propertyManager.setGeneratedHtmlReportDirectory("test");
         assertThat(propertyManager.getGeneratedHtmlReportDirectory(), is("test"));
     }
