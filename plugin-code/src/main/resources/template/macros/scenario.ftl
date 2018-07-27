@@ -136,15 +136,24 @@ limitations under the License.
     </#if>
 </#macro>
 
-<#macro stepHook step>
-    <#if step.result.hasErrorMessage()>
-        <div class="row w-100">
-            <div class="col-3 text-left border border-danger">
-                Karalljo
+<#macro stepHooks hooks>
+    <#list hooks as hook>
+        <#if (hook.failed)>
+            <div class="row row_${hook.consolidatedStatusString}">
+                <div class="col-2"></div>
+                <div class="col-6 text-left">
+                    <i>${hook.glueMethodName}</i>
+                </div>
+                <div class="col-2 text-left">
+                    <nobr>${hook.result.returnDurationString()}</nobr>
+                </div>
+                <div class="col-2 text-right">
+                    <@scenario.status step=hook/>
+                </div>
+                <@scenario.errorMessage step=hook/>
+                <@scenario.output step=hook/>
+                <@scenario.attachments step=hook/>
             </div>
-            <div class="col-9 text-left border border-danger">
-                <code>${step.result.errorMessage?html}</code>
-            </div>
-        </div>
-    </#if>
+        </#if>
+    </#list>
 </#macro>

@@ -105,11 +105,13 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         data.setLabels(keys);
 
         Options options = new Options();
+
         Scales scales = new Scales();
         List<Axis> xAxes = new ArrayList<>();
         Axis xAxis = new Axis();
         xAxis.setStacked(true);
         Ticks xTicks = new Ticks();
+        xTicks.setDisplay(false);
         xAxis.setTicks(xTicks);
         ScaleLabel xScaleLabel = new ScaleLabel();
         xScaleLabel.setDisplay(true);

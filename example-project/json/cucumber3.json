@@ -51,6 +51,17 @@
         "keyword": "Scenario",
         "steps": [
           {
+            "before": [
+              {
+                "result": {
+                  "duration": 6236342,
+                  "status": "passed"
+                },
+                "match": {
+                  "location": "Hooks.afterStepErrorHandling()"
+                }
+              }
+            ],
             "result": {
               "duration": 5466433151,
               "status": "passed"
@@ -67,6 +78,15 @@
               "location": "Steps.openScreen(String)"
             },
             "after": [
+              {
+                "result": {
+                  "duration": 6236342,
+                  "status": "passed"
+                },
+                "match": {
+                  "location": "Hooks.afterStepErrorHandling()"
+                }
+              },
               {
                 "result": {
                   "error_message": "some.AssertError: some stack trace for the after step hook\r\n",

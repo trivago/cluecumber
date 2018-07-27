@@ -78,27 +78,8 @@ limitations under the License.
             <@page.card width="12" title="Steps" subtitle="">
                 <li class="list-group-item">
                     <#list element.steps as step>
-                        <#list step.before as beforeHook>
-                            <@scenario.stepHook step=beforeHook />
-                        </#list>
 
-                        <#list step.before as beforeStepHook>
-                            <div class="row row_${beforeStepHook.consolidatedStatusString}">
-                                <div class="col-2"></div>
-                                <div class="col-6 text-left">
-                                    <i>${beforeStepHook.glueMethodName}</i>
-                                </div>
-                                <div class="col-2 text-left">
-                                    <nobr>${beforeStepHook.result.returnDurationString()}</nobr>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <@scenario.status step=beforeStepHook/>
-                                </div>
-                            <@scenario.errorMessage step=beforeStepHook/>
-                            <@scenario.output step=beforeStepHook/>
-                            <@scenario.attachments step=beforeStepHook/>
-                            </div>
-                        </#list>
+                        <@scenario.stepHooks step.before />
 
                         <div class="row row_${step.consolidatedStatusString}">
                             <div class="col-2 text-left">
@@ -128,28 +109,13 @@ limitations under the License.
                             <div class="col-2 text-right">
                                 <@scenario.status step=step/>
                             </div>
-                        <@scenario.errorMessage step=step/>
-                        <@scenario.output step=step/>
-                        <@scenario.attachments step=step/>
+                            <@scenario.errorMessage step=step/>
+                            <@scenario.output step=step/>
+                            <@scenario.attachments step=step/>
                         </div>
 
-                        <#list step.after as afterStepHook>
-                            <div class="row row_${afterStepHook.consolidatedStatusString}">
-                                <div class="col-2"></div>
-                                <div class="col-6 text-left">
-                                    <i>${afterStepHook.glueMethodName}</i>
-                                </div>
-                                <div class="col-2 text-left">
-                                    <nobr>${afterStepHook.result.returnDurationString()}</nobr>
-                                </div>
-                                <div class="col-2 text-right">
-                                    <@scenario.status step=afterStepHook/>
-                                </div>
-                            <@scenario.errorMessage step=afterStepHook/>
-                            <@scenario.output step=afterStepHook/>
-                            <@scenario.attachments step=afterStepHook/>
-                            </div>
-                        </#list>
+                        <@scenario.stepHooks step.after />
+
                     </#list>
                 </li>
             </@page.card>
@@ -157,7 +123,7 @@ limitations under the License.
 
         <#if (element.after?size > 0)>
             <@page.card width="12" title="After Hooks" subtitle="">
-                <li class="list-group-item" style="opacity:.8">
+                <li class="list-group-item">
                     <#list element.after as after>
                         <div class="row row_${after.consolidatedStatusString}">
                             <div class="col-2 text-left">

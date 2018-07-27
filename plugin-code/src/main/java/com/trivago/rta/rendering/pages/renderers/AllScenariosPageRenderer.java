@@ -128,7 +128,6 @@ public class AllScenariosPageRenderer extends PageRenderer {
         dataset.setBackgroundColor(backgroundColors);
         data.setDatasets(datasets);
 
-
         chart.setData(data);
         chart.setType(Chart.ChartType.pie);
 
