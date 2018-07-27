@@ -61,7 +61,9 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         List<String> labels = new ArrayList<>();
         IntStream.rangeClosed(1, element.getBefore().size()).mapToObj(i -> "Before " + i).forEachOrdered(labels::add);
         IntStream.rangeClosed(1, element.getSteps().size()).mapToObj(i -> "Step " + i).forEachOrdered(labels::add);
-        IntStream.rangeClosed(element.getBefore().size(), element.getAfter().size()).mapToObj(i -> "After " + i).forEachOrdered(labels::add);
+        if (element.getAfter().size() > 0) {
+            IntStream.rangeClosed(element.getBefore().size(), element.getAfter().size()).mapToObj(i -> "After " + i).forEachOrdered(labels::add);
+        }
 
         Data data = new Data();
         data.setLabels(labels);
