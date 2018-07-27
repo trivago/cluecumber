@@ -23,6 +23,7 @@ Back to [Readme](README.md).
 
 * Separated `Before` and `After` hooks from steps in detail view
 * Cleaned up "All Features" and "All Tags" charts
+* Aligned and streamlined design on all pages
 
 ## [1.1.1] - 2018-07-03
 
