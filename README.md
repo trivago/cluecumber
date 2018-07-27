@@ -2,13 +2,13 @@
 
 ### Clear and Concise Cucumber Reporting
 
-
-
 [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-report-plugin.svg)](http://repo1.maven.org/maven2/com/trivago/rta/cluecumber-report-plugin/)
 [![Build Status](https://travis-ci.org/trivago/cluecumber-report-plugin.svg?branch=master)](https://travis-ci.org/trivago/cluecumber-report-plugin)
 [![codecov](https://codecov.io/gh/trivago/cluecumber-report-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/trivago/cluecumber-report-plugin)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
+
+![Cucumber animation](documentation/img/cluecumber.gif)
 
 ![Cucumber compatible](documentation/img/cucumber-compatible-black-64.png)
 
@@ -17,14 +17,6 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
-- [Generated pages](#generated-pages)
-  - [Scenario pages](#scenario-pages)
-    - [All Scenarios](#all-scenarios)
-    - [Scenario Details](#scenario-details)
-    - [All Features](#all-features)
-    - [All Tags](#all-tags)
-    - [Scenarios for a specific tag](#scenarios-for-a-specific-tag)
-    - [Scenarios for a specific feature](#scenarios-for-a-specific-feature)
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
@@ -36,6 +28,7 @@
     - [CustomParameters](#customparameters)
       - [Example](#example)
 - [Example project](#example-project)
+- [Appendix: Generated pages](#appendix-generated-pages)
 - [Additional Information](#additional-information)
   - [Building](#building)
   - [License](#license)
@@ -55,34 +48,6 @@ This project was created because
 - it will allow to completely customize the report appearance and information
 
 **Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
-
-# Generated pages
-
-## Scenario pages
-
-### All Scenarios
-
-![All Scenarios](documentation/img/AllScenarios.png)
-
-### Scenario Details
-
-![Scenario Details](documentation/img/ScenarioDetails.png)
-
-### All Features
-
-![All Features](documentation/img/AllFeatures.png)
-
-### All Tags
-
-![All Tags](documentation/img/AllTags.png)
-
-### Scenarios for a specific tag
-
-![Scenarios by tag](documentation/img/TagDetails.png)
-
-### Scenarios for a specific feature
-
-![report_detail](documentation/img/FeatureDetails.png)
 
 ## Changelog
 
@@ -176,6 +141,20 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 # Example project
 
 You can test the complete flow and POM configuration by checking out the [Cluecumber example project](example-project).
+
+# Appendix: Generated pages
+
+![All Scenarios](documentation/img/AllScenarios.png)
+
+![Scenario Details](documentation/img/ScenarioDetails.png)
+
+![All Features](documentation/img/AllFeatures.png)
+
+![All Tags](documentation/img/AllTags.png)
+
+![Scenarios by tag](documentation/img/TagDetails.png)
+
+![report_detail](documentation/img/FeatureDetails.png)
 
 # Additional Information
 
