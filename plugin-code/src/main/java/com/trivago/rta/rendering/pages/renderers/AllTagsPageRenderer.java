@@ -111,6 +111,7 @@ public class AllTagsPageRenderer extends PageRenderer {
         Axis xAxis = new Axis();
         xAxis.setStacked(true);
         Ticks xTicks = new Ticks();
+        xTicks.setDisplay(false);
         xAxis.setTicks(xTicks);
         ScaleLabel xScaleLabel = new ScaleLabel();
         xScaleLabel.setDisplay(true);
