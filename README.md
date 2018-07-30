@@ -28,11 +28,10 @@
     - [CustomParameters](#customparameters)
       - [Example](#example)
 - [Example project](#example-project)
-- [Appendix: Generated pages](#appendix-generated-pages)
-- [Additional Information](#additional-information)
+- [Appendix](#appendix)
   - [Building](#building)
+  - [Generated pages](#generated-pages)
   - [License](#license)
-  - [Credits](#credits)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -142,7 +141,14 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 
 You can test the complete flow and POM configuration by checking out the [Cluecumber example project](example-project).
 
-# Appendix: Generated pages
+# Appendix
+
+## Building
+
+Cluecumber requires Java >= 8 and Maven >= 3.3.9.
+It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+
+## Generated pages
 
 ![All Scenarios](documentation/img/AllScenarios.png)
 
@@ -156,13 +162,6 @@ You can test the complete flow and POM configuration by checking out the [Cluecu
 
 ![report_detail](documentation/img/FeatureDetails.png)
 
-# Additional Information
-
-## Building
-
-Cluecumber requires Java >= 8 and Maven >= 3.3.9.
-It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
-
 ## License
 
 Copyright 2018 trivago NV
@@ -172,9 +171,3 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-## Credits
-
-This project is being tested on
-
-[![Browserstack](documentation/img/browserstack.png)](http://browserstack.com)
