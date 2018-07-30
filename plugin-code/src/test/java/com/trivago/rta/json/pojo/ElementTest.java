@@ -19,14 +19,14 @@ public class ElementTest {
     }
 
     @Test
-    public void testGetSkippedStatusInEmptyElements() {
+    public void getSkippedStatusInEmptyElementsTest() {
         Status status = element.getStatus();
         assertThat(status, is(Status.SKIPPED));
         assertThat(element.isSkipped(), is(true));
     }
 
     @Test
-    public void testGetPassedStatus() {
+    public void getPassedStatusTest() {
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
         Result result = new Result();
@@ -41,7 +41,27 @@ public class ElementTest {
     }
 
     @Test
-    public void testGetFailedStatus() {
+    public void passedStatusOnPassedAndSkippedStepsTest() {
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+
+        step = new Step();
+        result = new Result();
+        result.setStatus("skipped");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+
+        Status status = element.getStatus();
+        assertThat(status, is(Status.PASSED));
+    }
+
+    @Test
+    public void getFailedStatusTest() {
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
         Result result = new Result();
@@ -56,7 +76,7 @@ public class ElementTest {
     }
 
     @Test
-    public void testGetUndefinedStatus() {
+    public void getUndefinedStatusTest() {
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
         Result result = new Result();
