@@ -151,11 +151,14 @@ public class Element {
             }
         }
 
-        // Skip scenario if it contains a mixture of pending and skipped steps.
-        int totalSkippedSteps = (int) steps.stream().filter(
-                step -> step.getStatus() == Status.PENDING || step.getStatus() == Status.SKIPPED
-        ).count();
-        if (totalSkippedSteps == totalSteps) {
+        // If at least one step passed and the other steps are skipped, return passed.
+        if (getTotalNumberOfPassedSteps() >= 0 &&
+                (getTotalNumberOfSkippedSteps() + getTotalNumberOfPassedSteps()) == getTotalNumberOfSteps()) {
+            return Status.PASSED;
+        }
+
+        // If all steps are skipped return skipped.
+        if (getTotalNumberOfSkippedSteps() == totalSteps) {
             return Status.SKIPPED;
         }
 
@@ -210,7 +213,7 @@ public class Element {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
-    public List<ResultMatch> getAllResultMatches(){
+    public List<ResultMatch> getAllResultMatches() {
         List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
         resultMatches.addAll(getSteps());
         resultMatches.addAll(getAfter());
