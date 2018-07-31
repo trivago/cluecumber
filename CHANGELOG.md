@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.2.1] - 2018-07-31
+
+### Fixed
+
+* Scenario calculation is now in line with the official Cucumber recommendations:
+    * Scenarios with a mixture of passing and failing steps are now reported as passed
+    * Scenarios with ONLY skipped steps and skipped or passing hooks will be reported as skipped
+    * Scenarios with failing scenario or step hooks are reported as failed
+
 ## [1.2.0] - 2018-07-27
 
 ### Fixed
@@ -208,6 +217,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
 [1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
 [1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
 [1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
