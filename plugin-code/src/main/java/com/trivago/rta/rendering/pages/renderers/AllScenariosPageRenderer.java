@@ -150,8 +150,4 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         allScenariosPageCollection.setCustomParameters(customParameters);
     }
-
-    public enum Filter {
-        TAG, FEATURE
-    }
 }

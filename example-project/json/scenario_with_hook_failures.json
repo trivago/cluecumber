@@ -23,7 +23,7 @@
         "id": ";",
         "keyword": "Scenario",
         "line": 3,
-        "name": "This is a skipped scenario",
+        "name": "This is a scenario with failing hooks",
         "steps": [
           {
             "keyword": "Given ",

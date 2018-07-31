@@ -82,33 +82,19 @@ public class FileSystemManager {
      * @throws CluecumberPluginException (see {@link CluecumberPluginException}.
      */
     public void exportResource(final Class baseClass, final String resourceName, final String destination) throws CluecumberPluginException {
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-        try {
-            inputStream = baseClass.getResourceAsStream(resourceName);
-            if (inputStream == null) {
-                throw new Exception("Cannot get resource \"" + resourceName + "\".");
-            }
-
+        try (InputStream inputStream = baseClass.getResourceAsStream(resourceName)) {
             int readBytes;
             byte[] buffer = new byte[BYTE_BLOCK];
-            outputStream = new FileOutputStream(destination);
-            while ((readBytes = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, readBytes);
+            try (OutputStream outputStream = new FileOutputStream(destination)) {
+                while ((readBytes = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, readBytes);
+                }
+            } catch (Exception e) {
+                throw new CluecumberPluginException("Cannot write resource '" + resourceName + "': " + e.getMessage());
             }
+
         } catch (Exception e) {
-            throw new CluecumberPluginException(e.getMessage());
-        } finally {
-            try {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-                if (outputStream != null) {
-                    outputStream.close();
-                }
-            } catch (IOException e) {
-                throw new CluecumberPluginException(e.getMessage());
-            }
+            throw new CluecumberPluginException("Cannot read resource '" + resourceName + "': " + e.getMessage());
         }
     }
 }
