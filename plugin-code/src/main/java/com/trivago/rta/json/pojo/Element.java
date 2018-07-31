@@ -139,9 +139,39 @@ public class Element {
             return Status.SKIPPED;
         }
 
+        // If any hooks fail, report the scenario as failed
+        for (Before beforeHook : before) {
+            if (beforeHook.isFailed()) {
+                return Status.FAILED;
+            }
+        }
+        for (After afterHook : after) {
+            if (afterHook.isFailed()){
+                return Status.FAILED;
+            }
+        }
+
         // If all steps have the same status, return this as the scenario status.
         for (Status status : Status.values()) {
-            int stepNumber = (int) steps.stream().filter(step -> step.getStatus() == status).count();
+            long count = 0L;
+            for (Step step : steps) {
+                if (step.getStatus() == status) {
+                    count++;
+                }
+
+                // If any step hooks fail, report scenario as failed.
+                for (Before beforeStepHook : step.getBefore()) {
+                    if (beforeStepHook.isFailed()){
+                        return Status.FAILED;
+                    }
+                }
+                for (After afterStepHook : step.getAfter()) {
+                    if (afterStepHook.isFailed()){
+                        return Status.FAILED;
+                    }
+                }
+            }
+            int stepNumber = (int) count;
             if (totalSteps == stepNumber) {
                 if (status != Status.UNDEFINED) {
                     return status;

@@ -61,6 +61,120 @@ public class ElementTest {
     }
 
     @Test
+    public void failedStatusOnFailedBeforeHookTest() {
+        List<com.trivago.rta.json.pojo.Before> before = new ArrayList<>();
+        com.trivago.rta.json.pojo.Before beforeHook = new com.trivago.rta.json.pojo.Before();
+        Result beforeHookResult = new Result();
+        beforeHookResult.setStatus("failed");
+        beforeHook.setResult(beforeHookResult);
+        before.add(beforeHook);
+        element.setBefore(before);
+
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+
+        step = new Step();
+        result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+
+        Status status = element.getStatus();
+        assertThat(status, is(Status.FAILED));
+    }
+
+    @Test
+    public void failedStatusOnFailedAfterHookTest() {
+        List<com.trivago.rta.json.pojo.After> after = new ArrayList<>();
+        com.trivago.rta.json.pojo.After afterHook = new com.trivago.rta.json.pojo.After();
+        Result afterHookResult = new Result();
+        afterHookResult.setStatus("failed");
+        afterHook.setResult(afterHookResult);
+        after.add(afterHook);
+        element.setAfter(after);
+
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+
+        step = new Step();
+        result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+
+        Status status = element.getStatus();
+        assertThat(status, is(Status.FAILED));
+    }
+
+    @Test
+    public void failedStatusOnFailedAfterStepHookTest() {
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+
+        List<com.trivago.rta.json.pojo.After> after = new ArrayList<>();
+        com.trivago.rta.json.pojo.After afterStepHook = new com.trivago.rta.json.pojo.After();
+        Result afterStepHookResult = new Result();
+        afterStepHookResult.setStatus("failed");
+        afterStepHook.setResult(afterStepHookResult);
+        after.add(afterStepHook);
+        step.setAfter(after);
+
+        steps.add(step);
+
+        step = new Step();
+        result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+
+        Status status = element.getStatus();
+        assertThat(status, is(Status.FAILED));
+    }
+
+    @Test
+    public void failedStatusOnFailedBeforeStepHookTest() {
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+
+        List<com.trivago.rta.json.pojo.Before> before = new ArrayList<>();
+        com.trivago.rta.json.pojo.Before beforeStepHook = new com.trivago.rta.json.pojo.Before();
+        Result beforeStepHookResult = new Result();
+        beforeStepHookResult.setStatus("failed");
+        step.setResult(beforeStepHookResult);
+        before.add(beforeStepHook);
+        step.setBefore(before);
+
+        steps.add(step);
+
+        step = new Step();
+        result = new Result();
+        result.setStatus("passed");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+
+        Status status = element.getStatus();
+        assertThat(status, is(Status.FAILED));
+    }
+
+    @Test
     public void getFailedStatusTest() {
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
