@@ -217,6 +217,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
 [1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
 [1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
 [1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
