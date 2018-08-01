@@ -29,11 +29,4 @@ public class Row {
     public void setCells(final List<String> cells) {
         this.cells = cells;
     }
-
-    @Override
-    public String toString() {
-        return "Row{" +
-                "cells=" + cells +
-                '}';
-    }
 }

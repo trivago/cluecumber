@@ -45,6 +45,6 @@ public class FileSystemManagerTest {
     @Test(expected = CluecumberPluginException.class)
     public void exportResourceTest() throws Exception {
         Class baseClass = this.getClass();
-        fileSystemManager.exportResource(baseClass, "resource", "destination");
+        fileSystemManager.exportResource(baseClass, "resource", "");
     }
 }

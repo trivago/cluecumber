@@ -62,8 +62,8 @@ public class ElementTest {
 
     @Test
     public void failedStatusOnFailedBeforeHookTest() {
-        List<com.trivago.rta.json.pojo.Before> before = new ArrayList<>();
-        com.trivago.rta.json.pojo.Before beforeHook = new com.trivago.rta.json.pojo.Before();
+        List<com.trivago.rta.json.pojo.ResultMatch> before = new ArrayList<>();
+        com.trivago.rta.json.pojo.ResultMatch beforeHook = new com.trivago.rta.json.pojo.ResultMatch();
         Result beforeHookResult = new Result();
         beforeHookResult.setStatus("failed");
         beforeHook.setResult(beforeHookResult);
@@ -90,8 +90,8 @@ public class ElementTest {
 
     @Test
     public void failedStatusOnFailedAfterHookTest() {
-        List<com.trivago.rta.json.pojo.After> after = new ArrayList<>();
-        com.trivago.rta.json.pojo.After afterHook = new com.trivago.rta.json.pojo.After();
+        List<com.trivago.rta.json.pojo.ResultMatch> after = new ArrayList<>();
+        com.trivago.rta.json.pojo.ResultMatch afterHook = new com.trivago.rta.json.pojo.ResultMatch();
         Result afterHookResult = new Result();
         afterHookResult.setStatus("failed");
         afterHook.setResult(afterHookResult);
@@ -124,8 +124,8 @@ public class ElementTest {
         result.setStatus("passed");
         step.setResult(result);
 
-        List<com.trivago.rta.json.pojo.After> after = new ArrayList<>();
-        com.trivago.rta.json.pojo.After afterStepHook = new com.trivago.rta.json.pojo.After();
+        List<com.trivago.rta.json.pojo.ResultMatch> after = new ArrayList<>();
+        com.trivago.rta.json.pojo.ResultMatch afterStepHook = new com.trivago.rta.json.pojo.ResultMatch();
         Result afterStepHookResult = new Result();
         afterStepHookResult.setStatus("failed");
         afterStepHook.setResult(afterStepHookResult);
@@ -153,8 +153,8 @@ public class ElementTest {
         result.setStatus("passed");
         step.setResult(result);
 
-        List<com.trivago.rta.json.pojo.Before> before = new ArrayList<>();
-        com.trivago.rta.json.pojo.Before beforeStepHook = new com.trivago.rta.json.pojo.Before();
+        List<com.trivago.rta.json.pojo.ResultMatch> before = new ArrayList<>();
+        com.trivago.rta.json.pojo.ResultMatch beforeStepHook = new com.trivago.rta.json.pojo.ResultMatch();
         Result beforeStepHookResult = new Result();
         beforeStepHookResult.setStatus("failed");
         step.setResult(beforeStepHookResult);
@@ -206,8 +206,8 @@ public class ElementTest {
 
     @Test
     public void totalDurationTest() {
-        List<com.trivago.rta.json.pojo.Before> beforeSteps = new ArrayList<>();
-        com.trivago.rta.json.pojo.Before before = new com.trivago.rta.json.pojo.Before();
+        List<com.trivago.rta.json.pojo.ResultMatch> beforeSteps = new ArrayList<>();
+        com.trivago.rta.json.pojo.ResultMatch before = new com.trivago.rta.json.pojo.ResultMatch();
         Result beforeResult = new Result();
         beforeResult.setDuration(1000000);
         before.setResult(beforeResult);
@@ -229,8 +229,8 @@ public class ElementTest {
 
         element.setSteps(steps);
 
-        List<com.trivago.rta.json.pojo.After> afterSteps = new ArrayList<>();
-        com.trivago.rta.json.pojo.After after = new com.trivago.rta.json.pojo.After();
+        List<com.trivago.rta.json.pojo.ResultMatch> afterSteps = new ArrayList<>();
+        com.trivago.rta.json.pojo.ResultMatch after = new com.trivago.rta.json.pojo.ResultMatch();
         Result afterResult = new Result();
         afterResult.setDuration(2000000);
         after.setResult(afterResult);

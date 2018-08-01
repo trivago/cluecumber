@@ -63,13 +63,4 @@ public class Result {
     public String returnDurationString() {
         return RenderingUtils.convertMicrosecondsToTimeString(duration);
     }
-
-    @Override
-    public String toString() {
-        return "Result{" +
-                "duration=" + duration +
-                ", status='" + status + '\'' +
-                ", errorMessage='" + errorMessage + '\'' +
-                '}';
-    }
 }

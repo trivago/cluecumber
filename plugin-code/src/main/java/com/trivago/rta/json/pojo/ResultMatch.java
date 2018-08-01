@@ -103,14 +103,4 @@ public class ResultMatch {
     public String getConsolidatedStatusString() {
         return getConsolidatedStatus().getStatusString();
     }
-
-    @Override
-    public String toString() {
-        return "ResultMatch{" +
-                "result=" + result +
-                ", match=" + match +
-                ", output=" + output +
-                ", embeddings=" + embeddings +
-                '}';
-    }
 }

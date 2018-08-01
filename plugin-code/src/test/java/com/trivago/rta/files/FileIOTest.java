@@ -28,6 +28,19 @@ public class FileIOTest {
         assertThat(fileIO.readContentFromFile(path), is(testString));
     }
 
+    @Test(expected = FileCreationException.class)
+    public void writeContentToFileStringInvalidTest() throws Exception {
+        String testString = "This is a test!";
+        String path = testFolder.getRoot().getPath().substring(1);
+        fileIO.writeContentToFile(testString, path);
+    }
+
+    @Test(expected = FileCreationException.class)
+    public void writeContentToFileByteArrayInvalidTest() throws Exception {
+        String path = testFolder.getRoot().getPath().substring(1);
+        fileIO.writeContentToFile(new byte[]{}, path);
+    }
+
     @Test(expected = MissingFileException.class)
     public void readFromMissingFileTest() throws Exception {
         String wrongPath = testFolder.getRoot().getPath().concat("/missing.tmp");

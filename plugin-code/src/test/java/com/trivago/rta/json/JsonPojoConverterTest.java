@@ -1,6 +1,8 @@
 package com.trivago.rta.json;
 
+import com.trivago.rta.constants.Status;
 import com.trivago.rta.exceptions.CluecumberPluginException;
+import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Report;
 import com.trivago.rta.json.postprocessors.ElementPostProcessor;
 import com.trivago.rta.json.postprocessors.ReportPostProcessor;
@@ -114,7 +116,23 @@ public class JsonPojoConverterTest {
         Report report = reports[0];
         assertThat(report.getName(), is("Test"));
         assertThat(report.getId(), is("test"));
-        assertThat(report.toString(), is("Report{line=1, elements=[Element{before=[ResultMatch{result=Result{duration=5554929, status='passed', errorMessage=''}, match=Match{location='BeforeAfterScenario.before(Scenario)', arguments=[]}, output=[], embeddings=[]}], line=5, name='Test feature', description='', id='test;id', after=[ResultMatch{result=Result{duration=153270, status='passed', errorMessage=''}, match=Match{location='BeforeAfterScenario.after(Scenario)', arguments=[]}, output=[], embeddings=[]}], type='scenario', keyword='Scenario', steps=[Step{before=[], line=7, name='the start page is opened', keyword='Given ', rows=[], after=[]}, Step{before=[], line=8, name='I see something', keyword='Then ', rows=[], after=[]}], tags=[Tag{name='@sometag'}, Tag{name='@someothertag'}], scenarioIndex=-1}], name='Test', description='', id='test', keyword='Feature', uri='parallel/features/Test.feature', featureIndex=-1}"));
+        assertThat(report.getFeatureIndex(), is(-1));
+        assertThat(report.getTotalDuration(), is(12751234816L));
+        assertThat(report.getDescription(), is(""));
+        assertThat(report.getLine(), is(1));
+        assertThat(report.getUri(), is("parallel/features/Test.feature"));
+        assertThat(report.getElements().size(), is(1));
+        Element element = report.getElements().get(0);
+        assertThat(element.getStatus(), is(Status.PASSED));
+        assertThat(element.getSteps().size(), is(2));
+        assertThat(element.getBefore().size(), is(1));
+        assertThat(element.getAfter().size(), is(1));
+        assertThat(element.getScenarioIndex(), is(-1));
+        assertThat(element.getTotalDuration(), is(12751234816L));
+        assertThat(element.getTotalNumberOfPassedSteps(), is(2));
+        assertThat(element.getTotalNumberOfSkippedSteps(), is(0));
+        assertThat(element.getTotalNumberOfFailedSteps(), is(0));
+        assertThat(element.getAllResultMatches().size(), is(4));
     }
 
     @Test(expected = CluecumberPluginException.class)

@@ -21,9 +21,9 @@ import com.google.gson.JsonElement;
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.FileCreationException;
 import com.trivago.rta.filesystem.FileIO;
-import com.trivago.rta.json.pojo.After;
 import com.trivago.rta.json.pojo.Element;
 import com.trivago.rta.json.pojo.Embedding;
+import com.trivago.rta.json.pojo.ResultMatch;
 import com.trivago.rta.json.pojo.Step;
 import com.trivago.rta.logging.CluecumberLogger;
 import com.trivago.rta.properties.PropertyManager;
@@ -73,17 +73,17 @@ public class ElementPostProcessor implements PostProcessor<Element> {
      * Process attachments in steps and after hooks.
      *
      * @param steps      The {@link Step} list.
-     * @param afterHooks The {@link After} list.
+     * @param afterHooks The {@link ResultMatch} list.
      * @throws CluecumberPluginException Exception if the attachments cannot be processed.
      */
-    private void processAttachments(final List<Step> steps, List<After> afterHooks) throws CluecumberPluginException {
+    private void processAttachments(final List<Step> steps, List<ResultMatch> afterHooks) throws CluecumberPluginException {
         // Process step attachments
         for (Step step : steps) {
             processEmbedding(step.getEmbeddings());
         }
 
         // Process after hook attachments (Cucumber 2)
-        for (After afterHook : afterHooks) {
+        for (ResultMatch afterHook : afterHooks) {
             processEmbedding(afterHook.getEmbeddings());
         }
     }

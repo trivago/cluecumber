@@ -101,18 +101,4 @@ public class Report {
         }
         return totalDurationMicroseconds;
     }
-
-    @Override
-    public String toString() {
-        return "Report{" +
-                "line=" + line +
-                ", elements=" + elements +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", id='" + id + '\'' +
-                ", keyword='" + keyword + '\'' +
-                ", uri='" + uri + '\'' +
-                ", featureIndex=" + featureIndex +
-                '}';
-    }
 }

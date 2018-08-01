@@ -49,4 +49,10 @@ public class EmbeddingTest {
         embedding.setMimeType("no/image");
         assertThat(embedding.isImage(), is(false));
     }
+
+    @Test
+    public void isPlainTextTest() {
+        embedding.setMimeType("text/plain");
+        assertThat(embedding.isPlainText(), is(true));
+    }
 }

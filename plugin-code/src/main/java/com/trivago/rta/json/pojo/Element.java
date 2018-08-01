@@ -23,12 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Element {
-    private List<Before> before = new ArrayList<>();
+    private List<ResultMatch> before = new ArrayList<>();
     private int line;
     private String name = "";
     private String description = "";
     private String id = "";
-    private List<After> after = new ArrayList<>();
+    private List<ResultMatch> after = new ArrayList<>();
     private String type = "";
     private String keyword = "";
     private List<Step> steps = new ArrayList<>();
@@ -44,11 +44,11 @@ public class Element {
         this.tags = tags;
     }
 
-    public List<Before> getBefore() {
+    public List<ResultMatch> getBefore() {
         return before;
     }
 
-    public void setBefore(final List<Before> before) {
+    public void setBefore(final List<ResultMatch> before) {
         this.before = before;
     }
 
@@ -84,11 +84,11 @@ public class Element {
         this.id = id;
     }
 
-    public List<After> getAfter() {
+    public List<ResultMatch> getAfter() {
         return after;
     }
 
-    public void setAfter(final List<After> after) {
+    public void setAfter(final List<ResultMatch> after) {
         this.after = after;
     }
 
@@ -140,12 +140,12 @@ public class Element {
         }
 
         // If any hooks fail, report the scenario as failed
-        for (Before beforeHook : before) {
+        for (ResultMatch beforeHook : before) {
             if (beforeHook.isFailed()) {
                 return Status.FAILED;
             }
         }
-        for (After afterHook : after) {
+        for (ResultMatch afterHook : after) {
             if (afterHook.isFailed()){
                 return Status.FAILED;
             }
@@ -160,12 +160,12 @@ public class Element {
                 }
 
                 // If any step hooks fail, report scenario as failed.
-                for (Before beforeStepHook : step.getBefore()) {
+                for (ResultMatch beforeStepHook : step.getBefore()) {
                     if (beforeStepHook.isFailed()){
                         return Status.FAILED;
                     }
                 }
-                for (After afterStepHook : step.getAfter()) {
+                for (ResultMatch afterStepHook : step.getAfter()) {
                     if (afterStepHook.isFailed()){
                         return Status.FAILED;
                     }
@@ -227,13 +227,13 @@ public class Element {
 
     public long getTotalDuration() {
         long totalDurationMicroseconds = 0;
-        for (Before beforeStep : before) {
+        for (ResultMatch beforeStep : before) {
             totalDurationMicroseconds += beforeStep.getResult().getDuration();
         }
         for (Step step : steps) {
             totalDurationMicroseconds += step.getResult().getDuration();
         }
-        for (After afterStep : after) {
+        for (ResultMatch afterStep : after) {
             totalDurationMicroseconds += afterStep.getResult().getDuration();
         }
         return totalDurationMicroseconds;
@@ -248,22 +248,5 @@ public class Element {
         resultMatches.addAll(getSteps());
         resultMatches.addAll(getAfter());
         return resultMatches;
-    }
-
-    @Override
-    public String toString() {
-        return "Element{" +
-                "before=" + before +
-                ", line=" + line +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", id='" + id + '\'' +
-                ", after=" + after +
-                ", type='" + type + '\'' +
-                ", keyword='" + keyword + '\'' +
-                ", steps=" + steps +
-                ", tags=" + tags +
-                ", scenarioIndex=" + scenarioIndex +
-                '}';
     }
 }

@@ -38,12 +38,4 @@ public class Match {
     public void setArguments(final List<Argument> arguments) {
         this.arguments = arguments;
     }
-
-    @Override
-    public String toString() {
-        return "Match{" +
-                "location='" + location + '\'' +
-                ", arguments=" + arguments +
-                '}';
-    }
 }
