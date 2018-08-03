@@ -112,7 +112,8 @@ limitations under the License.
         <#assign class = "text-success" />
         <#assign icon = "passed" />
     </#if>
-    <span class="${class}">${step.status.statusString} <i class="cluecumber-icon icon-${icon}"></i></span>
+    <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
+       title="${step.status.statusString}"></i>
 </#macro>
 
 <#macro errorMessage step>
@@ -147,13 +148,13 @@ limitations under the License.
         <#if (hook.failed)>
             <div class="row row_${hook.consolidatedStatusString}">
                 <div class="col-2"></div>
-                <div class="col-6 text-left">
+                <div class="col-7 text-left">
                     <i>${hook.glueMethodName}</i>
                 </div>
                 <div class="col-2 text-left">
                     <nobr>${hook.result.returnDurationString()}</nobr>
                 </div>
-                <div class="col-2 text-right">
+                <div class="col-1 text-right">
                     <@scenario.status step=hook/>
                 </div>
                 <@scenario.errorMessage step=hook/>

@@ -53,16 +53,16 @@ limitations under the License.
                         <div class="row row_${before.consolidatedStatusString}">
                             <div class="col-2 text-left">
                                 <span class="text-secondary">
-                                    <nobr>Before ${before?counter}</nobr>
+                                    Before ${before?counter}
                                 </span>
                             </div>
-                            <div class="col-6 text-left">
+                            <div class="col-7 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
                             <div class="col-2 text-left">
-                                <nobr>${before.result.returnDurationString()}</nobr>
+                                ${before.result.returnDurationString()}
                             </div>
-                            <div class="col-2 text-right">
+                            <div class="col-1 text-right">
                                 <@scenario.status step=before/>
                             </div>
                         <@scenario.errorMessage step=before/>
@@ -83,9 +83,9 @@ limitations under the License.
 
                         <div class="row row_${step.consolidatedStatusString}">
                             <div class="col-2 text-left">
-                                <nobr>Step ${step?counter}</nobr>
+                                Step ${step?counter}
                             </div>
-                            <div class="col-6 text-left">
+                            <div class="col-7 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
@@ -104,9 +104,9 @@ limitations under the License.
                                 </#if>
                             </div>
                             <div class="col-2 text-left">
-                                <nobr>${step.result.returnDurationString()}</nobr>
+                                ${step.result.returnDurationString()}
                             </div>
-                            <div class="col-2 text-right">
+                            <div class="col-1 text-right">
                                 <@scenario.status step=step/>
                             </div>
                             <#if (step.docString.value)?? >
@@ -136,16 +136,16 @@ limitations under the License.
                         <div class="row row_${after.consolidatedStatusString}">
                             <div class="col-2 text-left">
                                 <span class="text-secondary">
-                                    <nobr>After ${after?counter}</nobr>
+                                    After ${after?counter}
                                 </span>
                             </div>
-                            <div class="col-6 text-left">
+                            <div class="col-7 text-left">
                                 <i>${after.glueMethodName}</i>
                             </div>
                             <div class="col-2 text-left">
-                                <nobr>${after.result.returnDurationString()}</nobr>
+                                ${after.result.returnDurationString()}
                             </div>
-                            <div class="col-2 text-right">
+                            <div class="col-1 text-right">
                                 <@scenario.status step=after/>
                             </div>
                         <@scenario.errorMessage step=after/>
