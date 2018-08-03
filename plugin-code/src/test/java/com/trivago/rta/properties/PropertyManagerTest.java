@@ -52,7 +52,7 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(2)).info(anyString());
+        verify(logger, times(3)).info(anyString());
     }
 
     @Test
@@ -65,12 +65,19 @@ public class PropertyManagerTest {
     }
 
     @Test
+    public void customCssTest() {
+        String customCss = "MyCss";
+        propertyManager.setCustomCss(customCss);
+        assertThat(propertyManager.getCustomCss(), is("MyCss"));
+    }
+
+    @Test
     public void logFullPropertiesTest() {
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key1", "value1");
         customParameters.put("key2", "value2");
         propertyManager.setCustomParameters(customParameters);
         propertyManager.logProperties();
-        verify(logger, times(4)).info(anyString());
+        verify(logger, times(5)).info(anyString());
     }
 }

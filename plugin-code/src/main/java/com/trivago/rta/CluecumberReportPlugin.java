@@ -64,8 +64,14 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     /**
      * Custom parameters to add to the report.
      */
-    @Parameter(property = "reporting.customParameters", required = true)
+    @Parameter(property = "reporting.customParameters")
     private Map<String, String> customParameters = new HashMap<>();
+
+    /**
+     * Custom CSS that is applied on top of Cluecumber's default styles.
+     */
+    @Parameter(property = "reporting.customCss")
+    private String customCss = "";
 
     @Inject
     public CluecumberReportPlugin(
@@ -97,6 +103,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.setCustomParameters(customParameters);
+        propertyManager.setCustomCss(customCss);
         propertyManager.validateSettings();
 
         logger.info("-----------------------------------------------");

@@ -32,6 +32,7 @@ public class PropertyManager {
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private Map<String, String> customParameters;
+    private String customCss;
 
     @Inject
     public PropertyManager(final CluecumberLogger logger) {
@@ -62,6 +63,14 @@ public class PropertyManager {
         this.customParameters = customParameters;
     }
 
+    public String getCustomCss() {
+        return customCss;
+    }
+
+    public void setCustomCss(final String customCss) {
+        this.customCss = customCss;
+    }
+
     /**
      * Checks the pom settings for the plugin.
      *
@@ -82,13 +91,20 @@ public class PropertyManager {
     }
 
     public void logProperties() {
-        logger.info("- sourceJsonReportDirectory     : " + sourceJsonReportDirectory);
-        logger.info("- generatedHtmlReportDirectory  : " + generatedHtmlReportDirectory);
+        logger.info("- source JSON report directory    : " + sourceJsonReportDirectory);
+        logger.info("- generated HTML report directory : " + generatedHtmlReportDirectory);
+
         if (customParameters != null && !customParameters.isEmpty()) {
             for (Map.Entry<String, String> entry : customParameters.entrySet()) {
-                logger.info("- custom parameter              : " +
+                logger.info("- custom parameter                : " +
                         entry.getKey() + " -> " + entry.getValue());
             }
         }
+
+        if (customCss != null && !customCss.isEmpty()) {
+            logger.info("- custom CSS                      : " + customCss);
+        }
+
+        logger.info("------------------------------------------------------------------------");
     }
 }

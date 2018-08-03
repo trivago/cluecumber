@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +37,7 @@
                                 <Custom_Parameter>This is a test</Custom_Parameter>
                                 <Custom_URL>http://www.google.com</Custom_URL>
                             </customParameters>
+                            <customCss>custom/custom.css</customCss>
                         </configuration>
                     </execution>
                 </executions>
