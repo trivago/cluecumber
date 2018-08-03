@@ -83,8 +83,9 @@ limitations under the License.
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="w-100 mt-3">
-                <div class="col-9 text-left m-auto">
+            <div class="row w-100 p-3 m-0">
+                <div class="col-2"></div>
+                <div class="col-10 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
@@ -103,18 +104,22 @@ limitations under the License.
 <#macro status step>
     <#if step.failed>
         <#assign class = "text-danger" />
+        <#assign icon = "failed" />
     <#elseif step.skipped>
         <#assign class = "text-warning" />
+        <#assign icon = "skipped" />
     <#else>
         <#assign class = "text-success" />
+        <#assign icon = "passed" />
     </#if>
-    <span class="${class}">${step.status.statusString}</span>
+    <span class="${class}">${step.status.statusString} <i class="cluecumber-icon icon-${icon}"></i></span>
 </#macro>
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="w-100 mt-3">
-            <div class="col-9 text-left border border-danger m-auto">
+        <div class="row w-100 p-3 m-0">
+            <div class="col-2"></div>
+            <div class="col-10 text-left border border-danger m-auto">
                 <code>${step.result.errorMessage?html}</code>
             </div>
         </div>
@@ -125,8 +130,9 @@ limitations under the License.
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="w-100 mt-3">
-                    <div class="col-9 text-left m-auto">
+                <div class="row w-100 p-3 m-0">
+                    <div class="col-2"></div>
+                    <div class="col-10 text-left m-auto">
                         <iframe srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>
                     </div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
+<defs>
+<font id="cluecumber" horiz-adv-x="1000" >
+<font-face font-family="cluecumber" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="passed" unicode="&#xe800;" d="M933 534q0-22-16-38l-404-404-76-76q-16-15-38-15t-38 15l-76 76-202 202q-15 16-15 38t15 38l76 76q16 16 38 16t38-16l164-165 366 367q16 16 38 16t38-16l76-76q16-15 16-38z" horiz-adv-x="1000" />
+
+<glyph glyph-name="failed" unicode="&#xe801;" d="M724 112q0-22-15-38l-76-76q-16-15-38-15t-38 15l-164 165-164-165q-16-15-38-15t-38 15l-76 76q-16 16-16 38t16 38l164 164-164 164q-16 16-16 38t16 38l76 76q16 16 38 16t38-16l164-164 164 164q16 16 38 16t38-16l76-76q15-15 15-38t-15-38l-164-164 164-164q15-15 15-38z" horiz-adv-x="785.7" />
+
+<glyph glyph-name="skipped" unicode="&#xe802;" d="M1000 493q0-15-11-25l-285-286q-11-11-25-11t-25 11-11 25v143h-125q-55 0-98-3t-86-12-74-24-59-39-45-56-27-77-10-101q0-31 3-69 0-4 2-13t1-15q0-8-5-14t-13-6q-9 0-15 10-4 5-8 12t-7 17-6 13q-71 159-71 252 0 111 30 186 90 225 488 225h125v143q0 14 11 25t25 10 25-10l285-286q11-11 11-25z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

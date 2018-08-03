@@ -156,17 +156,25 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.TAG_SCENARIO_PAGE_PATH);
-        fileSystemManager.createDirectory(reportDirectory + "/js");
-        fileSystemManager.createDirectory(reportDirectory + "/css");
 
         // Copy CSS resources
+        fileSystemManager.createDirectory(reportDirectory + "/css");
         copyFileFromJarToReportDirectory("/css/bootstrap.min.css");
         copyFileFromJarToReportDirectory("/css/cluecumber.css");
         copyFileFromJarToReportDirectory("/css/datatables.min.css");
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
         copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
 
+        // Copy webfont resources
+        fileSystemManager.createDirectory(reportDirectory + "/font");
+        copyFileFromJarToReportDirectory("/font/cluecumber.eot");
+        copyFileFromJarToReportDirectory("/font/cluecumber.svg");
+        copyFileFromJarToReportDirectory("/font/cluecumber.ttf");
+        copyFileFromJarToReportDirectory("/font/cluecumber.woff");
+        copyFileFromJarToReportDirectory("/font/cluecumber.woff2");
+
         // Copy Javascript resources
+        fileSystemManager.createDirectory(reportDirectory + "/js");
         copyFileFromJarToReportDirectory("/js/jquery.min.js");
         copyFileFromJarToReportDirectory("/js/bootstrap.min.js");
         copyFileFromJarToReportDirectory("/js/popper.min.js");

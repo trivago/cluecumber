@@ -109,6 +109,14 @@ limitations under the License.
                             <div class="col-2 text-right">
                                 <@scenario.status step=step/>
                             </div>
+                            <#if (step.docString.value)?? >
+                                <div class="row w-100 py-3 m-0">
+                                    <div class="col-2"></div>
+                                    <div class="col-10 text-left text-black-50">
+                                        ${step.docString.value?html}
+                                    </div>
+                                </div>
+                            </#if>
                             <@scenario.errorMessage step=step/>
                             <@scenario.output step=step/>
                             <@scenario.attachments step=step/>
