@@ -18,9 +18,7 @@ package com.trivago.rta.filesystem;
 
 import com.trivago.rta.exceptions.CluecumberPluginException;
 import com.trivago.rta.exceptions.filesystem.PathCreationException;
-import com.trivago.rta.properties.PropertyManager;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,28 +33,25 @@ import java.util.stream.Collectors;
 
 @Singleton
 public class FileSystemManager {
-
-    private static final int BYTE_BLOCK = 4096;
-    private final PropertyManager propertyManager;
-
-    @Inject
-    public FileSystemManager(final PropertyManager propertyManager) {
-        this.propertyManager = propertyManager;
-    }
-
-    public List<Path> getJsonFilePaths() throws CluecumberPluginException {
-        String sourceJsonReportDirectory = propertyManager.getSourceJsonReportDirectory();
+    /**
+     * Return a list of JSON files in a given directory.
+     *
+     * @param sourcePath The path in which to search for JSON files.
+     * @return A list of JSON file paths.
+     * @throws CluecumberPluginException see {@link CluecumberPluginException}.
+     */
+    public List<Path> getJsonFilePaths(final String sourcePath) throws CluecumberPluginException {
         List<Path> jsonFilePaths;
         try {
             jsonFilePaths =
-                    Files.walk(Paths.get(sourceJsonReportDirectory))
+                    Files.walk(Paths.get(sourcePath))
                             .filter(Files::isRegularFile)
                             .filter(p -> p.toString().toLowerCase().endsWith(".json"))
                             .collect(Collectors.toList());
 
         } catch (IOException e) {
             throw new CluecumberPluginException(
-                    "Unable to traverse JSON files in " + sourceJsonReportDirectory);
+                    "Unable to traverse JSON files in " + sourcePath);
         }
         return jsonFilePaths;
     }
@@ -76,13 +71,13 @@ public class FileSystemManager {
     /**
      * Export a resource embedded into a Jar file to the local file path.
      *
-     * @param baseClass    jar base class.
      * @param resourceName path to the embedded resource.
      * @param destination  full path to the destination resource.
-     * @throws CluecumberPluginException (see {@link CluecumberPluginException}.
+     * @throws CluecumberPluginException see {@link CluecumberPluginException}.
      */
-    public void exportResource(final Class baseClass, final String resourceName, final String destination) throws CluecumberPluginException {
-        try (InputStream inputStream = baseClass.getResourceAsStream(resourceName)) {
+    public void copyResourceFromJar(final String resourceName, final String destination) throws CluecumberPluginException {
+        final int BYTE_BLOCK = 4096;
+        try (InputStream inputStream = this.getClass().getResourceAsStream(resourceName)) {
             int readBytes;
             byte[] buffer = new byte[BYTE_BLOCK];
             try (OutputStream outputStream = new FileOutputStream(destination)) {
@@ -95,6 +90,23 @@ public class FileSystemManager {
 
         } catch (Exception e) {
             throw new CluecumberPluginException("Cannot read resource '" + resourceName + "': " + e.getMessage());
+        }
+    }
+
+    /**
+     * Copy file to a new location.
+     *
+     * @param source      The source file.
+     * @param destination The destination file.
+     * @throws CluecumberPluginException see {@link CluecumberPluginException}.
+     */
+    public void copyResource(final String source, final String destination) throws CluecumberPluginException {
+        Path sourcePath = Paths.get(source);
+        Path destinationPath = Paths.get(destination);
+        try {
+            Files.copy(sourcePath, destinationPath);
+        } catch (IOException e) {
+            throw new CluecumberPluginException("Cannot copy resource '" + source + "': " + e.getMessage());
         }
     }
 }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -33,7 +34,7 @@ public class CluecumberReportPluginTest {
         List<Path> fileList = new ArrayList<>();
         Path path = mock(Path.class);
         fileList.add(path);
-        when(fileSystemManager.getJsonFilePaths()).thenReturn(fileList);
+        when(fileSystemManager.getJsonFilePaths(anyString())).thenReturn(fileList);
 
         fileIO = mock(FileIO.class);
         jsonPojoConverter = mock(JsonPojoConverter.class);

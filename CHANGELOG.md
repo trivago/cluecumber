@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.3.0] - unreleased
+
+### Added
+
+* `customCSS` property to provide an additional CSS file that is loaded on top of Cluecumber's default styles
+
 ## [1.2.1] - 2018-07-31
 
 ### Fixed

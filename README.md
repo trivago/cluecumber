@@ -25,8 +25,8 @@
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
-    - [CustomParameters](#customparameters)
-      - [Example](#example)
+    - [customParameters](#customparameters)
+    - [customCSS](#customcss)
 - [Example project](#example-project)
 - [Appendix](#appendix)
   - [Building](#building)
@@ -120,22 +120,48 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ## Optional Configuration Parameters
 
-### CustomParameters
+### customParameters
 
-The ```CustomParameters``` block can be used to define custom information that should be displayed on the report start page.
+The `customParameters` block can be used to define custom information that should be displayed on the report start page.
 
 __Note:__ Underscores in the parameter names are automatically turned into spaces in the report.
 Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
 
-#### Example
 ```
 <customParameters>
-    <My_Custom_Parameter>My custom value</My_Custom_Parameter>
-    <Test_Parameter>http://www.google.de</Test_Parameter>
+    <Custom_Parameter>This is a test</Custom_Parameter>
+    <Custom_URL>http://www.google.com</Custom_URL>
 </customParameters>
 ```
 
+The property definitions above are shown in the report like this:
+
 ![custom parameters](documentation/img/custom_params.png)
+
+### customCSS
+
+The `customCSS` property can be used to define a custom CSS file that will be automatically loaded on top of Cluecumber's default styles.
+
+If you have a custom CSS file called `custom/custom.css` in your project, you could use it to change the report's background and header colors:
+```css
+body {
+    background-color: black;
+}
+
+h3, h4 {
+    color: white;
+}
+```
+
+To use this files, specify it like so:
+
+```xml
+<customCss>custom/custom.css</customCss>
+```
+
+When generating the report, this file is automatically included as ```cluecumber_custom.css``` and applied on top of all other styles:
+
+![Custom CSS](documentation/img/custom_css.png)
 
 # Example project
 
