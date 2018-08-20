@@ -115,7 +115,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");
 
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
-        List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths();
+        List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths(propertyManager.getSourceJsonReportDirectory());
         for (Path jsonFilePath : jsonFilePaths) {
             String jsonString = fileIO.readContentFromFile(jsonFilePath.toString());
             try {
