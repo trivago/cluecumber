@@ -15,7 +15,8 @@ limitations under the License.
 -->
 
 <#import "macros/page.ftl"as page>
-<#import "macros/scenario.ftl" as scenarioMacros>
+<#import "macros/scenario.ftl" as scenario>
+<#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
 <#if (tagFilter??)>
@@ -58,16 +59,18 @@ limitations under the License.
         </@page.card>
         <@page.card width="4" title="Scenario Summary" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenario(s)</li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed</li>
-                <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed</li>
-                <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped</li>
-                <li class="list-group-item"><strong>Time:</strong> ${totalDurationString}</li>
+                <li class="list-group-item">
+                    ${totalNumberOfScenarios} Scenario(s):<br>
+                    ${totalNumberOfPassedScenarios} <@common.status status="passed"/>
+                    ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
+                    ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
+                </li>
+                <li class="list-group-item">Duration: ${totalDurationString}</li>
             </ul>
         </@page.card>
     </div>
 
-    <@scenarioMacros.table status="failed"/>
-    <@scenarioMacros.table status="skipped"/>
-    <@scenarioMacros.table status="passed"/>
+    <@scenario.table status="failed"/>
+    <@scenario.table status="skipped"/>
+    <@scenario.table status="passed"/>
 </@page.page>

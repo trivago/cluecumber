@@ -71,7 +71,7 @@ public class ReportGeneratorTest {
         reportGenerator.generateReport(allScenariosPageCollection);
 
         verify(fileSystemManager, times(7)).createDirectory(anyString());
-        verify(fileSystemManager, times(16)).exportResource(any(Class.class), anyString(), anyString());
+        verify(fileSystemManager, times(17)).copyResourceFromJar(anyString(), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
         verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());

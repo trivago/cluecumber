@@ -14,9 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/cluecumber.css" type="text/css">
-<link rel="stylesheet" href="css/cluecumber_custom.css"/>
-<link rel="stylesheet" href="css/datatables.min.css">
-<link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
+<#macro status status>
+    <#if status == "failed">
+        <#assign class = "text-danger" />
+        <#assign icon = "failed" />
+    <#elseif status == "skipped">
+        <#assign class = "text-warning" />
+        <#assign icon = "skipped" />
+    <#else>
+        <#assign class = "text-success" />
+        <#assign icon = "passed" />
+    </#if>
+    <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
+       title="${status}"></i>
+</#macro>

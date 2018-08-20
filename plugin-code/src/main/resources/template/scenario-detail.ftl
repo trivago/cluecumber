@@ -16,6 +16,7 @@ limitations under the License.
 
 <#import "macros/page.ftl"as page>
 <#import "macros/scenario.ftl" as scenario>
+<#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
@@ -32,11 +33,13 @@ limitations under the License.
         </@page.card>
         <@page.card width="4" title="Scenario Information" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Step(s)</li>
-                <li class="list-group-item"><strong>${element.totalNumberOfPassedSteps}</strong> passed</li>
-                <li class="list-group-item"><strong>${element.totalNumberOfFailedSteps}</strong> failed</li>
-                <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
-                <li class="list-group-item"><strong>Time:</strong> ${element.returnTotalDurationString()}</li>
+                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)</li>
+                <li class="list-group-item">
+                    ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
+                    ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
+                    ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
+                </li>
+                <li class="list-group-item">Duration: ${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
                     <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                 </#list>
@@ -63,7 +66,7 @@ limitations under the License.
                                 ${before.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
-                                <@scenario.status step=before/>
+                                <@common.status status=before.consolidatedStatusString/>
                             </div>
                         <@scenario.errorMessage step=before/>
                         <@scenario.output step=before/>
@@ -107,7 +110,7 @@ limitations under the License.
                                 ${step.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
-                                <@scenario.status step=step/>
+                                <@common.status status=step.consolidatedStatusString/>
                             </div>
                             <#if (step.docString.value)?? >
                                 <div class="row w-100 py-3 m-0">
@@ -146,7 +149,7 @@ limitations under the License.
                                 ${after.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
-                                <@scenario.status step=after/>
+                                <@common.status status=after.consolidatedStatusString/>
                             </div>
                         <@scenario.errorMessage step=after/>
                         <@scenario.output step=after/>

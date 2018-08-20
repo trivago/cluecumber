@@ -165,6 +165,14 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
         copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
 
+        // Either use the custom CSS or the dummy CSS files that comes with Cluecumber
+        String customCss = propertyManager.getCustomCss();
+        if (customCss != null && !customCss.isEmpty()) {
+            fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber_custom.css");
+        } else {
+            copyFileFromJarToReportDirectory("/css/cluecumber_custom.css");
+        }
+
         // Copy webfont resources
         fileSystemManager.createDirectory(reportDirectory + "/font");
         copyFileFromJarToReportDirectory("/font/cluecumber.eot");
@@ -190,7 +198,7 @@ public class ReportGenerator {
      * @throws CluecumberPluginException The {@link CluecumberPluginException}.
      */
     private void copyFileFromJarToReportDirectory(final String fileName) throws CluecumberPluginException {
-        fileSystemManager.exportResource(getClass(),
+        fileSystemManager.copyResourceFromJar(
                 PluginSettings.BASE_TEMPLATE_PATH + fileName,
                 propertyManager.getGeneratedHtmlReportDirectory() + fileName);
     }

@@ -34,8 +34,8 @@ public enum Status {
 
     private final String status;
 
-    Status(final String status) {
-        this.status = status;
+    Status(final String statusString) {
+        this.status = statusString;
     }
 
     public static Status fromString(String status) {

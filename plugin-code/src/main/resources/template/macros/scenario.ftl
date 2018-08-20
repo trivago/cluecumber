@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+<#import "../macros/common.ftl" as common>
+
 <#macro table status>
     <#assign skippedRequested = status == "skipped">
     <#assign failedRequested = status == "failed">
@@ -101,21 +103,6 @@ limitations under the License.
     </#if>
 </#macro>
 
-<#macro status step>
-    <#if step.failed>
-        <#assign class = "text-danger" />
-        <#assign icon = "failed" />
-    <#elseif step.skipped>
-        <#assign class = "text-warning" />
-        <#assign icon = "skipped" />
-    <#else>
-        <#assign class = "text-success" />
-        <#assign icon = "passed" />
-    </#if>
-    <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
-       title="${step.status.statusString}"></i>
-</#macro>
-
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
         <div class="row w-100 p-3 m-0">
@@ -155,7 +142,7 @@ limitations under the License.
                     <nobr>${hook.result.returnDurationString()}</nobr>
                 </div>
                 <div class="col-1 text-right">
-                    <@scenario.status step=hook/>
+                    <@common.status status=hook.consolidatedStatusString/>
                 </div>
                 <@scenario.errorMessage step=hook/>
                 <@scenario.output step=hook/>
