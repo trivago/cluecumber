@@ -71,7 +71,7 @@ table.compact {
 }
 
 iframe {
-    border: 1px solid #ccc;
+    border: none;
     padding: 5px 5px 0 5px;
 }
 
