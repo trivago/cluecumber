@@ -379,6 +379,64 @@
             "match": {
               "location": "Steps.go_to_dummy_page()"
             },
+            "rows": [
+              {
+                "cells": [
+                  "Job Number",
+                  "Job Name",
+                  "Expected Duration"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              }
+            ],
             "keyword": "When "
           },
           {

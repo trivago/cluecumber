@@ -88,17 +88,6 @@ limitations under the License.
                                       title="${step.glueMethodName}">
                                     ${step.keyword} ${stepName}
                                 </span>
-                                <#if (step.rows?size > 0) >
-                                    <table class="table table-hover table-sm compact">
-                                        <#list step.rows as row>
-                                            <tr>
-                                                <#list row.cells as cell>
-                                                    <td>${cell}</td>
-                                                </#list>
-                                            </tr>
-                                        </#list>
-                                    </table>
-                                </#if>
                             </div>
                             <div class="col-2 text-left small">
                                 ${step.result.returnDurationString()}
@@ -106,6 +95,23 @@ limitations under the License.
                             <div class="col-1 text-right">
                                 <@common.status status=step.consolidatedStatusString/>
                             </div>
+
+                            <#if (step.rows?size > 0) >
+                                <div class="row w-100 p-3 m-0">
+                                    <div class="w-100 text-left border border-dark">
+                                        <table class="table table-hover small table-striped text-left pb-0">
+                                            <#list step.rows as row>
+                                                <tr>
+                                                    <#list row.cells as cell>
+                                                        <td>${cell}</td>
+                                                    </#list>
+                                                </tr>
+                                            </#list>
+                                        </table>
+                                    </div>
+                                </div>
+                            </#if>
+
                             <#if (step.docString.value)?? >
                                 <div class="row w-100 p-3 m-0">
                                     <div class="w-100 text-left border border-dark">
@@ -113,6 +119,7 @@ limitations under the License.
                                     </div>
                                 </div>
                             </#if>
+
                             <@scenario.errorMessage step=step/>
                             <@scenario.output step=step/>
                             <@scenario.attachments step=step/>
