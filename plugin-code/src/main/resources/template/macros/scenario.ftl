@@ -65,7 +65,7 @@ limitations under the License.
                                                 <td class="text-left">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
-                                                <td class="text-right"
+                                                <td class="text-right small"
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>
@@ -86,8 +86,7 @@ limitations under the License.
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
             <div class="row w-100 p-3 m-0">
-                <div class="col-2"></div>
-                <div class="col-10 text-left m-auto">
+                <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
@@ -106,9 +105,8 @@ limitations under the License.
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
         <div class="row w-100 p-3 m-0">
-            <div class="col-2"></div>
-            <div class="col-10 text-left border border-danger m-auto">
-                <code>${step.result.errorMessage?html}</code>
+            <div class="w-100 text-left border border-danger">
+                <pre class="text-danger small p-2">${step.result.errorMessage?html}</pre>
             </div>
         </div>
     </#if>
@@ -119,9 +117,8 @@ limitations under the License.
         <#list step.output as output>
             <#if output?has_content>
                 <div class="row w-100 p-3 m-0">
-                    <div class="col-2"></div>
-                    <div class="col-10 text-left m-auto">
-                        <iframe srcdoc="${output?html}" width="100%" height="1"
+                    <div class="w-100 text-left m-auto border border-dark">
+                        <iframe frameborder="0" srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>
                     </div>
                 </div>
@@ -134,11 +131,11 @@ limitations under the License.
     <#list hooks as hook>
         <#if (hook.failed)>
             <div class="row row_${hook.consolidatedStatusString}">
-                <div class="col-2"></div>
-                <div class="col-7 text-left">
+                <div class="col-1"></div>
+                <div class="col-8 text-left">
                     <i>${hook.glueMethodName}</i>
                 </div>
-                <div class="col-2 text-left">
+                <div class="col-2 text-left small">
                     <nobr>${hook.result.returnDurationString()}</nobr>
                 </div>
                 <div class="col-1 text-right">

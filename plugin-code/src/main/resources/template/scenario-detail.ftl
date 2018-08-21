@@ -54,15 +54,11 @@ limitations under the License.
                 <li class="list-group-item">
                     <#list element.before as before>
                         <div class="row row_${before.consolidatedStatusString}">
-                            <div class="col-2 text-left">
-                                <span class="text-secondary">
-                                    Before ${before?counter}
-                                </span>
-                            </div>
-                            <div class="col-7 text-left">
+                            <div class="col-1 text-left">${before?counter}.</div>
+                            <div class="col-8 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
-                            <div class="col-2 text-left">
+                            <div class="col-2 text-left small">
                                 ${before.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
@@ -85,10 +81,8 @@ limitations under the License.
                         <@scenario.stepHooks step.before />
 
                         <div class="row row_${step.consolidatedStatusString}">
-                            <div class="col-2 text-left">
-                                Step ${step?counter}
-                            </div>
-                            <div class="col-7 text-left">
+                            <div class="col-1 text-left">${step?counter}.</div>
+                            <div class="col-8 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
@@ -106,17 +100,16 @@ limitations under the License.
                                     </table>
                                 </#if>
                             </div>
-                            <div class="col-2 text-left">
+                            <div class="col-2 text-left small">
                                 ${step.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
                                 <@common.status status=step.consolidatedStatusString/>
                             </div>
                             <#if (step.docString.value)?? >
-                                <div class="row w-100 py-3 m-0">
-                                    <div class="col-2"></div>
-                                    <div class="col-10 text-left text-black-50">
-                                        ${step.docString.value?html}
+                                <div class="row w-100 p-3 m-0">
+                                    <div class="w-100 text-left border border-dark">
+                                        <pre class="text-secondary small p-2">${step.docString.value?html}</pre>
                                     </div>
                                 </div>
                             </#if>
@@ -137,15 +130,11 @@ limitations under the License.
                 <li class="list-group-item">
                     <#list element.after as after>
                         <div class="row row_${after.consolidatedStatusString}">
-                            <div class="col-2 text-left">
-                                <span class="text-secondary">
-                                    After ${after?counter}
-                                </span>
-                            </div>
-                            <div class="col-7 text-left">
+                            <div class="col-1 text-left">${after?counter}.</div>
+                            <div class="col-8 text-left">
                                 <i>${after.glueMethodName}</i>
                             </div>
-                            <div class="col-2 text-left">
+                            <div class="col-2 text-left small">
                                 ${after.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
