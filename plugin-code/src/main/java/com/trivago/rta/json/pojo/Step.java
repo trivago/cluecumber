@@ -16,6 +16,8 @@
 
 package com.trivago.rta.json.pojo;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,6 +30,8 @@ public class Step extends ResultMatch {
     private String keyword = "";
     private List<Row> rows = new ArrayList<>();
     private List<ResultMatch> after = new ArrayList<>();
+    @SerializedName("doc_string")
+    private DocString docString;
 
     public List<ResultMatch> getBefore() {
         return before;
@@ -88,5 +92,13 @@ public class Step extends ResultMatch {
 
     public void setAfter(final List<ResultMatch> after) {
         this.after = after;
+    }
+
+    public DocString getDocString() {
+        return docString;
+    }
+
+    public void setDocString(final DocString docString) {
+        this.docString = docString;
     }
 }

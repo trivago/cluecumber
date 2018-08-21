@@ -89,7 +89,7 @@ public class FileSystemManager {
             }
 
         } catch (Exception e) {
-            throw new CluecumberPluginException("Cannot read resource '" + resourceName + "': " + e.getMessage());
+            throw new CluecumberPluginException("Cannot process resource '" + resourceName + "': " + e.getMessage());
         }
     }
 

@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Embedding {
     private String data;
-
     @SerializedName("mime_type")
     private String mimeType = "unknown";
 

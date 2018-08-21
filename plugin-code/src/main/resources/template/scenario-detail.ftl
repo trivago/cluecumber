@@ -16,6 +16,7 @@ limitations under the License.
 
 <#import "macros/page.ftl"as page>
 <#import "macros/scenario.ftl" as scenario>
+<#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
@@ -32,11 +33,13 @@ limitations under the License.
         </@page.card>
         <@page.card width="4" title="Scenario Information" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${element.totalNumberOfSteps}</strong> Step(s)</li>
-                <li class="list-group-item"><strong>${element.totalNumberOfPassedSteps}</strong> passed</li>
-                <li class="list-group-item"><strong>${element.totalNumberOfFailedSteps}</strong> failed</li>
-                <li class="list-group-item"><strong>${element.totalNumberOfSkippedSteps}</strong> skipped</li>
-                <li class="list-group-item"><strong>Time:</strong> ${element.returnTotalDurationString()}</li>
+                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)</li>
+                <li class="list-group-item">
+                    ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
+                    ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
+                    ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
+                </li>
+                <li class="list-group-item">Duration: ${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
                     <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                 </#list>
@@ -51,19 +54,15 @@ limitations under the License.
                 <li class="list-group-item">
                     <#list element.before as before>
                         <div class="row row_${before.consolidatedStatusString}">
-                            <div class="col-2 text-left">
-                                <span class="text-secondary">
-                                    <nobr>Before ${before?counter}</nobr>
-                                </span>
-                            </div>
-                            <div class="col-6 text-left">
+                            <div class="col-1 text-left">${before?counter}.</div>
+                            <div class="col-8 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
-                            <div class="col-2 text-left">
-                                <nobr>${before.result.returnDurationString()}</nobr>
+                            <div class="col-2 text-left small">
+                                ${before.result.returnDurationString()}
                             </div>
-                            <div class="col-2 text-right">
-                                <@scenario.status step=before/>
+                            <div class="col-1 text-right">
+                                <@common.status status=before.consolidatedStatusString/>
                             </div>
                         <@scenario.errorMessage step=before/>
                         <@scenario.output step=before/>
@@ -82,33 +81,45 @@ limitations under the License.
                         <@scenario.stepHooks step.before />
 
                         <div class="row row_${step.consolidatedStatusString}">
-                            <div class="col-2 text-left">
-                                <nobr>Step ${step?counter}</nobr>
-                            </div>
-                            <div class="col-6 text-left">
+                            <div class="col-1 text-left">${step?counter}.</div>
+                            <div class="col-8 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip"
                                       title="${step.glueMethodName}">
                                     ${step.keyword} ${stepName}
                                 </span>
-                                <#if (step.rows?size > 0) >
-                                    <table class="table table-hover table-sm compact">
-                                        <#list step.rows as row>
-                                            <tr>
-                                                <#list row.cells as cell>
-                                                    <td>${cell}</td>
-                                                </#list>
-                                            </tr>
-                                        </#list>
-                                    </table>
-                                </#if>
                             </div>
-                            <div class="col-2 text-left">
-                                <nobr>${step.result.returnDurationString()}</nobr>
+                            <div class="col-2 text-left small">
+                                ${step.result.returnDurationString()}
                             </div>
-                            <div class="col-2 text-right">
-                                <@scenario.status step=step/>
+                            <div class="col-1 text-right">
+                                <@common.status status=step.consolidatedStatusString/>
                             </div>
+
+                            <#if (step.rows?size > 0) >
+                                <div class="row w-100 p-3 m-0">
+                                    <div class="w-100 text-left border border-dark">
+                                        <table class="table table-hover small table-striped text-left pb-0">
+                                            <#list step.rows as row>
+                                                <tr>
+                                                    <#list row.cells as cell>
+                                                        <td>${cell}</td>
+                                                    </#list>
+                                                </tr>
+                                            </#list>
+                                        </table>
+                                    </div>
+                                </div>
+                            </#if>
+
+                            <#if (step.docString.value)?? >
+                                <div class="row w-100 p-3 m-0">
+                                    <div class="w-100 text-left border border-dark">
+                                        <pre class="text-secondary small p-2">${step.docString.value?html}</pre>
+                                    </div>
+                                </div>
+                            </#if>
+
                             <@scenario.errorMessage step=step/>
                             <@scenario.output step=step/>
                             <@scenario.attachments step=step/>
@@ -126,19 +137,15 @@ limitations under the License.
                 <li class="list-group-item">
                     <#list element.after as after>
                         <div class="row row_${after.consolidatedStatusString}">
-                            <div class="col-2 text-left">
-                                <span class="text-secondary">
-                                    <nobr>After ${after?counter}</nobr>
-                                </span>
-                            </div>
-                            <div class="col-6 text-left">
+                            <div class="col-1 text-left">${after?counter}.</div>
+                            <div class="col-8 text-left">
                                 <i>${after.glueMethodName}</i>
                             </div>
-                            <div class="col-2 text-left">
-                                <nobr>${after.result.returnDurationString()}</nobr>
+                            <div class="col-2 text-left small">
+                                ${after.result.returnDurationString()}
                             </div>
-                            <div class="col-2 text-right">
-                                <@scenario.status step=after/>
+                            <div class="col-1 text-right">
+                                <@common.status status=after.consolidatedStatusString/>
                             </div>
                         <@scenario.errorMessage step=after/>
                         <@scenario.output step=after/>

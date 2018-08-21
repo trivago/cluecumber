@@ -15,7 +15,7 @@ limitations under the License.
 -->
 
 <#import "macros/page.ftl"as page>
-<#import "macros/scenario.ftl" as scenarioMacros>
+<#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page base=".." links=["tag_summary", "scenario_summary"] headline="All Features" subheadline="">
@@ -25,10 +25,13 @@ limitations under the License.
         </@page.card>
         <@page.card width="4" title="Feature Summary" subtitle="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${totalNumberOfFeatures}</strong> Feature(s)</li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedFeatures}</strong> passed Scenario(s)</li>
-                <li class="list-group-item"><strong>${totalNumberOfFailedFeatures}</strong> failed Scenario(s)</li>
-                <li class="list-group-item"><strong>${totalNumberOfSkippedFeatures}</strong> skipped Scenario(s)</li>
+                <li class="list-group-item">${totalNumberOfFeatures} Feature(s)</li>
+                <li class="list-group-item">
+                    Feature Scenario(s):<br>
+                    ${totalNumberOfPassedFeatures} <@common.status status="passed"/>
+                    ${totalNumberOfFailedFeatures} <@common.status status="failed"/>
+                    ${totalNumberOfSkippedFeatures} <@common.status status="skipped"/>
+                </li>
             </ul>
         </@page.card>
     </div>

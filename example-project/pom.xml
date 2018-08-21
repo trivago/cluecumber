@@ -33,11 +33,15 @@
                             <sourceJsonReportDirectory>${cucumber.report.json.location}
                             </sourceJsonReportDirectory>
                             <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
+
+                            <!-- Optional custom parameters that are displayed on the report's start page -->
                             <customParameters>
                                 <Custom_Parameter>This is a test</Custom_Parameter>
                                 <Custom_URL>http://www.google.com</Custom_URL>
                             </customParameters>
-                            <customCss>custom/custom.css</customCss>
+
+                            <!-- Optional custom CSS for custom styling -->
+                            <!--<customCss>custom/custom.css</customCss>-->
                         </configuration>
                     </execution>
                 </executions>

@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+<#import "../macros/common.ftl" as common>
+
 <#macro table status>
     <#assign skippedRequested = status == "skipped">
     <#assign failedRequested = status == "failed">
@@ -63,7 +65,7 @@ limitations under the License.
                                                 <td class="text-left">
                                                     <a href="pages/scenario-detail/scenario_${element.scenarioIndex}.html">${element.name?html}</a>
                                                 </td>
-                                                <td class="text-right"
+                                                <td class="text-right small"
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>
@@ -83,8 +85,8 @@ limitations under the License.
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="w-100 mt-3">
-                <div class="col-9 text-left m-auto">
+            <div class="row w-100 p-3 m-0">
+                <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
@@ -100,22 +102,11 @@ limitations under the License.
     </#if>
 </#macro>
 
-<#macro status step>
-    <#if step.failed>
-        <#assign class = "text-danger" />
-    <#elseif step.skipped>
-        <#assign class = "text-warning" />
-    <#else>
-        <#assign class = "text-success" />
-    </#if>
-    <span class="${class}">${step.status.statusString}</span>
-</#macro>
-
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="w-100 mt-3">
-            <div class="col-9 text-left border border-danger m-auto">
-                <code>${step.result.errorMessage?html}</code>
+        <div class="row w-100 p-3 m-0">
+            <div class="w-100 text-left border border-danger">
+                <pre class="text-danger small p-2">${step.result.errorMessage?html}</pre>
             </div>
         </div>
     </#if>
@@ -125,9 +116,9 @@ limitations under the License.
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="w-100 mt-3">
-                    <div class="col-9 text-left m-auto">
-                        <iframe srcdoc="${output?html}" width="100%" height="1"
+                <div class="row w-100 p-3 m-0">
+                    <div class="w-100 text-left m-auto border border-dark">
+                        <iframe frameborder="0" srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>
                     </div>
                 </div>
@@ -140,15 +131,15 @@ limitations under the License.
     <#list hooks as hook>
         <#if (hook.failed)>
             <div class="row row_${hook.consolidatedStatusString}">
-                <div class="col-2"></div>
-                <div class="col-6 text-left">
+                <div class="col-1"></div>
+                <div class="col-8 text-left">
                     <i>${hook.glueMethodName}</i>
                 </div>
-                <div class="col-2 text-left">
+                <div class="col-2 text-left small">
                     <nobr>${hook.result.returnDurationString()}</nobr>
                 </div>
-                <div class="col-2 text-right">
-                    <@scenario.status step=hook/>
+                <div class="col-1 text-right">
+                    <@common.status status=hook.consolidatedStatusString/>
                 </div>
                 <@scenario.errorMessage step=hook/>
                 <@scenario.output step=hook/>
