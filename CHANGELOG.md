@@ -7,16 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [1.3.0] - unreleased
+## [1.3.0] - 20018-08-21
 
 ### Added
 
 * `customCSS` property to provide an additional CSS file that is loaded on top of Cluecumber's default styles
+* Support for step doc strings
 
 ### Changed
 
 * Replaced `passed`, `failed` and `skipped` descriptions by webfont symbols
 * Cleaned up information box content on all pages
+* Data tables now use the full report width
+* Stack traces are now formatted
 
 ## [1.2.1] - 2018-07-31
 
@@ -228,6 +231,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
 [1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
 [1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
 [1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
