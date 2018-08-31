@@ -64,6 +64,13 @@ public class TemplateEngine {
         ));
     }
 
+    String getRenderedScenarioSequencePageContent(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContent(
+                allScenariosPageCollection,
+                templateConfiguration.getTemplate(PluginSettings.SCENARIO_SEQUENCE_TEMPLATE)
+        ));
+    }
+
     String getRenderedScenarioSummaryPageContentByTagFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Tag tag) throws CluecumberPluginException {

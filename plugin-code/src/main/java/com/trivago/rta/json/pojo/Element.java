@@ -34,7 +34,7 @@ public class Element {
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
 
-    private transient int scenarioIndex = -1;
+    private transient int scenarioIndex = 0;
 
     public List<Tag> getTags() {
         return tags;

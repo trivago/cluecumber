@@ -127,7 +127,7 @@ public class JsonPojoConverterTest {
         assertThat(element.getSteps().size(), is(2));
         assertThat(element.getBefore().size(), is(1));
         assertThat(element.getAfter().size(), is(1));
-        assertThat(element.getScenarioIndex(), is(-1));
+        assertThat(element.getScenarioIndex(), is(0));
         assertThat(element.getTotalDuration(), is(12751234816L));
         assertThat(element.getTotalNumberOfPassedSteps(), is(2));
         assertThat(element.getTotalNumberOfSkippedSteps(), is(0));

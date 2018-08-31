@@ -42,6 +42,7 @@ limitations under the License.
                         <table id="results_${status}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
+                                <th class="text-left">#</th>
                                 <th class="text-left">Feature</th>
                                 <th class="text-left">Scenario</th>
                                 <th>Duration</th>
@@ -58,6 +59,7 @@ limitations under the License.
                                     <#list report.elements as element>
                                         <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
                                             <tr>
+                                                <td class="text-right">${element.scenarioIndex}</td>
                                                 <td class="text-left"><span data-toggle="tooltip"
                                                                             title="${tooltipText}"><a
                                                         href="pages/feature-scenarios/feature_${report.featureIndex}.html">${report.name?html}</a></span>

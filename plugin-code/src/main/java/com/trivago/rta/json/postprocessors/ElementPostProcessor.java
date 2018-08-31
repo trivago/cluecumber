@@ -42,8 +42,8 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     private final FileIO fileIO;
     private final CluecumberLogger logger;
 
-    private int scenarioIndex = 0;
-    private int attachmentIndex = 0;
+    private int scenarioIndex = 1;
+    private int attachmentIndex = 1;
 
     @Inject
     public ElementPostProcessor(

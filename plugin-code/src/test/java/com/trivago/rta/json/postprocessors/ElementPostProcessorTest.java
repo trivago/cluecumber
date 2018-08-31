@@ -31,9 +31,9 @@ public class ElementPostProcessorTest {
     public void postDesiralizeAddScenarioIndexTest() {
         Element element = new Element();
 
-        assertThat(element.getScenarioIndex(), is(-1));
-        elementPostProcessor.postDeserialize(element, null, null);
         assertThat(element.getScenarioIndex(), is(0));
+        elementPostProcessor.postDeserialize(element, null, null);
+        assertThat(element.getScenarioIndex(), is(1));
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ElementPostProcessorTest {
         elementPostProcessor.postDeserialize(element, null, null);
 
         assertThat(embedding.getData(), is(""));
-        assertThat(embedding.getFilename(), is("attachment000.png"));
+        assertThat(embedding.getFilename(), is("attachment001.png"));
     }
 
     @Test

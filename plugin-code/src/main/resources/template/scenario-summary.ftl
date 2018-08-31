@@ -22,15 +22,15 @@ limitations under the License.
 <#if (tagFilter??)>
     <#assign base = "./../..">
     <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
+    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
     <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
+    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
-    <#assign links = ["feature_summary", "tag_summary"]>
+    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence"]>
 </#if>
 
 <@page.page base=base links=links headline=headline subheadline="">

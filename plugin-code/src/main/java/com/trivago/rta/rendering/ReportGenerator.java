@@ -59,6 +59,7 @@ public class ReportGenerator {
         generateScenarioDetailPages(allScenariosPageCollection);
         generateFeaturePages(allScenariosPageCollection);
         generateTagPages(allScenariosPageCollection);
+        generateScenarioSequencePage(allScenariosPageCollection);
         generateScenarioSummaryPage(allScenariosPageCollection);
     }
 
@@ -129,6 +130,20 @@ public class ReportGenerator {
             }
         }
     }
+
+    /**
+     * Generate sequence page for scenarios.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateScenarioSequencePage(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedScenarioSequencePageContent(allScenariosPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.SCENARIO_SEQUENCE_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+    }
+
 
     /**
      * Generate overview page for scenarios (this is the report start page).
