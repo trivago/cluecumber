@@ -143,8 +143,12 @@ public class AllScenariosPageRenderer extends PageRenderer {
         // <customParameters> in the pom configuration section
         List<CustomParameter> customParameters = new ArrayList<>();
         for (Map.Entry<String, String> stringStringEntry : customParameterMap.entrySet()) {
+            String value = stringStringEntry.getValue();
+            if (value == null || value.trim().isEmpty()) {
+                continue;
+            }
             String key = stringStringEntry.getKey().replace("_", " ");
-            CustomParameter customParameter = new CustomParameter(key, stringStringEntry.getValue());
+            CustomParameter customParameter = new CustomParameter(key, value);
             customParameters.add(customParameter);
         }
 

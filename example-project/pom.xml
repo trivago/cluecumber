@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,10 +34,11 @@
                             </sourceJsonReportDirectory>
                             <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
 
-                            <!-- Optional custom parameters that are displayed on the report's start page -->
+                            <!-- Optional custom parameters that are shown on the start page if they have a value -->
                             <customParameters>
                                 <Custom_Parameter>This is a test</Custom_Parameter>
                                 <Custom_URL>http://www.google.com</Custom_URL>
+                                <Empty_Parameter/>
                             </customParameters>
 
                             <!-- Optional custom CSS for custom styling -->

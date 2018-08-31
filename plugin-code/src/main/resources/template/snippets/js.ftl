@@ -28,7 +28,7 @@ limitations under the License.
             $('[data-toggle="tooltip"]').tooltip();
         }).DataTable({
             "oLanguage": {
-                "sSearch": "Search all columns:"
+                "sSearch": "Search:"
             }
         });
 
