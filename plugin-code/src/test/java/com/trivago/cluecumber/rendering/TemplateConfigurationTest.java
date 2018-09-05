@@ -15,7 +15,7 @@ public class TemplateConfigurationTest {
 
     @Test
     public void validInitTest() {
-        templateConfiguration.init(this.getClass(), "bla");
+        templateConfiguration.init("bla");
     }
 
     @Test(expected = CluecumberPluginException.class)

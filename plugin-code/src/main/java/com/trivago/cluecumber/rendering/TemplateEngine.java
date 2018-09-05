@@ -54,7 +54,7 @@ public class TemplateEngine {
         this.scenarioDetailsPageRenderer = scenarioDetailsPageRenderer;
         this.allTagsPageRenderer = allTagsPageRenderer;
 
-        templateConfiguration.init(this.getClass(), PluginSettings.BASE_TEMPLATE_PATH);
+        templateConfiguration.init(PluginSettings.BASE_TEMPLATE_PATH);
     }
 
     String getRenderedScenarioSummaryPageContent(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {

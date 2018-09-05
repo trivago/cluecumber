@@ -51,10 +51,15 @@ limitations under the License.
                         <table id="results_${status}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
-                                <th class="text-left">#</th>
+                                <#if allRequested>
+                                    <th class="text-left">#</th>
+                                </#if>
                                 <th class="text-left">Feature</th>
                                 <th class="text-left">Scenario</th>
                                 <th>Duration</th>
+                                <#if allRequested>
+                                    <th class="text-left">Status</th>
+                                </#if>
                             </tr>
                             </thead>
                             <tbody>
@@ -66,14 +71,11 @@ limitations under the License.
                                     <#assign tooltipText = "${tooltipText}${report.uri}">
 
                                     <#list report.elements as element>
-                                        <#if
-                                        (skippedRequested && element.skipped) ||
-                                        (failedRequested && element.failed) ||
-                                        (passedRequested && element.passed) ||
-                                        allRequested
-                                        >
+                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
                                             <tr>
-                                                <td class="text-right">${element.scenarioIndex}</td>
+                                                <#if allRequested>
+                                                    <td class="text-right">${element.scenarioIndex}</td>
+                                                </#if>
                                                 <td class="text-left"><span data-toggle="tooltip"
                                                                             title="${tooltipText}"><a
                                                         href="pages/feature-scenarios/feature_${report.featureIndex}.html">${report.name?html}</a></span>
@@ -85,6 +87,9 @@ limitations under the License.
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>
+                                                <#if allRequested>
+                                                    <td class="text-center"><@common.status status=element.status.statusString/></td>
+                                                </#if>
                                             </tr>
                                         </#if>
                                     </#list>

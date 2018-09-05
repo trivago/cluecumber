@@ -24,12 +24,13 @@ limitations under the License.
 <script>
     $(document).ready(function () {
         // Data tables
-        var dataTable = $('.renderAsDataTable').on('draw.dt', function () {
+        $('.renderAsDataTable').on('draw.dt', function () {
             $('[data-toggle="tooltip"]').tooltip();
         }).DataTable({
             "oLanguage": {
                 "sSearch": "Search:"
-            }
+            },
+            "pageLength": 25
         });
 
         // Lightbox
