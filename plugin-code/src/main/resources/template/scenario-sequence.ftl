@@ -14,11 +14,5 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#import "macros/page.ftl"as page>
-<#import "macros/scenario.ftl" as scenario>
-<#import "macros/common.ftl" as common>
-<#import "macros/navigation.ftl" as navigation>
-
-<@page.page base=".." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario Sequence" subheadline="">
-
-</@page.page>
+<#assign scenarioSequence = 1 />
+<#include "scenario-summary.ftl">

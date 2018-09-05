@@ -19,7 +19,7 @@ limitations under the License.
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
+<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
 
     <script>
         function resizeIframe(obj) {

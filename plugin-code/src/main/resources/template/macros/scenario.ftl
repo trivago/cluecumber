@@ -20,8 +20,14 @@ limitations under the License.
     <#assign skippedRequested = status == "skipped">
     <#assign failedRequested = status == "failed">
     <#assign passedRequested = status == "passed">
+    <#assign allRequested = status == "all">
 
-    <#if (skippedRequested && hasSkippedScenarios()) || (failedRequested && hasFailedScenarios()) || (passedRequested && hasPassedScenarios())>
+    <#if
+    (skippedRequested && hasSkippedScenarios()) ||
+    (failedRequested && hasFailedScenarios()) ||
+    (passedRequested && hasPassedScenarios()) ||
+    allRequested
+    >
         <div class="row" id="card_${status}">
             <div class="col-sm-12">
                 <div class="card">
@@ -35,6 +41,9 @@ limitations under the License.
                             <#break>
                         <#case "passed">
                             <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
+                            <#break>
+                        <#case "all">
+                            <div class="card-header border-light bg-info text-white">Scenario Sequence</div>
                             <#break>
                     </#switch>
 
@@ -57,7 +66,12 @@ limitations under the License.
                                     <#assign tooltipText = "${tooltipText}${report.uri}">
 
                                     <#list report.elements as element>
-                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
+                                        <#if
+                                        (skippedRequested && element.skipped) ||
+                                        (failedRequested && element.failed) ||
+                                        (passedRequested && element.passed) ||
+                                        allRequested
+                                        >
                                             <tr>
                                                 <td class="text-right">${element.scenarioIndex}</td>
                                                 <td class="text-left"><span data-toggle="tooltip"

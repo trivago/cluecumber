@@ -27,6 +27,10 @@ limitations under the License.
     <#assign base = "./../..">
     <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
     <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
+<#elseif (scenarioSequence??)>
+    <#assign base = "./..">
+    <#assign headline = "Scenario Sequence">
+    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
@@ -70,7 +74,11 @@ limitations under the License.
         </@page.card>
     </div>
 
-    <@scenario.table status="failed"/>
-    <@scenario.table status="skipped"/>
-    <@scenario.table status="passed"/>
+    <#if (scenarioSequence??)>
+        <@scenario.table status="all"/>
+    <#else>
+        <@scenario.table status="failed"/>
+        <@scenario.table status="skipped"/>
+        <@scenario.table status="passed"/>
+    </#if>
 </@page.page>
