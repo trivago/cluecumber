@@ -263,7 +263,7 @@ Initial project version on GitHub and Maven Central.
 [0.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0
 [0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
 [0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0
-[0.0.7]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.7
+[0.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.7
 [0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6
 [0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
 [0.0.4]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4
