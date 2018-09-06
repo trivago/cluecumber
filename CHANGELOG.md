@@ -13,6 +13,7 @@ Back to [Readme](README.md).
 
 * Cleaner layout without unnecessary horizontal lines
 * Tables now show 25 entries by default
+* Changed internal package structure
 
 ### Added
 
