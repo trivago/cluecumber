@@ -19,7 +19,7 @@ Back to [Readme](README.md).
 * Scenario Sequence page that shows the order of scenario executions and their states without deviding them into separate `passed`, `failed` and `skipped` sections 
 * Option to show/hide docstrings on the "Scenario Details" page (only present if the scenario has docstrings in at least one step)
 
-# Fixed
+### Fixed
 
 * Long data tables broke the layout
 
