@@ -106,7 +106,7 @@ limitations under the License.
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="row w-100 p-3 m-0">
+            <div class="row w-100 p-3 m-0 scenarioAttachment">
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
@@ -125,7 +125,7 @@ limitations under the License.
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="row w-100 p-3 m-0">
+        <div class="row w-100 p-3 m-0 scenarioErrorMessage">
             <div class="w-100 text-left border border-danger">
                 <pre class="text-danger small p-2">${step.result.errorMessage?html}</pre>
             </div>
@@ -137,7 +137,7 @@ limitations under the License.
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="row w-100 p-3 m-0">
+                <div class="row w-100 p-3 m-0 scenarioOutput">
                     <div class="w-100 text-left m-auto border border-dark">
                         <iframe frameborder="0" srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>

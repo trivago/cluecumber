@@ -120,14 +120,27 @@ iframe {
     content: '\e800';
 }
 
-/* '' */
 .icon-failed:before {
     content: '\e801';
 }
 
-/* '' */
 .icon-skipped:before {
     content: '\e802';
 }
 
-/* '' */
+.card-body .card {
+    margin: 1em 0 0 0;
+    box-shadow: none;
+}
+
+button.btn {
+    white-space: inherit;
+}
+
+button.btn.collapsed:before {
+    content: 'Show ';
+}
+
+button.btn:before {
+    content: 'Hide ';
+}

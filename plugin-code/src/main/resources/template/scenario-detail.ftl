@@ -45,6 +45,13 @@ limitations under the License.
                 </#list>
                 </li>
             </ul>
+            <#if element.hasDocStrings()>
+                <@page.card width="12" title="" subtitle="">
+                    <button class="btn btn-light btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true"
+                            data-target=".scenarioDocstring">DocStrings
+                    </button>
+                </@page.card>
+            </#if>
         </@page.card>
     </div>
 
@@ -97,7 +104,7 @@ limitations under the License.
                             </div>
 
                             <#if (step.rows?size > 0) >
-                                <div class="row w-100 p-3 m-0">
+                                <div class="row w-100 p-3 m-0 scenarioDataTable">
                                     <div class="w-100 text-left border border-dark table-responsive">
                                         <table class="table table-hover small table-striped text-left pb-0">
                                             <#list step.rows as row>
@@ -111,22 +118,20 @@ limitations under the License.
                                     </div>
                                 </div>
                             </#if>
-
                             <#if (step.docString.value)?? >
+                            <div class="scenarioDocstring collapse">
                                 <div class="row w-100 p-3 m-0">
-                                    <div class="w-100 text-left border border-dark">
+                                    <div class="w-100 text-left border">
                                         <pre class="text-secondary small p-2">${step.docString.value?html}</pre>
                                     </div>
                                 </div>
+                            </div>
                             </#if>
-
                             <@scenario.errorMessage step=step/>
                             <@scenario.output step=step/>
                             <@scenario.attachments step=step/>
                         </div>
-
                         <@scenario.stepHooks step.after />
-
                     </#list>
                 </li>
             </@page.card>

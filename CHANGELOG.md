@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.4.0] - 2018-09-06
+
+### Changed
+
+* Cleaner layout without unnecessary horizontal lines
+* Tables now show 25 entries by default
+
+### Added
+
+* Scenario Sequence page that shows the order of scenario executions and their states without deviding them into separate `passed`, `failed` and `skipped` sections 
+* Option to show/hide docstrings on the "Scenario Details" page (only present if the scenario has docstrings in at least one step)
+
+# Fixed
+
+* Long data tables broke the layout
+
 ## [1.3.0] - 2018-08-21
 
 ### Added
@@ -231,6 +247,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0
 [1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
 [1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
 [1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0

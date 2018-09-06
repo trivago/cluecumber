@@ -39,17 +39,19 @@ limitations under the License.
     </head>
     <body>
         <@navigation.build links=links />
-        <main role="main" class="container">
-            <div class="cluecumber-template">
-                <div class="pb-2 mt-4 mb-2 border-bottom">
-                    <h3>${headline}</h3>
-                    <#if subheadline != "">
-                        <h5>${subheadline}</h5>
-                    </#if>
-                </div>
-                <#nested>
+    <main role="main" class="container">
+        <div class="cluecumber-template">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                        <#if headline != "">
+                            <h3>${headline}</h3>
+                        </#if>
+                        <#if subheadline != "">
+                            <h5>${subheadline}</h5>
+                        </#if>
             </div>
-        </main>
+                    <#nested>
+        </div>
+    </main>
         <#include "../snippets/footer.ftl">
         <#include "../snippets/js.ftl">
     </body>

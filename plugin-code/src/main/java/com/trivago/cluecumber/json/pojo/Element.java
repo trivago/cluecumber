@@ -146,7 +146,7 @@ public class Element {
             }
         }
         for (ResultMatch afterHook : after) {
-            if (afterHook.isFailed()){
+            if (afterHook.isFailed()) {
                 return Status.FAILED;
             }
         }
@@ -161,12 +161,12 @@ public class Element {
 
                 // If any step hooks fail, report scenario as failed.
                 for (ResultMatch beforeStepHook : step.getBefore()) {
-                    if (beforeStepHook.isFailed()){
+                    if (beforeStepHook.isFailed()) {
                         return Status.FAILED;
                     }
                 }
                 for (ResultMatch afterStepHook : step.getAfter()) {
-                    if (afterStepHook.isFailed()){
+                    if (afterStepHook.isFailed()) {
                         return Status.FAILED;
                     }
                 }
@@ -241,6 +241,15 @@ public class Element {
 
     public String returnTotalDurationString() {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+    }
+
+    public boolean hasDocStrings() {
+        for (Step step : steps) {
+            if (step.getDocString() != null){
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<ResultMatch> getAllResultMatches() {
