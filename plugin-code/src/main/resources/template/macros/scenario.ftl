@@ -20,8 +20,14 @@ limitations under the License.
     <#assign skippedRequested = status == "skipped">
     <#assign failedRequested = status == "failed">
     <#assign passedRequested = status == "passed">
+    <#assign allRequested = status == "all">
 
-    <#if (skippedRequested && hasSkippedScenarios()) || (failedRequested && hasFailedScenarios()) || (passedRequested && hasPassedScenarios())>
+    <#if
+    (skippedRequested && hasSkippedScenarios()) ||
+    (failedRequested && hasFailedScenarios()) ||
+    (passedRequested && hasPassedScenarios()) ||
+    allRequested
+    >
         <div class="row" id="card_${status}">
             <div class="col-sm-12">
                 <div class="card">
@@ -36,15 +42,24 @@ limitations under the License.
                         <#case "passed">
                             <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
                             <#break>
+                        <#case "all">
+                            <div class="card-header border-light bg-info text-white">Scenario Sequence</div>
+                            <#break>
                     </#switch>
 
                     <div class="card-body">
                         <table id="results_${status}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
+                                <#if allRequested>
+                                    <th class="text-left">#</th>
+                                </#if>
                                 <th class="text-left">Feature</th>
                                 <th class="text-left">Scenario</th>
                                 <th>Duration</th>
+                                <#if allRequested>
+                                    <th class="text-left">Status</th>
+                                </#if>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,8 +71,11 @@ limitations under the License.
                                     <#assign tooltipText = "${tooltipText}${report.uri}">
 
                                     <#list report.elements as element>
-                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed)>
+                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
                                             <tr>
+                                                <#if allRequested>
+                                                    <td class="text-right">${element.scenarioIndex}</td>
+                                                </#if>
                                                 <td class="text-left"><span data-toggle="tooltip"
                                                                             title="${tooltipText}"><a
                                                         href="pages/feature-scenarios/feature_${report.featureIndex}.html">${report.name?html}</a></span>
@@ -69,6 +87,9 @@ limitations under the License.
                                                     data-order="${element.totalDuration}">
                                                     <nobr>${element.returnTotalDurationString()}</nobr>
                                                 </td>
+                                                <#if allRequested>
+                                                    <td class="text-center"><@common.status status=element.status.statusString/></td>
+                                                </#if>
                                             </tr>
                                         </#if>
                                     </#list>
@@ -85,7 +106,7 @@ limitations under the License.
 <#macro attachments step>
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
-            <div class="row w-100 p-3 m-0">
+            <div class="row w-100 p-3 m-0 scenarioAttachment">
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
@@ -104,7 +125,7 @@ limitations under the License.
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="row w-100 p-3 m-0">
+        <div class="row w-100 p-3 m-0 scenarioErrorMessage">
             <div class="w-100 text-left border border-danger">
                 <pre class="text-danger small p-2">${step.result.errorMessage?html}</pre>
             </div>
@@ -116,7 +137,7 @@ limitations under the License.
     <#if step.output??>
         <#list step.output as output>
             <#if output?has_content>
-                <div class="row w-100 p-3 m-0">
+                <div class="row w-100 p-3 m-0 scenarioOutput">
                     <div class="w-100 text-left m-auto border border-dark">
                         <iframe frameborder="0" srcdoc="${output?html}" width="100%" height="1"
                                 scrolling="yes" onload="resizeIframe(this);"></iframe>

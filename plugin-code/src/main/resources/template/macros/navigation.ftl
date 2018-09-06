@@ -14,6 +14,9 @@
                             <#case "scenario_summary">
                                 <a class="nav-link" href="index.html">All Scenarios</a>
                                 <#break>
+                            <#case "scenario_sequence">
+                                <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a>
+                                <#break>
                             <#case "tag_summary">
                                 <a class="nav-link" href="pages/tag-summary.html">All Tags</a>
                                 <#break>
