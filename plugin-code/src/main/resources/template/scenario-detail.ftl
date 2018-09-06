@@ -98,7 +98,7 @@ limitations under the License.
 
                             <#if (step.rows?size > 0) >
                                 <div class="row w-100 p-3 m-0">
-                                    <div class="w-100 text-left border border-dark">
+                                    <div class="w-100 text-left border border-dark table-responsive">
                                         <table class="table table-hover small table-striped text-left pb-0">
                                             <#list step.rows as row>
                                                 <tr>
