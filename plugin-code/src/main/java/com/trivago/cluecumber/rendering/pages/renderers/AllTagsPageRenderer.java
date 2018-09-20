@@ -91,7 +91,7 @@ public class AllTagsPageRenderer extends PageRenderer {
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
-        skippedDataset.setLabel("passed");
+        skippedDataset.setLabel("skipped");
         skippedDataset.setData(skipped);
         List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
         skippedDataset.setBackgroundColor(skippedBG);
