@@ -18,7 +18,6 @@ package com.trivago.cluecumber.json.postprocessors;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.FileCreationException;
 import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -58,15 +57,8 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
-
         addScenarioIndex(element);
-
-        try {
-            processAttachments(element.getSteps(), element.getAfter());
-        } catch (CluecumberPluginException e) {
-            // If an attachment cannot be processed, don't stop the report generation.
-            logger.error(e.getMessage());
-        }
+        processAttachments(element.getSteps(), element.getAfter());
     }
 
     /**
@@ -74,9 +66,8 @@ public class ElementPostProcessor implements PostProcessor<Element> {
      *
      * @param steps      The {@link Step} list.
      * @param afterHooks The {@link ResultMatch} list.
-     * @throws CluecumberPluginException Exception if the attachments cannot be processed.
      */
-    private void processAttachments(final List<Step> steps, List<ResultMatch> afterHooks) throws CluecumberPluginException {
+    private void processAttachments(final List<Step> steps, List<ResultMatch> afterHooks) {
         // Process step attachments
         for (Step step : steps) {
             processEmbedding(step.getEmbeddings());
@@ -92,9 +83,8 @@ public class ElementPostProcessor implements PostProcessor<Element> {
      * Save images to files, clear their Base64 content from JSON and store their filenames in order to save memory
      *
      * @param embeddings The {@link Embedding} list.
-     * @throws CluecumberPluginException The exception if the attachment cannot be processed.
      */
-    private void processEmbedding(final List<Embedding> embeddings) throws CluecumberPluginException {
+    private void processEmbedding(final List<Embedding> embeddings) {
         for (Embedding embedding : embeddings) {
             if (embedding.isImage()) {
                 String filename = saveImageEmbeddingToFileAndGetFilename(embedding);

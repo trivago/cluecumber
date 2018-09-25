@@ -13,12 +13,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class AllFeaturesPageCollectionTest {
-    private AllFeaturesPageCollection allFeaturesPageCollection;
 
     @Test
     public void getEmptyTagStatsTest() {
         List<Report> reports = new ArrayList<>();
-        allFeaturesPageCollection = new AllFeaturesPageCollection(reports);
+        AllFeaturesPageCollection allFeaturesPageCollection = new AllFeaturesPageCollection(reports);
         Map<Feature, ResultCount> featureStats = allFeaturesPageCollection.getFeatureResultCounts();
         assertThat(featureStats.size(), is(0));
     }
