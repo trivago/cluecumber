@@ -55,6 +55,9 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     @Parameter(property = "reporting.sourceJsonReportDirectory", required = true)
     private String sourceJsonReportDirectory = "";
 
+    @Parameter(defaultValue = "false", property = "skip")
+    private boolean skip;
+
     /**
      * The location of the generated report.
      */

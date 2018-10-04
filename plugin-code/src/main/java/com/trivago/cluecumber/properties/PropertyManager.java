@@ -29,7 +29,6 @@ public class PropertyManager {
 
     private final CluecumberLogger logger;
 
-    private String skip;
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private Map<String, String> customParameters;
@@ -38,14 +37,6 @@ public class PropertyManager {
     @Inject
     public PropertyManager(final CluecumberLogger logger) {
         this.logger = logger;
-    }
-
-    public String getSkip() {
-        return skip;
-    }
-
-    public void setSkip(String skip) {
-        this.skip = skip;
     }
 
     public String getSourceJsonReportDirectory() {
@@ -100,7 +91,6 @@ public class PropertyManager {
     }
 
     public void logProperties() {
-        logger.info("- skip report generation    : " + skip);
         logger.info("- source JSON report directory    : " + sourceJsonReportDirectory);
         logger.info("- generated HTML report directory : " + generatedHtmlReportDirectory);
 
