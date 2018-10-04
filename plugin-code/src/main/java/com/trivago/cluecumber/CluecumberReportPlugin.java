@@ -55,14 +55,6 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     @Parameter(property = "reporting.sourceJsonReportDirectory", required = true)
     private String sourceJsonReportDirectory = "";
 
-
-    /**
-     * Set this to true to skip report generation.
-     */
-    @Parameter(defaultValue = "false", property = "skip")
-    private boolean skip;
-
-
     /**
      * The location of the generated report.
      */
@@ -123,8 +115,6 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
         logger.info("-----------------------------------------------");
         propertyManager.logProperties();
-
-
 
         // Create attachment directory here since they are handled during json generation.
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");

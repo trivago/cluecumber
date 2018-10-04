@@ -125,6 +125,18 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ## Optional Configuration Parameters
 
+### skip
+
+The `skip` property is used to skip the execution of this plugin. The default value is `false`
+
+```
+<configuration>
+    ...
+    <skip>true</skip>
+    ...
+</configuration>
+```
+
 ### customParameters
 
 The `customParameters` block can be used to define custom information that should be displayed on the report start page.
