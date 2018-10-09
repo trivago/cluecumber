@@ -45,6 +45,7 @@
                             <!--<customCss>custom/custom.css</customCss>-->
 
                             <!-- Optional skip property for the whole report generation -->
+                            <!--<skip>true</skip>-->
                         </configuration>
                     </execution>
                 </executions>
