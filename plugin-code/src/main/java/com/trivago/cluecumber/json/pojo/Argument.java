@@ -16,7 +16,7 @@
 
 package com.trivago.cluecumber.json.pojo;
 
-public class Argument {
+class Argument {
     private String val;
     private int offset;
 

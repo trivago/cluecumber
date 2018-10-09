@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.4.1] - 2018-10-09
+
+### Added
+
+* `skip` property for skipping the report generation completely.
+
+### Fixed
+
+* Corrected typo on `All Tags` page.
+
 ## [1.4.0] - 2018-09-06
 
 ### Changed
@@ -248,6 +258,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.4.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1
 [1.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0
 [1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
 [1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1

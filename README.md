@@ -17,7 +17,7 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
-  - [Example Report](#example-report)
+  - [Example report](#example-report)
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
@@ -26,6 +26,7 @@
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
+    - [skip](#skip)
     - [customParameters](#customparameters)
     - [customCSS](#customcss)
 - [Example project](#example-project)
@@ -127,7 +128,7 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ### skip
 
-The `skip` property is used to skip the execution of this plugin. The default value is `false`
+The `skip` property is used to skip the report generation. The default value is `false`
 
 ```
 <configuration>

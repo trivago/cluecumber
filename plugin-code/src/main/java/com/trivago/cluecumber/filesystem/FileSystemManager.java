@@ -87,7 +87,6 @@ public class FileSystemManager {
             } catch (Exception e) {
                 throw new CluecumberPluginException("Cannot write resource '" + resourceName + "': " + e.getMessage());
             }
-
         } catch (Exception e) {
             throw new CluecumberPluginException("Cannot process resource '" + resourceName + "': " + e.getMessage());
         }
