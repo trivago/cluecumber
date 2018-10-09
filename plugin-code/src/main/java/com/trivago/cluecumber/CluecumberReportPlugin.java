@@ -55,6 +55,9 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     @Parameter(property = "reporting.sourceJsonReportDirectory", required = true)
     private String sourceJsonReportDirectory = "";
 
+    @Parameter(defaultValue = "false", property = "skip")
+    private boolean skip;
+
     /**
      * The location of the generated report.
      */
@@ -98,6 +101,11 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     public void execute() throws CluecumberPluginException {
         // Initialize logger to be available outside the AbstractMojo class
         logger.setMojoLogger(getLog());
+
+        if (skip) {
+            getLog().info("plugin execution skipped because of configuration flag");
+            return;
+        }
 
         // Initialize and validate passed pom properties
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);

@@ -17,6 +17,7 @@
 
 
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
+  - [Example Report](#example-report)
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
@@ -47,6 +48,10 @@ This project was created because
 - it will allow to completely customize the report appearance and information
 
 **Note:** If you need to run Cucumber tests in parallel, please check out our [Cucable](https://github.com/trivago/cucable-plugin) project!
+
+## Example report
+
+A fully generated example report can also be [viewed online](http://tech.trivago.com/cluecumber-report-plugin/)!
 
 ## Changelog
 
@@ -119,6 +124,18 @@ This specifies the source folder of the Cucumber JSON result files.
 This points to the root directory of the generated Cluecumber HTML report.
 
 ## Optional Configuration Parameters
+
+### skip
+
+The `skip` property is used to skip the execution of this plugin. The default value is `false`
+
+```
+<configuration>
+    ...
+    <skip>true</skip>
+    ...
+</configuration>
+```
 
 ### customParameters
 
