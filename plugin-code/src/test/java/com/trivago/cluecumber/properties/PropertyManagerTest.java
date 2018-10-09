@@ -52,7 +52,7 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(4)).info(anyString());
+        verify(logger, times(3)).info(anyString());
     }
 
     @Test
@@ -78,6 +78,6 @@ public class PropertyManagerTest {
         customParameters.put("key2", "value2");
         propertyManager.setCustomParameters(customParameters);
         propertyManager.logProperties();
-        verify(logger, times(6)).info(anyString());
+        verify(logger, times(5)).info(anyString());
     }
 }
