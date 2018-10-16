@@ -107,7 +107,7 @@ limitations under the License.
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
             <div class="row w-100 p-3 m-0 scenarioAttachment">
-                <div class="w-100 text-left m-auto">
+                <div class="w-100 text-center m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images"
                            href="attachments/${attachment.filename}">
@@ -150,7 +150,7 @@ limitations under the License.
 
 <#macro stepHooks hooks>
     <#list hooks as hook>
-        <#if (hook.failed)>
+        <div class="stepHook collapse">
             <div class="row row_${hook.consolidatedStatusString}">
                 <div class="col-1"></div>
                 <div class="col-8 text-left">
@@ -166,6 +166,6 @@ limitations under the License.
                 <@scenario.output step=hook/>
                 <@scenario.attachments step=hook/>
             </div>
-        </#if>
+        </div>
     </#list>
 </#macro>

@@ -6,7 +6,7 @@
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
-    <version>1.4.1</version>
+    <version>1.4.2</version>
     <url>https://github.com/trivago/cluecumber-report-plugin</url>
 
     <name>Cluecumber Maven Plugin for Cucumber Reports</name>
@@ -64,7 +64,7 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <maven.compile.encoding>UTF-8</maven.compile.encoding>
 
-        <maven.version>3.5.2</maven.version>
+        <maven.version>3.5.4</maven.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
         <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
@@ -80,7 +80,7 @@
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <plexus.utilities.version>3.1.0</plexus.utilities.version>
 
-        <mockito.version>2.21.0</mockito.version>
+        <mockito.version>2.23.0</mockito.version>
         <junit.version>4.12</junit.version>
         <openpojo.version>0.8.10</openpojo.version>
 

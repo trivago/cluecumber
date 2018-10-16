@@ -46,11 +46,14 @@ limitations under the License.
                 </li>
             </ul>
             <#if element.hasDocStrings()>
-                <@page.card width="12" title="" subtitle="">
-                    <button class="btn btn-light btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true"
-                            data-target=".scenarioDocstring">DocStrings
-                    </button>
-                </@page.card>
+                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true"
+                        data-target=".scenarioDocstring">DocStrings
+                </button>
+            </#if>
+            <#if element.hasStepHooks()>
+                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true"
+                        data-target=".stepHook">StepHooks
+                </button>
             </#if>
         </@page.card>
     </div>
@@ -119,13 +122,13 @@ limitations under the License.
                                 </div>
                             </#if>
                             <#if (step.docString.value)?? >
-                            <div class="scenarioDocstring collapse">
-                                <div class="row w-100 p-3 m-0">
-                                    <div class="w-100 text-left border">
-                                        <pre class="text-secondary small p-2">${step.docString.value?html}</pre>
+                                <div class="scenarioDocstring collapse">
+                                    <div class="row w-100 p-3 m-0">
+                                        <div class="w-100 text-left border">
+                                            <pre class="text-secondary small p-2">${step.docString.value?html}</pre>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </#if>
                             <@scenario.errorMessage step=step/>
                             <@scenario.output step=step/>

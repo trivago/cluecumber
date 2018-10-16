@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.4.2] - 2018-10-16
+
+### Fixed
+
+* Attachments work in step before/after hooks
+
+### Added
+
+* Option to hide/show step hooks on the "Scenario Details" page (only present if the scenario has step hooks in at least one step)
+
 ## [1.4.1] - 2018-10-09
 
 ### Added

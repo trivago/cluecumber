@@ -252,6 +252,18 @@ public class Element {
         return false;
     }
 
+    public boolean hasStepHooks() {
+        for (Step step : steps) {
+            if (step.getBefore().size() > 0){
+                return true;
+            }
+            if (step.getAfter().size() > 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<ResultMatch> getAllResultMatches() {
         List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
         resultMatches.addAll(getSteps());

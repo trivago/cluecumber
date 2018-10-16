@@ -18,7 +18,13 @@
             "name": "this step has an image attachment",
             "result": {
               "duration": 244280571,
-              "status": "passed"
+              "status": "passed",
+              "embeddings": [
+                {
+                  "mime_type": "image/png",
+                  "data": "iVBORw0KGgoAAAAN"
+                }
+              ]
             },
             "embeddings": [
               {
