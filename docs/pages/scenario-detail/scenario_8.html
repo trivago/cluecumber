@@ -20,9 +20,9 @@
   <meta charset="utf-8"> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin [1.4.0] - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin [1.4.0]"> 
-  <title>Scenario Details - 2018/09/06 15:27:52</title> 
+  <meta name="description" content="Cluecumber Report Plugin [1.4.2] - Scenario Details"> 
+  <meta name="author" content="Cluecumber Report Plugin [1.4.2]"> 
+  <title>Scenario Details - 2018/10/16 10:19:50</title> 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber_custom.css"> 
@@ -41,13 +41,13 @@
      <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
      <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
     </ul> 
-    <span class="text-light">2018/09/06 15:27:52</span> 
+    <span class="text-light">2018/10/16 10:19:50</span> 
    </div> 
   </nav> 
   <main role="main" class="container"> 
    <div class="cluecumber-template"> 
     <div class="pb-2 mt-4 mb-2 border-bottom"> 
-     <h3>Scenario 'Cucumber 3 Scenario'</h3> 
+     <h3>Scenario 'Scenario with step hooks'</h3> 
     </div> 
     <script>
         function resizeIframe(obj) {
@@ -79,6 +79,7 @@
          <li class="list-group-item">Duration: 0m 06s 955ms</li> 
          <li class="list-group-item"> <a href="pages/tag-scenarios/tag_tag1.html">@tag1</a>, <a href="pages/tag-scenarios/tag_tag2.html">@tag2</a>, <a href="pages/tag-scenarios/tag_tag3.html">@tag3</a>, <a href="pages/tag-scenarios/tag_tag4.html">@tag4</a> </li> 
         </ul> 
+        <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true" data-target=".stepHook">StepHooks </button> 
        </div> 
       </div> 
      </div> 
@@ -115,6 +116,22 @@
        </div> 
        <div class="card-body"> 
         <li class="list-group-item"> 
+         <div class="stepHook collapse"> 
+          <div class="row row_passed"> 
+           <div class="col-1"></div> 
+           <div class="col-8 text-left"> 
+            <i>Hooks.beforeStep()</i> 
+           </div> 
+           <div class="col-2 text-left small"> 
+            <nobr>
+             0m 00s 006ms
+            </nobr> 
+           </div> 
+           <div class="col-1 text-right"> 
+            <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+           </div> 
+          </div> 
+         </div> 
          <div class="row row_passed"> 
           <div class="col-1 text-left">
            1.
@@ -129,23 +146,30 @@
            <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
           </div> 
          </div> 
-         <div class="row row_failed"> 
-          <div class="col-1"></div> 
-          <div class="col-8 text-left"> 
-           <i>Hooks.afterStepErrorHandling()</i> 
-          </div> 
-          <div class="col-2 text-left small"> 
-           <nobr>
-            0m 00s 006ms
-           </nobr> 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioErrorMessage"> 
-           <div class="w-100 text-left border border-danger"> 
-            <pre class="text-danger small p-2">some.AssertError: some stack trace for the after step hook
+         <div class="stepHook collapse"> 
+          <div class="row row_failed"> 
+           <div class="col-1"></div> 
+           <div class="col-8 text-left"> 
+            <i>Hooks.afterStepErrorHandling()</i> 
+           </div> 
+           <div class="col-2 text-left small"> 
+            <nobr>
+             0m 00s 006ms
+            </nobr> 
+           </div> 
+           <div class="col-1 text-right"> 
+            <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 
+           </div> 
+           <div class="row w-100 p-3 m-0 scenarioErrorMessage"> 
+            <div class="w-100 text-left border border-danger"> 
+             <pre class="text-danger small p-2">some.AssertError: some stack trace for the after step hook
 </pre> 
+            </div> 
+           </div> 
+           <div class="row w-100 p-3 m-0 scenarioAttachment"> 
+            <div class="w-100 text-center m-auto"> 
+             <a class="grouped_elements" rel="images" href="attachments/attachment002.png"> <img src="attachments/attachment002.png" style="max-width: 100%"> </a> 
+            </div> 
            </div> 
           </div> 
          </div> </li> 
@@ -209,7 +233,7 @@
   </main> 
   <footer class="footer navbar-dark bg-dark"> 
    <div class="container-fluid"> 
-    <span class="text-muted">Generated by Cluecumber Report Plugin [1.4.0], 2018/09/06 15:27:52.</span> 
+    <span class="text-muted">Generated by Cluecumber Report Plugin [1.4.2], 2018/10/16 10:19:50.</span> 
    </div> 
   </footer> 
   <script src="js/jquery.min.js"></script> 

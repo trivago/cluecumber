@@ -70,7 +70,15 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     private void processAttachments(final List<Step> steps, List<ResultMatch> afterHooks) {
         // Process step attachments
         for (Step step : steps) {
+            for (ResultMatch before : step.getBefore()) {
+                processEmbedding(before.getEmbeddings());
+            }
+
             processEmbedding(step.getEmbeddings());
+            
+            for (ResultMatch after : step.getAfter()) {
+                processEmbedding(after.getEmbeddings());
+            }
         }
 
         // Process after hook attachments (Cucumber 2)

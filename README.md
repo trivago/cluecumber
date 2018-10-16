@@ -132,7 +132,6 @@ The `skip` property is used to skip the report generation. The default value is 
 
 ```
 <configuration>
-    ...
     <skip>true</skip>
     ...
 </configuration>

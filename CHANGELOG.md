@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.4.2] - 2018-10-15
+
+### Fixed
+
+* Attachments work in step before/after hooks
+
 ## [1.4.1] - 2018-10-09
 
 ### Added
