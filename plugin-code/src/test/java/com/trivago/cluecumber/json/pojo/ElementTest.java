@@ -278,4 +278,62 @@ public class ElementTest {
         assertThat(element.getTotalNumberOfFailedSteps(), is(1));
         assertThat(element.getTotalNumberOfSkippedSteps(), is(2));
     }
+
+    @Test
+    public void hasDocStringsTest(){
+        assertThat(element.hasDocStrings(), is(false));
+
+        List<Step> steps = new ArrayList<>();
+
+        Step step1 = new Step();
+        steps.add(step1);
+
+        Step step2 = new Step();
+        step2.setDocString(new DocString());
+        steps.add(step2);
+
+        element.setSteps(steps);
+
+        assertThat(element.hasDocStrings(), is(true));
+    }
+
+    @Test
+    public void hasStepHooksBeforeTest(){
+        assertThat(element.hasStepHooks(), is(false));
+
+        List<Step> steps = new ArrayList<>();
+
+        Step step1 = new Step();
+        steps.add(step1);
+
+        Step step2 = new Step();
+        List<ResultMatch> beforeStepHooks = new ArrayList<>();
+        beforeStepHooks.add(new ResultMatch());
+        step2.setBefore(beforeStepHooks);
+        steps.add(step2);
+
+        element.setSteps(steps);
+
+        assertThat(element.hasStepHooks(), is(true));
+    }
+
+    @Test
+    public void hasStepHooksAfterTest(){
+        assertThat(element.hasStepHooks(), is(false));
+
+        List<Step> steps = new ArrayList<>();
+
+        Step step1 = new Step();
+        steps.add(step1);
+
+        Step step2 = new Step();
+        List<ResultMatch> afterStepHooks = new ArrayList<>();
+        afterStepHooks.add(new ResultMatch());
+        step2.setAfter(afterStepHooks);
+        steps.add(step2);
+
+        element.setSteps(steps);
+
+        assertThat(element.hasStepHooks(), is(true));
+    }
 }
