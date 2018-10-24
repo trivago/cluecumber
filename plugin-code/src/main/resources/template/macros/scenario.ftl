@@ -105,22 +105,63 @@ limitations under the License.
 
 <#macro attachments step>
     <#if step.embeddings??>
+    	<#assign index=1>
         <#list step.embeddings as attachment>
-            <div class="row w-100 p-3 m-0 scenarioAttachment">
-                <div class="w-100 text-center m-auto">
-                    <#if attachment.image>
-                        <a class="grouped_elements" rel="images"
-                           href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}"
-                                 style="max-width: 100%"/>
-                        </a>
-                    <#else>
-                        ${attachment.data?html}
-                    </#if>
-                </div>
-            </div>
+                <div class="row w-100 p-3 m-0 scenarioAttachment">
+                	<div class="w-100 text-left m-auto border border-dark">             
+                    	<#if attachment.image>
+                    		<div data-toggle="collapse" data-target="#attachment-${index}" class="collapsable-control">
+						    	<a>&nbsp;&nbsp;&nbsp;&nbsp;Attachment ${index} (${attachment.getFileEnding()})</a>
+						  	</div>
+						  	<div id="attachment-${index}" class="collapse collapsable-details">						  
+                        		<a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
+                            		<img src="attachments/${attachment.filename}" style="max-width: 100%"/>
+                        		</a>
+                        	</div>
+	                    <#elseif attachment.getMimeType() == "text/html">
+	                    	<div data-toggle="collapse" data-target="#attachment-${index}" class="collapsable-control">
+								<a>&nbsp;&nbsp;&nbsp;&nbsp;Attachment ${index} (${attachment.getFileEnding()})</a>
+							</div>
+							<div id="attachment-${index}" class="collapse collapsable-details">
+								<div class="embedding-content">
+							      	<div class="html-content">
+								 		<iframe seamless="true" sandbox="allow-scripts" src="attachments/${attachment.filename}" srcdoc="${attachment.getDecodedData()}"></iframe> 						  
+							  		</div>
+							  	</div>
+							</div>
+	                    <#elseif attachment.getMimeType() == "text/plain" || attachment.getMimeType() == "text/xml" || attachment.getMimeType() == "application/json" || attachment.getMimeType() == "application/xml">
+	                    	<div data-toggle="collapse" data-target="#attachment-${index}" class="collapsable-control">
+								<a>&nbsp;&nbsp;&nbsp;&nbsp;Attachment ${index} (${attachment.getFileEnding()})</a>
+							</div>
+							<div id="attachment-${index}" class="collapse collapsable-details">						  
+								<pre class="embedding-content">${attachment.getDecodedData()}</pre>
+							</div>						
+	                    <#elseif attachment.getMimeType() == "application/pdf">
+							<div data-toggle="collapse" data-target="#attachment-${index}" class="collapsable-control">
+								<a>&nbsp;&nbsp;&nbsp;&nbsp;Attachment ${index} (${attachment.getFileEnding()})</a>
+						    	<a href="attachments/${attachment.filename}" download target="_blank">
+							    	<span>Download</span>
+							    </a>
+							</div>
+							<div id="attachment-${index}" class="collapse collapsable-details">						  
+								<pre class="embedding-content">This is PDF File. Click on Download to get the File.</pre>
+							</div>						
+						<#else>
+							<div data-toggle="collapse" data-target="#attachment-${index}" class="collapsable-control">
+								<a>&nbsp;&nbsp;&nbsp;&nbsp;Attachment ${index} (${attachment.getFileEnding()})</a>
+						    	<a href="attachments/${attachment.filename}" download target="_blank">
+							    	<span>Download</span>
+							    </a>
+							</div>
+							<div id="attachment-${index}" class="collapse collapsable-details">						  
+								<pre class="embedding-content">This file format is unknown. Click on Download to get the File.</pre>
+							</div>
+	                    </#if>
+                	</div>
+            	</div>
+            <#assign index++>
         </#list>
-    </#if>
+    </#if>	
 </#macro>
 
 <#macro errorMessage step>
