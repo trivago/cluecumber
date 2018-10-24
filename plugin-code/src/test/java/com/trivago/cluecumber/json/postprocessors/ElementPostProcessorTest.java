@@ -60,9 +60,7 @@ public class ElementPostProcessorTest {
 
         assertThat(embedding.getData(), is("123"));
 
-        elementPostProcessor.postDeserialize(element, null, null);
-
-        assertThat(embedding.getData(), is(""));
+        elementPostProcessor.postDeserialize(element, null, null);        
         assertThat(embedding.getFilename(), is("attachment001.png"));
     }
 
