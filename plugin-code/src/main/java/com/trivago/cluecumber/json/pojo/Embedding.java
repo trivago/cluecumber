@@ -56,8 +56,10 @@ public class Embedding {
     public boolean isImage() {
         return
                 mimeType.equalsIgnoreCase("image/png") ||
-                        mimeType.equalsIgnoreCase("image/jpeg") ||
                         mimeType.equalsIgnoreCase("image/gif") ||
+                        mimeType.equalsIgnoreCase("image/bmp") ||
+                        mimeType.equalsIgnoreCase("image/jpg") ||                        
+                        mimeType.equalsIgnoreCase("image/jpeg") ||                        
                         mimeType.equalsIgnoreCase("image/svg") ||
                         mimeType.equalsIgnoreCase("image/svg+xml");
     }
