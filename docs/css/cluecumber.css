@@ -52,7 +52,7 @@ pre {
     margin: 10px;
     word-break: normal !important;
     word-wrap: normal !important;
-    white-space: pre !important; 
+    white-space: pre !important;    
 }
 
 .row {
@@ -100,7 +100,7 @@ iframe {
     height: 0;
     overflow: hidden;
 }
- 
+
 .embedding-content {
     padding: 10px;
     margin-left: 10px;
