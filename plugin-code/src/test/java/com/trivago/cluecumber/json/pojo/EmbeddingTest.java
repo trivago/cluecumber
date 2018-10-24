@@ -6,6 +6,8 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import org.codehaus.plexus.util.Base64;
+
 public class EmbeddingTest {
     private Embedding embedding;
 
