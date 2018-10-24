@@ -61,4 +61,38 @@ public class Embedding {
     public boolean isPlainText() {
         return mimeType.equalsIgnoreCase("text/plain");
     }
+    
+    public String getDecodedData() {
+    	if(mimeType.equalsIgnoreCase("text/xml") || mimeType.equalsIgnoreCase("application/xml")){
+    		String xmlString = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+    		xmlString = xmlString.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    		return xmlString;
+    	}else{
+    		return new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+    	}
+    }
+    
+    public String getFileEnding() {
+        switch (mimeType) {
+        case "image/png":
+        case "image/gif":
+        case "image/bmp":
+        case "image/jpg":
+        case "image/jpeg":
+        case "text/html":
+        case "text/xml":
+        case "application/json":
+        case "application/xml":
+            return mimeType.substring(mimeType.indexOf('/') + 1);
+        case "image/svg":
+        case "image/svg+xml":
+            return "svg";
+        case "text/plain":
+            return "txt";
+        case "application/pdf":
+            return "pdf";
+        default:
+            return "unknown";
+        }
+    }        
 }
