@@ -16,6 +16,10 @@
 
 package com.trivago.cluecumber.json.pojo;
 
+import java.nio.charset.StandardCharsets;
+
+import org.codehaus.plexus.util.Base64;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Embedding {
