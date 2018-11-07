@@ -41,17 +41,17 @@ public class Embedding {
     }
 
     public String getDecodedData() {
-		return decodedData;
-	}
+        return decodedData;
+    }
 
-	public void setDecodedData(final String data) {
-		if(mimeType.getContentType().equalsIgnoreCase("text/xml") || mimeType.getContentType().equalsIgnoreCase("application/xml")){
-			String xmlString = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-			decodedData = xmlString.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-		}else{
-			decodedData = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-		}
-	}
+    public void setDecodedData(final String data) {
+        if(mimeType.getContentType().equalsIgnoreCase("text/xml") || mimeType.getContentType().equalsIgnoreCase("application/xml")){
+            String xmlString = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+            decodedData = xmlString.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+        }else{
+            decodedData = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        }
+    }
 
 	public MimeType getMimeType() {
         return mimeType;
