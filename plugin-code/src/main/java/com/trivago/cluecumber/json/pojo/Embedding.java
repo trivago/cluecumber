@@ -21,14 +21,17 @@ import java.nio.charset.StandardCharsets;
 import org.codehaus.plexus.util.Base64;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.cluecumber.constants.MimeType;
 
 public class Embedding {
+	
     private String data;
+    private String decodedData;
     @SerializedName("mime_type")
-    private String mimeType = "unknown";
-
+    private MimeType mimeType;
+        
     private transient String filename;
-
+    
     public String getData() {
         return data;
     }
@@ -37,11 +40,24 @@ public class Embedding {
         this.data = data;
     }
 
-    public String getMimeType() {
+    public String getDecodedData() {
+		return decodedData;
+	}
+
+	public void setDecodedData(final String data) {
+		if(mimeType.getContentType().equalsIgnoreCase("text/xml") || mimeType.getContentType().equalsIgnoreCase("application/xml")){
+			String xmlString = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+			decodedData = xmlString.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+		}else{
+			decodedData = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+		}
+	}
+
+	public MimeType getMimeType() {
         return mimeType;
     }
 
-    public void setMimeType(final String mimeType) {
+    public void setMimeType(final MimeType mimeType) {
         this.mimeType = mimeType;
     }
 
@@ -55,47 +71,37 @@ public class Embedding {
 
     public boolean isImage() {
         return
-                mimeType.equalsIgnoreCase("image/png") ||
-                        mimeType.equalsIgnoreCase("image/gif") ||
-                        mimeType.equalsIgnoreCase("image/bmp") ||
-                        mimeType.equalsIgnoreCase("image/jpg") ||                        
-                        mimeType.equalsIgnoreCase("image/jpeg") ||                        
-                        mimeType.equalsIgnoreCase("image/svg") ||
-                        mimeType.equalsIgnoreCase("image/svg+xml");
+                mimeType.getContentType().equalsIgnoreCase("image/png") ||
+                        mimeType.getContentType().equalsIgnoreCase("image/gif") ||
+                        mimeType.getContentType().equalsIgnoreCase("image/bmp") ||
+                        mimeType.getContentType().equalsIgnoreCase("image/jpg") ||                        
+                        mimeType.getContentType().equalsIgnoreCase("image/jpeg") ||                        
+                        mimeType.getContentType().equalsIgnoreCase("image/svg") ||
+                        mimeType.getContentType().equalsIgnoreCase("image/svg+xml");
     }
 
     public boolean isPlainText() {
-        return mimeType.equalsIgnoreCase("text/plain");
-    }
-    
-    public String getDecodedData() {
-    	if(mimeType.equalsIgnoreCase("text/xml") || mimeType.equalsIgnoreCase("application/xml")){
-    		String xmlString = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-    		xmlString = xmlString.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-    		return xmlString;
-    	}else{
-    		return new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-    	}
-    }
+        return mimeType.getContentType().equalsIgnoreCase("text/plain");
+    }    
     
     public String getFileEnding() {
         switch (mimeType) {
-        case "image/png":
-        case "image/gif":
-        case "image/bmp":
-        case "image/jpg":
-        case "image/jpeg":
-        case "text/html":
-        case "text/xml":
-        case "application/json":
-        case "application/xml":
-            return mimeType.substring(mimeType.indexOf('/') + 1);
-        case "image/svg":
-        case "image/svg+xml":
+        case PNG:
+        case GIF:
+        case BMP:
+        case JPG:
+        case JPEG:
+        case HTML:
+        case XML:
+        case JSON:
+        case APPLICATION_XML:
+            return mimeType.getContentType().substring(mimeType.getContentType().indexOf('/') + 1);
+        case SVG:
+        case SVG_XML:
             return "svg";
-        case "text/plain":
+        case TXT:
             return "txt";
-        case "application/pdf":
+        case PDF:
             return "pdf";
         default:
             return "unknown";
