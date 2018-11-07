@@ -49,10 +49,8 @@ body {
 }
 
 pre {
-    margin: 10px;
-    word-break: normal !important;
-    word-wrap: normal !important;
-    white-space: pre !important;    
+    margin: 0;
+    white-space: pre-wrap;
 }
 
 .row {
@@ -110,8 +108,9 @@ iframe {
     overflow-x: auto;
     line-height: 1.42857143;
     color: #333;
-    word-break: break-all;
-    word-wrap: break-word;
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;  
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     border-radius: 4px;
