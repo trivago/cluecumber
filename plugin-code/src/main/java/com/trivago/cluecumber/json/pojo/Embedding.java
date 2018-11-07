@@ -53,7 +53,7 @@ public class Embedding {
         }
     }
 
-	public MimeType getMimeType() {
+    public MimeType getMimeType() {
         return mimeType;
     }
 
