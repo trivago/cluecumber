@@ -3,6 +3,8 @@ package com.trivago.cluecumber.json.pojo;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.trivago.cluecumber.constants.MimeType;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -18,43 +20,43 @@ public class EmbeddingTest {
 
     @Test
     public void isImagePngTest() {
-        embedding.setMimeType("image/png");
+        embedding.setMimeType(MimeType.PNG);
         assertThat(embedding.isImage(), is(true));
     }
 
     @Test
     public void isImageJpgTest() {
-        embedding.setMimeType("image/jpeg");
+        embedding.setMimeType(MimeType.JPEG);
         assertThat(embedding.isImage(), is(true));
     }
 
     @Test
     public void isImageGifTest() {
-        embedding.setMimeType("image/gif");
+        embedding.setMimeType(MimeType.GIF);
         assertThat(embedding.isImage(), is(true));
     }
 
     @Test
     public void isImageSvgXmlTest() {
-        embedding.setMimeType("image/svg+xml");
+        embedding.setMimeType(MimeType.SVG_XML);
         assertThat(embedding.isImage(), is(true));
     }
 
     @Test
     public void isImageSvgTest() {
-        embedding.setMimeType("image/svg");
+        embedding.setMimeType(MimeType.SVG);
         assertThat(embedding.isImage(), is(true));
     }
 
     @Test
     public void isImageInvalidTest() {
-        embedding.setMimeType("no/image");
+        embedding.setMimeType(MimeType.UNKNOWN);
         assertThat(embedding.isImage(), is(false));
     }
 
     @Test
     public void isPlainTextTest() {
-        embedding.setMimeType("text/plain");
+        embedding.setMimeType(MimeType.TXT);
         assertThat(embedding.isPlainText(), is(true));
     }
     
@@ -62,7 +64,8 @@ public class EmbeddingTest {
     public void getDecodedDataTest() {
 		String originalInput = "This is getDecodeData() Test !!!";
 		String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
-		embedding.setData(encodeString);
+		embedding.setMimeType(MimeType.TXT);
+		embedding.setDecodedData(encodeString);
 		assertThat(embedding.getDecodedData(),is("This is getDecodeData() Test !!!"));
     }
     
@@ -70,38 +73,38 @@ public class EmbeddingTest {
     public void getDecodedDataForXMLTest() {
 		String originalInput = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
 		String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
-		embedding.setData(encodeString);
-        embedding.setMimeType("text/xml");
+        embedding.setMimeType(MimeType.XML);
+		embedding.setDecodedData(encodeString);
 		assertThat(embedding.getDecodedData(),is("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;&lt;/note&gt;"));        
     }
     
     @Test
     public void getFileEndingTest() {
-        embedding.setMimeType("image/png");
+        embedding.setMimeType(MimeType.PNG);
         assertThat(embedding.getFileEnding(), is("png"));
-        embedding.setMimeType("image/gif");
+        embedding.setMimeType(MimeType.GIF);
         assertThat(embedding.getFileEnding(), is("gif"));
-        embedding.setMimeType("image/bmp");
+        embedding.setMimeType(MimeType.BMP);
         assertThat(embedding.getFileEnding(), is("bmp"));
-        embedding.setMimeType("image/jpeg");
+        embedding.setMimeType(MimeType.JPEG);
         assertThat(embedding.getFileEnding(), is("jpeg"));
-        embedding.setMimeType("text/html");
+        embedding.setMimeType(MimeType.HTML);
         assertThat(embedding.getFileEnding(), is("html"));
-        embedding.setMimeType("text/xml");
+        embedding.setMimeType(MimeType.XML);
         assertThat(embedding.getFileEnding(), is("xml"));
-        embedding.setMimeType("application/json");
+        embedding.setMimeType(MimeType.JSON);
         assertThat(embedding.getFileEnding(), is("json"));
-        embedding.setMimeType("application/xml");
+        embedding.setMimeType(MimeType.APPLICATION_XML);
         assertThat(embedding.getFileEnding(), is("xml"));
-        embedding.setMimeType("image/svg");
+        embedding.setMimeType(MimeType.SVG);
         assertThat(embedding.getFileEnding(), is("svg"));
-        embedding.setMimeType("image/svg+xml");
+        embedding.setMimeType(MimeType.SVG_XML);
         assertThat(embedding.getFileEnding(), is("svg"));
-        embedding.setMimeType("text/plain");        
+        embedding.setMimeType(MimeType.TXT);        
         assertThat(embedding.getFileEnding(), is("txt"));
-        embedding.setMimeType("application/pdf");
+        embedding.setMimeType(MimeType.PDF);
         assertThat(embedding.getFileEnding(), is("pdf"));
-        embedding.setMimeType("unknown/unknown");
+        embedding.setMimeType(MimeType.UNKNOWN);
         assertThat(embedding.getFileEnding(), is("unknown"));
     }        
 }
