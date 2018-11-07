@@ -108,17 +108,17 @@ limitations under the License.
         <#list step.embeddings as attachment>
        	    <div class="row w-100 p-3 m-0 scenarioAttachment">
                 <div class="w-100 text-left m-auto border border-dark">
-                    <#if attachment.image>
-                		    <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                    		    <img src="attachments/${attachment.filename}" style="max-width: 100%"/>
-                		    </a>
-                    <#elseif attachment.mimeType == "HTML">
-                  	    <iframe frameborder="0" src="attachments/${attachment.filename}" srcdoc="${attachment.decodedData}" width="100%" height="1" scrolling="no" onload="resizeIframe(this);"></iframe> 						  
-                    <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
-						            <pre class="embedding-content">${attachment.decodedData}</pre>
-					          <#else>
-						            <embed src="attachments/${attachment.filename}" width="100%" height="500"></embed>
-	              	  </#if>
+                	   <#if attachment.image>
+                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
+                    	       <img src="attachments/${attachment.filename}" style="max-width: 100%"/>
+                		     </a>
+                     <#elseif attachment.mimeType == "HTML">
+                  	     <iframe frameborder="0" src="attachments/${attachment.filename}" srcdoc="${attachment.decodedData}" width="100%" height="1" scrolling="no" onload="resizeIframe(this);"></iframe> 						  
+                     <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
+						             <pre class="embedding-content">${attachment.decodedData}</pre>
+					           <#else>
+						             <embed src="attachments/${attachment.filename}" width="100%" height="500"></embed>
+	              	   </#if>
                 </div>
         	  </div>
         </#list>
