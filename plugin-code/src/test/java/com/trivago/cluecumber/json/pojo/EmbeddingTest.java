@@ -62,20 +62,20 @@ public class EmbeddingTest {
     
     @Test
     public void getDecodedDataTest() {
-		String originalInput = "This is getDecodeData() Test !!!";
-		String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
-		embedding.setMimeType(MimeType.TXT);
-		embedding.setDecodedData(encodeString);
-		assertThat(embedding.getDecodedData(),is("This is getDecodeData() Test !!!"));
+        String originalInput = "This is getDecodeData() Test !!!";
+        String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
+        embedding.setMimeType(MimeType.TXT);
+        embedding.setDecodedData(encodeString);
+        assertThat(embedding.getDecodedData(),is("This is getDecodeData() Test !!!"));
     }
-    
+
     @Test
     public void getDecodedDataForXMLTest() {
-		String originalInput = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
-		String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
+        String originalInput = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
+        String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
         embedding.setMimeType(MimeType.XML);
-		embedding.setDecodedData(encodeString);
-		assertThat(embedding.getDecodedData(),is("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;&lt;/note&gt;"));        
+        embedding.setDecodedData(encodeString);
+        assertThat(embedding.getDecodedData(),is("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;&lt;/note&gt;"));        
     }
     
     @Test
