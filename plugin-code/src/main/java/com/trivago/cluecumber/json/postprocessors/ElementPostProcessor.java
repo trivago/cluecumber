@@ -107,17 +107,18 @@ public class ElementPostProcessor implements PostProcessor<Element> {
      * @return The filename to the processed image.
      */
     private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) {        
-        // Clear attachment data to reduce memory
-        // embedding.setData("");   // Can not set this to empty string. This is now required in getDecodedData() function in Embedding.java
-    	String fileEnding = "." + embedding.getFileEnding(); 
-        byte[] dataBytes = Base64.decodeBase64(embedding.getData().getBytes(StandardCharsets.UTF_8));
-        String filename = String.format("attachment%03d%s", attachmentIndex, fileEnding);
-        try {
-            fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
-        } catch (FileCreationException e) {
-            logger.error("Could not process image " + filename + " but will continue report generation...");
-        }
-        return filename;
+		String fileEnding = "." + embedding.getFileEnding();
+		byte[] dataBytes = Base64.decodeBase64(embedding.getData().getBytes(StandardCharsets.UTF_8));
+		String filename = String.format("attachment%03d%s", attachmentIndex, fileEnding);
+		try {
+		    fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
+		} catch (FileCreationException e) {
+		    logger.error("Could not process image " + filename + " but will continue report generation...");
+		}
+		embedding.setDecodedData(embedding.getData());
+		// Clear attachment data to reduce memory
+		embedding.setData("");
+		return filename;
     }
 
     /**
