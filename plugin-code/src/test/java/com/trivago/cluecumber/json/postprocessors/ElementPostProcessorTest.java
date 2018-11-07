@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.json.postprocessors;
 
+import com.trivago.cluecumber.constants.MimeType;
 import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Embedding;
@@ -51,7 +52,7 @@ public class ElementPostProcessorTest {
         Step step = new Step();
         List<Embedding> embeddings = new ArrayList<>();
         Embedding embedding = new Embedding();
-        embedding.setMimeType("image/png");
+        embedding.setMimeType(MimeType.PNG);
         embedding.setData("123");
         embeddings.add(embedding);
         step.setEmbeddings(embeddings);
