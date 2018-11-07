@@ -18,13 +18,13 @@ package com.trivago.cluecumber.json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.trivago.cluecumber.constants.MimeType;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.postprocessors.ElementPostProcessor;
 import com.trivago.cluecumber.json.postprocessors.ReportPostProcessor;
 import io.gsonfire.GsonFireBuilder;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -37,7 +37,8 @@ public class JsonPojoConverter {
     public JsonPojoConverter(final ReportPostProcessor reportPostProcessor, final ElementPostProcessor elementPostProcessor) {
         GsonFireBuilder builder = new GsonFireBuilder()
                 .registerPostProcessor(Report.class, reportPostProcessor)
-                .registerPostProcessor(Element.class, elementPostProcessor);
+                .registerPostProcessor(Element.class, elementPostProcessor)
+                .enumDefaultValue(MimeType.class, MimeType.UNKNOWN);
         gsonParserWithProcessors = builder.createGson();
     }
 
