@@ -15,9 +15,9 @@
           }
         ],
         "line": 477,
-        "name": "Login test",
+        "name": "Attachment test",
         "description": "",
-        "id": "santander-stp-sanity-feature;login-test",
+        "id": "dummy-stp-sanity-feature;login-test",
         "after": [
           {
             "result": {
@@ -65,7 +65,7 @@
           {
             "result": {
               "duration": 3185270,
-              "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:86)\r\n\tat org.junit.Assert.assertTrue(Assert.java:41)\r\n\tat org.junit.Assert.assertTrue(Assert.java:52)\r\n\tat org.igtb.itaf..steps.LoginFlowSteps.I_logout_from_application(LoginFlowSteps.java:43)\r\n\tat ✽.Then I logout from application(D:/ Automation Projects/-Test_Automation/src/test/resources/features/STP_SANTANDER.feature:481)\r\n",
+              "error_message": "java.lang.AssertionError\r\n\tat org.junit.Assert.fail(Assert.java:86)\r\n\tat org.junit.Assert.assertTrue(Assert.java:41)\r\n\tat org.junit.Assert.assertTrue(Assert.java:52)\r\n\tat org.igtb.itaf..steps.LoginFlowSteps.I_logout_from_application(LoginFlowSteps.java:43)\r\n\tat ✽.Then I logout from application\r\n",
               "status": "failed"
             },
             "embeddings": [
@@ -108,11 +108,11 @@
         ]
       }
     ],
-    "name": "Login Feature",
+    "name": "Attachments",
     "description": "",
-    "id": "Login Feature",
+    "id": "Scenario containing attachments",
     "keyword": "Feature",
-    "uri": "D:/Automation Projects/Test_Automation/src/test/resources/features/Login.feature",
+    "uri": "/resources/features/Login.feature",
     "tags": [
       {
         "line": 1,

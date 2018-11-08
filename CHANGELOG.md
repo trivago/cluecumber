@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.5.0] - 2018-11-09
+
+### Added
+
+* Full support for png, gif, png, jpg, svg, html, xml, json, text and pdf attachments (contributed by @Rameshwar244)
+* Minor design improvements
+
 ## [1.4.2] - 2018-10-16
 
 ### Fixed
@@ -268,6 +275,8 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0
+[1.4.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.2
 [1.4.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1
 [1.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0
 [1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
