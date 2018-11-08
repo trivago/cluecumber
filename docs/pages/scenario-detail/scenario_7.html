@@ -20,9 +20,9 @@
   <meta charset="utf-8"> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin [1.4.2] - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin [1.4.2]"> 
-  <title>Scenario Details - 2018/10/16 10:59:53</title> 
+  <meta name="description" content="Cluecumber Report Plugin [1.5.0] - Scenario Details"> 
+  <meta name="author" content="Cluecumber Report Plugin [1.5.0]"> 
+  <title>Scenario Details - 2018/11/08 15:47:21</title> 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber_custom.css"> 
@@ -41,13 +41,13 @@
      <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
      <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
     </ul> 
-    <span class="text-light">2018/10/16 10:59:53</span> 
+    <span class="text-light">2018/11/08 15:47:21</span> 
    </div> 
   </nav> 
   <main role="main" class="container"> 
    <div class="cluecumber-template"> 
     <div class="pb-2 mt-4 mb-2 border-bottom"> 
-     <h3>Scenario 'This is a scenario with passing and failing steps'</h3> 
+     <h3>Scenario 'This is a failing scenario'</h3> 
     </div> 
     <script>
         function resizeIframe(obj) {
@@ -74,9 +74,9 @@
        </div> 
        <div class="card-body"> 
         <ul class="list-group list-group-flush"> 
-         <li class="list-group-item">3 Step(s)</li> 
-         <li class="list-group-item"> 2 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 1 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 0 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> </li> 
-         <li class="list-group-item">Duration: 0m 00s 521ms</li> 
+         <li class="list-group-item">1 Step(s)</li> 
+         <li class="list-group-item"> 0 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 1 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 0 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> </li> 
+         <li class="list-group-item">Duration: 0m 00s 340ms</li> 
          <li class="list-group-item"> </li> 
         </ul> 
        </div> 
@@ -91,40 +91,12 @@
        </div> 
        <div class="card-body"> 
         <li class="list-group-item"> 
-         <div class="row row_passed"> 
+         <div class="row row_failed"> 
           <div class="col-1 text-left">
            1.
           </div> 
           <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="location"> Given this step passes </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 040ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           2.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="NativeConstructorAccessorImpl.java:-2"> And this step passes </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 140ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> 
-         <div class="row row_failed"> 
-          <div class="col-1 text-left">
-           3.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="NativeConstructorAccessorImpl.java:-2"> Then this step fails </span> 
+           <span data-toggle="tooltip" title="NativeConstructorAccessorImpl.java:-2"> Given this step fails </span> 
           </div> 
           <div class="col-2 text-left small">
             0m 00s 340ms 
@@ -137,12 +109,51 @@
             <pre class="text-danger small p-2">java.lang.RuntimeException: this step failed
 	at Steps.lambda$new$2(Steps.java:14)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</pre> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
-           <div class="w-100 text-center m-auto"> 
-            <a class="grouped_elements" rel="images" href="attachments/attachment001.png"> <img src="attachments/attachment001.png" style="max-width: 100%"> </a> 
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at cucumber.runtime.Utils$1.call(Utils.java:40)
+	at cucumber.runtime.Timeout.timeout(Timeout.java:16)
+	at cucumber.runtime.Utils.invoke(Utils.java:34)
+	at cucumber.runtime.java8.Java8StepDefinition.execute(Java8StepDefinition.java:106)
+	at cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:40)
+	at cucumber.api.TestStep.executeStep(TestStep.java:102)
+	at cucumber.api.TestStep.run(TestStep.java:83)
+	at cucumber.api.TestCase.run(TestCase.java:58)
+	at cucumber.runner.Runner.runPickle(Runner.java:80)
+	at cucumber.runtime.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:140)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:68)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:23)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:73)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:99)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:41)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at cucumber.api.junit.Cucumber$1.evaluate(Cucumber.java:108)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+	at ✽.this step fails(features/003-one-failing-scenario.feature:3)
+</pre> 
            </div> 
           </div> 
          </div> </li> 
@@ -154,7 +165,7 @@
   </main> 
   <footer class="footer navbar-dark bg-dark"> 
    <div class="container-fluid"> 
-    <span class="text-muted">Generated by Cluecumber Report Plugin [1.4.2], 2018/10/16 10:59:53.</span> 
+    <span class="text-muted">Generated by Cluecumber Report Plugin [1.5.0], 2018/11/08 15:47:21.</span> 
    </div> 
   </footer> 
   <script src="js/jquery.min.js"></script> 
@@ -187,20 +198,14 @@
             var chart = new Chart(ctx, eval({
   "data": {
     "labels": [
-      "Step 1",
-      "Step 2",
-      "Step 3"
+      "Step 1"
     ],
     "datasets": [
       {
         "data": [
-          40,
-          140,
           0
         ],
         "backgroundColor": [
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
           "rgba(40, 167, 69, 1.000)"
         ],
         "label": "passed",
@@ -208,13 +213,9 @@
       },
       {
         "data": [
-          0,
-          0,
           340
         ],
         "backgroundColor": [
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
           "rgba(220, 53, 69, 1.000)"
         ],
         "label": "failed",
@@ -222,13 +223,9 @@
       },
       {
         "data": [
-          0,
-          0,
           0
         ],
         "backgroundColor": [
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
           "rgba(255, 193, 7, 1.000)"
         ],
         "label": "skipped",

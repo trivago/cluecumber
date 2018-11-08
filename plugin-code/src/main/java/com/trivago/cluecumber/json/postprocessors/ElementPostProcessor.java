@@ -115,7 +115,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         } catch (FileCreationException e) {
             logger.error("Could not process image " + filename + " but will continue report generation...");
         }
-        embedding.setDecodedData(embedding.getData());
+        embedding.encodeData(embedding.getData());
         // Clear attachment data to reduce memory
         embedding.setData("");
         return filename;

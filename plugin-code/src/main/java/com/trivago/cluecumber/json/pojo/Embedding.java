@@ -16,19 +16,18 @@
 
 package com.trivago.cluecumber.json.pojo;
 
-import java.nio.charset.StandardCharsets;
-
-import org.codehaus.plexus.util.Base64;
-
 import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.MimeType;
+import org.codehaus.plexus.util.Base64;
+
+import java.nio.charset.StandardCharsets;
 
 public class Embedding {
 	
     private String data;
     private String decodedData;
     @SerializedName("mime_type")
-    private MimeType mimeType;
+    private MimeType mimeType = MimeType.UNKNOWN;
         
     private transient String filename;
     
@@ -44,7 +43,7 @@ public class Embedding {
         return decodedData;
     }
 
-    public void setDecodedData(final String data) {
+    public void encodeData(final String data) {
         if(mimeType.getContentType().equalsIgnoreCase("text/xml") || mimeType.getContentType().equalsIgnoreCase("application/xml")){
             String xmlString = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
             decodedData = xmlString.replaceAll("<", "&lt;").replaceAll(">", "&gt;");

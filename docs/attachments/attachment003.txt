@@ -1,0 +1,25 @@
+2018-10-21 21:22:16 INFO  - Logging setup successful !
+2018-10-21 21:22:16 INFO  - Loading Object Repository.....
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\BatchInquiryPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\BatchProcessing.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerAccountAddPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerMaintenancePage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileAddPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileAuthorizePage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileDeletePage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileDetails.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileViewPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileDetailsPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileInquiryPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileProcessing.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\Inquiries & Reports.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\LoginPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\TransactionInquiryPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\TransactionProcessing.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\WorkspacePage.json
+2018-10-21 21:22:16 INFO  - Object Repository loaded successfully...
+2018-10-21 21:22:16 INFO  - scenario_id = @GTBIPSH-LoginTest
+2018-10-21 21:22:16 INFO  - File is not uploaded for this scenario !!!
+2018-10-21 21:22:57 INFO  - https://www.google.co.in URL opened in browser
+2018-10-21 21:22:57 INFO  - Screenshot captured successfully
+2018-10-21 21:22:58 INFO  - Closed all browsers
