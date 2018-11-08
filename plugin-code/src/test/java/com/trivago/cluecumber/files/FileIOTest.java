@@ -37,7 +37,7 @@ public class FileIOTest {
 
     @Test(expected = FileCreationException.class)
     public void writeContentToFileByteArrayInvalidTest() throws Exception {
-        String path = testFolder.getRoot().getPath().substring(1);
+        String path = testFolder.getRoot().getPath();
         fileIO.writeContentToFile(new byte[]{}, path);
     }
 

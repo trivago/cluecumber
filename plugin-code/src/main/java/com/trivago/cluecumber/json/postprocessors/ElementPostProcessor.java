@@ -87,62 +87,37 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         }
     }
 
-    /**
-     * Save images to files, clear their Base64 content from JSON and store their filenames in order to save memory
+   /**
+     * Save embeddings to files, clear their Base64 content from JSON and store their filenames in order to save memory
      *
      * @param embeddings The {@link Embedding} list.
      */
     private void processEmbedding(final List<Embedding> embeddings) {
         for (Embedding embedding : embeddings) {
-            if (embedding.isImage()) {
-                String filename = saveImageEmbeddingToFileAndGetFilename(embedding);
-                embedding.setFilename(filename);
-            }
+        	String filename = saveEmbeddingToFileAndGetFilename(embedding);
+            embedding.setFilename(filename);
             attachmentIndex++;
         }
     }
 
     /**
-     * Saves image attachments to a file and returns the filename.
+     * Saves attachments to a file and returns the filename.
      *
      * @param embedding The {@link Embedding} to process.
      * @return The filename to the processed image.
      */
-    private String saveImageEmbeddingToFileAndGetFilename(final Embedding embedding) {
-        if (!embedding.isImage()) {
-            return "";
-        }
-
-        String fileEnding;
-        switch (embedding.getMimeType()) {
-            case "image/png":
-                fileEnding = ".png";
-                break;
-            case "image/jpeg":
-                fileEnding = ".jpg";
-                break;
-            case "image/gif":
-                fileEnding = ".gif";
-                break;
-            case "image/svg+xml":
-            case "image/svg":
-                fileEnding = ".svg";
-                break;
-            default:
-                fileEnding = ".unknown";
-        }
-
+    private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) {        
+        String fileEnding = "." + embedding.getFileEnding();
         byte[] dataBytes = Base64.decodeBase64(embedding.getData().getBytes(StandardCharsets.UTF_8));
-
-        // Clear attachment data to reduce memory
-        embedding.setData("");
-
         String filename = String.format("attachment%03d%s", attachmentIndex, fileEnding);
         try {
             fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
         } catch (FileCreationException e) {
             logger.error("Could not process image " + filename + " but will continue report generation...");
         }
+        embedding.setDecodedData(embedding.getData());
+        // Clear attachment data to reduce memory
+        embedding.setData("");
         return filename;
     }
 
