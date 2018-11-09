@@ -69,7 +69,7 @@ In order to have the JSON files as a source for the Cluecumber Report generation
 )
 ```
 
-*Cucumber 2.x:*
+*Cucumber >= 2.x:*
 ```
 @CucumberOptions(
     plugin = {"json:target/cucumber-report/cucumber.json"}
