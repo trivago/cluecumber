@@ -53,7 +53,7 @@ public class ReportGenerator {
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
     }
-
+    
     public void generateReport(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
         copyReportAssets();
         generateScenarioDetailPages(allScenariosPageCollection);

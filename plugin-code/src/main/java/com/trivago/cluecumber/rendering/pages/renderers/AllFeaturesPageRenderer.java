@@ -20,6 +20,7 @@ import com.trivago.cluecumber.constants.ChartColor;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
+import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.rendering.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.charts.pojos.Data;
@@ -136,7 +137,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType(Chart.ChartType.bar);
+        chart.setType(ChartType.bar);
 
         allFeaturesPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

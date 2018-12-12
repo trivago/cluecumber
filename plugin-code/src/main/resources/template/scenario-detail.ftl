@@ -46,12 +46,14 @@ limitations under the License.
                 </li>
             </ul>
             <#if element.hasDocStrings()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true"
+                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
+                        aria-expanded="true"
                         data-target=".scenarioDocstring">DocStrings
                 </button>
             </#if>
             <#if element.hasStepHooks()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true"
+                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
+                        aria-expanded="true"
                         data-target=".stepHook">StepHooks
                 </button>
             </#if>
@@ -125,7 +127,7 @@ limitations under the License.
                                 <div class="scenarioDocstring collapse">
                                     <div class="row w-100 p-3 m-0">
                                         <div class="w-100 text-left border">
-                                            <pre class="text-secondary small p-2">${step.docString.value?html}</pre>
+                                            <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
                                         </div>
                                     </div>
                                 </div>

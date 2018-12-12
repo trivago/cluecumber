@@ -19,9 +19,12 @@ package com.trivago.cluecumber.rendering;
 import org.jsoup.Jsoup;
 
 import java.time.Duration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
+    private static final Pattern URL_PATTERN = Pattern.compile("(ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?");
 
     /**
      * Convert microseconds to a human readable time string.
@@ -89,5 +92,21 @@ public class RenderingUtils {
             }
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * Return the source html string with added tags so URLs are clickable.
+     *
+     * @param sourceString The source string.
+     * @return The string with additional anchor tags.
+     */
+    public static String turnUrlsIntoLinks(final String sourceString) {
+        Matcher matcher = URL_PATTERN.matcher(sourceString);
+        String targetString = sourceString;
+        while (matcher.find()) {
+            String found = matcher.group();
+            targetString = targetString.replaceFirst(Pattern.quote(found), "<a href='" + found + "' target='_blank'>" + found + "</a>");
+        }
+        return targetString;
     }
 }

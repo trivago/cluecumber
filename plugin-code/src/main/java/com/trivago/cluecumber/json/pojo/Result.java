@@ -63,4 +63,8 @@ public class Result {
     public String returnDurationString() {
         return RenderingUtils.convertMicrosecondsToTimeString(duration);
     }
+
+    public String returnErrorMessageWithClickableLinks() {
+        return RenderingUtils.turnUrlsIntoLinks(RenderingUtils.escapeHTML(errorMessage));
+    }
 }

@@ -28,6 +28,11 @@ public class RenderingUtilsTest {
     public void escapeHTMLTest() {
         String escapedHTML = RenderingUtils.escapeHTML("<body>This is a test öäüÖÄÜß</body>");
         assertThat(escapedHTML, is("&#60;body&#62;This is a test &#246;&#228;&#252;&#214;&#196;&#220;&#223;&#60;/body&#62;"));
+    }
 
+    @Test
+    public void turnUrlsIntoLinksTest() {
+        String htmlWithLinks = RenderingUtils.turnUrlsIntoLinks("This is a test on ftp://some.ftp.url.com and http://www.trivago.de");
+        assertThat(htmlWithLinks, is("This is a test on <a href='ftp://some.ftp.url.com' target='_blank'>ftp://some.ftp.url.com</a> and <a href='http://www.trivago.de' target='_blank'>http://www.trivago.de</a>"));
     }
 }

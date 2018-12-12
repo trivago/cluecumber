@@ -16,8 +16,9 @@
 
 package com.trivago.cluecumber.rendering.charts.pojos;
 
+import com.trivago.cluecumber.constants.ChartType;
+
 public class Chart {
-    public enum ChartType {bar, pie}
 
     private Data data;
     private Options options;

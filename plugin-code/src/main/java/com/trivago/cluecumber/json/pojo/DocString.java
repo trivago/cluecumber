@@ -1,6 +1,7 @@
 package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.cluecumber.rendering.RenderingUtils;
 
 public class DocString {
     @SerializedName("content_type")
@@ -30,5 +31,9 @@ public class DocString {
 
     public void setValue(final String value) {
         this.value = value;
+    }
+
+    public String returnWithClickableLinks() {
+        return RenderingUtils.turnUrlsIntoLinks(RenderingUtils.escapeHTML(value));
     }
 }

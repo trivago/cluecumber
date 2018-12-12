@@ -25,6 +25,7 @@ import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
+import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.rendering.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.charts.pojos.Data;
 import com.trivago.cluecumber.rendering.charts.pojos.Dataset;
@@ -129,7 +130,7 @@ public class AllScenariosPageRenderer extends PageRenderer {
         data.setDatasets(datasets);
 
         chart.setData(data);
-        chart.setType(Chart.ChartType.pie);
+        chart.setType(ChartType.pie);
 
         allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

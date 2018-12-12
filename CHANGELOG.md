@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.6.0] - 2018-12-12
+
+### Added
+
+* URLs in doc strings and stack traces are now clickable
+* Increased unit test coverage
+
+### Changed
+
+* Minor design changes
+* Custom parameters are now formatted evenly
+
 ## [1.5.0] - 2018-11-08
 
 ### Added
