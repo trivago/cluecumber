@@ -25,6 +25,10 @@ body {
     margin-bottom: 60px;
 }
 
+.bg-dark {
+    background-color: #5e6974 !important;
+}
+
 .header {
     height: 60px;
 }
@@ -36,6 +40,7 @@ body {
     height: 60px;
     line-height: 60px;
     background-color: #fafafa;
+    color: #a5abae;
 }
 
 .cluecumber-template {
@@ -47,7 +52,7 @@ body {
     padding: .5rem;
 }
 
-.card {
+.navbar, .card {
     margin: 0 0 .5rem 0;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.3);
 }
@@ -85,6 +90,11 @@ table {
 table.table-fit, table.table-fit td {
     width: 1px;
     margin-bottom: 0;
+}
+
+table.table-fit td {
+    width: 1px;
+    padding: 0.3rem;
 }
 
 .list-group-item, *[role=row], .table th, .table td {
