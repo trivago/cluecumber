@@ -6,7 +6,7 @@ import org.junit.Test;
 import com.trivago.cluecumber.constants.MimeType;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.codehaus.plexus.util.Base64;
 

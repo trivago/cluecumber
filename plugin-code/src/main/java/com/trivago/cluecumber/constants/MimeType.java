@@ -50,7 +50,7 @@ public enum MimeType {
 	PDF ("application/pdf"),
 	UNKNOWN ("unknown");
 	
-    private String contentType;
+    private final String contentType;
     
     MimeType(String contentType) {
         this.contentType = contentType;

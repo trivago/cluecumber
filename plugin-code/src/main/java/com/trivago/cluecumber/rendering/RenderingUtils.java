@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
-    private static final Pattern URL_PATTERN = Pattern.compile("(ftp|http|https)://(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?");
+    private static final Pattern URL_PATTERN = Pattern.compile("(ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?");
 
     /**
      * Convert microseconds to a human readable time string.
