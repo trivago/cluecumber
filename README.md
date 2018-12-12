@@ -33,6 +33,13 @@
 - [Appendix](#appendix)
   - [Building](#building)
   - [Generated pages](#generated-pages)
+    - [All Scenarios](#all-scenarios)
+    - [Scenario Sequence](#scenario-sequence)
+    - [Scenario Details](#scenario-details)
+    - [All Features](#all-features)
+    - [All Tags](#all-tags)
+    - [Scenario by Tag](#scenario-by-tag)
+    - [Scenario by Feature](#scenario-by-feature)
   - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -193,17 +200,33 @@ It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7C
 
 ## Generated pages
 
+### All Scenarios
+
 ![All Scenarios](documentation/img/AllScenarios.png)
+
+### Scenario Sequence
+
+![Scenario Sequence](documentation/img/ScenarioSequence.png)
+
+### Scenario Details
 
 ![Scenario Details](documentation/img/ScenarioDetails.png)
 
+### All Features
+
 ![All Features](documentation/img/AllFeatures.png)
+
+### All Tags
 
 ![All Tags](documentation/img/AllTags.png)
 
-![Scenarios by tag](documentation/img/TagDetails.png)
+### Scenario by Tag
 
-![report_detail](documentation/img/FeatureDetails.png)
+![Scenarios by Tag](documentation/img/TagDetails.png)
+
+### Scenario by Feature
+
+![Scenarios by Feature](documentation/img/FeatureDetails.png)
 
 ## License
 
