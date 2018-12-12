@@ -41,18 +41,23 @@ limitations under the License.
     <#if hasCustomParameters()>
         <div class="row">
             <@page.card width="12" title="" subtitle="">
-                <ul class="list-group list-group-flush">
-                <#list customParameters as customParameter>
-                    <li class="list-group-item"><strong>${customParameter.key}:</strong>
-                        <#if customParameter.url>
-                            <a href="${customParameter.value}"
-                               target="_blank">${customParameter.value}</a>
-                        <#else>
-                            ${customParameter.value}
-                        </#if>
-                    </li>
-                </#list>
-                </ul>
+                <table class="table table-fit">
+                    <tbody>
+                        <#list customParameters as customParameter>
+                        <tr>
+                            <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
+                            <td class="text-left">
+                                <#if customParameter.url>
+                                    <a href="${customParameter.value}"
+                                       target="_blank">${customParameter.value}</a>
+                                <#else>
+                                    ${customParameter.value}
+                                </#if>
+                            </td>
+                        </tr>
+                        </#list>
+                    </tbody>
+                </table>
             </@page.card>
         </div>
     </#if>

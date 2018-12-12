@@ -131,7 +131,7 @@ limitations under the License.
     <#if step.result.hasErrorMessage()>
         <div class="row w-100 p-3 m-0 scenarioErrorMessage">
             <div class="w-100 text-left border border-danger">
-                <pre class="text-danger small p-2">${step.result.errorMessage?html}</pre>
+                <pre class="text-danger small p-2">${step.result.returnErrorMessageWithClickableLinks()}</pre>
             </div>
         </div>
     </#if>

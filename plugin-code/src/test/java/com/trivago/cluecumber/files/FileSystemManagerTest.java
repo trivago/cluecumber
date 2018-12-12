@@ -35,7 +35,12 @@ public class FileSystemManagerTest {
     }
 
     @Test(expected = CluecumberPluginException.class)
-    public void exportResourceTest() throws Exception {
+    public void copyResourceFromJarTest() throws Exception {
         fileSystemManager.copyResourceFromJar("resource", "");
+    }
+
+    @Test(expected = CluecumberPluginException.class)
+    public void copyResourceTest() throws Exception {
+        fileSystemManager.copyResource("resource", "");
     }
 }
