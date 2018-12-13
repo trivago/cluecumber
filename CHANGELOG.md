@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.6.1] - 2018-12-13
+
+### Fixed
+
+* Long URLs in doc strings and stack traces broke the layout
+
 ## [1.6.0] - 2018-12-12
 
 ### Added
@@ -287,6 +293,8 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.1
+[1.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.0
 [1.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0
 [1.4.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.2
 [1.4.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1

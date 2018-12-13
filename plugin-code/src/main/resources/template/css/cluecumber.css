@@ -167,3 +167,7 @@ button.btn.collapsed:before {
 button.btn:before {
     content: 'Hide ';
 }
+
+div.collapse {
+    width: 100%;
+}
