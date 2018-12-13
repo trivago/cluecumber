@@ -77,7 +77,10 @@ public class PropertyManagerTest {
         customParameters.put("key1", "value1");
         customParameters.put("key2", "value2");
         propertyManager.setCustomParameters(customParameters);
+
+        propertyManager.setCustomCss("customCss");
+
         propertyManager.logProperties();
-        verify(logger, times(5)).info(anyString());
+        verify(logger, times(6)).info(anyString());
     }
 }

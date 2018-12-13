@@ -33,7 +33,7 @@
             "doc_string": {
               "content_type": "",
               "line": 4,
-              "value": "11:43:36.054 karate.env system property was: dev \n11:43:36.110 skipping bootstrap configuration for env: dev - could not find or read file: karate-config-dev.js, prefix: CLASSPATH\n"
+              "value": "http://www.this.is.a.url.that.doesnt.exist.but.is.rather.long.so.it.should.not.break.the.line.in.the.report.de 11:43:36.054 karate.env system property was: dev \n11:43:36.110 skipping bootstrap configuration for env: dev - could not find or read file: karate-config-dev.js, prefix: CLASSPATH\n"
             }
           },
           {
