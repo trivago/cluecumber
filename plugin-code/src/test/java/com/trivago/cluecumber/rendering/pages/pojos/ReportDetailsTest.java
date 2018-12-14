@@ -1,13 +1,12 @@
 package com.trivago.cluecumber.rendering.pages.pojos;
 
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class ReportDetailsTest {
     private ReportDetails reportDetails;
@@ -19,12 +18,12 @@ public class ReportDetailsTest {
 
     @Test
     public void getGeneratorNameTest() {
-        MatcherAssert.assertThat(reportDetails.getGeneratorName(), CoreMatchers.is("Cluecumber Report Plugin [unknown]"));
+        MatcherAssert.assertThat(reportDetails.getGeneratorName(), is("Cluecumber Report Plugin version unknown"));
     }
 
     @Test
     public void getPageNameTest() {
-        MatcherAssert.assertThat(reportDetails.getPageName(), CoreMatchers.is("Page Name"));
+        MatcherAssert.assertThat(reportDetails.getPageName(), is("Page Name"));
     }
 
     @Test

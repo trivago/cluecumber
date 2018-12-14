@@ -52,7 +52,7 @@ limitations under the License.
                     <#list featureResultCounts as feature, featureResultCount>
                     <tr>
                         <td class="text-left"><a
-                                href="pages/feature-scenarios/feature_${feature.index}.html">${feature.name}</a>
+                                href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a>
                         </td>
                         <td class="text-right"><strong>${featureResultCount.total}</strong></td>
                         <td class="text-right">${featureResultCount.passed}</td>
