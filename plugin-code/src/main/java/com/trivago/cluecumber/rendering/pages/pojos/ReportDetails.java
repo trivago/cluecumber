@@ -48,7 +48,7 @@ public class ReportDetails {
     }
 
     public String getGeneratorName() {
-        return String.format("%s [%s]",
+        return String.format("%s version %s",
                 PluginSettings.NAME, RenderingUtils.getPluginVersion());
     }
 

@@ -46,7 +46,7 @@ limitations under the License.
                         <#list customParameters as customParameter>
                         <tr>
                             <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
-                            <td class="text-left">
+                            <td class="text-left wrap">
                                 <#if customParameter.url>
                                     <a href="${customParameter.value}"
                                        target="_blank">${customParameter.value}</a>

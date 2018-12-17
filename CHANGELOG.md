@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.6.2] - 2018-12-13
+
+### Fixed
+
+* Links to scenario details did not work for scenario indices over 1000
+* Long custom parameters (URLs) broke the layout
+
 ## [1.6.1] - 2018-12-13
 
 ### Fixed
@@ -293,6 +300,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.2
 [1.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.1
 [1.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.0
 [1.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0
