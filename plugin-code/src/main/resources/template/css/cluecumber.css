@@ -87,14 +87,19 @@ table {
     -webkit-border-horizontal-spacing: 0;
 }
 
-table.table-fit, table.table-fit td {
-    width: 1px;
+table.table-fit {
+    width: 100%;
     margin-bottom: 0;
 }
 
-table.table-fit td {
-    width: 1px;
-    padding: 0.3rem;
+table.table-fit td:nth-child(1) {
+    width: auto;
+    white-space: nowrap;
+}
+
+table.table-fit td:nth-child(2) {
+    width: 100%;
+    word-break: break-all;
 }
 
 .list-group-item, *[role=row], .table th, .table td {
