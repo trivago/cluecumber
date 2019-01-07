@@ -58,7 +58,7 @@ body {
 }
 
 .scenarioAttachment > div, .scenarioOutput > div {
-    border: 1px solid gray;
+    border: 1px solid rgb(149, 189, 197);
 }
 
 pre {

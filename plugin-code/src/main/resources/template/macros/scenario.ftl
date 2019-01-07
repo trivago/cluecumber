@@ -143,8 +143,9 @@ limitations under the License.
             <#if output?has_content>
                 <div class="row w-100 p-3 m-0 scenarioOutput">
                     <div class="w-100 text-left m-auto">
-                        <iframe frameborder="0" srcdoc="${output?html}" width="100%" height="1"
-                                scrolling="yes" onload="resizeIframe(this);"></iframe>
+                        <iframe frameborder="0" width="100%" height="1"
+                                scrolling="yes" onload="insertContent('${output?html}', this);
+                                resizeIframe(this);"></iframe>
                     </div>
                 </div>
             </#if>

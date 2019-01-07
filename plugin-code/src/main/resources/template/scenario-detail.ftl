@@ -22,8 +22,28 @@ limitations under the License.
 <@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
 
     <script>
-        function resizeIframe(obj) {
-            obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
+        function resizeIframe(iframe) {
+            iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 10) + 'px';
+        }
+
+        function insertContent(content, iframe) {
+            var iframeDocument = iframe.contentWindow.document;
+            var iframeContent =
+                    "<html>\n" +
+                    "<head>\n" +
+                    "<style>\n" +
+                    "body {\n" +
+                    "font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';\n" +
+                    "font-size: 80%;\n" +
+                    "font-weight: 400;\n" +
+                    "line-height: 1.5;\n" +
+                    "color: #212529;\n" +
+                    "}\n" +
+                    "</style>\n" +
+                    "</head><body>" + content + "</body></html>";
+            iframeDocument.open('text/html', 'replace');
+            iframeDocument.write(iframeContent);
+            iframeDocument.close();
         }
     </script>
 
