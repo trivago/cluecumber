@@ -3,6 +3,7 @@ package com.trivago.cluecumber.json.postprocessors;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
+import com.trivago.cluecumber.json.pojo.Tag;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,6 +43,11 @@ public class ReportPostProcessorTest {
         elements.add(backgroundElement);
 
         Element element = new Element();
+        List<Tag> scenarioTags = new ArrayList<>();
+        Tag tag = new Tag();
+        tag.setName("@tag");
+        scenarioTags.add(tag);
+        element.setTags(scenarioTags);
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
         step.setName("element step 1");
@@ -52,12 +58,20 @@ public class ReportPostProcessorTest {
         element.setSteps(steps);
         elements.add(element);
 
+        List<Tag> featureTags = new ArrayList<>();
+        Tag featureTag = new Tag();
+        tag.setName("@feature");
+        featureTags.add(featureTag);
+        report.setTags(featureTags);
         report.setElements(elements);
 
         assertThat(report.getElements().size(), is(2));
+        assertThat(report.getElements().get(1).getTags().size(), is(1));
         reportPostProcessor.postDeserialize(report, null, null);
         assertThat(report.getElements().size(), is(1));
-        List<Step> firstElementSteps = report.getElements().get(0).getSteps();
+        Element firstElement = report.getElements().get(0);
+        assertThat(firstElement.getTags().size(), is(2));
+        List<Step> firstElementSteps = firstElement.getSteps();
         assertThat(firstElementSteps.size(), is(4));
         assertThat(firstElementSteps.get(0).getName(), is("background step 1"));
         assertThat(firstElementSteps.get(1).getName(), is("background step 2"));

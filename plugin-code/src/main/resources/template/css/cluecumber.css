@@ -87,6 +87,10 @@ table {
     -webkit-border-horizontal-spacing: 0;
 }
 
+table.table {
+    margin-bottom: 0;
+}
+
 table.table-fit {
     width: 100%;
     margin-bottom: 0;
