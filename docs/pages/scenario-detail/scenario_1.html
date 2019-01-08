@@ -20,15 +20,308 @@
   <meta charset="utf-8"> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin [1.6.0] - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin [1.6.0]"> 
-  <title>Scenario Details - 2018/12/12 15:21:19</title> 
+  <meta name="description" content="Cluecumber Report Plugin version 1.6.3 - Scenario Details"> 
+  <meta name="author" content="Cluecumber Report Plugin version 1.6.3"> 
+  <title>Scenario Details - 2019/01/08 11:58:31</title> 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber_custom.css"> 
   <link rel="stylesheet" href="css/datatables.min.css"> 
   <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css"> 
   <link rel="stylesheet" href="css/jquery.fancybox.min.css"> 
+  <script src="js/jquery.min.js"></script> 
+  <script src="js/popper.min.js"></script> 
+  <script src="js/bootstrap.min.js"></script> 
+  <script src="js/datatables.min.js"></script> 
+  <script src="js/jquery.fancybox.min.js"></script> 
+  <script src="js/Chart.bundle.min.js"></script> 
+  <script>
+    $(document).ready(function () {
+        // Data tables
+        $('.renderAsDataTable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        }).DataTable({
+            "oLanguage": {
+                "sSearch": "Search:"
+            },
+            "pageLength": 25
+        });
+
+        $('.collapse').on('show.bs.collapse', function (e) {
+
+            $(e.target).find("iframe").each(function(index, iframe) {
+                resizeIframe(iframe);
+            })
+        });
+
+        // Lightbox
+        $("a.grouped_elements").fancybox();
+
+        // Tool tips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Chart
+            var canvas = document.getElementById('chart-area');
+            var ctx = canvas.getContext("2d");
+            var chart = new Chart(ctx, eval({
+  "data": {
+    "labels": [
+      "Before 1",
+      "Step 1",
+      "Step 2",
+      "Step 3",
+      "Step 4",
+      "Step 5",
+      "Step 6",
+      "Step 7",
+      "Step 8",
+      "Step 9",
+      "Step 10",
+      "Step 11",
+      "Step 12",
+      "Step 13",
+      "Step 14",
+      "Step 15",
+      "Step 16",
+      "Step 17",
+      "Step 18",
+      "Step 19",
+      "Step 20",
+      "Step 21",
+      "Step 22",
+      "After 1"
+    ],
+    "datasets": [
+      {
+        "data": [
+          1178,
+          3120,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2226
+        ],
+        "backgroundColor": [
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)"
+        ],
+        "label": "passed",
+        "stack": "complete"
+      },
+      {
+        "data": [
+          0,
+          0,
+          12793,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "backgroundColor": [
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)"
+        ],
+        "label": "failed",
+        "stack": "complete"
+      },
+      {
+        "data": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "backgroundColor": [
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)"
+        ],
+        "label": "skipped",
+        "stack": "complete"
+      }
+    ]
+  },
+  "options": {
+    "scales": {
+      "xAxes": [
+        {
+          "ticks": {
+            "min": 0,
+            "display": true
+          },
+          "stacked": true,
+          "scaleLabel": {
+            "display": true,
+            "labelString": "Step(s)"
+          },
+          "stepSize": 0.0
+        }
+      ],
+      "yAxes": [
+        {
+          "ticks": {
+            "min": 0,
+            "display": true
+          },
+          "stacked": true,
+          "scaleLabel": {
+            "display": true,
+            "labelString": "Step Runtime"
+          },
+          "stepSize": 0.0
+        }
+      ]
+    }
+  },
+  "type": "bar"
+}));
+
+            var original;
+            switch (chart.config.type) {
+                case "pie":
+                    original = Chart.defaults.pie.legend.onClick;
+                    break;
+                default:
+                    original = Chart.defaults.global.legend.onClick;
+                    break;
+            }
+
+            chart.options.legend.onClick = function (evt, label) {
+                original.call(this, evt, label);
+
+                var card = $("#card_" + label.text);
+                label.hidden ? card.show() : card.hide();
+
+                var row = $(".row_" + label.text);
+                label.hidden ? row.show() : row.hide();
+            };
+    })
+
+    function resizeIframe(iframe) {
+        iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
+    }
+</script> 
  </head> 
  <body> 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
@@ -41,7 +334,7 @@
      <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
      <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
     </ul> 
-    <span class="text-light">2018/12/12 15:21:19</span> 
+    <span class="text-light">2019/01/08 11:58:31</span> 
    </div> 
   </nav> 
   <main role="main" class="container"> 
@@ -49,13 +342,8 @@
     <div class="pb-2 mt-4 mb-2 border-bottom"> 
      <h3>Scenario 'Check DummyUrl'</h3> 
     </div> 
-    <script>
-        function resizeIframe(obj) {
-            obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
-        }
-    </script> 
     <div class="row"> 
-     <div class="col-sm-8"> 
+     <div class="col-sm-8  h-auto"> 
       <div class="card h-100"> 
        <div class="card-header">
         Scenario Result Chart
@@ -67,7 +355,7 @@
        </div> 
       </div> 
      </div> 
-     <div class="col-sm-4"> 
+     <div class="col-sm-4  h-auto"> 
       <div class="card h-100"> 
        <div class="card-header">
         Scenario Information
@@ -79,12 +367,13 @@
          <li class="list-group-item">Duration: 0m 19s 317ms</li> 
          <li class="list-group-item"> <a href="pages/tag-scenarios/tag_Affiliates.html">@Affiliates</a> </li> 
         </ul> 
+        <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true" data-target=".scenarioHook">Before/After Hooks </button> 
        </div> 
       </div> 
      </div> 
     </div> 
     <ul class="list-group list-group-flush"> 
-     <div class="col-sm-12"> 
+     <div class="col-sm-12 scenarioHook collapse h-auto"> 
       <div class="card h-100"> 
        <div class="card-header">
         Before Hooks
@@ -108,7 +397,7 @@
        </div> 
       </div> 
      </div> 
-     <div class="col-sm-12"> 
+     <div class="col-sm-12  h-auto"> 
       <div class="card h-100"> 
        <div class="card-header">
         Steps
@@ -545,27 +834,29 @@ Session ID: f67b5098b72c8041926198c3705e02c1
        </div> 
       </div> 
      </div> 
-     <div class="col-sm-12"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        After Hooks
-       </div> 
-       <div class="card-body"> 
-        <li class="list-group-item"> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           1.
-          </div> 
-          <div class="col-8 text-left"> 
-           <i>Steps.tearDown(Scenario)</i> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 02s 226ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> </li> 
+     <div class="scenarioHook collapse"> 
+      <div class="col-sm-12  h-auto"> 
+       <div class="card h-100"> 
+        <div class="card-header">
+         After Hooks
+        </div> 
+        <div class="card-body"> 
+         <li class="list-group-item"> 
+          <div class="row row_passed"> 
+           <div class="col-1 text-left">
+            1.
+           </div> 
+           <div class="col-8 text-left"> 
+            <i>Steps.tearDown(Scenario)</i> 
+           </div> 
+           <div class="col-2 text-left small">
+             0m 02s 226ms 
+           </div> 
+           <div class="col-1 text-right"> 
+            <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+           </div> 
+          </div> </li> 
+        </div> 
        </div> 
       </div> 
      </div> 
@@ -574,290 +865,8 @@ Session ID: f67b5098b72c8041926198c3705e02c1
   </main> 
   <footer class="footer navbar-dark bg-dark"> 
    <div class="container-fluid"> 
-    <span>Generated by Cluecumber Report Plugin [1.6.0], 2018/12/12 15:21:19.</span> 
+    <span>Cluecumber Report Plugin version 1.6.3 - 2019/01/08 11:58:31.</span> 
    </div> 
-  </footer> 
-  <script src="js/jquery.min.js"></script> 
-  <script src="js/popper.min.js"></script> 
-  <script src="js/bootstrap.min.js"></script> 
-  <script src="js/datatables.min.js"></script> 
-  <script src="js/jquery.fancybox.min.js"></script> 
-  <script src="js/Chart.bundle.min.js"></script> 
-  <script>
-    $(document).ready(function () {
-        // Data tables
-        $('.renderAsDataTable').on('draw.dt', function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        }).DataTable({
-            "oLanguage": {
-                "sSearch": "Search:"
-            },
-            "pageLength": 25
-        });
-
-        // Lightbox
-        $("a.grouped_elements").fancybox();
-
-        // Tool tips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Chart
-            var canvas = document.getElementById('chart-area');
-            var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, eval({
-  "data": {
-    "labels": [
-      "Before 1",
-      "Step 1",
-      "Step 2",
-      "Step 3",
-      "Step 4",
-      "Step 5",
-      "Step 6",
-      "Step 7",
-      "Step 8",
-      "Step 9",
-      "Step 10",
-      "Step 11",
-      "Step 12",
-      "Step 13",
-      "Step 14",
-      "Step 15",
-      "Step 16",
-      "Step 17",
-      "Step 18",
-      "Step 19",
-      "Step 20",
-      "Step 21",
-      "Step 22",
-      "After 1"
-    ],
-    "datasets": [
-      {
-        "data": [
-          1178,
-          3120,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2226
-        ],
-        "backgroundColor": [
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)"
-        ],
-        "label": "passed",
-        "stack": "complete"
-      },
-      {
-        "data": [
-          0,
-          0,
-          12793,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "backgroundColor": [
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)"
-        ],
-        "label": "failed",
-        "stack": "complete"
-      },
-      {
-        "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
-        ],
-        "backgroundColor": [
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)"
-        ],
-        "label": "skipped",
-        "stack": "complete"
-      }
-    ]
-  },
-  "options": {
-    "scales": {
-      "xAxes": [
-        {
-          "ticks": {
-            "min": 0,
-            "display": true
-          },
-          "stacked": true,
-          "scaleLabel": {
-            "display": true,
-            "labelString": "Step(s)"
-          },
-          "stepSize": 0.0
-        }
-      ],
-      "yAxes": [
-        {
-          "ticks": {
-            "min": 0,
-            "display": true
-          },
-          "stacked": true,
-          "scaleLabel": {
-            "display": true,
-            "labelString": "Step Runtime"
-          },
-          "stepSize": 0.0
-        }
-      ]
-    }
-  },
-  "type": "bar"
-}));
-
-            var original;
-            switch (chart.config.type) {
-                case "pie":
-                    original = Chart.defaults.pie.legend.onClick;
-                    break;
-                default:
-                    original = Chart.defaults.global.legend.onClick;
-                    break;
-            }
-
-            chart.options.legend.onClick = function (evt, label) {
-                original.call(this, evt, label);
-
-                var card = $("#card_" + label.text);
-                label.hidden ? card.show() : card.hide();
-
-                var row = $(".row_" + label.text);
-                label.hidden ? row.show() : row.hide();
-            };
-    })
-</script>   
+  </footer>   
  </body>
 </html>

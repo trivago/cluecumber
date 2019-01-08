@@ -20,18 +20,11 @@ limitations under the License.
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
-
-    <script>
-        function resizeIframe(obj) {
-            obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
-        }
-    </script>
-
     <div class="row">
-        <@page.card width="8" title="Scenario Result Chart" subtitle="">
+        <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Scenario Information" subtitle="">
+        <@page.card width="4" title="Scenario Information" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">${element.totalNumberOfSteps} Step(s)</li>
                 <li class="list-group-item">
@@ -45,16 +38,22 @@ limitations under the License.
                 </#list>
                 </li>
             </ul>
-            <#if element.hasDocStrings()>
+            <#if element.hasHooks()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true"
-                        data-target=".scenarioDocstring">DocStrings
+                        data-target=".scenarioHook">Before/After Hooks
                 </button>
             </#if>
             <#if element.hasStepHooks()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true"
-                        data-target=".stepHook">StepHooks
+                        data-target=".stepHook">Step Hooks
+                </button>
+            </#if>
+            <#if element.hasDocStrings()>
+                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
+                        aria-expanded="true"
+                        data-target=".scenarioDocstring">DocStrings
                 </button>
             </#if>
         </@page.card>
@@ -62,7 +61,7 @@ limitations under the License.
 
     <ul class="list-group list-group-flush">
         <#if (element.before?size > 0)>
-            <@page.card width="12" title="Before Hooks" subtitle="">
+            <@page.card width="12" title="Before Hooks" subtitle="" classes="scenarioHook collapse">
                 <li class="list-group-item">
                     <#list element.before as before>
                         <div class="row row_${before.consolidatedStatusString}">
@@ -86,7 +85,7 @@ limitations under the License.
         </#if>
 
         <#if (element.steps?size > 0)>
-            <@page.card width="12" title="Steps" subtitle="">
+            <@page.card width="12" title="Steps" subtitle="" classes="">
                 <li class="list-group-item">
                     <#list element.steps as step>
 
@@ -143,7 +142,8 @@ limitations under the License.
         </#if>
 
         <#if (element.after?size > 0)>
-            <@page.card width="12" title="After Hooks" subtitle="">
+            <div class="scenarioHook collapse">
+            <@page.card width="12" title="After Hooks" subtitle="" classes="">
                 <li class="list-group-item">
                     <#list element.after as after>
                         <div class="row row_${after.consolidatedStatusString}">
@@ -164,6 +164,7 @@ limitations under the License.
                     </#list>
                 </li>
             </@page.card>
+            </div>
         </#if>
     </ul>
 </@page.page>

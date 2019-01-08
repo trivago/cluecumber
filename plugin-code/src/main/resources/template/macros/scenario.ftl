@@ -117,7 +117,7 @@ limitations under the License.
                                 srcdoc="${attachment.decodedData}" width="100%" height="1" scrolling="no"
                                 onload="resizeIframe(this);"></iframe>
                     <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
-                        <pre class="embedding-content">${attachment.decodedData}</pre>
+                        <pre class="embedding-content small">${attachment.decodedData}</pre>
                     <#else>
                         <embed src="attachments/${attachment.filename}" width="100%" height="500"/>
                     </#if>
@@ -137,18 +137,13 @@ limitations under the License.
     </#if>
 </#macro>
 
-<#macro output step>
-    <#if step.output??>
-        <#list step.output as output>
-            <#if output?has_content>
-                <div class="row w-100 p-3 m-0 scenarioOutput">
-                    <div class="w-100 text-left m-auto">
-                        <iframe frameborder="0" srcdoc="${output?html}" width="100%" height="1"
-                                scrolling="yes" onload="resizeIframe(this);"></iframe>
-                    </div>
-                </div>
-            </#if>
-        </#list>
+<#macro  output step>
+    <#if step.hasOutputs()>
+        <div class="row w-100 p-3 m-0 scenarioOutput">
+            <div class="w-100 text-left small p-2">
+                ${step.returnEscapedOutputs()?join("<br>")}
+            </div>
+        </div>
     </#if>
 </#macro>
 

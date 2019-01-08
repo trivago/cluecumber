@@ -20,12 +20,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Tag;
 import io.gsonfire.PostProcessor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Singleton
 public class ReportPostProcessor implements PostProcessor<Report> {
@@ -39,24 +42,27 @@ public class ReportPostProcessor implements PostProcessor<Report> {
 
     @Override
     public void postDeserialize(final Report report, final JsonElement jsonElement, final Gson gson) {
+        addFeatureTagsToScenarios(report);
         mergeBackgroundScenarios(report);
         addFeatureIndex(report);
     }
 
-    private void addFeatureIndex(final Report report) {
-        if (report == null) return;
-
-        String featureName = report.getName();
-        if (!featureUris.contains(featureName)) {
-            featureUris.add(featureName);
+    private void addFeatureTagsToScenarios(final Report report) {
+        List<Tag> reportTags = report.getTags();
+        if (reportTags.size() == 0) {
+            return;
         }
-        report.setFeatureIndex(featureUris.indexOf(featureName));
+        for (Element element : report.getElements()) {
+            List<Tag> mergedTags = Stream.concat(element.getTags().stream(), reportTags.stream())
+                    .distinct()
+                    .collect(Collectors.toList());
+            element.setTags(mergedTags);
+        }
     }
 
     private void mergeBackgroundScenarios(final Report report) {
         List<Element> cleanedUpElements = new ArrayList<>();
         Element currentBackgroundElement = null;
-
         for (Element element : report.getElements()) {
             if (element.getType().equalsIgnoreCase("background")) {
                 currentBackgroundElement = element;
@@ -68,6 +74,16 @@ public class ReportPostProcessor implements PostProcessor<Report> {
             }
         }
         report.setElements(cleanedUpElements);
+    }
+
+    private void addFeatureIndex(final Report report) {
+        if (report == null) return;
+
+        String featureName = report.getName();
+        if (!featureUris.contains(featureName)) {
+            featureUris.add(featureName);
+        }
+        report.setFeatureIndex(featureUris.indexOf(featureName));
     }
 
     @Override

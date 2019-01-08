@@ -20,10 +20,10 @@ limitations under the License.
 
 <@page.page base=".." links=["feature_summary", "scenario_sequence", "scenario_summary"] headline="All Tags" subheadline="">
     <div class="row">
-        <@page.card width="8" title="Tag Summary Result Chart" subtitle="">
+        <@page.card width="8" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Tag Summary" subtitle="">
+        <@page.card width="4" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">${totalNumberOfTags} Tag(s)</li>
                 <li class="list-group-item">
@@ -37,7 +37,7 @@ limitations under the License.
     </div>
 
     <div class="row">
-        <@page.card width="12" title="Available Tags" subtitle="">
+        <@page.card width="12" title="Available Tags" subtitle="" classes="">
             <table id="tag_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>

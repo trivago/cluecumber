@@ -58,7 +58,7 @@ body {
 }
 
 .scenarioAttachment > div, .scenarioOutput > div {
-    border: 1px solid gray;
+    border: 1px solid rgb(149, 189, 197);
 }
 
 pre {
@@ -85,6 +85,10 @@ table.compact {
 
 table {
     -webkit-border-horizontal-spacing: 0;
+}
+
+table.table {
+    margin-bottom: 0;
 }
 
 table.table-fit {

@@ -60,6 +60,14 @@ public class ResultMatch {
         this.output = output;
     }
 
+    public boolean hasOutputs() {
+        return output.size() > 0;
+    }
+
+    public List<String> returnEscapedOutputs() {
+        return output;
+    }
+
     public String getGlueMethodName() {
         return getMatch().getLocation();
     }

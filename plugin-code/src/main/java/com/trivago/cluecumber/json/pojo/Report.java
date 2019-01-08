@@ -27,6 +27,7 @@ public class Report {
     private String id = "";
     private String keyword = "";
     private String uri = "";
+    private List<Tag> tags = new ArrayList<>();
 
     private transient int featureIndex = -1;
 
@@ -92,6 +93,14 @@ public class Report {
 
     public void setFeatureIndex(final int featureIndex) {
         this.featureIndex = featureIndex;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(final List<Tag> tags) {
+        this.tags = tags;
     }
 
     public long getTotalDuration() {

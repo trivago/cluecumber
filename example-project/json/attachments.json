@@ -26,7 +26,11 @@
             },
             "match": {
               "location": "AutomationHooks.AfterScenario(Scenario)"
-            }
+            },
+            "output": [
+              "OUTPUT_FIELD_NAME : Test Field",
+              "OUTPUT_FIELD_VALUE : Test Field Value"
+            ]
           }
         ],
         "type": "scenario",

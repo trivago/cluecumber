@@ -40,7 +40,7 @@ limitations under the License.
 <@page.page base=base links=links headline=headline subheadline="">
     <#if hasCustomParameters()>
         <div class="row">
-            <@page.card width="12" title="" subtitle="">
+            <@page.card width="12" title="" subtitle="" classes="">
                 <table class="table table-fit">
                     <tbody>
                         <#list customParameters as customParameter>
@@ -63,10 +63,10 @@ limitations under the License.
     </#if>
 
     <div class="row">
-        <@page.card width="8" title="Scenario Result Chart" subtitle="">
+        <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Scenario Summary" subtitle="">
+        <@page.card width="4" title="Scenario Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     ${totalNumberOfScenarios} Scenario(s):<br>

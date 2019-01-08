@@ -33,6 +33,13 @@ limitations under the License.
             "pageLength": 25
         });
 
+        $('.collapse').on('show.bs.collapse', function (e) {
+
+            $(e.target).find("iframe").each(function(index, iframe) {
+                resizeIframe(iframe);
+            })
+        });
+
         // Lightbox
         $("a.grouped_elements").fancybox();
 
@@ -66,4 +73,8 @@ limitations under the License.
             };
         </#if>
     })
+
+    function resizeIframe(iframe) {
+        iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
+    }
 </script>
