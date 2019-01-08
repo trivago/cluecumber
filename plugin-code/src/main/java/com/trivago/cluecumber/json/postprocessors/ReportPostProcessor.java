@@ -27,6 +27,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Singleton
 public class ReportPostProcessor implements PostProcessor<Report> {
@@ -51,11 +53,9 @@ public class ReportPostProcessor implements PostProcessor<Report> {
             return;
         }
         for (Element element : report.getElements()) {
-            List<Tag> mergedTags = new ArrayList<>(reportTags);
-            List<Tag> elementTags = element.getTags();
-            //noinspection SuspiciousMethodCalls
-            mergedTags.remove(elementTags);
-            mergedTags.addAll(elementTags);
+            List<Tag> mergedTags = Stream.concat(element.getTags().stream(), reportTags.stream())
+                    .distinct()
+                    .collect(Collectors.toList());
             element.setTags(mergedTags);
         }
     }

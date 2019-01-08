@@ -7,11 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [1.6.3] - 2019-xx-xx
+## [1.6.3] - 2019-01-08
 
 ### Fixed
 
+* Feature tags are now propagated to their included scenarios and the `All Tags` page
 * Data table css added unneeded space at the end
+
+### Added
+
+* Step hooks display can now be toggled
+* Scenario text attachments are now formatted correctly
+
+### Changed
+
+* Multiple Scenario outputs are now displayed together
+* minor design changes
 
 ## [1.6.2] - 2018-12-13
 

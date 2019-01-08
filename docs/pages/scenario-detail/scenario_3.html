@@ -20,239 +20,15 @@
   <meta charset="utf-8"> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin [1.6.0] - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin [1.6.0]"> 
-  <title>Scenario Details - 2018/12/12 15:21:20</title> 
+  <meta name="description" content="Cluecumber Report Plugin version 1.6.3 - Scenario Details"> 
+  <meta name="author" content="Cluecumber Report Plugin version 1.6.3"> 
+  <title>Scenario Details - 2019/01/08 11:58:32</title> 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber_custom.css"> 
   <link rel="stylesheet" href="css/datatables.min.css"> 
   <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css"> 
   <link rel="stylesheet" href="css/jquery.fancybox.min.css"> 
- </head> 
- <body> 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
-   <span class="navbar-brand">Scenario Details</span> 
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> 
-   <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-    <ul class="navbar-nav mr-auto"> 
-     <li class="nav-item"> <a class="nav-link" href="pages/feature-summary.html">All Features</a> </li> 
-     <li class="nav-item"> <a class="nav-link" href="pages/tag-summary.html">All Tags</a> </li> 
-     <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
-     <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
-    </ul> 
-    <span class="text-light">2018/12/12 15:21:20</span> 
-   </div> 
-  </nav> 
-  <main role="main" class="container"> 
-   <div class="cluecumber-template"> 
-    <div class="pb-2 mt-4 mb-2 border-bottom"> 
-     <h3>Scenario 'Attachment test'</h3> 
-    </div> 
-    <script>
-        function resizeIframe(obj) {
-            obj.style.height = (obj.contentWindow.document.body.scrollHeight + 20) + 'px';
-        }
-    </script> 
-    <div class="row"> 
-     <div class="col-sm-8"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Scenario Result Chart
-       </div> 
-       <div class="card-body"> 
-        <div id="canvas-holder" class="w-100 text-center"> 
-         <canvas id="chart-area" class="w-100"></canvas> 
-        </div> 
-       </div> 
-      </div> 
-     </div> 
-     <div class="col-sm-4"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Scenario Information
-       </div> 
-       <div class="card-body"> 
-        <ul class="list-group list-group-flush"> 
-         <li class="list-group-item">3 Step(s)</li> 
-         <li class="list-group-item"> 2 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 1 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 0 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> </li> 
-         <li class="list-group-item">Duration: 0m 48s 638ms</li> 
-         <li class="list-group-item"> <a href="pages/tag-scenarios/tag_LoginTest.html">@LoginTest</a> </li> 
-        </ul> 
-       </div> 
-      </div> 
-     </div> 
-    </div> 
-    <ul class="list-group list-group-flush"> 
-     <div class="col-sm-12"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Before Hooks
-       </div> 
-       <div class="card-body"> 
-        <li class="list-group-item"> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           1.
-          </div> 
-          <div class="col-8 text-left"> 
-           <i>AutomationHooks.BeforeScenario(Scenario)</i> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 06s 852ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> </li> 
-       </div> 
-      </div> 
-     </div> 
-     <div class="col-sm-12"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Steps
-       </div> 
-       <div class="card-body"> 
-        <li class="list-group-item"> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           1.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="LoginFlowSteps.I_am_on_Login_Page()"> Given I am on Login Page </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 40s 558ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           2.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="LoginFlowSteps.login(String)"> When I login with "<strong>User</strong>" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 003ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> 
-         <div class="row row_failed"> 
-          <div class="col-1 text-left">
-           3.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="LoginFlowSteps.I_logout_from_application()"> Then I logout from application </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 003ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioErrorMessage"> 
-           <div class="w-100 text-left border border-danger"> 
-            <pre class="text-danger small p-2">java.lang.AssertionError
-	at org.junit.Assert.fail(Assert.java:86)
-	at org.junit.Assert.assertTrue(Assert.java:41)
-	at org.junit.Assert.assertTrue(Assert.java:52)
-	at org.igtb.itaf..steps.LoginFlowSteps.I_logout_from_application(LoginFlowSteps.java:43)
-	at ✽.Then I logout from application
-</pre> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioOutput"> 
-           <div class="w-100 text-left m-auto"> 
-            <iframe frameborder="0" srcdoc="OUTPUT_FIELD_NAME : Test Field" width="100%" height="1" scrolling="yes" onload="resizeIframe(this);"></iframe> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioOutput"> 
-           <div class="w-100 text-left m-auto"> 
-            <iframe frameborder="0" srcdoc="OUTPUT_FIELD_VALUE : Test Field Value" width="100%" height="1" scrolling="yes" onload="resizeIframe(this);"></iframe> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
-           <div class="w-100 text-left m-auto"> 
-            <a class="grouped_elements" rel="images" href="attachments/attachment001.png"> <img src="attachments/attachment001.png" style="max-width: 100%"> </a> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
-           <div class="w-100 text-left m-auto"> 
-            <iframe frameborder="0" src="attachments/attachment002.html" srcdoc="<table border='1' cellpadding='10' cellspacing='0'><tbody><tr><th><B>Field Name</th><th><B>Field Value</th></tr><tr><td><B>Field Name One</td><td><B>Field Value One</td></tr><tr><td><B>Field Name Two</td><td><B>Field Value Two</td></tr></tbody></table>" width="100%" height="1" scrolling="no" onload="resizeIframe(this);"></iframe> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
-           <div class="w-100 text-left m-auto"> 
-            <pre class="embedding-content">2018-10-21 21:22:16 INFO  - Logging setup successful !
-2018-10-21 21:22:16 INFO  - Loading Object Repository.....
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\BatchInquiryPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\BatchProcessing.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerAccountAddPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerMaintenancePage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileAddPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileAuthorizePage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileDeletePage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileDetails.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileViewPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileDetailsPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileInquiryPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileProcessing.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\Inquiries &amp; Reports.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\LoginPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\TransactionInquiryPage.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\TransactionProcessing.json
-2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\WorkspacePage.json
-2018-10-21 21:22:16 INFO  - Object Repository loaded successfully...
-2018-10-21 21:22:16 INFO  - scenario_id = @GTBIPSH-LoginTest
-2018-10-21 21:22:16 INFO  - File is not uploaded for this scenario !!!
-2018-10-21 21:22:57 INFO  - https://www.google.co.in URL opened in browser
-2018-10-21 21:22:57 INFO  - Screenshot captured successfully
-2018-10-21 21:22:58 INFO  - Closed all browsers
-</pre> 
-           </div> 
-          </div> 
-         </div> </li> 
-       </div> 
-      </div> 
-     </div> 
-     <div class="col-sm-12"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        After Hooks
-       </div> 
-       <div class="card-body"> 
-        <li class="list-group-item"> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           1.
-          </div> 
-          <div class="col-8 text-left"> 
-           <i>AutomationHooks.AfterScenario(Scenario)</i> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 01s 220ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> </li> 
-       </div> 
-      </div> 
-     </div> 
-    </ul> 
-   </div> 
-  </main> 
-  <footer class="footer navbar-dark bg-dark"> 
-   <div class="container-fluid"> 
-    <span>Generated by Cluecumber Report Plugin [1.6.0], 2018/12/12 15:21:20.</span> 
-   </div> 
-  </footer> 
   <script src="js/jquery.min.js"></script> 
   <script src="js/popper.min.js"></script> 
   <script src="js/bootstrap.min.js"></script> 
@@ -269,6 +45,13 @@
                 "sSearch": "Search:"
             },
             "pageLength": 25
+        });
+
+        $('.collapse').on('show.bs.collapse', function (e) {
+
+            $(e.target).find("iframe").each(function(index, iframe) {
+                resizeIframe(iframe);
+            })
         });
 
         // Lightbox
@@ -401,6 +184,234 @@
                 label.hidden ? row.show() : row.hide();
             };
     })
-</script>   
+
+    function resizeIframe(iframe) {
+        iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
+    }
+</script> 
+ </head> 
+ <body> 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
+   <span class="navbar-brand">Scenario Details</span> 
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> 
+   <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+    <ul class="navbar-nav mr-auto"> 
+     <li class="nav-item"> <a class="nav-link" href="pages/feature-summary.html">All Features</a> </li> 
+     <li class="nav-item"> <a class="nav-link" href="pages/tag-summary.html">All Tags</a> </li> 
+     <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
+     <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
+    </ul> 
+    <span class="text-light">2019/01/08 11:58:32</span> 
+   </div> 
+  </nav> 
+  <main role="main" class="container"> 
+   <div class="cluecumber-template"> 
+    <div class="pb-2 mt-4 mb-2 border-bottom"> 
+     <h3>Scenario 'Attachment test'</h3> 
+    </div> 
+    <div class="row"> 
+     <div class="col-sm-8  h-auto"> 
+      <div class="card h-100"> 
+       <div class="card-header">
+        Scenario Result Chart
+       </div> 
+       <div class="card-body"> 
+        <div id="canvas-holder" class="w-100 text-center"> 
+         <canvas id="chart-area" class="w-100"></canvas> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+     <div class="col-sm-4  h-auto"> 
+      <div class="card h-100"> 
+       <div class="card-header">
+        Scenario Information
+       </div> 
+       <div class="card-body"> 
+        <ul class="list-group list-group-flush"> 
+         <li class="list-group-item">3 Step(s)</li> 
+         <li class="list-group-item"> 2 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 1 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 0 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> </li> 
+         <li class="list-group-item">Duration: 0m 48s 638ms</li> 
+         <li class="list-group-item"> <a href="pages/tag-scenarios/tag_LoginTest.html">@LoginTest</a>, <a href="pages/tag-scenarios/tag_LoginFeature.html">@LoginFeature</a> </li> 
+        </ul> 
+        <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true" data-target=".scenarioHook">Before/After Hooks </button> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <ul class="list-group list-group-flush"> 
+     <div class="col-sm-12 scenarioHook collapse h-auto"> 
+      <div class="card h-100"> 
+       <div class="card-header">
+        Before Hooks
+       </div> 
+       <div class="card-body"> 
+        <li class="list-group-item"> 
+         <div class="row row_passed"> 
+          <div class="col-1 text-left">
+           1.
+          </div> 
+          <div class="col-8 text-left"> 
+           <i>AutomationHooks.BeforeScenario(Scenario)</i> 
+          </div> 
+          <div class="col-2 text-left small">
+            0m 06s 852ms 
+          </div> 
+          <div class="col-1 text-right"> 
+           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+          </div> 
+         </div> </li> 
+       </div> 
+      </div> 
+     </div> 
+     <div class="col-sm-12  h-auto"> 
+      <div class="card h-100"> 
+       <div class="card-header">
+        Steps
+       </div> 
+       <div class="card-body"> 
+        <li class="list-group-item"> 
+         <div class="row row_passed"> 
+          <div class="col-1 text-left">
+           1.
+          </div> 
+          <div class="col-8 text-left"> 
+           <span data-toggle="tooltip" title="LoginFlowSteps.I_am_on_Login_Page()"> Given I am on Login Page </span> 
+          </div> 
+          <div class="col-2 text-left small">
+            0m 40s 558ms 
+          </div> 
+          <div class="col-1 text-right"> 
+           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+          </div> 
+         </div> 
+         <div class="row row_passed"> 
+          <div class="col-1 text-left">
+           2.
+          </div> 
+          <div class="col-8 text-left"> 
+           <span data-toggle="tooltip" title="LoginFlowSteps.login(String)"> When I login with "<strong>User</strong>" </span> 
+          </div> 
+          <div class="col-2 text-left small">
+            0m 00s 003ms 
+          </div> 
+          <div class="col-1 text-right"> 
+           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+          </div> 
+         </div> 
+         <div class="row row_failed"> 
+          <div class="col-1 text-left">
+           3.
+          </div> 
+          <div class="col-8 text-left"> 
+           <span data-toggle="tooltip" title="LoginFlowSteps.I_logout_from_application()"> Then I logout from application </span> 
+          </div> 
+          <div class="col-2 text-left small">
+            0m 00s 003ms 
+          </div> 
+          <div class="col-1 text-right"> 
+           <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 
+          </div> 
+          <div class="row w-100 p-3 m-0 scenarioErrorMessage"> 
+           <div class="w-100 text-left border border-danger"> 
+            <pre class="text-danger small p-2">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at org.igtb.itaf..steps.LoginFlowSteps.I_logout_from_application(LoginFlowSteps.java:43)
+	at ✽.Then I logout from application
+</pre> 
+           </div> 
+          </div> 
+          <div class="row w-100 p-3 m-0 scenarioOutput"> 
+           <div class="w-100 text-left small p-2">
+             OUTPUT_FIELD_NAME : Test Field
+            <br>OUTPUT_FIELD_VALUE : Test Field Value 
+           </div> 
+          </div> 
+          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
+           <div class="w-100 text-left m-auto"> 
+            <a class="grouped_elements" rel="images" href="attachments/attachment001.png"> <img src="attachments/attachment001.png" style="max-width: 100%"> </a> 
+           </div> 
+          </div> 
+          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
+           <div class="w-100 text-left m-auto"> 
+            <iframe frameborder="0" src="attachments/attachment002.html" srcdoc="<table border='1' cellpadding='10' cellspacing='0'><tbody><tr><th><B>Field Name</th><th><B>Field Value</th></tr><tr><td><B>Field Name One</td><td><B>Field Value One</td></tr><tr><td><B>Field Name Two</td><td><B>Field Value Two</td></tr></tbody></table>" width="100%" height="1" scrolling="no" onload="resizeIframe(this);"></iframe> 
+           </div> 
+          </div> 
+          <div class="row w-100 p-3 m-0 scenarioAttachment"> 
+           <div class="w-100 text-left m-auto"> 
+            <pre class="embedding-content small">2018-10-21 21:22:16 INFO  - Logging setup successful !
+2018-10-21 21:22:16 INFO  - Loading Object Repository.....
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\BatchInquiryPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\BatchProcessing.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerAccountAddPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerMaintenancePage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileAddPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileAuthorizePage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileDeletePage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileDetails.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\CustomerProfileViewPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileDetailsPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileInquiryPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\FileProcessing.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\Inquiries &amp; Reports.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\LoginPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\TransactionInquiryPage.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\TransactionProcessing.json
+2018-10-21 21:22:16 INFO  - File Loaded : D:\IPSH Automation Projects\IPSH-Test_Automation\src\test\resources\objectRepository\WorkspacePage.json
+2018-10-21 21:22:16 INFO  - Object Repository loaded successfully...
+2018-10-21 21:22:16 INFO  - scenario_id = @GTBIPSH-LoginTest
+2018-10-21 21:22:16 INFO  - File is not uploaded for this scenario !!!
+2018-10-21 21:22:57 INFO  - https://www.google.co.in URL opened in browser
+2018-10-21 21:22:57 INFO  - Screenshot captured successfully
+2018-10-21 21:22:58 INFO  - Closed all browsers
+</pre> 
+           </div> 
+          </div> 
+         </div> </li> 
+       </div> 
+      </div> 
+     </div> 
+     <div class="scenarioHook collapse"> 
+      <div class="col-sm-12  h-auto"> 
+       <div class="card h-100"> 
+        <div class="card-header">
+         After Hooks
+        </div> 
+        <div class="card-body"> 
+         <li class="list-group-item"> 
+          <div class="row row_passed"> 
+           <div class="col-1 text-left">
+            1.
+           </div> 
+           <div class="col-8 text-left"> 
+            <i>AutomationHooks.AfterScenario(Scenario)</i> 
+           </div> 
+           <div class="col-2 text-left small">
+             0m 01s 220ms 
+           </div> 
+           <div class="col-1 text-right"> 
+            <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+           </div> 
+           <div class="row w-100 p-3 m-0 scenarioOutput"> 
+            <div class="w-100 text-left small p-2">
+              OUTPUT_FIELD_NAME : Test Field
+             <br>OUTPUT_FIELD_VALUE : Test Field Value 
+            </div> 
+           </div> 
+          </div> </li> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </ul> 
+   </div> 
+  </main> 
+  <footer class="footer navbar-dark bg-dark"> 
+   <div class="container-fluid"> 
+    <span>Cluecumber Report Plugin version 1.6.3 - 2019/01/08 11:58:32.</span> 
+   </div> 
+  </footer>   
  </body>
 </html>

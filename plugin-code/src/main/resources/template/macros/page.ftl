@@ -36,30 +36,30 @@ limitations under the License.
     <head>
         <#include "../snippets/common_headers.ftl">
         <#include "../snippets/css.ftl">
+        <#include "../snippets/js.ftl">
     </head>
     <body>
         <@navigation.build links=links />
-    <main role="main" class="container">
-        <div class="cluecumber-template">
-            <div class="pb-2 mt-4 mb-2 border-bottom">
-                        <#if headline != "">
-                            <h3>${headline}</h3>
-                        </#if>
-                        <#if subheadline != "">
-                            <h5>${subheadline}</h5>
-                        </#if>
+        <main role="main" class="container">
+            <div class="cluecumber-template">
+                <div class="pb-2 mt-4 mb-2 border-bottom">
+                    <#if headline != "">
+                        <h3>${headline}</h3>
+                    </#if>
+                    <#if subheadline != "">
+                        <h5>${subheadline}</h5>
+                    </#if>
+                </div>
+                <#nested>
             </div>
-                    <#nested>
-        </div>
-    </main>
+        </main>
         <#include "../snippets/footer.ftl">
-        <#include "../snippets/js.ftl">
     </body>
     </html>
 </#macro>
 
-<#macro card width title subtitle>
-    <div class="col-sm-${width}">
+<#macro card width title subtitle classes>
+    <div class="col-sm-${width} ${classes} h-auto">
         <div class="card h-100">
             <#if title != "">
                 <div class="card-header">${title}</div>

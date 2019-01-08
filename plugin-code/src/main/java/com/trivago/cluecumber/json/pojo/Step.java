@@ -77,7 +77,6 @@ public class Step extends ResultMatch {
         this.keyword = keyword;
     }
 
-
     public List<Row> getRows() {
         return rows;
     }

@@ -243,6 +243,13 @@ public class Element {
         return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 
+    public boolean hasHooks() {
+        if (getBefore().size() > 0 || getAfter().size() > 0){
+            return true;
+        }
+        return false;
+    }
+
     public boolean hasDocStrings() {
         for (Step step : steps) {
             if (step.getDocString() != null){
