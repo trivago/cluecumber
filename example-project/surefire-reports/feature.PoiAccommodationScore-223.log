@@ -1,0 +1,19 @@
+17:10:32.118 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-MY&p=MY&q=Cineplex+Hatyai&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:32.180 response time in milliseconds: 61,64
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:32 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 22
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":3111366,"ns":500,"t":"Hatyai Cineplex","d":"Hatyai Cineplex, Hat Yai, Southern Region, Thailand, Asia","score":0.9051937891520576,"solr_score":4.641346752643585,"popularity_score":0.7144572138786316,"fallback_description":"Hatyai Cineplex, Hat Yai, Southern Region, Thailand, Asia"}],"error":{},"spellcheck":""}
+

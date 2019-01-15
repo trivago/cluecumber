@@ -1,0 +1,19 @@
+17:10:24.249 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ru&p=ru&q=%D0%93%D0%B5%D0%BB%D0%B5%D0%BD%D0%B4%D0%B6%D0%B8%D0%BA+%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:24.350 response time in milliseconds: 100,37
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:24 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 56
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":408839,"ns":200,"t":"Геленджик","d":"Геленджик, Южный ФО, Россия, Европа","score":0.9686287748268754,"solr_score":2.2736390829086304,"popularity_score":0.895429253578186,"fallback_description":"Gelendzhik, Southern Federal District, Russia, Europe"}],"error":{},"spellcheck":""}
+

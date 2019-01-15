@@ -1,0 +1,19 @@
+17:10:11.281 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=de&p=de&q=Frankfurt+Hessen&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:11.356 response time in milliseconds: 74,33
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:11 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 37
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":4293,"ns":200,"t":"Frankfurt am Main","d":"Frankfurt am Main, Hessen, Deutschland, Europa","score":0.9598744018822671,"solr_score":2.8602792024612427,"popularity_score":0.8662480115890503,"fallback_description":"Frankfurt, Hesse, Germany, Europe"}],"error":{},"spellcheck":""}
+

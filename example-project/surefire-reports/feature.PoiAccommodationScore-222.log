@@ -1,0 +1,19 @@
+17:10:32.026 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-MY&p=MY&q=Grand+Lexis&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:32.106 response time in milliseconds: 79,46
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:31 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 41
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2784325,"ns":100,"t":"Grand Lexis Port Dickson","d":"Grand Lexis Port Dickson, Port Dickson, Negeri Sembilan, Malaysia, Asia","score":0.7593140970444324,"solr_score":4.567507401108742,"popularity_score":0.22327981889247894,"fallback_description":"Grand Lexis Port Dickson, Port Dickson, Negeri Sembilan, Malaysia, Asia"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:38.428 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ja&p=jp&q=%E3%83%A6%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AB%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA%E3%82%B8%E3%83%A3%E3%83%91%E3%83%B3%E5%A4%A7%E9%98%AA%E5%BA%9C+%E8%BF%91%E7%95%BF%E5%9C%B0%E6%96%B9+%E5%9B%BD%E5%86%85+%E3%82%A2%E3%82%B8%E3%82%A2&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:38.634 response time in milliseconds: 203,01
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:38 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 166
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":164162,"ns":500,"t":"ユニバーサル スタジオ ジャパン","d":"ユニバーサル スタジオ ジャパン, 大阪, 大阪府, 近畿地方, 国内, アジア","score":0.9727815330523223,"solr_score":11.63570374250412,"popularity_score":0.9420254826545715,"fallback_description":"Universal Studios Japan, Osaka, Osaka Prefecture, Kinki, Japan, Asia"}],"error":{},"spellcheck":""}
+

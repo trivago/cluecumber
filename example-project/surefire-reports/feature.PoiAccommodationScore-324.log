@@ -1,0 +1,19 @@
+17:10:40.922 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=el&p=gr&q=Westin+Resort+C&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:41.043 response time in milliseconds: 120,61
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:40 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 53
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1503755,"ns":100,"t":"The Westin Resort Costa Navarino","d":"The Westin Resort Costa Navarino, Πύλος, Πελοπόννησος, Ελλάδα, Ευρώπη","score":0.742490989878416,"solr_score":2.4898093789815903,"popularity_score":0.1666363626718521,"fallback_description":"The Westin Resort Costa Navarino, Pylos, Peloponnese, Greece, Europe"}],"error":{},"spellcheck":""}
+

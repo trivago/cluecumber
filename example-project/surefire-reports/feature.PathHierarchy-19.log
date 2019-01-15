@@ -1,0 +1,19 @@
+17:10:12.721 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=fi&p=fi&q=Helsinki+Suomi&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:12.805 response time in milliseconds: 81,55
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:12 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 37
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":62244,"ns":200,"t":"Helsinki","d":"Helsinki, Etelä-Suomi, Suomi, Eurooppa","score":0.9986266819964911,"solr_score":3.0982632637023926,"popularity_score":0.99542236328125,"fallback_description":"Helsinki, Southern Finland, Finland, Europe"}],"error":{},"spellcheck":""}
+

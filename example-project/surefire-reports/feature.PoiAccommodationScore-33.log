@@ -1,0 +1,19 @@
+17:10:17.065 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-IE&p=IE&q=Di&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:17.147 response time in milliseconds: 81,94
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:17 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":13440,"ns":500,"t":"Disneyland Paris","d":"Disneyland Paris, Marne-la-Vallée, Seine-et-Marne, Île-de-France, France, Europe","score":0.8634321514738471,"solr_score":1.0,"popularity_score":0.786922812461853,"fallback_description":"Disneyland Paris, Marne-la-Vallée, Seine-et-Marne, Île-de-France, France, Europe"}],"error":{},"spellcheck":""}
+

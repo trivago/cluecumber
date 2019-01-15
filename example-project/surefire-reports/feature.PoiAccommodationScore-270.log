@@ -1,0 +1,19 @@
+17:10:35.347 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=th&p=th&q=%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%84%E0%B8%B2%E0%B8%99+%E0%B8%A3%E0%B8%B4%E0%B9%80%E0%B8%A7%E0%B8%AD%E0%B8%A3%E0%B9%8C+%E0%B9%80%E0%B8%A1%E0%B8%B2%E0%B8%97%E0%B9%8C%E0%B9%80%E0%B8%97%E0%B8%99+%E0%B8%A3%E0%B8%B5%E0%B8%AA%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%97&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:35.462 response time in milliseconds: 113,88
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:35 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 78
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2208890,"ns":100,"t":"เชียงคาน ริเวอร์ เมาท์เทน รีสอร์ท","d":"เชียงคาน ริเวอร์ เมาท์เทน รีสอร์ท, เลย, ภาคตะวันออกเฉียงเหนือ, ประเทศไทย, เอเชีย","score":0.7399789671939205,"solr_score":13.021210625767708,"popularity_score":0.15817837417125702,"fallback_description":"Chiangkhan River Mountian Resort, Loei, Northeastern Region, Thailand, Asia"}],"error":{},"spellcheck":""}
+

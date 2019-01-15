@@ -1,0 +1,19 @@
+17:10:13.543 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=el&p=gr&q=%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7+%CE%9A%CE%B5%CE%BD%CF%84%CF%81%CE%B9%CE%BA%CE%AE+%CE%9C%CE%B1%CE%BA%CE%B5%CE%B4%CE%BF%CE%BD%CE%AF%CE%B1&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:13.661 response time in milliseconds: 115,16
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:13 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 66
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":14121,"ns":200,"t":"Θεσσαλονίκη","d":"Θεσσαλονίκη, Κεντρική Μακεδονία, Ελλάδα, Ευρώπη","score":0.999743163921847,"solr_score":3.551599621772766,"popularity_score":0.9991439580917358,"fallback_description":"Thessaloniki, Central Macedonia, Greece, Europe"}],"error":{},"spellcheck":""}
+

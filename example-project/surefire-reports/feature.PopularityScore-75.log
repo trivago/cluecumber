@@ -1,0 +1,19 @@
+17:10:16.198 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=it&p=IT&q=Rimini&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:16.250 response time in milliseconds: 51,11
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:16 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 13
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":26139,"ns":200,"t":"Rimini","d":"Rimini, Emilia-Romagna, Italia, Europa","score":0.9579186720815775,"solr_score":0.9999999403953552,"popularity_score":0.9298644661903381,"fallback_description":"Rimini, Emilia-Romagna, Italy, Europe"}],"error":{},"spellcheck":""}
+

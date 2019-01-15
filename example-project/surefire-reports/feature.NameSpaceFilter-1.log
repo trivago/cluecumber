@@ -1,0 +1,19 @@
+17:10:05.085 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-GB&p=uk&q=Madrid&n=1&ns=100
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:05.301 response time in milliseconds: 211,75
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:05 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 22
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":6552200,"ns":100,"t":"Madrid Tetuan Studio","d":"Madrid Tetuan Studio, Madrid, Madrid, Spain, Europe","score":0.4560411803738752,"solr_score":1.0000000298023224,"popularity_score":0.10107943415641785,"fallback_description":"Madrid Tetuan Studio, Madrid, Madrid, Spain, Europe"}],"error":{},"spellcheck":""}
+

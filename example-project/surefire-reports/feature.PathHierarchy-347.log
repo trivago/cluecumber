@@ -1,0 +1,19 @@
+17:10:41.626 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-HK&p=hk&q=rome+new&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:41.743 response time in milliseconds: 116,91
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:41 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 42
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":49396,"ns":200,"t":"Rome","d":"Rome, New York State, USA, North America","score":0.8241022099694497,"solr_score":1.9252217411994934,"popularity_score":0.4136740565299988,"fallback_description":"Rome, New York State, USA, North America"}],"error":{},"spellcheck":""}
+

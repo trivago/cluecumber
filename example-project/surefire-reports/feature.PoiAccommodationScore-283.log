@@ -1,0 +1,19 @@
+17:10:36.317 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=zh-Hant-TW&p=tw&q=%E6%97%A5%E6%9C%88&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:36.492 response time in milliseconds: 174,09
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:36 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 25
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2384632,"ns":500,"t":"日月潭","d":"日月潭, 魚池鄉, 南投, 台灣, 亞洲","score":0.9525536966941237,"solr_score":2.857813239097595,"popularity_score":0.8739181756973267,"fallback_description":"Sun Moon Lake, Yuchi Township, Nantou, Taiwan, Asia"}],"error":{},"spellcheck":""}
+

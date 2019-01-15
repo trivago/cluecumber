@@ -1,0 +1,19 @@
+17:10:32.012 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-AE&p=AE&q=Fujairah+Rotana+Resort+%26+Spa&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:32.098 response time in milliseconds: 86,43
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:31 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 48
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":567071,"ns":100,"t":"Fujairah Rotana Resort & Spa","d":"Fujairah Rotana Resort & Spa, Al Aqah, Fujairah, United Arab Emirates, Asia","score":0.7446892887804196,"solr_score":6.943784549832344,"popularity_score":0.1740380972623825,"fallback_description":"Fujairah Rotana Resort & Spa, Al Aqah, Fujairah, United Arab Emirates, Asia"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:17.591 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-CL&p=cl&q=Vi%C3%B1a+del+Ma&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:17.693 response time in milliseconds: 93,73
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:17 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 55
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":81970,"ns":200,"t":"Viña del Mar","d":"Viña del Mar, Provincia de Valparaíso, Región de Valparaíso, Chile, Centro- y Sudamérica","score":0.9970779835016721,"solr_score":3.147004783153534,"popularity_score":0.9902599453926086,"fallback_description":"Viña del Mar, Valparaíso Province, Valparaíso Region, Chile, Central and South America"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,990 @@
+<testsuite failures="0" name="feature/SmokeTests.feature" skipped="0" tests="19" time="1.704945">
+  <testcase classname="feature.SmokeTests" name="anima spell correction with no result doesn't throw exception" time="0.071693">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Name space filter brings no result with unrecognizable numeric input &gt; 0" time="0.061862">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Name space filter fallback to default in case of empty, negative, string and &quot;0&quot; input to ns parameter" time="0.079864">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Cancún popularity score search for MX(es) locale works fine" time="0.095684">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="St Petersburg popularity score search for RU locale works fine" time="0.089043">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Sosopol popularity score search for BG locale works fine" time="0.087079">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Udhagamandalam popularity score search for IN locale works fine" time="0.057935">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Benidorm popularity score search for ES locale works fine" time="0.060354">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Hamburg popularity score search for DE locale works fine" time="0.073283">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Paris popularity score search for UK locale works fine" time="0.08622">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Balaton popularity score search for HU locale works fine" time="0.079631">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Nafplio path hierarchy search for GR locale works fine" time="0.096511">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Airport Hotel Okecie popularity score search for PL locale works fine" time="0.117943">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Tampere path hierarchy search for FI locale works fine" time="0.099746">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fi', p: 'fi', q: 'Tampere Suomi', n: 1 } ............... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Małopolska popularity score search for PL locale works fine" time="0.062886">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fi', p: 'fi', q: 'Tampere Suomi', n: 1 } ............... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Małopolska popularity score search for PL locale works fine" time="0.068971">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fi', p: 'fi', q: 'Tampere Suomi', n: 1 } ............... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Małopolska popularity score search for PL locale works fine" time="0.215677">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fi', p: 'fi', q: 'Tampere Suomi', n: 1 } ............... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Małopolska popularity score search for PL locale works fine" time="0.145825">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fi', p: 'fi', q: 'Tampere Suomi', n: 1 } ............... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+  <testcase classname="feature.SmokeTests" name="Małopolska popularity score search for PL locale works fine" time="0.05474">
+    <system-out>* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fr', p: 'fr', q: 'anima', n: 1} ........................ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'uk', q: 'Madrid', n: 1, ns: 1 } ............ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: en-GB, p: uk, q: 'Eiffel'} .............................. passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es-MX', p: 'mx', q: 'Ca', n: 1 } ....................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'ru-RU', p: 'ru', q: 'Санкт', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'bg', p: 'bg', q: 'Созопол', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-IN', p: 'in', q: 'Udhagamandalam', n: 1 } ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'es', p: 'es', q: 'Benidorm', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'de', p: 'de', q: 'Hamburg', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'en-GB', p: 'UK', q: 'Paris', n: 1 } .................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'hu', p: 'hu', q: 'Balaton', n: 1 } ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'el', p: 'gr', q: 'Ναύπλιο Πελοπόννησος', n: 1 } ........ passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Airport Hotel Okecie', n: 1} ........... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+Given params { l: 'fi', p: 'fi', q: 'Tampere Suomi', n: 1 } ............... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed
+* url domain .............................................................. passed
+* path url_path ........................................................... passed
+And params { l: 'pl', p: 'pl', q: 'Małopolska', n: 1} ..................... passed
+When method get ........................................................... passed
+* def response = $.result ................................................. passed</system-out>
+  </testcase>
+</testsuite>

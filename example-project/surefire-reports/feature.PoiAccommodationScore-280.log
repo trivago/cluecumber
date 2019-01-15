@@ -1,0 +1,19 @@
+17:10:36.088 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ko-KR&p=KR&q=%EB%B9%84+%EB%A6%AC%EC%A1%B0%ED%8A%B8+-+%EB%A7%89%ED%83%84&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:36.169 response time in milliseconds: 78,78
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:36 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 39
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":971239,"ns":100,"t":"비 리조트 - 막탄","d":"비 리조트 - 막탄, 세부 시티, 세부, Visayas, 필리핀, 아시아","score":0.7421880677516491,"solr_score":6.099332422018051,"popularity_score":0.16561642289161682,"fallback_description":"Be Resorts Mactan, Cebu City, Cebu Island, Visayas, Philippines, Asia"}],"error":{},"spellcheck":""}
+

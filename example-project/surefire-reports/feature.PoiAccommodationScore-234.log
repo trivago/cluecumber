@@ -1,0 +1,19 @@
+17:10:32.683 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-ID&p=id&q=Best+Western+Premier+Solo+B&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:32.784 response time in milliseconds: 98,94
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:32 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 49
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":5198494,"ns":100,"t":"Best Western Premier Solo Baru","d":"Best Western Premier Solo Baru, Surakarta, Central Java, Java, Indonesia, Asia","score":0.7411713997193737,"solr_score":6.274725437164307,"popularity_score":0.16219329833984375,"fallback_description":"Best Western Premier Solo Baru, Surakarta, Central Java, Java, Indonesia, Asia"}],"error":{},"spellcheck":""}
+

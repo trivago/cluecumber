@@ -1,0 +1,19 @@
+17:10:22.829 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ru&p=ru&q=%D0%9F%D0%B0%D1%80%D0%BA+%D0%93%D0%BE%D1%80%D1%8C&n=2
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:22.914 response time in milliseconds: 84,16
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:22 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 43
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":163502,"ns":500,"t":"Парк Горького","d":"Парк Горького, Москва, Центральный ФО, Россия, Европа","score":0.8397274081896708,"solr_score":2.477075546979904,"popularity_score":0.494031697511673,"fallback_description":"Gorky Park, Moscow, Central Federal District, Russia, Europe"},{"cid":5105720,"ns":500,"t":"Олимпийский Парк","d":"Олимпийский Парк, Сочи, Южный ФО, Россия, Европа","score":0.6403738004948544,"solr_score":1.4770755767822266,"popularity_score":0.7647783756256104,"fallback_description":"Olympic Park, Sochi, Southern Federal District, Russia, Europe"}],"error":{},"spellcheck":""}
+

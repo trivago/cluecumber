@@ -1,0 +1,19 @@
+17:10:36.552 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=zh-Hant-HK&p=hk&q=%E4%B9%9D%E9%BE%8D&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:36.618 response time in milliseconds: 63,02
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:36 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 23
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2434886,"ns":500,"t":"九龍","d":"九龍, 香港, 香港, 亞洲","score":0.9431018642624961,"solr_score":2.898983597755432,"popularity_score":0.842093825340271,"fallback_description":"Kowloon, Hong Kong, Hong Kong, Asia"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:24.820 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ro&p=ro&q=Bucure%C5%9Ftii+N&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:24.951 response time in milliseconds: 131,12
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:24 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1975629,"ns":500,"t":"Bucureştii Noi","d":"Bucureştii Noi, București, Jud. Ilfov, România, Europa","score":0.8277623138929335,"solr_score":3.8297755122184753,"popularity_score":0.45374518632888794,"fallback_description":"Bucureştii Noi, Bucharest, Ilfov, Romania, Europe"}],"error":{},"spellcheck":""}
+

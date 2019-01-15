@@ -1,0 +1,19 @@
+17:10:41.822 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-PE&p=pe&q=Sudam%C3%A9rica+Miraflores&n=2
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:41.910 response time in milliseconds: 88,11
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:41 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 53
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":403541,"ns":200,"t":"Miraflores","d":"Miraflores, Lima, Perú, Centro- y Sudamérica","score":0.9644940234625252,"solr_score":2.2293737530708313,"popularity_score":0.8816468119621277,"fallback_description":"Miraflores, Lima Metropolitana, Peru, Central and South America"},{"cid":5185730,"ns":500,"t":"Miraflores","d":"Miraflores, Lima, Lima, Perú, Centro- y Sudamérica","score":0.9308838249975452,"solr_score":2.2293736934661865,"popularity_score":0.8009557723999023,"fallback_description":"Miraflores, Lima, Lima Metropolitana, Peru, Central and South America"}],"error":{},"spellcheck":""}
+

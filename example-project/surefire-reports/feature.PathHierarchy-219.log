@@ -1,0 +1,19 @@
+17:10:30.706 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-US&p=US&q=San+Diego+California&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:30.790 response time in milliseconds: 83,71
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:30 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 46
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":14266,"ns":200,"t":"San Diego","d":"San Diego, California, EE. UU., Norteamérica","score":0.9770326119115886,"solr_score":3.3685948848724365,"popularity_score":0.9234421253204346,"fallback_description":"San Diego, California, USA, North America"}],"error":{},"spellcheck":""}
+

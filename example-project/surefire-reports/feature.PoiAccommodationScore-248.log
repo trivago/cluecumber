@@ -1,0 +1,19 @@
+17:10:33.998 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ja&p=jp&q=%E3%83%87%E3%82%A3%E3%82%BA&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:34.053 response time in milliseconds: 54,02
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:33 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 20
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":3131612,"ns":500,"t":"東京ディズニーランド","d":"東京ディズニーランド, 浦安市, 千葉, 関東地方, 国内, アジア","score":0.9704608774169623,"solr_score":1.0000000596046448,"popularity_score":0.9671058058738708,"fallback_description":"Tokyo Disneyland, Urayasu, Präfektur Chiba, Kanto, Japan, Asia"}],"error":{},"spellcheck":""}
+

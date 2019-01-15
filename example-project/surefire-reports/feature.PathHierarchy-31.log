@@ -1,0 +1,19 @@
+17:10:13.548 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=el&p=gr&q=%CE%9D%CE%B1%CF%8D%CF%80%CE%BB%CE%B9%CE%BF+%CE%A0%CE%B5%CE%BB%CE%BF%CF%80%CF%8C%CE%BD%CE%BD%CE%B7%CF%83%CE%BF%CF%82&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:13.638 response time in milliseconds: 87,09
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:13 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 41
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":34347,"ns":200,"t":"Ναύπλιο","d":"Ναύπλιο, Πελοπόννησος, Ελλάδα, Ευρώπη","score":0.9826434472289247,"solr_score":3.294728636741638,"popularity_score":0.9421449899673462,"fallback_description":"Nafplio, Peloponnese, Greece, Europe"}],"error":{},"spellcheck":""}
+

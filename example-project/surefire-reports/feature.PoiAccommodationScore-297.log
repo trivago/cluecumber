@@ -1,0 +1,19 @@
+17:10:37.575 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-PE&p=pe&q=Roy&n=5
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:37.658 response time in milliseconds: 81,88
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:37 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 34
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":162340,"ns":500,"t":"Roy Thomson Hall","d":"Roy Thomson Hall, Toronto, Ontario, Canadá, Norteamérica","score":0.7199852526778115,"solr_score":0.9999999403953552,"popularity_score":0.5454297661781311,"fallback_description":"Roy Thomson Hall, Toronto, Ontario, Canada, North America"},{"cid":740106,"ns":500,"t":"La Milla Real","d":"La Milla Real, Edimburgo, Edimburgo, Escocia, Reino Unido, Europa","score":0.7033821915341287,"solr_score":1.0000000596046448,"popularity_score":0.5174784064292908,"fallback_description":"Royal Mile, Edinburgh, Edinburgh, Scotland, United Kingdom, Europe"},{"cid":169122,"ns":500,"t":"Museo Real de Ontario","d":"Museo Real de Ontario, Toronto, Ontario, Canadá, Norteamérica","score":0.6355437857923426,"solr_score":1.0000000298023224,"popularity_score":0.4032723605632782,"fallback_description":"Royal Ontario Museum, Toronto, Ontario, Canada, North America"},{"cid":2779825,"ns":500,"t":"Royal Golf de Tanger","d":"Royal Golf de Tanger, Tánger, Tanger-Tétouan, Marruecos, África","score":0.5958262945543282,"solr_score":0.9999999403953552,"popularity_score":0.33640795946121216,"fallback_description":"Royal Golf de Tanger, Tangier, Tanger-Tétouan, Morocco, Africa"},{"cid":2610110,"ns":100,"t":"Royal Decameron Punta Sal","d":"Royal Decameron Punta Sal, Canoas de Punta Sal, Tumbes, Perú, Centro- y Sudamérica","score":0.5223274386357264,"solr_score":0.9999999850988388,"popularity_score":0.21267248690128326,"fallback_description":"Royal Decameron Punta Sal, Canoas de Punta Sal, Tumbes, Peru, Central and South America"}],"error":{},"spellcheck":""}
+

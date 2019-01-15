@@ -1,0 +1,19 @@
+17:10:34.070 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ja&p=jp&q=%E5%A4%A7%E9%98%AA%E9%A7%85&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:34.121 response time in milliseconds: 51,30
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:33 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 11
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":3146248,"ns":500,"t":"大阪駅","d":"大阪駅, 大阪, 大阪府, 近畿地方, 国内, アジア","score":1.0,"solr_score":1.0,"popularity_score":0.874631404876709,"fallback_description":"Osaka Station, Osaka, Osaka Prefecture, Kinki, Japan, Asia"}],"error":{},"spellcheck":""}
+

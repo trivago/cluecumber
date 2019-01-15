@@ -1,0 +1,19 @@
+17:10:38.009 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=vi&p=vn&q=%C4%90%C3%A0+N%E1%BA%B5ng+Th%C3%A0nh+ph%E1%BB%91+%C4%90%C3%A0+N%E1%BA%B5ng&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:38.101 response time in milliseconds: 90,69
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:37 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 50
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":68104,"ns":200,"t":"Đà Nẵng","d":"Đà Nẵng, Thành phố Đà Nẵng, Việt Nam, Châu Á","score":0.9917874425953147,"solr_score":8.045854330062866,"popularity_score":0.9726250171661377,"fallback_description":"Da Nang, ĐĂ  Nẵng, Vietnam, Asia"}],"error":{},"spellcheck":""}
+

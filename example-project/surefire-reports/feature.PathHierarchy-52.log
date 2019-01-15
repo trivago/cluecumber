@@ -1,0 +1,19 @@
+17:10:15.593 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=hu&p=hu&q=Si%C3%B3fok+Magyarorsz%C3%A1g&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:15.668 response time in milliseconds: 73,31
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:15 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 37
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":61542,"ns":200,"t":"Siófok","d":"Siófok, Dél-Dunántúl, Magyarország, Európa","score":0.9746671161099547,"solr_score":2.8073450922966003,"popularity_score":0.9155572056770325,"fallback_description":"Siófok, Southern Transdanubia, Hungary, Europe"}],"error":{},"spellcheck":""}
+

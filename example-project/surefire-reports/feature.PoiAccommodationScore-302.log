@@ -1,0 +1,19 @@
+17:10:38.021 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=sk&p=sk&q=Vada%C5%A1+%C5%A0t%C3%BArovo&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:38.079 response time in milliseconds: 57,36
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:37 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 21
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":5615000,"ns":500,"t":"Termálne kúpalisko Vadaš Štúrovo","d":"Termálne kúpalisko Vadaš Štúrovo, Štúrovo, Nitriansky kraj, Slovensko, Európa","score":0.9070638445878523,"solr_score":4.893339991569519,"popularity_score":0.7207537889480591,"fallback_description":"Termálne kúpalisko Vadaš Štúrovo, Štúrovo, Nitra Region, Slovakia, Europe"}],"error":{},"spellcheck":""}
+

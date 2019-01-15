@@ -1,0 +1,19 @@
+17:10:32.671 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-ID&p=id&q=Le&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:32.759 response time in milliseconds: 85,63
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:32 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 33
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":3111394,"ns":500,"t":"Legian","d":"Legian, Kuta, Bali, Nusa Tenggara, Indonesia, Asia","score":0.860617665454457,"solr_score":0.9999999403953552,"popularity_score":0.7821846604347229,"fallback_description":"Legian, Kuta, Bali, Nusa Tenggara, Indonesia, Asia"}],"error":{},"spellcheck":""}
+

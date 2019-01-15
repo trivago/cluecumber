@@ -1,0 +1,19 @@
+17:10:38.361 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ja&p=jp&q=%E9%82%A3%E8%A6%87+%E3%82%A2%E3%82%B8%E3%82%A2&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:38.554 response time in milliseconds: 192,49
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:38 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 146
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":71821,"ns":200,"t":"那覇","d":"那覇, 沖縄, 冲縄地方, 国内, アジア","score":0.968549667539186,"solr_score":1.9364136457443237,"popularity_score":0.8951655626296997,"fallback_description":"Naha, Präfektur Okinawa, Okinawa Islands, Japan, Asia"}],"error":{},"spellcheck":""}
+

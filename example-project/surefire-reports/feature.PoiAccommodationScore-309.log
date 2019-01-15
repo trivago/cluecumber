@@ -1,0 +1,19 @@
+17:10:38.722 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es&p=es&q=ClubH&n=2
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:38.791 response time in milliseconds: 68,76
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:38 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 31
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2113364,"ns":500,"t":"Club Hípico Astur","d":"Club Hípico Astur, Gijón, Asturias, España, Europa","score":0.6189499712963922,"solr_score":0.9999999403953552,"popularity_score":0.3753367066383362,"fallback_description":"Club Hípico Astur, Gijon, Asturias, Spain, Europe"},{"cid":121710,"ns":100,"t":"ClubHotel Riu Chiclana","d":"ClubHotel Riu Chiclana, Chiclana, Andalucía, España, Europa","score":0.5081419392085872,"solr_score":0.9999999701976776,"popularity_score":0.1887911856174469,"fallback_description":"ClubHotel Riu Chiclana, Chiclana, Andalusia, Spain, Europe"}],"error":{},"spellcheck":""}
+

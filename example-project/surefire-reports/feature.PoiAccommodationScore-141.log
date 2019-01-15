@@ -1,0 +1,19 @@
+17:10:25.223 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-AU&p=AU&q=Darl&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:25.294 response time in milliseconds: 70,35
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:25 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 25
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":14657,"ns":500,"t":"Darling Harbour","d":"Darling Harbour, Sydney, New South Wales, Australia, Australia & Oceania","score":0.9475848361684822,"solr_score":1.0,"popularity_score":0.9285939931869507,"fallback_description":"Darling Harbour, Sydney, New South Wales, Australia, Australia & Oceania"}],"error":{},"spellcheck":""}
+

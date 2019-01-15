@@ -1,0 +1,19 @@
+17:10:33.621 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=vi&p=vn&q=qu%E1%BA%ADn+1+H%E1%BB%93+Ch%C3%AD+Minh&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:33.727 response time in milliseconds: 106,29
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:33 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 41
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2317872,"ns":100,"t":"Bizy quận 1 - 198 Bùi Viện","d":"Bizy quận 1 - 198 Bùi Viện, TP. Hồ Chí Minh, Thành phố Hồ Chí Minh, Việt Nam, Châu Á","score":0.7339718370443297,"solr_score":7.406394377350807,"popularity_score":0.13795243203639984,"fallback_description":"Saigon Mini 6, Ho Chi Minh City, Ho Chi Minh Municipality, Vietnam, Asia"}],"error":{},"spellcheck":""}
+

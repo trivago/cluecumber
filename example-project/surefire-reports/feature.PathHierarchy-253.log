@@ -1,0 +1,19 @@
+17:10:33.288 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=pl&p=pl&q=Karpacz+d&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:33.408 response time in milliseconds: 119,41
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:33 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 40
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":93582,"ns":200,"t":"Karpacz","d":"Karpacz, dolnośląskie, Polska, Europa","score":0.9774331495151405,"solr_score":1.7284383177757263,"popularity_score":0.9247773289680481,"fallback_description":"Karpacz, Lower Silesia, Poland, Europe"}],"error":{},"spellcheck":""}
+

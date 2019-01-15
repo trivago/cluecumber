@@ -1,0 +1,19 @@
+17:10:21.638 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=pt&p=pt&q=Lisboa&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:21.712 response time in milliseconds: 73,02
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:21 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 15
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":31720,"ns":200,"t":"Lisboa","d":"Lisboa, Lisboa e Vale do Tejo, Portugal, Europa","score":0.9951233802288115,"solr_score":1.0000000596046448,"popularity_score":0.991872251033783,"fallback_description":"Lisbon, Lisbon coast, Portugal, Europe"}],"error":{},"spellcheck":""}
+

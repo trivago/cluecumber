@@ -1,0 +1,19 @@
+17:10:30.427 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-US&p=US&q=New+York&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:30.520 response time in milliseconds: 92,19
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:30 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 42
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":14734,"ns":200,"t":"New York","d":"New York, New York State, USA, North America","score":0.9966158878124688,"solr_score":2.9644307494163513,"popularity_score":0.9887197613716125,"fallback_description":"New York, New York State, USA, North America"}],"error":{},"spellcheck":""}
+

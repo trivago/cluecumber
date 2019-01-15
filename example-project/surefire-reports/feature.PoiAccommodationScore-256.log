@@ -1,0 +1,19 @@
+17:10:34.414 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ar-145&p=shabaka&q=%D8%B4%D8%A7%D8%B7%D8%A6+%D8%AE&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:34.505 response time in milliseconds: 87,97
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:34 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 38
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":848571,"ns":500,"t":"شاطئ خليج نعمة","d":"شاطئ خليج نعمة, شرم الشيخ, محافظة جنوب سيناء, مصر, أفريقيا","score":0.9283298045925222,"solr_score":2.2965312004089355,"popularity_score":0.7923562526702881,"fallback_description":"Na'ama Bay, Sharm el-Sheikh, South Sinai, Egypt, Africa"}],"error":{},"spellcheck":""}
+

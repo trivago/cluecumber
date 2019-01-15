@@ -1,0 +1,19 @@
+17:10:17.675 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-CL&p=cl&q=R%C3%ADo+de+Janeiro&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:17.800 response time in milliseconds: 121,22
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:17 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 66
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":56359,"ns":200,"t":"Río de Janeiro","d":"Río de Janeiro, Brasil, Centro- y Sudamérica","score":0.9577411755930736,"solr_score":3.514018177986145,"popularity_score":0.8591374158859253,"fallback_description":"Rio de Janeiro, Brazil, Central and South America"}],"error":{},"spellcheck":""}
+

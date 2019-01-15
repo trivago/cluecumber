@@ -1,0 +1,19 @@
+17:10:14.402 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=pt-BR&p=br&q=Gramado+Brasil&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:14.483 response time in milliseconds: 79,15
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:14 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 44
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":59298,"ns":200,"t":"Gramado","d":"Gramado, Rio Grande do Sul, Brasil, América do Sul","score":0.9972365027829367,"solr_score":2.381422996520996,"popularity_score":0.990788459777832,"fallback_description":"Gramado, Rio Grande do Sul, Brazil, Central and South America"}],"error":{},"spellcheck":""}
+

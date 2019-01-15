@@ -1,0 +1,19 @@
+17:10:15.636 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=pt-BR&p=br&q=Praia+de+Copacabana&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:15.733 response time in milliseconds: 96,54
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:15 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 51
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":137425,"ns":500,"t":"Praia de Copacabana","d":"Praia de Copacabana, Rio de Janeiro, Rio de Janeiro, Brasil, América do Sul","score":0.9601320473604221,"solr_score":4.48028951883316,"popularity_score":0.899434506893158,"fallback_description":"Praia de Copacabana, Rio de Janeiro, Rio de Janeiro, Brazil, Central and South America"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:17.494 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=it&p=it&q=Gardaland+v&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:17.577 response time in milliseconds: 82,93
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:17 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 34
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":134368,"ns":500,"t":"Gardaland","d":"Gardaland, Castelnuovo del Garda, Veneto, Italia, Europa","score":0.9239883961261968,"solr_score":2.5365082025527954,"popularity_score":0.7777389287948608,"fallback_description":"Gardaland, Castelnuovo del Garda, Veneto, Italy, Europe"}],"error":{},"spellcheck":""}
+

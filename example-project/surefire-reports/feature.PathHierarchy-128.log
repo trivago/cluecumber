@@ -1,0 +1,19 @@
+17:10:22.150 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=pt&p=pt&q=Vila+Nova+de+Norte+de+Portugal&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:22.350 response time in milliseconds: 199,91
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:22 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 94
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":31853,"ns":200,"t":"Vila Nova de Gaia","d":"Vila Nova de Gaia, Norte de Portugal, Portugal, Europa","score":0.9357246329264811,"solr_score":4.789770245552063,"popularity_score":0.7857488393783569,"fallback_description":"Vila Nova de Gaia, North Portugal, Portugal, Europe"}],"error":{},"spellcheck":""}
+

@@ -19,6 +19,10 @@ html {
     min-height: 100%;
 }
 
+h2, h3 {
+    word-break: break-all;
+}
+
 body {
     padding-top: 3rem;
     background-color: #fdfdfe;

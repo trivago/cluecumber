@@ -1,0 +1,19 @@
+17:10:24.930 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-AU&p=AU&q=Melb&n=2
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:25.023 response time in milliseconds: 91,89
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:24 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 26
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":25061,"ns":200,"t":"Melbourne","d":"Melbourne, Victoria, Australia, Australia & Oceania","score":0.9969076572619926,"solr_score":1.0000000596046448,"popularity_score":0.9948460459709167,"fallback_description":"Melbourne, Victoria, Australia, Australia & Oceania"},{"cid":2005107,"ns":500,"t":"Melbourne CBD","d":"Melbourne CBD, Melbourne, Victoria, Australia, Australia & Oceania","score":0.9823682229466556,"solr_score":0.9999999403953552,"popularity_score":0.9871519207954407,"fallback_description":"Melbourne CBD, Melbourne, Victoria, Australia, Australia & Oceania"}],"error":{},"spellcheck":""}
+

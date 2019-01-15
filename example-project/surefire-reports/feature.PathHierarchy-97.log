@@ -1,0 +1,19 @@
+17:10:19.689 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=tr&p=tr&q=Antalya+Antalya&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:19.776 response time in milliseconds: 85,74
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:19 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":15247,"ns":200,"t":"Antalya","d":"Antalya, Antalya Çevresi, Türkiye, Avrupa","score":0.9999999651514125,"solr_score":2.3945446014404297,"popularity_score":1.0,"fallback_description":"Antalya, Antalya, Turkey, Europe"}],"error":{},"spellcheck":""}
+

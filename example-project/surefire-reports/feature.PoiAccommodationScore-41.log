@@ -1,0 +1,19 @@
+17:10:17.703 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-ZA&p=za&q=Umhlanga+R&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:17.804 response time in milliseconds: 100,28
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:17 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":4528814,"ns":500,"t":"Umhlanga Rocks","d":"Umhlanga Rocks, Umhlanga, KwaZulu-Natal, South Africa, Africa","score":0.9108355395679856,"solr_score":2.9381325244903564,"popularity_score":0.7334530353546143,"fallback_description":"Umhlanga Rocks, Umhlanga, KwaZulu-Natal, South Africa, Africa"}],"error":{},"spellcheck":""}
+

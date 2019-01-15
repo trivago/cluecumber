@@ -1,0 +1,19 @@
+17:10:36.324 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=zh-Hant-TW&p=tw&q=%E4%BD%9B%E7%BE%85%E5%80%AB%E6%96%AF%E5%B1%B1%E8%8E%8A+%E5%90%9B%E5%A3%AB%E5%9D%A6%E4%B8%81%E5%A0%A1&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:36.487 response time in milliseconds: 162,44
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:36 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 45
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":2207100,"ns":100,"t":"清境佛羅倫斯山莊 君士坦丁堡","d":"清境佛羅倫斯山莊 君士坦丁堡, 仁愛鄉, 南投, 台灣, 亞洲","score":0.7459796285074806,"solr_score":16.314728036522865,"popularity_score":0.17838262021541595,"fallback_description":"Florence Resort Villa - Constantinople, Renai Township, Nantou, Taiwan, Asia"}],"error":{},"spellcheck":""}
+

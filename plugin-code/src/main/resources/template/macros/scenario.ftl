@@ -81,7 +81,8 @@ limitations under the License.
                                                         href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a></span>
                                                 </td>
                                                 <td class="text-left">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html">${element.name?html}</a>
+                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
+                                                       style="word-break: break-all">${element.name?html}</a>
                                                 </td>
                                                 <td class="text-right small"
                                                     data-order="${element.totalDuration}">

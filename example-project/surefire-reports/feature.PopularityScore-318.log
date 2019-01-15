@@ -1,0 +1,19 @@
+17:10:36.656 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=zh-Hant-TW&p=tw&q=%E6%9D%B1%E4%BA%AC&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:36.776 response time in milliseconds: 119,53
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:36 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":71462,"ns":200,"t":"東京","d":"東京, 東京都, 關東, 日本, 亞洲","score":0.9845972174246,"solr_score":2.269088864326477,"popularity_score":0.9486573934555054,"fallback_description":"Tokyo, Prefecture Tokyo, Kanto, Japan, Asia"}],"error":{},"spellcheck":""}
+

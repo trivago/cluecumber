@@ -1,0 +1,19 @@
+17:10:11.198 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=de&p=de&q=K%C3%B6&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:11.265 response time in milliseconds: 66,12
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:11 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 30
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":6639,"ns":200,"t":"Köln","d":"Köln, Nordrhein-Westfalen, Deutschland, Europa","score":0.9499316851270898,"solr_score":0.9999999403953552,"popularity_score":0.9165528416633606,"fallback_description":"Cologne, North Rhine-Westphalia, Germany, Europe"}],"error":{},"spellcheck":""}
+

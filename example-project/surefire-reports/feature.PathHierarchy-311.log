@@ -1,0 +1,19 @@
+17:10:38.060 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=vi&p=vn&q=Ch%C3%A2u+%C3%81+H%C3%A0+N%E1%BB%99i&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:38.419 response time in milliseconds: 358,65
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:38 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 320
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":68088,"ns":200,"t":"Hà Nội","d":"Hà Nội, Hà Nội, Việt Nam, Châu Á","score":0.957529294283386,"solr_score":2.5439162850379944,"popularity_score":0.8584310412406921,"fallback_description":"Hanoi, Hanoi, Vietnam, Asia"}],"error":{},"spellcheck":""}
+

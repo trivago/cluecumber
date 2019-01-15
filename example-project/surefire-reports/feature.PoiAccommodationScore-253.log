@@ -1,0 +1,19 @@
+17:10:34.164 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ja&p=jp&q=%E6%9D%B1%E4%BA%AC%E3%83%87%E3%82%A3%E3%82%BA%E3%83%8B%E3%83%BC%E3%82%BB%E3%83%AC%E3%83%96%E3%83%AC%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%9B%E3%83%86%E3%83%AB&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:34.231 response time in milliseconds: 66,78
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:34 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 22
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1049914,"ns":100,"t":"東京ディズニーセレブレーションホテル","d":"東京ディズニーセレブレーションホテル, 浦安市, 千葉, 関東地方, 国内, アジア","score":1.0,"solr_score":0.9999999403953552,"popularity_score":0.18076902627944946,"fallback_description":"Tokyo Disney Celebration Hotel, Urayasu, Präfektur Chiba, Kanto, Japan, Asia"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:40.835 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=el&p=gr&q=%CE%9B%CE%BF%CF%85%CF%84%CF%81%CE%AC+%CE%A0&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:40.928 response time in milliseconds: 92,28
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:40 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 27
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":7124698,"ns":500,"t":"Λουτρά Πόζαρ","d":"Λουτρά Πόζαρ, Λουτράκι, Κεντρική Μακεδονία, Ελλάδα, Ευρώπη","score":0.937372972960193,"solr_score":2.986856997013092,"popularity_score":0.8228046298027039,"fallback_description":"Pozar, Loutraki, Central Macedonia, Greece, Europe"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:34.664 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ar-145&p=shabaka&q=%D9%85%D9%86%D8%AA%D8%AC%D8%B9+%D8%B4%D8%A7%D8%B7%D8%A6+%D8%A8%D9%88%D8%B1%D8%AA%D9%88+%D8%A7%D9%84%D8%B3%D8%AE%D9%86%D8%A9&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:34.769 response time in milliseconds: 103,72
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:34 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 46
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1702433,"ns":100,"t":"منتجع شاطئ بورتو السخنة","d":"منتجع شاطئ بورتو السخنة, العين السخنة, محافظة الشرقية, مصر, أفريقيا","score":0.7551083622965563,"solr_score":7.2113988250494,"popularity_score":0.20911909639835358,"fallback_description":"Porto Sokhna Beach Resort & Spa, Ain El Sokhna, Ash Sharqiyah, Egypt, Africa"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:19.074 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-CL&p=CL&q=Buenos+Aires+Per%C3%BA&n=2
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:19.157 response time in milliseconds: 82,55
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:19 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 43
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1436130,"ns":500,"t":"Peru Beach","d":"Peru Beach, Acassuso, Buenos Aires Provincia, Argentina, Centro- y Sudamérica","score":0.7946585480072401,"solr_score":3.524770438671112,"popularity_score":0.3422847390174866,"fallback_description":"Peru Beach, Acassuso, Buenos Aires Province, Argentina, Central and South America"},{"cid":73256,"ns":200,"t":"Buenos Aires","d":"Buenos Aires, Buenos Aires Provincia, Argentina, Centro- y Sudamérica","score":0.7480366389270399,"solr_score":2.4230304956436157,"popularity_score":0.8894537687301636,"fallback_description":"Buenos Aires City, Buenos Aires Province, Argentina, Central and South America"}],"error":{},"spellcheck":""}
+

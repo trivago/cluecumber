@@ -1,0 +1,19 @@
+17:10:27.298 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=es-MX&p=mx&q=Sevilla+Esp&n=5
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:27.388 response time in milliseconds: 89,12
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:27 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":4262512,"ns":100,"t":"5Lujo Esp.","d":"5Lujo Esp., El Cairo, El Cairo, Egipto, África","score":0.6929999881982803,"solr_score":2.660316228866577,"popularity_score":0.0,"fallback_description":"5Lujo Esp., Cairo, Al Qahirah, Egypt, Africa"},{"cid":8933504,"ns":100,"t":"Gilson Esp","d":"Gilson Esp, Río de Janeiro, Río de Janeiro, Brasil, Centro- y Sudamérica","score":0.6929999881982803,"solr_score":2.660316228866577,"popularity_score":0.0,"fallback_description":"Gilson Esp, Rio de Janeiro, Rio de Janeiro, Brazil, Central and South America"},{"cid":8951654,"ns":100,"t":"Silvia Esp","d":"Silvia Esp, Buenos Aires, Buenos Aires Provincia, Argentina, Centro- y Sudamérica","score":0.6929999881982803,"solr_score":2.660316228866577,"popularity_score":0.0,"fallback_description":"Silvia Esp, Buenos Aires City, Buenos Aires Province, Argentina, Central and South America"},{"cid":31951,"ns":200,"t":"Sevilla","d":"Sevilla, Chihuahua, México, Centro- y Sudamérica","score":0.5798394287540211,"solr_score":1.564307451248169,"popularity_score":0.5607616901397705,"fallback_description":"Delicias, Chihuahua, Mexico, Central and South America"},{"cid":13764,"ns":200,"t":"Sevilla","d":"Sevilla, Andalucía, España, Europa","score":0.5769691139596392,"solr_score":1.5643072724342346,"popularity_score":0.5511941313743591,"fallback_description":"Seville, Andalusia, Spain, Europe"}],"error":{},"spellcheck":""}
+

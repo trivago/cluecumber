@@ -1,0 +1,19 @@
+17:10:25.403 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=en-US&p=US&q=Las+vegas+S&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:25.492 response time in milliseconds: 88,79
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:25 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 37
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":791341,"ns":500,"t":"Las Vegas Strip","d":"Las Vegas Strip, Las Vegas, Nevada, USA, North America","score":0.9449808065212955,"solr_score":3.715474486351013,"popularity_score":0.9633780717849731,"fallback_description":"Las Vegas Strip, Las Vegas, Nevada, USA, North America"}],"error":{},"spellcheck":""}
+

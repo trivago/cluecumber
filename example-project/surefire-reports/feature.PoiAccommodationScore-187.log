@@ -1,0 +1,19 @@
+17:10:29.662 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=pl&p=pl&q=Pla%C5%BCa+Po&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:29.757 response time in milliseconds: 94,73
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:29 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 35
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":826956,"ns":500,"t":"Plaża Pobierowo","d":"Plaża Pobierowo, Rewal, zachodniopomorskie, Polska, Europa","score":0.9043605641071227,"solr_score":2.5437241196632385,"popularity_score":0.7116517424583435,"fallback_description":"Plaża Pobierowo, Rewal, Western Pommerania, Poland, Europe"}],"error":{},"spellcheck":""}
+

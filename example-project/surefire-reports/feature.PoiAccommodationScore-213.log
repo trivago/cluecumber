@@ -1,0 +1,19 @@
+17:10:31.530 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ar-AE&p=AE&q=%D8%B4%D8%A7%D8%B7%D8%A6+%D8%AC%D9%85&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:31.632 response time in milliseconds: 101,09
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:31 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 42
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1315846,"ns":500,"t":"شاطئ جميرا","d":"شاطئ جميرا, دبي, إمارة دبي, الإمارات العربية المتحدة, آسيا","score":0.8199596541313952,"solr_score":2.296531081199646,"popularity_score":0.7465454339981079,"fallback_description":"Jumeirah Beach, Dubai, Dubai, United Arab Emirates, Asia"}],"error":{},"spellcheck":""}
+

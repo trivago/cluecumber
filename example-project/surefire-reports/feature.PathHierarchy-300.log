@@ -1,0 +1,19 @@
+17:10:37.100 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ar-145&p=shabaka&q=%D9%85%D8%B5%D8%B1+%D8%A7%D9%84%D8%BA%D8%B1%D8%AF%D9%82%D8%A9&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:37.174 response time in milliseconds: 73,84
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:37 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 37
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":15701,"ns":200,"t":"الغردقة","d":"الغردقة, محافظة البحر الأحمر, مصر, أفريقيا","score":0.9974834837997344,"solr_score":2.989131987094879,"popularity_score":0.991611659526825,"fallback_description":"Hurghada, Red Sea Governorate, Egypt, Africa"}],"error":{},"spellcheck":""}
+

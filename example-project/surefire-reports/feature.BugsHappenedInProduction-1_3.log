@@ -1,0 +1,19 @@
+17:10:05.393 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=tr&p=tk&q=%C4%B0znik&n=6
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:05.468 response time in milliseconds: 70,82
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:05 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 10
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":390196,"ns":200,"t":"İznik","d":"İznik, Bursa Çevresi, Türkiye, Avrupa","score":1.0,"solr_score":1.0,"popularity_score":0.0,"fallback_description":"İznik, Bursa Province, Turkey, Europe"},{"cid":2500612,"ns":100,"t":"İznik","d":"İznik, İznik, Bursa Çevresi, Türkiye, Avrupa","score":1.0,"solr_score":1.0,"popularity_score":0.0,"fallback_description":"Iznik, İznik, Bursa Province, Turkey, Europe"},{"cid":4969550,"ns":100,"t":"Iznik Askania","d":"Iznik Askania, Bursa, Bursa Çevresi, Türkiye, Avrupa","score":1.0,"solr_score":1.0,"popularity_score":0.0,"fallback_description":"Iznik Askania, Bursa, Bursa Province, Turkey, Europe"},{"cid":6459004,"ns":100,"t":"Iznik Otel","d":"Iznik Otel, Bursa, Bursa Çevresi, Türkiye, Avrupa","score":1.0,"solr_score":1.0,"popularity_score":0.0,"fallback_description":"Iznik Otel, Bursa, Bursa Province, Turkey, Europe"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:05.640 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=ru&p=ru&q=%D0%BE%D1%80%D1%80%D1%80%D1%80%D1%82%D1%80%D0%B3%D1%88%D0%BB%D0%B4%D0%B4%D0%BB%D1%80%D0%BF%D1%86%D1%8B%D0%B2%D0%B2%D1%80%D0%BF%D1%80%D1%80%D1%80%D0%B8%D1%80%D0%BE%D1%82%D1%8C%D0%B4%D0%B4%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%B4%D0%B4%D0%BE%D1%80%D1%80%D1%80%D1%80%D1%82%D1%80%D0%B3%D1%88%D0%BB%D0%B4%D0%B4%D0%BB%D1%80%D0%BF%D1%86%D1%8B%D0%B2%D0%B2%D1%80%D0%BF%D1%80%D1%80%D1%80%D0%B8%D1%80%D0%BE%D1%82%D1%8C%D0%B4%D0%B4%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%BB%D0%B4%D0%B4%D0%B4%D0%B6%D1%8D%D0%BB%D0%BE%D0%BB%D0%B4%D0%B6%D0%BE%D0%BE%D0%BE%D0%BE%D1%80%D1%80%D1%80%D1%80&n=6
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:05.739 response time in milliseconds: 97,56
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:05 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 61
+1 < x-trv-version: ios_2_9_0
+{"result":[],"error":{},"spellcheck":""}
+

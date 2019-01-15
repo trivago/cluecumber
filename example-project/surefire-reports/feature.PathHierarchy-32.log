@@ -1,0 +1,19 @@
+17:10:13.644 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=el&p=gr&q=%CE%A3%CE%B1%CE%BD%CF%84%CE%BF%CF%81%CE%AF%CE%BD%CE%B7+%CE%9D%CF%8C%CF%84%CE%B9%CE%BF+%CE%91%CE%B9%CE%B3%CE%B1%CE%AF%CE%BF&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:13.761 response time in milliseconds: 115,37
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:13 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 47
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":389397,"ns":200,"t":"Σαντορίνη","d":"Σαντορίνη, Νότιο Αιγαίο, Ελλάδα, Ευρώπη","score":0.9797312966875751,"solr_score":3.8712332248687744,"popularity_score":0.9324376583099365,"fallback_description":"Santorini Island, South Aegean, Greece, Europe"}],"error":{},"spellcheck":""}
+

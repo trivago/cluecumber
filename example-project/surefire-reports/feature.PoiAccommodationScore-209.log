@@ -1,0 +1,19 @@
+17:10:31.268 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=he&p=il&q=%D7%9E%D7%9C%D7%95%D7%9F+%D7%91%D7%A8%D7%90%D7%A9%D7%99%D7%AA&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:31.334 response time in milliseconds: 65,38
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:31 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 30
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":1838487,"ns":100,"t":"מלון בראשית","d":"מלון בראשית, מצפה רמון, דרום ישראל, ישראל, אסיה","score":0.7459560663732321,"solr_score":5.586044743657112,"popularity_score":0.1783032864332199,"fallback_description":"Beresheet  By Isrotel Exclusive Collection, Mitzpe Ramon, Southern District, Israel, Asia"}],"error":{},"spellcheck":""}
+

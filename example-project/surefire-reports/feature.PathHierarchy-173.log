@@ -1,0 +1,19 @@
+17:10:26.015 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=fr-BE&p=be&q=Barcelona+Br%C3%A9sil&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:26.111 response time in milliseconds: 95,76
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:25 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 45
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":115756,"ns":200,"t":"Barcelona","d":"Barcelona, Rio Grande do Norte, Brésil, Amérique Centrale et du Sud","score":0.699999988079071,"solr_score":2.3670856952667236,"popularity_score":0.0,"fallback_description":"Barcelona, Rio Grande do Norte, Brazil, Central and South America"}],"error":{},"spellcheck":""}
+

@@ -1,0 +1,19 @@
+17:10:39.424 request:
+1 > GET http://suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud/suggest?l=fi&p=fi&q=Eden+Nokia&n=1
+1 > Accept-Encoding: gzip,deflate
+1 > Connection: Keep-Alive
+1 > Host: suggestions.user-profiling.stage.europe-west4.nsp.trv.cloud
+1 > User-Agent: Apache-HttpClient/4.5.5 (Java/1.8.0_192)
+
+17:10:39.507 response time in milliseconds: 82,67
+1 < 200
+1 < accept: application/vnd.trivago.mobile.hal+json;version=2
+1 < access-control-allow-origin: *
+1 < content-type: application/json;charset=UTF-8
+1 < date: Tue, 15 Jan 2019 16:10:39 GMT
+1 < server: envoy
+1 < transfer-encoding: chunked
+1 < x-envoy-upstream-service-time: 36
+1 < x-trv-version: ios_2_9_0
+{"result":[{"cid":104370,"ns":100,"t":"Scandic Eden Nokia","d":"Scandic Eden Nokia, Nokia, Länsi-Suomi, Suomi, Eurooppa","score":0.7446229912737211,"solr_score":3.956419423222542,"popularity_score":0.1738148182630539,"fallback_description":"Scandic Eden Nokia, Nokia, Western Finland, Finland, Europe"}],"error":{},"spellcheck":""}
+
