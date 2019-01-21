@@ -33,9 +33,8 @@ limitations under the License.
             "pageLength": 25
         });
 
-        $('.collapse').on('show.bs.collapse', function (e) {
-
-            $(e.target).find("iframe").each(function(index, iframe) {
+        $('.collapse').on('shown.bs.collapse', function (e) {
+            $(e.target).find("iframe").each(function (index, iframe) {
                 resizeIframe(iframe);
             })
         });
