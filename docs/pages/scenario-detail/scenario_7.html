@@ -20,9 +20,9 @@
   <meta charset="utf-8"> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin version 1.6.3 - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin version 1.6.3"> 
-  <title>Scenario Details - 2019/01/08 11:58:32</title> 
+  <meta name="description" content="Cluecumber Report Plugin version 1.6.5 - Scenario Details"> 
+  <meta name="author" content="Cluecumber Report Plugin version 1.6.5"> 
+  <title>Scenario Details - 2019/01/21 17:22:03</title> 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber_custom.css"> 
@@ -47,9 +47,8 @@
             "pageLength": 25
         });
 
-        $('.collapse').on('show.bs.collapse', function (e) {
-
-            $(e.target).find("iframe").each(function(index, iframe) {
+        $('.collapse').on('shown.bs.collapse', function (e) {
+            $(e.target).find("iframe").each(function (index, iframe) {
                 resizeIframe(iframe);
             })
         });
@@ -173,7 +172,7 @@
      <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
      <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
     </ul> 
-    <span class="text-light">2019/01/08 11:58:32</span> 
+    <span class="text-light">2019/01/21 17:22:03</span> 
    </div> 
   </nav> 
   <main role="main" class="container"> 
@@ -292,7 +291,7 @@
   </main> 
   <footer class="footer navbar-dark bg-dark"> 
    <div class="container-fluid"> 
-    <span>Cluecumber Report Plugin version 1.6.3 - 2019/01/08 11:58:32.</span> 
+    <span>Cluecumber Report Plugin version 1.6.5 - 2019/01/21 17:22:03.</span> 
    </div> 
   </footer>   
  </body>

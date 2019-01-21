@@ -20,9 +20,9 @@
   <meta charset="utf-8"> 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin version 1.6.3 - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin version 1.6.3"> 
-  <title>Scenario Details - 2019/01/08 11:58:32</title> 
+  <meta name="description" content="Cluecumber Report Plugin version 1.6.5 - Scenario Details"> 
+  <meta name="author" content="Cluecumber Report Plugin version 1.6.5"> 
+  <title>Scenario Details - 2019/01/21 17:22:03</title> 
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
   <link rel="stylesheet" href="css/cluecumber_custom.css"> 
@@ -47,9 +47,8 @@
             "pageLength": 25
         });
 
-        $('.collapse').on('show.bs.collapse', function (e) {
-
-            $(e.target).find("iframe").each(function(index, iframe) {
+        $('.collapse').on('shown.bs.collapse', function (e) {
+            $(e.target).find("iframe").each(function (index, iframe) {
                 resizeIframe(iframe);
             })
         });
@@ -66,82 +65,16 @@
             var chart = new Chart(ctx, eval({
   "data": {
     "labels": [
-      "Before 1",
       "Step 1",
-      "Step 2",
-      "Step 3",
-      "Step 4",
-      "Step 5",
-      "Step 6",
-      "Step 7",
-      "Step 8",
-      "Step 9",
-      "Step 10",
-      "Step 11",
-      "Step 12",
-      "Step 13",
-      "Step 14",
-      "Step 15",
-      "Step 16",
-      "Step 17",
-      "Step 18",
-      "Step 19",
-      "Step 20",
-      "Step 21",
-      "Step 22",
-      "After 1"
+      "Step 2"
     ],
     "datasets": [
       {
         "data": [
-          1178,
-          3120,
           0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2226
+          0
         ],
         "backgroundColor": [
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
           "rgba(40, 167, 69, 1.000)",
           "rgba(40, 167, 69, 1.000)"
         ],
@@ -151,53 +84,9 @@
       {
         "data": [
           0,
-          0,
-          12793,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ],
         "backgroundColor": [
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
           "rgba(220, 53, 69, 1.000)",
           "rgba(220, 53, 69, 1.000)"
         ],
@@ -206,54 +95,10 @@
       },
       {
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          40,
+          140
         ],
         "backgroundColor": [
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
           "rgba(255, 193, 7, 1.000)",
           "rgba(255, 193, 7, 1.000)"
         ],
@@ -334,13 +179,13 @@
      <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
      <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
     </ul> 
-    <span class="text-light">2019/01/08 11:58:32</span> 
+    <span class="text-light">2019/01/21 17:22:03</span> 
    </div> 
   </nav> 
   <main role="main" class="container"> 
    <div class="cluecumber-template"> 
     <div class="pb-2 mt-4 mb-2 border-bottom"> 
-     <h3>Scenario 'Check DummyUrl'</h3> 
+     <h3>Scenario 'This is a scenario with skipped steps'</h3> 
     </div> 
     <div class="row"> 
      <div class="col-sm-8  h-auto"> 
@@ -362,41 +207,16 @@
        </div> 
        <div class="card-body"> 
         <ul class="list-group list-group-flush"> 
-         <li class="list-group-item">22 Step(s)</li> 
-         <li class="list-group-item"> 1 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 1 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 20 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> </li> 
-         <li class="list-group-item">Duration: 0m 19s 317ms</li> 
-         <li class="list-group-item"> <a href="pages/tag-scenarios/tag_Affiliates.html">@Affiliates</a> </li> 
+         <li class="list-group-item">2 Step(s)</li> 
+         <li class="list-group-item"> 0 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 0 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 2 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> </li> 
+         <li class="list-group-item">Duration: 0m 00s 181ms</li> 
+         <li class="list-group-item"> </li> 
         </ul> 
-        <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse" aria-expanded="true" data-target=".scenarioHook">Before/After Hooks </button> 
        </div> 
       </div> 
      </div> 
     </div> 
     <ul class="list-group list-group-flush"> 
-     <div class="col-sm-12 scenarioHook collapse h-auto"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Before Hooks
-       </div> 
-       <div class="card-body"> 
-        <li class="list-group-item"> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           1.
-          </div> 
-          <div class="col-8 text-left"> 
-           <i>Steps.setup()</i> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 01s 178ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-          </div> 
-         </div> </li> 
-       </div> 
-      </div> 
-     </div> 
      <div class="col-sm-12  h-auto"> 
       <div class="card h-100"> 
        <div class="card-header">
@@ -404,471 +224,34 @@
        </div> 
        <div class="card-body"> 
         <li class="list-group-item"> 
-         <div class="row row_passed"> 
+         <div class="row row_skipped"> 
           <div class="col-1 text-left">
            1.
           </div> 
           <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.openLoginPage()"> Given Open Dummy Site </span> 
+           <span data-toggle="tooltip" title="location"> Given this step is skipped </span> 
           </div> 
           <div class="col-2 text-left small">
-            0m 03s 120ms 
+            0m 00s 040ms 
           </div> 
           <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
+           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
           </div> 
          </div> 
-         <div class="row row_failed"> 
+         <div class="row row_skipped"> 
           <div class="col-1 text-left">
            2.
           </div> 
           <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.logInAccountWith(String,String>)"> Then Log in to your account with </span> 
+           <span data-toggle="tooltip" title="NativeConstructorAccessorImpl.java:-2"> And this step is skipped </span> 
           </div> 
           <div class="col-2 text-left small">
-            0m 12s 793ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"></i> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioDataTable"> 
-           <div class="w-100 text-left border border-dark table-responsive"> 
-            <table class="table table-hover small table-striped text-left pb-0"> 
-             <tbody>
-              <tr> 
-               <td>Username</td> 
-               <td>test</td> 
-              </tr> 
-              <tr> 
-               <td>Password</td> 
-               <td>123456</td> 
-              </tr> 
-             </tbody>
-            </table> 
-           </div> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioErrorMessage"> 
-           <div class="w-100 text-left border border-danger"> 
-            <pre class="text-danger small p-2">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"id","selector":"desktop_nav_link_logout"}
-  (Session info: chrome=63.0.3239.132)
-  (Driver info: chromedriver=2.34.522913 (36222509aa6e819815938cbf2709b4849735537c),platform=Linux 4.13.0-26-generic x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: <a href="http://seleniumhq.org/exceptions/no_such_element.html" target="_blank">http://seleniumhq.org/exceptions/no_such_element.html</a>
-Build info: version: '3.8.1', revision: '6e95a6684b', time: '2017-12-01T18:33:54.468Z'
-System info: host: 'intel3-01', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.13.0-26-generic', java.version: '1.8.0_151'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptSslCerts: true, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.34.522913 (36222509aa6e81..., userDataDir: /tmp/.org.chromium.Chromium...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: accept, unhandledPromptBehavior: accept, version: 63.0.3239.132, webStorageEnabled: true}
-Session ID: f67b5098b72c8041926198c3705e02c1
-*** Element info: {Using=id, value=desktop_nav_link_logout}
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:417)
-	at org.openqa.selenium.By$ById.findElement(By.java:218)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at com.sun.proxy.$Proxy21.getText(Unknown Source)
-	at com.Dummytesting.pagesobjects.DummyMenu.isPageOpened(DummyMenu.kt:35)
-	at com.Dummytesting.pagesobjects.LoginPage.isPageOpened(LoginPage.kt:36)
-	at com.Dummytesting.Steps.logInAccountWith(Steps.kt:91)
-	at ✽.Log in to your account with(parallel/features/AffiliateUrl_scenario001_run001_IT.feature:7)
-</pre> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           3.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.go_to_services_page()"> When Go to Services Page </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           4.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.service_open_service_something(String)"> Then Service Open Service "<strong>P1</strong>" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           5.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.create_a_widget_on_local_with_name_something_with_affiliate_id_as_something(String,String)"> Then Create a widget on local with name "<strong>AffiliateWidget</strong>" with Dummyid as "<strong>2366</strong>" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           6.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.open_widget_with_name_something(String)"> Then open widget with name "<strong>AffiliateWidget</strong>" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           7.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_go_something_months_later_with_kind_of_service_as_something(String,String)"> And Widget go "<strong>1</strong>" Months Later with kind of service as "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           8.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.check_affiliate_in_iframe_id_as_something_and_kind_of_service_as_something(String,String)"> Then Check Dummy in Iframe id as "<strong>2366</strong>" and kind of service as "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           9.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_select_day_as_something_kind_of_service_as_something(String,String)"> And Widget Select Day as "<strong>13</strong>" kind of service as "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           10.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_select_hour_in_position_something_kind_of_service_as_something(String,String)"> And Widget Select Hour "<strong>900</strong>" kind of service as "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           11.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_input_ticket_kind_services_as_something_position_something_and_value_something(String,String,String)"> And Widget Input Ticket kind services as "tour" position "<strong><strong>1</strong></strong>" and value "1" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           12.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_click_next_button_service_flow_something(String)"> Then Widget click next button service flow "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           13.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_step2_input_full_name_as_something_service_flow_something(String,String)"> And Widget Step2 Input Full Name as "<strong>TestAffiliate</strong>" service flow "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           14.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_step2_input_email_as_something_service_flow_something(String,String)"> And Widget Step2 Input Email as "<strong>someone@test.com</strong>" service flow "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           15.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.widget_step2_click_make_dummy_service_flow_something(String)"> Then Widget Step2 click make <strong>dummy</strong> service flow "tour" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           16.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.success_page_click_go_back()"> Then Success Page click go back </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           17.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.openLoginPage()"> Given Open Dummy Site </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           18.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.logInAccountWith(String,String>)"> Then Log in to your account with </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioDataTable"> 
-           <div class="w-100 text-left border border-dark table-responsive"> 
-            <table class="table table-hover small table-striped text-left pb-0"> 
-             <tbody>
-              <tr> 
-               <td>Username</td> 
-               <td>test</td> 
-              </tr> 
-              <tr> 
-               <td>Password</td> 
-               <td>123456</td> 
-              </tr> 
-             </tbody>
-            </table> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           19.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.go_to_dummy_page()"> When Go to dummys Page </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-          <div class="row w-100 p-3 m-0 scenarioDataTable"> 
-           <div class="w-100 text-left border border-dark table-responsive"> 
-            <table class="table table-hover small table-striped text-left pb-0"> 
-             <tbody>
-              <tr> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-               <td>Job Number</td> 
-               <td>Job Name</td> 
-               <td>Expected Duration</td> 
-              </tr> 
-              <tr> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-               <td>XXXXX</td> 
-               <td>One word, two words, three words</td> 
-               <td>10</td> 
-              </tr> 
-             </tbody>
-            </table> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           20.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.dummys_search_buyer()"> Then dummys Search Client </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           21.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.dummys_click_search_button()"> And dummys Click Search Button </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
-          </div> 
-         </div> 
-         <div class="row row_skipped"> 
-          <div class="col-1 text-left">
-           22.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="Steps.dummys_check_agent_name_in_dummy_position_something_as_something(String,String)"> And dummys Check Agent Name in dummy position "<strong>1</strong>" as "<strong>affiliate</strong>" </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 000ms 
+            0m 00s 140ms 
           </div> 
           <div class="col-1 text-right"> 
            <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"></i> 
           </div> 
          </div> </li> 
-       </div> 
-      </div> 
-     </div> 
-     <div class="scenarioHook collapse"> 
-      <div class="col-sm-12  h-auto"> 
-       <div class="card h-100"> 
-        <div class="card-header">
-         After Hooks
-        </div> 
-        <div class="card-body"> 
-         <li class="list-group-item"> 
-          <div class="row row_passed"> 
-           <div class="col-1 text-left">
-            1.
-           </div> 
-           <div class="col-8 text-left"> 
-            <i>Steps.tearDown(Scenario)</i> 
-           </div> 
-           <div class="col-2 text-left small">
-             0m 02s 226ms 
-           </div> 
-           <div class="col-1 text-right"> 
-            <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"></i> 
-           </div> 
-          </div> </li> 
-        </div> 
        </div> 
       </div> 
      </div> 
@@ -877,7 +260,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
   </main> 
   <footer class="footer navbar-dark bg-dark"> 
    <div class="container-fluid"> 
-    <span>Cluecumber Report Plugin version 1.6.3 - 2019/01/08 11:58:32.</span> 
+    <span>Cluecumber Report Plugin version 1.6.5 - 2019/01/21 17:22:03.</span> 
    </div> 
   </footer>   
  </body>
