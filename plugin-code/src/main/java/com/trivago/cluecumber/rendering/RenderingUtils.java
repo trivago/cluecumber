@@ -47,7 +47,7 @@ public class RenderingUtils {
      * @return The millisecond representation.
      */
     public static long convertMicrosecondsToMilliseconds(final long microseconds) {
-        return Duration.ofMillis(microseconds / MICROSECOND_FACTOR).toMillis();
+        return microseconds / MICROSECOND_FACTOR;
     }
 
     /**

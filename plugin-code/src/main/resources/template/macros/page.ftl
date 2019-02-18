@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#macro page base links headline subheadline>
+<#macro page base links headline subheadline preheadline preheadlineLink>
     <!DOCTYPE html>
     <!--
     Copyright 2018 trivago N.V.
@@ -39,21 +39,28 @@ limitations under the License.
         <#include "../snippets/js.ftl">
     </head>
     <body>
-        <@navigation.build links=links />
-        <main role="main" class="container">
-            <div class="cluecumber-template">
-                <div class="pb-2 mt-4 mb-2 border-bottom">
-                    <#if headline != "">
-                        <h3>${headline}</h3>
+    <@navigation.build links=links />
+    <main role="main" class="container">
+        <div class="cluecumber-template">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                <#if preheadline != "">
+                    <#if preheadlineLink != "">
+                        <h5><a href="${preheadlineLink}">${preheadline}</a></h5>
+                    <#else>
+                        <h5>${preheadline}</h5>
                     </#if>
-                    <#if subheadline != "">
-                        <h5>${subheadline}</h5>
-                    </#if>
-                </div>
-                <#nested>
+                </#if>
+                <#if headline != "">
+                    <h3>${headline}</h3>
+                </#if>
+                <#if subheadline != "">
+                    <h5>${subheadline}</h5>
+                </#if>
             </div>
-        </main>
-        <#include "../snippets/footer.ftl">
+            <#nested>
+        </div>
+    </main>
+    <#include "../snippets/footer.ftl">
     </body>
     </html>
 </#macro>

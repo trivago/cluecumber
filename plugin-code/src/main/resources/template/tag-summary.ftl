@@ -18,7 +18,14 @@ limitations under the License.
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base=".." links=["feature_summary", "scenario_sequence", "scenario_summary"] headline="All Tags" subheadline="">
+<@page.page
+base=".."
+links=["feature_summary", "scenario_sequence", "scenario_summary"]
+headline="All Tags"
+subheadline=""
+preheadline=""
+preheadlineLink="">
+
     <div class="row">
         <@page.card width="8" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
@@ -49,16 +56,16 @@ limitations under the License.
                 </tr>
                 </thead>
                 <tbody>
-                    <#list tagResultCounts as tag, tagResultCount>
+                <#list tagResultCounts as tag, tagResultCount>
                     <tr>
                         <td class="text-left"><a
-                                href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
+                                    href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
                         <td class="text-right">${tagResultCount.passed}</td>
                         <td class="text-right">${tagResultCount.failed}</td>
                         <td class="text-right">${tagResultCount.skipped}</td>
                     </tr>
-                    </#list>
+                </#list>
                 </tbody>
             </table>
         </@page.card>

@@ -37,13 +37,20 @@ limitations under the License.
     <#assign links = ["feature_summary", "tag_summary", "scenario_sequence"]>
 </#if>
 
-<@page.page base=base links=links headline=headline subheadline="">
+<@page.page
+base=base
+links=links
+headline=headline
+subheadline=""
+preheadline=""
+preheadlineLink="">
+
     <#if hasCustomParameters()>
         <div class="row">
             <@page.card width="12" title="" subtitle="" classes="">
                 <table class="table table-fit">
                     <tbody>
-                        <#list customParameters as customParameter>
+                    <#list customParameters as customParameter>
                         <tr>
                             <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
                             <td class="text-left wrap">
@@ -55,7 +62,7 @@ limitations under the License.
                                 </#if>
                             </td>
                         </tr>
-                        </#list>
+                    </#list>
                     </tbody>
                 </table>
             </@page.card>

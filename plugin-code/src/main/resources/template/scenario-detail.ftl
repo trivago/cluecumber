@@ -19,7 +19,14 @@ limitations under the License.
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base="../.." links=["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"] headline="Scenario '${element.name?html}'" subheadline="${element.description?html}">
+<@page.page
+base="../.."
+links=["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]
+headline="${element.name?html}"
+subheadline="${element.description?html}"
+preheadline="${element.featureName?html}"
+preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
+
     <div class="row">
         <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
             <@page.graph />
@@ -34,8 +41,8 @@ limitations under the License.
                 </li>
                 <li class="list-group-item">Duration: ${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
-                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
-                </#list>
+                        <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
+                    </#list>
                 </li>
             </ul>
             <#if element.hasHooks()>
@@ -75,9 +82,9 @@ limitations under the License.
                             <div class="col-1 text-right">
                                 <@common.status status=before.consolidatedStatusString/>
                             </div>
-                        <@scenario.errorMessage step=before/>
-                        <@scenario.output step=before/>
-                        <@scenario.attachments step=before/>
+                            <@scenario.errorMessage step=before/>
+                            <@scenario.output step=before/>
+                            <@scenario.attachments step=before/>
                         </div>
                     </#list>
                 </li>
@@ -143,27 +150,27 @@ limitations under the License.
 
         <#if (element.after?size > 0)>
             <div class="scenarioHook collapse">
-            <@page.card width="12" title="After Hooks" subtitle="" classes="">
-                <li class="list-group-item">
-                    <#list element.after as after>
-                        <div class="row row_${after.consolidatedStatusString}">
-                            <div class="col-1 text-left">${after?counter}.</div>
-                            <div class="col-8 text-left">
-                                <i>${after.glueMethodName}</i>
+                <@page.card width="12" title="After Hooks" subtitle="" classes="">
+                    <li class="list-group-item">
+                        <#list element.after as after>
+                            <div class="row row_${after.consolidatedStatusString}">
+                                <div class="col-1 text-left">${after?counter}.</div>
+                                <div class="col-8 text-left">
+                                    <i>${after.glueMethodName}</i>
+                                </div>
+                                <div class="col-2 text-left small">
+                                    ${after.result.returnDurationString()}
+                                </div>
+                                <div class="col-1 text-right">
+                                    <@common.status status=after.consolidatedStatusString/>
+                                </div>
+                                <@scenario.errorMessage step=after/>
+                                <@scenario.output step=after/>
+                                <@scenario.attachments step=after/>
                             </div>
-                            <div class="col-2 text-left small">
-                                ${after.result.returnDurationString()}
-                            </div>
-                            <div class="col-1 text-right">
-                                <@common.status status=after.consolidatedStatusString/>
-                            </div>
-                        <@scenario.errorMessage step=after/>
-                        <@scenario.output step=after/>
-                        <@scenario.attachments step=after/>
-                        </div>
-                    </#list>
-                </li>
-            </@page.card>
+                        </#list>
+                    </li>
+                </@page.card>
             </div>
         </#if>
     </ul>
