@@ -62,7 +62,7 @@ public class AllTagsPageCollectionTest {
     public void getTagResultsTest() {
         allTagsPageCollection = new AllTagsPageCollection(getTestReports());
         assertThat(allTagsPageCollection.getTotalNumberOfTags(), is(3));
-        assertThat(allTagsPageCollection.getTotalNumberOfFailedTags(), is(2));
+        assertThat(allTagsPageCollection.getTotalNumberOfFailedTags(), is(1));
         assertThat(allTagsPageCollection.getTotalNumberOfPassedTags(), is(1));
         assertThat(allTagsPageCollection.getTotalNumberOfSkippedTags(), is(1));
     }

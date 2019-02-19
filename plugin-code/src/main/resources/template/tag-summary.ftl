@@ -32,9 +32,10 @@ preheadlineLink="">
         </@page.card>
         <@page.card width="4" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${totalNumberOfTags} Tag(s)</li>
+                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
+                    ${totalNumberOfTaggedScenarios} Tagged Scenario(s)
+                </li>
                 <li class="list-group-item">
-                    Tagged Scenario(s):<br>
                     ${totalNumberOfPassedTags} <@common.status status="passed"/>
                     ${totalNumberOfFailedTags} <@common.status status="failed"/>
                     ${totalNumberOfSkippedTags} <@common.status status="skipped"/>

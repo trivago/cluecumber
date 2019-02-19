@@ -24,12 +24,16 @@ import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class AllTagsPageCollection extends SummaryPageCollection {
-    private Map<Tag, ResultCount> tagResultCounts;
+    private Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
+    private Set<Object> totalFailedTaggedScenarios = new HashSet<>();
+    private Set<Object> totalPassedTaggedScenarios = new HashSet<>();
+    private Set<Object> totalSkippedTaggedScenarios = new HashSet<>();
 
     public AllTagsPageCollection(List<Report> reports) {
         super(PluginSettings.TAG_SUMMARY_PAGE_NAME);
@@ -53,16 +57,20 @@ public class AllTagsPageCollection extends SummaryPageCollection {
         return tagResultCounts.size();
     }
 
+    public int getTotalNumberOfTaggedScenarios() {
+        return getTotalNumberOfPassedTags() + getTotalNumberOfFailedTags() + getTotalNumberOfSkippedTags();
+    }
+
     public int getTotalNumberOfPassedTags() {
-        return getNumberOfResultsWithStatus(tagResultCounts.values(), Status.PASSED);
+        return totalPassedTaggedScenarios.size();
     }
 
     public int getTotalNumberOfFailedTags() {
-        return getNumberOfResultsWithStatus(tagResultCounts.values(), Status.FAILED);
+        return totalFailedTaggedScenarios.size();
     }
 
     public int getTotalNumberOfSkippedTags() {
-        return getNumberOfResultsWithStatus(tagResultCounts.values(), Status.SKIPPED);
+        return totalSkippedTaggedScenarios.size();
     }
 
     /**
@@ -72,12 +80,23 @@ public class AllTagsPageCollection extends SummaryPageCollection {
      */
     private void calculateTagResultCounts(final List<Report> reports) {
         if (reports == null) return;
-        tagResultCounts = new HashMap<>();
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 for (Tag tag : element.getTags()) {
                     ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
+                    Status status = element.getStatus();
                     updateResultCount(tagResultCount, element.getStatus());
+                    switch (status) {
+                        case FAILED:
+                            totalFailedTaggedScenarios.add(element.getScenarioIndex());
+                            break;
+                        case PASSED:
+                            totalPassedTaggedScenarios.add(element.getScenarioIndex());
+                            break;
+                        case SKIPPED:
+                            totalSkippedTaggedScenarios.add(element.getScenarioIndex());
+                        default:
+                    }
                     tagResultCounts.put(tag, tagResultCount);
                 }
             }
