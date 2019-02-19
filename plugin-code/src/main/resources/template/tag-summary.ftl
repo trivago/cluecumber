@@ -31,7 +31,7 @@ preheadlineLink="">
             <@page.graph />
         </@page.card>
         <@page.card width="4" title="Tag Summary" subtitle="" classes="">
-            <ul class="list-group list-group-flush">
+            <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
                 <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
                     ${totalNumberOfTaggedScenarios} Tagged Scenario(s)
                 </li>
@@ -46,7 +46,7 @@ preheadlineLink="">
 
     <div class="row">
         <@page.card width="12" title="Available Tags" subtitle="" classes="">
-            <table id="tag_summary" class="table table-hover renderAsDataTable">
+            <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
                 <thead>
                 <tr>
                     <th>Tag</th>

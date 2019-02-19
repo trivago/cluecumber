@@ -66,7 +66,7 @@ limitations under the License.
 </#macro>
 
 <#macro card width title subtitle classes>
-    <div class="col-sm-${width} ${classes} h-auto">
+    <div class="col-sm-${width} ${classes} h-auto" data-cluecumber-item="card">
         <div class="card h-100">
             <#if title != "">
                 <div class="card-header">${title}</div>
@@ -82,7 +82,7 @@ limitations under the License.
 </#macro>
 
 <#macro graph>
-    <div id="canvas-holder" class="w-100 text-center">
+    <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart">
         <canvas id="chart-area" class="w-100"></canvas>
     </div>
 </#macro>

@@ -28,8 +28,8 @@ limitations under the License.
     (passedRequested && hasPassedScenarios()) ||
     allRequested
     >
-        <div class="row" id="card_${status}">
-            <div class="col-sm-12">
+        <div class="row" id="card_${status}" data-cluecumber-item="scenario-summary-table">
+            <div class=" col-sm-12">
                 <div class="card">
 
                     <#switch status>
@@ -63,38 +63,38 @@ limitations under the License.
                             </tr>
                             </thead>
                             <tbody>
-                                <#list reports as report>
-                                    <#assign tooltipText = "">
-                                    <#if report.description?has_content>
-                                        <#assign tooltipText = "${report.description} | ">
-                                    </#if>
-                                    <#assign tooltipText = "${tooltipText}${report.uri}">
+                            <#list reports as report>
+                                <#assign tooltipText = "">
+                                <#if report.description?has_content>
+                                    <#assign tooltipText = "${report.description} | ">
+                                </#if>
+                                <#assign tooltipText = "${tooltipText}${report.uri}">
 
-                                    <#list report.elements as element>
-                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                            <tr>
-                                                <#if allRequested>
-                                                    <td class="text-right">${element.scenarioIndex}</td>
-                                                </#if>
-                                                <td class="text-left"><span data-toggle="tooltip"
-                                                                            title="${tooltipText}"><a
-                                                        href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a></span>
-                                                </td>
-                                                <td class="text-left">
-                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
-                                                       style="word-break: break-all">${element.name?html}</a>
-                                                </td>
-                                                <td class="text-right small"
-                                                    data-order="${element.totalDuration}">
-                                                    <nobr>${element.returnTotalDurationString()}</nobr>
-                                                </td>
-                                                <#if allRequested>
-                                                    <td class="text-center"><@common.status status=element.status.statusString/></td>
-                                                </#if>
-                                            </tr>
-                                        </#if>
-                                    </#list>
+                                <#list report.elements as element>
+                                    <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
+                                        <tr>
+                                            <#if allRequested>
+                                                <td class="text-right">${element.scenarioIndex}</td>
+                                            </#if>
+                                            <td class="text-left"><span data-toggle="tooltip"
+                                                                        title="${tooltipText}"><a
+                                                            href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a></span>
+                                            </td>
+                                            <td class="text-left">
+                                                <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
+                                                   style="word-break: break-all">${element.name?html}</a>
+                                            </td>
+                                            <td class="text-right small"
+                                                data-order="${element.totalDuration}">
+                                                <nobr>${element.returnTotalDurationString()}</nobr>
+                                            </td>
+                                            <#if allRequested>
+                                                <td class="text-center"><@common.status status=element.status.statusString/></td>
+                                            </#if>
+                                        </tr>
+                                    </#if>
                                 </#list>
+                            </#list>
                             </tbody>
                         </table>
                     </div>

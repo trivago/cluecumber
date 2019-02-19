@@ -75,13 +75,13 @@ preheadlineLink="">
         </@page.card>
         <@page.card width="4" title="Scenario Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
                     ${totalNumberOfScenarios} Scenario(s):<br>
                     ${totalNumberOfPassedScenarios} <@common.status status="passed"/>
                     ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
                     ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
                 </li>
-                <li class="list-group-item">Duration: ${totalDurationString}</li>
+                <li class="list-group-item" data-cluecumber-item="total-scenario-duration">Duration: ${totalDurationString}</li>
             </ul>
         </@page.card>
     </div>
