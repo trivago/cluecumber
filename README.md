@@ -117,9 +117,13 @@ This can be done by running
 
 directly from the command line.
 
+You can also pass the properties directly on the command line, e.g.
+
+`mvn cluecumber-report:reporting -DsourceJsonReportDirectory=path_to_json_files -D...`
+
 ## Mandatory Configuration Parameters
 
-There are two mandatory parameters that have to be specified within the Maven POM ```configuration``` section:
+There are two mandatory parameters that have to be specified within the Maven POM ```configuration``` section or system properties:
 
 __Note:__ Typically, both properties point to directories inside the Maven ```target``` directory.
 
@@ -177,7 +181,7 @@ h3, h4 {
 }
 ```
 
-To use this files, specify it like so:
+To use this files, specify it like so in your pom file or as a system property:
 
 ```xml
 <customCss>custom/custom.css</customCss>

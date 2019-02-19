@@ -47,19 +47,19 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </ul>
             <#if element.hasHooks()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true"
+                        aria-expanded="true" data-cluecumber-item="before-after-hooks-button"
                         data-target=".scenarioHook">Before/After Hooks
                 </button>
             </#if>
             <#if element.hasStepHooks()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true"
+                        aria-expanded="true" data-cluecumber-item="step-hooks-button"
                         data-target=".stepHook">Step Hooks
                 </button>
             </#if>
             <#if element.hasDocStrings()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true"
+                        aria-expanded="true" data-cluecumber-item="doc-strings-button"
                         data-target=".scenarioDocstring">DocStrings
                 </button>
             </#if>
@@ -174,4 +174,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </div>
         </#if>
     </ul>
+    <script>
+        $(".btn-outline-secondary").click();
+    </script>
 </@page.page>
