@@ -169,11 +169,11 @@ The `customCSS` property can be used to define a custom CSS file that will be au
 If you have a custom CSS file called `custom/custom.css` in your project, you could use it to change the report's background and header colors:
 ```css
 body {
-    background-color: black;
+    background-color: dimgray;
 }
 
 h3, h4 {
-    color: white;
+    color: orange;
 }
 ```
 
@@ -186,6 +186,14 @@ To use this files, specify it like so:
 When generating the report, this file is automatically included as ```cluecumber_custom.css``` and applied on top of all other styles:
 
 ![Custom CSS](documentation/img/custom_css.png)
+
+Likewise, if you want to hide elements from the report, e.g. the total time on the start page, you can also add this to the custom css like so:
+
+```css
+[data-cluecumber-item="total-scenario-duration"] {
+    display: none;
+}
+```
 
 # Example project
 
