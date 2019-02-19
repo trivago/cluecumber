@@ -7,8 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [1.7.0] - UNRELEASET
+## [1.7.0] - UNRELEASED
 
+### Added
+
+* Feature name link is now shown on scenario detail pages
+
+### Fixed
+
+* Layout break on long scenario descriptions without spaces
+
+### Changed
+
+* Updated all js dependencies
 
 ## [1.6.5] - 2019-01-21
 
