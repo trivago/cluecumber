@@ -202,9 +202,9 @@ Likewise, if you want to hide elements from the report, e.g. the total time on t
 
 ### expandBeforeAfterHooks, expandStepHooks, expandDocStrings
 
-These options can be set to 'true' to expand or collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
+These options can be set to `true` to expand or collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
 
-If they are not set, they default to false meaning the report user has to use the buttons on a scenario detail page to expand those sections on demand.
+If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail page to expand those sections on demand.
 
 ```xml
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
