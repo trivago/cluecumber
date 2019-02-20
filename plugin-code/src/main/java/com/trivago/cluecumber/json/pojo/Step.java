@@ -58,7 +58,7 @@ public class Step extends ResultMatch {
     }
 
     public String returnNameWithArguments() {
-        String tmpName = name;
+        String tmpName = getName();
         List<Argument> arguments = getArguments();
         for (int i = arguments.size() - 1; i >= 0; i--) {
             String argument = arguments.get(i).getVal();

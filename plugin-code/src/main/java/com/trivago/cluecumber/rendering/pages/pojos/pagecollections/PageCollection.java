@@ -20,6 +20,9 @@ import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
 
 public class PageCollection {
     private final ReportDetails reportDetails;
+    private boolean expandBeforeAfterHooks;
+    private boolean expandStepHooks;
+    private boolean expandDocStrings;
 
     PageCollection(String pageName) {
         this.reportDetails = new ReportDetails(pageName);
@@ -28,4 +31,29 @@ public class PageCollection {
     public ReportDetails getReportDetails() {
         return reportDetails;
     }
+
+    public boolean isExpandBeforeAfterHooks() {
+        return expandBeforeAfterHooks;
+    }
+
+    public void setExpandBeforeAfterHooks(final boolean expandBeforeAfterHooks) {
+        this.expandBeforeAfterHooks = expandBeforeAfterHooks;
+    }
+
+    public boolean isExpandStepHooks() {
+        return expandStepHooks;
+    }
+
+    public void setExpandStepHooks(final boolean expandStepHooks) {
+        this.expandStepHooks = expandStepHooks;
+    }
+
+    public boolean isExpandDocStrings() {
+        return expandDocStrings;
+    }
+
+    public void setExpandDocStrings(final boolean expandDocStrings) {
+        this.expandDocStrings = expandDocStrings;
+    }
+
 }

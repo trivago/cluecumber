@@ -2,6 +2,10 @@ body {
     background-color: black;
 }
 
-h3, h4 {
+h3, h4, h5 {
     color: white;
+}
+
+[data-cluecumber-item="total-scenario-duration"] {
+    display: none;
 }

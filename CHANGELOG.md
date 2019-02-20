@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.7.0] - 2019-02-20
+
+### Added
+
+* Feature name link is now shown on scenario detail pages (#125)
+* three new options to expand or collapse hooks and docstrings on scenario detail pages (default: false) (#117)
+```xml
+    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
+    <expandStepHooks>true|false</expandStepHooks>
+    <expandDocStrings>true|false</expandDocStrings>
+```
+
+* Added data attributes for common elements (`data-cluecumber-item`) to simplify custom css configurations (related to #129)
+
+### Fixed
+
+* `All Tags` page shows the correct number of tagged results (#124)
+* Layout break on long scenario descriptions without spaces
+
+### Changed
+
+* Updated all js dependencies
+* Small design changes for expansion buttons to make them less prominent
+
 ## [1.6.5] - 2019-01-21
 
 ### Fixed
@@ -329,6 +353,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0
 [1.6.5]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.5
 [1.6.4]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.4
 [1.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.3

@@ -36,4 +36,8 @@ public class CluecumberLogger {
     public void error(final CharSequence charSequence) {
         mojoLogger.error(charSequence);
     }
+
+    public void logSeparator() {
+        info("------------------------------------------------------------------------");
+    }
 }

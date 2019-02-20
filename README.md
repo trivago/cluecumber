@@ -117,9 +117,13 @@ This can be done by running
 
 directly from the command line.
 
+You can also pass the properties directly on the command line, e.g.
+
+`mvn cluecumber-report:reporting -DsourceJsonReportDirectory=path_to_json_files -D...`
+
 ## Mandatory Configuration Parameters
 
-There are two mandatory parameters that have to be specified within the Maven POM ```configuration``` section:
+There are two mandatory parameters that have to be specified within the Maven POM ```configuration``` section or system properties:
 
 __Note:__ Typically, both properties point to directories inside the Maven ```target``` directory.
 
@@ -169,15 +173,15 @@ The `customCSS` property can be used to define a custom CSS file that will be au
 If you have a custom CSS file called `custom/custom.css` in your project, you could use it to change the report's background and header colors:
 ```css
 body {
-    background-color: black;
+    background-color: dimgray;
 }
 
 h3, h4 {
-    color: white;
+    color: orange;
 }
 ```
 
-To use this files, specify it like so:
+To use this files, specify it like so in your pom file or as a system property:
 
 ```xml
 <customCss>custom/custom.css</customCss>
@@ -186,6 +190,26 @@ To use this files, specify it like so:
 When generating the report, this file is automatically included as ```cluecumber_custom.css``` and applied on top of all other styles:
 
 ![Custom CSS](documentation/img/custom_css.png)
+
+Likewise, if you want to hide elements from the report, e.g. the total time on the start page, you can also add this to the custom css like so:
+
+```css
+[data-cluecumber-item="total-scenario-duration"] {
+    display: none;
+}
+```
+
+### expandBeforeAfterHooks, expandStepHooks, expandDocStrings
+
+These options can be set to 'true' to expand or collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
+
+If they are not set, they default to false meaning the report user has to use the buttons on a scenario detail page to expand those sections on demand.
+
+```xml
+    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
+    <expandStepHooks>true|false</expandStepHooks>
+    <expandDocStrings>true|false</expandDocStrings>
+```
 
 # Example project
 

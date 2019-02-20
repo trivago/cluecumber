@@ -32,7 +32,7 @@ public class Tag {
     }
 
     public String getUrlFriendlyName() {
-        return RenderingUtils.escapeHTML(name).replace("@", "");
+        return RenderingUtils.escapeHTML(getName()).replace("@", "");
     }
 
     @Override

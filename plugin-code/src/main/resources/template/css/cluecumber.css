@@ -19,7 +19,7 @@ html {
     min-height: 100%;
 }
 
-h2, h3 {
+h2, h3, h4, h5 {
     word-break: break-all;
 }
 
@@ -171,6 +171,16 @@ iframe {
 
 button.btn {
     white-space: inherit;
+}
+
+.btn.focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-outline-secondary, .btn-outline-secondary.focus, .btn-outline-secondary:focus {
+    border: none;
+    box-shadow: none;
 }
 
 button.btn.collapsed:before {

@@ -25,6 +25,7 @@ import java.util.List;
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
+    private String featureName = "";
     private String name = "";
     private String description = "";
     private String id = "";
@@ -34,6 +35,7 @@ public class Element {
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
 
+    private int featureIndex = 0;
     private transient int scenarioIndex = 0;
 
     public List<Tag> getTags() {
@@ -244,7 +246,7 @@ public class Element {
     }
 
     public boolean hasHooks() {
-        if (getBefore().size() > 0 || getAfter().size() > 0){
+        if (getBefore().size() > 0 || getAfter().size() > 0) {
             return true;
         }
         return false;
@@ -252,7 +254,7 @@ public class Element {
 
     public boolean hasDocStrings() {
         for (Step step : steps) {
-            if (step.getDocString() != null){
+            if (step.getDocString() != null) {
                 return true;
             }
         }
@@ -261,10 +263,10 @@ public class Element {
 
     public boolean hasStepHooks() {
         for (Step step : steps) {
-            if (step.getBefore().size() > 0){
+            if (step.getBefore().size() > 0) {
                 return true;
             }
-            if (step.getAfter().size() > 0){
+            if (step.getAfter().size() > 0) {
                 return true;
             }
         }
@@ -276,5 +278,21 @@ public class Element {
         resultMatches.addAll(getSteps());
         resultMatches.addAll(getAfter());
         return resultMatches;
+    }
+
+    public void setFeatureName(final String featureName) {
+        this.featureName = featureName;
+    }
+
+    public String getFeatureName() {
+        return featureName;
+    }
+
+    public void setFeatureIndex(final int featureIndex) {
+        this.featureIndex = featureIndex;
+    }
+
+    public int getFeatureIndex() {
+        return featureIndex;
     }
 }

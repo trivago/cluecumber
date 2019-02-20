@@ -18,16 +18,24 @@ limitations under the License.
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
-<@page.page base=".." links=["feature_summary", "scenario_sequence", "scenario_summary"] headline="All Tags" subheadline="">
+<@page.page
+base=".."
+links=["feature_summary", "scenario_sequence", "scenario_summary"]
+headline="All Tags"
+subheadline=""
+preheadline=""
+preheadlineLink="">
+
     <div class="row">
         <@page.card width="8" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
         <@page.card width="4" title="Tag Summary" subtitle="" classes="">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">${totalNumberOfTags} Tag(s)</li>
+            <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
+                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
+                    ${totalNumberOfTaggedScenarios} Tagged Scenario(s)
+                </li>
                 <li class="list-group-item">
-                    Tagged Scenario(s):<br>
                     ${totalNumberOfPassedTags} <@common.status status="passed"/>
                     ${totalNumberOfFailedTags} <@common.status status="failed"/>
                     ${totalNumberOfSkippedTags} <@common.status status="skipped"/>
@@ -38,7 +46,7 @@ limitations under the License.
 
     <div class="row">
         <@page.card width="12" title="Available Tags" subtitle="" classes="">
-            <table id="tag_summary" class="table table-hover renderAsDataTable">
+            <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
                 <thead>
                 <tr>
                     <th>Tag</th>
@@ -49,16 +57,16 @@ limitations under the License.
                 </tr>
                 </thead>
                 <tbody>
-                    <#list tagResultCounts as tag, tagResultCount>
+                <#list tagResultCounts as tag, tagResultCount>
                     <tr>
                         <td class="text-left"><a
-                                href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
+                                    href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
                         <td class="text-right">${tagResultCount.passed}</td>
                         <td class="text-right">${tagResultCount.failed}</td>
                         <td class="text-right">${tagResultCount.skipped}</td>
                     </tr>
-                    </#list>
+                </#list>
                 </tbody>
             </table>
         </@page.card>

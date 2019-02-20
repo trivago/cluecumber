@@ -17,12 +17,13 @@
 package com.trivago.cluecumber.rendering.pages.renderers;
 
 import com.trivago.cluecumber.constants.ChartColor;
+import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.ResultMatch;
+import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
-import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.rendering.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.charts.pojos.Data;
@@ -43,13 +44,23 @@ import java.util.stream.IntStream;
 
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
+    private PropertyManager propertyManager;
+
     @Inject
-    public ScenarioDetailsPageRenderer(final ChartJsonConverter chartJsonConverter) {
+    public ScenarioDetailsPageRenderer(
+            final ChartJsonConverter chartJsonConverter,
+            final PropertyManager propertyManager) {
         super(chartJsonConverter);
+        this.propertyManager = propertyManager;
     }
 
-    public String getRenderedContent(final ScenarioDetailsPageCollection scenarioDetailsPageCollection, final Template template)
-            throws CluecumberPluginException {
+    public String getRenderedContent(
+            final ScenarioDetailsPageCollection scenarioDetailsPageCollection,
+            final Template template) throws CluecumberPluginException {
+
+        scenarioDetailsPageCollection.setExpandBeforeAfterHooks(propertyManager.isExpandBeforeAfterHooks());
+        scenarioDetailsPageCollection.setExpandStepHooks(propertyManager.isExpandStepHooks());
+        scenarioDetailsPageCollection.setExpandDocStrings(propertyManager.isExpandDocStrings());
 
         addChartJsonToReportDetails(scenarioDetailsPageCollection);
         return processedContent(template, scenarioDetailsPageCollection);

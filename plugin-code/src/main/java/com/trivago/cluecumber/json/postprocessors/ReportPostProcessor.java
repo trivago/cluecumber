@@ -42,21 +42,24 @@ public class ReportPostProcessor implements PostProcessor<Report> {
 
     @Override
     public void postDeserialize(final Report report, final JsonElement jsonElement, final Gson gson) {
-        addFeatureTagsToScenarios(report);
-        mergeBackgroundScenarios(report);
         addFeatureIndex(report);
+        addFeatureInformationToScenarios(report);
+        mergeBackgroundScenarios(report);
     }
 
-    private void addFeatureTagsToScenarios(final Report report) {
+    private void addFeatureInformationToScenarios(final Report report) {
         List<Tag> reportTags = report.getTags();
-        if (reportTags.size() == 0) {
-            return;
-        }
+        String featureName = report.getName();
+        int featureIndex = report.getFeatureIndex();
         for (Element element : report.getElements()) {
-            List<Tag> mergedTags = Stream.concat(element.getTags().stream(), reportTags.stream())
-                    .distinct()
-                    .collect(Collectors.toList());
-            element.setTags(mergedTags);
+            element.setFeatureName(featureName);
+            element.setFeatureIndex(featureIndex);
+            if (reportTags.size() > 0) {
+                List<Tag> mergedTags = Stream.concat(element.getTags().stream(), reportTags.stream())
+                        .distinct()
+                        .collect(Collectors.toList());
+                element.setTags(mergedTags);
+            }
         }
     }
 
