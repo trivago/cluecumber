@@ -18,6 +18,7 @@ package com.trivago.cluecumber.rendering.pages.renderers;
 
 import com.rits.cloning.Cloner;
 import com.trivago.cluecumber.constants.ChartColor;
+import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -25,7 +26,6 @@ import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
-import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.rendering.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.charts.pojos.Data;
 import com.trivago.cluecumber.rendering.charts.pojos.Dataset;

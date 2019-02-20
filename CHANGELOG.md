@@ -12,6 +12,14 @@ Back to [Readme](README.md).
 ### Added
 
 * Feature name link is now shown on scenario detail pages
+* three new options to expand or collapse hooks and docstrings on scenario detail pages (default: false)
+```xml
+    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
+    <expandStepHooks>true|false</expandStepHooks>
+    <expandDocStrings>true|false</expandDocStrings>
+```
+
+* Added data attributes for common elements (`data-cluecumber-item`) to simplify custom css configurations
 
 ### Fixed
 

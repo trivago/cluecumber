@@ -49,10 +49,10 @@
                     <!-- Optional skip property for the whole report generation -->
                     <!--<skip>true</skip>-->
 
-                    <!-- Expand scenario hooks, step hooks and doc strings when scenario details are shown -->
-                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
-                    <expandStepHooks>true</expandStepHooks>
-                    <expandDocStrings>true</expandDocStrings>
+                    <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
+                    <!--<expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->
+                    <!--<expandStepHooks>true</expandStepHooks>-->
+                    <!--<expandDocStrings>true</expandDocStrings>-->
                 </configuration>
             </plugin>
         </plugins>

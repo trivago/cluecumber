@@ -74,6 +74,24 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private String customCss = "";
 
     /**
+     * Custom flag that determines if before and after hook sections of scenario detail pages should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandBeforeAfterHooks", defaultValue = "false")
+    private boolean expandBeforeAfterHooks;
+
+    /**
+     * Custom flag that determines if step hook sections of scenario detail pages should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandStepHooks", defaultValue = "false")
+    private boolean expandStepHooks;
+
+    /**
+     * Custom flag that determines if doc string sections of scenario detail pages should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandDocStrings", defaultValue = "false")
+    private boolean expandDocStrings;
+
+    /**
      * Skip Cluecumber report generation.
      */
     @Parameter(defaultValue = "false", property = "skip")
@@ -114,6 +132,9 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.setCustomParameters(customParameters);
+        propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
+        propertyManager.setExpandStepHooks(expandStepHooks);
+        propertyManager.setExpandDocStrings(expandDocStrings);
         propertyManager.setCustomCss(customCss);
         propertyManager.validateSettings();
 

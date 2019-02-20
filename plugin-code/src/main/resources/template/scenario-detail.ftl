@@ -174,7 +174,4 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </div>
         </#if>
     </ul>
-    <script>
-        $(".btn-outline-secondary").click();
-    </script>
 </@page.page>

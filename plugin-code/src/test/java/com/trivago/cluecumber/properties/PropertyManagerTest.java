@@ -52,7 +52,7 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(3)).info(anyString());
+        verify(logger, times(5)).info(anyString());
     }
 
     @Test
@@ -81,6 +81,6 @@ public class PropertyManagerTest {
         propertyManager.setCustomCss("customCss");
 
         propertyManager.logProperties();
-        verify(logger, times(6)).info(anyString());
+        verify(logger, times(8)).info(anyString());
     }
 }

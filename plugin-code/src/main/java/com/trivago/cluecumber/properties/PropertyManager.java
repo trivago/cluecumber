@@ -32,6 +32,9 @@ public class PropertyManager {
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private Map<String, String> customParameters;
+    private boolean expandBeforeAfterHooks;
+    private boolean expandStepHooks;
+    private boolean expandDocStrings;
     private String customCss;
 
     @Inject
@@ -61,6 +64,30 @@ public class PropertyManager {
 
     public void setCustomParameters(final Map<String, String> customParameters) {
         this.customParameters = customParameters;
+    }
+
+    public boolean isExpandBeforeAfterHooks() {
+        return expandBeforeAfterHooks;
+    }
+
+    public void setExpandBeforeAfterHooks(final boolean expandBeforeAfterHooks) {
+        this.expandBeforeAfterHooks = expandBeforeAfterHooks;
+    }
+
+    public boolean isExpandStepHooks() {
+        return expandStepHooks;
+    }
+
+    public void setExpandStepHooks(final boolean expandStepHooks) {
+        this.expandStepHooks = expandStepHooks;
+    }
+
+    public boolean isExpandDocStrings() {
+        return expandDocStrings;
+    }
+
+    public void setExpandDocStrings(final boolean expandDocStrings) {
+        this.expandDocStrings = expandDocStrings;
     }
 
     public String getCustomCss() {
@@ -95,16 +122,24 @@ public class PropertyManager {
         logger.info("- generated HTML report directory : " + generatedHtmlReportDirectory);
 
         if (customParameters != null && !customParameters.isEmpty()) {
+            logger.logSeparator();
             for (Map.Entry<String, String> entry : customParameters.entrySet()) {
                 logger.info("- custom parameter                : " +
                         entry.getKey() + " -> " + entry.getValue());
             }
         }
 
+        logger.logSeparator();
+
+        logger.info("- expand before/after hooks       : " + expandBeforeAfterHooks);
+        logger.info("- expand step hooks               : " + expandStepHooks);
+        logger.info("- expand doc strings              : " + expandDocStrings);
+
         if (customCss != null && !customCss.isEmpty()) {
             logger.info("- custom CSS                      : " + customCss);
         }
 
-        logger.info("------------------------------------------------------------------------");
+        logger.logSeparator();
+        ;
     }
 }
