@@ -33,4 +33,11 @@ public class CluecumberLoggerTest {
         verify(mockedLogger, times(1))
                 .error("Test");
     }
+
+    @Test
+    public void separatorTest() {
+        logger.logSeparator();
+        verify(mockedLogger, times(1))
+                .info("------------------------------------------------------------------------");
+    }
 }

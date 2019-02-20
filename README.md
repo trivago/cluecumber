@@ -199,6 +199,18 @@ Likewise, if you want to hide elements from the report, e.g. the total time on t
 }
 ```
 
+### expandBeforeAfterHooks, expandStepHooks, expandDocStrings
+
+These options can be set to 'true' to expand or collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
+
+If they are not set, they default to false meaning the report user has to use the buttons on a scenario detail page to expand those sections on demand.
+
+```xml
+    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
+    <expandStepHooks>true|false</expandStepHooks>
+    <expandDocStrings>true|false</expandDocStrings>
+```
+
 # Example project
 
 You can test the complete flow and POM configuration by checking out the [Cluecumber example project](example-project).

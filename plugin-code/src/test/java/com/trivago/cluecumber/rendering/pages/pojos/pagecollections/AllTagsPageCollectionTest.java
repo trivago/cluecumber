@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class AllTagsPageCollectionTest {
     private AllTagsPageCollection allTagsPageCollection;
@@ -65,6 +65,12 @@ public class AllTagsPageCollectionTest {
         assertThat(allTagsPageCollection.getTotalNumberOfFailedTags(), is(1));
         assertThat(allTagsPageCollection.getTotalNumberOfPassedTags(), is(1));
         assertThat(allTagsPageCollection.getTotalNumberOfSkippedTags(), is(1));
+    }
+
+    @Test
+    public void getTotalNumberOfTaggedScenariosTest() {
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        assertThat(allTagsPageCollection.getTotalNumberOfTaggedScenarios(), is(3));
     }
 
     private List<Report> getTestReports() {

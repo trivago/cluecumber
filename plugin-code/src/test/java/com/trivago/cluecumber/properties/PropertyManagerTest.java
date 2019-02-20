@@ -8,8 +8,8 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -62,6 +62,39 @@ public class PropertyManagerTest {
         propertyManager.setCustomParameters(customParameters);
         assertThat(propertyManager.getCustomParameters().size(), is(1));
         assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+
+    @Test
+    public void expandBeforeAfterHooksTest() {
+        assertThat(propertyManager.isExpandBeforeAfterHooks(), is(false));
+        assertThat(propertyManager.isExpandStepHooks(), is(false));
+        assertThat(propertyManager.isExpandDocStrings(), is(false));
+        propertyManager.setExpandBeforeAfterHooks(true);
+        assertThat(propertyManager.isExpandBeforeAfterHooks(), is(true));
+        assertThat(propertyManager.isExpandStepHooks(), is(false));
+        assertThat(propertyManager.isExpandDocStrings(), is(false));
+    }
+
+    @Test
+    public void expandStepHooksTest() {
+        assertThat(propertyManager.isExpandBeforeAfterHooks(), is(false));
+        assertThat(propertyManager.isExpandStepHooks(), is(false));
+        assertThat(propertyManager.isExpandDocStrings(), is(false));
+        propertyManager.setExpandStepHooks(true);
+        assertThat(propertyManager.isExpandBeforeAfterHooks(), is(false));
+        assertThat(propertyManager.isExpandStepHooks(), is(true));
+        assertThat(propertyManager.isExpandDocStrings(), is(false));
+    }
+
+    @Test
+    public void expandDocStringsTest() {
+        assertThat(propertyManager.isExpandBeforeAfterHooks(), is(false));
+        assertThat(propertyManager.isExpandStepHooks(), is(false));
+        assertThat(propertyManager.isExpandDocStrings(), is(false));
+        propertyManager.setExpandDocStrings(true);
+        assertThat(propertyManager.isExpandBeforeAfterHooks(), is(false));
+        assertThat(propertyManager.isExpandStepHooks(), is(false));
+        assertThat(propertyManager.isExpandDocStrings(), is(true));
     }
 
     @Test
