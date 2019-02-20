@@ -4,7 +4,7 @@
 
 - [Cluecumber Plugin](#cluecumber-plugin)
   - [Build](#build)
-  - [Example Report](#example-report)
+  - [Example report](#example-report)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
