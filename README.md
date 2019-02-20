@@ -29,6 +29,7 @@
     - [skip](#skip)
     - [customParameters](#customparameters)
     - [customCSS](#customcss)
+    - [expandBeforeAfterHooks, expandStepHooks, expandDocStrings](#expandbeforeafterhooks-expandstephooks-expanddocstrings)
 - [Example project](#example-project)
 - [Appendix](#appendix)
   - [Building](#building)
