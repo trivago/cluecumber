@@ -26,5 +26,5 @@ limitations under the License.
         <#assign icon = "passed" />
     </#if>
     <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
-       title="${status}"></i>
+       title="${status}"><span style="display:none">${status}</span></i>
 </#macro>
