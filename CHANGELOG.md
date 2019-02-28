@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.7.1] - 2019-02-28
+
+### Fixed
+
+* Ordering by status on Scenario Sequence page (#133, contributed by @monofrei)
+
 ## [1.7.0] - 2019-02-20
 
 ### Added
@@ -353,6 +359,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1
 [1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0
 [1.6.5]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.5
 [1.6.4]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.4
