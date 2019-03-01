@@ -29,8 +29,9 @@
     - [customParameters](#customparameters)
     - [customCSS](#customcss)
     - [expandBeforeAfterHooks, expandStepHooks, expandDocStrings](#expandbeforeafterhooks-expandstephooks-expanddocstrings)
-- [Running the reporting goal directly through the command line](#running-the-reporting-goal-directly-through-the-command-line)
-  - [Passing properties on the command line](#passing-properties-on-the-command-line)
+- [Running the reporting goal directly via command line](#running-the-reporting-goal-directly-via-command-line)
+  - [Passing properties via command line](#passing-properties-via-command-line)
+  - [Passing custom parameters via command line](#passing-custom-parameters-via-command-line)
 - [Example project](#example-project)
 - [Appendix](#appendix)
   - [Building](#building)
@@ -200,7 +201,7 @@ If they are not set, they default to false. This means that the report user has 
     <expandDocStrings>true|false</expandDocStrings>
 ```
 
-# Running the reporting goal directly through the command line
+# Running the reporting goal directly via command line
 
 In some cases it may be desirable to run the reporting as a completely separate step, e.g. in CI pipelines.
 This can be done by running
@@ -210,7 +211,7 @@ This can be done by running
 directly from the command line.
 
 __Note:__ If you want this invocation to consider the configuration that is included in your POM file,
-the configuration block must be outside of your executions block. Otherwise, it only applies to the
+the `configuration` block must be outside of your `executions` block. Otherwise, it only applies to the
 specified execution and is ignored when you run `mvn cluecumber-report:reporting` from the command line:
 
 ```
@@ -231,13 +232,15 @@ specified execution and is ignored when you run `mvn cluecumber-report:reporting
 </configuration>
 ```
 
-## Passing properties on the command line
+## Passing properties via command line
 
 You can also pass properties directly on the command line, e.g.
 
 `mvn cluecumber-report:reporting -DsourceJsonReportDirectory=path_to_json_files -D...`
 
-If you want to set a [custom parameter](#custom-parameters), you can do it like this:
+## Passing custom parameters via command line
+
+If you want to set a [custom parameter](#customparameters), you can do it like this:
 
 Set an empty property in your pom file's properties block:
 ```xml
