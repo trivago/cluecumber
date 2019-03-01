@@ -21,7 +21,6 @@
   - [Changelog](#changelog)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
-  - [Running the reporting goal directly through the command line](#running-the-reporting-goal-directly-through-the-command-line)
   - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
@@ -30,6 +29,8 @@
     - [customParameters](#customparameters)
     - [customCSS](#customcss)
     - [expandBeforeAfterHooks, expandStepHooks, expandDocStrings](#expandbeforeafterhooks-expandstephooks-expanddocstrings)
+- [Running the reporting goal directly through the command line](#running-the-reporting-goal-directly-through-the-command-line)
+  - [Passing properties on the command line](#passing-properties-on-the-command-line)
 - [Example project](#example-project)
 - [Appendix](#appendix)
   - [Building](#building)
@@ -108,19 +109,6 @@ This will generate JSON results for all Cucumber tests.
     </configuration>    
 </plugin>
 ```
-
-## Running the reporting goal directly through the command line
-
-In some cases it may be desirable to run the reporting as a completely separate step, e.g. in CI pipelines.
-This can be done by running
-
-`mvn cluecumber-report:reporting`
-
-directly from the command line.
-
-You can also pass the properties directly on the command line, e.g.
-
-`mvn cluecumber-report:reporting -DsourceJsonReportDirectory=path_to_json_files -D...`
 
 ## Mandatory Configuration Parameters
 
@@ -211,6 +199,67 @@ If they are not set, they default to false. This means that the report user has 
     <expandStepHooks>true|false</expandStepHooks>
     <expandDocStrings>true|false</expandDocStrings>
 ```
+
+# Running the reporting goal directly through the command line
+
+In some cases it may be desirable to run the reporting as a completely separate step, e.g. in CI pipelines.
+This can be done by running
+
+`mvn cluecumber-report:reporting`
+
+directly from the command line.
+
+__Note:__ If you want this invocation to consider the configuration that is included in your POM file,
+the configuration block must be outside of your executions block. Otherwise, it only applies to the
+specified execution and is ignored when you run `mvn cluecumber-report:reporting` from the command line:
+
+```
+<executions>
+    <execution>
+        <id>report</id>
+        <phase>post-integration-test</phase>
+        <goals>
+            <goal>reporting</goal>
+        </goals>
+        <configuration>
+            <!-- This configuration block applies ONLY to this execution -->
+        </configuration>
+    </execution>
+</executions>
+<configuration>
+    <!-- This configuration block applies to all executions including command line invocation -->
+</configuration>
+```
+
+## Passing properties on the command line
+
+You can also pass properties directly on the command line, e.g.
+
+`mvn cluecumber-report:reporting -DsourceJsonReportDirectory=path_to_json_files -D...`
+
+If you want to set a [custom parameter](#custom-parameters), you can do it like this:
+
+Set an empty property in your pom file's properties block:
+```xml
+<properties>
+    <someProperty/>
+</properties>
+```
+
+Also define it in the Cluecumber section in your POM:
+
+```xml
+<customParameters>
+    <My_Parameter_Name>${someProperty}</Base_Url>
+</customParameters>
+```
+
+When invoking the reporting, you can now pass this property via the `-D` option:
+```
+mvn cluecumber-report:reporting -DsomeProperty="this is cool" -D...
+```
+
+__Note:__ If you don't pass this property, Cluecumber will ignore it and not show it in the report.
 
 # Example project
 
