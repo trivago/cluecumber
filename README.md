@@ -196,9 +196,11 @@ These options can be set to `true` to expand or collapse before/after hooks, ste
 If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail page to expand those sections on demand.
 
 ```xml
+<configuration>
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
     <expandDocStrings>true|false</expandDocStrings>
+</configuration>
 ```
 
 # Running the reporting goal directly via command line
