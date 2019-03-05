@@ -54,7 +54,7 @@
             "before": [
               {
                 "result": {
-                  "duration": 6236342,
+                  "duration": 10000000,
                   "status": "passed"
                 },
                 "match": {
@@ -63,7 +63,7 @@
               }
             ],
             "result": {
-              "duration": 5466433151,
+              "duration": 40000000,
               "status": "passed"
             },
             "line": 6,
@@ -87,7 +87,7 @@
                 ],
                 "result": {
                   "error_message": "some.AssertError: some stack trace for the after step hook\r\n",
-                  "duration": 6236342,
+                  "duration": 20000000,
                   "status": "failed"
                 },
                 "match": {

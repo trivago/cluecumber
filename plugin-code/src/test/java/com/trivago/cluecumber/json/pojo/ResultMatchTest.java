@@ -111,4 +111,21 @@ public class ResultMatchTest {
         assertThat(resultMatch.getConsolidatedStatus(), is(Status.PASSED));
         assertThat(resultMatch.getConsolidatedStatusString(), is("passed"));
     }
+
+    @Test
+    public void hasOutputsTest(){
+        assertThat(resultMatch.hasOutputs(), is(false));
+        List<String> output = new ArrayList<>();
+        output.add("Test");
+        resultMatch.setOutput(output);
+        assertThat(resultMatch.hasOutputs(), is(true));
+    }
+
+    @Test
+    public void returnEscapedOutputsTest(){
+        List<String> output = new ArrayList<>();
+        output.add("Testäöüß");
+        resultMatch.setOutput(output);
+        assertThat(resultMatch.returnEscapedOutputs().get(0), is("Testäöüß"));
+    }
 }

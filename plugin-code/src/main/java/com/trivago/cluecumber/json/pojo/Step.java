@@ -17,6 +17,7 @@
 package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.cluecumber.rendering.RenderingUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,5 +100,22 @@ public class Step extends ResultMatch {
 
     public void setDocString(final DocString docString) {
         this.docString = docString;
+    }
+
+    public long getTotalDuration() {
+        long totalDurationMicroseconds = 0;
+
+        for (ResultMatch beforeStep : before) {
+            totalDurationMicroseconds += beforeStep.getResult().getDuration();
+        }
+        totalDurationMicroseconds += getResult().getDuration();
+        for (ResultMatch afterStep : after) {
+            totalDurationMicroseconds += afterStep.getResult().getDuration();
+        }
+        return totalDurationMicroseconds;
+    }
+
+    public String returnTotalDurationString() {
+        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
     }
 }

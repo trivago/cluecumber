@@ -233,7 +233,7 @@ public class Element {
             totalDurationMicroseconds += beforeStep.getResult().getDuration();
         }
         for (Step step : steps) {
-            totalDurationMicroseconds += step.getResult().getDuration();
+            totalDurationMicroseconds += step.getTotalDuration();
         }
         for (ResultMatch afterStep : after) {
             totalDurationMicroseconds += afterStep.getResult().getDuration();
