@@ -11,8 +11,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class AllScenariosPageCollectionTest {
 
@@ -61,6 +63,26 @@ public class AllScenariosPageCollectionTest {
     public void getTotalDurationDefaultValueTest() {
         long totalDuration = allScenariosPageCollection.getTotalDuration();
         assertThat(totalDuration, is(0L));
+    }
+
+    @Test
+    public void getTotalDurationTest() {
+        Report report = mock(Report.class);
+        when(report.getTotalDuration()).thenReturn(5000000000L);
+        Report[] reports = new Report[]{report, report};
+
+        allScenariosPageCollection.addReports(reports);
+        long totalDuration = allScenariosPageCollection.getTotalDuration();
+        assertThat(totalDuration, is(10000000000L));
+    }
+
+    @Test
+    public void getTotalDurationStringTest() {
+        Report report = mock(Report.class);
+        when(report.getTotalDuration()).thenReturn(5000000000L);
+        Report[] reports = new Report[]{report};
+        allScenariosPageCollection.addReports(reports);
+        assertThat(allScenariosPageCollection.getTotalDurationString(), is("0m 05s 000ms"));
     }
 
     @Test

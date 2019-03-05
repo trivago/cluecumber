@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.json.pojo;
 
+import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,4 +48,33 @@ public class StepTest {
         step.setResult(result);
         assertThat(step.returnNameWithArguments(), is("This is a name with an <strong>argument</strong> inside."));
     }
+
+    @Test
+    public void totalDurationTest() {
+        Step step = new Step();
+
+        List<com.trivago.cluecumber.json.pojo.ResultMatch> beforeSteps = new ArrayList<>();
+        com.trivago.cluecumber.json.pojo.ResultMatch before = new com.trivago.cluecumber.json.pojo.ResultMatch();
+        Result beforeResult = new Result();
+        beforeResult.setDuration(1000000000L);
+        before.setResult(beforeResult);
+        beforeSteps.add(before);
+        step.setBefore(beforeSteps);
+
+        Result stepResult = new Result();
+        stepResult.setDuration(5000000000L);
+        step.setResult(stepResult);
+
+        List<com.trivago.cluecumber.json.pojo.ResultMatch> afterSteps = new ArrayList<>();
+        com.trivago.cluecumber.json.pojo.ResultMatch after = new com.trivago.cluecumber.json.pojo.ResultMatch();
+        Result afterResult = new Result();
+        afterResult.setDuration(2000000000L);
+        after.setResult(afterResult);
+        afterSteps.add(after);
+        step.setAfter(afterSteps);
+
+        MatcherAssert.assertThat(step.getTotalDuration(), is(8000000000L));
+        MatcherAssert.assertThat(step.returnTotalDurationString(), is("0m 08s 000ms"));
+    }
+
 }
