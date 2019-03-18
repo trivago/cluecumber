@@ -28,8 +28,8 @@ public class DocStringTest {
     
     @Test
     public void returnWithClickableLocalLinksTest() {
-        docString.setValue("The shared location is file:\\MACHINE\\Folder\\SomeFolder");
-        assertThat(docString.returnWithClickableLinks(), is("The shared location is <a href='file:\\MACHINE\\Folder\\SomeFolder' target='_blank'>file:\\MACHINE\\Folder\\SomeFolder</a>"));
+        docString.setValue("The shared location is file:\\MACHINE\\Folder\\Some Folder");
+        assertThat(docString.returnWithClickableLinks(), is("The shared location is <a href='file:\\MACHINE\\Folder\\Some Folder' target='_blank'>file:\\MACHINE\\Folder\\Some Folder</a>"));
     }
 
     @Test
