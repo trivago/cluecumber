@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.7.3] - 2019-03-05
+
+### Fixed
+
+* Step times included step hook times even though they are independent (#135)
+
+### Added
+
+* Links starting with `file://` are converted to clickable links (#142, contributed by gazler22)
+
 ## [1.7.2] - 2019-03-05
 
 ### Fixed
@@ -367,6 +377,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.7.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3
 [1.7.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.2
 [1.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1
 [1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0
