@@ -89,7 +89,7 @@
         <gsonfire.version>1.9.0-alpha1</gsonfire.version>
         <freemarker.version>2.3.28</freemarker.version>
         <jsoup.version>1.11.3</jsoup.version>
-        <cloning.version>1.9.11</cloning.version>
+        <cloning.version>1.9.12</cloning.version>
     </properties>
 
     <profiles>
