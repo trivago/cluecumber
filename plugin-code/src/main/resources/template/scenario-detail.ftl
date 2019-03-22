@@ -108,7 +108,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </span>
                             </div>
                             <div class="col-2 text-left small">
-                                ${step.returnTotalDurationString()}
+                                ${step.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
                                 <@common.status status=step.consolidatedStatusString/>
