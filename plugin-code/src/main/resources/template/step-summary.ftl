@@ -26,47 +26,51 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <#--<div class="row">-->
-        <#--<@page.card width="8" title="Step Summary Result Chart" subtitle="" classes="">-->
-            <#--<@page.graph />-->
-        <#--</@page.card>-->
-        <#--<@page.card width="4" title="Steps Summary" subtitle="" classes="">-->
-            <#--<ul class="list-group list-group-flush" data-cluecumber-item="step-summary">-->
-                <#--<li class="list-group-item">${totalNumberOfSteps} Step(s)</li>-->
-                <#--<li class="list-group-item">-->
-                    <#--${totalNumberOfPassedSteps} <@common.status status="passed"/>-->
-                    <#--${totalNumberOfFailedSteps} <@common.status status="failed"/>-->
-                    <#--${totalNumberOfSkippedSteps} <@common.status status="skipped"/>-->
-                <#--</li>-->
-            <#--</ul>-->
-        <#--</@page.card>-->
-    <#--</div>-->
+    <div class="row">
+        <@page.card width="8" title="Step Summary Result Chart" subtitle="" classes="">
+            <@page.graph />
+        </@page.card>
+        <@page.card width="4" title="Steps Summary" subtitle="" classes="">
+            <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
+                <li class="list-group-item">${totalNumberOfSteps} Step(s) in<br>
+                    ${totalNumberOfScenarios} Scenario(s)
+                </li>
+            </ul>
+            <li class="list-group-item">
+                ${totalNumberOfPassed} <@common.status status="passed"/>
+                ${totalNumberOfFailed} <@common.status status="failed"/>
+                ${totalNumberOfSkipped} <@common.status status="skipped"/>
+            </li>
+        </@page.card>
+    </div>
 
-    <#--<div class="row">-->
-        <#--<@page.card width="12" title="Available Steps" subtitle="" classes="">-->
-            <#--<table id="step_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="step-summary-table">-->
-                <#--<thead>-->
-                <#--<tr>-->
-                    <#--<th>Step</th>-->
-                    <#--<th>Total</th>-->
-                    <#--<th>Passed</th>-->
-                    <#--<th>Failed</th>-->
-                    <#--<th>Skipped</th>-->
-                <#--</tr>-->
-                <#--</thead>-->
-                <#--<tbody>-->
-                <#--<#list stepResultCounts as step, stepResultCount>-->
-                    <#--<tr>-->
-                        <#--<td class="text-left"><a-->
-                                    <#--href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html">${step.name}</a></td>-->
-                        <#--<td class="text-right"><strong>${stepResultCount.total}</strong></td>-->
-                        <#--<td class="text-right">${stepResultCount.passed}</td>-->
-                        <#--<td class="text-right">${stepResultCount.failed}</td>-->
-                        <#--<td class="text-right">${stepResultCount.skipped}</td>-->
-                    <#--</tr>-->
-                <#--</#list>-->
-                <#--</tbody>-->
-            <#--</table>-->
-        <#--</@page.card>-->
-    <#--</div>-->
+    <div class="row">
+        <@page.card width="12" title="Available Steps" subtitle="" classes="">
+            <table id="step_summary" class="table table-hover renderAsDataTable"
+                   data-cluecumber-item="step-summary-table">
+                <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Total</th>
+                    <th>Passed</th>
+                    <th>Failed</th>
+                    <th>Skipped</th>
+                </tr>
+                </thead>
+                <tbody>
+                <#list stepResultCounts as step, stepResultCount>
+                    <tr>
+                        <td class="text-left"><a
+                                    href="pages/step-scenarios/step_${step}.html">${step}</a>
+                        </td>
+                        <td class="text-right"><strong>${stepResultCount.total}</strong></td>
+                        <td class="text-right">${stepResultCount.passed}</td>
+                        <td class="text-right">${stepResultCount.failed}</td>
+                        <td class="text-right">${stepResultCount.skipped}</td>
+                    </tr>
+                </#list>
+                </tbody>
+            </table>
+        </@page.card>
+    </div>
 </@page.page>

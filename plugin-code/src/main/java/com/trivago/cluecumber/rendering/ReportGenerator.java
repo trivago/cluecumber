@@ -127,8 +127,8 @@ public class ReportGenerator {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.STEP_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 
-//        // Tag scenario list pages
-//        for (Step step : allStepsPageCollection.getSteps()) {
+//        // Step scenario list pages
+//        for (String step : allStepsPageCollection.getSteps()) {
 //            fileIO.writeContentToFile(
 //                    templateEngine.getRenderedStepSummaryPageContentByStepFilter(allScenariosPageCollection, step),
 //                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
@@ -197,6 +197,7 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.TAG_SCENARIO_PAGE_PATH);
+        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.STEP_SCENARIO_PAGE_PATH);
 
         // Copy CSS resources
         fileSystemManager.createDirectory(reportDirectory + "/css");

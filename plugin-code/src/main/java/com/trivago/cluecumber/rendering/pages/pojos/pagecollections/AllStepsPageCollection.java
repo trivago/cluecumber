@@ -17,6 +17,8 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
+import com.trivago.cluecumber.constants.Status;
+import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
@@ -26,11 +28,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class AllStepsPageCollection extends SummaryPageCollection {
-    private Map<Step, ResultCount> stepResultCounts = new HashMap<>();
+public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
+    private Map<String, ResultCount> stepResultCounts = new HashMap<>();
 
     public AllStepsPageCollection(List<Report> reports) {
         super(PluginSettings.STEP_SUMMARY_PAGE_NAME);
+        calculateStepResultCounts(reports);
     }
 
     /**
@@ -38,11 +41,11 @@ public class AllStepsPageCollection extends SummaryPageCollection {
      *
      * @return a map of {@link ResultCount} lists with steps as keys.
      */
-    public Map<Step, ResultCount> getStepResultCounts() {
+    public Map<String, ResultCount> getStepResultCounts() {
         return stepResultCounts;
     }
 
-    public Set<Step> getSteps() {
+    public Set<String> getSteps() {
         return stepResultCounts.keySet();
     }
 
@@ -50,4 +53,23 @@ public class AllStepsPageCollection extends SummaryPageCollection {
         return stepResultCounts.size();
     }
 
+    /**
+     * Calculate the numbers of failures, successes and skips per step.
+     *
+     * @param reports The {@link Report} list.
+     */
+    private void calculateStepResultCounts(final List<Report> reports) {
+        if (reports == null) return;
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                for (Step step : element.getSteps()) {
+                    ResultCount stepResultCount = stepResultCounts.getOrDefault(step.getGlueMethodName(), new ResultCount());
+                    Status status = element.getStatus();
+                    updateResultCount(stepResultCount, element.getStatus());
+                    stepResultCounts.put(step.getGlueMethodName(), stepResultCount);
+                    addScenarioIndexByStatus(status, element.getScenarioIndex());
+                }
+            }
+        }
+    }
 }
