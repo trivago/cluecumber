@@ -20,7 +20,7 @@ limitations under the License.
 
 <@page.page
 base=".."
-links=["tag_summary", "scenario_sequence", "scenario_summary"]
+links=["tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]
 headline="All Features"
 subheadline=""
 preheadline=""

@@ -10,6 +10,7 @@ import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageC
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderers.AllFeaturesPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderers.AllScenariosPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderers.AllStepsPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderers.AllTagsPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderers.ScenarioDetailsPageRenderer;
 import freemarker.template.Template;
@@ -25,6 +26,7 @@ public class TemplateEngineTest {
     private TemplateConfiguration templateConfiguration;
     private AllFeaturesPageRenderer allFeaturesPageRenderer;
     private AllTagsPageRenderer allTagsPageRenderer;
+    private AllStepsPageRenderer allStepsPageRenderer;
     private ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
     private AllScenariosPageRenderer allScenariosPageRenderer;
 
@@ -36,11 +38,13 @@ public class TemplateEngineTest {
         allFeaturesPageRenderer = mock(AllFeaturesPageRenderer.class);
         allTagsPageRenderer = mock(AllTagsPageRenderer.class);
         scenarioDetailsPageRenderer = mock(ScenarioDetailsPageRenderer.class);
+        allStepsPageRenderer = mock(AllStepsPageRenderer.class);
         allScenariosPageRenderer = mock(AllScenariosPageRenderer.class);
         templateEngine = new TemplateEngine(
                 templateConfiguration,
                 allFeaturesPageRenderer,
                 allTagsPageRenderer,
+                allStepsPageRenderer,
                 scenarioDetailsPageRenderer,
                 allScenariosPageRenderer
         );

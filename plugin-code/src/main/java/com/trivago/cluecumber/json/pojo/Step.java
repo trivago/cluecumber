@@ -102,6 +102,10 @@ public class Step extends ResultMatch {
         this.docString = docString;
     }
 
+    public String getUrlFriendlyName() {
+        return RenderingUtils.escapeHTML(getGlueMethodName());
+    }
+
     public long getTotalDuration() {
         long totalDurationMicroseconds = 0;
 

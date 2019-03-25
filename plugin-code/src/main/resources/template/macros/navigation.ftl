@@ -20,6 +20,9 @@
                             <#case "tag_summary">
                                 <a class="nav-link" href="pages/tag-summary.html">All Tags</a>
                                 <#break>
+                            <#case "step_summary">
+                                <a class="nav-link" href="pages/step-summary.html">All Steps</a>
+                                <#break>
                             <#case "feature_summary">
                                 <a class="nav-link" href="pages/feature-summary.html">All Features</a>
                                 <#break>

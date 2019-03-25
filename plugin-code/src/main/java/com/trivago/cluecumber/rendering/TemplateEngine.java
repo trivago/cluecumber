@@ -22,10 +22,12 @@ import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderers.AllFeaturesPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderers.AllScenariosPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderers.AllStepsPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderers.AllTagsPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderers.ScenarioDetailsPageRenderer;
 
@@ -38,6 +40,7 @@ public class TemplateEngine {
     private final AllFeaturesPageRenderer allFeaturesPageRenderer;
     private final AllTagsPageRenderer allTagsPageRenderer;
     private final ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
+    private final AllStepsPageRenderer allStepsPageRenderer;
     private final AllScenariosPageRenderer allScenariosPageRenderer;
 
     @Inject
@@ -45,11 +48,13 @@ public class TemplateEngine {
             final TemplateConfiguration templateConfiguration,
             final AllFeaturesPageRenderer allFeaturesPageRenderer,
             final AllTagsPageRenderer allTagsPageRenderer,
+            final AllStepsPageRenderer allStepsPageRenderer,
             final ScenarioDetailsPageRenderer scenarioDetailsPageRenderer,
             final AllScenariosPageRenderer allScenariosPageRenderer
     ) {
         this.templateConfiguration = templateConfiguration;
         this.allFeaturesPageRenderer = allFeaturesPageRenderer;
+        this.allStepsPageRenderer = allStepsPageRenderer;
         this.allScenariosPageRenderer = allScenariosPageRenderer;
         this.scenarioDetailsPageRenderer = scenarioDetailsPageRenderer;
         this.allTagsPageRenderer = allTagsPageRenderer;
@@ -104,6 +109,13 @@ public class TemplateEngine {
         return RenderingUtils.prettifyHtml(allTagsPageRenderer.getRenderedContent(
                 allTagsPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_TEMPLATE)
+        ));
+    }
+
+    String getRenderedStepSummaryPageContent(final AllStepsPageCollection allStepsPageCollection) throws CluecumberPluginException {
+        return RenderingUtils.prettifyHtml(allStepsPageRenderer.getRenderedContent(
+                allStepsPageCollection,
+                templateConfiguration.getTemplate(PluginSettings.STEP_SUMMARY_TEMPLATE)
         ));
     }
 

@@ -27,6 +27,7 @@ import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 
@@ -59,6 +60,7 @@ public class ReportGenerator {
         generateScenarioDetailPages(allScenariosPageCollection);
         generateFeaturePages(allScenariosPageCollection);
         generateTagPages(allScenariosPageCollection);
+        generateStepPages(allScenariosPageCollection);
         generateScenarioSequencePage(allScenariosPageCollection);
         generateScenarioSummaryPage(allScenariosPageCollection);
     }
@@ -109,6 +111,30 @@ public class ReportGenerator {
                             PluginSettings.PAGES_DIRECTORY + PluginSettings.TAG_SCENARIO_PAGE_FRAGMENT +
                             tag.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
         }
+    }
+
+    /**
+     * Generate pages for steps.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateStepPages(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        // Step summary page
+        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(allScenariosPageCollection.getReports());
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedStepSummaryPageContent(allStepsPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.STEP_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+//        // Tag scenario list pages
+//        for (Step step : allStepsPageCollection.getSteps()) {
+//            fileIO.writeContentToFile(
+//                    templateEngine.getRenderedStepSummaryPageContentByStepFilter(allScenariosPageCollection, step),
+//                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+//                            PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
+//                            step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
+//        }
     }
 
     /**

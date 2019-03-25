@@ -37,13 +37,16 @@ public class PluginSettings {
     public final static String SCENARIO_DETAIL_PAGE_PATH = "scenario-detail";
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/" + SCENARIO_DETAIL_PAGE_PATH + "/scenario_";
 
-    public final static String SCENARIO_SEQUENCE_PAGE_NAME = "Scenario Sequence";
     public final static String SCENARIO_SEQUENCE_TEMPLATE = "scenario-sequence";
     public final static String SCENARIO_SEQUENCE_PAGE_PATH = "scenario-sequence";
 
     public final static String TAG_SUMMARY_PAGE_NAME = "Tag Summary";
     public final static String TAG_SUMMARY_TEMPLATE = "tag-summary";
     public final static String TAG_SUMMARY_PAGE_PATH = "tag-summary";
+
+    public final static String STEP_SUMMARY_PAGE_NAME = "Step Summary";
+    public final static String STEP_SUMMARY_TEMPLATE = "step-summary";
+    public final static String STEP_SUMMARY_PAGE_PATH = "step-summary";
 
     public final static String FEATURE_SUMMARY_PAGE_NAME = "Feature Summary";
     public final static String FEATURE_SUMMARY_TEMPLATE = "feature-summary";
@@ -54,6 +57,10 @@ public class PluginSettings {
 
     public static final String TAG_SCENARIO_PAGE_PATH = "tag-scenarios";
     public static final String TAG_SCENARIO_PAGE_FRAGMENT = "/" + TAG_SCENARIO_PAGE_PATH + "/tag_";
+
+    public static final String STEP_SCENARIO_PAGE_PATH = "step-scenarios";
+    public static final String STEP_SCENARIO_PAGE_NAME = "/" + STEP_SCENARIO_PAGE_PATH + "/step_";;
+
     PluginSettings() {
     }
 }
