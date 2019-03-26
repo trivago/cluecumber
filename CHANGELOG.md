@@ -7,11 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [1.8.0] - UNRELEASED
+## [1.8.0] - 2019-03-27
 
 ### Added
 
-* Step overview page (#145)
+* `All Steps` page (#145)
+* Scenarios by Step overview page (#145)
+
+### Changed
+
+* Usage of symbols instead of text in tables for `passed`, `failed` and `skipped` 
 
 ## [1.7.3] - 2019-03-05
 
@@ -21,7 +26,7 @@ Back to [Readme](README.md).
 
 ### Added
 
-* Links starting with `file://` are converted to clickable links (#142, contributed by gazler22)
+* Links starting with `file:` are converted to clickable links (#142, contributed by gazler22)
 
 ## [1.7.2] - 2019-03-05
 
