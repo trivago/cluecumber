@@ -29,7 +29,7 @@ limitations under the License.
     <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios using Step<br><i>${stepFilter.name}</i>">
+    <#assign headline = "Scenarios using Step<br><i>${stepFilter.returnNameWithArgumentPlaceholders()}</i>">
     <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">

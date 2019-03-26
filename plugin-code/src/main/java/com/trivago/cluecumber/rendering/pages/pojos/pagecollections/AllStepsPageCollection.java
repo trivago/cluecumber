@@ -54,6 +54,18 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         return stepResultCounts.size();
     }
 
+    public String getMinimumTimeFromStep(final Step step){
+        return stepTimes.get(step).getMinimumTime();
+    }
+
+    public String getMaximumTimeFromStep(final Step step){
+        return stepTimes.get(step).getMaximumTime();
+    }
+
+    public String getAverageTimeFromStep(final Step step){
+        return stepTimes.get(step).getAverageTime();
+    }
+
     /**
      * Calculate the numbers of failures, successes and skips per step.
      *

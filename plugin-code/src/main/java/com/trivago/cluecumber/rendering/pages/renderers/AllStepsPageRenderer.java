@@ -84,7 +84,7 @@ public class AllStepsPageRenderer extends PageRenderer {
 
         List<String> keys = new ArrayList<>();
         for (Step step : allTagsPageCollection.getStepResultCounts().keySet()) {
-            keys.add(step.getName());
+            keys.add(step.returnNameWithArgumentPlaceholders());
         }
         data.setLabels(keys);
 

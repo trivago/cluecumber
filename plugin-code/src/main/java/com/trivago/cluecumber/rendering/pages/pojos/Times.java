@@ -16,6 +16,8 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos;
 
+import com.trivago.cluecumber.rendering.RenderingUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,15 +28,17 @@ public class Times {
         times.add(nanoseconds);
     }
 
-    public long getMinimumTime() {
-        return 0;
+    public String getMinimumTime() {
+        return RenderingUtils.convertNanosecondsToTimeString(times.stream().mapToLong(v -> v).min().orElse(0));
     }
 
-    public long getMaximumTime() {
-        return 0;
+    public String getMaximumTime() {
+        return RenderingUtils.convertNanosecondsToTimeString(times.stream().mapToLong(v -> v).max().orElse(0));
     }
 
-    public long getAverageTime() {
-        return 0;
+    public String getAverageTime() {
+        return RenderingUtils.convertNanosecondsToTimeString(
+                (long) times.stream().mapToLong(v -> v).average().orElse(0)
+        );
     }
 }

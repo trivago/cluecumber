@@ -72,9 +72,9 @@ preheadlineLink="">
                         <td class="text-right">${stepResultCount.passed}</td>
                         <td class="text-right">${stepResultCount.failed}</td>
                         <td class="text-right">${stepResultCount.skipped}</td>
-                        <td class="text-right small">0</td>
-                        <td class="text-right small">0</td>
-                        <td class="text-right small">0</td>
+                        <td class="text-right small">${getMinimumTimeFromStep(step)}</td>
+                        <td class="text-right small">${getMaximumTimeFromStep(step)}</td>
+                        <td class="text-right small">${getAverageTimeFromStep(step)}</td>
                     </tr>
                 </#list>
                 </tbody>
