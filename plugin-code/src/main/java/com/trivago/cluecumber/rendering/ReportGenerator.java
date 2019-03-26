@@ -22,6 +22,7 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
@@ -127,14 +128,14 @@ public class ReportGenerator {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.STEP_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 
-//        // Step scenario list pages
-//        for (String step : allStepsPageCollection.getSteps()) {
-//            fileIO.writeContentToFile(
-//                    templateEngine.getRenderedStepSummaryPageContentByStepFilter(allScenariosPageCollection, step),
-//                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-//                            PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
-//                            step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
-//        }
+        // Step scenario list pages
+        for (Step step : allStepsPageCollection.getSteps()) {
+            fileIO.writeContentToFile(
+                    templateEngine.getRenderedStepSummaryPageContentByStepFilter(allScenariosPageCollection, step),
+                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                            PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
+                            step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
+        }
     }
 
     /**

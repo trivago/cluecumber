@@ -18,6 +18,7 @@ package com.trivago.cluecumber.rendering;
 
 import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
@@ -84,6 +85,17 @@ public class TemplateEngine {
                 allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
                 tag
+        ));
+    }
+
+    String getRenderedStepSummaryPageContentByStepFilter(
+            final AllScenariosPageCollection allScenariosPageCollection,
+            final Step step) throws CluecumberPluginException {
+
+        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContentByStepFilter(
+                allScenariosPageCollection,
+                templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
+                step
         ));
     }
 

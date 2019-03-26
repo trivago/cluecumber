@@ -20,6 +20,7 @@ import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
@@ -34,6 +35,7 @@ public class AllScenariosPageCollection extends PageCollection {
     private List<CustomParameter> customParameters;
     private Tag tagFilter;
     private Feature featureFilter;
+    private Step stepFilter;
 
     public AllScenariosPageCollection() {
         super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
@@ -128,5 +130,13 @@ public class AllScenariosPageCollection extends PageCollection {
 
     public void setFeatureFilter(final Feature featureFilter) {
         this.featureFilter = featureFilter;
+    }
+
+    public Step getStepFilter() {
+        return stepFilter;
+    }
+
+    public void setStepFilter(final Step stepFilter) {
+        this.stepFilter = stepFilter;
     }
 }
