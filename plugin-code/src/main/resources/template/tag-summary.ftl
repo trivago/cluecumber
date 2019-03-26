@@ -51,9 +51,9 @@ preheadlineLink="">
                 <tr>
                     <th>Tag</th>
                     <th>Total</th>
-                    <th>Passed</th>
-                    <th>Failed</th>
-                    <th>Skipped</th>
+                    <th><@common.status status="passed"/></th>
+                    <th><@common.status status="failed"/></th>
+                    <th><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>

@@ -1,4 +1,4 @@
-<#--
+<!--
 Copyright 2018 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -72,7 +72,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 <li class="list-group-item">
                     <#list element.before as before>
                         <div class="row row_${before.consolidatedStatusString}">
-                            <div class="col-1 text-left">${before?counter}.</div>
+                            <div class="col-1 text-left small">${before?counter}.</div>
                             <div class="col-8 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
@@ -99,12 +99,11 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                         <@scenario.stepHooks step.before />
 
                         <div class="row row_${step.consolidatedStatusString}">
-                            <div class="col-1 text-left">${step?counter}.</div>
+                            <div class="col-1 text-left small">${step?counter}.</div>
                             <div class="col-8 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
-                                <span data-toggle="tooltip"
-                                      title="${step.glueMethodName}">
-                                    ${step.keyword} ${stepName}
+                                <span data-toggle="tooltip" title="${step.glueMethodName}">
+                                    <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html">${step.keyword} ${stepName}</a>
                                 </span>
                             </div>
                             <div class="col-2 text-left small">
@@ -154,7 +153,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     <li class="list-group-item">
                         <#list element.after as after>
                             <div class="row row_${after.consolidatedStatusString}">
-                                <div class="col-1 text-left">${after?counter}.</div>
+                                <div class="col-1 text-left small">${after?counter}.</div>
                                 <div class="col-8 text-left">
                                     <i>${after.glueMethodName}</i>
                                 </div>

@@ -21,6 +21,7 @@ import com.trivago.cluecumber.rendering.RenderingUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,6 +71,18 @@ public class Step extends ResultMatch {
         return tmpName;
     }
 
+    public String returnNameWithArgumentPlaceholders() {
+        String tmpName = getName();
+        List<Argument> arguments = getArguments();
+        for (int i = arguments.size() - 1; i >= 0; i--) {
+            String argument = arguments.get(i).getVal();
+            if (argument != null) {
+                tmpName = tmpName.replaceFirst(Pattern.quote(argument), Matcher.quoteReplacement("{}"));
+            }
+        }
+        return tmpName;
+    }
+
     public String getKeyword() {
         return keyword;
     }
@@ -102,24 +115,37 @@ public class Step extends ResultMatch {
         this.docString = docString;
     }
 
-    public String getUrlFriendlyName() {
-        return RenderingUtils.escapeHTML(getGlueMethodName());
-    }
-
     public long getTotalDuration() {
-        long totalDurationMicroseconds = 0;
+        long totalDurationNanoseconds = 0;
 
         for (ResultMatch beforeStep : before) {
-            totalDurationMicroseconds += beforeStep.getResult().getDuration();
+            totalDurationNanoseconds += beforeStep.getResult().getDuration();
         }
-        totalDurationMicroseconds += getResult().getDuration();
+        totalDurationNanoseconds += getResult().getDuration();
         for (ResultMatch afterStep : after) {
-            totalDurationMicroseconds += afterStep.getResult().getDuration();
+            totalDurationNanoseconds += afterStep.getResult().getDuration();
         }
-        return totalDurationMicroseconds;
+        return totalDurationNanoseconds;
     }
 
     public String returnTotalDurationString() {
-        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+    }
+
+    public String getUrlFriendlyName() {
+        return Integer.toString(hashCode()).replace("-", "0");
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Step step = (Step) o;
+        return Objects.equals(getGlueMethodName(), step.getGlueMethodName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGlueMethodName());
     }
 }

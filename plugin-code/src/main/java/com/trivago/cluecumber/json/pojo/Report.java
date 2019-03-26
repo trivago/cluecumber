@@ -104,10 +104,10 @@ public class Report {
     }
 
     public long getTotalDuration() {
-        long totalDurationMicroseconds = 0;
+        long totalDurationNanoseconds = 0;
         for (Element element : elements) {
-            totalDurationMicroseconds += element.getTotalDuration();
+            totalDurationNanoseconds += element.getTotalDuration();
         }
-        return totalDurationMicroseconds;
+        return totalDurationNanoseconds;
     }
 }

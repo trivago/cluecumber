@@ -91,15 +91,15 @@ public class AllScenariosPageCollection extends PageCollection {
     }
 
     public long getTotalDuration() {
-        long totalDurationMicroseconds = 0;
+        long totalDurationNanoseconds = 0;
         for (Report report : reports) {
-            totalDurationMicroseconds += report.getTotalDuration();
+            totalDurationNanoseconds += report.getTotalDuration();
         }
-        return totalDurationMicroseconds;
+        return totalDurationNanoseconds;
     }
 
     public String getTotalDurationString() {
-        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
     }
 
     public List<CustomParameter> getCustomParameters() {

@@ -1,4 +1,4 @@
-<#--
+<!--
 Copyright 2018 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,9 +50,9 @@ preheadlineLink="">
                 <tr>
                     <th>Feature</th>
                     <th>Total</th>
-                    <th>Passed</th>
-                    <th>Failed</th>
-                    <th>Skipped</th>
+                    <th><@common.status status="passed"/></th>
+                    <th><@common.status status="failed"/></th>
+                    <th><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>

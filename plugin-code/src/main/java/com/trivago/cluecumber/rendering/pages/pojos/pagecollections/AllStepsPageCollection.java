@@ -17,11 +17,11 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
+import com.trivago.cluecumber.rendering.pages.pojos.Times;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +29,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
-    private Map<String, ResultCount> stepResultCounts = new HashMap<>();
+    private Map<Step, ResultCount> stepResultCounts = new HashMap<>();
+    private Map<Step, Times> stepTimes = new HashMap<>();
 
     public AllStepsPageCollection(List<Report> reports) {
         super(PluginSettings.STEP_SUMMARY_PAGE_NAME);
@@ -41,11 +42,11 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
      *
      * @return a map of {@link ResultCount} lists with steps as keys.
      */
-    public Map<String, ResultCount> getStepResultCounts() {
+    public Map<Step, ResultCount> getStepResultCounts() {
         return stepResultCounts;
     }
 
-    public Set<String> getSteps() {
+    public Set<Step> getSteps() {
         return stepResultCounts.keySet();
     }
 
@@ -63,11 +64,13 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 for (Step step : element.getSteps()) {
-                    ResultCount stepResultCount = stepResultCounts.getOrDefault(step.getGlueMethodName(), new ResultCount());
-                    Status status = element.getStatus();
+                    ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
                     updateResultCount(stepResultCount, element.getStatus());
-                    stepResultCounts.put(step.getGlueMethodName(), stepResultCount);
-                    addScenarioIndexByStatus(status, element.getScenarioIndex());
+                    stepResultCounts.put(step, stepResultCount);
+                    Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
+                    stepTimes.addTime(step.getResult().getDuration());
+                    this.stepTimes.put(step, stepTimes);
+                    addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
                 }
             }
         }

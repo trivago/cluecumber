@@ -52,21 +52,29 @@ preheadlineLink="">
                 <tr>
                     <th>Step</th>
                     <th>Total</th>
-                    <th>Passed</th>
-                    <th>Failed</th>
-                    <th>Skipped</th>
+                    <th><@common.status status="passed"/></th>
+                    <th><@common.status status="failed"/></th>
+                    <th><@common.status status="skipped"/></th>
+                    <th>Min Time</th>
+                    <th>Max Time</th>
+                    <th>Ø Time</th>
                 </tr>
                 </thead>
                 <tbody>
                 <#list stepResultCounts as step, stepResultCount>
                     <tr>
-                        <td class="text-left"><a
-                                    href="pages/step-scenarios/step_${step}.html">${step}</a>
+                        <td class="text-left">
+                            <span data-toggle="tooltip" title="${step.glueMethodName}">
+                                <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html">${step.returnNameWithArgumentPlaceholders()}</a>
+                            </span>
                         </td>
                         <td class="text-right"><strong>${stepResultCount.total}</strong></td>
                         <td class="text-right">${stepResultCount.passed}</td>
                         <td class="text-right">${stepResultCount.failed}</td>
                         <td class="text-right">${stepResultCount.skipped}</td>
+                        <td class="text-right small">0</td>
+                        <td class="text-right small">0</td>
+                        <td class="text-right small">0</td>
                     </tr>
                 </#list>
                 </tbody>

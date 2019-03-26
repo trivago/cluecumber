@@ -1,4 +1,4 @@
-<#--
+<!--
 Copyright 2018 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,15 +21,15 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
+    <#assign headline = "Scenarios Tagged With <i>${tagFilter.name}</i>">
     <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (featureFilter??)>
-    <#assign base = "./../..">s
-    <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
+    <#assign base = "./../..">
+    <#assign headline = "Scenarios in Feature <i>${featureFilter.name}</i>">
     <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios using Step '${stepFilter.name}'">
+    <#assign headline = "Scenarios using Step <i>${stepFilter.name}</i>">
     <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">

@@ -17,7 +17,6 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Tag;
@@ -64,10 +63,9 @@ public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
             for (Element element : report.getElements()) {
                 for (Tag tag : element.getTags()) {
                     ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
-                    Status status = element.getStatus();
                     updateResultCount(tagResultCount, element.getStatus());
                     tagResultCounts.put(tag, tagResultCount);
-                    addScenarioIndexByStatus(status, element.getScenarioIndex());
+                    addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
                 }
             }
         }
