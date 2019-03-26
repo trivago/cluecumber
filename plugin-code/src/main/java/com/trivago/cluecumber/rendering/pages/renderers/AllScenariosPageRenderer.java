@@ -23,6 +23,7 @@ import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
@@ -73,6 +74,26 @@ public class AllScenariosPageRenderer extends PageRenderer {
             List<Element> elements = new ArrayList<>();
             for (Element element : report.getElements()) {
                 if (element.getTags().contains(tag)) {
+                    elements.add(element);
+                }
+            }
+            report.setElements(elements);
+        }
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone);
+    }
+
+    public String getRenderedContentByStepFilter(
+            final AllScenariosPageCollection allScenariosPageCollection,
+            final Template template,
+            final Step step) throws CluecumberPluginException {
+
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        allScenariosPageCollectionClone.setStepFilter(step);
+        for (Report report : allScenariosPageCollectionClone.getReports()) {
+            List<Element> elements = new ArrayList<>();
+            for (Element element : report.getElements()) {
+                if (element.getSteps().contains(step)) {
                     elements.add(element);
                 }
             }
@@ -159,5 +180,4 @@ public class AllScenariosPageRenderer extends PageRenderer {
     private AllScenariosPageCollection getAllScenariosPageCollectionClone(final AllScenariosPageCollection allScenariosPageCollection) {
         return cloner.deepClone(allScenariosPageCollection);
     }
-
 }

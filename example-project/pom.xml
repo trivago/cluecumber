@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>1.7.3</version>
+    <version>1.8.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,8 +32,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <sourceJsonReportDirectory>${cucumber.report.json.location}
-                    </sourceJsonReportDirectory>
+                    <sourceJsonReportDirectory>${cucumber.report.json.location}</sourceJsonReportDirectory>
                     <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
 
                     <!-- Optional custom parameters that are shown on the start page if they have a value -->
@@ -46,13 +45,13 @@
                     <!-- Optional custom CSS for custom styling -->
                     <!--<customCss>custom/custom.css</customCss>-->
 
-                    <!-- Optional skip property for the whole report generation -->
-                    <!--<skip>true</skip>-->
-
                     <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
                     <!--<expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->
                     <!--<expandStepHooks>true</expandStepHooks>-->
                     <!--<expandDocStrings>true</expandDocStrings>-->
+
+                    <!-- Optional skip property for the whole report generation -->
+                    <!--<skip>true</skip>-->
                 </configuration>
             </plugin>
         </plugins>

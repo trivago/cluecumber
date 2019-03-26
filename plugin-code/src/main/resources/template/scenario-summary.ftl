@@ -21,20 +21,24 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios Tagged With <i>${tagFilter.name}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios in Feature<br><i>${featureFilter.name}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+<#elseif (stepFilter??)>
+    <#assign base = "./../..">
+    <#assign headline = "Scenarios using Step<br><i>${stepFilter.returnNameWithArgumentPlaceholders()}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">
     <#assign headline = "Scenario Sequence">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_summary"]>
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence"]>
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence"]>
 </#if>
 
 <@page.page

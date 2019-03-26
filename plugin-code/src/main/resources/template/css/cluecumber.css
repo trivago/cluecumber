@@ -29,6 +29,10 @@ body {
     margin-bottom: 60px;
 }
 
+a {
+    color: #004ea2;
+}
+
 .bg-dark {
     background-color: #5e6974 !important;
 }
@@ -93,6 +97,10 @@ table {
 
 table.table {
     margin-bottom: 0;
+}
+
+.table td {
+    vertical-align: middle;
 }
 
 table.table-fit {
@@ -193,4 +201,8 @@ button.btn:before {
 
 div.collapse {
     width: 100%;
+}
+
+i {
+    color: #135A74;
 }

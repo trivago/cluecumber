@@ -62,15 +62,15 @@ public class AllTagsPageCollectionTest {
     public void getTagResultsTest() {
         allTagsPageCollection = new AllTagsPageCollection(getTestReports());
         assertThat(allTagsPageCollection.getTotalNumberOfTags(), is(3));
-        assertThat(allTagsPageCollection.getTotalNumberOfFailedTags(), is(1));
-        assertThat(allTagsPageCollection.getTotalNumberOfPassedTags(), is(1));
-        assertThat(allTagsPageCollection.getTotalNumberOfSkippedTags(), is(1));
+        assertThat(allTagsPageCollection.getTotalNumberOfFailed(), is(1));
+        assertThat(allTagsPageCollection.getTotalNumberOfPassed(), is(1));
+        assertThat(allTagsPageCollection.getTotalNumberOfSkipped(), is(1));
     }
 
     @Test
     public void getTotalNumberOfTaggedScenariosTest() {
         allTagsPageCollection = new AllTagsPageCollection(getTestReports());
-        assertThat(allTagsPageCollection.getTotalNumberOfTaggedScenarios(), is(3));
+        assertThat(allTagsPageCollection.getTotalNumberOfScenarios(), is(3));
     }
 
     private List<Report> getTestReports() {

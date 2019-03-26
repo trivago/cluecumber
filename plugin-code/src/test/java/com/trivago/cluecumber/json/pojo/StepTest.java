@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -20,6 +22,8 @@ public class StepTest {
     public void setup() {
         step = mock(Step.class);
         when(step.returnNameWithArguments()).thenCallRealMethod();
+        when(step.returnNameWithArgumentPlaceholders()).thenCallRealMethod();
+        when(step.getUrlFriendlyName()).thenCallRealMethod();
     }
 
     @Test
@@ -77,4 +81,23 @@ public class StepTest {
         MatcherAssert.assertThat(step.returnTotalDurationString(), is("0m 08s 000ms"));
     }
 
+    @Test
+    public void returnNameWithArgumentPlaceholdersTest() {
+        when(step.getName()).thenReturn("This is a name with an argument inside.");
+        Result result = mock(Result.class);
+        List<Argument> arguments = new ArrayList<>();
+        Argument argument = new Argument();
+        argument.setVal("argument");
+        arguments.add(argument);
+        when(step.getArguments()).thenReturn(arguments);
+        step.setResult(result);
+        assertThat(step.returnNameWithArgumentPlaceholders(), is("This is a name with an {} inside."));
+    }
+
+    @Test
+    public void getUrlFriendlyNameTest() {
+        when(step.getName()).thenReturn("This is a name with an argument inside.");
+        String urlFriendlyName = step.getUrlFriendlyName();
+        assertThat(urlFriendlyName, is(not(equalTo(""))));
+    }
 }

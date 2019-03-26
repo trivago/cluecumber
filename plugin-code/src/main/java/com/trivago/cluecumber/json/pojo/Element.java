@@ -228,21 +228,21 @@ public class Element {
     }
 
     public long getTotalDuration() {
-        long totalDurationMicroseconds = 0;
+        long totalDurationNanoseconds = 0;
         for (ResultMatch beforeStep : before) {
-            totalDurationMicroseconds += beforeStep.getResult().getDuration();
+            totalDurationNanoseconds += beforeStep.getResult().getDuration();
         }
         for (Step step : steps) {
-            totalDurationMicroseconds += step.getTotalDuration();
+            totalDurationNanoseconds += step.getTotalDuration();
         }
         for (ResultMatch afterStep : after) {
-            totalDurationMicroseconds += afterStep.getResult().getDuration();
+            totalDurationNanoseconds += afterStep.getResult().getDuration();
         }
-        return totalDurationMicroseconds;
+        return totalDurationNanoseconds;
     }
 
     public String returnTotalDurationString() {
-        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
     }
 
     public boolean hasHooks() {

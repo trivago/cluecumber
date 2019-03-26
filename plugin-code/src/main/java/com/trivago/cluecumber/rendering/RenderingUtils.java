@@ -27,13 +27,13 @@ public class RenderingUtils {
     private static final Pattern URL_PATTERN = Pattern.compile("(file.*)|((ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?)");
 
     /**
-     * Convert microseconds to a human readable time string.
+     * Convert nanoseconds to a human readable time string.
      *
-     * @param microseconds The amount of microseconds.
+     * @param nanoseconds The amount of nanoseconds.
      * @return The human readable string representation.
      */
-    public static String convertMicrosecondsToTimeString(final long microseconds) {
-        Duration durationMilliseconds = Duration.ofMillis(microseconds / MICROSECOND_FACTOR);
+    public static String convertNanosecondsToTimeString(final long nanoseconds) {
+        Duration durationMilliseconds = Duration.ofMillis(nanoseconds / MICROSECOND_FACTOR);
         long minutes = durationMilliseconds.toMinutes();
         long seconds = durationMilliseconds.minusMinutes(minutes).getSeconds();
         long milliseconds = durationMilliseconds.minusMinutes(minutes).minusSeconds(seconds).toMillis();
@@ -41,13 +41,13 @@ public class RenderingUtils {
     }
 
     /**
-     * Convert microseconds to milliseconds.
+     * Convert nanoseconds to milliseconds.
      *
-     * @param microseconds The amount of microseconds.
+     * @param nanoseconds The amount of nanoseconds.
      * @return The millisecond representation.
      */
-    public static long convertMicrosecondsToMilliseconds(final long microseconds) {
-        return microseconds / MICROSECOND_FACTOR;
+    public static long convertNanosecondsToMilliseconds(final long nanoseconds) {
+        return nanoseconds / MICROSECOND_FACTOR;
     }
 
     /**

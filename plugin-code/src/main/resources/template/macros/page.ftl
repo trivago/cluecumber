@@ -15,7 +15,6 @@ limitations under the License.
 -->
 
 <#macro page base links headline subheadline preheadline preheadlineLink>
-    <!DOCTYPE html>
     <!--
     Copyright 2018 trivago N.V.
 
@@ -31,6 +30,7 @@ limitations under the License.
     See the License for the specific language governing permissions and
     limitations under the License.
     -->
+    <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">
     <head>
