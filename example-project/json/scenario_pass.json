@@ -13,7 +13,7 @@
             "keyword": "Given ",
             "line": 3,
             "match": {
-              "location": "NativeConstructorAccessorImpl.java:-2"
+              "location": "NativeConstructorAccessorImplPass.java:-2"
             },
             "name": "this step passes",
             "result": {
@@ -35,7 +35,7 @@
                   "offset": 38
                 }
               ],
-              "location": "NativeConstructorAccessorImpl.java:-2"
+              "location": "NativeConstructorAccessorImplArguments.java:-2"
             },
             "name": "this step passes with argument1 and argument2 as arguments",
             "result": {
