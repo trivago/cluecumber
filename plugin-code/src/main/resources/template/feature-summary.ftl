@@ -20,7 +20,7 @@ limitations under the License.
 
 <@page.page
 base=".."
-links=["tag_summary", "scenario_sequence", "scenario_summary"]
+links=["tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]
 headline="All Features"
 subheadline=""
 preheadline=""
@@ -50,9 +50,9 @@ preheadlineLink="">
                 <tr>
                     <th>Feature</th>
                     <th>Total</th>
-                    <th>Passed</th>
-                    <th>Failed</th>
-                    <th>Skipped</th>
+                    <th><@common.status status="passed"/></th>
+                    <th><@common.status status="failed"/></th>
+                    <th><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>

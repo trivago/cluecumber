@@ -281,31 +281,57 @@ It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7C
 
 ### All Scenarios
 
+This page shows an overview of all scenarios grouped by their status `passed`, `failed` or `skipped`:
+
 ![All Scenarios](documentation/img/AllScenarios.png)
 
 ### Scenario Sequence
+
+This page shows an overview of all scenarios in running order including their individual status information:
 
 ![Scenario Sequence](documentation/img/ScenarioSequence.png)
 
 ### Scenario Details
 
+This page shows all steps, hooks, stack traces and attachments of a single scenario:
+
 ![Scenario Details](documentation/img/ScenarioDetails.png)
 
 ### All Features
+
+This page shows an overview of all features:
 
 ![All Features](documentation/img/AllFeatures.png)
 
 ### All Tags
 
+This page shows an overview of all used tags in scenarios, features and example tables including their individual status information:
+
 ![All Tags](documentation/img/AllTags.png)
 
+### All Steps
+
+This page shows an overview of all steps in use including their individual status information:
+
+![All Steps](documentation/img/AllSteps.png)
+
 ### Scenario by Tag
+
+This page shows all scenarios including a specific tag:
 
 ![Scenarios by Tag](documentation/img/TagDetails.png)
 
 ### Scenario by Feature
 
+This page shows all scenarios belonging to a specific feature:
+
 ![Scenarios by Feature](documentation/img/FeatureDetails.png)
+
+### Scenario by Step
+
+This page shows all scenarios that include a specific step:
+
+![Scenarios by Step](documentation/img/StepDetails.png)
 
 ## License
 
