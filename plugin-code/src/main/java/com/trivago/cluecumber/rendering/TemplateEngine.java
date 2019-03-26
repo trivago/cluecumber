@@ -88,7 +88,7 @@ public class TemplateEngine {
         ));
     }
 
-    String getRenderedStepSummaryPageContentByStepFilter(
+    String getRenderedScenarioSummaryPageContentByStepFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Step step) throws CluecumberPluginException {
 

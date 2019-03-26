@@ -131,7 +131,7 @@ public class ReportGenerator {
         // Step scenario list pages
         for (Step step : allStepsPageCollection.getSteps()) {
             fileIO.writeContentToFile(
-                    templateEngine.getRenderedStepSummaryPageContentByStepFilter(allScenariosPageCollection, step),
+                    templateEngine.getRenderedScenarioSummaryPageContentByStepFilter(allScenariosPageCollection, step),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                             PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
                             step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
