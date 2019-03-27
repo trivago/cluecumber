@@ -41,8 +41,10 @@
     - [Scenario Details](#scenario-details)
     - [All Features](#all-features)
     - [All Tags](#all-tags)
+    - [All Steps](#all-steps)
     - [Scenario by Tag](#scenario-by-tag)
     - [Scenario by Feature](#scenario-by-feature)
+    - [Scenario by Step](#scenario-by-step)
   - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
