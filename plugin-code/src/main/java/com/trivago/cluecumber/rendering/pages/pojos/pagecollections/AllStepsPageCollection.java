@@ -77,7 +77,7 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
             for (Element element : report.getElements()) {
                 for (Step step : element.getSteps()) {
                     ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
-                    updateResultCount(stepResultCount, element.getStatus());
+                    updateResultCount(stepResultCount, step.getStatus());
                     stepResultCounts.put(step, stepResultCount);
                     Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
                     stepTimes.addTime(step.getResult().getDuration());
