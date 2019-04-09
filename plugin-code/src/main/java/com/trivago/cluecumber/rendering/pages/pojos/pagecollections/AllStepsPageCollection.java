@@ -54,16 +54,24 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         return stepResultCounts.size();
     }
 
-    public String getMinimumTimeFromStep(final Step step){
-        return stepTimes.get(step).getMinimumTime();
+    public String getMinimumTimeFromStep(final Step step) {
+        return stepTimes.get(step).getMinimumTimeString();
     }
 
-    public String getMaximumTimeFromStep(final Step step){
-        return stepTimes.get(step).getMaximumTime();
+    public int getMinimumFeatureIndexFromStep(final Step step) {
+        return stepTimes.get(step).getMinimumTimeFeatureIndex();
     }
 
-    public String getAverageTimeFromStep(final Step step){
-        return stepTimes.get(step).getAverageTime();
+    public String getMaximumTimeFromStep(final Step step) {
+        return stepTimes.get(step).getMaximumTimeString();
+    }
+
+    public int getMaximumFeatureIndexFromStep(final Step step) {
+        return stepTimes.get(step).getMaximumTimeFeatureIndex();
+    }
+
+    public String getAverageTimeFromStep(final Step step) {
+        return stepTimes.get(step).getAverageTimeString();
     }
 
     /**
@@ -75,12 +83,13 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         if (reports == null) return;
         for (Report report : reports) {
             for (Element element : report.getElements()) {
+                int featureIndex = element.getFeatureIndex();
                 for (Step step : element.getSteps()) {
                     ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
                     updateResultCount(stepResultCount, step.getStatus());
                     stepResultCounts.put(step, stepResultCount);
                     Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
-                    stepTimes.addTime(step.getResult().getDuration());
+                    stepTimes.addTime(step.getResult().getDuration(), featureIndex);
                     this.stepTimes.put(step, stepTimes);
                     addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
                 }
