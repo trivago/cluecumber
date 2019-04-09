@@ -20,7 +20,7 @@ html {
 }
 
 h2, h3, h4, h5 {
-    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 body {
@@ -115,7 +115,7 @@ table.table-fit td:nth-child(1) {
 
 table.table-fit td:nth-child(2) {
     width: 100%;
-    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .list-group-item, *[role=row], .table th, .table td {

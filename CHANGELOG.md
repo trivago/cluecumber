@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.9.0] - UNRELEASED
+
+* Maven Central version fix
+
 ## [1.8.1] - 2019-04-03
 
 ### Fixed
@@ -394,6 +398,7 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
 [1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1
 [1.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0
 [1.7.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3
