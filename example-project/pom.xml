@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cucumber.report.json.location>${project.basedir}/json2</cucumber.report.json.location>
+        <cucumber.report.json.location>${project.basedir}/json3</cucumber.report.json.location>
         <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
     </properties>
 
@@ -41,6 +41,9 @@
                         <Custom_URL>http://www.google.com</Custom_URL>
                         <Empty_Parameter/>
                     </customParameters>
+
+                    <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
+                    <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>
 
                     <!-- Optional custom CSS for custom styling -->
                     <!--<customCss>custom/custom.css</customCss>-->

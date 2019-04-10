@@ -200,8 +200,8 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertThat(status, is(Status.SKIPPED));
-        assertThat(element.isSkipped(), is(true));
+        assertThat(status, is(Status.FAILED));
+        assertThat(element.isFailed(), is(true));
     }
 
     @Test

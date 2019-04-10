@@ -58,6 +58,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
         addScenarioIndex(element);
+        element.setFailOnPendingOrUndefined(propertyManager.isFailScenariosOnPendingOrUndefinedSteps());
         processAttachments(element.getSteps(), element.getAfter());
     }
 
