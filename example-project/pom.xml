@@ -43,7 +43,7 @@
                     </customParameters>
 
                     <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
-                    <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>
+                    <!--<failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>-->
 
                     <!-- Optional custom CSS for custom styling -->
                     <!--<customCss>custom/custom.css</customCss>-->
