@@ -25,7 +25,7 @@ links=["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "s
 headline="${element.name?html}"
 subheadline="${element.description?html}"
 preheadline="${element.featureName?html}"
-preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
+preheadlineLink="pages/feature-scenarios/feature_${element.scenarioIndex?c}.html">
 
     <div class="row">
         <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">

@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>1.8.1</version>
+    <version>1.9.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,6 +41,9 @@
                         <Custom_URL>http://www.google.com</Custom_URL>
                         <Empty_Parameter/>
                     </customParameters>
+
+                    <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
+                    <!--<failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>-->
 
                     <!-- Optional custom CSS for custom styling -->
                     <!--<customCss>custom/custom.css</customCss>-->

@@ -68,6 +68,12 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private Map<String, String> customParameters = new HashMap<>();
 
     /**
+     * Mark scenarios as failed if they contain pending or undefined steps (default: false).
+     */
+    @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
+    private boolean failScenariosOnPendingOrUndefinedSteps;
+
+    /**
      * Custom CSS that is applied on top of Cluecumber's default styles.
      */
     @Parameter(property = "reporting.customCss")
@@ -132,6 +138,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.setCustomParameters(customParameters);
+        propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
         propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
         propertyManager.setExpandStepHooks(expandStepHooks);
         propertyManager.setExpandDocStrings(expandDocStrings);

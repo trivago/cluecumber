@@ -13,23 +13,33 @@ public class TimesTest {
     @Before
     public void setup() {
         times = new Times();
-        times.addTime(100000000);
-        times.addTime(500000000);
-        times.addTime(400000000);
+        times.addTime(100000000, 1);
+        times.addTime(500000000, 2);
+        times.addTime(400000000, 3);
     }
 
     @Test
-    public void getMinimumTime() {
-        assertThat(times.getMinimumTime(), is("0m 00s 100ms"));
+    public void getMinimumTimeStringTest() {
+        assertThat(times.getMinimumTimeString(), is("0m 00s 100ms"));
     }
 
     @Test
-    public void getMaximumTime() {
-        assertThat(times.getMaximumTime(), is("0m 00s 500ms"));
+    public void getMinimumTimeScenarioIndexTest() {
+        assertThat(times.getMinimumTimeScenarioIndex(), is(1));
     }
 
     @Test
-    public void getAverageTime() {
-        assertThat(times.getAverageTime(), is("0m 00s 333ms"));
+    public void getMaximumTimeStringTest() {
+        assertThat(times.getMaximumTimeString(), is("0m 00s 500ms"));
+    }
+
+    @Test
+    public void getMaximumTimeScenarioIndexTest() {
+        assertThat(times.getMaximumTimeScenarioIndex(), is(2));
+    }
+
+    @Test
+    public void getAverageTimeString() {
+        assertThat(times.getAverageTimeString(), is("0m 00s 333ms"));
     }
 }

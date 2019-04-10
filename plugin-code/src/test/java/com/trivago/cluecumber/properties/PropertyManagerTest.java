@@ -52,7 +52,7 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(5)).info(anyString());
+        verify(logger, times(6)).info(anyString());
     }
 
     @Test
@@ -62,6 +62,13 @@ public class PropertyManagerTest {
         propertyManager.setCustomParameters(customParameters);
         assertThat(propertyManager.getCustomParameters().size(), is(1));
         assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+
+    @Test
+    public void failOnPendingOrSkippedStepsTest() {
+        assertThat(propertyManager.isFailScenariosOnPendingOrUndefinedSteps(), is(false));
+        propertyManager.setFailScenariosOnPendingOrUndefinedSteps(true);
+        assertThat(propertyManager.isFailScenariosOnPendingOrUndefinedSteps(), is(true));
     }
 
     @Test
@@ -114,6 +121,6 @@ public class PropertyManagerTest {
         propertyManager.setCustomCss("customCss");
 
         propertyManager.logProperties();
-        verify(logger, times(8)).info(anyString());
+        verify(logger, times(9)).info(anyString());
     }
 }

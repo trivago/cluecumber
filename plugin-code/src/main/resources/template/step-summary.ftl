@@ -72,8 +72,8 @@ preheadlineLink="">
                         <td class="text-right">${stepResultCount.passed}</td>
                         <td class="text-right">${stepResultCount.failed}</td>
                         <td class="text-right">${stepResultCount.skipped}</td>
-                        <td class="text-right small">${getMinimumTimeFromStep(step)}</td>
-                        <td class="text-right small">${getMaximumTimeFromStep(step)}</td>
+                        <td class="text-right small"><a href="pages/scenario-detail/scenario_${getMinimumTimeScenarioIndexFromStep(step)}.html">${getMinimumTimeFromStep(step)}</a></td>
+                        <td class="text-right small"><a href="pages/scenario-detail/scenario_${getMaximumTimeScenarioIndexFromStep(step)}.html">${getMaximumTimeFromStep(step)}</a></td>
                         <td class="text-right small">${getAverageTimeFromStep(step)}</td>
                     </tr>
                 </#list>

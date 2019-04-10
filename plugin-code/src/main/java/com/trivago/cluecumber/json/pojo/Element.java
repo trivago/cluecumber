@@ -37,6 +37,7 @@ public class Element {
 
     private int featureIndex = 0;
     private transient int scenarioIndex = 0;
+    private transient boolean failOnPendingOrUndefined = false;
 
     public List<Tag> getTags() {
         return tags;
@@ -154,10 +155,10 @@ public class Element {
         }
 
         // If all steps have the same status, return this as the scenario status.
-        for (Status status : Status.values()) {
+        for (Status status : Status.BASIC_STATES) {
             long count = 0L;
             for (Step step : steps) {
-                if (step.getStatus() == status) {
+                if (step.getConsolidatedStatus() == status) {
                     count++;
                 }
 
@@ -173,24 +174,32 @@ public class Element {
                     }
                 }
             }
+
             int stepNumber = (int) count;
             if (totalSteps == stepNumber) {
-                if (status != Status.UNDEFINED) {
-                    return status;
-                } else {
-                    return Status.SKIPPED;
+                if (status == Status.SKIPPED) {
+                    if (failOnPendingOrUndefined) {
+                        return Status.FAILED;
+                    }
                 }
+                return status;
             }
         }
 
-        // If at least one step passed and the other steps are skipped, return passed.
+        // If at least one step passed and the other steps are skipped, return passed (or failed if failOnPendingOrUndefined is true).
         if (getTotalNumberOfPassedSteps() >= 0 &&
                 (getTotalNumberOfSkippedSteps() + getTotalNumberOfPassedSteps()) == getTotalNumberOfSteps()) {
+            if (failOnPendingOrUndefined) {
+                return Status.FAILED;
+            }
             return Status.PASSED;
         }
 
-        // If all steps are skipped return skipped.
+        // If all steps are skipped return skipped (or failed if failOnPendingOrUndefined is true).
         if (getTotalNumberOfSkippedSteps() == totalSteps) {
+            if (failOnPendingOrUndefined) {
+                return Status.FAILED;
+            }
             return Status.SKIPPED;
         }
 
@@ -214,17 +223,15 @@ public class Element {
     }
 
     public int getTotalNumberOfFailedSteps() {
-        return getNumberOfStepsWithStatus(Status.FAILED) +
-                getNumberOfStepsWithStatus(Status.UNDEFINED) +
-                getNumberOfStepsWithStatus(Status.AMBIGUOUS);
+        return getNumberOfStepsWithStatus(Status.FAILED);
     }
 
     public int getTotalNumberOfSkippedSteps() {
-        return getNumberOfStepsWithStatus(Status.SKIPPED) + getNumberOfStepsWithStatus(Status.PENDING);
+        return getNumberOfStepsWithStatus(Status.SKIPPED);
     }
 
     private int getNumberOfStepsWithStatus(final Status status) {
-        return (int) getSteps().stream().filter(step -> step.getStatus() == status).count();
+        return (int) getSteps().stream().filter(step -> step.getConsolidatedStatus() == status).count();
     }
 
     public long getTotalDuration() {
@@ -294,5 +301,9 @@ public class Element {
 
     public int getFeatureIndex() {
         return featureIndex;
+    }
+
+    public void setFailOnPendingOrUndefined(final boolean failOnPendingOrUndefined) {
+        this.failOnPendingOrUndefined = failOnPendingOrUndefined;
     }
 }

@@ -19,26 +19,57 @@ package com.trivago.cluecumber.rendering.pages.pojos;
 import com.trivago.cluecumber.rendering.RenderingUtils;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class Times {
-    private List<Long> times = new ArrayList<>();
+    private List<FeatureTime> times = new ArrayList<>();
 
-    public void addTime(final long nanoseconds) {
-        times.add(nanoseconds);
+    public void addTime(final long nanoseconds, final int featureIndex) {
+        times.add(new FeatureTime(nanoseconds, featureIndex));
     }
 
-    public String getMinimumTime() {
-        return RenderingUtils.convertNanosecondsToTimeString(times.stream().mapToLong(v -> v).min().orElse(0));
+    private FeatureTime getMinimumFeatureTime() {
+        Optional<FeatureTime> featureTime = times.stream().min(Comparator.comparingLong(ft -> ft.time));
+        return featureTime.orElseGet(() -> new FeatureTime(0, -1));
     }
 
-    public String getMaximumTime() {
-        return RenderingUtils.convertNanosecondsToTimeString(times.stream().mapToLong(v -> v).max().orElse(0));
+    private FeatureTime getMaximumFeatureTime() {
+        Optional<FeatureTime> featureTime = times.stream().max(Comparator.comparingLong(ft -> ft.time));
+        return featureTime.orElseGet(() -> new FeatureTime(0, -1));
     }
 
-    public String getAverageTime() {
+    public String getMinimumTimeString() {
+        return RenderingUtils.convertNanosecondsToTimeString(getMinimumFeatureTime().time);
+    }
+
+    public int getMinimumTimeScenarioIndex() {
+        return getMinimumFeatureTime().scenarioIndex;
+    }
+
+    public String getMaximumTimeString() {
+        return RenderingUtils.convertNanosecondsToTimeString(getMaximumFeatureTime().time);
+    }
+
+    public int getMaximumTimeScenarioIndex() {
+        return getMaximumFeatureTime().scenarioIndex;
+    }
+
+    public String getAverageTimeString() {
         return RenderingUtils.convertNanosecondsToTimeString(
-                (long) times.stream().mapToLong(v -> v).average().orElse(0)
+                (long) times.stream().mapToLong(v -> v.time).average().orElse(0)
         );
     }
+
+    class FeatureTime {
+        private final long time;
+        private final int scenarioIndex;
+
+        FeatureTime(final long time, final int scenarioIndex) {
+            this.time = time;
+            this.scenarioIndex = scenarioIndex;
+        }
+    }
 }
+
