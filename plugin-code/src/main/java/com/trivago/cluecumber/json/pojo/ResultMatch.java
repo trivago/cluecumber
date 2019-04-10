@@ -100,16 +100,14 @@ public class ResultMatch {
         switch (getStatus()) {
             case PASSED:
                 return Status.PASSED;
-            case FAILED:
-                return Status.FAILED;
             case SKIPPED:
             case PENDING:
                 return Status.SKIPPED;
+            case FAILED:
             case AMBIGUOUS:
             case UNDEFINED:
-                return Status.FAILED;
             default:
-                return getStatus();
+                return Status.FAILED;
         }
     }
 

@@ -138,8 +138,6 @@ public class Element {
     public Status getStatus() {
         int totalSteps = steps.size();
 
-        System.out.println("TOTAL STEPS: " + totalSteps);
-
         if (totalSteps == 0) {
             return Status.SKIPPED;
         }
@@ -155,8 +153,6 @@ public class Element {
                 return Status.FAILED;
             }
         }
-
-        System.out.println("NO HOOKS FAILED");
 
         // If all steps have the same status, return this as the scenario status.
         for (Status status : Status.BASIC_STATES) {

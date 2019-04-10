@@ -1,7 +1,11 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.Status;
-import com.trivago.cluecumber.json.pojo.*;
+import com.trivago.cluecumber.json.pojo.Element;
+import com.trivago.cluecumber.json.pojo.Match;
+import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Result;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
 import org.junit.Test;
 
@@ -67,6 +71,47 @@ public class AllStepsPageCollectionTest {
         assertThat(allStepsPageCollection.getTotalNumberOfScenarios(), is(3));
     }
 
+    @Test
+    public void getTotalNumberOfStepsTest() {
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        assertThat(allStepsPageCollection.getTotalNumberOfSteps(), is(2));
+    }
+
+    @Test
+    public void getMinimumTimeFromStepTest() {
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        assertThat(allStepsPageCollection.getMinimumTimeFromStep(step), is("0m 00s 000ms"));
+    }
+
+    @Test
+    public void getMinimumTimeScenarioIndexFromStepTest() {
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        assertThat(allStepsPageCollection.getMaximumTimeScenarioIndexFromStep(step), is(0));
+    }
+
+    @Test
+    public void getMaximumTimeFromStepTest() {
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        assertThat(allStepsPageCollection.getMaximumTimeFromStep(step), is("0m 00s 000ms"));
+    }
+
+    @Test
+    public void getMaximumTimeScenarioIndexFromStepTest() {
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        assertThat(allStepsPageCollection.getMinimumTimeScenarioIndexFromStep(step), is(0));
+    }
+
+    @Test
+    public void getAverageTimeFromStepTest() {
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        assertThat(allStepsPageCollection.getAverageTimeFromStep(step), is("0m 00s 000ms"));
+    }
+
     private List<Report> getTestReports() {
         List<Report> reports = new ArrayList<>();
 
@@ -76,6 +121,7 @@ public class AllStepsPageCollectionTest {
         Element element = new Element();
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
+        step.setName("step1");
         Result result = new Result();
         result.setStatus(Status.FAILED.getStatusString());
         step.setResult(result);
@@ -90,6 +136,7 @@ public class AllStepsPageCollectionTest {
         element = new Element();
         steps = new ArrayList<>();
         step = new Step();
+        step.setName("step2");
         result = new Result();
         result.setStatus(Status.PASSED.getStatusString());
         step.setResult(result);
@@ -104,6 +151,7 @@ public class AllStepsPageCollectionTest {
         element = new Element();
         steps = new ArrayList<>();
         step = new Step();
+        step.setName("step3");
         result = new Result();
         result.setStatus(Status.SKIPPED.getStatusString());
         step.setResult(result);

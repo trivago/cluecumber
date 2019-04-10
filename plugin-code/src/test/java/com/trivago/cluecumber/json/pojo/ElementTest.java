@@ -280,6 +280,15 @@ public class ElementTest {
     }
 
     @Test
+    public void hasHooksTest() {
+        assertThat(element.hasHooks(), is(false));
+        List<ResultMatch> before = new ArrayList<>();
+        before.add(new ResultMatch());
+        element.setBefore(before);
+        assertThat(element.hasHooks(), is(true));
+    }
+
+    @Test
     public void hasDocStringsTest(){
         assertThat(element.hasDocStrings(), is(false));
 
