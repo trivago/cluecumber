@@ -12,6 +12,8 @@ Back to [Readme](README.md).
 ### Added
 
 * Minimum and maximum step times on `All Steps` page links to the enclosing scenario (#152)
+* New `failScenariosOnPendingOrUndefinedSteps` configuration property for marking scenarios as failed when they contain
+steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 ### Changed
 

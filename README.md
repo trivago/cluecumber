@@ -27,6 +27,7 @@
   - [Optional Configuration Parameters](#optional-configuration-parameters)
     - [skip](#skip)
     - [customParameters](#customparameters)
+    - [failScenariosOnPendingOrUndefinedSteps](#failscenariosonpendingorundefinedsteps)
     - [customCSS](#customcss)
     - [expandBeforeAfterHooks, expandStepHooks, expandDocStrings](#expandbeforeafterhooks-expandstephooks-expanddocstrings)
 - [Running the reporting goal directly via command line](#running-the-reporting-goal-directly-via-command-line)
@@ -123,9 +124,23 @@ __Note:__ Typically, both properties point to directories inside the Maven ```ta
 
 This specifies the source folder of the Cucumber JSON result files.
 
+```xml
+<configuration>
+    <sourceJsonReportDirectory>c:/example/json-files</sourceJsonReportDirectory>
+    ...
+</configuration>
+```
+
 ### generatedHtmlReportDirectory
 
 This points to the root directory of the generated Cluecumber HTML report.
+
+```xml
+<configuration>
+    <generatedHtmlReportDirectory>c:/example/my-report</generatedHtmlReportDirectory>
+    ...
+</configuration>
+```
 
 ## Optional Configuration Parameters
 
@@ -133,7 +148,7 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 The `skip` property is used to skip the report generation. The default value is `false`
 
-```
+```xml
 <configuration>
     <skip>true</skip>
     ...
@@ -147,16 +162,31 @@ The `customParameters` block can be used to define custom information that shoul
 __Note:__ Underscores in the parameter names are automatically turned into spaces in the report.
 Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
 
-```
-<customParameters>
-    <Custom_Parameter>This is a test</Custom_Parameter>
-    <Custom_URL>http://www.google.com</Custom_URL>
-</customParameters>
+```xml
+<configuration>
+    <customParameters>
+        <Custom_Parameter>This is a test</Custom_Parameter>
+        <Custom_URL>http://www.google.com</Custom_URL>
+    </customParameters>
+    ...
+</configuration>
 ```
 
 The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
+
+### failScenariosOnPendingOrUndefinedSteps
+
+This optional property can be set to `true` if you scenarios should be marked as `failed` when they contain `pending` or `skipped` steps.
+The default setting is `false`, meaning that those scenarios will be marked as `skipped`.
+
+```xml
+<configuration>
+    <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>
+    ...
+</configuration>
+```
 
 ### customCSS
 
@@ -176,7 +206,9 @@ h3, h4 {
 To use this files, specify it like so in your pom file or as a system property:
 
 ```xml
-<customCss>custom/custom.css</customCss>
+<configuration>
+    <customCss>custom/custom.css</customCss>
+</configuration>
 ```
 
 When generating the report, this file is automatically included as ```cluecumber_custom.css``` and applied on top of all other styles:
@@ -202,6 +234,7 @@ If they are not set, they default to false. This means that the report user has 
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
     <expandDocStrings>true|false</expandDocStrings>
+    ...
 </configuration>
 ```
 
