@@ -24,8 +24,8 @@ public class TimesTest {
     }
 
     @Test
-    public void getMinimumTimeFeatureIndexTest() {
-        assertThat(times.getMinimumTimeFeatureIndex(), is(1));
+    public void getMinimumTimeScenarioIndexTest() {
+        assertThat(times.getMinimumTimeScenarioIndex(), is(1));
     }
 
     @Test
@@ -34,8 +34,8 @@ public class TimesTest {
     }
 
     @Test
-    public void getMaximumTimeFeatureIndexTest() {
-        assertThat(times.getMaximumTimeFeatureIndex(), is(2));
+    public void getMaximumTimeScenarioIndexTest() {
+        assertThat(times.getMaximumTimeScenarioIndex(), is(2));
     }
 
     @Test

@@ -58,16 +58,16 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         return stepTimes.get(step).getMinimumTimeString();
     }
 
-    public int getMinimumFeatureIndexFromStep(final Step step) {
-        return stepTimes.get(step).getMinimumTimeFeatureIndex();
+    public int getMinimumTimeScenarioIndexFromStep(final Step step) {
+        return stepTimes.get(step).getMinimumTimeScenarioIndex();
     }
 
     public String getMaximumTimeFromStep(final Step step) {
         return stepTimes.get(step).getMaximumTimeString();
     }
 
-    public int getMaximumFeatureIndexFromStep(final Step step) {
-        return stepTimes.get(step).getMaximumTimeFeatureIndex();
+    public int getMaximumTimeScenarioIndexFromStep(final Step step) {
+        return stepTimes.get(step).getMaximumTimeScenarioIndex();
     }
 
     public String getAverageTimeFromStep(final Step step) {
@@ -83,15 +83,17 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         if (reports == null) return;
         for (Report report : reports) {
             for (Element element : report.getElements()) {
-                int featureIndex = element.getFeatureIndex();
+                int scenarioIndex = element.getScenarioIndex();
                 for (Step step : element.getSteps()) {
                     ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
                     updateResultCount(stepResultCount, step.getStatus());
                     stepResultCounts.put(step, stepResultCount);
-                    Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
-                    stepTimes.addTime(step.getResult().getDuration(), featureIndex);
-                    this.stepTimes.put(step, stepTimes);
                     addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
+                    Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
+                    if (!step.isSkipped()) {
+                        stepTimes.addTime(step.getResult().getDuration(), scenarioIndex);
+                    }
+                    this.stepTimes.put(step, stepTimes);
                 }
             }
         }

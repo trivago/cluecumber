@@ -9,7 +9,13 @@ Back to [Readme](README.md).
 
 ## [1.9.0] - UNRELEASED
 
-* Maven Central version fix
+### Added
+
+* Minimum and maximum step times on `All Steps` page links to the enclosing scenario (#152)
+
+### Changed
+
+* Minimum and maximum step times are now only calculated for non-skipped steps
 
 ## [1.8.1] - 2019-04-03
 

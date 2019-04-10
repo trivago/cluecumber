@@ -82,7 +82,7 @@ limitations under the License.
                                             </td>
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
-                                                   style="word-break: break-all">${element.name?html}</a>
+                                                   style="overflow-wrap: break-word;">${element.name?html}</a>
                                             </td>
                                             <td class="text-right small"
                                                 data-order="${element.totalDuration}">

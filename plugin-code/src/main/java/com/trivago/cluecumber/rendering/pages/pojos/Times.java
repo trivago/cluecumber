@@ -44,16 +44,16 @@ public class Times {
         return RenderingUtils.convertNanosecondsToTimeString(getMinimumFeatureTime().time);
     }
 
-    public int getMinimumTimeFeatureIndex() {
-        return getMinimumFeatureTime().featureIndex;
+    public int getMinimumTimeScenarioIndex() {
+        return getMinimumFeatureTime().scenarioIndex;
     }
 
     public String getMaximumTimeString() {
         return RenderingUtils.convertNanosecondsToTimeString(getMaximumFeatureTime().time);
     }
 
-    public int getMaximumTimeFeatureIndex() {
-        return getMaximumFeatureTime().featureIndex;
+    public int getMaximumTimeScenarioIndex() {
+        return getMaximumFeatureTime().scenarioIndex;
     }
 
     public String getAverageTimeString() {
@@ -64,11 +64,11 @@ public class Times {
 
     class FeatureTime {
         private final long time;
-        private final int featureIndex;
+        private final int scenarioIndex;
 
-        FeatureTime(final long time, final int featureIndex) {
+        FeatureTime(final long time, final int scenarioIndex) {
             this.time = time;
-            this.featureIndex = featureIndex;
+            this.scenarioIndex = scenarioIndex;
         }
     }
 }
