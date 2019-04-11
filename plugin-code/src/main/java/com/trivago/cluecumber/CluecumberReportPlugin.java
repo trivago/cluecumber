@@ -22,6 +22,7 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.JsonPojoConverter;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.ReportGenerator;
@@ -47,6 +48,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private final FileSystemManager fileSystemManager;
     private final FileIO fileIO;
     private final JsonPojoConverter jsonPojoConverter;
+    private final ElementIndexPreProcessor elementIndexPreProcessor;
     private final ReportGenerator reportGenerator;
 
     /**
@@ -110,6 +112,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
             final FileSystemManager fileSystemManager,
             final FileIO fileIO,
             final JsonPojoConverter jsonPojoConverter,
+            final ElementIndexPreProcessor elementIndexPreProcessor,
             final ReportGenerator reportGenerator
     ) {
         this.propertyManager = propertyManager;
@@ -117,6 +120,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         this.fileIO = fileIO;
         this.jsonPojoConverter = jsonPojoConverter;
         this.logger = logger;
+        this.elementIndexPreProcessor = elementIndexPreProcessor;
         this.reportGenerator = reportGenerator;
     }
 
@@ -164,7 +168,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
                 logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
-
+        elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
