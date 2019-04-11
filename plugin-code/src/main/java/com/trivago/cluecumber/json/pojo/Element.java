@@ -16,9 +16,11 @@
 
 package com.trivago.cluecumber.json.pojo;
 
+import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.rendering.RenderingUtils;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +36,10 @@ public class Element {
     private String keyword = "";
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
+    @SerializedName("start_timestamp")
+    private String startTimestamp = "";
 
-    private int featureIndex = 0;
+    private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
     private transient boolean failOnPendingOrUndefined = false;
 
@@ -45,6 +49,26 @@ public class Element {
 
     public void setTags(final List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(final String startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public ZonedDateTime getStartDateTime() {
+        return RenderingUtils.convertTimestampToZonedDateTime(startTimestamp);
+    }
+
+    public String getStartDateString() {
+        return RenderingUtils.convertZonedDateTimeToDateString(getStartDateTime());
+    }
+
+    public String getStartTimeString() {
+        return RenderingUtils.convertZonedDateTimeToTimeString(getStartDateTime());
     }
 
     public List<ResultMatch> getBefore() {
@@ -156,10 +180,10 @@ public class Element {
 
         // If all steps have the same status, return this as the scenario status.
         for (Status status : Status.BASIC_STATES) {
-            long count = 0L;
+            int stepsWithCertainStatusCount = 0;
             for (Step step : steps) {
                 if (step.getConsolidatedStatus() == status) {
-                    count++;
+                    stepsWithCertainStatusCount++;
                 }
 
                 // If any step hooks fail, report scenario as failed.
@@ -175,8 +199,7 @@ public class Element {
                 }
             }
 
-            int stepNumber = (int) count;
-            if (totalSteps == stepNumber) {
+            if (totalSteps == stepsWithCertainStatusCount) {
                 if (status == Status.SKIPPED) {
                     if (failOnPendingOrUndefined) {
                         return Status.FAILED;

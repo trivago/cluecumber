@@ -30,7 +30,7 @@ public class ReportDetails {
 
     public ReportDetails(final String pageName) {
         this.pageName = pageName;
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         this.date = dateFormat.format(date);
     }

@@ -12,6 +12,7 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Steps that are only skipped should not have a link to a scenario from the minimum/maximum time in `All Steps`
+* Feature name on `Scenario Details` page was incorrectly linked
 
 ### Changed
 
@@ -20,6 +21,8 @@ Back to [Readme](README.md).
 ### Added
 
 * Additional parallel run time on `All Scenarios` and `Scenario Sequence` pages
+* Support of Cucumber 4.3.0's new scenario start timestamps
+* Start time and date is displayed on each scenario in `All Scenarios`, `Scenario Sequence` and `Scenario Detail` pages (Cucumber >= 4.3.0)
 
 ## [1.9.0] - 2019-04-10
 

@@ -5,7 +5,7 @@
       {
         "start_timestamp": "2019-04-11T08:00:23.668Z",
         "line": 6,
-        "name": "Display Book Details",
+        "name": "Scenario with timestamp 1",
         "description": "",
         "id": "shopping",
         "type": "scenario",
@@ -52,7 +52,7 @@
       {
         "start_timestamp": "2019-04-11T08:00:15.091Z",
         "line": 10,
-        "name": "Search For Book",
+        "name": "Scenario with timestamp 2",
         "description": "",
         "id": "vendor-shopping-cart;search-for-book",
         "type": "scenario",
@@ -111,7 +111,7 @@
       {
         "start_timestamp": "2019-04-11T08:00:25.829Z",
         "line": 10,
-        "name": "Search For Book",
+        "name": "Scenario with timestamp 3",
         "description": "",
         "id": "vendor-shopping-cart;search-for-book",
         "type": "scenario",
