@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.9.1] - UNRELEASED
+
+### Fixed
+
+* Steps that are only skipped should not have a link to a scenario from the minimum/maximum time in `All Steps`
+
+### Changed
+
+* `Scenario Sequence` is now not based on start time if it exists in the json file
+
+### Added
+
+* Additional parallel run time on `All Scenarios` and `Scenario Sequence` pages
+
 ## [1.9.0] - 2019-04-10
 
 ### Added
@@ -406,6 +420,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[1.9.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.1
 [1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
 [1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1
 [1.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0

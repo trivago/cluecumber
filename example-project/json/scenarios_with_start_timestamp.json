@@ -1,0 +1,179 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2019-04-11T08:00:23.668Z",
+        "line": 6,
+        "name": "Display Book Details",
+        "description": "",
+        "id": "shopping",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 467889821,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1691629452,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2019-04-11T08:00:15.091Z",
+        "line": 10,
+        "name": "Search For Book",
+        "description": "",
+        "id": "vendor-shopping-cart;search-for-book",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 5224289914,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I am on a vendor page",
+            "match": {
+              "location": "MySteps.I_visit_vendor()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1084130235,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2266563900,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2019-04-11T08:00:25.829Z",
+        "line": 10,
+        "name": "Search For Book",
+        "description": "",
+        "id": "vendor-shopping-cart;search-for-book",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.TimeoutException: Expected condition failed: waiting for title to contain \"Vendor.com: Online Shopping \". Current title: \"Vendor.com: Something\" (tried for 10 second(s) with 500 MILLISECONDS interval)\nBuild info: version: \u00273.5.3\u0027, revision: \u0027a88d25fe6b\u0027, time: \u00272017-08-29T12:42:44.417Z\u0027\nSystem info: host: \u0027Unitys-MacBook-Pro.local\u0027, ip: \u0027fe80:0:0:0:894:f27b:4dac:67bc%en0\u0027, os.name: \u0027Mac OS X\u0027, os.arch: \u0027x86_64\u0027, os.version: \u002710.13.6\u0027, java.version: \u00271.8.0_202\u0027\nDriver info: org.openqa.selenium.firefox.FirefoxDriver\nCapabilities [{moz:profile\u003d/var/folders/gb/gc676v7s5zz1qq1c9mql2jq00000gp/T/rust_mozprofile.j0nIk1SCX7ek, rotatable\u003dfalse, moz:geckodriverVersion\u003d0.24.0, timeouts\u003d{implicit\u003d0, pageLoad\u003d300000, script\u003d30000}, pageLoadStrategy\u003dnormal, unhandledPromptBehavior\u003ddismiss and notify, strictFileInteractability\u003dfalse, moz:headless\u003dfalse, platform\u003dMAC, moz:accessibilityChecks\u003dfalse, moz:useNonSpecCompliantPointerOrigin\u003dfalse, acceptInsecureCerts\u003dfalse, browserVersion\u003d66.0.2, moz:shutdownTimeout\u003d60000, platformVersion\u003d17.7.0, moz:processID\u003d9614, browserName\u003dfirefox, javascriptEnabled\u003dtrue, platformName\u003dMAC, setWindowRect\u003dtrue, moz:webdriverClick\u003dtrue}]\nSession ID: 32553156-6956-9e46-96a2-55b6932ae415\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:232)\n\tat org.graphwalker.MySteps.I_visit_vendor(MySteps.java:28)\n\tat ✽.I am on a vendor page(classpath:org/graphwalker/ShoppingCart.feature:11)\n",
+              "duration": 10368348419,
+              "status": "failed"
+            },
+            "line": 11,
+            "name": "I am on a vendor page",
+            "match": {
+              "location": "MySteps.I_visit_vendor()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 13530,
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 4502,
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Vendor Shopping Cart",
+    "description": "  As a bookworm\n  I\u0027d like to be able to search for my favourite book\n  so I can buy them",
+    "id": "vendor-shopping-cart",
+    "keyword": "Feature",
+    "uri": "classpath:org/graphwalker/ShoppingCart.feature",
+    "tags": []
+  }
+]
