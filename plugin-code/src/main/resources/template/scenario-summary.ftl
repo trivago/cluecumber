@@ -85,12 +85,12 @@ preheadlineLink="">
                     ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
                     ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
                 </li>
-                <#if startTimestamp??>
+                <#if startTimestamp?has_content>
                     <li class="list-group-item" data-cluecumber-item="scenario-start">
                         Started: ${startDateString} ${startTimeString}</li>
                 </#if>
                 <li class="list-group-item" data-cluecumber-item="total-scenario-duration">
-                    Duration: ${totalDurationString}</li>
+                    ${totalDurationString}</li>
             </ul>
         </@page.card>
     </div>

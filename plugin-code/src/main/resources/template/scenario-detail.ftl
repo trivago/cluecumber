@@ -38,9 +38,10 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
                     ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
                 </li>
-                <li class="list-group-item">Date: ${element.startDateString}</li>
-                <li class="list-group-item">Time: ${element.startTimeString}</li>
-                <li class="list-group-item">Duration: ${element.returnTotalDurationString()}</li>
+                <#if element.startTimestamp?has_content>
+                    <li class="list-group-item">${element.startDateString}<br>${element.startTimeString}</li>
+                </#if>
+                <li class="list-group-item">${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
                         <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                     </#list>
