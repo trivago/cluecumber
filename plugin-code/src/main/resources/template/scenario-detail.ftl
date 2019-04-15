@@ -25,7 +25,7 @@ links=["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "s
 headline="${element.name?html}"
 subheadline="${element.description?html}"
 preheadline="${element.featureName?html}"
-preheadlineLink="pages/feature-scenarios/feature_${element.scenarioIndex?c}.html">
+preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
 
     <div class="row">
         <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
@@ -33,13 +33,18 @@ preheadlineLink="pages/feature-scenarios/feature_${element.scenarioIndex?c}.html
         </@page.card>
         <@page.card width="4" title="Scenario Information" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)</li>
-                <li class="list-group-item">
+                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)<br>
                     ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
                     ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
                     ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
                 </li>
-                <li class="list-group-item">Duration: ${element.returnTotalDurationString()}</li>
+                <#if element.startTimestamp?has_content>
+                    <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
+                </#if>
+                <#if element.startTimestamp?has_content>
+                    <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
+                </#if>
+                <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
                         <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                     </#list>

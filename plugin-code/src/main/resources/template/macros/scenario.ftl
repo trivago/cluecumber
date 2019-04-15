@@ -34,13 +34,16 @@ limitations under the License.
 
                     <#switch status>
                         <#case "skipped">
-                            <div class="card-header border-warning bg-warning">Skipped Scenarios <@common.startStatus status="skipped"/></div>
+                            <div class="card-header border-warning bg-warning">Skipped
+                                Scenarios <@common.startStatus status="skipped"/></div>
                             <#break>
                         <#case "failed">
-                            <div class="card-header border-danger bg-danger text-white">Failed Scenarios <@common.startStatus status="failed"/></div>
+                            <div class="card-header border-danger bg-danger text-white">Failed
+                                Scenarios <@common.startStatus status="failed"/></div>
                             <#break>
                         <#case "passed">
-                            <div class="card-header border-success bg-success text-white">Passed Scenarios <@common.startStatus status="passed"/></div>
+                            <div class="card-header border-success bg-success text-white">Passed
+                                Scenarios <@common.startStatus status="passed"/></div>
                             <#break>
                         <#case "all">
                             <div class="card-header border-light bg-info text-white">Scenario Sequence</div>
@@ -56,6 +59,7 @@ limitations under the License.
                                 </#if>
                                 <th class="text-left">Feature</th>
                                 <th class="text-left">Scenario</th>
+                                <th>Started</th>
                                 <th>Duration</th>
                                 <#if allRequested>
                                     <th class="text-left">Status</th>
@@ -83,6 +87,9 @@ limitations under the License.
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
                                                    style="word-break: break-all">${element.name?html}</a>
+                                            </td>
+                                            <td class="text-center small" data-order="${element.startTimestamp}">
+                                                ${element.startDateString}<br>${element.startTimeString}
                                             </td>
                                             <td class="text-right small"
                                                 data-order="${element.totalDuration}">

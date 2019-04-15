@@ -19,6 +19,8 @@ package com.trivago.cluecumber.rendering;
 import org.jsoup.Jsoup;
 
 import java.time.Duration;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -93,7 +95,7 @@ public class RenderingUtils {
         }
         return stringBuilder.toString();
     }
-    
+
     /**
      * Return the source html string with added tags so URLs are clickable.
      *
@@ -108,5 +110,36 @@ public class RenderingUtils {
             targetString = targetString.replaceFirst(Pattern.quote(found), Matcher.quoteReplacement("<a href='" + found + "' target='_blank'>" + found + "</a>"));
         }
         return targetString;
+    }
+
+    /**
+     * Return a {@link ZonedDateTime} from a timestamp string.
+     *
+     * @param timestampString the timestamp string.
+     * @return the converted {@link ZonedDateTime}.
+     */
+    public static ZonedDateTime convertTimestampToZonedDateTime(final String timestampString) {
+        try {
+            return ZonedDateTime.parse(timestampString);
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+
+    public static String convertZonedDateTimeToDateString(final ZonedDateTime startDateTime) {
+        try {
+            return startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (Exception ignored) {
+        }
+        return "";
+    }
+
+    public static String convertZonedDateTimeToTimeString(final ZonedDateTime startDateTime) {
+        try {
+            return startDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        } catch (Exception ignored) {
+        }
+        return "";
     }
 }

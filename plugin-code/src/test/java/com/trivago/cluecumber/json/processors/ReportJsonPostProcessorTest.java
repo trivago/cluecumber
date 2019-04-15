@@ -1,4 +1,4 @@
-package com.trivago.cluecumber.json.postprocessors;
+package com.trivago.cluecumber.json.processors;
 
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
@@ -13,12 +13,12 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ReportPostProcessorTest {
-    private ReportPostProcessor reportPostProcessor;
+public class ReportJsonPostProcessorTest {
+    private ReportJsonPostProcessor reportJsonPostProcessor;
 
     @Before
     public void setup() {
-        reportPostProcessor = new ReportPostProcessor();
+        reportJsonPostProcessor = new ReportJsonPostProcessor();
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ReportPostProcessorTest {
 
         assertThat(report.getElements().size(), is(2));
         assertThat(report.getElements().get(1).getTags().size(), is(1));
-        reportPostProcessor.postDeserialize(report, null, null);
+        reportJsonPostProcessor.postDeserialize(report, null, null);
         assertThat(report.getElements().size(), is(1));
         Element firstElement = report.getElements().get(0);
         assertThat(firstElement.getTags().size(), is(2));
@@ -81,6 +81,6 @@ public class ReportPostProcessorTest {
 
     @Test
     public void postSerializeTest() {
-        reportPostProcessor.postSerialize(null, null, null);
+        reportJsonPostProcessor.postSerialize(null, null, null);
     }
 }

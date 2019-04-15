@@ -206,3 +206,8 @@ div.collapse {
 i {
     color: #135A74;
 }
+
+.customParameters .card-body,
+.customParameters .card-body td {
+    padding: .5rem 1rem;
+}
