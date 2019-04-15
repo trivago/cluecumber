@@ -26,6 +26,8 @@ import com.trivago.cluecumber.rendering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,7 +94,7 @@ public class AllScenariosPageCollection extends PageCollection {
                 ).count()).sum();
     }
 
-    public long getTotalDuration() {
+    long getTotalDuration() {
         long totalDurationNanoseconds = 0;
         for (Report report : reports) {
             totalDurationNanoseconds += report.getTotalDuration();
@@ -101,7 +103,62 @@ public class AllScenariosPageCollection extends PageCollection {
     }
 
     public String getTotalDurationString() {
-        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+        ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
+        ZonedDateTime latestEndDateTime = getLatestEndDateTime();
+
+        // Return total runtime if no timestamps exist...
+        if (earliestStartDateTime == null || latestEndDateTime == null) {
+            return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+        }
+
+        // ...else return the calculated runtime.
+        return RenderingUtils.convertNanosecondsToTimeString(
+                ChronoUnit.NANOS.between(earliestStartDateTime, latestEndDateTime)
+        );
+    }
+
+    private ZonedDateTime getEarliestStartDateTime() {
+        ZonedDateTime earliestStartDateTime = null;
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                ZonedDateTime currentStartDateTime = element.getStartDateTime();
+                if (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime)) {
+                    earliestStartDateTime = currentStartDateTime;
+                }
+            }
+        }
+        return earliestStartDateTime;
+    }
+
+    private ZonedDateTime getLatestEndDateTime() {
+        ZonedDateTime latestEndDateTime = null;
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                ZonedDateTime currentEndDateTime = element.getStartDateTime().plusNanos(element.getTotalDuration());
+                if (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime)) {
+                    latestEndDateTime = currentEndDateTime;
+                }
+            }
+        }
+        return latestEndDateTime;
+    }
+
+    public String getStartDateTimeString() {
+        ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
+        if (earliestStartDateTime != null) {
+            return RenderingUtils.convertZonedDateTimeToDateString(earliestStartDateTime) + " " +
+                    RenderingUtils.convertZonedDateTimeToTimeString(earliestStartDateTime);
+        }
+        return "";
+    }
+
+    public String getEndDateTimeString() {
+        ZonedDateTime latestEndDateTime = getLatestEndDateTime();
+        if (latestEndDateTime != null) {
+            return RenderingUtils.convertZonedDateTimeToDateString(latestEndDateTime) + " " +
+                    RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
+        }
+        return "";
     }
 
     public List<CustomParameter> getCustomParameters() {

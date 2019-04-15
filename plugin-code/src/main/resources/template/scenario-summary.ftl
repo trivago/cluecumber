@@ -51,7 +51,7 @@ preheadlineLink="">
 
     <#if hasCustomParameters()>
         <div class="row">
-            <@page.card width="12" title="" subtitle="" classes="">
+            <@page.card width="12" title="" subtitle="" classes="customParameters">
                 <table class="table table-fit">
                     <tbody>
                     <#list customParameters as customParameter>
@@ -85,12 +85,18 @@ preheadlineLink="">
                     ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
                     ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
                 </li>
-                <#if startTimestamp?has_content>
-                    <li class="list-group-item" data-cluecumber-item="scenario-start">
-                        Started: ${startDateString} ${startTimeString}</li>
+                <#if startDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-start">
+                        Started on:<br>${startDateTimeString}</li>
                 </#if>
-                <li class="list-group-item" data-cluecumber-item="total-scenario-duration">
-                    ${totalDurationString}</li>
+                <#if endDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-end">
+                        Ended on:<br>${endDateTimeString}</li>
+                </#if>
+
+                <li class="list-group-item" data-cluecumber-item="total-runtime">
+                    Test Runtime:<br>${totalDurationString}
+                </li>
             </ul>
         </@page.card>
     </div>
