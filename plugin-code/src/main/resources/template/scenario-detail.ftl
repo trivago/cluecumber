@@ -39,9 +39,12 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
                 </li>
                 <#if element.startTimestamp?has_content>
-                    <li class="list-group-item">${element.startDateString}<br>${element.startTimeString}</li>
+                    <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
                 </#if>
-                <li class="list-group-item">${element.returnTotalDurationString()}</li>
+                <#if element.startTimestamp?has_content>
+                    <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
+                </#if>
+                <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
                         <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                     </#list>

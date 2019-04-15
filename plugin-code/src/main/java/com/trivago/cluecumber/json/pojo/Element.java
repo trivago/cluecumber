@@ -63,12 +63,29 @@ public class Element {
         return RenderingUtils.convertTimestampToZonedDateTime(startTimestamp);
     }
 
+    public ZonedDateTime getEndDateTime() {
+        ZonedDateTime startDateTime = getStartDateTime();
+        if (startDateTime != null) {
+            return getStartDateTime().plusNanos(getTotalDuration());
+        } else {
+            return null;
+        }
+    }
+
     public String getStartDateString() {
         return RenderingUtils.convertZonedDateTimeToDateString(getStartDateTime());
     }
 
     public String getStartTimeString() {
         return RenderingUtils.convertZonedDateTimeToTimeString(getStartDateTime());
+    }
+
+    public String getEndDateString() {
+        return RenderingUtils.convertZonedDateTimeToDateString(getEndDateTime());
+    }
+
+    public String getEndTimeString() {
+        return RenderingUtils.convertZonedDateTimeToTimeString(getEndDateTime());
     }
 
     public List<ResultMatch> getBefore() {

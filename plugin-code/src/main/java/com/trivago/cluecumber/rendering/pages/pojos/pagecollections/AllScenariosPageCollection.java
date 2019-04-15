@@ -134,7 +134,7 @@ public class AllScenariosPageCollection extends PageCollection {
         ZonedDateTime latestEndDateTime = null;
         for (Report report : reports) {
             for (Element element : report.getElements()) {
-                ZonedDateTime currentEndDateTime = element.getStartDateTime().plusNanos(element.getTotalDuration());
+                ZonedDateTime currentEndDateTime = element.getEndDateTime();
                 if (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime)) {
                     latestEndDateTime = currentEndDateTime;
                 }

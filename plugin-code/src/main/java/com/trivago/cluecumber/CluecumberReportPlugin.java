@@ -149,9 +149,9 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setCustomCss(customCss);
         propertyManager.validateSettings();
 
-        logger.info("-----------------------------------------------");
+        logger.logSeparator();
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
-        logger.info("-----------------------------------------------");
+        logger.logSeparator();
         propertyManager.logProperties();
 
         // Create attachment directory here since they are handled during json generation.
