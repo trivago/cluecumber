@@ -122,7 +122,8 @@ public class AllScenariosPageCollection extends PageCollection {
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 ZonedDateTime currentStartDateTime = element.getStartDateTime();
-                if (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime)) {
+                if (currentStartDateTime != null &&
+                        (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime))) {
                     earliestStartDateTime = currentStartDateTime;
                 }
             }
@@ -135,7 +136,8 @@ public class AllScenariosPageCollection extends PageCollection {
         for (Report report : reports) {
             for (Element element : report.getElements()) {
                 ZonedDateTime currentEndDateTime = element.getEndDateTime();
-                if (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime)) {
+                if (currentEndDateTime != null &&
+                        (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime))) {
                     latestEndDateTime = currentEndDateTime;
                 }
             }
@@ -143,7 +145,7 @@ public class AllScenariosPageCollection extends PageCollection {
         return latestEndDateTime;
     }
 
-    public String getStartDateTimeString() {
+    public String returnStartDateTimeString() {
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         if (earliestStartDateTime != null) {
             return RenderingUtils.convertZonedDateTimeToDateString(earliestStartDateTime) + " " +
@@ -152,7 +154,7 @@ public class AllScenariosPageCollection extends PageCollection {
         return "";
     }
 
-    public String getEndDateTimeString() {
+    public String returnEndDateTimeString() {
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
         if (latestEndDateTime != null) {
             return RenderingUtils.convertZonedDateTimeToDateString(latestEndDateTime) + " " +

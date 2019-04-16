@@ -85,10 +85,14 @@ preheadlineLink="">
                     ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
                     ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
                 </li>
+
+                <#assign startDateTimeString = returnStartDateTimeString()>
                 <#if startDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-start">
                         Started on:<br>${startDateTimeString}</li>
                 </#if>
+
+                <#assign endDateTimeString = returnEndDateTimeString()>
                 <#if endDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-end">
                         Ended on:<br>${endDateTimeString}</li>

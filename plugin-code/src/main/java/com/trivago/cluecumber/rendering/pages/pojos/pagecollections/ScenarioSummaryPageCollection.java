@@ -42,6 +42,5 @@ public class ScenarioSummaryPageCollection extends SummaryPageCollection {
                 totalSkipped.add(scenarioIndex);
             default:
         }
-
     }
 }
