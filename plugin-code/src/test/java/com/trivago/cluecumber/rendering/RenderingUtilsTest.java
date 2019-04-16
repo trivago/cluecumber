@@ -2,8 +2,13 @@ package com.trivago.cluecumber.rendering;
 
 import org.junit.Test;
 
+import java.time.Month;
+import java.time.ZonedDateTime;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 
 public class RenderingUtilsTest {
     @Test
@@ -34,5 +39,55 @@ public class RenderingUtilsTest {
     public void turnUrlsIntoLinksTest() {
         String htmlWithLinks = RenderingUtils.turnUrlsIntoLinks("This is a test on ftp://some.ftp.url.com and http://www.trivago.de");
         assertThat(htmlWithLinks, is("This is a test on <a href='ftp://some.ftp.url.com' target='_blank'>ftp://some.ftp.url.com</a> and <a href='http://www.trivago.de' target='_blank'>http://www.trivago.de</a>"));
+    }
+
+    @Test
+    public void convertTimestampToZonedDateTimeTest() {
+        String timestamp = "2018-09-14T13:02:15.123Z";
+        ZonedDateTime zonedDateTime = RenderingUtils.convertTimestampToZonedDateTime(timestamp);
+        assertThat(zonedDateTime, is(notNullValue()));
+        assertThat(zonedDateTime.getYear(), is(2018));
+        assertThat(zonedDateTime.getMonth(), is(Month.SEPTEMBER));
+        assertThat(zonedDateTime.getDayOfMonth(), is(14));
+        assertThat(zonedDateTime.getHour(), is(13));
+        assertThat(zonedDateTime.getMinute(), is(2));
+        assertThat(zonedDateTime.getSecond(), is(15));
+    }
+
+    @Test
+    public void convertTimestampToZonedDateTimeInvalidTest() {
+        String timestamp = "invalidTimestamp";
+        ZonedDateTime zonedDateTime = RenderingUtils.convertTimestampToZonedDateTime(timestamp);
+        assertThat(zonedDateTime, is(nullValue()));
+    }
+
+    @Test
+    public void convertZonedDateTimeToDateStringTest() {
+        String timestamp = "2018-09-14T13:02:15.123Z";
+        ZonedDateTime zonedDateTime = RenderingUtils.convertTimestampToZonedDateTime(timestamp);
+        String dateString = RenderingUtils.convertZonedDateTimeToDateString(zonedDateTime);
+        assertThat(dateString, is("2018-09-14"));
+    }
+
+    @Test
+    public void convertZonedDateTimeToDateStringInvalidTest() {
+        ZonedDateTime zonedDateTime = null;
+        String dateString = RenderingUtils.convertZonedDateTimeToDateString(zonedDateTime);
+        assertThat(dateString, is(""));
+    }
+
+    @Test
+    public void convertZonedDateTimeToTimeStringTest() {
+        String timestamp = "2018-09-14T13:02:15.123Z";
+        ZonedDateTime zonedDateTime = RenderingUtils.convertTimestampToZonedDateTime(timestamp);
+        String timeString = RenderingUtils.convertZonedDateTimeToTimeString(zonedDateTime);
+        assertThat(timeString, is("13:02:15"));
+    }
+
+    @Test
+    public void convertZonedDateTimeToTimeStringInvalidTest() {
+        ZonedDateTime zonedDateTime = null;
+        String timeString = RenderingUtils.convertZonedDateTimeToTimeString(zonedDateTime);
+        assertThat(timeString, is(""));
     }
 }
