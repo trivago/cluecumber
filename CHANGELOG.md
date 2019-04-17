@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.10.1] - UNRELEASED
+
+### Fixed
+
+* Incorrect wrapping for urls in custom parameters
+* UTC timezone conversion for timestamps
+
 ## [1.10.0] - 2019-04-16
 
 ### Fixed
@@ -424,6 +431,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1
 [1.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.0
 [1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
 [1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1

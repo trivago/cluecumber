@@ -115,7 +115,7 @@ table.table-fit td:nth-child(1) {
 
 table.table-fit td:nth-child(2) {
     width: 100%;
-    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .list-group-item, *[role=row], .table th, .table td {
