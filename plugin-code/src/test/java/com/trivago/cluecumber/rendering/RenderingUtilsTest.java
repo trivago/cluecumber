@@ -3,7 +3,10 @@ package com.trivago.cluecumber.rendering;
 import org.junit.Test;
 
 import java.time.Month;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -65,8 +68,12 @@ public class RenderingUtilsTest {
     public void convertZonedDateTimeToDateStringTest() {
         String timestamp = "2018-09-14T13:02:15.123Z";
         ZonedDateTime zonedDateTime = RenderingUtils.convertTimestampToZonedDateTime(timestamp);
+
+        final String dateLocal = Objects.requireNonNull(zonedDateTime).withZoneSameInstant(ZoneId.systemDefault()).
+                format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
         String dateString = RenderingUtils.convertZonedDateTimeToDateString(zonedDateTime);
-        assertThat(dateString, is("2018-09-14"));
+        assertThat(dateString, is(dateLocal));
     }
 
     @Test
@@ -80,8 +87,12 @@ public class RenderingUtilsTest {
     public void convertZonedDateTimeToTimeStringTest() {
         String timestamp = "2018-09-14T13:02:15.123Z";
         ZonedDateTime zonedDateTime = RenderingUtils.convertTimestampToZonedDateTime(timestamp);
+
+        final String timeLocal = Objects.requireNonNull(zonedDateTime).withZoneSameInstant(ZoneId.systemDefault()).
+                format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+
         String timeString = RenderingUtils.convertZonedDateTimeToTimeString(zonedDateTime);
-        assertThat(timeString, is("13:02:15"));
+        assertThat(timeString, is(timeLocal));
     }
 
     @Test
