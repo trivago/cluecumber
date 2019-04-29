@@ -14,6 +14,10 @@ Back to [Readme](README.md).
 * Incorrect wrapping for urls in custom parameters
 * UTC timezone conversion for timestamps
 
+### Changed
+
+* more resilient mime type handling
+
 ## [1.10.0] - 2019-04-16
 
 ### Fixed
