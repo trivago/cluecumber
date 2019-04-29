@@ -19,6 +19,7 @@ package com.trivago.cluecumber.rendering;
 import org.jsoup.Jsoup;
 
 import java.time.Duration;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -107,7 +108,8 @@ public class RenderingUtils {
         String targetString = sourceString;
         while (matcher.find()) {
             String found = matcher.group();
-            targetString = targetString.replaceFirst(Pattern.quote(found), Matcher.quoteReplacement("<a href='" + found + "' target='_blank'>" + found + "</a>"));
+            targetString = targetString.replaceFirst(Pattern.quote(found),
+                    Matcher.quoteReplacement("<a href='" + found + "' target='_blank'>" + found + "</a>"));
         }
         return targetString;
     }
@@ -129,7 +131,8 @@ public class RenderingUtils {
 
     public static String convertZonedDateTimeToDateString(final ZonedDateTime startDateTime) {
         try {
-            return startDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
+                    format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } catch (Exception ignored) {
         }
         return "";
@@ -137,7 +140,8 @@ public class RenderingUtils {
 
     public static String convertZonedDateTimeToTimeString(final ZonedDateTime startDateTime) {
         try {
-            return startDateTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+            return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
+                    format(DateTimeFormatter.ofPattern("HH:mm:ss"));
         } catch (Exception ignored) {
         }
         return "";

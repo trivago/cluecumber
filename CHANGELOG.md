@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [1.10.1] - UNRELEASED
+## [1.10.1] - 2019-04-29
 
 ### Fixed
 
 * Incorrect wrapping for urls in custom parameters
 * UTC timezone conversion for timestamps
+
+### Changed
+
+* more resilient mime type handling
 
 ## [1.10.0] - 2019-04-16
 
