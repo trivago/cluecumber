@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.11.0] - UNRELEASED
+
+### Removed
+
+* Cloner dependency
+
 ## [1.10.2] - 2019-04-29
 
 ### Changed

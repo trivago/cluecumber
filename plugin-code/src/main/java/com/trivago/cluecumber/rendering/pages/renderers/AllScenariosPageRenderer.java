@@ -16,7 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.renderers;
 
-import com.rits.cloning.Cloner;
 import com.trivago.cluecumber.constants.ChartColor;
 import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.constants.Status;
@@ -45,13 +44,11 @@ import java.util.Map;
 public class AllScenariosPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
-    private final Cloner cloner;
 
     @Inject
     public AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
         super(chartJsonConverter);
         this.propertyManager = propertyManager;
-        cloner = new Cloner();
     }
 
     public String getRenderedContent(
@@ -70,15 +67,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setTagFilter(tag);
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            List<Element> elements = new ArrayList<>();
-            for (Element element : report.getElements()) {
-                if (element.getTags().contains(tag)) {
-                    elements.add(element);
-                }
-            }
-            report.setElements(elements);
-        }
+//        for (Report report : allScenariosPageCollectionClone.getReports()) {
+//            List<Element> elements = new ArrayList<>();
+//            for (Element element : report.getElements()) {
+//                if (element.getTags().contains(tag)) {
+//                    elements.add(element);
+//                }
+//            }
+//            report.setElements(elements);
+//        }
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -90,15 +87,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setStepFilter(step);
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            List<Element> elements = new ArrayList<>();
-            for (Element element : report.getElements()) {
-                if (element.getSteps().contains(step)) {
-                    elements.add(element);
-                }
-            }
-            report.setElements(elements);
-        }
+//        for (Report report : allScenariosPageCollectionClone.getReports()) {
+//            List<Element> elements = new ArrayList<>();
+//            for (Element element : report.getElements()) {
+//                if (element.getSteps().contains(step)) {
+//                    elements.add(element);
+//                }
+//            }
+//            report.setElements(elements);
+//        }
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -110,15 +107,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setFeatureFilter(feature);
-        List<Report> reports = new ArrayList<>();
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            if (report.getFeatureIndex() == feature.getIndex()) {
-                reports.add(report);
-            }
-        }
-        Report[] reportArray = reports.toArray(new Report[0]);
-        allScenariosPageCollectionClone.clearReports();
-        allScenariosPageCollectionClone.addReports(reportArray);
+//        List<Report> reports = new ArrayList<>();
+//        for (Report report : allScenariosPageCollectionClone.getReports()) {
+//            if (report.getFeatureIndex() == feature.getIndex()) {
+//                reports.add(report);
+//            }
+//        }
+//        Report[] reportArray = reports.toArray(new Report[0]);
+//        allScenariosPageCollectionClone.clearReports();
+//        allScenariosPageCollectionClone.addReports(reportArray);
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -178,6 +175,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
     }
 
     private AllScenariosPageCollection getAllScenariosPageCollectionClone(final AllScenariosPageCollection allScenariosPageCollection) {
-        return cloner.deepClone(allScenariosPageCollection);
+        allScenariosPageCollection.setTagFilter(null);
+        allScenariosPageCollection.setFeatureFilter(null);
+        allScenariosPageCollection.setStepFilter(null);
+        return allScenariosPageCollection;
+//        return cloner.deepClone(allScenariosPageCollection);
     }
 }
