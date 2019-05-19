@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllScenariosPageCollection extends PageCollection {
+public class AllScenariosPageCollection extends PageCollection implements Cloneable {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
     private Tag tagFilter;
@@ -59,7 +59,6 @@ public class AllScenariosPageCollection extends PageCollection {
     }
 
     public void addReports(final List<Report> reportList) {
-        System.out.println("ADDED " + reportList.size() + " reports");
         this.reports.addAll(reportList);
     }
 
@@ -202,5 +201,20 @@ public class AllScenariosPageCollection extends PageCollection {
 
     public void setStepFilter(final Step stepFilter) {
         this.stepFilter = stepFilter;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        super.clone();
+        AllScenariosPageCollection clone = new AllScenariosPageCollection();
+        clone.addReports(clone.getReports());
+        clone.setStepFilter(null);
+        clone.setFeatureFilter(null);
+        clone.setTagFilter(null);
+        clone.setCustomParameters(clone.getCustomParameters());
+        clone.setExpandBeforeAfterHooks(clone.isExpandBeforeAfterHooks());
+        clone.setExpandStepHooks(clone.isExpandStepHooks());
+        clone.setExpandDocStrings(clone.isExpandDocStrings());
+        return clone;
     }
 }

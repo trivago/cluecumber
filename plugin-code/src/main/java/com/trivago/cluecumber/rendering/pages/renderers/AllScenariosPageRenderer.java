@@ -68,15 +68,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setTagFilter(tag);
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            List<Element> elements = new ArrayList<>();
-            for (Element element : report.getElements()) {
-                if (element.getTags().contains(tag)) {
-                    elements.add(element);
-                }
-            }
-            report.setElements(elements);
-        }
+//        for (Report report : allScenariosPageCollectionClone.getReports()) {
+//            List<Element> elements = new ArrayList<>();
+//            for (Element element : report.getElements()) {
+//                if (element.getTags().contains(tag)) {
+//                    elements.add(element);
+//                }
+//            }
+//            report.setElements(elements);
+//        }
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -175,16 +175,13 @@ public class AllScenariosPageRenderer extends PageRenderer {
         allScenariosPageCollection.setCustomParameters(customParameters);
     }
 
-    private AllScenariosPageCollection getAllScenariosPageCollectionClone(final AllScenariosPageCollection allScenariosPageCollection) {
-        AllScenariosPageCollection clone = new AllScenariosPageCollection();
-        clone.addReports(allScenariosPageCollection.getReports());
-        clone.setStepFilter(null);
-        clone.setFeatureFilter(null);
-        clone.setTagFilter(null);
-        clone.setCustomParameters(allScenariosPageCollection.getCustomParameters());
-        clone.setExpandBeforeAfterHooks(allScenariosPageCollection.isExpandBeforeAfterHooks());
-        clone.setExpandStepHooks(allScenariosPageCollection.isExpandStepHooks());
-        clone.setExpandDocStrings(allScenariosPageCollection.isExpandDocStrings());
-        return clone;
+    private AllScenariosPageCollection getAllScenariosPageCollectionClone(
+            final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        try {
+            return (AllScenariosPageCollection) allScenariosPageCollection.clone();
+
+        } catch (CloneNotSupportedException e) {
+            throw new CluecumberPluginException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
+        }
     }
 }
