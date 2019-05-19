@@ -76,10 +76,8 @@ public class ReportGeneratorTest {
         verify(fileSystemManager, times(17)).copyResourceFromJar(anyString(), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
         verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
-
-        System.out.println("REACTIVATE!");
-        //        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
-//        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_STEPS_PAGE_CONTENT"), anyString());
-//        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_FEATURE_PAGE_CONTENT"), anyString());
+        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
+        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_STEPS_PAGE_CONTENT"), anyString());
+        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_FEATURE_PAGE_CONTENT"), anyString());
     }
 }
