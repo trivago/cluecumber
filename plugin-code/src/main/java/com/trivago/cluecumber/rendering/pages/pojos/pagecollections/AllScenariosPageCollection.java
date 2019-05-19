@@ -55,7 +55,12 @@ public class AllScenariosPageCollection extends PageCollection {
         if (reportList == null) {
             return;
         }
-        this.reports.addAll(Arrays.asList(reportList));
+        addReports(Arrays.asList(reportList));
+    }
+
+    public void addReports(final List<Report> reportList) {
+        System.out.println("ADDED " + reportList.size() + " reports");
+        this.reports.addAll(reportList);
     }
 
     public int getTotalNumberOfScenarios() {

@@ -46,7 +46,7 @@ public class AllScenariosPageRenderer extends PageRenderer {
     private final PropertyManager propertyManager;
 
     @Inject
-    public AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
+    AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
         super(chartJsonConverter);
         this.propertyManager = propertyManager;
     }
@@ -55,9 +55,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        addChartJsonToReportDetails(allScenariosPageCollection);
-        addCustomParametersToReportDetails(allScenariosPageCollection);
-        return processedContent(template, allScenariosPageCollection);
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        addCustomParametersToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone);
     }
 
     public String getRenderedContentByTagFilter(
@@ -67,15 +68,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setTagFilter(tag);
-//        for (Report report : allScenariosPageCollectionClone.getReports()) {
-//            List<Element> elements = new ArrayList<>();
-//            for (Element element : report.getElements()) {
-//                if (element.getTags().contains(tag)) {
-//                    elements.add(element);
-//                }
-//            }
-//            report.setElements(elements);
-//        }
+        for (Report report : allScenariosPageCollectionClone.getReports()) {
+            List<Element> elements = new ArrayList<>();
+            for (Element element : report.getElements()) {
+                if (element.getTags().contains(tag)) {
+                    elements.add(element);
+                }
+            }
+            report.setElements(elements);
+        }
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -87,15 +88,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setStepFilter(step);
-//        for (Report report : allScenariosPageCollectionClone.getReports()) {
-//            List<Element> elements = new ArrayList<>();
-//            for (Element element : report.getElements()) {
-//                if (element.getSteps().contains(step)) {
-//                    elements.add(element);
-//                }
-//            }
-//            report.setElements(elements);
-//        }
+        for (Report report : allScenariosPageCollectionClone.getReports()) {
+            List<Element> elements = new ArrayList<>();
+            for (Element element : report.getElements()) {
+                if (element.getSteps().contains(step)) {
+                    elements.add(element);
+                }
+            }
+            report.setElements(elements);
+        }
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -107,15 +108,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setFeatureFilter(feature);
-//        List<Report> reports = new ArrayList<>();
-//        for (Report report : allScenariosPageCollectionClone.getReports()) {
-//            if (report.getFeatureIndex() == feature.getIndex()) {
-//                reports.add(report);
-//            }
-//        }
-//        Report[] reportArray = reports.toArray(new Report[0]);
-//        allScenariosPageCollectionClone.clearReports();
-//        allScenariosPageCollectionClone.addReports(reportArray);
+        List<Report> reports = new ArrayList<>();
+        for (Report report : allScenariosPageCollectionClone.getReports()) {
+            if (report.getFeatureIndex() == feature.getIndex()) {
+                reports.add(report);
+            }
+        }
+        Report[] reportArray = reports.toArray(new Report[0]);
+        allScenariosPageCollectionClone.clearReports();
+        allScenariosPageCollectionClone.addReports(reportArray);
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -175,10 +176,15 @@ public class AllScenariosPageRenderer extends PageRenderer {
     }
 
     private AllScenariosPageCollection getAllScenariosPageCollectionClone(final AllScenariosPageCollection allScenariosPageCollection) {
-        allScenariosPageCollection.setTagFilter(null);
-        allScenariosPageCollection.setFeatureFilter(null);
-        allScenariosPageCollection.setStepFilter(null);
-        return allScenariosPageCollection;
-//        return cloner.deepClone(allScenariosPageCollection);
+        AllScenariosPageCollection clone = new AllScenariosPageCollection();
+        clone.addReports(allScenariosPageCollection.getReports());
+        clone.setStepFilter(null);
+        clone.setFeatureFilter(null);
+        clone.setTagFilter(null);
+        clone.setCustomParameters(allScenariosPageCollection.getCustomParameters());
+        clone.setExpandBeforeAfterHooks(allScenariosPageCollection.isExpandBeforeAfterHooks());
+        clone.setExpandStepHooks(allScenariosPageCollection.isExpandStepHooks());
+        clone.setExpandDocStrings(allScenariosPageCollection.isExpandDocStrings());
+        return clone;
     }
 }
