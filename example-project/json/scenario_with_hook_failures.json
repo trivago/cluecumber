@@ -29,7 +29,7 @@
             "keyword": "Given ",
             "line": 4,
             "match": {
-              "location": "NativeConstructorAccessorImpl.java:-2"
+              "location": "NativeConstructorAccessorImplSkipped.java:-2"
             },
             "name": "this step is skipped",
             "result": {
@@ -55,6 +55,12 @@
             "output": [
               "Output 3",
               "Output 4"
+            ],
+            "embeddings": [
+              {
+                "data": "PGRpdiBhbGlnbj0nY2VudGVyJyBzdHlsZT0naGVpZ2h0OiAxNTBweCc+PGEgaHJlZj0naHR0cHM6Ly93d3cuZ29vZ2xlLmNvbScgdGFyZ2V0PSdfYmxhbmsnPkdvb2dsZS4uPC9hPjwvZGl2Pg==",
+                "mime_type": "text/html"
+              }
             ]
           }
         ],

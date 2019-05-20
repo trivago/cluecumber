@@ -14,8 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#macro page base links headline subheadline>
-    <!DOCTYPE html>
+<#macro page base links headline subheadline preheadline preheadlineLink>
     <!--
     Copyright 2018 trivago N.V.
 
@@ -31,33 +30,43 @@ limitations under the License.
     See the License for the specific language governing permissions and
     limitations under the License.
     -->
+    <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">
     <head>
         <#include "../snippets/common_headers.ftl">
         <#include "../snippets/css.ftl">
+        <#include "../snippets/js.ftl">
     </head>
     <body>
-        <@navigation.build links=links />
-        <main role="main" class="container">
-            <div class="cluecumber-template">
-                <div class="pb-2 mt-4 mb-2 border-bottom">
-                    <h3>${headline}</h3>
-                    <#if subheadline != "">
-                        <h5>${subheadline}</h5>
+    <@navigation.build links=links />
+    <main role="main" class="container">
+        <div class="cluecumber-template">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                <#if preheadline != "">
+                    <#if preheadlineLink != "">
+                        <h5><a href="${preheadlineLink}">${preheadline}</a></h5>
+                    <#else>
+                        <h5>${preheadline}</h5>
                     </#if>
-                </div>
-                <#nested>
+                </#if>
+                <#if headline != "">
+                    <h3>${headline}</h3>
+                </#if>
+                <#if subheadline != "">
+                    <h5>${subheadline}</h5>
+                </#if>
             </div>
-        </main>
-        <#include "../snippets/footer.ftl">
-        <#include "../snippets/js.ftl">
+            <#nested>
+        </div>
+    </main>
+    <#include "../snippets/footer.ftl">
     </body>
     </html>
 </#macro>
 
-<#macro card width title subtitle>
-    <div class="col-sm-${width}">
+<#macro card width title subtitle classes>
+    <div class="col-sm-${width} ${classes} h-auto" data-cluecumber-item="card">
         <div class="card h-100">
             <#if title != "">
                 <div class="card-header">${title}</div>
@@ -73,7 +82,7 @@ limitations under the License.
 </#macro>
 
 <#macro graph>
-    <div id="canvas-holder" class="w-100 text-center">
+    <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart">
         <canvas id="chart-area" class="w-100"></canvas>
     </div>
 </#macro>

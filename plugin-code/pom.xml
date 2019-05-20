@@ -6,11 +6,11 @@
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
-    <version>1.2.1</version>
+    <version>1.11.0</version>
     <url>https://github.com/trivago/cluecumber-report-plugin</url>
 
     <name>Cluecumber Maven Plugin for Cucumber Reports</name>
-    <description>Plugin for reporting Cucumber results.</description>
+    <description>Plugin for generating clear Cucumber BDD test result reports.</description>
 
     <inceptionYear>2017</inceptionYear>
 
@@ -25,7 +25,8 @@
             <organization>trivago N.V.</organization>
             <organizationUrl>http://www.trivago.de</organizationUrl>
             <roles>
-                <role>Web Test Automation Engineer</role>
+                <role>Test Automation Engineer</role>
+                <role>Knowledge Lead Test Automation</role>
             </roles>
         </developer>
     </developers>
@@ -64,7 +65,7 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <maven.compile.encoding>UTF-8</maven.compile.encoding>
 
-        <maven.version>3.5.2</maven.version>
+        <maven.version>3.6.1</maven.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
         <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
@@ -75,19 +76,18 @@
         <maven.plugin.testing.harness.version>3.3.0</maven.plugin.testing.harness.version>
         <cobertura.maven.plugin>2.7</cobertura.maven.plugin>
         <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
-        <plexus.component.annotations.version>1.7.1</plexus.component.annotations.version>
-        <maven.plugin.annotations.version>3.5</maven.plugin.annotations.version>
+        <plexus.component.annotations.version>2.0.0</plexus.component.annotations.version>
+        <maven.plugin.annotations.version>3.6.0</maven.plugin.annotations.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
-        <plexus.utilities.version>3.1.0</plexus.utilities.version>
-        <mockito.version>2.12.0</mockito.version>
-        <junit.version>4.12</junit.version>
-        <openpojo.version>0.8.6</openpojo.version>
+        <plexus.utilities.version>3.2.0</plexus.utilities.version>
 
-        <gson.version>2.8.2</gson.version>
-        <gsonfire.version>1.8.3</gsonfire.version>
+        <mockito.version>2.27.0</mockito.version>
+        <junit5.vintage.version>5.5.0-M1</junit5.vintage.version>
+        <openpojo.version>0.8.12</openpojo.version>
+
+        <gson.version>2.8.5</gson.version>
+        <gsonfire.version>1.9.0-alpha1</gsonfire.version>
         <freemarker.version>2.3.28</freemarker.version>
-        <jsoup.version>1.11.3</jsoup.version>
-        <cloning.version>1.9.10</cloning.version>
     </properties>
 
     <profiles>
@@ -217,12 +217,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-compat</artifactId>
-            <version>${maven.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
@@ -247,21 +241,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>uk.com.robust-it</groupId>
-            <artifactId>cloning</artifactId>
-            <version>${cloning.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit5.vintage.version}</version>
             <scope>test</scope>
         </dependency>
 

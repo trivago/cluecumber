@@ -7,6 +7,236 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.11.0] - UNRELEASED
+
+### Removed
+
+* Cloner dependency
+
+## [1.10.2] - 2019-04-29
+
+### Changed
+
+* Version change for Nexus redeploy error
+
+## [1.10.1] - 2019-04-29
+
+### Fixed
+
+* Incorrect wrapping for urls in custom parameters
+* UTC timezone conversion for timestamps
+
+### Changed
+
+* more resilient mime type handling
+
+## [1.10.0] - 2019-04-16
+
+### Fixed
+
+* Steps that are only skipped should not have a link to a scenario from the minimum/maximum time in `All Steps`
+* Feature name on `Scenario Details` page was incorrectly linked
+
+### Added
+
+* Additional parallel run time on `All Scenarios` and `Scenario Sequence` pages
+* Support of Cucumber 4.3.0's new scenario start timestamps
+* Start time and date, end time and date and duration is displayed on each scenario in `All Scenarios`, `Scenario Sequence` and `Scenario Detail` pages (Cucumber >= 4.3.0)
+
+### Changed
+
+* `Scenario Sequence` is now not based on start time if it exists in the json file
+* Minor design changes
+
+## [1.9.0] - 2019-04-10
+
+### Added
+
+* Minimum and maximum step times on `All Steps` page links to the enclosing scenario (#152)
+* New `failScenariosOnPendingOrUndefinedSteps` configuration property for marking scenarios as failed when they contain
+steps with status `pending` or `undefined` (default value is `false`) (#74)
+
+### Changed
+
+* Minimum and maximum step times are now only calculated for non-skipped steps
+
+## [1.8.1] - 2019-04-03
+
+### Fixed
+
+* `All Steps` shows scenario states instead of step states (#147)
+
+## [1.8.0] - 2019-03-27
+
+### Added
+
+* `All Steps` page (#145)
+* Scenarios by Step overview page (#145)
+
+### Changed
+
+* Usage of symbols instead of text in tables for `passed`, `failed` and `skipped` 
+
+## [1.7.3] - 2019-03-05
+
+### Fixed
+
+* Step times included step hook times even though they are independent (#135)
+
+### Added
+
+* Links starting with `file:` are converted to clickable links (#142, contributed by gazler22)
+
+## [1.7.2] - 2019-03-05
+
+### Fixed
+
+* Step times did not take step hook times into account (#135)
+
+## [1.7.1] - 2019-02-28
+
+### Fixed
+
+* Ordering by status on Scenario Sequence page (#133, contributed by @monofrei)
+
+## [1.7.0] - 2019-02-20
+
+### Added
+
+* Feature name link is now shown on scenario detail pages (#125)
+* three new options to expand or collapse hooks and docstrings on scenario detail pages (default: false) (#117)
+```xml
+<configuration>
+    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
+    <expandStepHooks>true|false</expandStepHooks>
+    <expandDocStrings>true|false</expandDocStrings>
+</configuration>
+```
+
+* Added data attributes for common elements (`data-cluecumber-item`) to simplify custom css configurations (related to #129)
+
+### Fixed
+
+* `All Tags` page shows the correct number of tagged results (#124)
+* Layout break on long scenario descriptions without spaces
+
+### Changed
+
+* Updated all js dependencies
+* Small design changes for expansion buttons to make them less prominent
+
+## [1.6.5] - 2019-01-21
+
+### Fixed
+
+* HTML attachments in hooks have the wrong size (#121)
+
+## [1.6.4] - 2019-01-16
+
+### Fixed
+
+* Long scenario names break the layout (#119)
+
+## [1.6.3] - 2019-01-08
+
+### Fixed
+
+* Feature tags are now propagated to their included scenarios and the `All Tags` page
+* Data table css added unneeded space at the end
+
+### Added
+
+* Step hooks display can now be toggled
+* Scenario text attachments are now formatted correctly
+
+### Changed
+
+* Multiple Scenario outputs are now displayed together
+* minor design changes
+
+## [1.6.2] - 2018-12-13
+
+### Fixed
+
+* Links to scenario details did not work for scenario indices over 1000
+* Long custom parameters (URLs) broke the layout
+
+## [1.6.1] - 2018-12-13
+
+### Fixed
+
+* Long URLs in doc strings and stack traces broke the layout
+
+## [1.6.0] - 2018-12-12
+
+### Added
+
+* URLs in doc strings and stack traces are now clickable
+* Increased unit test coverage
+
+### Changed
+
+* Minor design changes
+* Custom parameters are now formatted evenly
+
+## [1.5.0] - 2018-11-08
+
+### Added
+
+* Full support for png, gif, png, jpg, svg, html, xml, json, text and pdf attachments (contributed by @Rameshwar244)
+* Minor design improvements
+
+## [1.4.2] - 2018-10-16
+
+### Fixed
+
+* Attachments work in step before/after hooks
+
+### Added
+
+* Option to hide/show step hooks on the "Scenario Details" page (only present if the scenario has step hooks in at least one step)
+
+## [1.4.1] - 2018-10-09
+
+### Added
+
+* `skip` property for skipping the report generation completely.
+
+### Fixed
+
+* Corrected typo on `All Tags` page.
+
+## [1.4.0] - 2018-09-06
+
+### Changed
+
+* Cleaner layout without unnecessary horizontal lines
+* Tables now show 25 entries by default
+* Changed internal package structure
+
+### Added
+
+* Scenario Sequence page that shows the order of scenario executions and their states without deviding them into separate `passed`, `failed` and `skipped` sections 
+* Option to show/hide docstrings on the "Scenario Details" page (only present if the scenario has docstrings in at least one step)
+
+### Fixed
+
+* Long data tables broke the layout
+
+## [1.3.0] - 2018-08-21
+
+### Added
+
+* `customCSS` property to provide an additional CSS file that is loaded on top of Cluecumber's default styles
+* Support for step doc strings
+
+### Changed
+
+* Replaced `passed`, `failed` and `skipped` descriptions by webfont symbols
+* Cleaned up information box content on all pages
+* Data tables now use the full report width
+* Stack traces are now formatted
+
 ## [1.2.1] - 2018-07-31
 
 ### Fixed
@@ -217,6 +447,27 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
+[1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1
+[1.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.0
+[1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
+[1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1
+[1.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0
+[1.7.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3
+[1.7.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.2
+[1.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1
+[1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0
+[1.6.5]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.5
+[1.6.4]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.4
+[1.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.3
+[1.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.2
+[1.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.1
+[1.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.0
+[1.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0
+[1.4.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.2
+[1.4.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1
+[1.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0
+[1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
 [1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
 [1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
 [1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
@@ -230,6 +481,7 @@ Initial project version on GitHub and Maven Central.
 [0.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0
 [0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
 [0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0
+[0.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.7
 [0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6
 [0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
 [0.0.4]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4

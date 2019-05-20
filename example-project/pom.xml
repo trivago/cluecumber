@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>1.2.1</version>
+    <version>1.11.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,17 +29,33 @@
                         <goals>
                             <goal>reporting</goal>
                         </goals>
-                        <configuration>
-                            <sourceJsonReportDirectory>${cucumber.report.json.location}
-                            </sourceJsonReportDirectory>
-                            <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
-                            <customParameters>
-                                <Custom_Parameter>This is a test</Custom_Parameter>
-                                <Custom_URL>http://www.google.com</Custom_URL>
-                            </customParameters>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <sourceJsonReportDirectory>${cucumber.report.json.location}</sourceJsonReportDirectory>
+                    <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
+
+                    <!-- Optional custom parameters that are shown on the start page if they have a value -->
+                    <customParameters>
+                        <Custom_Parameter>This is a test</Custom_Parameter>
+                        <Custom_URL>http://www.google.com</Custom_URL>
+                        <Empty_Parameter/>
+                    </customParameters>
+
+                    <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
+                    <!--<failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>-->
+
+                    <!-- Optional custom CSS for custom styling -->
+                    <!--<customCss>custom/custom.css</customCss>-->
+
+                    <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
+                    <!--<expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->
+                    <!--<expandStepHooks>true</expandStepHooks>-->
+                    <!--<expandDocStrings>true</expandDocStrings>-->
+
+                    <!-- Optional skip property for the whole report generation -->
+                    <!--<skip>true</skip>-->
+                </configuration>
             </plugin>
         </plugins>
     </build>

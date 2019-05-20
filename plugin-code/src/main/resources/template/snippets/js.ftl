@@ -24,12 +24,19 @@ limitations under the License.
 <script>
     $(document).ready(function () {
         // Data tables
-        var dataTable = $('.renderAsDataTable').on('draw.dt', function () {
+        $('.renderAsDataTable').on('draw.dt', function () {
             $('[data-toggle="tooltip"]').tooltip();
         }).DataTable({
             "oLanguage": {
-                "sSearch": "Search all columns:"
-            }
+                "sSearch": "Search:"
+            },
+            "pageLength": 25
+        });
+
+        $('.collapse').on('shown.bs.collapse', function (e) {
+            $(e.target).find("iframe").each(function (index, iframe) {
+                resizeIframe(iframe);
+            })
         });
 
         // Lightbox
@@ -40,29 +47,43 @@ limitations under the License.
 
         // Chart
         <#if (reportDetails.chartJson?has_content)>
-            var canvas = document.getElementById('chart-area');
-            var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
+        var canvas = document.getElementById('chart-area');
+        var ctx = canvas.getContext("2d");
+        var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
 
-            var original;
-            switch (chart.config.type) {
-                case "pie":
-                    original = Chart.defaults.pie.legend.onClick;
-                    break;
-                default:
-                    original = Chart.defaults.global.legend.onClick;
-                    break;
-            }
+        var original;
+        switch (chart.config.type) {
+            case "pie":
+                original = Chart.defaults.pie.legend.onClick;
+                break;
+            default:
+                original = Chart.defaults.global.legend.onClick;
+                break;
+        }
 
-            chart.options.legend.onClick = function (evt, label) {
-                original.call(this, evt, label);
+        chart.options.legend.onClick = function (evt, label) {
+            original.call(this, evt, label);
 
-                var card = $("#card_" + label.text);
-                label.hidden ? card.show() : card.hide();
+            var card = $("#card_" + label.text);
+            label.hidden ? card.show() : card.hide();
 
-                var row = $(".row_" + label.text);
-                label.hidden ? row.show() : row.hide();
-            };
+            var row = $(".row_" + label.text);
+            label.hidden ? row.show() : row.hide();
+        };
         </#if>
-    })
+
+        if (${expandBeforeAfterHooks?c}) {
+            $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+        }
+        if (${expandStepHooks?c}) {
+            $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
+        }
+        if (${expandDocStrings?c}) {
+            $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
+        }
+    });
+
+    function resizeIframe(iframe) {
+        iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
+    }
 </script>

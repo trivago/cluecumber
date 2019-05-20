@@ -15,59 +15,101 @@ limitations under the License.
 -->
 
 <#import "macros/page.ftl"as page>
-<#import "macros/scenario.ftl" as scenarioMacros>
+<#import "macros/scenario.ftl" as scenario>
+<#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
+    <#assign headline = "Scenarios Tagged With <i>${tagFilter.name}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
+    <#assign headline = "Scenarios in Feature<br><i>${featureFilter.name}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+<#elseif (stepFilter??)>
+    <#assign base = "./../..">
+    <#assign headline = "Scenarios using Step<br><i>${stepFilter.returnNameWithArgumentPlaceholders()}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+<#elseif (scenarioSequence??)>
+    <#assign base = "./..">
+    <#assign headline = "Scenario Sequence">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_summary"]>
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
-    <#assign links = ["feature_summary", "tag_summary"]>
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence"]>
 </#if>
 
-<@page.page base=base links=links headline=headline subheadline="">
+<@page.page
+base=base
+links=links
+headline=headline
+subheadline=""
+preheadline=""
+preheadlineLink="">
+
     <#if hasCustomParameters()>
         <div class="row">
-            <@page.card width="12" title="" subtitle="">
-                <ul class="list-group list-group-flush">
-                <#list customParameters as customParameter>
-                    <li class="list-group-item"><strong>${customParameter.key}:</strong>
-                        <#if customParameter.url>
-                            <a href="${customParameter.value}"
-                               target="_blank">${customParameter.value}</a>
-                        <#else>
-                            ${customParameter.value}
-                        </#if>
-                    </li>
-                </#list>
-                </ul>
+            <@page.card width="12" title="" subtitle="" classes="customParameters">
+                <table class="table table-fit">
+                    <tbody>
+                    <#list customParameters as customParameter>
+                        <tr>
+                            <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
+                            <td class="text-left wrap">
+                                <#if customParameter.url>
+                                    <a href="${customParameter.value}" style="word-break: break-all;"
+                                       target="_blank">${customParameter.value}</a>
+                                <#else>
+                                    ${customParameter.value}
+                                </#if>
+                            </td>
+                        </tr>
+                    </#list>
+                    </tbody>
+                </table>
             </@page.card>
         </div>
     </#if>
 
     <div class="row">
-        <@page.card width="8" title="Scenario Result Chart" subtitle="">
+        <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Scenario Summary" subtitle="">
+        <@page.card width="4" title="Scenario Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>${totalNumberOfScenarios}</strong> Scenario(s)</li>
-                <li class="list-group-item"><strong>${totalNumberOfPassedScenarios}</strong> passed</li>
-                <li class="list-group-item"><strong>${totalNumberOfFailedScenarios}</strong> failed</li>
-                <li class="list-group-item"><strong>${totalNumberOfSkippedScenarios}</strong> skipped</li>
-                <li class="list-group-item"><strong>Time:</strong> ${totalDurationString}</li>
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    ${totalNumberOfScenarios} Scenario(s):<br>
+                    ${totalNumberOfPassedScenarios} <@common.status status="passed"/>
+                    ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
+                    ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
+                </li>
+
+                <#assign startDateTimeString = returnStartDateTimeString()>
+                <#if startDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-start">
+                        Started on:<br>${startDateTimeString}</li>
+                </#if>
+
+                <#assign endDateTimeString = returnEndDateTimeString()>
+                <#if endDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-end">
+                        Ended on:<br>${endDateTimeString}</li>
+                </#if>
+
+                <li class="list-group-item" data-cluecumber-item="total-runtime">
+                    Test Runtime:<br>${totalDurationString}
+                </li>
             </ul>
         </@page.card>
     </div>
 
-    <@scenarioMacros.table status="failed"/>
-    <@scenarioMacros.table status="skipped"/>
-    <@scenarioMacros.table status="passed"/>
+    <#if (scenarioSequence??)>
+        <@scenario.table status="all"/>
+    <#else>
+        <@scenario.table status="failed"/>
+        <@scenario.table status="skipped"/>
+        <@scenario.table status="passed"/>
+    </#if>
 </@page.page>

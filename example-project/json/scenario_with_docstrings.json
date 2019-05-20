@@ -1,0 +1,216 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "This is the background scenario",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 2019003859,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "def backgroundVariable \u003d \"Background Variable\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "backgroundVariable",
+                  "offset": 4
+                },
+                {
+                  "val": "\"Background Variable\"",
+                  "offset": 25
+                }
+              ],
+              "location": "StepDefs.def(String,String)"
+            },
+            "keyword": "* ",
+            "doc_string": {
+              "content_type": "",
+              "line": 4,
+              "value": "http://www.this.is.a.url.that.doesnt.exist.but.is.rather.long.so.it.should.not.break.the.line.in.the.report.de 11:43:36.054 karate.env system property was: dev \n11:43:36.110 skipping bootstrap configuration for env: dev - could not find or read file: karate-config-dev.js, prefix: CLASSPATH\n"
+            }
+          },
+          {
+            "result": {
+              "duration": 5061323,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "print \u0027Printing backgroundVariable\u0027, backgroundVariable",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027Printing backgroundVariable\u0027, backgroundVariable",
+                  "offset": 6
+                }
+              ],
+              "location": "StepDefs.print(String\u003e)"
+            },
+            "keyword": "* ",
+            "doc_string": {
+              "content_type": "",
+              "line": 5,
+              "value": "11:43:36.123 [print] Printing backgroundVariable Background Variable\n"
+            }
+          }
+        ]
+      },
+      {
+        "line": 8,
+        "name": "To print doc_string below each and every steps.",
+        "description": "",
+        "id": "doc-string-feature;to-print-doc-string-below-each-and-every-steps.",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 4383991,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "def variable1 \u003d \"First Variable\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "variable1",
+                  "offset": 4
+                },
+                {
+                  "val": "\"First Variable\"",
+                  "offset": 16
+                }
+              ],
+              "location": "StepDefs.def(String,String)"
+            },
+            "keyword": "* "
+          },
+          {
+            "result": {
+              "duration": 9745211,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "print \u0027Printing the variable1\u0027, variable1",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027Printing the variable1\u0027, variable1",
+                  "offset": 6
+                }
+              ],
+              "location": "StepDefs.print(String\u003e)"
+            },
+            "keyword": "* ",
+            "doc_string": {
+              "content_type": "",
+              "line": 10,
+              "value": "11:43:36.141 [print] Printing the variable1 First Variable\n"
+            }
+          },
+          {
+            "result": {
+              "duration": 5866244,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "def variable2 \u003d \"Second Variable\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "variable2",
+                  "offset": 4
+                },
+                {
+                  "val": "\"Second Variable\"",
+                  "offset": 16
+                }
+              ],
+              "location": "StepDefs.def(String,String)"
+            },
+            "keyword": "* "
+          },
+          {
+            "result": {
+              "duration": 5395681,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "print \u0027Printing the variable2\u0027, variable2",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027Printing the variable2\u0027, variable2",
+                  "offset": 6
+                }
+              ],
+              "location": "StepDefs.print(String\u003e)"
+            },
+            "keyword": "* ",
+            "doc_string": {
+              "content_type": "",
+              "line": 12,
+              "value": "11:43:36.155 [print] Printing the variable2 Second Variable\n"
+            }
+          },
+          {
+            "result": {
+              "duration": 8135368,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "def variable3 \u003d \"Third Variable\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "variable3",
+                  "offset": 4
+                },
+                {
+                  "val": "\"Third Variable\"",
+                  "offset": 16
+                }
+              ],
+              "location": "StepDefs.def(String,String)"
+            },
+            "keyword": "* "
+          },
+          {
+            "result": {
+              "duration": 5109733,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "print \u0027Printing the variable3\u0027, variable3",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\u0027Printing the variable3\u0027, variable3",
+                  "offset": 6
+                }
+              ],
+              "location": "StepDefs.print(String\u003e)"
+            },
+            "keyword": "* ",
+            "doc_string": {
+              "content_type": "",
+              "line": 14,
+              "value": "11:43:36.173 [print] Printing the variable3 Third Variable\n"
+            }
+          }
+        ]
+      }
+    ],
+    "name": "services/DocString.feature",
+    "description": "Doc String Feature",
+    "id": "doc-string-feature",
+    "keyword": "Feature",
+    "uri": "services/DocString.feature"
+  }
+]

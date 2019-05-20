@@ -25,7 +25,7 @@
             "keyword": "And ",
             "line": 3,
             "match": {
-              "location": "NativeConstructorAccessorImpl.java:-2"
+              "location": "NativeConstructorAccessorImplPass.java:-2"
             },
             "name": "this step passes",
             "result": {
@@ -37,7 +37,7 @@
             "keyword": "Then ",
             "line": 3,
             "match": {
-              "location": "NativeConstructorAccessorImpl.java:-2"
+              "location": "NativeConstructorAccessorImplFail.java:-2"
             },
             "name": "this step fails",
             "result": {
