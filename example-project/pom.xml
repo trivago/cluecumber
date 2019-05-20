@@ -32,7 +32,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <sourceJsonReportDirectory>${cucumber.report.json.location}</sourceJsonReportDirectory>
+                    <sourceJsonReportDirectory>${cucumber.report.json.location}2</sourceJsonReportDirectory>
                     <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
 
                     <!-- Optional custom parameters that are shown on the start page if they have a value -->

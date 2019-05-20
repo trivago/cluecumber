@@ -205,16 +205,16 @@ public class AllScenariosPageCollection extends PageCollection implements Clonea
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        super.clone();
-        AllScenariosPageCollection clone = new AllScenariosPageCollection();
-        clone.addReports(clone.getReports());
-        clone.setStepFilter(null);
+        final AllScenariosPageCollection clone = (AllScenariosPageCollection) super.clone();
         clone.setFeatureFilter(null);
+        clone.setStepFilter(null);
         clone.setTagFilter(null);
-        clone.setCustomParameters(clone.getCustomParameters());
-        clone.setExpandBeforeAfterHooks(clone.isExpandBeforeAfterHooks());
-        clone.setExpandStepHooks(clone.isExpandStepHooks());
-        clone.setExpandDocStrings(clone.isExpandDocStrings());
+        clone.clearReports();
+        List<Report> clonedReports = new ArrayList<>();
+        for (Report r : getReports()) {
+            clonedReports.add((Report) r.clone());
+        }
+        clone.addReports(clonedReports);
         return clone;
     }
 }
