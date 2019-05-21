@@ -33,7 +33,8 @@ limitations under the License.
     <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">
-    <head>
+    <head title="Cucumber Report Head">
+        <title>Cluecumber Report</title>
         <#include "../snippets/common_headers.ftl">
         <#include "../snippets/css.ftl">
         <#include "../snippets/js.ftl">

@@ -293,10 +293,7 @@ public class Element {
     }
 
     public boolean hasHooks() {
-        if (getBefore().size() > 0 || getAfter().size() > 0) {
-            return true;
-        }
-        return false;
+        return getBefore().size() > 0 || getAfter().size() > 0;
     }
 
     public boolean hasDocStrings() {

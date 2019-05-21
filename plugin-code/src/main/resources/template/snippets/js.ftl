@@ -52,13 +52,10 @@ limitations under the License.
         var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
 
         var original;
-        switch (chart.config.type) {
-            case "pie":
-                original = Chart.defaults.pie.legend.onClick;
-                break;
-            default:
-                original = Chart.defaults.global.legend.onClick;
-                break;
+        if (chart.config.type === "pie") {
+            original = Chart.defaults.pie.legend.onClick;
+        } else {
+            original = Chart.defaults.global.legend.onClick;
         }
 
         chart.options.legend.onClick = function (evt, label) {

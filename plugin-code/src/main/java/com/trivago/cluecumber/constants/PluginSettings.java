@@ -50,7 +50,7 @@ public class PluginSettings {
     public final static String STEP_SUMMARY_TEMPLATE = "step-summary";
     public final static String STEP_SUMMARY_PAGE_PATH = "step-summary";
     public static final String STEP_SCENARIO_PAGE_PATH = "step-scenarios";
-    public static final String STEP_SCENARIO_PAGE_FRAGMENT = "/" + STEP_SCENARIO_PAGE_PATH + "/step_";;
+    public static final String STEP_SCENARIO_PAGE_FRAGMENT = "/" + STEP_SCENARIO_PAGE_PATH + "/step_";
 
     public final static String FEATURE_SUMMARY_PAGE_NAME = "Feature Summary";
     public final static String FEATURE_SUMMARY_TEMPLATE = "feature-summary";
