@@ -19,7 +19,7 @@ package com.trivago.cluecumber.json.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Report {
+public class Report implements Cloneable {
     private int line;
     private List<Element> elements = new ArrayList<>();
     private String name = "";
@@ -109,5 +109,10 @@ public class Report {
             totalDurationNanoseconds += element.getTotalDuration();
         }
         return totalDurationNanoseconds;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

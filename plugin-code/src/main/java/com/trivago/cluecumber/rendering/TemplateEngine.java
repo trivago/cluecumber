@@ -36,7 +36,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class TemplateEngine {
+class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
     private final AllFeaturesPageRenderer allFeaturesPageRenderer;
     private final AllTagsPageRenderer allTagsPageRenderer;
@@ -45,7 +45,7 @@ public class TemplateEngine {
     private final AllScenariosPageRenderer allScenariosPageRenderer;
 
     @Inject
-    public TemplateEngine(
+    TemplateEngine(
             final TemplateConfiguration templateConfiguration,
             final AllFeaturesPageRenderer allFeaturesPageRenderer,
             final AllTagsPageRenderer allTagsPageRenderer,
@@ -64,77 +64,77 @@ public class TemplateEngine {
     }
 
     String getRenderedScenarioSummaryPageContent(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContent(
+        return allScenariosPageRenderer.getRenderedContent(
                 allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE)
-        ));
+        );
     }
 
     String getRenderedScenarioSequencePageContent(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContent(
+        return allScenariosPageRenderer.getRenderedContent(
                 allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SEQUENCE_TEMPLATE)
-        ));
+        );
     }
 
     String getRenderedScenarioSummaryPageContentByTagFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Tag tag) throws CluecumberPluginException {
 
-        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContentByTagFilter(
+        return allScenariosPageRenderer.getRenderedContentByTagFilter(
                 allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
                 tag
-        ));
+        );
     }
 
     String getRenderedScenarioSummaryPageContentByStepFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Step step) throws CluecumberPluginException {
 
-        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContentByStepFilter(
+        return allScenariosPageRenderer.getRenderedContentByStepFilter(
                 allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
                 step
-        ));
+        );
     }
 
     String getRenderedScenarioSummaryPageContentByFeatureFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Feature feature) throws CluecumberPluginException {
 
-        return RenderingUtils.prettifyHtml(allScenariosPageRenderer.getRenderedContentByFeatureFilter(
+        return allScenariosPageRenderer.getRenderedContentByFeatureFilter(
                 allScenariosPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE),
                 feature
-        ));
+        );
     }
 
     String getRenderedScenarioDetailPageContent(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(scenarioDetailsPageRenderer.getRenderedContent(
+        return scenarioDetailsPageRenderer.getRenderedContent(
                 scenarioDetailsPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.SCENARIO_DETAIL_TEMPLATE)
-        ));
+        );
     }
 
     String getRenderedTagSummaryPageContent(final AllTagsPageCollection allTagsPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(allTagsPageRenderer.getRenderedContent(
+        return allTagsPageRenderer.getRenderedContent(
                 allTagsPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_TEMPLATE)
-        ));
+        );
     }
 
     String getRenderedStepSummaryPageContent(final AllStepsPageCollection allStepsPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(allStepsPageRenderer.getRenderedContent(
+        return allStepsPageRenderer.getRenderedContent(
                 allStepsPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.STEP_SUMMARY_TEMPLATE)
-        ));
+        );
     }
 
     String getRenderedFeatureSummaryPageContent(final AllFeaturesPageCollection allFeaturesPageCollection) throws CluecumberPluginException {
-        return RenderingUtils.prettifyHtml(allFeaturesPageRenderer.getRenderedContent(
+        return allFeaturesPageRenderer.getRenderedContent(
                 allFeaturesPageCollection,
                 templateConfiguration.getTemplate(PluginSettings.FEATURE_SUMMARY_TEMPLATE)
-        ));
+        );
     }
 }

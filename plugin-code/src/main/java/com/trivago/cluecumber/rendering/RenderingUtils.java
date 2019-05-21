@@ -16,8 +16,6 @@
 
 package com.trivago.cluecumber.rendering;
 
-import org.jsoup.Jsoup;
-
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -51,16 +49,6 @@ public class RenderingUtils {
      */
     public static long convertNanosecondsToMilliseconds(final long nanoseconds) {
         return nanoseconds / MICROSECOND_FACTOR;
-    }
-
-    /**
-     * Returns prettified HTML
-     *
-     * @param html The source html.
-     * @return The prettified HTML.
-     */
-    static String prettifyHtml(String html) {
-        return Jsoup.parse(html).toString().trim();
     }
 
     /**
@@ -127,7 +115,6 @@ public class RenderingUtils {
             return null;
         }
     }
-
 
     public static String convertZonedDateTimeToDateString(final ZonedDateTime startDateTime) {
         try {

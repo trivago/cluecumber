@@ -93,7 +93,7 @@ limitations under the License.
                                             </td>
                                             <td class="text-right small"
                                                 data-order="${element.totalDuration}">
-                                                <nobr>${element.returnTotalDurationString()}</nobr>
+                                                <span class="nobr">${element.returnTotalDurationString()}</span>
                                             </td>
                                             <#if allRequested>
                                                 <td class="text-center"><@common.status status=element.status.statusString/></td>
@@ -118,11 +118,11 @@ limitations under the License.
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}" style="max-width: 100%"/>
+                            <img src="attachments/${attachment.filename}" style="max-width: 100%" alt="Attachment ${attachment.filename}"/>
                         </a>
                     <#elseif attachment.mimeType == "HTML">
-                        <iframe frameborder="0" src="attachments/${attachment.filename}"
-                                srcdoc="${attachment.decodedData}" width="100%" height="1" scrolling="no"
+                        <iframe src="attachments/${attachment.filename}"
+                                srcdoc="${attachment.decodedData}" width="100%" height="1"
                                 onload="resizeIframe(this);"></iframe>
                     <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
                         <pre class="embedding-content small">${attachment.decodedData}</pre>
@@ -164,7 +164,7 @@ limitations under the License.
                     <i>${hook.glueMethodName}</i>
                 </div>
                 <div class="col-2 text-left small">
-                    <nobr>${hook.result.returnDurationString()}</nobr>
+                    <span class="nobr">${hook.result.returnDurationString()}</span>
                 </div>
                 <div class="col-1 text-right">
                     <@common.status status=hook.consolidatedStatusString/>

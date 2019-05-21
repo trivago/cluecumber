@@ -78,8 +78,7 @@ public class RenderingUtilsTest {
 
     @Test
     public void convertZonedDateTimeToDateStringInvalidTest() {
-        ZonedDateTime zonedDateTime = null;
-        String dateString = RenderingUtils.convertZonedDateTimeToDateString(zonedDateTime);
+        String dateString = RenderingUtils.convertZonedDateTimeToDateString(null);
         assertThat(dateString, is(""));
     }
 
@@ -97,8 +96,7 @@ public class RenderingUtilsTest {
 
     @Test
     public void convertZonedDateTimeToTimeStringInvalidTest() {
-        ZonedDateTime zonedDateTime = null;
-        String timeString = RenderingUtils.convertZonedDateTimeToTimeString(zonedDateTime);
+        String timeString = RenderingUtils.convertZonedDateTimeToTimeString(null);
         assertThat(timeString, is(""));
     }
 }

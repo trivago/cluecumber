@@ -1,7 +1,11 @@
 package com.trivago.cluecumber.rendering.pages.renderers;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.json.pojo.*;
+import com.trivago.cluecumber.json.pojo.Element;
+import com.trivago.cluecumber.json.pojo.Match;
+import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
+import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
@@ -15,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.mockito.ArgumentMatchers.matches;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

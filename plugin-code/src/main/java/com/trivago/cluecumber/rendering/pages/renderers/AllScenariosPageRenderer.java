@@ -16,7 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.renderers;
 
-import com.rits.cloning.Cloner;
 import com.trivago.cluecumber.constants.ChartColor;
 import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.constants.Status;
@@ -45,22 +44,21 @@ import java.util.Map;
 public class AllScenariosPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
-    private final Cloner cloner;
 
     @Inject
-    public AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
+    AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
         super(chartJsonConverter);
         this.propertyManager = propertyManager;
-        cloner = new Cloner();
     }
 
     public String getRenderedContent(
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        addChartJsonToReportDetails(allScenariosPageCollection);
-        addCustomParametersToReportDetails(allScenariosPageCollection);
-        return processedContent(template, allScenariosPageCollection);
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        addCustomParametersToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone);
     }
 
     public String getRenderedContentByTagFilter(
@@ -124,7 +122,6 @@ public class AllScenariosPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {
-
         Chart chart = new Chart();
         Data data = new Data();
 
@@ -177,7 +174,14 @@ public class AllScenariosPageRenderer extends PageRenderer {
         allScenariosPageCollection.setCustomParameters(customParameters);
     }
 
-    private AllScenariosPageCollection getAllScenariosPageCollectionClone(final AllScenariosPageCollection allScenariosPageCollection) {
-        return cloner.deepClone(allScenariosPageCollection);
+    private AllScenariosPageCollection getAllScenariosPageCollectionClone(
+            final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        AllScenariosPageCollection clone;
+        try {
+            clone = (AllScenariosPageCollection) allScenariosPageCollection.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new CluecumberPluginException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
+        }
+        return clone;
     }
 }

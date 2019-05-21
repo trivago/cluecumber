@@ -27,7 +27,7 @@ public class AllScenariosPageCollectionTest {
 
     @Test
     public void addReportsNullReportListTest() {
-        allScenariosPageCollection.addReports(null);
+        allScenariosPageCollection.addReports((Report[]) null);
         assertThat(allScenariosPageCollection.getReports().size(), is(0));
         assertThat(allScenariosPageCollection.getTotalNumberOfScenarios(), is(0));
     }

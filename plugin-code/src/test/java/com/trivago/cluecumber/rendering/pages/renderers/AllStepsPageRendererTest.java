@@ -4,7 +4,6 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import freemarker.template.Template;
 import org.junit.Before;
 import org.junit.Test;

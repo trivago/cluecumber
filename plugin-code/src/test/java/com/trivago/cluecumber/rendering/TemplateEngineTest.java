@@ -55,7 +55,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_SUMMARY_TEMPLATE)).thenReturn(template);
         when(allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection, template)).thenReturn("SCENARIO_SUMMARY_CONTENT");
         String pageContent = templateEngine.getRenderedScenarioSummaryPageContent(allScenariosPageCollection);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  SCENARIO_SUMMARY_CONTENT\n </body>\n</html>"));
+        assertThat(pageContent, is("SCENARIO_SUMMARY_CONTENT"));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_SEQUENCE_TEMPLATE)).thenReturn(template);
         when(allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection, template)).thenReturn("SCENARIO_SEQUENCE_CONTENT");
         String pageContent = templateEngine.getRenderedScenarioSequencePageContent(allScenariosPageCollection);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  SCENARIO_SEQUENCE_CONTENT\n </body>\n</html>"));
+        assertThat(pageContent, is("SCENARIO_SEQUENCE_CONTENT"));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class TemplateEngineTest {
         Tag tag = new Tag();
         when(allScenariosPageRenderer.getRenderedContentByTagFilter(allScenariosPageCollection, template, tag)).thenReturn("SCENARIO_SUMMARY_TAG_TEMPLATE");
         String pageContent = templateEngine.getRenderedScenarioSummaryPageContentByTagFilter(allScenariosPageCollection, tag);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  SCENARIO_SUMMARY_TAG_TEMPLATE\n </body>\n</html>"));
+        assertThat(pageContent, is("SCENARIO_SUMMARY_TAG_TEMPLATE"));
     }
 
     @Test
@@ -87,7 +87,7 @@ public class TemplateEngineTest {
         Step step = new Step();
         when(allScenariosPageRenderer.getRenderedContentByStepFilter(allScenariosPageCollection, template, step)).thenReturn("SCENARIO_SUMMARY_STEP_TEMPLATE");
         String pageContent = templateEngine.getRenderedScenarioSummaryPageContentByStepFilter(allScenariosPageCollection, step);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  SCENARIO_SUMMARY_STEP_TEMPLATE\n </body>\n</html>"));
+        assertThat(pageContent, is("SCENARIO_SUMMARY_STEP_TEMPLATE"));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TemplateEngineTest {
         Feature feature = new Feature("test", 0);
         when(allScenariosPageRenderer.getRenderedContentByFeatureFilter(allScenariosPageCollection, template, feature)).thenReturn("SCENARIO_SUMMARY_FEATURE_TEMPLATE");
         String pageContent = templateEngine.getRenderedScenarioSummaryPageContentByFeatureFilter(allScenariosPageCollection, feature);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  SCENARIO_SUMMARY_FEATURE_TEMPLATE\n </body>\n</html>"));
+        assertThat(pageContent, is("SCENARIO_SUMMARY_FEATURE_TEMPLATE"));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(PluginSettings.SCENARIO_DETAIL_TEMPLATE)).thenReturn(template);
         when(scenarioDetailsPageRenderer.getRenderedContent(scenarioDetailsPageCollection, template)).thenReturn("DETAIL_PAGE_CONTENT");
         String pageContent = templateEngine.getRenderedScenarioDetailPageContent(scenarioDetailsPageCollection);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  DETAIL_PAGE_CONTENT\n </body>\n</html>"));
+        assertThat(pageContent, is("DETAIL_PAGE_CONTENT"));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(PluginSettings.TAG_SUMMARY_TEMPLATE)).thenReturn(template);
         when(allTagsPageRenderer.getRenderedContent(allTagsPageCollection, template)).thenReturn("TAG_PAGE_CONTENT");
         String pageContent = templateEngine.getRenderedTagSummaryPageContent(allTagsPageCollection);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  TAG_PAGE_CONTENT\n </body>\n</html>"));
+        assertThat(pageContent, is("TAG_PAGE_CONTENT"));
     }
 
     @Test
@@ -128,7 +128,7 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(PluginSettings.STEP_SUMMARY_TEMPLATE)).thenReturn(template);
         when(allStepsPageRenderer.getRenderedContent(allStepsPageCollection, template)).thenReturn("STEP_PAGE_CONTENT");
         String pageContent = templateEngine.getRenderedStepSummaryPageContent(allStepsPageCollection);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  STEP_PAGE_CONTENT\n </body>\n</html>"));
+        assertThat(pageContent, is("STEP_PAGE_CONTENT"));
     }
 
     @Test
@@ -138,6 +138,6 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(PluginSettings.FEATURE_SUMMARY_TEMPLATE)).thenReturn(template);
         when(allFeaturesPageRenderer.getRenderedContent(allFeaturesPageCollection, template)).thenReturn("FEATURE_PAGE_CONTENT");
         String pageContent = templateEngine.getRenderedFeatureSummaryPageContent(allFeaturesPageCollection);
-        assertThat(pageContent, is("<html>\n <head></head>\n <body>\n  FEATURE_PAGE_CONTENT\n </body>\n</html>"));
+        assertThat(pageContent, is("FEATURE_PAGE_CONTENT"));
     }
 }
