@@ -20,7 +20,7 @@ html {
 }
 
 h2, h3, h4, h5 {
-    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 body {
@@ -205,4 +205,9 @@ div.collapse {
 
 i {
     color: #135A74;
+}
+
+.customParameters .card-body,
+.customParameters .card-body td {
+    padding: .5rem 1rem;
 }
