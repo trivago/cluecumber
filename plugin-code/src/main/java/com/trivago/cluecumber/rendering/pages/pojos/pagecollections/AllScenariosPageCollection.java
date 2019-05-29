@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllScenariosPageCollection extends PageCollection implements Cloneable {
+public class AllScenariosPageCollection extends PageCollection {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
     private Tag tagFilter;
