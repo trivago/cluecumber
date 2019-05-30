@@ -174,6 +174,12 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 </configuration>
 ```
 
+The customParameters can also be loaded from a file using the `customParametersFile` tag:
+
+1. If both the `<customParametersFile>` and `<customeParameters>` tags are defined in the pom, parameters from both of these configuration are added to the report.
+2. If two parameters have the same key, the one in the `customParametersFile` will override the one from `customeParameters`.
+
+
 The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
