@@ -22,11 +22,13 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 
@@ -59,6 +61,7 @@ public class ReportGenerator {
         generateScenarioDetailPages(allScenariosPageCollection);
         generateFeaturePages(allScenariosPageCollection);
         generateTagPages(allScenariosPageCollection);
+        generateStepPages(allScenariosPageCollection);
         generateScenarioSequencePage(allScenariosPageCollection);
         generateScenarioSummaryPage(allScenariosPageCollection);
     }
@@ -108,6 +111,30 @@ public class ReportGenerator {
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                             PluginSettings.PAGES_DIRECTORY + PluginSettings.TAG_SCENARIO_PAGE_FRAGMENT +
                             tag.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
+        }
+    }
+
+    /**
+     * Generate pages for steps.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void generateStepPages(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        // Step summary page
+        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(allScenariosPageCollection.getReports());
+        fileIO.writeContentToFile(
+                templateEngine.getRenderedStepSummaryPageContent(allStepsPageCollection),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.STEP_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+        // Step scenario list pages
+        for (Step step : allStepsPageCollection.getSteps()) {
+            fileIO.writeContentToFile(
+                    templateEngine.getRenderedScenarioSummaryPageContentByStepFilter(allScenariosPageCollection, step),
+                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                            PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
+                            step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
         }
     }
 
@@ -171,6 +198,7 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.TAG_SCENARIO_PAGE_PATH);
+        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.STEP_SCENARIO_PAGE_PATH);
 
         // Copy CSS resources
         fileSystemManager.createDirectory(reportDirectory + "/css");

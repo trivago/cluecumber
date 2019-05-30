@@ -22,6 +22,7 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.JsonPojoConverter;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.ReportGenerator;
@@ -47,6 +48,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private final FileSystemManager fileSystemManager;
     private final FileIO fileIO;
     private final JsonPojoConverter jsonPojoConverter;
+    private final ElementIndexPreProcessor elementIndexPreProcessor;
     private final ReportGenerator reportGenerator;
 
     /**
@@ -66,6 +68,18 @@ public final class CluecumberReportPlugin extends AbstractMojo {
      */
     @Parameter(property = "reporting.customParameters")
     private Map<String, String> customParameters = new HashMap<>();
+
+    /**
+     * Custom parameters file to load custom parameters from.
+     */
+    @Parameter(property = "reporting.customParametersFile")
+    private String customParametersFile = "";
+    
+    /**
+    * Mark scenarios as failed if they contain pending or undefined steps (default: false).
+    */
+    @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
+    private boolean failScenariosOnPendingOrUndefinedSteps;
 
     /**
      * Custom CSS that is applied on top of Cluecumber's default styles.
@@ -104,6 +118,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
             final FileSystemManager fileSystemManager,
             final FileIO fileIO,
             final JsonPojoConverter jsonPojoConverter,
+            final ElementIndexPreProcessor elementIndexPreProcessor,
             final ReportGenerator reportGenerator
     ) {
         this.propertyManager = propertyManager;
@@ -111,6 +126,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         this.fileIO = fileIO;
         this.jsonPojoConverter = jsonPojoConverter;
         this.logger = logger;
+        this.elementIndexPreProcessor = elementIndexPreProcessor;
         this.reportGenerator = reportGenerator;
     }
 
@@ -132,15 +148,20 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.setCustomParameters(customParameters);
+        propertyManager.setCustomParametersFile(customParametersFile);
+        propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
         propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
         propertyManager.setExpandStepHooks(expandStepHooks);
         propertyManager.setExpandDocStrings(expandDocStrings);
         propertyManager.setCustomCss(customCss);
         propertyManager.validateSettings();
+        propertyManager.initCustomParamatersFromFile();
+        
+        logger.info("-----------------------------------------------");
 
-        logger.info("-----------------------------------------------");
+        logger.logSeparator();
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
-        logger.info("-----------------------------------------------");
+        logger.logSeparator();
         propertyManager.logProperties();
 
         // Create attachment directory here since they are handled during json generation.
@@ -157,7 +178,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
                 logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
-
+        elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +

@@ -1,14 +1,12 @@
 package com.trivago.cluecumber.json.pojo;
 
+import com.trivago.cluecumber.constants.MimeType;
+import org.codehaus.plexus.util.Base64;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.trivago.cluecumber.constants.MimeType;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.codehaus.plexus.util.Base64;
 
 public class EmbeddingTest {
     private Embedding embedding;
@@ -59,14 +57,14 @@ public class EmbeddingTest {
         embedding.setMimeType(MimeType.TXT);
         assertThat(embedding.isPlainText(), is(true));
     }
-    
+
     @Test
     public void getDecodedDataTest() {
         String originalInput = "This is getDecodeData() Test !!!";
         String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
         embedding.setMimeType(MimeType.TXT);
         embedding.encodeData(encodeString);
-        assertThat(embedding.getDecodedData(),is("This is getDecodeData() Test !!!"));
+        assertThat(embedding.getDecodedData(), is("This is getDecodeData() Test !!!"));
     }
 
     @Test
@@ -75,9 +73,18 @@ public class EmbeddingTest {
         String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
         embedding.setMimeType(MimeType.XML);
         embedding.encodeData(encodeString);
-        assertThat(embedding.getDecodedData(),is("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;&lt;/note&gt;"));        
+        assertThat(embedding.getDecodedData(), is("&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;&lt;/note&gt;"));
     }
-    
+
+    @Test
+    public void getDecodedDataForHTMLTest() {
+        String originalInput = "<a href=\"test\">test</a>";
+        String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
+        embedding.setMimeType(MimeType.HTML);
+        embedding.encodeData(encodeString);
+        assertThat(embedding.getDecodedData(), is("<a href='test'>test</a>"));
+    }
+
     @Test
     public void getFileEndingTest() {
         embedding.setMimeType(MimeType.PNG);
@@ -100,11 +107,11 @@ public class EmbeddingTest {
         assertThat(embedding.getFileEnding(), is("svg"));
         embedding.setMimeType(MimeType.SVG_XML);
         assertThat(embedding.getFileEnding(), is("svg"));
-        embedding.setMimeType(MimeType.TXT);        
+        embedding.setMimeType(MimeType.TXT);
         assertThat(embedding.getFileEnding(), is("txt"));
         embedding.setMimeType(MimeType.PDF);
         assertThat(embedding.getFileEnding(), is("pdf"));
         embedding.setMimeType(MimeType.UNKNOWN);
         assertThat(embedding.getFileEnding(), is("unknown"));
-    }        
+    }
 }

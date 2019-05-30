@@ -20,13 +20,17 @@ html {
 }
 
 h2, h3, h4, h5 {
-    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 body {
     padding-top: 3rem;
     background-color: #fdfdfe;
     margin-bottom: 60px;
+}
+
+a {
+    color: #004ea2;
 }
 
 .bg-dark {
@@ -93,6 +97,10 @@ table {
 
 table.table {
     margin-bottom: 0;
+}
+
+.table td {
+    vertical-align: middle;
 }
 
 table.table-fit {
@@ -193,4 +201,13 @@ button.btn:before {
 
 div.collapse {
     width: 100%;
+}
+
+i {
+    color: #135A74;
+}
+
+.customParameters .card-body,
+.customParameters .card-body td {
+    padding: .5rem 1rem;
 }

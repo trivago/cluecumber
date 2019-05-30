@@ -16,9 +16,11 @@
 
 package com.trivago.cluecumber.json.pojo;
 
+import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.rendering.RenderingUtils;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +36,12 @@ public class Element {
     private String keyword = "";
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
+    @SerializedName("start_timestamp")
+    private String startTimestamp = "";
 
-    private int featureIndex = 0;
+    private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
+    private transient boolean failOnPendingOrUndefined = false;
 
     public List<Tag> getTags() {
         return tags;
@@ -44,6 +49,43 @@ public class Element {
 
     public void setTags(final List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(final String startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public ZonedDateTime getStartDateTime() {
+        return RenderingUtils.convertTimestampToZonedDateTime(startTimestamp);
+    }
+
+    public ZonedDateTime getEndDateTime() {
+        ZonedDateTime startDateTime = getStartDateTime();
+        if (startDateTime != null) {
+            return getStartDateTime().plusNanos(getTotalDuration());
+        } else {
+            return null;
+        }
+    }
+
+    public String getStartDateString() {
+        return RenderingUtils.convertZonedDateTimeToDateString(getStartDateTime());
+    }
+
+    public String getStartTimeString() {
+        return RenderingUtils.convertZonedDateTimeToTimeString(getStartDateTime());
+    }
+
+    public String getEndDateString() {
+        return RenderingUtils.convertZonedDateTimeToDateString(getEndDateTime());
+    }
+
+    public String getEndTimeString() {
+        return RenderingUtils.convertZonedDateTimeToTimeString(getEndDateTime());
     }
 
     public List<ResultMatch> getBefore() {
@@ -154,11 +196,11 @@ public class Element {
         }
 
         // If all steps have the same status, return this as the scenario status.
-        for (Status status : Status.values()) {
-            long count = 0L;
+        for (Status status : Status.BASIC_STATES) {
+            int stepsWithCertainStatusCount = 0;
             for (Step step : steps) {
-                if (step.getStatus() == status) {
-                    count++;
+                if (step.getConsolidatedStatus() == status) {
+                    stepsWithCertainStatusCount++;
                 }
 
                 // If any step hooks fail, report scenario as failed.
@@ -173,24 +215,31 @@ public class Element {
                     }
                 }
             }
-            int stepNumber = (int) count;
-            if (totalSteps == stepNumber) {
-                if (status != Status.UNDEFINED) {
-                    return status;
-                } else {
-                    return Status.SKIPPED;
+
+            if (totalSteps == stepsWithCertainStatusCount) {
+                if (status == Status.SKIPPED) {
+                    if (failOnPendingOrUndefined) {
+                        return Status.FAILED;
+                    }
                 }
+                return status;
             }
         }
 
-        // If at least one step passed and the other steps are skipped, return passed.
+        // If at least one step passed and the other steps are skipped, return passed (or failed if failOnPendingOrUndefined is true).
         if (getTotalNumberOfPassedSteps() >= 0 &&
                 (getTotalNumberOfSkippedSteps() + getTotalNumberOfPassedSteps()) == getTotalNumberOfSteps()) {
+            if (failOnPendingOrUndefined) {
+                return Status.FAILED;
+            }
             return Status.PASSED;
         }
 
-        // If all steps are skipped return skipped.
+        // If all steps are skipped return skipped (or failed if failOnPendingOrUndefined is true).
         if (getTotalNumberOfSkippedSteps() == totalSteps) {
+            if (failOnPendingOrUndefined) {
+                return Status.FAILED;
+            }
             return Status.SKIPPED;
         }
 
@@ -214,42 +263,37 @@ public class Element {
     }
 
     public int getTotalNumberOfFailedSteps() {
-        return getNumberOfStepsWithStatus(Status.FAILED) +
-                getNumberOfStepsWithStatus(Status.UNDEFINED) +
-                getNumberOfStepsWithStatus(Status.AMBIGUOUS);
+        return getNumberOfStepsWithStatus(Status.FAILED);
     }
 
     public int getTotalNumberOfSkippedSteps() {
-        return getNumberOfStepsWithStatus(Status.SKIPPED) + getNumberOfStepsWithStatus(Status.PENDING);
+        return getNumberOfStepsWithStatus(Status.SKIPPED);
     }
 
     private int getNumberOfStepsWithStatus(final Status status) {
-        return (int) getSteps().stream().filter(step -> step.getStatus() == status).count();
+        return (int) getSteps().stream().filter(step -> step.getConsolidatedStatus() == status).count();
     }
 
     public long getTotalDuration() {
-        long totalDurationMicroseconds = 0;
+        long totalDurationNanoseconds = 0;
         for (ResultMatch beforeStep : before) {
-            totalDurationMicroseconds += beforeStep.getResult().getDuration();
+            totalDurationNanoseconds += beforeStep.getResult().getDuration();
         }
         for (Step step : steps) {
-            totalDurationMicroseconds += step.getTotalDuration();
+            totalDurationNanoseconds += step.getTotalDuration();
         }
         for (ResultMatch afterStep : after) {
-            totalDurationMicroseconds += afterStep.getResult().getDuration();
+            totalDurationNanoseconds += afterStep.getResult().getDuration();
         }
-        return totalDurationMicroseconds;
+        return totalDurationNanoseconds;
     }
 
     public String returnTotalDurationString() {
-        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
     }
 
     public boolean hasHooks() {
-        if (getBefore().size() > 0 || getAfter().size() > 0) {
-            return true;
-        }
-        return false;
+        return getBefore().size() > 0 || getAfter().size() > 0;
     }
 
     public boolean hasDocStrings() {
@@ -294,5 +338,9 @@ public class Element {
 
     public int getFeatureIndex() {
         return featureIndex;
+    }
+
+    public void setFailOnPendingOrUndefined(final boolean failOnPendingOrUndefined) {
+        this.failOnPendingOrUndefined = failOnPendingOrUndefined;
     }
 }

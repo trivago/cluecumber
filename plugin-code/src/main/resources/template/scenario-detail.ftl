@@ -21,7 +21,7 @@ limitations under the License.
 
 <@page.page
 base="../.."
-links=["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]
+links=["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]
 headline="${element.name?html}"
 subheadline="${element.description?html}"
 preheadline="${element.featureName?html}"
@@ -33,13 +33,18 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         </@page.card>
         <@page.card width="4" title="Scenario Information" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)</li>
-                <li class="list-group-item">
+                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)<br>
                     ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
                     ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
                     ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
                 </li>
-                <li class="list-group-item">Duration: ${element.returnTotalDurationString()}</li>
+                <#if element.startTimestamp?has_content>
+                    <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
+                </#if>
+                <#if element.startTimestamp?has_content>
+                    <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
+                </#if>
+                <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
                 <li class="list-group-item"><#list element.tags as tag>
                         <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
                     </#list>
@@ -72,7 +77,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 <li class="list-group-item">
                     <#list element.before as before>
                         <div class="row row_${before.consolidatedStatusString}">
-                            <div class="col-1 text-left">${before?counter}.</div>
+                            <div class="col-1 text-left small">${before?counter}.</div>
                             <div class="col-8 text-left">
                                 <i>${before.glueMethodName}</i>
                             </div>
@@ -99,16 +104,15 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                         <@scenario.stepHooks step.before />
 
                         <div class="row row_${step.consolidatedStatusString}">
-                            <div class="col-1 text-left">${step?counter}.</div>
+                            <div class="col-1 text-left small">${step?counter}.</div>
                             <div class="col-8 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
-                                <span data-toggle="tooltip"
-                                      title="${step.glueMethodName}">
-                                    ${step.keyword} ${stepName}
+                                <span data-toggle="tooltip" title="${step.glueMethodName}">
+                                    <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html">${step.keyword} ${stepName}</a>
                                 </span>
                             </div>
                             <div class="col-2 text-left small">
-                                ${step.returnTotalDurationString()}
+                                ${step.result.returnDurationString()}
                             </div>
                             <div class="col-1 text-right">
                                 <@common.status status=step.consolidatedStatusString/>
@@ -154,7 +158,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     <li class="list-group-item">
                         <#list element.after as after>
                             <div class="row row_${after.consolidatedStatusString}">
-                                <div class="col-1 text-left">${after?counter}.</div>
+                                <div class="col-1 text-left small">${after?counter}.</div>
                                 <div class="col-8 text-left">
                                     <i>${after.glueMethodName}</i>
                                 </div>

@@ -29,7 +29,7 @@
             "keyword": "Given ",
             "line": 4,
             "match": {
-              "location": "NativeConstructorAccessorImpl.java:-2"
+              "location": "NativeConstructorAccessorImplSkipped.java:-2"
             },
             "name": "this step is skipped",
             "result": {

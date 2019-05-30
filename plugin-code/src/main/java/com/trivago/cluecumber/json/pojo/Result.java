@@ -57,11 +57,11 @@ public class Result {
     }
 
     public long getDurationInMilliseconds() {
-        return RenderingUtils.convertMicrosecondsToMilliseconds(duration);
+        return RenderingUtils.convertNanosecondsToMilliseconds(duration);
     }
 
     public String returnDurationString() {
-        return RenderingUtils.convertMicrosecondsToTimeString(duration);
+        return RenderingUtils.convertNanosecondsToTimeString(duration);
     }
 
     public String returnErrorMessageWithClickableLinks() {

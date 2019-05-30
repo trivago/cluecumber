@@ -1,5 +1,5 @@
-<!doctype html>
-<!--
+
+    <!--
     Copyright 2018 trivago N.V.
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,28 +14,39 @@
     See the License for the specific language governing permissions and
     limitations under the License.
     -->
-<html lang="en">
- <head>
-  <base href="../..">  
-  <meta charset="utf-8"> 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <meta name="description" content="Cluecumber Report Plugin version 1.7.1 - Scenario Details"> 
-  <meta name="author" content="Cluecumber Report Plugin version 1.7.1"> 
-  <title>Scenario Details - 2019/02/28 12:52:04</title> 
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
-  <link rel="stylesheet" href="css/cluecumber.css" type="text/css"> 
-  <link rel="stylesheet" href="css/cluecumber_custom.css"> 
-  <link rel="stylesheet" href="css/datatables.min.css"> 
-  <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css"> 
-  <link rel="stylesheet" href="css/jquery.fancybox.min.css"> 
-  <script src="js/jquery.min.js"></script> 
-  <script src="js/popper.min.js"></script> 
-  <script src="js/bootstrap.min.js"></script> 
-  <script src="js/datatables.min.js"></script> 
-  <script src="js/jquery.fancybox.min.js"></script> 
-  <script src="js/Chart.bundle.min.js"></script> 
-  <script>
+    <!DOCTYPE html>
+    <html lang="en">
+    <base href="../..">
+    <head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Security-Policy" content="default-src *  data: blob: 'unsafe-inline' 'unsafe-eval';
+script-src * data: blob: 'unsafe-inline' 'unsafe-eval';
+connect-src * data: blob: 'unsafe-inline';
+img-src * data: blob: 'unsafe-inline';
+frame-src * data: blob: ;
+style-src * data: blob: 'unsafe-inline';
+font-src * data: blob: 'unsafe-inline';"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Cluecumber Report Plugin version 1.11.0 - Scenario Details">
+<meta name="author" content="Cluecumber Report Plugin version 1.11.0">
+<title>Scenario Details - 2019-05-21 10:24:16</title>
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/cluecumber.css" type="text/css">
+<link rel="stylesheet" href="css/cluecumber_custom.css"/>
+<link rel="stylesheet" href="css/datatables.min.css">
+<link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/datatables.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/Chart.bundle.min.js"></script>
+
+<script>
     $(document).ready(function () {
         // Data tables
         $('.renderAsDataTable').on('draw.dt', function () {
@@ -176,103 +187,135 @@
     function resizeIframe(iframe) {
         iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
     }
-</script> 
- </head> 
- <body> 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> 
-   <span class="navbar-brand">Scenario Details</span> 
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button> 
-   <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
-    <ul class="navbar-nav mr-auto"> 
-     <li class="nav-item"> <a class="nav-link" href="pages/feature-summary.html">All Features</a> </li> 
-     <li class="nav-item"> <a class="nav-link" href="pages/tag-summary.html">All Tags</a> </li> 
-     <li class="nav-item"> <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a> </li> 
-     <li class="nav-item"> <a class="nav-link" href="index.html">All Scenarios</a> </li> 
-    </ul> 
-    <span class="text-light">2019/02/28 12:52:04</span> 
-   </div> 
-  </nav> 
-  <main role="main" class="container"> 
-   <div class="cluecumber-template"> 
-    <div class="pb-2 mt-4 mb-2 border-bottom"> 
-     <h5><a href="pages/feature-scenarios/feature_6.html">Feature 1</a></h5> 
-     <h3>This scenario passes</h3> 
-    </div> 
-    <div class="row"> 
-     <div class="col-sm-8  h-auto" data-cluecumber-item="card"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Scenario Result Chart
-       </div> 
-       <div class="card-body"> 
-        <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart"> 
-         <canvas id="chart-area" class="w-100"></canvas> 
-        </div> 
-       </div> 
-      </div> 
-     </div> 
-     <div class="col-sm-4  h-auto" data-cluecumber-item="card"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Scenario Information
-       </div> 
-       <div class="card-body"> 
-        <ul class="list-group list-group-flush"> 
-         <li class="list-group-item">2 Step(s)</li> 
-         <li class="list-group-item"> 2 <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"><span style="display:none">passed</span></i> 0 <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip" title="failed"><span style="display:none">failed</span></i> 0 <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip" title="skipped"><span style="display:none">skipped</span></i> </li> 
-         <li class="list-group-item">Duration: 0m 00s 499ms</li> 
-         <li class="list-group-item"> <a href="pages/tag-scenarios/tag_test.html">@test</a> </li> 
-        </ul> 
-       </div> 
-      </div> 
-     </div> 
-    </div> 
-    <ul class="list-group list-group-flush"> 
-     <div class="col-sm-12  h-auto" data-cluecumber-item="card"> 
-      <div class="card h-100"> 
-       <div class="card-header">
-        Steps
-       </div> 
-       <div class="card-body"> 
-        <li class="list-group-item"> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           1.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="NativeConstructorAccessorImpl.java:-2"> Given this step passes </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 244ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"><span style="display:none">passed</span></i> 
-          </div> 
-         </div> 
-         <div class="row row_passed"> 
-          <div class="col-1 text-left">
-           2.
-          </div> 
-          <div class="col-8 text-left"> 
-           <span data-toggle="tooltip" title="NativeConstructorAccessorImpl.java:-2"> And this step passes with <strong>argument1</strong> and <strong>argument2</strong> as arguments </span> 
-          </div> 
-          <div class="col-2 text-left small">
-            0m 00s 255ms 
-          </div> 
-          <div class="col-1 text-right"> 
-           <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip" title="passed"><span style="display:none">passed</span></i> 
-          </div> 
-         </div> </li> 
-       </div> 
-      </div> 
-     </div> 
-    </ul> 
-   </div> 
-  </main> 
-  <footer class="footer navbar-dark bg-dark"> 
-   <div class="container-fluid"> 
-    <span>Cluecumber Report Plugin version 1.7.1 - 2019/02/28 12:52:04.</span> 
-   </div> 
-  </footer>   
- </body>
-</html>
+</script>    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <span class="navbar-brand">Scenario Details</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                                <a class="nav-link" href="pages/feature-summary.html">All Features</a>
+                    </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="pages/tag-summary.html">All Tags</a>
+                    </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="pages/step-summary.html">All Steps</a>
+                    </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a>
+                    </li>
+                    <li class="nav-item">
+                                <a class="nav-link" href="index.html">All Scenarios</a>
+                    </li>
+            </ul>
+            <span class="text-light">2019-05-21 10:24:16</span>
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <div class="cluecumber-template">
+            <div class="pb-2 mt-4 mb-2 border-bottom">
+                        <h5><a href="pages/feature-scenarios/feature_7.html">Feature 1</a></h5>
+                    <h3>This scenario passes</h3>
+            </div>
+
+    <div class="row">
+    <div class="col-sm-8  h-auto" data-cluecumber-item="card">
+        <div class="card h-100">
+                <div class="card-header">Scenario Result Chart</div>
+            <div class="card-body">
+    <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart">
+        <canvas id="chart-area" class="w-100"></canvas>
+    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4  h-auto" data-cluecumber-item="card">
+        <div class="card h-100">
+                <div class="card-header">Scenario Information</div>
+            <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">2 Step(s)<br>
+                    2     <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip"
+       title="passed"><span style="display:none">passed</span></i>
+
+                    0     <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip"
+       title="failed"><span style="display:none">failed</span></i>
+
+                    0     <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip"
+       title="skipped"><span style="display:none">skipped</span></i>
+
+                </li>
+                <li class="list-group-item">Test Runtime:<br>0m 00s 499ms</li>
+                <li class="list-group-item">
+                        <a href="pages/tag-scenarios/tag_test.html">@test</a>                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <ul class="list-group list-group-flush">
+
+    <div class="col-sm-12  h-auto" data-cluecumber-item="card">
+        <div class="card h-100">
+                <div class="card-header">Steps</div>
+            <div class="card-body">
+                <li class="list-group-item">
+
+
+                        <div class="row row_passed">
+                            <div class="col-1 text-left small">1.</div>
+                            <div class="col-8 text-left">
+                                <span data-toggle="tooltip" title="NativeConstructorAccessorImplPass.java:-2">
+                                    <a href="pages/step-scenarios/step_01881986487.html">Given  this step passes</a>
+                                </span>
+                            </div>
+                            <div class="col-2 text-left small">
+                                0m 00s 244ms
+                            </div>
+                            <div class="col-1 text-right">
+    <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip"
+       title="passed"><span style="display:none">passed</span></i>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row row_passed">
+                            <div class="col-1 text-left small">2.</div>
+                            <div class="col-8 text-left">
+                                <span data-toggle="tooltip" title="NativeConstructorAccessorImplArguments.java:-2">
+                                    <a href="pages/step-scenarios/step_0801184070.html">And  this step passes with <strong>argument1</strong> and <strong>argument2</strong> as arguments</a>
+                                </span>
+                            </div>
+                            <div class="col-2 text-left small">
+                                0m 00s 255ms
+                            </div>
+                            <div class="col-1 text-right">
+    <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip"
+       title="passed"><span style="display:none">passed</span></i>
+                            </div>
+
+                        </div>
+                </li>
+            </div>
+        </div>
+    </div>
+
+    </ul>
+        </div>
+    </main>
+
+<footer class="footer navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span>Cluecumber Report Plugin version 1.11.0 - Report generated on 2019-05-21 10:24:16.</span>
+    </div>
+</footer>    </body>
+    </html>
+

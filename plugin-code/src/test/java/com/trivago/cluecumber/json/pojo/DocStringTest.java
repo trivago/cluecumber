@@ -25,6 +25,12 @@ public class DocStringTest {
         docString.setValue("This should be a http://www.google.de link");
         assertThat(docString.returnWithClickableLinks(), is("This should be a <a href='http://www.google.de' target='_blank'>http://www.google.de</a> link"));
     }
+    
+    @Test
+    public void returnWithClickableLocalLinksTest() {
+        docString.setValue("The shared location is file:\\MACHINE\\Folder\\Some Folder");
+        assertThat(docString.returnWithClickableLinks(), is("The shared location is <a href='file:\\MACHINE\\Folder\\Some Folder' target='_blank'>file:\\MACHINE\\Folder\\Some Folder</a>"));
+    }
 
     @Test
     public void returnWithClickableLinksNoUrlTest() {

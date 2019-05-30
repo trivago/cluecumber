@@ -5,9 +5,11 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -52,7 +54,7 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(5)).info(anyString());
+        verify(logger, times(6)).info(anyString());
     }
 
     @Test
@@ -62,6 +64,25 @@ public class PropertyManagerTest {
         propertyManager.setCustomParameters(customParameters);
         assertThat(propertyManager.getCustomParameters().size(), is(1));
         assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+    
+    @Test
+    public void initCustomParametersFromFileTest() {
+        propertyManager.setCustomParameters(null);
+        
+        String customParamFilePath = new File(getClass().getClassLoader().getResource("CustomParamTest.props").getFile()).getAbsolutePath();
+        propertyManager.setCustomParametersFile(customParamFilePath);
+        propertyManager.initCustomParamatersFromFile();
+        
+        assertNotNull(propertyManager.getCustomParameters());
+        assertThat(propertyManager.getCustomParameters().size(), is(2));
+    }
+
+    @Test
+    public void failOnPendingOrSkippedStepsTest() {
+        assertThat(propertyManager.isFailScenariosOnPendingOrUndefinedSteps(), is(false));
+        propertyManager.setFailScenariosOnPendingOrUndefinedSteps(true);
+        assertThat(propertyManager.isFailScenariosOnPendingOrUndefinedSteps(), is(true));
     }
 
     @Test
@@ -114,6 +135,6 @@ public class PropertyManagerTest {
         propertyManager.setCustomCss("customCss");
 
         propertyManager.logProperties();
-        verify(logger, times(8)).info(anyString());
+        verify(logger, times(9)).info(anyString());
     }
 }

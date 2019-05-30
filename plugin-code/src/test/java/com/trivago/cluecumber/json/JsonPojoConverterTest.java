@@ -4,14 +4,14 @@ import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
-import com.trivago.cluecumber.json.postprocessors.ElementPostProcessor;
-import com.trivago.cluecumber.json.postprocessors.ReportPostProcessor;
+import com.trivago.cluecumber.json.processors.ElementJsonPostProcessor;
+import com.trivago.cluecumber.json.processors.ReportJsonPostProcessor;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 
 public class JsonPojoConverterTest {
@@ -19,9 +19,12 @@ public class JsonPojoConverterTest {
 
     @Before
     public void setup() {
-        ElementPostProcessor elementPostProcessor = mock(ElementPostProcessor.class);
-        ReportPostProcessor reportPostProcessor = mock(ReportPostProcessor.class);
-        pojoConverter = new JsonPojoConverter(reportPostProcessor, elementPostProcessor);
+        ElementJsonPostProcessor elementJsonPostProcessor = mock(ElementJsonPostProcessor.class);
+        ReportJsonPostProcessor reportJsonPostProcessor = mock(ReportJsonPostProcessor.class);
+        pojoConverter = new JsonPojoConverter(
+                reportJsonPostProcessor,
+                elementJsonPostProcessor
+        );
     }
 
     @Test

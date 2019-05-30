@@ -4,6 +4,7 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.JsonPojoConverter;
+import com.trivago.cluecumber.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.ReportGenerator;
@@ -38,13 +39,16 @@ public class CluecumberReportPluginTest {
 
         fileIO = mock(FileIO.class);
         jsonPojoConverter = mock(JsonPojoConverter.class);
+        ElementIndexPreProcessor elementIndexPostProcessor = mock(ElementIndexPreProcessor.class);
         ReportGenerator reportGenerator = mock(ReportGenerator.class);
+
         cluecumberReportPlugin = new CluecumberReportPlugin(
                 cluecumberLogger,
                 propertyManager,
                 fileSystemManager,
                 fileIO,
                 jsonPojoConverter,
+                elementIndexPostProcessor,
                 reportGenerator
         );
     }

@@ -16,13 +16,13 @@
 
 package com.trivago.cluecumber.rendering.pages.renderers;
 
-import com.rits.cloning.Cloner;
 import com.trivago.cluecumber.constants.ChartColor;
 import com.trivago.cluecumber.constants.ChartType;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
@@ -44,22 +44,21 @@ import java.util.Map;
 public class AllScenariosPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
-    private final Cloner cloner;
 
     @Inject
-    public AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
+    AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
         super(chartJsonConverter);
         this.propertyManager = propertyManager;
-        cloner = new Cloner();
     }
 
     public String getRenderedContent(
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        addChartJsonToReportDetails(allScenariosPageCollection);
-        addCustomParametersToReportDetails(allScenariosPageCollection);
-        return processedContent(template, allScenariosPageCollection);
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        addCustomParametersToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone);
     }
 
     public String getRenderedContentByTagFilter(
@@ -73,6 +72,26 @@ public class AllScenariosPageRenderer extends PageRenderer {
             List<Element> elements = new ArrayList<>();
             for (Element element : report.getElements()) {
                 if (element.getTags().contains(tag)) {
+                    elements.add(element);
+                }
+            }
+            report.setElements(elements);
+        }
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone);
+    }
+
+    public String getRenderedContentByStepFilter(
+            final AllScenariosPageCollection allScenariosPageCollection,
+            final Template template,
+            final Step step) throws CluecumberPluginException {
+
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        allScenariosPageCollectionClone.setStepFilter(step);
+        for (Report report : allScenariosPageCollectionClone.getReports()) {
+            List<Element> elements = new ArrayList<>();
+            for (Element element : report.getElements()) {
+                if (element.getSteps().contains(step)) {
                     elements.add(element);
                 }
             }
@@ -103,7 +122,6 @@ public class AllScenariosPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {
-
         Chart chart = new Chart();
         Data data = new Data();
 
@@ -156,8 +174,14 @@ public class AllScenariosPageRenderer extends PageRenderer {
         allScenariosPageCollection.setCustomParameters(customParameters);
     }
 
-    private AllScenariosPageCollection getAllScenariosPageCollectionClone(final AllScenariosPageCollection allScenariosPageCollection) {
-        return cloner.deepClone(allScenariosPageCollection);
+    private AllScenariosPageCollection getAllScenariosPageCollectionClone(
+            final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
+        AllScenariosPageCollection clone;
+        try {
+            clone = (AllScenariosPageCollection) allScenariosPageCollection.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new CluecumberPluginException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
+        }
+        return clone;
     }
-
 }

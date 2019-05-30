@@ -21,20 +21,24 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios Tagged With <i>${tagFilter.name}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios in Feature<br><i>${featureFilter.name}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+<#elseif (stepFilter??)>
+    <#assign base = "./../..">
+    <#assign headline = "Scenarios using Step<br><i>${stepFilter.returnNameWithArgumentPlaceholders()}</i>">
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">
     <#assign headline = "Scenario Sequence">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_summary"]>
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_summary"]>
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
-    <#assign links = ["feature_summary", "tag_summary", "scenario_sequence"]>
+    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence"]>
 </#if>
 
 <@page.page
@@ -47,7 +51,7 @@ preheadlineLink="">
 
     <#if hasCustomParameters()>
         <div class="row">
-            <@page.card width="12" title="" subtitle="" classes="">
+            <@page.card width="12" title="" subtitle="" classes="customParameters">
                 <table class="table table-fit">
                     <tbody>
                     <#list customParameters as customParameter>
@@ -55,7 +59,7 @@ preheadlineLink="">
                             <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
                             <td class="text-left wrap">
                                 <#if customParameter.url>
-                                    <a href="${customParameter.value}"
+                                    <a href="${customParameter.value}" style="word-break: break-all;"
                                        target="_blank">${customParameter.value}</a>
                                 <#else>
                                     ${customParameter.value}
@@ -81,7 +85,22 @@ preheadlineLink="">
                     ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
                     ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
                 </li>
-                <li class="list-group-item" data-cluecumber-item="total-scenario-duration">Duration: ${totalDurationString}</li>
+
+                <#assign startDateTimeString = returnStartDateTimeString()>
+                <#if startDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-start">
+                        Started on:<br>${startDateTimeString}</li>
+                </#if>
+
+                <#assign endDateTimeString = returnEndDateTimeString()>
+                <#if endDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-end">
+                        Ended on:<br>${endDateTimeString}</li>
+                </#if>
+
+                <li class="list-group-item" data-cluecumber-item="total-runtime">
+                    Test Runtime:<br>${totalDurationString}
+                </li>
             </ul>
         </@page.card>
     </div>

@@ -2,7 +2,9 @@ package com.trivago.cluecumber.rendering.pages.renderers;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
+import com.trivago.cluecumber.json.pojo.Match;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.charts.ChartJsonConverter;
@@ -67,6 +69,27 @@ public class AllScenariosPageRendererTest {
         Report[] reportList = new Report[]{report};
         allScenariosPageCollection.addReports(reportList);
         allScenariosPageRenderer.getRenderedContentByTagFilter(allScenariosPageCollection, template, tag);
+    }
+
+    @Test
+    public void getRenderedContentByStepFilterTest() throws CluecumberPluginException {
+        Template template = mock(Template.class);
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+
+        Step step = new Step();
+        step.setName("test");
+        Match match = new Match();
+        match.setLocation("myLocation");
+        step.setMatch(match);
+
+        Report report = new Report();
+        report.setFeatureIndex(12);
+        List<Element> elements = new ArrayList<>();
+        Element element = new Element();
+        report.setElements(elements);
+        Report[] reportList = new Report[]{report};
+        allScenariosPageCollection.addReports(reportList);
+        allScenariosPageRenderer.getRenderedContentByStepFilter(allScenariosPageCollection, template, step);
     }
 
     @Test
