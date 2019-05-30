@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -50,6 +51,14 @@ public class PropertyManagerTest {
         propertyManager.setSourceJsonReportDirectory("test");
         propertyManager.validateSettings();
     }
+    
+    @Test(expected = WrongOrMissingPropertyException.class)
+    public void invalidCustomParametersFileTest() throws Exception {
+        propertyManager.setSourceJsonReportDirectory("test");
+        propertyManager.setGeneratedHtmlReportDirectory("test");
+        propertyManager.setCustomParametersFile("test");
+        propertyManager.validateSettings();
+    }
 
     @Test
     public void logBasePropertiesTest() {
@@ -68,8 +77,6 @@ public class PropertyManagerTest {
     
     @Test
     public void initCustomParametersFromFileTest() {
-        propertyManager.setCustomParameters(null);
-        
         String customParamFilePath = new File(getClass().getClassLoader().getResource("CustomParamTest.props").getFile()).getAbsolutePath();
         propertyManager.setCustomParametersFile(customParamFilePath);
         propertyManager.initCustomParamatersFromFile();
@@ -78,6 +85,29 @@ public class PropertyManagerTest {
         assertThat(propertyManager.getCustomParameters().size(), is(2));
     }
 
+    @Test
+    public void initCustomParametersFromFileWithExistingParamsTest() {
+        Map<String, String> customParameters = new HashMap<>();
+        customParameters.put("key", "value");
+        propertyManager.setCustomParameters(customParameters);
+        
+        String customParamFilePath = new File(getClass().getClassLoader().getResource("CustomParamTest.props").getFile()).getAbsolutePath();
+        propertyManager.setCustomParametersFile(customParamFilePath);
+        propertyManager.initCustomParamatersFromFile();
+        
+        assertNotNull(propertyManager.getCustomParameters());
+        assertThat(propertyManager.getCustomParameters().size(), is(3));
+    }
+    
+    @Test
+    public void errorOnInvalidCustomParameterFileTest() {
+        propertyManager.setCustomParametersFile("NoFile.txt");
+        propertyManager.initCustomParamatersFromFile();
+        
+        assertNull(propertyManager.getCustomParameters());
+        verify(logger, times(1)).error(anyString());
+    }
+    
     @Test
     public void failOnPendingOrSkippedStepsTest() {
         assertThat(propertyManager.isFailScenariosOnPendingOrUndefinedSteps(), is(false));

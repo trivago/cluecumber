@@ -171,7 +171,6 @@ public class PropertyManager {
     }
     
     public void initCustomParamatersFromFile() {
-        customParameters = customParameters == null ? new HashMap<String, String>() : customParameters; 
         Properties properties = new Properties();
 
         try {
@@ -179,8 +178,10 @@ public class PropertyManager {
         }
         catch (IOException e) {
             logger.error("Error loading properties from file '" + customParametersFile + "': " + e.getMessage());
+            return;
         }
         
+        customParameters = customParameters == null ? new HashMap<String, String>() : customParameters; 
         properties.entrySet().forEach(e -> customParameters.put((String) e.getKey(), (String) e.getValue()));
     }
 }
