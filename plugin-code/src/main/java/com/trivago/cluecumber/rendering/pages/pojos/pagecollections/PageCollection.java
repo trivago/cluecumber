@@ -55,5 +55,4 @@ public class PageCollection {
     public void setExpandDocStrings(final boolean expandDocStrings) {
         this.expandDocStrings = expandDocStrings;
     }
-
 }

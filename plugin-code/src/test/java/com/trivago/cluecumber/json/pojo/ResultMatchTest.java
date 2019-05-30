@@ -96,14 +96,14 @@ public class ResultMatchTest {
         result = new Result();
         result.setStatus(Status.UNDEFINED.getStatusString());
         resultMatch.setResult(result);
-        assertThat(resultMatch.getConsolidatedStatus(), is(Status.SKIPPED));
-        assertThat(resultMatch.getConsolidatedStatusString(), is("skipped"));
+        assertThat(resultMatch.getConsolidatedStatus(), is(Status.FAILED));
+        assertThat(resultMatch.getConsolidatedStatusString(), is("failed"));
 
         result = new Result();
         result.setStatus(Status.AMBIGUOUS.getStatusString());
         resultMatch.setResult(result);
-        assertThat(resultMatch.getConsolidatedStatus(), is(Status.SKIPPED));
-        assertThat(resultMatch.getConsolidatedStatusString(), is("skipped"));
+        assertThat(resultMatch.getConsolidatedStatus(), is(Status.FAILED));
+        assertThat(resultMatch.getConsolidatedStatusString(), is("failed"));
 
         result = new Result();
         result.setStatus(Status.PASSED.getStatusString());

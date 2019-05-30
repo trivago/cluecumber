@@ -200,8 +200,8 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertThat(status, is(Status.SKIPPED));
-        assertThat(element.isSkipped(), is(true));
+        assertThat(status, is(Status.FAILED));
+        assertThat(element.isFailed(), is(true));
     }
 
     @Test
@@ -277,6 +277,15 @@ public class ElementTest {
         assertThat(element.getTotalNumberOfPassedSteps(), is(3));
         assertThat(element.getTotalNumberOfFailedSteps(), is(1));
         assertThat(element.getTotalNumberOfSkippedSteps(), is(2));
+    }
+
+    @Test
+    public void hasHooksTest() {
+        assertThat(element.hasHooks(), is(false));
+        List<ResultMatch> before = new ArrayList<>();
+        before.add(new ResultMatch());
+        element.setBefore(before);
+        assertThat(element.hasHooks(), is(true));
     }
 
     @Test

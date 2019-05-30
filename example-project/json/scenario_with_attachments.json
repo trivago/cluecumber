@@ -7,7 +7,7 @@
         "id": ";",
         "keyword": "Scenario",
         "line": 2,
-        "name": "This scenario passes",
+        "name": "This scenario passes as well",
         "steps": [
           {
             "keyword": "Given ",

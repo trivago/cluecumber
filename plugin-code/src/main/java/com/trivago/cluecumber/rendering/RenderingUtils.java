@@ -16,24 +16,25 @@
 
 package com.trivago.cluecumber.rendering;
 
-import org.jsoup.Jsoup;
-
 import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
-    private static final Pattern URL_PATTERN = Pattern.compile("(ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?");
+    private static final Pattern URL_PATTERN = Pattern.compile("(file.*)|((ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?)");
 
     /**
-     * Convert microseconds to a human readable time string.
+     * Convert nanoseconds to a human readable time string.
      *
-     * @param microseconds The amount of microseconds.
+     * @param nanoseconds The amount of nanoseconds.
      * @return The human readable string representation.
      */
-    public static String convertMicrosecondsToTimeString(final long microseconds) {
-        Duration durationMilliseconds = Duration.ofMillis(microseconds / MICROSECOND_FACTOR);
+    public static String convertNanosecondsToTimeString(final long nanoseconds) {
+        Duration durationMilliseconds = Duration.ofMillis(nanoseconds / MICROSECOND_FACTOR);
         long minutes = durationMilliseconds.toMinutes();
         long seconds = durationMilliseconds.minusMinutes(minutes).getSeconds();
         long milliseconds = durationMilliseconds.minusMinutes(minutes).minusSeconds(seconds).toMillis();
@@ -41,23 +42,13 @@ public class RenderingUtils {
     }
 
     /**
-     * Convert microseconds to milliseconds.
+     * Convert nanoseconds to milliseconds.
      *
-     * @param microseconds The amount of microseconds.
+     * @param nanoseconds The amount of nanoseconds.
      * @return The millisecond representation.
      */
-    public static long convertMicrosecondsToMilliseconds(final long microseconds) {
-        return microseconds / MICROSECOND_FACTOR;
-    }
-
-    /**
-     * Returns prettified HTML
-     *
-     * @param html The source html.
-     * @return The prettified HTML.
-     */
-    static String prettifyHtml(String html) {
-        return Jsoup.parse(html).toString().trim();
+    public static long convertNanosecondsToMilliseconds(final long nanoseconds) {
+        return nanoseconds / MICROSECOND_FACTOR;
     }
 
     /**
@@ -105,8 +96,41 @@ public class RenderingUtils {
         String targetString = sourceString;
         while (matcher.find()) {
             String found = matcher.group();
-            targetString = targetString.replaceFirst(Pattern.quote(found), "<a href='" + found + "' target='_blank'>" + found + "</a>");
+            targetString = targetString.replaceFirst(Pattern.quote(found),
+                    Matcher.quoteReplacement("<a href='" + found + "' target='_blank'>" + found + "</a>"));
         }
         return targetString;
+    }
+
+    /**
+     * Return a {@link ZonedDateTime} from a timestamp string.
+     *
+     * @param timestampString the timestamp string.
+     * @return the converted {@link ZonedDateTime}.
+     */
+    public static ZonedDateTime convertTimestampToZonedDateTime(final String timestampString) {
+        try {
+            return ZonedDateTime.parse(timestampString);
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    public static String convertZonedDateTimeToDateString(final ZonedDateTime startDateTime) {
+        try {
+            return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
+                    format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (Exception ignored) {
+        }
+        return "";
+    }
+
+    public static String convertZonedDateTimeToTimeString(final ZonedDateTime startDateTime) {
+        try {
+            return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
+                    format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        } catch (Exception ignored) {
+        }
+        return "";
     }
 }

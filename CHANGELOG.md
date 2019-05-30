@@ -7,6 +7,97 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [1.11.0] - 2019-05-21
+
+### Fixed
+
+* Much higher report generation speed
+* Warnings in Java > 8
+* Various small code style issues
+
+### Changed
+
+* Updated all dependencies
+
+### Removed
+
+* Cloner dependency
+* JSoup dependency
+
+## [1.10.2] - 2019-04-29
+
+### Changed
+
+* Version change for Nexus redeploy error
+
+## [1.10.1] - 2019-04-29
+
+### Fixed
+
+* Incorrect wrapping for urls in custom parameters
+* UTC timezone conversion for timestamps
+
+### Changed
+
+* more resilient mime type handling
+
+## [1.10.0] - 2019-04-16
+
+### Fixed
+
+* Steps that are only skipped should not have a link to a scenario from the minimum/maximum time in `All Steps`
+* Feature name on `Scenario Details` page was incorrectly linked
+
+### Added
+
+* Additional parallel run time on `All Scenarios` and `Scenario Sequence` pages
+* Support of Cucumber 4.3.0's new scenario start timestamps
+* Start time and date, end time and date and duration is displayed on each scenario in `All Scenarios`, `Scenario Sequence` and `Scenario Detail` pages (Cucumber >= 4.3.0)
+
+### Changed
+
+* `Scenario Sequence` is now not based on start time if it exists in the json file
+* Minor design changes
+
+## [1.9.0] - 2019-04-10
+
+### Added
+
+* Minimum and maximum step times on `All Steps` page links to the enclosing scenario (#152)
+* New `failScenariosOnPendingOrUndefinedSteps` configuration property for marking scenarios as failed when they contain
+steps with status `pending` or `undefined` (default value is `false`) (#74)
+
+### Changed
+
+* Minimum and maximum step times are now only calculated for non-skipped steps
+
+## [1.8.1] - 2019-04-03
+
+### Fixed
+
+* `All Steps` shows scenario states instead of step states (#147)
+
+## [1.8.0] - 2019-03-27
+
+### Added
+
+* `All Steps` page (#145)
+* Scenarios by Step overview page (#145)
+
+### Changed
+
+* Usage of symbols instead of text in tables for `passed`, `failed` and `skipped` 
+
+## [1.7.3] - 2019-03-05
+
+### Fixed
+
+* Step times included step hook times even though they are independent (#135)
+
+### Added
+
+* Links starting with `file:` are converted to clickable links (#142, contributed by gazler22)
+
 ## [1.7.2] - 2019-03-05
 
 ### Fixed
@@ -367,6 +458,14 @@ Back to [Readme](README.md).
 
 Initial project version on GitHub and Maven Central.
 
+[1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
+[1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
+[1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1
+[1.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.0
+[1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
+[1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1
+[1.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0
+[1.7.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3
 [1.7.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.2
 [1.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1
 [1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0

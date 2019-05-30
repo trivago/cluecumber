@@ -20,20 +20,24 @@ import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllScenariosPageCollection extends PageCollection {
+public class AllScenariosPageCollection extends PageCollection implements Cloneable {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
     private Tag tagFilter;
     private Feature featureFilter;
+    private Step stepFilter;
 
     public AllScenariosPageCollection() {
         super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
@@ -51,7 +55,11 @@ public class AllScenariosPageCollection extends PageCollection {
         if (reportList == null) {
             return;
         }
-        this.reports.addAll(Arrays.asList(reportList));
+        addReports(Arrays.asList(reportList));
+    }
+
+    public void addReports(final List<Report> reportList) {
+        this.reports.addAll(reportList);
     }
 
     public int getTotalNumberOfScenarios() {
@@ -90,16 +98,73 @@ public class AllScenariosPageCollection extends PageCollection {
                 ).count()).sum();
     }
 
-    public long getTotalDuration() {
-        long totalDurationMicroseconds = 0;
+    long getTotalDuration() {
+        long totalDurationNanoseconds = 0;
         for (Report report : reports) {
-            totalDurationMicroseconds += report.getTotalDuration();
+            totalDurationNanoseconds += report.getTotalDuration();
         }
-        return totalDurationMicroseconds;
+        return totalDurationNanoseconds;
     }
 
     public String getTotalDurationString() {
-        return RenderingUtils.convertMicrosecondsToTimeString(getTotalDuration());
+        ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
+        ZonedDateTime latestEndDateTime = getLatestEndDateTime();
+
+        // Return total runtime if no timestamps exist...
+        if (earliestStartDateTime == null || latestEndDateTime == null) {
+            return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+        }
+
+        // ...else return the calculated runtime.
+        return RenderingUtils.convertNanosecondsToTimeString(
+                ChronoUnit.NANOS.between(earliestStartDateTime, latestEndDateTime)
+        );
+    }
+
+    private ZonedDateTime getEarliestStartDateTime() {
+        ZonedDateTime earliestStartDateTime = null;
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                ZonedDateTime currentStartDateTime = element.getStartDateTime();
+                if (currentStartDateTime != null &&
+                        (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime))) {
+                    earliestStartDateTime = currentStartDateTime;
+                }
+            }
+        }
+        return earliestStartDateTime;
+    }
+
+    private ZonedDateTime getLatestEndDateTime() {
+        ZonedDateTime latestEndDateTime = null;
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                ZonedDateTime currentEndDateTime = element.getEndDateTime();
+                if (currentEndDateTime != null &&
+                        (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime))) {
+                    latestEndDateTime = currentEndDateTime;
+                }
+            }
+        }
+        return latestEndDateTime;
+    }
+
+    public String returnStartDateTimeString() {
+        ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
+        if (earliestStartDateTime != null) {
+            return RenderingUtils.convertZonedDateTimeToDateString(earliestStartDateTime) + " " +
+                    RenderingUtils.convertZonedDateTimeToTimeString(earliestStartDateTime);
+        }
+        return "";
+    }
+
+    public String returnEndDateTimeString() {
+        ZonedDateTime latestEndDateTime = getLatestEndDateTime();
+        if (latestEndDateTime != null) {
+            return RenderingUtils.convertZonedDateTimeToDateString(latestEndDateTime) + " " +
+                    RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
+        }
+        return "";
     }
 
     public List<CustomParameter> getCustomParameters() {
@@ -128,5 +193,28 @@ public class AllScenariosPageCollection extends PageCollection {
 
     public void setFeatureFilter(final Feature featureFilter) {
         this.featureFilter = featureFilter;
+    }
+
+    public Step getStepFilter() {
+        return stepFilter;
+    }
+
+    public void setStepFilter(final Step stepFilter) {
+        this.stepFilter = stepFilter;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        final AllScenariosPageCollection clone = (AllScenariosPageCollection) super.clone();
+        clone.setFeatureFilter(null);
+        clone.setStepFilter(null);
+        clone.setTagFilter(null);
+        clone.clearReports();
+        List<Report> clonedReports = new ArrayList<>();
+        for (Report r : getReports()) {
+            clonedReports.add((Report) r.clone());
+        }
+        clone.addReports(clonedReports);
+        return clone;
     }
 }

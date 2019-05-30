@@ -34,13 +34,16 @@ limitations under the License.
 
                     <#switch status>
                         <#case "skipped">
-                            <div class="card-header border-warning bg-warning">Skipped Scenarios</div>
+                            <div class="card-header border-warning bg-warning">Skipped
+                                Scenarios <@common.startStatus status="skipped"/></div>
                             <#break>
                         <#case "failed">
-                            <div class="card-header border-danger bg-danger text-white">Failed Scenarios</div>
+                            <div class="card-header border-danger bg-danger text-white">Failed
+                                Scenarios <@common.startStatus status="failed"/></div>
                             <#break>
                         <#case "passed">
-                            <div class="card-header border-success bg-success text-white">Passed Scenarios</div>
+                            <div class="card-header border-success bg-success text-white">Passed
+                                Scenarios <@common.startStatus status="passed"/></div>
                             <#break>
                         <#case "all">
                             <div class="card-header border-light bg-info text-white">Scenario Sequence</div>
@@ -56,6 +59,7 @@ limitations under the License.
                                 </#if>
                                 <th class="text-left">Feature</th>
                                 <th class="text-left">Scenario</th>
+                                <th>Started</th>
                                 <th>Duration</th>
                                 <#if allRequested>
                                     <th class="text-left">Status</th>
@@ -84,9 +88,12 @@ limitations under the License.
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
                                                    style="word-break: break-all">${element.name?html}</a>
                                             </td>
+                                            <td class="text-center small" data-order="${element.startTimestamp}">
+                                                ${element.startDateString}<br>${element.startTimeString}
+                                            </td>
                                             <td class="text-right small"
                                                 data-order="${element.totalDuration}">
-                                                <nobr>${element.returnTotalDurationString()}</nobr>
+                                                <span class="nobr">${element.returnTotalDurationString()}</span>
                                             </td>
                                             <#if allRequested>
                                                 <td class="text-center"><@common.status status=element.status.statusString/></td>
@@ -111,11 +118,11 @@ limitations under the License.
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}" style="max-width: 100%"/>
+                            <img src="attachments/${attachment.filename}" style="max-width: 100%" alt="Attachment ${attachment.filename}"/>
                         </a>
                     <#elseif attachment.mimeType == "HTML">
-                        <iframe frameborder="0" src="attachments/${attachment.filename}"
-                                srcdoc="${attachment.decodedData}" width="100%" height="1" scrolling="no"
+                        <iframe src="attachments/${attachment.filename}"
+                                srcdoc="${attachment.decodedData}" width="100%" height="1"
                                 onload="resizeIframe(this);"></iframe>
                     <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
                         <pre class="embedding-content small">${attachment.decodedData}</pre>
@@ -157,7 +164,7 @@ limitations under the License.
                     <i>${hook.glueMethodName}</i>
                 </div>
                 <div class="col-2 text-left small">
-                    <nobr>${hook.result.returnDurationString()}</nobr>
+                    <span class="nobr">${hook.result.returnDurationString()}</span>
                 </div>
                 <div class="col-1 text-right">
                     <@common.status status=hook.consolidatedStatusString/>

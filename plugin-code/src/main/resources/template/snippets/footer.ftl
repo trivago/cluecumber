@@ -16,6 +16,6 @@ limitations under the License.
 
 <footer class="footer navbar-dark bg-dark">
     <div class="container-fluid">
-        <span>${reportDetails.generatorName} - ${reportDetails.date}.</span>
+        <span>${reportDetails.generatorName} - Report generated on ${reportDetails.date}.</span>
     </div>
 </footer>
