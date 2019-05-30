@@ -1,4 +1,4 @@
-<!--
+<#--
 Copyright 2018 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ limitations under the License.
 
 <@page.page
 base=".."
-links=["feature_summary", "scenario_sequence", "scenario_summary"]
+links=["feature_summary", "step_summary", "scenario_sequence", "scenario_summary"]
 headline="All Tags"
 subheadline=""
 preheadline=""
@@ -33,12 +33,12 @@ preheadlineLink="">
         <@page.card width="4" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
                 <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
-                    ${totalNumberOfTaggedScenarios} Tagged Scenario(s)
+                    ${totalNumberOfScenarios} Tagged Scenario(s)
                 </li>
                 <li class="list-group-item">
-                    ${totalNumberOfPassedTags} <@common.status status="passed"/>
-                    ${totalNumberOfFailedTags} <@common.status status="failed"/>
-                    ${totalNumberOfSkippedTags} <@common.status status="skipped"/>
+                    ${totalNumberOfPassed} <@common.status status="passed"/>
+                    ${totalNumberOfFailed} <@common.status status="failed"/>
+                    ${totalNumberOfSkipped} <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>
@@ -51,9 +51,9 @@ preheadlineLink="">
                 <tr>
                     <th>Tag</th>
                     <th>Total</th>
-                    <th>Passed</th>
-                    <th>Failed</th>
-                    <th>Skipped</th>
+                    <th><@common.status status="passed"/></th>
+                    <th><@common.status status="failed"/></th>
+                    <th><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.trivago.cluecumber.json.postprocessors;
+package com.trivago.cluecumber.json.processors;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -35,17 +35,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Singleton
-public class ElementPostProcessor implements PostProcessor<Element> {
+public class ElementJsonPostProcessor implements PostProcessor<Element> {
 
     private final PropertyManager propertyManager;
     private final FileIO fileIO;
     private final CluecumberLogger logger;
 
-    private int scenarioIndex = 1;
     private int attachmentIndex = 1;
 
     @Inject
-    public ElementPostProcessor(
+    public ElementJsonPostProcessor(
             final PropertyManager propertyManager,
             final FileIO fileIO,
             final CluecumberLogger logger
@@ -57,7 +56,7 @@ public class ElementPostProcessor implements PostProcessor<Element> {
 
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
-        addScenarioIndex(element);
+        element.setFailOnPendingOrUndefined(propertyManager.isFailScenariosOnPendingOrUndefinedSteps());
         processAttachments(element.getSteps(), element.getAfter());
     }
 
@@ -119,20 +118,6 @@ public class ElementPostProcessor implements PostProcessor<Element> {
         // Clear attachment data to reduce memory
         embedding.setData("");
         return filename;
-    }
-
-    /**
-     * Add index to scenarios (used for link creation to the detail reports).
-     *
-     * @param element The current {@link Element}.
-     */
-    private void addScenarioIndex(final Element element) {
-        // Filter out background scenarios
-        if (!element.isScenario()) {
-            return;
-        }
-        element.setScenarioIndex(scenarioIndex);
-        scenarioIndex++;
     }
 
     @Override

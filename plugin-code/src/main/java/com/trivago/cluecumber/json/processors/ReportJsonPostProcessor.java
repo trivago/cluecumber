@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.trivago.cluecumber.json.postprocessors;
+package com.trivago.cluecumber.json.processors;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -31,12 +31,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Singleton
-public class ReportPostProcessor implements PostProcessor<Report> {
+public class ReportJsonPostProcessor implements PostProcessor<Report> {
 
     private final List<String> featureUris;
 
     @Inject
-    public ReportPostProcessor() {
+    public ReportJsonPostProcessor() {
         featureUris = new ArrayList<>();
     }
 

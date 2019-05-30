@@ -8,6 +8,7 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import org.junit.Before;
@@ -67,14 +68,16 @@ public class ReportGeneratorTest {
         when(templateEngine.getRenderedScenarioDetailPageContent(any(ScenarioDetailsPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
         when(templateEngine.getRenderedTagSummaryPageContent(any(AllTagsPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
         when(templateEngine.getRenderedFeatureSummaryPageContent(any(AllFeaturesPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
+        when(templateEngine.getRenderedStepSummaryPageContent(any(AllStepsPageCollection.class))).thenReturn("RENDERED_STEPS_PAGE_CONTENT");
 
         reportGenerator.generateReport(allScenariosPageCollection);
 
-        verify(fileSystemManager, times(7)).createDirectory(anyString());
+        verify(fileSystemManager, times(8)).createDirectory(anyString());
         verify(fileSystemManager, times(17)).copyResourceFromJar(anyString(), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
         verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
+        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_STEPS_PAGE_CONTENT"), anyString());
         verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_FEATURE_PAGE_CONTENT"), anyString());
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
-    <version>1.7.1</version>
+    <version>1.11.0</version>
     <url>https://github.com/trivago/cluecumber-report-plugin</url>
 
     <name>Cluecumber Maven Plugin for Cucumber Reports</name>
@@ -65,7 +65,7 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <maven.compile.encoding>UTF-8</maven.compile.encoding>
 
-        <maven.version>3.6.0</maven.version>
+        <maven.version>3.6.1</maven.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
         <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
@@ -76,20 +76,18 @@
         <maven.plugin.testing.harness.version>3.3.0</maven.plugin.testing.harness.version>
         <cobertura.maven.plugin>2.7</cobertura.maven.plugin>
         <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
-        <plexus.component.annotations.version>1.7.1</plexus.component.annotations.version>
+        <plexus.component.annotations.version>2.0.0</plexus.component.annotations.version>
         <maven.plugin.annotations.version>3.6.0</maven.plugin.annotations.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
-        <plexus.utilities.version>3.1.1</plexus.utilities.version>
+        <plexus.utilities.version>3.2.0</plexus.utilities.version>
 
-        <mockito.version>2.23.4</mockito.version>
-        <junit5.vintage.version>5.3.2</junit5.vintage.version>
-        <openpojo.version>0.8.11</openpojo.version>
+        <mockito.version>2.27.0</mockito.version>
+        <junit5.vintage.version>5.5.0-M1</junit5.vintage.version>
+        <openpojo.version>0.8.12</openpojo.version>
 
         <gson.version>2.8.5</gson.version>
         <gsonfire.version>1.9.0-alpha1</gsonfire.version>
         <freemarker.version>2.3.28</freemarker.version>
-        <jsoup.version>1.11.3</jsoup.version>
-        <cloning.version>1.9.11</cloning.version>
     </properties>
 
     <profiles>
@@ -240,18 +238,6 @@
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
             <version>${plexus.utilities.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>uk.com.robust-it</groupId>
-            <artifactId>cloning</artifactId>
-            <version>${cloning.version}</version>
         </dependency>
 
         <dependency>

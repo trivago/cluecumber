@@ -40,6 +40,7 @@ public class PropertyManager {
     private String generatedHtmlReportDirectory;
     private Map<String, String> customParameters;
     private String customParametersFile;
+    private boolean failScenariosOnPendingOrUndefinedSteps;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
@@ -80,6 +81,14 @@ public class PropertyManager {
 
     public void setCustomParametersFile(final String customParametersFile) {
         this.customParametersFile = customParametersFile;
+    }
+    
+    public boolean isFailScenariosOnPendingOrUndefinedSteps() {
+        return failScenariosOnPendingOrUndefinedSteps;
+    }
+
+    public void setFailScenariosOnPendingOrUndefinedSteps(final boolean failScenariosOnPendingOrUndefinedSteps) {
+        this.failScenariosOnPendingOrUndefinedSteps = failScenariosOnPendingOrUndefinedSteps;
     }
 
     public boolean isExpandBeforeAfterHooks() {
@@ -136,25 +145,26 @@ public class PropertyManager {
     }
 
     public void logProperties() {
-        logger.info("- source JSON report directory    : " + sourceJsonReportDirectory);
-        logger.info("- generated HTML report directory : " + generatedHtmlReportDirectory);
+        logger.info("- source JSON report directory                : " + sourceJsonReportDirectory);
+        logger.info("- generated HTML report directory             : " + generatedHtmlReportDirectory);
 
         if (customParameters != null && !customParameters.isEmpty()) {
             logger.logSeparator();
             for (Map.Entry<String, String> entry : customParameters.entrySet()) {
-                logger.info("- custom parameter                : " +
+                logger.info("- custom parameter                           : " +
                         entry.getKey() + " -> " + entry.getValue());
             }
         }
 
         logger.logSeparator();
 
-        logger.info("- expand before/after hooks       : " + expandBeforeAfterHooks);
-        logger.info("- expand step hooks               : " + expandStepHooks);
-        logger.info("- expand doc strings              : " + expandDocStrings);
+        logger.info("- fail scenarios with pending/undefined steps : " + failScenariosOnPendingOrUndefinedSteps);
+        logger.info("- expand before/after hooks                   : " + expandBeforeAfterHooks);
+        logger.info("- expand step hooks                           : " + expandStepHooks);
+        logger.info("- expand doc strings                          : " + expandDocStrings);
 
         if (customCss != null && !customCss.isEmpty()) {
-            logger.info("- custom CSS                      : " + customCss);
+            logger.info("- custom CSS                                  : " + customCss);
         }
 
         logger.logSeparator();

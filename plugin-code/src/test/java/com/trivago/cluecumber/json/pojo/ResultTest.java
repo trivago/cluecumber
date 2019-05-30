@@ -27,4 +27,11 @@ public class ResultTest {
         assertThat(result.getDurationInMilliseconds(), is(1234L));
         assertThat(result.returnDurationString(), is("0m 01s 234ms"));
     }
+
+    @Test
+    public void returnErrorMessageWithClickableLinksTest() {
+        result.setErrorMessage("Error in http://google.com found!");
+        String error = result.returnErrorMessageWithClickableLinks();
+        assertThat(error, is("Error in <a href='http://google.com' target='_blank'>http://google.com</a> found!"));
+    }
 }

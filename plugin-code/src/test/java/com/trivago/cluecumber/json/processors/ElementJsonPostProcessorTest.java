@@ -1,4 +1,4 @@
-package com.trivago.cluecumber.json.postprocessors;
+package com.trivago.cluecumber.json.processors;
 
 import com.trivago.cluecumber.constants.MimeType;
 import com.trivago.cluecumber.filesystem.FileIO;
@@ -18,32 +18,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 
-public class ElementPostProcessorTest {
-    private ElementPostProcessor elementPostProcessor;
+public class ElementJsonPostProcessorTest {
+    private ElementJsonPostProcessor elementJsonPostProcessor;
 
     @Before
     public void setup() {
         PropertyManager propertyManager = mock(PropertyManager.class);
         FileIO fileIO = mock(FileIO.class);
         CluecumberLogger logger = new CluecumberLogger();
-        elementPostProcessor = new ElementPostProcessor(propertyManager, fileIO, logger);
+        elementJsonPostProcessor = new ElementJsonPostProcessor(propertyManager, fileIO, logger);
     }
 
     @Test
     public void postDesiralizeAddScenarioIndexBackgroundScenarioTest() {
         Element element = new Element();
         assertThat(element.getScenarioIndex(), is(0));
-        elementPostProcessor.postDeserialize(element, null, null);
+        elementJsonPostProcessor.postDeserialize(element, null, null);
         assertThat(element.getScenarioIndex(), is(0));
-    }
-
-    @Test
-    public void postDesiralizeAddScenarioIndexTest() {
-        Element element = new Element();
-        element.setType("scenario");
-        assertThat(element.getScenarioIndex(), is(0));
-        elementPostProcessor.postDeserialize(element, null, null);
-        assertThat(element.getScenarioIndex(), is(1));
     }
 
     @Test
@@ -78,12 +69,12 @@ public class ElementPostProcessorTest {
 
         assertThat(embedding.getData(), is("123"));
 
-        elementPostProcessor.postDeserialize(element, null, null);
+        elementJsonPostProcessor.postDeserialize(element, null, null);
         assertThat(embedding.getFilename(), is("attachment001.png"));
     }
 
     @Test
     public void postSerializeTest() {
-        elementPostProcessor.postSerialize(null, null, null);
+        elementJsonPostProcessor.postSerialize(null, null, null);
     }
 }

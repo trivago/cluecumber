@@ -98,13 +98,16 @@ public class ResultMatch {
 
     public Status getConsolidatedStatus() {
         switch (getStatus()) {
+            case PASSED:
+                return Status.PASSED;
             case SKIPPED:
             case PENDING:
-            case UNDEFINED:
-            case AMBIGUOUS:
                 return Status.SKIPPED;
+            case FAILED:
+            case AMBIGUOUS:
+            case UNDEFINED:
             default:
-                return getStatus();
+                return Status.FAILED;
         }
     }
 
