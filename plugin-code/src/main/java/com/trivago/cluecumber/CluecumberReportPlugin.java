@@ -68,6 +68,12 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private Map<String, String> customParameters = new HashMap<>();
 
     /**
+     * Custom parameters file to load custom parameters from.
+     */
+    @Parameter(property = "reporting.customParametersFile")
+    private String customParametersFile = "";
+
+    /**
      * Custom CSS that is applied on top of Cluecumber's default styles.
      */
     @Parameter(property = "reporting.customCss")
@@ -132,12 +138,14 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.setCustomParameters(customParameters);
+        propertyManager.setCustomParametersFile(customParametersFile);
         propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
         propertyManager.setExpandStepHooks(expandStepHooks);
         propertyManager.setExpandDocStrings(expandDocStrings);
         propertyManager.setCustomCss(customCss);
         propertyManager.validateSettings();
-
+        propertyManager.initCustomParamatersFromFile();
+        
         logger.info("-----------------------------------------------");
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
         logger.info("-----------------------------------------------");

@@ -5,9 +5,11 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -62,6 +64,18 @@ public class PropertyManagerTest {
         propertyManager.setCustomParameters(customParameters);
         assertThat(propertyManager.getCustomParameters().size(), is(1));
         assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+    
+    @Test
+    public void initCustomParametersFromFileTest() {
+        propertyManager.setCustomParameters(null);
+        
+        String customParamFilePath = new File(getClass().getClassLoader().getResource("CustomParamTest.props").getFile()).getAbsolutePath();
+        propertyManager.setCustomParametersFile(customParamFilePath);
+        propertyManager.initCustomParamatersFromFile();
+        
+        assertNotNull(propertyManager.getCustomParameters());
+        assertThat(propertyManager.getCustomParameters().size(), is(2));
     }
 
     @Test

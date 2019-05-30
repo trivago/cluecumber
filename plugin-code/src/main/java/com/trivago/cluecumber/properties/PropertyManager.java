@@ -22,7 +22,14 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Singleton
 public class PropertyManager {
@@ -32,6 +39,7 @@ public class PropertyManager {
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private Map<String, String> customParameters;
+    private String customParametersFile;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
@@ -64,6 +72,14 @@ public class PropertyManager {
 
     public void setCustomParameters(final Map<String, String> customParameters) {
         this.customParameters = customParameters;
+    }
+
+    public String getCustomParametersFile() {
+        return customParametersFile;
+    }
+
+    public void setCustomParametersFile(final String customParametersFile) {
+        this.customParametersFile = customParametersFile;
     }
 
     public boolean isExpandBeforeAfterHooks() {
@@ -110,6 +126,8 @@ public class PropertyManager {
             missingProperty = "sourceJsonReportDirectory";
         } else if (generatedHtmlReportDirectory == null || generatedHtmlReportDirectory.equals("")) {
             missingProperty = "generatedHtmlReportDirectory";
+        } else if(customParametersFile != null && !customParametersFile.trim().isEmpty() && !Files.isReadable(Paths.get(customParametersFile))) {
+            missingProperty = "customParametersFile";
         }
 
         if (missingProperty != null) {
@@ -140,6 +158,19 @@ public class PropertyManager {
         }
 
         logger.logSeparator();
-        ;
+    }
+    
+    public void initCustomParamatersFromFile() {
+        customParameters = customParameters == null ? new HashMap<String, String>() : customParameters; 
+        Properties properties = new Properties();
+
+        try {
+            properties.load(new FileInputStream(customParametersFile));
+        }
+        catch (IOException e) {
+            logger.error("Error loading properties from file '" + customParametersFile + "': " + e.getMessage());
+        }
+        
+        properties.entrySet().forEach(e -> customParameters.put((String) e.getKey(), (String) e.getValue()));
     }
 }
