@@ -76,6 +76,13 @@ public class PropertyManagerTest {
     }
     
     @Test
+    public void customParametersFileTest() {
+        String customParamFilePath = "CustomParamTest.props";
+        propertyManager.setCustomParametersFile(customParamFilePath);
+        assertNotNull(propertyManager.getCustomParametersFile(), is("CustomParamTest.props"));
+    }
+    
+    @Test
     public void initCustomParametersFromFileTest() {
         String customParamFilePath = new File(getClass().getClassLoader().getResource("CustomParamTest.props").getFile()).getAbsolutePath();
         propertyManager.setCustomParametersFile(customParamFilePath);
