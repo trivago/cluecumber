@@ -16,6 +16,7 @@
 
 package com.trivago.cluecumber.rendering;
 
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitorProducer;
 import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.filesystem.FileIO;
@@ -31,6 +32,7 @@ import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenarios
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -38,6 +40,7 @@ import javax.inject.Singleton;
 @Singleton
 public class ReportGenerator {
 
+    private final PageVisitorProducer pageVisitorProducer;
     private final TemplateEngine templateEngine;
     private final FileIO fileIO;
     private final PropertyManager propertyManager;
@@ -45,25 +48,33 @@ public class ReportGenerator {
 
     @Inject
     public ReportGenerator(
+            final PageVisitorProducer pageVisitorProducer,
             final TemplateEngine templateEngine,
             final FileIO fileIO,
             final PropertyManager propertyManager,
             final FileSystemManager fileSystemManager
     ) {
+        this.pageVisitorProducer = pageVisitorProducer;
         this.templateEngine = templateEngine;
         this.fileIO = fileIO;
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
     }
-    
+
     public void generateReport(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
         copyReportAssets();
-        generateScenarioDetailPages(allScenariosPageCollection);
-        generateFeaturePages(allScenariosPageCollection);
-        generateTagPages(allScenariosPageCollection);
-        generateStepPages(allScenariosPageCollection);
-        generateScenarioSequencePage(allScenariosPageCollection);
-        generateScenarioSummaryPage(allScenariosPageCollection);
+
+        System.out.println("Visitors:");
+        for (PageVisitor pageVisitor : pageVisitorProducer.get()) {
+            allScenariosPageCollection.accept(pageVisitor);
+        }
+
+//        generateScenarioDetailPages(allScenariosPageCollection);
+//        generateFeaturePages(allScenariosPageCollection);
+//        generateTagPages(allScenariosPageCollection);
+//        generateStepPages(allScenariosPageCollection);
+//        generateScenarioSequencePage(allScenariosPageCollection);
+//        generateScenarioSummaryPage(allScenariosPageCollection);
     }
 
     /**

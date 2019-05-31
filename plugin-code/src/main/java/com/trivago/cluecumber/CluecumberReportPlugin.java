@@ -27,7 +27,6 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.ReportGenerator;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.visitors.AllScenariosVisitor;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -169,9 +168,6 @@ public final class CluecumberReportPlugin extends AbstractMojo {
                 logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
-
-        allScenariosPageCollection.accept(new AllScenariosVisitor());
-
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(

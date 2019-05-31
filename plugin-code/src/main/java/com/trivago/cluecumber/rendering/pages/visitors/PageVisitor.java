@@ -1,4 +1,4 @@
-package com.trivago.cluecumber.rendering.visitors;
+package com.trivago.cluecumber.rendering.pages.visitors;
 
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
 

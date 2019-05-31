@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-class PageRenderer {
+public class PageRenderer {
 
     private final ChartJsonConverter chartJsonConverter;
 

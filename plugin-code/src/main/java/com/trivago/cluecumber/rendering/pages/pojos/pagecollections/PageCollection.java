@@ -17,8 +17,8 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
-import com.trivago.cluecumber.rendering.visitors.PageVisitor;
-import com.trivago.cluecumber.rendering.visitors.Visitable;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.Visitable;
 
 public class PageCollection implements Visitable, Cloneable {
     private final ReportDetails reportDetails;
