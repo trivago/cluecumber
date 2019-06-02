@@ -16,8 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.renderers;
 
-import com.trivago.cluecumber.constants.ChartColor;
-import com.trivago.cluecumber.constants.ChartType;
+import com.trivago.cluecumber.constants.Charts;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -141,14 +140,14 @@ public class AllScenariosPageRenderer extends PageRenderer {
         datasets.add(dataset);
 
         List<String> backgroundColors = new ArrayList<>();
-        backgroundColors.add(ChartColor.getChartColorStringByStatus(Status.PASSED));
-        backgroundColors.add(ChartColor.getChartColorStringByStatus(Status.FAILED));
-        backgroundColors.add(ChartColor.getChartColorStringByStatus(Status.SKIPPED));
+        backgroundColors.add(Charts.Color.getChartColorStringByStatus(Status.PASSED));
+        backgroundColors.add(Charts.Color.getChartColorStringByStatus(Status.FAILED));
+        backgroundColors.add(Charts.Color.getChartColorStringByStatus(Status.SKIPPED));
         dataset.setBackgroundColor(backgroundColors);
         data.setDatasets(datasets);
 
         chart.setData(data);
-        chart.setType(ChartType.pie);
+        chart.setType(Charts.Type.pie);
 
         allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

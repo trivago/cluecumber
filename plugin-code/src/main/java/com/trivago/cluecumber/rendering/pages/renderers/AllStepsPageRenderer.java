@@ -1,7 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.renderers;
 
-import com.trivago.cluecumber.constants.ChartColor;
-import com.trivago.cluecumber.constants.ChartType;
+import com.trivago.cluecumber.constants.Charts;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Step;
@@ -62,21 +61,21 @@ public class AllStepsPageRenderer extends PageRenderer {
         Dataset passedDataset = new Dataset();
         passedDataset.setLabel("passed");
         passedDataset.setData(passed);
-        List<String> passedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.PASSED)));
+        List<String> passedBG = new ArrayList<>(Collections.nCopies(passed.size(), Charts.Color.getChartColorStringByStatus(Status.PASSED)));
         passedDataset.setBackgroundColor(passedBG);
         datasets.add(passedDataset);
 
         Dataset failedDataset = new Dataset();
         failedDataset.setLabel("failed");
         failedDataset.setData(failed);
-        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.FAILED)));
+        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), Charts.Color.getChartColorStringByStatus(Status.FAILED)));
         failedDataset.setBackgroundColor(failedBG);
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
         skippedDataset.setLabel("skipped");
         skippedDataset.setData(skipped);
-        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), ChartColor.getChartColorStringByStatus(Status.SKIPPED)));
+        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), Charts.Color.getChartColorStringByStatus(Status.SKIPPED)));
         skippedDataset.setBackgroundColor(skippedBG);
         datasets.add(skippedDataset);
 
@@ -119,7 +118,7 @@ public class AllStepsPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType(ChartType.bar);
+        chart.setType(Charts.Type.bar);
 
         allTagsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

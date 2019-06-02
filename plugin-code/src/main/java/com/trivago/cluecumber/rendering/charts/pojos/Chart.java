@@ -16,13 +16,13 @@
 
 package com.trivago.cluecumber.rendering.charts.pojos;
 
-import com.trivago.cluecumber.constants.ChartType;
+import com.trivago.cluecumber.constants.Charts;
 
 public class Chart {
 
     private Data data;
     private Options options;
-    private ChartType type;
+    private Charts.Type type;
 
     public Data getData() {
         return data;
@@ -32,11 +32,11 @@ public class Chart {
         this.data = data;
     }
 
-    public ChartType getType() {
+    public Charts.Type getType() {
         return type;
     }
 
-    public void setType(final ChartType type) {
+    public void setType(final Charts.Type type) {
         this.type = type;
     }
 
