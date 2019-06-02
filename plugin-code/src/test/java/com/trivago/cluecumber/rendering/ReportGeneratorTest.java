@@ -1,48 +1,41 @@
 package com.trivago.cluecumber.rendering;
 
-import com.trivago.cluecumber.rendering.pages.visitors.PageVisitorProducer;
-import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
+import com.trivago.cluecumber.rendering.pages.visitors.AllFeaturesVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.AllScenariosVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class ReportGeneratorTest {
 
-    private PageVisitorProducer pageVisitorProducer;
-    private TemplateEngine templateEngine;
-    private FileIO fileIO;
     private FileSystemManager fileSystemManager;
     private ReportGenerator reportGenerator;
 
     @Before
     public void setup() {
-        pageVisitorProducer = mock(PageVisitorProducer.class);
-        templateEngine = mock(TemplateEngine.class);
         fileSystemManager = mock(FileSystemManager.class);
-        fileIO = mock(FileIO.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
         PropertyManager propertyManager = new PropertyManager(logger);
+        AllScenariosVisitor allScenarioVisitor = mock(AllScenariosVisitor.class);
+        AllFeaturesVisitor allFeaturesVisitor = mock(AllFeaturesVisitor.class);
         reportGenerator = new ReportGenerator(
-                pageVisitorProducer, templateEngine, fileIO, propertyManager, fileSystemManager
+                propertyManager,
+                fileSystemManager,
+                allScenarioVisitor,
+                allFeaturesVisitor
         );
     }
 
@@ -65,11 +58,11 @@ public class ReportGeneratorTest {
         Report[] reportList = {report1, report2};
         allScenariosPageCollection.addReports(reportList);
 
-        when(templateEngine.getRenderedScenarioSummaryPageContent(allScenariosPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
-        when(templateEngine.getRenderedScenarioDetailPageContent(any(ScenarioDetailsPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
-        when(templateEngine.getRenderedTagSummaryPageContent(any(AllTagsPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
-        when(templateEngine.getRenderedFeatureSummaryPageContent(any(AllFeaturesPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
-        when(templateEngine.getRenderedStepSummaryPageContent(any(AllStepsPageCollection.class))).thenReturn("RENDERED_STEPS_PAGE_CONTENT");
+//        when(templateEngine.getRenderedScenarioSummaryPageContent(allScenariosPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
+//        when(templateEngine.getRenderedScenarioDetailPageContent(any(ScenarioDetailsPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
+//        when(templateEngine.getRenderedTagSummaryPageContent(any(AllTagsPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
+//        when(templateEngine.getRenderedFeatureSummaryPageContent(any(AllFeaturesPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
+//        when(templateEngine.getRenderedStepSummaryPageContent(any(AllStepsPageCollection.class))).thenReturn("RENDERED_STEPS_PAGE_CONTENT");
 
         reportGenerator.generateReport(allScenariosPageCollection);
 

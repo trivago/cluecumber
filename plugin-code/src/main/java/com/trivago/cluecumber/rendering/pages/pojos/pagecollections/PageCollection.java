@@ -17,10 +17,8 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
-import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.Visitable;
 
-public class PageCollection implements Visitable, Cloneable {
+public class PageCollection implements Cloneable {
     private final ReportDetails reportDetails;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
@@ -56,11 +54,5 @@ public class PageCollection implements Visitable, Cloneable {
 
     public void setExpandDocStrings(final boolean expandDocStrings) {
         this.expandDocStrings = expandDocStrings;
-    }
-
-    @Override
-    public void accept(final PageVisitor visitor) {
-        visitor.visit(this);
-        System.out.println("HUHU " + visitor.getClass().getName());
     }
 }

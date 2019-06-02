@@ -52,5 +52,4 @@ public class PageRenderer {
     String convertChartToJson(final Chart chart) {
         return chartJsonConverter.convertChartToJson(chart);
     }
-
 }
