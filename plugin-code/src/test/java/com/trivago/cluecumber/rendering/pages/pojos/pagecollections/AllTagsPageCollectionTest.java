@@ -73,6 +73,13 @@ public class AllTagsPageCollectionTest {
         assertThat(allTagsPageCollection.getTotalNumberOfScenarios(), is(3));
     }
 
+    @Test
+    public void getTagsTest() {
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        Map<Tag, ResultCount> tagStats = allTagsPageCollection.getTagResultCounts();
+        assertThat(allTagsPageCollection.getTags().size(), is(0));
+    }
+
     private List<Report> getTestReports() {
         List<Report> reports = new ArrayList<>();
 

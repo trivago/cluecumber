@@ -61,7 +61,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         addReports(Arrays.asList(reportList));
     }
 
-    public void addReports(final List<Report> reportList) {
+    private void addReports(final List<Report> reportList) {
         this.reports.addAll(reportList);
     }
 
