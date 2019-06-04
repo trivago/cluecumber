@@ -81,7 +81,7 @@
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <plexus.utilities.version>3.2.0</plexus.utilities.version>
 
-        <mockito.version>2.27.0</mockito.version>
+        <mockito.version>2.28.2</mockito.version>
         <junit5.vintage.version>5.5.0-M1</junit5.vintage.version>
         <openpojo.version>0.8.12</openpojo.version>
 

@@ -1,10 +1,12 @@
 package com.trivago.cluecumber.rendering;
 
-import com.trivago.cluecumber.rendering.pages.renderers.AllFeaturesPageRenderer;
-import com.trivago.cluecumber.rendering.pages.renderers.AllScenariosPageRenderer;
-import com.trivago.cluecumber.rendering.pages.renderers.AllStepsPageRenderer;
-import com.trivago.cluecumber.rendering.pages.renderers.AllTagsPageRenderer;
-import com.trivago.cluecumber.rendering.pages.renderers.ScenarioDetailsPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.AllFeaturesPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.AllScenariosPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.AllStepsPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.AllTagsPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.ScenarioDetailsPageRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateConfiguration;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 
 public class TemplateEngineTest {
     private TemplateConfiguration templateConfiguration;

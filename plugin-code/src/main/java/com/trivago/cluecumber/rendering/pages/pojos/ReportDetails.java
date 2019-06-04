@@ -17,7 +17,7 @@
 package com.trivago.cluecumber.rendering.pages.pojos;
 
 import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -6,8 +6,10 @@ import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.visitors.AllFeaturesVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.AllScenariosVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,13 +31,17 @@ public class ReportGeneratorTest {
         fileSystemManager = mock(FileSystemManager.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
         PropertyManager propertyManager = new PropertyManager(logger);
-        AllScenariosVisitor allScenarioVisitor = mock(AllScenariosVisitor.class);
-        AllFeaturesVisitor allFeaturesVisitor = mock(AllFeaturesVisitor.class);
+        ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
+        FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
+        TagVisitor tagVisitor = mock(TagVisitor.class);
+        StepVisitor stepVisitor = mock(StepVisitor.class);
         reportGenerator = new ReportGenerator(
                 propertyManager,
                 fileSystemManager,
-                allScenarioVisitor,
-                allFeaturesVisitor
+                scenarioVisitor,
+                featureVisitor,
+                tagVisitor,
+                stepVisitor
         );
     }
 

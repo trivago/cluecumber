@@ -36,11 +36,11 @@
                     <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
 
                     <!-- Optional custom parameters that are shown on the start page if they have a value -->
-                    <customParameters>
-                        <Custom_Parameter>This is a test</Custom_Parameter>
-                        <Custom_URL>http://www.google.com</Custom_URL>
-                        <Empty_Parameter/>
-                    </customParameters>
+<!--                    <customParameters>-->
+<!--                        <Custom_Parameter>This is a test</Custom_Parameter>-->
+<!--                        <Custom_URL>http://www.google.com</Custom_URL>-->
+<!--                        <Empty_Parameter/>-->
+<!--                    </customParameters>-->
 
                     <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
                     <!--<failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>-->

@@ -23,7 +23,7 @@ import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;

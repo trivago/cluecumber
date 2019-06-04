@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering;
 
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import org.junit.Test;
 
 import java.time.Month;
@@ -97,6 +98,6 @@ public class RenderingUtilsTest {
     @Test
     public void convertZonedDateTimeToTimeStringInvalidTest() {
         String timeString = RenderingUtils.convertZonedDateTimeToTimeString(null);
-        assertThat(timeString, is(""));
+        assertThat(timeString, is(nullValue()));
     }
 }
