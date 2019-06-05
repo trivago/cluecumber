@@ -76,8 +76,7 @@ public class AllTagsPageCollectionTest {
     @Test
     public void getTagsTest() {
         allTagsPageCollection = new AllTagsPageCollection(getTestReports());
-        Map<Tag, ResultCount> tagStats = allTagsPageCollection.getTagResultCounts();
-        assertThat(allTagsPageCollection.getTags().size(), is(0));
+        assertThat(allTagsPageCollection.getTags().size(), is(3));
     }
 
     private List<Report> getTestReports() {
