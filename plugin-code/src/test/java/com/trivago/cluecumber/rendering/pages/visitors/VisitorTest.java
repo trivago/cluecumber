@@ -10,6 +10,7 @@ import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.AllFeaturesPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderering.AllScenariosPageRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.ScenarioDetailsPageRenderer;
 import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 import freemarker.template.Template;
 import org.junit.Before;
@@ -25,7 +26,6 @@ public class VisitorTest {
     FileIO fileIo;
     TemplateEngine templateEngine;
     PropertyManager propertyManager;
-    AllFeaturesPageRenderer allFeaturesPageRenderer;
     AllScenariosPageRenderer allScenariosPageRenderer;
 
     @Before
@@ -33,7 +33,6 @@ public class VisitorTest {
         fileIo = mock(FileIO.class);
         templateEngine = mock(TemplateEngine.class);
         propertyManager = mock(PropertyManager.class);
-        allFeaturesPageRenderer = mock(AllFeaturesPageRenderer.class);
         allScenariosPageRenderer = mock(AllScenariosPageRenderer.class);
         when(propertyManager.getGeneratedHtmlReportDirectory()).thenReturn("dummyPath");
     }

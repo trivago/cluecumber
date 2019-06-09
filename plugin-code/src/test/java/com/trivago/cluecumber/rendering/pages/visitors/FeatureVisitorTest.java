@@ -25,10 +25,12 @@ import static org.mockito.Mockito.*;
 public class FeatureVisitorTest extends VisitorTest {
 
     private FeatureVisitor featureVisitor;
+    private AllFeaturesPageRenderer allFeaturesPageRenderer;
 
     @Override
     public void setUp() throws CluecumberPluginException {
         super.setUp();
+        allFeaturesPageRenderer = mock(AllFeaturesPageRenderer.class);
         featureVisitor = new FeatureVisitor(
                 fileIo,
                 templateEngine,

@@ -1,17 +1,42 @@
 package com.trivago.cluecumber.rendering.pages.visitors;
 
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.rendering.pages.renderering.ScenarioDetailsPageRenderer;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
-public class ScenarioVisitorTest {
+public class ScenarioVisitorTest extends VisitorTest {
 
-    @Before
-    public void setUp() throws Exception {
+    private ScenarioVisitor scenarioVisitor;
+    private ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
+
+    @Override
+    public void setUp() throws CluecumberPluginException {
+        super.setUp();
+        scenarioDetailsPageRenderer = mock(ScenarioDetailsPageRenderer.class);
+        scenarioVisitor = new ScenarioVisitor(
+                fileIo,
+                templateEngine,
+                propertyManager,
+                allScenariosPageRenderer,
+                scenarioDetailsPageRenderer
+        );
     }
 
     @Test
-    public void visit() {
+    public void visitTest() throws CluecumberPluginException {
+        when(allScenariosPageRenderer.getRenderedContent(any(), any())).thenReturn("MyRenderedScenarios");
+        when(scenarioDetailsPageRenderer.getRenderedContent(any(), any())).thenReturn("MyRenderedScenarioDetails");
+        scenarioVisitor.visit(getAllScenarioPageCollection());
+        verify(fileIo, times(1))
+                .writeContentToFile("MyRenderedScenarios", "dummyPath/index.html");
+        verify(fileIo, times(1))
+                .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/scenario-sequence.html");
+        verify(fileIo, times(1))
+                .writeContentToFile("MyRenderedScenarioDetails", "dummyPath/pages/scenario-detail/scenario_0.html");
     }
 }
