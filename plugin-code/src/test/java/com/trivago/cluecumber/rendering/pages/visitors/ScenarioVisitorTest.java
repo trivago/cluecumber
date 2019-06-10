@@ -2,10 +2,8 @@ package com.trivago.cluecumber.rendering.pages.visitors;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.rendering.pages.renderering.ScenarioDetailsPageRenderer;
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 

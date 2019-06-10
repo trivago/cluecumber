@@ -1,25 +1,9 @@
 package com.trivago.cluecumber.rendering.pages.visitors;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.filesystem.FileIO;
-import com.trivago.cluecumber.json.pojo.Element;
-import com.trivago.cluecumber.json.pojo.Report;
-import com.trivago.cluecumber.json.pojo.Tag;
-import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.pojos.Feature;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.AllFeaturesPageRenderer;
-import com.trivago.cluecumber.rendering.pages.renderering.AllScenariosPageRenderer;
-import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
-import freemarker.template.Template;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class FeatureVisitorTest extends VisitorTest {

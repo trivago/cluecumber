@@ -1,17 +1,38 @@
 package com.trivago.cluecumber.rendering.pages.visitors;
 
-import org.junit.Before;
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.rendering.pages.renderering.AllStepsPageRenderer;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
-public class StepVisitorTest {
+public class StepVisitorTest extends VisitorTest {
 
-    @Before
-    public void setUp() throws Exception {
+    private StepVisitor stepVisitor;
+    private AllStepsPageRenderer allStepsPageRenderer;
+
+    @Override
+    public void setUp() throws CluecumberPluginException {
+        super.setUp();
+        allStepsPageRenderer = mock(AllStepsPageRenderer.class);
+        stepVisitor = new StepVisitor(
+                fileIo,
+                templateEngine,
+                propertyManager,
+                allStepsPageRenderer,
+                allScenariosPageRenderer
+        );
     }
 
     @Test
-    public void visit() {
+    public void visitTest() throws CluecumberPluginException {
+        when(allStepsPageRenderer.getRenderedContent(any(), any())).thenReturn("MyRenderedSteps");
+        when(allScenariosPageRenderer.getRenderedContentByStepFilter(any(), any(), any())).thenReturn("MyRenderedScenarios");
+        stepVisitor.visit(getAllScenarioPageCollection());
+        verify(fileIo, times(1))
+                .writeContentToFile("MyRenderedSteps", "dummyPath/pages/step-summary.html");
+        verify(fileIo, times(1))
+                .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/step-scenarios/step_31.html");
     }
 }

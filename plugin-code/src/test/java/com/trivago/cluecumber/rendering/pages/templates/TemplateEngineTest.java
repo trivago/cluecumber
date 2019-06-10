@@ -28,6 +28,5 @@ public class TemplateEngineTest {
         when(templateConfiguration.getTemplate(TemplateEngine.Template.SCENARIO_DETAILS.getFileName())).thenReturn(returnTemplate);
         final Template template = templateEngine.getTemplate(TemplateEngine.Template.SCENARIO_DETAILS);
         assertThat(template.getName(), is("MyTemplate"));
-        System.out.println(template.getName());
     }
 }
