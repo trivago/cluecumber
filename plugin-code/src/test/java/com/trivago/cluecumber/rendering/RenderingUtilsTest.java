@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering;
 
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import org.junit.Test;
 
 import java.time.Month;

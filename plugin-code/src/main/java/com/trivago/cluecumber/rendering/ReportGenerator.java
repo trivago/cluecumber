@@ -18,171 +18,56 @@ package com.trivago.cluecumber.rendering;
 
 import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
-import com.trivago.cluecumber.json.pojo.Element;
-import com.trivago.cluecumber.json.pojo.Report;
-import com.trivago.cluecumber.json.pojo.Step;
-import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.pojos.Feature;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
+import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class ReportGenerator {
 
-    private final TemplateEngine templateEngine;
-    private final FileIO fileIO;
     private final PropertyManager propertyManager;
     private final FileSystemManager fileSystemManager;
 
+    private List<PageVisitor> visitors = new ArrayList<>();
+
     @Inject
     public ReportGenerator(
-            final TemplateEngine templateEngine,
-            final FileIO fileIO,
             final PropertyManager propertyManager,
-            final FileSystemManager fileSystemManager
+            final FileSystemManager fileSystemManager,
+            final ScenarioVisitor scenarioVisitor,
+            final FeatureVisitor featureVisitor,
+            final TagVisitor tagVisitor,
+            final StepVisitor stepVisitor
     ) {
-        this.templateEngine = templateEngine;
-        this.fileIO = fileIO;
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
+
+        visitors.add(scenarioVisitor);
+        visitors.add(featureVisitor);
+        visitors.add(tagVisitor);
+        visitors.add(stepVisitor);
     }
-    
+
+    /**
+     * Generate the full report.
+     * @param allScenariosPageCollection {{@link AllScenariosPageCollection}.
+     * @throws CluecumberPluginException In case of error.
+     */
     public void generateReport(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
         copyReportAssets();
-        generateScenarioDetailPages(allScenariosPageCollection);
-        generateFeaturePages(allScenariosPageCollection);
-        generateTagPages(allScenariosPageCollection);
-        generateStepPages(allScenariosPageCollection);
-        generateScenarioSequencePage(allScenariosPageCollection);
-        generateScenarioSummaryPage(allScenariosPageCollection);
-    }
-
-    /**
-     * Generate pages for features.
-     *
-     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateFeaturePages(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        // Feature summary page
-        AllFeaturesPageCollection allFeaturesPageCollection = new AllFeaturesPageCollection(allScenariosPageCollection.getReports());
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedFeatureSummaryPageContent(allFeaturesPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
-
-        // Feature scenario list pages
-        for (Feature feature : allFeaturesPageCollection.getFeatures()) {
-            fileIO.writeContentToFile(
-                    templateEngine.getRenderedScenarioSummaryPageContentByFeatureFilter(allScenariosPageCollection, feature),
-                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
-                            feature.getIndex() + PluginSettings.HTML_FILE_EXTENSION);
+        for (PageVisitor visitor : visitors) {
+            allScenariosPageCollection.accept(visitor);
         }
-    }
-
-    /**
-     * Generate pages for tags.
-     *
-     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateTagPages(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        // Tag summary page
-        AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(allScenariosPageCollection.getReports());
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedTagSummaryPageContent(allTagsPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
-
-        // Tag scenario list pages
-        for (Tag tag : allTagsPageCollection.getTags()) {
-            fileIO.writeContentToFile(
-                    templateEngine.getRenderedScenarioSummaryPageContentByTagFilter(allScenariosPageCollection, tag),
-                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.TAG_SCENARIO_PAGE_FRAGMENT +
-                            tag.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
-        }
-    }
-
-    /**
-     * Generate pages for steps.
-     *
-     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateStepPages(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        // Step summary page
-        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(allScenariosPageCollection.getReports());
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedStepSummaryPageContent(allStepsPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.STEP_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
-
-        // Step scenario list pages
-        for (Step step : allStepsPageCollection.getSteps()) {
-            fileIO.writeContentToFile(
-                    templateEngine.getRenderedScenarioSummaryPageContentByStepFilter(allScenariosPageCollection, step),
-                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
-                            step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
-        }
-    }
-
-    /**
-     * Generate detail pages for scenarios.
-     *
-     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateScenarioDetailPages(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        ScenarioDetailsPageCollection scenarioDetailsPageCollection;
-        for (Report report : allScenariosPageCollection.getReports()) {
-            for (Element element : report.getElements()) {
-                scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element);
-                fileIO.writeContentToFile(
-                        templateEngine.getRenderedScenarioDetailPageContent(scenarioDetailsPageCollection),
-                        propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                                PluginSettings.PAGES_DIRECTORY + PluginSettings.SCENARIO_DETAIL_PAGE_FRAGMENT +
-                                element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
-            }
-        }
-    }
-
-    /**
-     * Generate sequence page for scenarios.
-     *
-     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateScenarioSequencePage(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedScenarioSequencePageContent(allScenariosPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.SCENARIO_SEQUENCE_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
-    }
-
-
-    /**
-     * Generate overview page for scenarios (this is the report start page).
-     *
-     * @param allScenariosPageCollection The {@link AllScenariosPageCollection}.
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
-     */
-    private void generateScenarioSummaryPage(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        fileIO.writeContentToFile(
-                templateEngine.getRenderedScenarioSummaryPageContent(allScenariosPageCollection),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 
     /**

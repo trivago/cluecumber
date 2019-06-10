@@ -18,7 +18,7 @@ package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.Status;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 public class Result {
 

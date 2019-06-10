@@ -18,13 +18,16 @@ package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.Visitable;
 
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
@@ -32,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllScenariosPageCollection extends PageCollection implements Cloneable {
+public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
     private List<CustomParameter> customParameters;
     private Tag tagFilter;
@@ -58,7 +61,7 @@ public class AllScenariosPageCollection extends PageCollection implements Clonea
         addReports(Arrays.asList(reportList));
     }
 
-    public void addReports(final List<Report> reportList) {
+    private void addReports(final List<Report> reportList) {
         this.reports.addAll(reportList);
     }
 
@@ -216,5 +219,10 @@ public class AllScenariosPageCollection extends PageCollection implements Clonea
         }
         clone.addReports(clonedReports);
         return clone;
+    }
+
+    @Override
+    public void accept(final PageVisitor visitor) throws CluecumberPluginException {
+        visitor.visit(this);
     }
 }

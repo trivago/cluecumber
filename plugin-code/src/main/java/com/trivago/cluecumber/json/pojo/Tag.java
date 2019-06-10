@@ -16,7 +16,7 @@
 
 package com.trivago.cluecumber.json.pojo;
 
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.util.Objects;
 

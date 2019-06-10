@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.0.0] - UNRELEASED
+
+### Changed
+* Major internal architecture change to ease extension
+
 ## [1.11.0] - 2019-05-21
 
 ### Fixed
@@ -458,6 +463,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
 [1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
 [1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
 [1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1
