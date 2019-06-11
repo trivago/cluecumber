@@ -33,9 +33,8 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 import javax.inject.Inject;
 import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The main plugin class.
@@ -67,7 +66,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
      * Custom parameters to add to the report.
      */
     @Parameter(property = "reporting.customParameters")
-    private Map<String, String> customParameters = new HashMap<>();
+    private LinkedHashMap<String, String> customParameters = new LinkedHashMap<>();
 
     /**
      * Mark scenarios as failed if they contain pending or undefined steps (default: false).
@@ -134,7 +133,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         logger.setMojoLogger(getLog());
 
         if (skip) {
-            getLog().info("Cluecumber report generation was skipped by a configuration flag.");
+            getLog().info("Cluecumber report generation was skipped using the <skip> property.");
             return;
         }
 
