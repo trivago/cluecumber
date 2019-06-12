@@ -6,7 +6,7 @@ before_install:
 
 script:
   - cd plugin-code
-  - mvn cobertura:cobertura
+  - mvn jacoco:prepare-agent
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
