@@ -1,14 +1,24 @@
-language: java
-sudo: false # faster builds
+#language: java
+#sudo: false # faster builds
+#
+#before_install:
+#  - pip install --user codecov
+#
+#script:
+#  - cd plugin-code
+#  - mvn jacoco:prepare-agent
+#
+#after_success:
+#  - bash <(curl -s https://codecov.io/bash)
+#  - codecov
+#
 
-before_install:
+language:
+  java
+
+before_script:
+  - cd plugin-code
   - pip install --user codecov
 
-script:
-  - cd plugin-code
-  - mvn jacoco:prepare-agent
-
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
   - codecov
-
