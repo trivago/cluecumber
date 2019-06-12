@@ -69,6 +69,15 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private LinkedHashMap<String, String> customParameters = new LinkedHashMap<>();
 
     /**
+     * Path to a properties file. The included properties are converted to custom parameters.
+     * <pre>
+     *
+     * </pre>
+     */
+    @Parameter(property = "reporting.customParametersFile")
+    private String customParametersFile = "";
+
+    /**
      * Mark scenarios as failed if they contain pending or undefined steps (default: false).
      */
     @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
@@ -141,12 +150,12 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
         propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
         propertyManager.setCustomParameters(customParameters);
+        propertyManager.setCustomParametersFile(customParametersFile);
         propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
         propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
         propertyManager.setExpandStepHooks(expandStepHooks);
         propertyManager.setExpandDocStrings(expandDocStrings);
         propertyManager.setCustomCss(customCss);
-        propertyManager.validateSettings();
 
         logger.logSeparator();
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));

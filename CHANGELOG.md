@@ -9,8 +9,14 @@ Back to [Readme](README.md).
 
 ## [2.0.0] - UNRELEASED
 
+### Added
+* Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed by gazler22)
+
+### Fixed
+* Custom parameters are now displayed in the order of definition (#157)
+
 ### Changed
-* Major internal architecture change to ease extension
+* Major internal architecture change to ease future extension
 
 ## [1.11.0] - 2019-05-21
 

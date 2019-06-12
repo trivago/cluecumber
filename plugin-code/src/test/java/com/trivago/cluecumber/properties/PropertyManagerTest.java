@@ -18,35 +18,35 @@ import static org.mockito.Mockito.verify;
 public class PropertyManagerTest {
     private PropertyManager propertyManager;
     private CluecumberLogger logger;
+    private PropertiesFileLoader propertiesFileLoader;
 
     @Before
     public void setup() {
         logger = mock(CluecumberLogger.class);
-        propertyManager = new PropertyManager(logger);
+        propertiesFileLoader = mock(PropertiesFileLoader.class);
+        propertyManager = new PropertyManager(logger, propertiesFileLoader);
     }
 
     @Test
-    public void generatedHtmlReportDirectoryTest() {
+    public void generatedHtmlReportDirectoryTest() throws WrongOrMissingPropertyException {
         propertyManager.setGeneratedHtmlReportDirectory("test");
         assertThat(propertyManager.getGeneratedHtmlReportDirectory(), is("test"));
     }
 
     @Test
-    public void sourceJsonReportDirectoryTest() {
+    public void sourceJsonReportDirectoryTest() throws WrongOrMissingPropertyException {
         propertyManager.setSourceJsonReportDirectory("test");
         assertThat(propertyManager.getSourceJsonReportDirectory(), is("test"));
     }
 
     @Test(expected = WrongOrMissingPropertyException.class)
     public void missingJsonReportDirectoryTest() throws Exception {
-        propertyManager.setGeneratedHtmlReportDirectory("test");
-        propertyManager.validateSettings();
+        propertyManager.setSourceJsonReportDirectory("");
     }
 
     @Test(expected = WrongOrMissingPropertyException.class)
     public void missingHtmlReportDirectoryTest() throws Exception {
-        propertyManager.setSourceJsonReportDirectory("test");
-        propertyManager.validateSettings();
+        propertyManager.setGeneratedHtmlReportDirectory("");
     }
 
     @Test

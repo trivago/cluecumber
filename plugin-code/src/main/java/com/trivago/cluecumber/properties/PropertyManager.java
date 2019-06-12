@@ -22,40 +22,53 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Singleton
 public class PropertyManager {
 
     private final CluecumberLogger logger;
+    private PropertiesFileLoader propertiesFileLoader;
 
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
-    private Map<String, String> customParameters;
+    private Map<String, String> customParameters = new LinkedHashMap<>();
     private boolean failScenariosOnPendingOrUndefinedSteps;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
     private String customCss;
+    private String customParametersFile;
 
     @Inject
-    public PropertyManager(final CluecumberLogger logger) {
+    public PropertyManager(final CluecumberLogger logger,
+                           final PropertiesFileLoader propertiesFileLoader) {
         this.logger = logger;
+        this.propertiesFileLoader = propertiesFileLoader;
     }
 
     public String getSourceJsonReportDirectory() {
         return sourceJsonReportDirectory;
     }
 
-    public void setSourceJsonReportDirectory(final String reportDirectory) {
-        this.sourceJsonReportDirectory = reportDirectory;
+    public void setSourceJsonReportDirectory(final String sourceJsonReportDirectory)
+            throws WrongOrMissingPropertyException {
+
+        if (sourceJsonReportDirectory == null || sourceJsonReportDirectory.equals("")) {
+            throw new WrongOrMissingPropertyException("sourceJsonReportDirectory");
+        }
+        this.sourceJsonReportDirectory = sourceJsonReportDirectory;
     }
 
     public String getGeneratedHtmlReportDirectory() {
         return generatedHtmlReportDirectory;
     }
 
-    public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory) {
+    public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory) throws WrongOrMissingPropertyException {
+        if (generatedHtmlReportDirectory == null || generatedHtmlReportDirectory.equals("")) {
+            throw new WrongOrMissingPropertyException("generatedHtmlReportDirectory");
+        }
         this.generatedHtmlReportDirectory = generatedHtmlReportDirectory;
     }
 
@@ -64,7 +77,11 @@ public class PropertyManager {
     }
 
     public void setCustomParameters(final Map<String, String> customParameters) {
-        this.customParameters = customParameters;
+        this.customParameters.putAll(customParameters);
+    }
+
+    public void setCustomParametersFile(String customParametersFile) {
+        this.customParametersFile = customParametersFile;
     }
 
     public boolean isFailScenariosOnPendingOrUndefinedSteps() {
@@ -107,31 +124,20 @@ public class PropertyManager {
         this.customCss = customCss;
     }
 
-    /**
-     * Checks the pom settings for the plugin.
-     *
-     * @throws CluecumberPluginException Thrown when a required setting
-     *                                   is not specified in the pom.
-     */
-    public void validateSettings() throws CluecumberPluginException {
-        String missingProperty = null;
-        if (sourceJsonReportDirectory == null || sourceJsonReportDirectory.equals("")) {
-            missingProperty = "sourceJsonReportDirectory";
-        } else if (generatedHtmlReportDirectory == null || generatedHtmlReportDirectory.equals("")) {
-            missingProperty = "generatedHtmlReportDirectory";
-        }
-
-        if (missingProperty != null) {
-            throw new WrongOrMissingPropertyException(missingProperty);
-        }
-    }
-
     public void logProperties() {
         logger.info("- source JSON report directory     : " + sourceJsonReportDirectory);
         logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory);
 
-        if (customParameters != null && !customParameters.isEmpty()) {
+        boolean customParametersFileExists = customParametersFile != null && !customParametersFile.isEmpty();
+        if (customParametersFileExists) {
             logger.logSeparator();
+            logger.info("- custom parameters file           : " + customParametersFile);
+        }
+
+        if (customParameters != null && !customParameters.isEmpty()) {
+            if (!customParametersFileExists) {
+                logger.logSeparator();
+            }
             for (Map.Entry<String, String> entry : customParameters.entrySet()) {
                 logger.info("- custom parameter                 : " +
                         entry.getKey() + " -> " + entry.getValue());
