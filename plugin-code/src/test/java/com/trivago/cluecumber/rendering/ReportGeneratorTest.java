@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering;
 
+import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
@@ -32,7 +33,8 @@ public class ReportGeneratorTest {
         fileSystemManager = mock(FileSystemManager.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
         PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
-        PropertyManager propertyManager = new PropertyManager(logger, propertiesFileLoader);
+        FileIO fileIO = mock(FileIO.class);
+        PropertyManager propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
         ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
         TagVisitor tagVisitor = mock(TagVisitor.class);

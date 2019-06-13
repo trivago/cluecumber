@@ -1,30 +1,32 @@
 package com.trivago.cluecumber.properties;
 
+import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
+import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class PropertyManagerTest {
     private PropertyManager propertyManager;
     private CluecumberLogger logger;
-    private PropertiesFileLoader propertiesFileLoader;
+    private FileIO fileIO;
 
     @Before
     public void setup() {
         logger = mock(CluecumberLogger.class);
-        propertiesFileLoader = mock(PropertiesFileLoader.class);
-        propertyManager = new PropertyManager(logger, propertiesFileLoader);
+        fileIO = mock(FileIO.class);
+        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
+        propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
     }
 
     @Test
@@ -105,20 +107,29 @@ public class PropertyManagerTest {
     }
 
     @Test
-    public void customCssTest() {
+    public void customCssTest() throws MissingFileException {
         String customCss = "MyCss";
-        propertyManager.setCustomCss(customCss);
-        assertThat(propertyManager.getCustomCss(), is("MyCss"));
+        when(fileIO.doesFileExist(customCss)).thenReturn(true);
+        propertyManager.setCustomCssFile(customCss);
+        assertThat(propertyManager.getCustomCssFile(), is(customCss));
+    }
+
+    @Test(expected = MissingFileException.class)
+    public void customCssMissingFileTest() throws MissingFileException {
+        String customCss = "MyCss";
+        when(fileIO.doesFileExist(customCss)).thenReturn(false);
+        propertyManager.setCustomCssFile(customCss);
     }
 
     @Test
-    public void logFullPropertiesTest() {
+    public void logFullPropertiesTest() throws MissingFileException {
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key1", "value1");
         customParameters.put("key2", "value2");
         propertyManager.setCustomParameters(customParameters);
 
-        propertyManager.setCustomCss("customCss");
+        when(fileIO.doesFileExist("test")).thenReturn(true);
+        propertyManager.setCustomCssFile("test");
 
         propertyManager.logProperties();
         verify(logger, times(9)).info(anyString());

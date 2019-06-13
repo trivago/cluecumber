@@ -94,7 +94,7 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
 
         // Either use the custom CSS or the dummy CSS files that comes with Cluecumber
-        String customCss = propertyManager.getCustomCss();
+        String customCss = propertyManager.getCustomCssFile();
         if (customCss != null && !customCss.isEmpty()) {
             fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber_custom.css");
         } else {

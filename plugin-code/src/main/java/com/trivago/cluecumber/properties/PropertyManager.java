@@ -16,8 +16,9 @@
 
 package com.trivago.cluecumber.properties;
 
-import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
+import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 
 import javax.inject.Inject;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class PropertyManager {
 
     private final CluecumberLogger logger;
+    private FileIO fileIO;
     private PropertiesFileLoader propertiesFileLoader;
 
     private String sourceJsonReportDirectory;
@@ -38,13 +40,17 @@ public class PropertyManager {
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
-    private String customCss;
+    private String customCssFile;
     private String customParametersFile;
 
     @Inject
-    public PropertyManager(final CluecumberLogger logger,
-                           final PropertiesFileLoader propertiesFileLoader) {
+    public PropertyManager(
+            final CluecumberLogger logger,
+            FileIO fileIO,
+            final PropertiesFileLoader propertiesFileLoader
+    ) {
         this.logger = logger;
+        this.fileIO = fileIO;
         this.propertiesFileLoader = propertiesFileLoader;
     }
 
@@ -116,12 +122,15 @@ public class PropertyManager {
         this.expandDocStrings = expandDocStrings;
     }
 
-    public String getCustomCss() {
-        return customCss;
+    public String getCustomCssFile() {
+        return customCssFile;
     }
 
-    public void setCustomCss(final String customCss) {
-        this.customCss = customCss;
+    public void setCustomCssFile(final String customCssFile) throws MissingFileException {
+        if (!fileIO.doesFileExist(customCssFile)) {
+            throw new MissingFileException(customCssFile);
+        }
+        this.customCssFile = customCssFile;
     }
 
     public void logProperties() {
@@ -151,8 +160,8 @@ public class PropertyManager {
         logger.info("- expand step hooks                : " + expandStepHooks);
         logger.info("- expand doc strings               : " + expandDocStrings);
 
-        if (customCss != null && !customCss.isEmpty()) {
-            logger.info("- custom CSS                   : " + customCss);
+        if (customCssFile != null && !customCssFile.isEmpty()) {
+            logger.info("- custom CSS file              : " + customCssFile);
         }
 
         logger.logSeparator();

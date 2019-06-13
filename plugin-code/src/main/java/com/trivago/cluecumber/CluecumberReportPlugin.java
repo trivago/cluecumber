@@ -155,7 +155,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
         propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
         propertyManager.setExpandStepHooks(expandStepHooks);
         propertyManager.setExpandDocStrings(expandDocStrings);
-        propertyManager.setCustomCss(customCss);
+        propertyManager.setCustomCssFile(customCss);
 
         logger.logSeparator();
         logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
