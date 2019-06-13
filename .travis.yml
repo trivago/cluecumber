@@ -6,4 +6,4 @@ before_script:
   - pip install --user codecov
 
 after_success:
-  - codecovg
+  - codecov
