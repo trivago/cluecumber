@@ -7,7 +7,6 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,7 +108,7 @@ public class PropertyManagerTest {
     @Test
     public void customCssTest() throws MissingFileException {
         String customCss = "MyCss";
-        when(fileIO.doesFileExist(customCss)).thenReturn(true);
+        when(fileIO.isExistingFile(customCss)).thenReturn(true);
         propertyManager.setCustomCssFile(customCss);
         assertThat(propertyManager.getCustomCssFile(), is(customCss));
     }
@@ -117,7 +116,7 @@ public class PropertyManagerTest {
     @Test(expected = MissingFileException.class)
     public void customCssMissingFileTest() throws MissingFileException {
         String customCss = "MyCss";
-        when(fileIO.doesFileExist(customCss)).thenReturn(false);
+        when(fileIO.isExistingFile(customCss)).thenReturn(false);
         propertyManager.setCustomCssFile(customCss);
     }
 
@@ -128,7 +127,7 @@ public class PropertyManagerTest {
         customParameters.put("key2", "value2");
         propertyManager.setCustomParameters(customParameters);
 
-        when(fileIO.doesFileExist("test")).thenReturn(true);
+        when(fileIO.isExistingFile("test")).thenReturn(true);
         propertyManager.setCustomCssFile("test");
 
         propertyManager.logProperties();

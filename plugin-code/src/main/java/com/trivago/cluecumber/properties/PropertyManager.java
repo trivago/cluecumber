@@ -16,6 +16,7 @@
 
 package com.trivago.cluecumber.properties;
 
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
 import com.trivago.cluecumber.filesystem.FileIO;
@@ -61,7 +62,7 @@ public class PropertyManager {
     public void setSourceJsonReportDirectory(final String sourceJsonReportDirectory)
             throws WrongOrMissingPropertyException {
 
-        if (sourceJsonReportDirectory == null || sourceJsonReportDirectory.equals("")) {
+        if (!isSet(sourceJsonReportDirectory)) {
             throw new WrongOrMissingPropertyException("sourceJsonReportDirectory");
         }
         this.sourceJsonReportDirectory = sourceJsonReportDirectory;
@@ -72,7 +73,7 @@ public class PropertyManager {
     }
 
     public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory) throws WrongOrMissingPropertyException {
-        if (generatedHtmlReportDirectory == null || generatedHtmlReportDirectory.equals("")) {
+        if (!isSet(generatedHtmlReportDirectory)) {
             throw new WrongOrMissingPropertyException("generatedHtmlReportDirectory");
         }
         this.generatedHtmlReportDirectory = generatedHtmlReportDirectory;
@@ -86,8 +87,13 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
-    public void setCustomParametersFile(String customParametersFile) {
+    public void setCustomParametersFile(String customParametersFile) throws CluecumberPluginException {
+        if (isSet(customParametersFile) && !fileIO.isExistingFile(customParametersFile)) {
+            throw new MissingFileException(customParametersFile);
+        }
         this.customParametersFile = customParametersFile;
+        Map<String, String> customParameters = propertiesFileLoader.loadPropertiesMap(customParametersFile);
+        this.customParameters.putAll(customParameters);
     }
 
     public boolean isFailScenariosOnPendingOrUndefinedSteps() {
@@ -127,7 +133,7 @@ public class PropertyManager {
     }
 
     public void setCustomCssFile(final String customCssFile) throws MissingFileException {
-        if (!fileIO.doesFileExist(customCssFile)) {
+        if (isSet(customCssFile) && !fileIO.isExistingFile(customCssFile)) {
             throw new MissingFileException(customCssFile);
         }
         this.customCssFile = customCssFile;
@@ -165,5 +171,9 @@ public class PropertyManager {
         }
 
         logger.logSeparator();
+    }
+
+    private boolean isSet(final String string) {
+        return string != null && !string.trim().isEmpty();
     }
 }

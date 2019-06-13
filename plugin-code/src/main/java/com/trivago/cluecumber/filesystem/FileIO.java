@@ -87,7 +87,7 @@ public class FileIO {
      * @param filePath the complete path to the file.
      * @return true if the file exists.
      */
-    public boolean doesFileExist(final String filePath) {
+    public boolean isExistingFile(final String filePath) {
         File file = new File(filePath);
 
         System.out.println(file.getAbsolutePath());
