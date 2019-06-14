@@ -87,10 +87,6 @@ div.tooltip-inner {
     white-space: nowrap;
 }
 
-table.compact {
-    width: min-content;
-}
-
 table {
     -webkit-border-horizontal-spacing: 0;
 }
@@ -210,4 +206,9 @@ i {
 .customParameters .card-body,
 .customParameters .card-body td {
     padding: .5rem 1rem;
+}
+
+span.nobr {
+    white-space: nowrap;
+    hyphens: none;
 }

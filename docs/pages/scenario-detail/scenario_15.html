@@ -17,7 +17,8 @@
     <!DOCTYPE html>
     <html lang="en">
     <base href="../..">
-    <head>
+    <head title="Cucumber Report Head">
+        <title>Cluecumber Report</title>
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -29,9 +30,9 @@ frame-src * data: blob: ;
 style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Cluecumber Report Plugin version 1.11.0 - Scenario Details">
-<meta name="author" content="Cluecumber Report Plugin version 1.11.0">
-<title>Scenario Details - 2019-05-21 10:24:16</title>
+<meta name="description" content="Cluecumber Report Plugin version 2.0.0 - Scenario Details">
+<meta name="author" content="Cluecumber Report Plugin version 2.0.0">
+<title>Scenario Details - 2019-06-14 14:33:37</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/cluecumber.css" type="text/css">
 <link rel="stylesheet" href="css/cluecumber_custom.css"/>
@@ -308,13 +309,10 @@ font-src * data: blob: 'unsafe-inline';"/>
 }));
 
         var original;
-        switch (chart.config.type) {
-            case "pie":
-                original = Chart.defaults.pie.legend.onClick;
-                break;
-            default:
-                original = Chart.defaults.global.legend.onClick;
-                break;
+        if (chart.config.type === "pie") {
+            original = Chart.defaults.pie.legend.onClick;
+        } else {
+            original = Chart.defaults.global.legend.onClick;
         }
 
         chart.options.legend.onClick = function (evt, label) {
@@ -368,7 +366,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                 <a class="nav-link" href="index.html">All Scenarios</a>
                     </li>
             </ul>
-            <span class="text-light">2019-05-21 10:24:16</span>
+            <span class="text-light">2019-06-14 14:33:37</span>
         </div>
     </nav>
     <main role="main" class="container">
@@ -1003,7 +1001,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
 
 <footer class="footer navbar-dark bg-dark">
     <div class="container-fluid">
-        <span>Cluecumber Report Plugin version 1.11.0 - Report generated on 2019-05-21 10:24:16.</span>
+        <span>Cluecumber Report Plugin version 2.0.0 - Report generated on 2019-06-14 14:33:37.</span>
     </div>
 </footer>    </body>
     </html>
