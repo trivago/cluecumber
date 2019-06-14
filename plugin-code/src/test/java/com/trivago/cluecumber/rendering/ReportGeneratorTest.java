@@ -1,9 +1,11 @@
 package com.trivago.cluecumber.rendering;
 
+import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.logging.CluecumberLogger;
+import com.trivago.cluecumber.properties.PropertiesFileLoader;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
@@ -30,7 +32,9 @@ public class ReportGeneratorTest {
     public void setup() {
         fileSystemManager = mock(FileSystemManager.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
-        PropertyManager propertyManager = new PropertyManager(logger);
+        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
+        FileIO fileIO = mock(FileIO.class);
+        PropertyManager propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
         ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
         TagVisitor tagVisitor = mock(TagVisitor.class);
@@ -64,20 +68,9 @@ public class ReportGeneratorTest {
         Report[] reportList = {report1, report2};
         allScenariosPageCollection.addReports(reportList);
 
-//        when(templateEngine.getRenderedScenarioSummaryPageContent(allScenariosPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
-//        when(templateEngine.getRenderedScenarioDetailPageContent(any(ScenarioDetailsPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
-//        when(templateEngine.getRenderedTagSummaryPageContent(any(AllTagsPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
-//        when(templateEngine.getRenderedFeatureSummaryPageContent(any(AllFeaturesPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
-//        when(templateEngine.getRenderedStepSummaryPageContent(any(AllStepsPageCollection.class))).thenReturn("RENDERED_STEPS_PAGE_CONTENT");
-
         reportGenerator.generateReport(allScenariosPageCollection);
 
         verify(fileSystemManager, times(8)).createDirectory(anyString());
         verify(fileSystemManager, times(17)).copyResourceFromJar(anyString(), anyString());
-//        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
-//        verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
-//        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
-//        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_STEPS_PAGE_CONTENT"), anyString());
-//        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_FEATURE_PAGE_CONTENT"), anyString());
     }
 }

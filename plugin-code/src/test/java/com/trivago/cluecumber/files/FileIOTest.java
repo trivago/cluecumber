@@ -7,8 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class FileIOTest {
     @Rule
@@ -45,5 +45,15 @@ public class FileIOTest {
     public void readFromMissingFileTest() throws Exception {
         String wrongPath = testFolder.getRoot().getPath().concat("/missing.tmp");
         fileIO.readContentFromFile(wrongPath);
+    }
+
+    @Test
+    public void isExistingFileWrongFileTest() {
+        assertThat(fileIO.isExistingFile("nonexistent"), is(false));
+    }
+
+    @Test
+    public void isExistingFileExistingFileTest() {
+        assertThat(fileIO.isExistingFile("src/test/resources/test.ftl"), is(true));
     }
 }

@@ -8,6 +8,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import java.io.File;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 public class FileSystemManagerTest {
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder();
@@ -35,8 +40,15 @@ public class FileSystemManagerTest {
     }
 
     @Test(expected = CluecumberPluginException.class)
-    public void copyResourceFromJarTest() throws Exception {
+    public void copyInvalidResourceFromJarTest() throws Exception {
         fileSystemManager.copyResourceFromJar("resource", "");
+    }
+
+    @Test
+    public void copyResourceFromJarTest() throws Exception {
+        String newLocation = testFolder.getRoot().getPath().concat("/test.ftl");
+        fileSystemManager.copyResourceFromJar("/test.ftl", newLocation);
+        assertThat(new File(newLocation).isFile(), is(true));
     }
 
     @Test(expected = CluecumberPluginException.class)
