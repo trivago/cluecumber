@@ -87,6 +87,10 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
+    String getCustomParametersFile() {
+        return customParametersFile;
+    }
+
     public void setCustomParametersFile(String customParametersFile) throws CluecumberPluginException {
         if (isSet(customParametersFile) && !fileIO.isExistingFile(customParametersFile)) {
             throw new MissingFileException(customParametersFile);

@@ -1,7 +1,6 @@
 package com.trivago.cluecumber.properties;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.filesystem.FileIO;
 
 import javax.inject.Inject;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Properties;
 
 @Singleton
 public class PropertiesFileLoader {
@@ -24,7 +22,9 @@ public class PropertiesFileLoader {
 
     LinkedHashMap<String, String> loadPropertiesMap(final String propertiesFilePath) throws CluecumberPluginException {
         LinkedHashMap<String, String> propertiesMap = new LinkedHashMap<>();
+        System.out.println(fileIO);
         String content = fileIO.readContentFromFile(propertiesFilePath);
+        System.out.println(content);
         LinkedProperties properties = new LinkedProperties();
         try {
             properties.load(new StringReader(content));

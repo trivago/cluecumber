@@ -89,9 +89,6 @@ public class FileIO {
      */
     public boolean isExistingFile(final String filePath) {
         File file = new File(filePath);
-
-        System.out.println(file.getAbsolutePath());
-
         return file.exists() && file.isFile();
     }
 }

@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.properties;
 
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
 import com.trivago.cluecumber.filesystem.FileIO;
@@ -19,12 +20,13 @@ public class PropertyManagerTest {
     private PropertyManager propertyManager;
     private CluecumberLogger logger;
     private FileIO fileIO;
+    private PropertiesFileLoader propertiesFileLoader;
 
     @Before
     public void setup() {
         logger = mock(CluecumberLogger.class);
         fileIO = mock(FileIO.class);
-        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
+        propertiesFileLoader = new PropertiesFileLoader(fileIO);
         propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
     }
 
@@ -63,6 +65,26 @@ public class PropertyManagerTest {
         propertyManager.setCustomParameters(customParameters);
         assertThat(propertyManager.getCustomParameters().size(), is(1));
         assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+
+    @Test(expected = MissingFileException.class)
+    public void setCustomParametersFileNonExistingTest() throws CluecumberPluginException {
+        String customParametersFile = "customParametersFile";
+        when(fileIO.isExistingFile(customParametersFile)).thenReturn(false);
+        propertyManager.setCustomParametersFile(customParametersFile);
+    }
+
+    @Test
+    public void setCustomParametersFileTest() throws CluecumberPluginException {
+        String customParametersFile = "src/test/resources/test.properties";
+        when(fileIO.isExistingFile(customParametersFile)).thenCallRealMethod();
+        when(fileIO.readContentFromFile(customParametersFile)).thenCallRealMethod();
+        propertyManager.setCustomParametersFile(customParametersFile);
+        assertThat(propertyManager.getCustomParametersFile(), is(customParametersFile));
+        final Map<String, String> customParameters = propertyManager.getCustomParameters();
+        assertThat(customParameters.size(), is(2));
+        assertThat(customParameters.get("Test_Property"), is("some value"));
+        assertThat(customParameters.get("Test_Property2"), is("another value"));
     }
 
     @Test

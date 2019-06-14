@@ -1,6 +1,10 @@
 package com.trivago.cluecumber.properties;
 
-import java.util.*;
+import java.util.Enumeration;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 public class LinkedProperties extends Properties {
 
