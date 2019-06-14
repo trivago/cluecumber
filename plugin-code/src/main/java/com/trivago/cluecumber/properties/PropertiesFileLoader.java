@@ -22,9 +22,7 @@ public class PropertiesFileLoader {
 
     LinkedHashMap<String, String> loadPropertiesMap(final String propertiesFilePath) throws CluecumberPluginException {
         LinkedHashMap<String, String> propertiesMap = new LinkedHashMap<>();
-        System.out.println(fileIO);
         String content = fileIO.readContentFromFile(propertiesFilePath);
-        System.out.println(content);
         LinkedProperties properties = new LinkedProperties();
         try {
             properties.load(new StringReader(content));
