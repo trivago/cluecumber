@@ -7,13 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [2.0.0] - UNRELEASED
+## [2.0.0] - 2019-06-14
 
 ### Added
 * Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed by gazler22)
 
 ### Fixed
 * Custom parameters are now displayed in the order of definition (#157)
+* Better logging and error handling
 
 ### Changed
 * Major internal architecture change to ease future extension
