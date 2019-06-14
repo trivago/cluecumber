@@ -146,17 +146,6 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ## Optional Configuration Parameters
 
-### skip
-
-The `skip` property is used to skip the report generation. The default value is `false`
-
-```xml
-<configuration>
-    <skip>true</skip>
-    ...
-</configuration>
-```
-
 ### customParameters
 
 The `customParameters` block can be used to define custom information that should be displayed on the report start page.
@@ -177,6 +166,42 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
+
+### customParametersFile
+
+You can also set custom parameters by specifying the path to a `.properties` file in the `customParametersFile` property like this:
+
+```xml
+<configuration>
+    <customParametersFile>path/to/your/customParameters.properties</customParametersFile>
+    ...
+</configuration>
+```
+
+This file needs to have a format like this:
+
+```properties
+Custom_Parameter=This is a test
+Custom_URL=http://www.google.com
+```
+
+__Note:__ These custom parameters behave exactly like the ones defined by the `customParameters` property and will be added on top of already defined properties. 
+If a property has the same name as an existing one, its value will be overwritten!
+
+The property definitions above are shown in the report like this:
+
+![custom parameters](documentation/img/custom_params.png)
+
+### skip
+
+The `skip` property is used to skip the report generation. The default value is `false`
+
+```xml
+<configuration>
+    <skip>true</skip>
+    ...
+</configuration>
+```
 
 ### failScenariosOnPendingOrUndefinedSteps
 
