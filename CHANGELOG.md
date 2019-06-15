@@ -479,6 +479,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
 [2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
 [1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
 [1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
