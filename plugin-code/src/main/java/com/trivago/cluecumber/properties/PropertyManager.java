@@ -92,10 +92,13 @@ public class PropertyManager {
     }
 
     public void setCustomParametersFile(String customParametersFile) throws CluecumberPluginException {
-        if (isSet(customParametersFile) && !fileIO.isExistingFile(customParametersFile)) {
-            throw new MissingFileException(customParametersFile);
-        }
         this.customParametersFile = customParametersFile;
+        if (!isSet(customParametersFile)) {
+            return;
+        }
+        if (!fileIO.isExistingFile(customParametersFile)) {
+            throw new MissingFileException(customParametersFile + " (customParametersFile)");
+        }
         Map<String, String> customParameters = propertiesFileLoader.loadPropertiesMap(customParametersFile);
         this.customParameters.putAll(customParameters);
     }
@@ -137,17 +140,20 @@ public class PropertyManager {
     }
 
     public void setCustomCssFile(final String customCssFile) throws MissingFileException {
-        if (isSet(customCssFile) && !fileIO.isExistingFile(customCssFile)) {
-            throw new MissingFileException(customCssFile);
-        }
         this.customCssFile = customCssFile;
+        if (!isSet(customCssFile)) {
+            return;
+        }
+        if (!fileIO.isExistingFile(customCssFile)) {
+            throw new MissingFileException(customCssFile + " (customCssFile)");
+        }
     }
 
     public void logProperties() {
         logger.info("- source JSON report directory     : " + sourceJsonReportDirectory);
         logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory);
 
-        boolean customParametersFileExists = customParametersFile != null && !customParametersFile.isEmpty();
+        boolean customParametersFileExists = isSet(customParametersFile);
         if (customParametersFileExists) {
             logger.logSeparator();
             logger.info("- custom parameters file           : " + customParametersFile);
@@ -170,8 +176,8 @@ public class PropertyManager {
         logger.info("- expand step hooks                : " + expandStepHooks);
         logger.info("- expand doc strings               : " + expandDocStrings);
 
-        if (customCssFile != null && !customCssFile.isEmpty()) {
-            logger.info("- custom CSS file              : " + customCssFile);
+        if (isSet(customCssFile)) {
+            logger.info("- custom CSS file                  : " + customCssFile);
         }
 
         logger.logSeparator();

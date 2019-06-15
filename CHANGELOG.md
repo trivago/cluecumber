@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.0.1] - 2019-06-15
+
+### Fixed
+* Error when `customParametersFile` property was not set (#171)
+* Wrong log format for `customCssFile` property
+
+### Added
+* Better error messages for missing files
+
 ## [2.0.0] - 2019-06-14
 
 ### Added
