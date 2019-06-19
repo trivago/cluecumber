@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.1.0] - UNRELEASED
+
+
+
 ## [2.0.1] - 2019-06-15
 
 ### Fixed
@@ -479,6 +483,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
 [2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
 [2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
 [1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0

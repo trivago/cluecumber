@@ -16,7 +16,7 @@ limitations under the License.
 
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/cluecumber.css" type="text/css">
-<link rel="stylesheet" href="css/cluecumber_custom.css"/>
+<link rel="stylesheet" href="css/cluecumber_empty.css"/>
 <link rel="stylesheet" href="css/datatables.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="css/jquery.fancybox.min.css"/>

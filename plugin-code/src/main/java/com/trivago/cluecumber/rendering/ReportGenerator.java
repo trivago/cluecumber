@@ -96,9 +96,9 @@ public class ReportGenerator {
         // Either use the custom CSS or the dummy CSS files that comes with Cluecumber
         String customCss = propertyManager.getCustomCssFile();
         if (customCss != null && !customCss.isEmpty()) {
-            fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber_custom.css");
+            fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber_empty.css");
         } else {
-            copyFileFromJarToReportDirectory("/css/cluecumber_custom.css");
+            copyFileFromJarToReportDirectory("/css/cluecumber_empty.css");
         }
 
         // Copy webfont resources
