@@ -26,13 +26,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Singleton
 public class PropertyManager {
 
+    private static final String COLOR_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
+
     private final CluecumberLogger logger;
-    private FileIO fileIO;
-    private PropertiesFileLoader propertiesFileLoader;
+    private final FileIO fileIO;
+    private final PropertiesFileLoader propertiesFileLoader;
 
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
@@ -43,6 +46,10 @@ public class PropertyManager {
     private boolean expandDocStrings;
     private String customCssFile;
     private String customParametersFile;
+    private String customStatusColorPassed = "";
+    private String customStatusColorFailed = "";
+    private String customStatusColorSkipped = "";
+
 
     @Inject
     public PropertyManager(
@@ -149,6 +156,30 @@ public class PropertyManager {
         }
     }
 
+    public String getCustomStatusColorPassed() {
+        return this.customStatusColorPassed;
+    }
+
+    public void setCustomStatusColorPassed(final String customStatusColorPassed) {
+        this.customStatusColorPassed = customStatusColorPassed;
+    }
+
+    public String getCustomStatusColorFailed() {
+        return this.customStatusColorFailed;
+    }
+
+    public void setCustomStatusColorFailed(final String customStatusColorFailed) {
+        this.customStatusColorFailed = customStatusColorFailed;
+    }
+
+    public String getCustomStatusColorSkipped() {
+        return this.customStatusColorSkipped;
+    }
+
+    public void setCustomStatusColorSkipped(final String customStatusColorSkipped) {
+        this.customStatusColorSkipped = customStatusColorSkipped;
+    }
+
     public void logProperties() {
         logger.info("- source JSON report directory     : " + sourceJsonReportDirectory);
         logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory);
@@ -180,10 +211,18 @@ public class PropertyManager {
             logger.info("- custom CSS file                  : " + customCssFile);
         }
 
+        logger.info("- colors (passed, failed, skipped) : " +
+                customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped);
+
         logger.logSeparator();
     }
 
     private boolean isSet(final String string) {
         return string != null && !string.trim().isEmpty();
+    }
+
+    private boolean isValidHexColor(final String color) {
+        Pattern colorPattern = Pattern.compile(COLOR_PATTERN);
+        return colorPattern.matcher(color).matches();
     }
 }

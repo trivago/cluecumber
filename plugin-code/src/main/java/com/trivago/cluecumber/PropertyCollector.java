@@ -8,6 +8,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import javax.inject.Inject;
 import java.util.LinkedHashMap;
 
+@SuppressWarnings("FieldCanBeLocal")
 public class PropertyCollector extends AbstractMojo {
 
     private final PropertyManager propertyManager;
@@ -70,13 +71,22 @@ public class PropertyCollector extends AbstractMojo {
     @Parameter(property = "reporting.expandDocStrings", defaultValue = "false")
     private boolean expandDocStrings;
 
-    @Parameter(property = "reporting.customStatusColorPassed", defaultValue = "false")
+    /**
+     * Custom hex color for passed scenarios (e.g. '#00ff00')'.
+     */
+    @Parameter(property = "reporting.customStatusColorPassed", defaultValue = "#28a745")
     private String customStatusColorPassed;
 
-    @Parameter(property = "reporting.customStatusColorFailed", defaultValue = "false")
+    /**
+     * Custom hex color for failed scenarios (e.g. '#ff0000')'.
+     */
+    @Parameter(property = "reporting.customStatusColorFailed", defaultValue = "#dc3545")
     private String customStatusColorFailed;
 
-    @Parameter(property = "reporting.customStatusColorSkipped", defaultValue = "false")
+    /**
+     * Custom hex color for skipped scenarios (e.g. '#ffff00')'.
+     */
+    @Parameter(property = "reporting.customStatusColorSkipped", defaultValue = "#ffc107")
     private String customStatusColorSkipped;
 
     @Inject
@@ -97,6 +107,9 @@ public class PropertyCollector extends AbstractMojo {
             propertyManager.setExpandStepHooks(expandStepHooks);
             propertyManager.setExpandDocStrings(expandDocStrings);
             propertyManager.setCustomCssFile(customCss);
+            propertyManager.setCustomStatusColorPassed(customStatusColorPassed);
+            propertyManager.setCustomStatusColorFailed(customStatusColorFailed);
+            propertyManager.setCustomStatusColorSkipped(customStatusColorSkipped);
         } catch (Exception e) {
             throw new CluecumberPluginException(e.getMessage());
         }
