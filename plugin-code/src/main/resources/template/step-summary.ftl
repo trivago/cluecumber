@@ -27,10 +27,10 @@ preheadline=""
 preheadlineLink="">
 
     <div class="row">
-        <@page.card width="8" title="Step Summary Result Chart" subtitle="" classes="">
+        <@page.card width="9" title="Step Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Steps Summary" subtitle="" classes="">
+        <@page.card width="3" title="Steps Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
                 <li class="list-group-item">${totalNumberOfSteps} Step(s) in<br>
                     ${totalNumberOfScenarios} Scenario(s)

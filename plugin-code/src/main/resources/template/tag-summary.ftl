@@ -27,10 +27,10 @@ preheadline=""
 preheadlineLink="">
 
     <div class="row">
-        <@page.card width="8" title="Tag Summary Result Chart" subtitle="" classes="">
+        <@page.card width="9" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Tag Summary" subtitle="" classes="">
+        <@page.card width="3" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
                 <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
                     ${totalNumberOfScenarios} Tagged Scenario(s)

@@ -16,13 +16,13 @@ limitations under the License.
 
 <#macro status status>
     <#if status == "failed">
-        <#assign class = "text-danger" />
+        <#assign class = "color-failed" />
         <#assign icon = "failed" />
     <#elseif status == "skipped">
-        <#assign class = "text-warning" />
+        <#assign class = "color-skipped" />
         <#assign icon = "skipped" />
     <#else>
-        <#assign class = "text-success" />
+        <#assign class = "color-passed" />
         <#assign icon = "passed" />
     </#if>
     <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"

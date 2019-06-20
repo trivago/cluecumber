@@ -14,6 +14,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#--skip: ffc107-->
-<#--pass: 28a745-->
-<#--fail: dc3545-->
+.color-passed {
+    color: #28a745 !important;
+}
+
+.bg-color-passed {
+    background-color: #28a745 !important;
+}
+
+.color-failed {
+    color: #dc3545 !important;
+}
+
+.bg-color-failed {
+    background-color: #dc3545 !important;
+}
+
+.color-skipped  {
+    color: #ffc107 !important;
+}
+
+.bg-color-skipped  {
+    background-color: #ffc107 !important;
+}

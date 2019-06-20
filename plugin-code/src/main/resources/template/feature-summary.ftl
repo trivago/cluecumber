@@ -27,10 +27,10 @@ preheadline=""
 preheadlineLink="">
 
     <div class="row">
-        <@page.card width="8" title="Feature Summary Result Chart" subtitle="" classes="">
+        <@page.card width="9" title="Feature Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Feature Summary" subtitle="" classes="">
+        <@page.card width="3" title="Feature Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">${totalNumberOfFeatures} Feature(s)</li>
                 <li class="list-group-item">

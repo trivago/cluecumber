@@ -16,7 +16,7 @@ limitations under the License.
 
 <#import "../macros/common.ftl" as common>
 
-<#macro table status>
+<#macro table status numberOfScenarios>
     <#assign skippedRequested = status == "skipped">
     <#assign failedRequested = status == "failed">
     <#assign passedRequested = status == "passed">
@@ -34,19 +34,27 @@ limitations under the License.
 
                     <#switch status>
                         <#case "skipped">
-                            <div class="card-header border-warning bg-warning">Skipped
-                                Scenarios <@common.startStatus status="skipped"/></div>
+                            <div class="card-header border-warning bg-warning">
+                                ${numberOfScenarios} Skipped Scenarios
+                                <@common.startStatus status="skipped"/>
+                            </div>
                             <#break>
                         <#case "failed">
-                            <div class="card-header border-danger bg-danger text-white">Failed
-                                Scenarios <@common.startStatus status="failed"/></div>
+                            <div class="card-header border-danger bg-danger text-white">
+                                ${numberOfScenarios} Failed Scenarios
+                                <@common.startStatus status="failed"/>
+                            </div>
                             <#break>
                         <#case "passed">
-                            <div class="card-header border-success bg-success text-white">Passed
-                                Scenarios <@common.startStatus status="passed"/></div>
+                            <div class="card-header border-success bg-success text-white">
+                                ${numberOfScenarios} Skipped Scenarios
+                                <@common.startStatus status="skipped"/>
+                            </div>
                             <#break>
                         <#case "all">
-                            <div class="card-header border-light bg-info text-white">Scenario Sequence</div>
+                            <div class="card-header border-light bg-info text-white">
+                                Scenario Sequence (${numberOfScenarios})
+                            </div>
                             <#break>
                     </#switch>
 

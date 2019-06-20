@@ -74,18 +74,11 @@ preheadlineLink="">
     </#if>
 
     <div class="row">
-        <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
+        <@page.card width="5" title="Scenario Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Scenario Summary" subtitle="" classes="">
+        <@page.card width="4" title="Test Suite Time" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    ${totalNumberOfScenarios} Scenario(s):<br>
-                    ${totalNumberOfPassedScenarios} <@common.status status="passed"/>
-                    ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
-                    ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
-                </li>
-
                 <#assign startDateTimeString = returnStartDateTimeString()>
                 <#if startDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-start">
@@ -103,13 +96,29 @@ preheadlineLink="">
                 </li>
             </ul>
         </@page.card>
+        <@page.card width="3" title="Test Suite Summary" subtitle="" classes="">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    ${totalNumberOfScenarios} Scenario(s)
+                </li>
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    ${totalNumberOfPassedScenarios} passed <@common.status status="passed"/>
+                </li>
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    ${totalNumberOfFailedScenarios} failed <@common.status status="failed"/>
+                </li>
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    ${totalNumberOfSkippedScenarios} skipped <@common.status status="skipped"/>
+                </li>
+            </ul>
+        </@page.card>
     </div>
 
     <#if (scenarioSequence??)>
-        <@scenario.table status="all"/>
+        <@scenario.table status="all" numberOfScenarios=totalNumberOfScenarios />
     <#else>
-        <@scenario.table status="failed"/>
-        <@scenario.table status="skipped"/>
-        <@scenario.table status="passed"/>
+        <@scenario.table status="failed" numberOfScenarios=totalNumberOfFailedScenarios />
+        <@scenario.table status="skipped" numberOfScenarios=totalNumberOfSkippedScenarios />
+        <@scenario.table status="passed" numberOfScenarios=totalNumberOfPassedScenarios />
     </#if>
 </@page.page>

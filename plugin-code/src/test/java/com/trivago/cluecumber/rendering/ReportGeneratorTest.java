@@ -8,10 +8,7 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertiesFileLoader;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,9 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class ReportGeneratorTest {
 
@@ -39,13 +34,19 @@ public class ReportGeneratorTest {
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
         TagVisitor tagVisitor = mock(TagVisitor.class);
         StepVisitor stepVisitor = mock(StepVisitor.class);
+
+        VisitorDirectory visitorDirectory = mock(VisitorDirectory.class);
+        List<PageVisitor> visitors = new ArrayList<>();
+        visitors.add(scenarioVisitor);
+        visitors.add(featureVisitor);
+        visitors.add(tagVisitor);
+        visitors.add(stepVisitor);
+        when(visitorDirectory.getVisitors()).thenReturn(visitors);
+
         reportGenerator = new ReportGenerator(
                 propertyManager,
                 fileSystemManager,
-                scenarioVisitor,
-                featureVisitor,
-                tagVisitor,
-                stepVisitor
+                visitorDirectory
         );
     }
 

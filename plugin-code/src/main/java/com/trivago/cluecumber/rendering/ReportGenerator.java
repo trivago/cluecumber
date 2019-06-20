@@ -21,11 +21,7 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.*;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -41,25 +37,19 @@ public class ReportGenerator {
     private List<PageVisitor> visitors = new ArrayList<>();
 
     @Inject
-    public ReportGenerator(
+    ReportGenerator(
             final PropertyManager propertyManager,
             final FileSystemManager fileSystemManager,
-            final ScenarioVisitor scenarioVisitor,
-            final FeatureVisitor featureVisitor,
-            final TagVisitor tagVisitor,
-            final StepVisitor stepVisitor
+            final VisitorDirectory visitorDirectory
     ) {
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
-
-        visitors.add(scenarioVisitor);
-        visitors.add(featureVisitor);
-        visitors.add(tagVisitor);
-        visitors.add(stepVisitor);
+        visitors.addAll(visitorDirectory.getVisitors());
     }
 
     /**
      * Generate the full report.
+     *
      * @param allScenariosPageCollection {{@link AllScenariosPageCollection}.
      * @throws CluecumberPluginException In case of error.
      */
@@ -93,7 +83,7 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
         copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
 
-        // Either use the custom CSS or the dummy CSS files that comes with Cluecumber
+        // Either use the specified custom CSS or the empty cluecumber_empty.css file that comes with Cluecumber
         String customCss = propertyManager.getCustomCssFile();
         if (customCss != null && !customCss.isEmpty()) {
             fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber_empty.css");
