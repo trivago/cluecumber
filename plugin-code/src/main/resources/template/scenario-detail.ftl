@@ -50,11 +50,11 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     ${element.totalNumberOfSteps} Step(s):
                 </li>
                 <li class="list-group-item">
-                    ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
+                    ${element.totalNumberOfPassedSteps} passed <@common.status status="passed"/>
                     <br>
-                    ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
+                    ${element.totalNumberOfFailedSteps} failed <@common.status status="failed"/>
                     <br>
-                    ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
+                    ${element.totalNumberOfSkippedSteps} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
             <#if element.hasHooks()>

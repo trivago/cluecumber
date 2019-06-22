@@ -8,6 +8,8 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertiesFileLoader;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 import com.trivago.cluecumber.rendering.pages.visitors.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,9 +29,12 @@ public class ReportGeneratorTest {
     public void setup() {
         fileSystemManager = mock(FileSystemManager.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
-        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
         FileIO fileIO = mock(FileIO.class);
+        TemplateEngine templateEngine = mock(TemplateEngine.class);
+        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
         PropertyManager propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
+        CustomCssRenderer customCssRenderer = mock(CustomCssRenderer.class);
+
         ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
         TagVisitor tagVisitor = mock(TagVisitor.class);
@@ -44,10 +49,12 @@ public class ReportGeneratorTest {
         when(visitorDirectory.getVisitors()).thenReturn(visitors);
 
         reportGenerator = new ReportGenerator(
+                fileIO,
+                templateEngine,
                 propertyManager,
                 fileSystemManager,
-                visitorDirectory
-        );
+                customCssRenderer,
+                visitorDirectory);
     }
 
     @Test

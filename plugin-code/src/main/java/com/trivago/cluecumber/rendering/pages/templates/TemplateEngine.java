@@ -32,7 +32,8 @@ public class TemplateEngine {
         SCENARIO_SEQUENCE("scenario-sequence"),
         ALL_STEPS("step-summary"),
         ALL_TAGS("tag-summary"),
-        SCENARIO_DETAILS("scenario-detail");
+        SCENARIO_DETAILS("scenario-detail"),
+        CUSTOM_CSS("custom-css");
 
         private String fileName;
 
