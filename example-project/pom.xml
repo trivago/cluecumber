@@ -42,9 +42,10 @@
                         <Empty_Parameter/>
                     </customParameters>
 
-                    <customStatusColorPassed></customStatusColorPassed>
-                    <customStatusColorFailed></customStatusColorFailed>
-                    <customStatusColorSkipped></customStatusColorSkipped>
+                    <!-- Optional custom colors for passed, failed and skipped -->
+                    <customStatusColorPassed>#00ff00</customStatusColorPassed>
+                    <customStatusColorFailed>#ff0000</customStatusColorFailed>
+                    <customStatusColorSkipped>#00ffff</customStatusColorSkipped>
 
                     <!-- Optional custom parameters file -->
                     <!--<customParametersFile>custom/custom.properties</customParametersFile>-->

@@ -9,31 +9,35 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
-                                                           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
+<#--skip: ffc107-->
+<#--pass: 28a745-->
+<#--fail: dc3545-->
+
 .color-passed {
-    color: #28a745 !important;
+    color: ${passedColor} !important;
 }
 
 .bg-color-passed {
-    background-color: #28a745 !important;
+    background-color: ${passedColor} !important;
 }
 
 .color-failed {
-    color: #dc3545 !important;
+    color: ${failedColor} !important;
 }
 
 .bg-color-failed {
-    background-color: #dc3545 !important;
+    background-color: ${failedColor} !important;
 }
 
 .color-skipped  {
-    color: #ffc107 !important;
+    color: ${skippedColor} !important;
 }
 
 .bg-color-skipped  {
-    background-color: #ffc107 !important;
+    background-color: ${skippedColor} !important;
 }

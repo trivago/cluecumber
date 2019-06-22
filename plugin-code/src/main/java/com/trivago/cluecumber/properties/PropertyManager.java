@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -160,7 +160,8 @@ public class PropertyManager {
         return this.customStatusColorPassed;
     }
 
-    public void setCustomStatusColorPassed(final String customStatusColorPassed) {
+    public void setCustomStatusColorPassed(final String customStatusColorPassed) throws WrongOrMissingPropertyException {
+        checkHexColorValidity(customStatusColorPassed, "customStatusColorPassed");
         this.customStatusColorPassed = customStatusColorPassed;
     }
 
@@ -168,7 +169,8 @@ public class PropertyManager {
         return this.customStatusColorFailed;
     }
 
-    public void setCustomStatusColorFailed(final String customStatusColorFailed) {
+    public void setCustomStatusColorFailed(final String customStatusColorFailed) throws WrongOrMissingPropertyException {
+        checkHexColorValidity(customStatusColorFailed, "customStatusColorFailed");
         this.customStatusColorFailed = customStatusColorFailed;
     }
 
@@ -176,7 +178,8 @@ public class PropertyManager {
         return this.customStatusColorSkipped;
     }
 
-    public void setCustomStatusColorSkipped(final String customStatusColorSkipped) {
+    public void setCustomStatusColorSkipped(final String customStatusColorSkipped) throws WrongOrMissingPropertyException {
+        checkHexColorValidity(customStatusColorSkipped, "customStatusColorSkipped");
         this.customStatusColorSkipped = customStatusColorSkipped;
     }
 
@@ -221,8 +224,9 @@ public class PropertyManager {
         return string != null && !string.trim().isEmpty();
     }
 
-    private boolean isValidHexColor(final String color) {
-        Pattern colorPattern = Pattern.compile(COLOR_PATTERN);
-        return colorPattern.matcher(color).matches();
+    private void checkHexColorValidity(String color, String colorPropertyName) throws WrongOrMissingPropertyException {
+        if (!Pattern.compile(COLOR_PATTERN).matcher(color).matches()) {
+            throw new WrongOrMissingPropertyException(colorPropertyName);
+        }
     }
 }

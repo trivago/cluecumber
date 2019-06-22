@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -47,8 +47,8 @@ limitations under the License.
                             <#break>
                         <#case "passed">
                             <div class="card-header border-success bg-success text-white">
-                                ${numberOfScenarios} Skipped Scenarios
-                                <@common.startStatus status="skipped"/>
+                                ${numberOfScenarios} Passed Scenarios
+                                <@common.startStatus status="passed"/>
                             </div>
                             <#break>
                         <#case "all">

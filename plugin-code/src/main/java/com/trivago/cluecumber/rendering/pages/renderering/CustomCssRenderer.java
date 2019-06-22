@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,15 +31,11 @@ import java.io.Writer;
 @Singleton
 public class CustomCssRenderer {
 
-    private final CustomStatusColors customStatusColors;
+    private final PropertyManager propertyManager;
 
     @Inject
     public CustomCssRenderer(final PropertyManager propertyManager) {
-        this.customStatusColors = new CustomStatusColors(
-                propertyManager.getCustomStatusColorPassed(),
-                propertyManager.getCustomStatusColorFailed(),
-                propertyManager.getCustomStatusColorSkipped()
-        );
+        this.propertyManager = propertyManager;
     }
 
     /**
@@ -49,10 +45,23 @@ public class CustomCssRenderer {
      * @return The fully rendered content.
      * @throws CluecumberPluginException In case of a rendering error.
      */
-    public String getRenderedCustomCssContent(final Template template)
-            throws CluecumberPluginException {
-
+    public String getRenderedCustomCssContent(final Template template) throws CluecumberPluginException {
         Writer stringWriter = new StringWriter();
+
+        System.out.println("PROPERTY: " + propertyManager.getCustomStatusColorPassed());
+        System.out.println("PROPERTY: " + propertyManager.getCustomStatusColorFailed());
+        System.out.println("PROPERTY: " + propertyManager.getCustomStatusColorSkipped());
+
+        CustomStatusColors customStatusColors = new CustomStatusColors(
+                propertyManager.getCustomStatusColorPassed(),
+                propertyManager.getCustomStatusColorFailed(),
+                propertyManager.getCustomStatusColorSkipped()
+        );
+
+        System.out.println("CUSTOM PASSED: " + customStatusColors.getPassedColor());
+        System.out.println("CUSTOM FAILED: " + customStatusColors.getFailedColor());
+        System.out.println("CUSTOM SKIPPED: " + customStatusColors.getSkippedColor());
+
         try {
             template.process(customStatusColors, stringWriter);
         } catch (TemplateException | IOException e) {
@@ -61,7 +70,7 @@ public class CustomCssRenderer {
         return stringWriter.toString();
     }
 
-    private class CustomStatusColors {
+    public class CustomStatusColors {
 
         private final String passedColor;
         private final String failedColor;
