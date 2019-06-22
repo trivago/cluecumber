@@ -33,12 +33,14 @@ preheadlineLink="">
         <@page.card width="3" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
                 <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
-                    ${totalNumberOfScenarios} Tagged Scenario(s)
+                    ${totalNumberOfScenarios} Tagged Scenario(s):
                 </li>
-                <li class="list-group-item">
-                    ${totalNumberOfPassed} <@common.status status="passed"/>
-                    ${totalNumberOfFailed} <@common.status status="failed"/>
-                    ${totalNumberOfSkipped} <@common.status status="skipped"/>
+                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
+                    ${totalNumberOfPassed} passed <@common.status status="passed"/>
+                    <br>
+                    ${totalNumberOfFailed} failed <@common.status status="failed"/>
+                    <br>
+                    ${totalNumberOfSkipped} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>

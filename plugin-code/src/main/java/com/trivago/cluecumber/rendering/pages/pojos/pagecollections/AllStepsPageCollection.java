@@ -81,21 +81,19 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
      */
     private void calculateStepResultCounts(final List<Report> reports) {
         if (reports == null) return;
-        for (Report report : reports) {
-            for (Element element : report.getElements()) {
-                int scenarioIndex = element.getScenarioIndex();
-                for (Step step : element.getSteps()) {
-                    ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
-                    updateResultCount(stepResultCount, step.getStatus());
-                    stepResultCounts.put(step, stepResultCount);
-                    addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
-                    Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
-                    if (!step.isSkipped()) {
-                        stepTimes.addTime(step.getResult().getDuration(), scenarioIndex);
-                    }
-                    this.stepTimes.put(step, stepTimes);
+        reports.forEach(report -> report.getElements().forEach(element -> {
+            int scenarioIndex = element.getScenarioIndex();
+            element.getSteps().forEach(step -> {
+                ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
+                updateResultCount(stepResultCount, step.getStatus());
+                stepResultCounts.put(step, stepResultCount);
+                addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
+                Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
+                if (!step.isSkipped()) {
+                    stepTimes.addTime(step.getResult().getDuration(), scenarioIndex);
                 }
-            }
-        }
+                this.stepTimes.put(step, stepTimes);
+            });
+        }));
     }
 }

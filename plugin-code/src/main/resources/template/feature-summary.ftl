@@ -32,12 +32,16 @@ preheadlineLink="">
         </@page.card>
         <@page.card width="3" title="Feature Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${totalNumberOfFeatures} Feature(s)</li>
                 <li class="list-group-item">
-                    Feature Scenario(s):<br>
-                    ${totalNumberOfPassedFeatures} <@common.status status="passed"/>
-                    ${totalNumberOfFailedFeatures} <@common.status status="failed"/>
-                    ${totalNumberOfSkippedFeatures} <@common.status status="skipped"/>
+                    ${totalNumberOfFeatures} Feature(s) with
+                    <br>${totalNumberOfScenarios} Scenario(s):
+                </li>
+                <li class="list-group-item">
+                    ${totalNumberOfPassedFeatures} passed <@common.status status="passed"/>
+                    <br>
+                    ${totalNumberOfFailedFeatures} failed <@common.status status="failed"/>
+                    <br>
+                    ${totalNumberOfSkippedFeatures} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>

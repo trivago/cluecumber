@@ -32,15 +32,19 @@ preheadlineLink="">
         </@page.card>
         <@page.card width="3" title="Steps Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
-                <li class="list-group-item">${totalNumberOfSteps} Step(s) in<br>
-                    ${totalNumberOfScenarios} Scenario(s)
+                <li class="list-group-item">
+                    ${totalNumberOfSteps} Step(s) in
+                    <br>
+                    ${totalNumberOfScenarios} Scenario(s):
+                </li>
+                <li class="list-group-item">
+                    ${totalNumberOfPassed} passed <@common.status status="passed"/>
+                    <br>
+                    ${totalNumberOfFailed} failed <@common.status status="failed"/>
+                    <br>
+                    ${totalNumberOfSkipped} skipped<@common.status status="skipped"/>
                 </li>
             </ul>
-            <li class="list-group-item">
-                ${totalNumberOfPassed} <@common.status status="passed"/>
-                ${totalNumberOfFailed} <@common.status status="failed"/>
-                ${totalNumberOfSkipped} <@common.status status="skipped"/>
-            </li>
         </@page.card>
     </div>
 

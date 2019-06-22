@@ -74,23 +74,21 @@ preheadlineLink="">
     </#if>
 
     <div class="row">
-        <@page.card width="5" title="Scenario Results" subtitle="" classes="">
+        <@page.card width="6" title="Scenario Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Test Suite Time" subtitle="" classes="">
+        <@page.card width="3" title="Test Suite Time" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <#assign startDateTimeString = returnStartDateTimeString()>
                 <#if startDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-start">
                         Started on:<br>${startDateTimeString}</li>
                 </#if>
-
                 <#assign endDateTimeString = returnEndDateTimeString()>
                 <#if endDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-end">
                         Ended on:<br>${endDateTimeString}</li>
                 </#if>
-
                 <li class="list-group-item" data-cluecumber-item="total-runtime">
                     Test Runtime:<br>${totalDurationString}
                 </li>
@@ -99,15 +97,13 @@ preheadlineLink="">
         <@page.card width="3" title="Test Suite Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    ${totalNumberOfScenarios} Scenario(s)
+                    ${totalNumberOfScenarios} Scenario(s):
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
                     ${totalNumberOfPassedScenarios} passed <@common.status status="passed"/>
-                </li>
-                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    <br>
                     ${totalNumberOfFailedScenarios} failed <@common.status status="failed"/>
-                </li>
-                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    <br>
                     ${totalNumberOfSkippedScenarios} skipped <@common.status status="skipped"/>
                 </li>
             </ul>

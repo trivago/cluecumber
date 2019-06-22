@@ -28,32 +28,39 @@ preheadline="${element.featureName?html}"
 preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
 
     <div class="row">
-        <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
+        <@page.card width="6" title="Step Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Scenario Information" subtitle="" classes="">
+        <@page.card width="3" title="Scenario Info" subtitle="" classes="">
+            <#if element.startTimestamp?has_content>
+                <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
+            </#if>
+            <#if element.startTimestamp?has_content>
+                <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
+            </#if>
+            <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
+            <li class="list-group-item"><#list element.tags as tag>
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
+                </#list>
+            </li>
+        </@page.card>
+        <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${element.totalNumberOfSteps} Step(s)<br>
-                    ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
-                    ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
-                    ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
+                <li class="list-group-item">
+                    ${element.totalNumberOfSteps} Step(s):
                 </li>
-                <#if element.startTimestamp?has_content>
-                    <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
-                </#if>
-                <#if element.startTimestamp?has_content>
-                    <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
-                </#if>
-                <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
-                <li class="list-group-item"><#list element.tags as tag>
-                        <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
-                    </#list>
+                <li class="list-group-item">
+                    ${element.totalNumberOfPassedSteps} <@common.status status="passed"/>
+                    <br>
+                    ${element.totalNumberOfFailedSteps} <@common.status status="failed"/>
+                    <br>
+                    ${element.totalNumberOfSkippedSteps} <@common.status status="skipped"/>
                 </li>
             </ul>
             <#if element.hasHooks()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="before-after-hooks-button"
-                        data-target=".scenarioHook">Before/After Hooks
+                        data-target=".scenarioHook">Scenario Hooks
                 </button>
             </#if>
             <#if element.hasStepHooks()>

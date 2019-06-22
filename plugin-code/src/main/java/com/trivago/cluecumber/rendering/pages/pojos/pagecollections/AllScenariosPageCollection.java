@@ -102,11 +102,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     long getTotalDuration() {
-        long totalDurationNanoseconds = 0;
-        for (Report report : reports) {
-            totalDurationNanoseconds += report.getTotalDuration();
-        }
-        return totalDurationNanoseconds;
+        return reports.stream().mapToLong(Report::getTotalDuration).sum();
     }
 
     public String getTotalDurationString() {

@@ -59,15 +59,11 @@ public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
      */
     private void calculateTagResultCounts(final List<Report> reports) {
         if (reports == null) return;
-        for (Report report : reports) {
-            for (Element element : report.getElements()) {
-                for (Tag tag : element.getTags()) {
-                    ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
-                    updateResultCount(tagResultCount, element.getStatus());
-                    tagResultCounts.put(tag, tagResultCount);
-                    addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
-                }
-            }
-        }
+        reports.forEach(report -> report.getElements().forEach(element -> element.getTags().forEach(tag -> {
+            ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
+            updateResultCount(tagResultCount, element.getStatus());
+            tagResultCounts.put(tag, tagResultCount);
+            addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
+        })));
     }
 }
