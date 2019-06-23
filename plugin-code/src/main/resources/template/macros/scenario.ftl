@@ -35,19 +35,19 @@ limitations under the License.
                     <#switch status>
                         <#case "skipped">
                             <div class="card-header border-warning bg-warning">
-                                ${numberOfScenarios} Skipped Scenarios
+                                ${numberOfScenarios} Skipped Scenario(s)
                                 <@common.startStatus status="skipped"/>
                             </div>
                             <#break>
                         <#case "failed">
                             <div class="card-header border-danger bg-danger text-white">
-                                ${numberOfScenarios} Failed Scenarios
+                                ${numberOfScenarios} Failed Scenario(s)
                                 <@common.startStatus status="failed"/>
                             </div>
                             <#break>
                         <#case "passed">
                             <div class="card-header border-success bg-success text-white">
-                                ${numberOfScenarios} Passed Scenarios
+                                ${numberOfScenarios} Passed Scenario(s)
                                 <@common.startStatus status="passed"/>
                             </div>
                             <#break>

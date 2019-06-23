@@ -9,27 +9,43 @@ Back to [Readme](README.md).
 
 ## [2.1.0] - UNRELEASED
 
+### Fixed
 
+* 
+
+### Added
+
+* Fully customizable passed, failed and skipped colors through new properties
+
+### Changed
+
+* Better layout with larger graphs for tag, feature and step summary pages
+* Moved timing information to a dedicated box in each report page
 
 ## [2.0.1] - 2019-06-15
 
 ### Fixed
+
 * Error when `customParametersFile` property was not set (#171)
 * Wrong log format for `customCssFile` property
 
 ### Added
+
 * Better error messages for missing files
 
 ## [2.0.0] - 2019-06-14
 
 ### Added
+
 * Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed by gazler22)
 
 ### Fixed
+
 * Custom parameters are now displayed in the order of definition (#157)
 * Better logging and error handling
 
 ### Changed
+
 * Major internal architecture change to ease future extension
 
 ## [1.11.0] - 2019-05-21
