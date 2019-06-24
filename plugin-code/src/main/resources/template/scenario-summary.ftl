@@ -105,11 +105,11 @@ preheadlineLink="">
                     ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    <a href="index.html#anchor-passed">${totalNumberOfPassedScenarios} passed</a> <@common.status status="passed"/>
+                    <a href="javascript:;" onclick="document.location.hash='anchor-passed';">${totalNumberOfPassedScenarios} passed</a> <@common.status status="passed"/>
                     <br>
-                    <a href="index.html#anchor-failed">${totalNumberOfFailedScenarios} failed</a> <@common.status status="failed"/>
+                    <a href="javascript:;" onclick="document.location.hash='anchor-failed';">${totalNumberOfFailedScenarios} failed</a> <@common.status status="failed"/>
                     <br>
-                    <a href="index.html#anchor-skipped">${totalNumberOfSkippedScenarios} skipped</a> <@common.status status="skipped"/>
+                    <a href="javascript:;" onclick="document.location.hash='anchor-skipped';">${totalNumberOfSkippedScenarios} skipped</a> <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>
