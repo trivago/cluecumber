@@ -22,8 +22,8 @@ import com.trivago.cluecumber.json.pojo.Element;
 public class ScenarioDetailsPageCollection extends PageCollection {
     private final Element element;
 
-    public ScenarioDetailsPageCollection(final Element element) {
-        super(PluginSettings.SCENARIO_DETAIL_PAGE_NAME);
+    public ScenarioDetailsPageCollection(final Element element, final String pageTitle) {
+        super(PluginSettings.SCENARIO_DETAIL_PAGE_NAME, pageTitle);
         this.element = element;
     }
 

@@ -42,6 +42,7 @@ limitations under the License.
 </#if>
 
 <@page.page
+title="${pageTitle} - ${headline}"
 base=base
 links=links
 headline=headline
@@ -100,11 +101,11 @@ preheadlineLink="">
                     ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    ${totalNumberOfPassedScenarios} passed <@common.status status="passed"/>
+                    <a href="index.html#anchor-passed">${totalNumberOfPassedScenarios} passed</a> <@common.status status="passed"/>
                     <br>
-                    ${totalNumberOfFailedScenarios} failed <@common.status status="failed"/>
+                    <a href="index.html#anchor-failed">${totalNumberOfFailedScenarios} failed</a> <@common.status status="failed"/>
                     <br>
-                    ${totalNumberOfSkippedScenarios} skipped <@common.status status="skipped"/>
+                    <a href="index.html#anchor-skipped">${totalNumberOfSkippedScenarios} skipped</a> <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>

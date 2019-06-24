@@ -43,7 +43,9 @@ public class TagVisitor implements PageVisitor {
 
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(allScenariosPageCollection.getReports());
+        AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(
+                allScenariosPageCollection.getReports(), propertyManager.getCustomPageTitle()
+        );
 
         // All tags page
         fileIO.writeContentToFile(

@@ -83,7 +83,6 @@ public final class CluecumberReportPlugin extends PropertyCollector {
         // Initialize logger to be available outside the AbstractMojo class
         logger.setMojoLogger(getLog());
 
-
         if (skip) {
             logger.info("Cluecumber report generation was skipped using the <skip> property.");
             return;
@@ -98,7 +97,7 @@ public final class CluecumberReportPlugin extends PropertyCollector {
         // Create attachment directory here since they are handled during json generation.
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");
 
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection(propertyManager.getCustomPageTitle());
         List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths(propertyManager.getSourceJsonReportDirectory());
         for (Path jsonFilePath : jsonFilePaths) {
             String jsonString = fileIO.readContentFromFile(jsonFilePath.toString());

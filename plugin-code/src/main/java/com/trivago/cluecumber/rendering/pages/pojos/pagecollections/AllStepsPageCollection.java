@@ -17,7 +17,6 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
@@ -32,8 +31,8 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
     private Map<Step, ResultCount> stepResultCounts = new HashMap<>();
     private Map<Step, Times> stepTimes = new HashMap<>();
 
-    public AllStepsPageCollection(List<Report> reports) {
-        super(PluginSettings.STEP_SUMMARY_PAGE_NAME);
+    public AllStepsPageCollection(List<Report> reports, final String pageTitle) {
+        super(PluginSettings.STEP_SUMMARY_PAGE_NAME, pageTitle);
         calculateStepResultCounts(reports);
     }
 

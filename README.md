@@ -236,7 +236,24 @@ If they are not set, they default to false. This means that the report user has 
 </configuration>
 ```
 
-## Optional Configuration Parameters for Changing the Report Design
+## Optional Configuration Parameters for Changing the Report Appearance
+
+### Defining a custom report title
+
+By default, the page html title of the report pages is `Cluecumber Report` plus the current page name, e.g. `Cluecumber Report - All Tags`.
+
+By setting the property `customPageTitle`, this can be changed:
+
+```xml
+<configuration>
+    <customPageTitle>My Report</customPageTitle>
+    ...
+</configuration>
+```
+
+This would lead to a report title like this:
+
+![Custom Title](documentation/img/custom_title.png)
 
 ### Defining a custom CSS file
 

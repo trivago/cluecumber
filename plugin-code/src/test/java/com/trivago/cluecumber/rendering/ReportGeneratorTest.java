@@ -59,7 +59,7 @@ public class ReportGeneratorTest {
 
     @Test
     public void fileOperationsTest() throws Exception {
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
 
         Report report1 = new Report();
         List<Element> elements1 = new ArrayList<>();

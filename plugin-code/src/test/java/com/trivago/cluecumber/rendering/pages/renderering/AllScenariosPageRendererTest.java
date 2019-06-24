@@ -39,14 +39,14 @@ public class AllScenariosPageRendererTest {
     @Test
     public void testContentRendering() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection, template);
     }
 
     @Test
     public void getRenderedContentParametersTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key", "value");
         when(propertyManager.getCustomParameters()).thenReturn(customParameters);
@@ -56,7 +56,7 @@ public class AllScenariosPageRendererTest {
     @Test
     public void getRenderedContentByTagFilterTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Tag tag = new Tag();
         tag.setName("test");
         Report report = new Report();
@@ -76,7 +76,7 @@ public class AllScenariosPageRendererTest {
     @Test
     public void getRenderedContentByStepFilterTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
 
         Step step = new Step();
         step.setName("test");
@@ -97,7 +97,7 @@ public class AllScenariosPageRendererTest {
     @Test
     public void getRenderedContentByFeatureFilterTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Report report = new Report();
         report.setFeatureIndex(12);
         Report[] reportList = new Report[]{report};

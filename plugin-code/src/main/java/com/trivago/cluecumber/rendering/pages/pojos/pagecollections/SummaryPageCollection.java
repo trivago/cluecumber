@@ -22,8 +22,8 @@ import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
 import java.util.Collection;
 
 class SummaryPageCollection extends PageCollection {
-    SummaryPageCollection(final String pageName) {
-        super(pageName);
+    SummaryPageCollection(final String pageName, final String pageTitle) {
+        super(pageName, pageTitle);
     }
 
     void updateResultCount(ResultCount resultCount, final Status status) {

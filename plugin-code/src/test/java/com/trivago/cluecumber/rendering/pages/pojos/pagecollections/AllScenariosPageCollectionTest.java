@@ -22,7 +22,7 @@ public class AllScenariosPageCollectionTest {
 
     @Before
     public void setup() {
-        allScenariosPageCollection = new AllScenariosPageCollection();
+        allScenariosPageCollection = new AllScenariosPageCollection("");
     }
 
     @Test

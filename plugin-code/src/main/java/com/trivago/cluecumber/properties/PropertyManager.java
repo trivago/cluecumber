@@ -39,17 +39,20 @@ public class PropertyManager {
 
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
-    private Map<String, String> customParameters = new LinkedHashMap<>();
+
     private boolean failScenariosOnPendingOrUndefinedSteps;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
+
+    private Map<String, String> customParameters = new LinkedHashMap<>();
     private String customCssFile;
     private String customParametersFile;
-    private String customStatusColorPassed = "";
-    private String customStatusColorFailed = "";
-    private String customStatusColorSkipped = "";
 
+    private String customStatusColorPassed = "#28a745";
+    private String customStatusColorFailed = "#dc3545";
+    private String customStatusColorSkipped = "#ffc107";
+    private String customPageTitle = "Cluecumber Report";
 
     @Inject
     public PropertyManager(
@@ -161,6 +164,7 @@ public class PropertyManager {
     }
 
     public void setCustomStatusColorPassed(final String customStatusColorPassed) throws WrongOrMissingPropertyException {
+        if (!isSet(customStatusColorPassed)) return;
         checkHexColorValidity(customStatusColorPassed, "customStatusColorPassed");
         this.customStatusColorPassed = customStatusColorPassed;
     }
@@ -170,6 +174,7 @@ public class PropertyManager {
     }
 
     public void setCustomStatusColorFailed(final String customStatusColorFailed) throws WrongOrMissingPropertyException {
+        if (!isSet(customStatusColorFailed)) return;
         checkHexColorValidity(customStatusColorFailed, "customStatusColorFailed");
         this.customStatusColorFailed = customStatusColorFailed;
     }
@@ -179,8 +184,19 @@ public class PropertyManager {
     }
 
     public void setCustomStatusColorSkipped(final String customStatusColorSkipped) throws WrongOrMissingPropertyException {
+        if (!isSet(customStatusColorSkipped)) return;
         checkHexColorValidity(customStatusColorSkipped, "customStatusColorSkipped");
         this.customStatusColorSkipped = customStatusColorSkipped;
+    }
+
+    public String getCustomPageTitle() {
+        return this.customPageTitle;
+    }
+
+    public void setCustomPageTitle(final String customPageTitle) {
+        if (isSet(customPageTitle)) {
+            this.customPageTitle = customPageTitle;
+        }
     }
 
     public void logProperties() {
@@ -209,6 +225,7 @@ public class PropertyManager {
         logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks);
         logger.info("- expand step hooks                : " + expandStepHooks);
         logger.info("- expand doc strings               : " + expandDocStrings);
+        logger.info("- page title                       : " + customPageTitle);
 
         if (isSet(customCssFile)) {
             logger.info("- custom CSS file                  : " + customCssFile);

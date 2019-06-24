@@ -9,14 +9,11 @@ Back to [Readme](README.md).
 
 ## [2.1.0] - UNRELEASED
 
-### Fixed
-
-* 
-
 ### Added
 
 * Fully customizable passed, failed and skipped colors through new properties (#172)
 * Proper pluralization of all words within summaries and headers
+* Ability to set a custom report title (#176)
 
 ### Changed
 

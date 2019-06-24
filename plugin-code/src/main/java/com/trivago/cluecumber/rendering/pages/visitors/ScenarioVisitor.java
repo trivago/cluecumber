@@ -65,7 +65,7 @@ public class ScenarioVisitor implements PageVisitor {
         ScenarioDetailsPageCollection scenarioDetailsPageCollection;
         for (Report report : allScenariosPageCollection.getReports()) {
             for (Element element : report.getElements()) {
-                scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element);
+                scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element, propertyManager.getCustomPageTitle());
                 fileIO.writeContentToFile(
                         scenarioDetailsPageRenderer.getRenderedContent(
                                 scenarioDetailsPageCollection,

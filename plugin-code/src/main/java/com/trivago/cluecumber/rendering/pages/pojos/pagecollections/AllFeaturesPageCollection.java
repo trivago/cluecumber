@@ -31,8 +31,8 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
     private Map<Feature, ResultCount> resultCounts;
     private int totalNumberOfScenarios;
 
-    public AllFeaturesPageCollection(final List<Report> reports) {
-        super(PluginSettings.FEATURE_SUMMARY_PAGE_NAME);
+    public AllFeaturesPageCollection(final List<Report> reports, final String pageTitle) {
+        super(PluginSettings.FEATURE_SUMMARY_PAGE_NAME, pageTitle);
         calculateFeatureResultCounts(reports);
     }
 

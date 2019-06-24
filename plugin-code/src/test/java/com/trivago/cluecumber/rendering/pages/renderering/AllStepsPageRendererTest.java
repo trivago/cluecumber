@@ -31,7 +31,7 @@ public class AllStepsPageRendererTest {
         Report report = new Report();
         List<Report> reports = new ArrayList<>();
         reports.add(report);
-        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(reports);
+        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(reports, "");
         allStepsPageRenderer.getRenderedContent(allStepsPageCollection, template);
     }
 }

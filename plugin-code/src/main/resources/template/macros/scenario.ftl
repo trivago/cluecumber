@@ -28,34 +28,35 @@ limitations under the License.
     (passedRequested && hasPassedScenarios()) ||
     allRequested
     >
+        <a id="anchor-${status}"></a>
         <div class="row" id="card_${status}" data-cluecumber-item="scenario-summary-table">
             <div class=" col-sm-12">
                 <div class="card">
 
                     <#switch status>
                         <#case "skipped">
-                            <div class="card-header border-warning bg-warning">
+                            <div class="card-header border-color-skipped">
                                 ${numberOfScenarios}
-                                <@common.pluralize word="Skipped Scenario" unitCount=numberOfScenarios/>
-                                <@common.startStatus status="skipped"/>
+                                <@common.pluralize word="skipped Scenario" unitCount=numberOfScenarios/>
+                                <@common.status status="skipped"/>
                             </div>
                             <#break>
                         <#case "failed">
-                            <div class="card-header border-danger bg-danger text-white">
+                            <div class="card-header border-color-failed">
                                 ${numberOfScenarios}
-                                <@common.pluralize word="Failed Scenario" unitCount=numberOfScenarios/>
-                                <@common.startStatus status="failed"/>
+                                <@common.pluralize word="failed Scenario" unitCount=numberOfScenarios/>
+                                <@common.status status="failed"/>
                             </div>
                             <#break>
                         <#case "passed">
-                            <div class="card-header border-success bg-success text-white">
+                            <div class="card-header border-color-passed">
                                 ${numberOfScenarios}
-                                <@common.pluralize word="Passed Scenario" unitCount=numberOfScenarios/>
-                                <@common.startStatus status="passed"/>
+                                <@common.pluralize word="passed Scenario" unitCount=numberOfScenarios/>
+                                <@common.status status="passed"/>
                             </div>
                             <#break>
                         <#case "all">
-                            <div class="card-header border-light bg-info text-white">
+                            <div class="card-header">
                                 Scenario Sequence (${numberOfScenarios})
                             </div>
                             <#break>

@@ -22,14 +22,14 @@ public class AllTagsPageCollectionTest {
     @Test
     public void getEmptyTagStatsTest() {
         List<Report> reports = new ArrayList<>();
-        allTagsPageCollection = new AllTagsPageCollection(reports);
+        allTagsPageCollection = new AllTagsPageCollection(reports, "");
         Map<Tag, ResultCount> tagStats = allTagsPageCollection.getTagResultCounts();
         assertThat(tagStats.size(), is(0));
     }
 
     @Test
     public void getTagStatsTest() {
-        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports(), "");
         Map<Tag, ResultCount> tagStats = allTagsPageCollection.getTagResultCounts();
         assertThat(tagStats.size(), is(3));
 
@@ -60,7 +60,7 @@ public class AllTagsPageCollectionTest {
 
     @Test
     public void getTagResultsTest() {
-        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports(), "");
         assertThat(allTagsPageCollection.getTotalNumberOfTags(), is(3));
         assertThat(allTagsPageCollection.getTotalNumberOfFailed(), is(1));
         assertThat(allTagsPageCollection.getTotalNumberOfPassed(), is(1));
@@ -69,13 +69,13 @@ public class AllTagsPageCollectionTest {
 
     @Test
     public void getTotalNumberOfTaggedScenariosTest() {
-        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports(), "");
         assertThat(allTagsPageCollection.getTotalNumberOfScenarios(), is(3));
     }
 
     @Test
     public void getTagsTest() {
-        allTagsPageCollection = new AllTagsPageCollection(getTestReports());
+        allTagsPageCollection = new AllTagsPageCollection(getTestReports(), "");
         assertThat(allTagsPageCollection.getTags().size(), is(3));
     }
 

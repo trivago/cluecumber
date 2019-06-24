@@ -29,21 +29,6 @@ limitations under the License.
        title="${status}"><span style="display:none">${status}</span></i>
 </#macro>
 
-<#macro startStatus status>
-    <#if status == "failed">
-        <#assign class = "text-white" />
-        <#assign icon = "failed" />
-    <#elseif status == "skipped">
-        <#assign class = "text-black" />
-        <#assign icon = "skipped" />
-    <#else>
-        <#assign class = "text-white" />
-        <#assign icon = "passed" />
-    </#if>
-    <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
-       title="${status}"><span style="display:none">${status}</span></i>
-</#macro>
-
 <#macro pluralize word unitCount>
     <#if unitCount gt 1>
         ${word}s

@@ -167,6 +167,10 @@ iframe {
     content: '\e802';
 }
 
+[data-cluecumber-item="chart"] div {
+    min-height: 20rem;
+}
+
 .card-body .card {
     margin: 1em 0 0 0;
     box-shadow: none;
@@ -204,7 +208,7 @@ i {
 
 .customParameters .card-body,
 .customParameters .card-body td {
-    padding: .5rem 1rem;
+    padding: .5rem 1rem .3rem 1rem;
 }
 
 span.nobr {

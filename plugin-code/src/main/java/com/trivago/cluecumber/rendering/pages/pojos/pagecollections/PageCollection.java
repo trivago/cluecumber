@@ -20,12 +20,14 @@ import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
 
 public class PageCollection implements Cloneable {
     private final ReportDetails reportDetails;
+    private final String pageTitle;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
 
-    PageCollection(String pageName) {
+    PageCollection(final String pageName, final String pageTitle) {
         this.reportDetails = new ReportDetails(pageName);
+        this.pageTitle = pageTitle;
     }
 
     public ReportDetails getReportDetails() {
@@ -54,5 +56,9 @@ public class PageCollection implements Cloneable {
 
     public void setExpandDocStrings(final boolean expandDocStrings) {
         this.expandDocStrings = expandDocStrings;
+    }
+
+    public String getPageTitle() {
+        return pageTitle;
     }
 }

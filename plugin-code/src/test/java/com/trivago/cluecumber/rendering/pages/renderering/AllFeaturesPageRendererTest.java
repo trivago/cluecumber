@@ -31,7 +31,7 @@ public class AllFeaturesPageRendererTest {
         Report report = new Report();
         List<Report> reports = new ArrayList<>();
         reports.add(report);
-        AllFeaturesPageCollection allFeaturesPageCollection = new AllFeaturesPageCollection(reports);
+        AllFeaturesPageCollection allFeaturesPageCollection = new AllFeaturesPageCollection(reports, "");
         allFeaturesPageRenderer.getRenderedContent(allFeaturesPageCollection, template);
     }
 }

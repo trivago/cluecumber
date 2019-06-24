@@ -74,20 +74,26 @@ public class PropertyCollector extends AbstractMojo {
     /**
      * Custom hex color for passed scenarios (e.g. '#00ff00')'.
      */
-    @Parameter(property = "reporting.customStatusColorPassed", defaultValue = "#28a745")
+    @Parameter(property = "reporting.customStatusColorPassed")
     private String customStatusColorPassed;
 
     /**
      * Custom hex color for failed scenarios (e.g. '#ff0000')'.
      */
-    @Parameter(property = "reporting.customStatusColorFailed", defaultValue = "#dc3545")
+    @Parameter(property = "reporting.customStatusColorFailed")
     private String customStatusColorFailed;
 
     /**
      * Custom hex color for skipped scenarios (e.g. '#ffff00')'.
      */
-    @Parameter(property = "reporting.customStatusColorSkipped", defaultValue = "#ffc107")
+    @Parameter(property = "reporting.customStatusColorSkipped")
     private String customStatusColorSkipped;
+
+    /**
+     * Custom page title for the generated report.
+     */
+    @Parameter(property = "reporting.customPageTitle")
+    private String customPageTitle;
 
     @Inject
     public PropertyCollector(final PropertyManager propertyManager) {
@@ -110,6 +116,7 @@ public class PropertyCollector extends AbstractMojo {
             propertyManager.setCustomStatusColorPassed(customStatusColorPassed);
             propertyManager.setCustomStatusColorFailed(customStatusColorFailed);
             propertyManager.setCustomStatusColorSkipped(customStatusColorSkipped);
+            propertyManager.setCustomPageTitle(customPageTitle);
         } catch (Exception e) {
             throw new CluecumberPluginException(e.getMessage());
         }

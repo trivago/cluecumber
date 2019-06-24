@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#macro page base links headline subheadline preheadline preheadlineLink>
+<#macro page title base links headline subheadline preheadline preheadlineLink>
     <!--
     Copyright 2019 trivago N.V.
 
@@ -33,8 +33,8 @@ limitations under the License.
     <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">
-    <head title="Cucumber Report Head">
-        <title>Cluecumber Report</title>
+    <head title="${title}">
+        <title>${title}</title>
         <#include "../snippets/common_headers.ftl">
         <#include "../snippets/css.ftl">
         <#include "../snippets/js.ftl">

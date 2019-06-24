@@ -29,7 +29,7 @@ public class ReportDetails {
     private final String pageName;
 
     public ReportDetails(final String pageName) {
-        this.pageName = pageName;
+        this.pageName = pageName != null && !pageName.isEmpty() ? pageName : getGeneratorName();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         this.date = dateFormat.format(date);

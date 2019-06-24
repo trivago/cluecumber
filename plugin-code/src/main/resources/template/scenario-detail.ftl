@@ -20,6 +20,7 @@ limitations under the License.
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page
+title="${pageTitle} - Scenario Detail"
 base="../.."
 links=["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]
 headline="${element.name?html}"

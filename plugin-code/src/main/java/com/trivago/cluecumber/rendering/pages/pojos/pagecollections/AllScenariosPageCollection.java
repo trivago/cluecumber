@@ -42,8 +42,8 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     private Feature featureFilter;
     private Step stepFilter;
 
-    public AllScenariosPageCollection() {
-        super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
+    public AllScenariosPageCollection(final String pageTitle) {
+        super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME, pageTitle);
     }
 
     public List<Report> getReports() {

@@ -31,7 +31,7 @@ public class AllTagsPageRendererTest {
         Report report = new Report();
         List<Report> reports = new ArrayList<>();
         reports.add(report);
-        AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(reports);
+        AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(reports, "");
         allTagsPageRenderer.getRenderedContent(allTagsPageCollection, template);
     }
 }

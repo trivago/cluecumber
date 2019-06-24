@@ -38,7 +38,7 @@ public class ScenarioDetailsPageRendererTest {
         Element element = new Element();
         List<Step> steps = new ArrayList<>();
         element.setSteps(steps);
-        ScenarioDetailsPageCollection scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element);
+        ScenarioDetailsPageCollection scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element, "");
         scenarioDetailsPageRenderer.getRenderedContent(scenarioDetailsPageCollection, template);
     }
 }
