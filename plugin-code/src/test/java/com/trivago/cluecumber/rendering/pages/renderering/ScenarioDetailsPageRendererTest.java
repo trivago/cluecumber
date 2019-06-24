@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Step;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ScenarioDetailsPageRendererTest {
 
@@ -23,7 +25,11 @@ public class ScenarioDetailsPageRendererTest {
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         PropertyManager propertyManager = mock(PropertyManager.class);
-        scenarioDetailsPageRenderer = new ScenarioDetailsPageRenderer(chartJsonConverter, propertyManager);
+        when(propertyManager.getCustomStatusColorFailed()).thenReturn("#ff0000");
+        when(propertyManager.getCustomStatusColorPassed()).thenReturn("#00ff00");
+        when(propertyManager.getCustomStatusColorSkipped()).thenReturn("#00ffff");
+        ChartConfiguration chartConfiguration = new ChartConfiguration(propertyManager);
+        scenarioDetailsPageRenderer = new ScenarioDetailsPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
     }
 
     @Test

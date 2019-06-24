@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<footer class="footer navbar-dark bg-dark">
+<footer class="footer navbar-dark">
     <div class="container-fluid">
         <span>${reportDetails.generatorName} - Report generated on ${reportDetails.date}.</span>
     </div>

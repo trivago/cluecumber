@@ -43,3 +43,11 @@ limitations under the License.
     <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
        title="${status}"><span style="display:none">${status}</span></i>
 </#macro>
+
+<#macro pluralize word unitCount>
+    <#if unitCount gt 1>
+        ${word}s
+    <#else>
+        ${word}
+    </#if>
+</#macro>

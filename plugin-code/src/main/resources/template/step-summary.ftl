@@ -33,9 +33,9 @@ preheadlineLink="">
         <@page.card width="3" title="Steps Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
                 <li class="list-group-item">
-                    ${totalNumberOfSteps} Step(s) in
+                    ${totalNumberOfSteps} <@common.pluralize word="Step" unitCount=totalNumberOfSteps/> in
                     <br>
-                    ${totalNumberOfScenarios} Scenario(s):
+                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
                 <li class="list-group-item">
                     ${totalNumberOfPassed} passed <@common.status status="passed"/>

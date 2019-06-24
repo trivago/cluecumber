@@ -16,7 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
-import com.trivago.cluecumber.constants.Charts;
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -43,11 +43,17 @@ import java.util.Map;
 public class AllScenariosPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
+    private final ChartConfiguration chartConfiguration;
 
     @Inject
-    AllScenariosPageRenderer(final ChartJsonConverter chartJsonConverter, PropertyManager propertyManager) {
+    AllScenariosPageRenderer(
+            final ChartJsonConverter chartJsonConverter,
+            final ChartConfiguration chartConfiguration,
+            final PropertyManager propertyManager
+    ) {
         super(chartJsonConverter);
         this.propertyManager = propertyManager;
+        this.chartConfiguration = chartConfiguration;
     }
 
     public String getRenderedContent(
@@ -140,14 +146,14 @@ public class AllScenariosPageRenderer extends PageRenderer {
         datasets.add(dataset);
 
         List<String> backgroundColors = new ArrayList<>();
-        backgroundColors.add(Charts.Color.getChartColorStringByStatus(Status.PASSED));
-        backgroundColors.add(Charts.Color.getChartColorStringByStatus(Status.FAILED));
-        backgroundColors.add(Charts.Color.getChartColorStringByStatus(Status.SKIPPED));
+        backgroundColors.add(chartConfiguration.getPassedColorRgbaString());
+        backgroundColors.add(chartConfiguration.getFailedColorRgbaString());
+        backgroundColors.add(chartConfiguration.getSkippedColorRgbaString());
         dataset.setBackgroundColor(backgroundColors);
         data.setDatasets(datasets);
 
         chart.setData(data);
-        chart.setType(Charts.Type.pie);
+        chart.setType(ChartConfiguration.Type.pie);
 
         allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

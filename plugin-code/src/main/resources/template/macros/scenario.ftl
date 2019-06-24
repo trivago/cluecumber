@@ -35,19 +35,22 @@ limitations under the License.
                     <#switch status>
                         <#case "skipped">
                             <div class="card-header border-warning bg-warning">
-                                ${numberOfScenarios} Skipped Scenario(s)
+                                ${numberOfScenarios}
+                                <@common.pluralize word="Skipped Scenario" unitCount=numberOfScenarios/>
                                 <@common.startStatus status="skipped"/>
                             </div>
                             <#break>
                         <#case "failed">
                             <div class="card-header border-danger bg-danger text-white">
-                                ${numberOfScenarios} Failed Scenario(s)
+                                ${numberOfScenarios}
+                                <@common.pluralize word="Failed Scenario" unitCount=numberOfScenarios/>
                                 <@common.startStatus status="failed"/>
                             </div>
                             <#break>
                         <#case "passed">
                             <div class="card-header border-success bg-success text-white">
-                                ${numberOfScenarios} Passed Scenario(s)
+                                ${numberOfScenarios}
+                                <@common.pluralize word="Passed Scenario" unitCount=numberOfScenarios/>
                                 <@common.startStatus status="passed"/>
                             </div>
                             <#break>
@@ -126,7 +129,8 @@ limitations under the License.
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}" style="max-width: 100%" alt="Attachment ${attachment.filename}"/>
+                            <img src="attachments/${attachment.filename}" style="max-width: 100%"
+                                 alt="Attachment ${attachment.filename}"/>
                         </a>
                     <#elseif attachment.mimeType == "HTML">
                         <iframe src="attachments/${attachment.filename}"

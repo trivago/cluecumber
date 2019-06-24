@@ -18,7 +18,6 @@ package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -48,19 +47,11 @@ public class CustomCssRenderer {
     public String getRenderedCustomCssContent(final Template template) throws CluecumberPluginException {
         Writer stringWriter = new StringWriter();
 
-        System.out.println("PROPERTY: " + propertyManager.getCustomStatusColorPassed());
-        System.out.println("PROPERTY: " + propertyManager.getCustomStatusColorFailed());
-        System.out.println("PROPERTY: " + propertyManager.getCustomStatusColorSkipped());
-
         CustomStatusColors customStatusColors = new CustomStatusColors(
                 propertyManager.getCustomStatusColorPassed(),
                 propertyManager.getCustomStatusColorFailed(),
                 propertyManager.getCustomStatusColorSkipped()
         );
-
-        System.out.println("CUSTOM PASSED: " + customStatusColors.getPassedColor());
-        System.out.println("CUSTOM FAILED: " + customStatusColors.getFailedColor());
-        System.out.println("CUSTOM SKIPPED: " + customStatusColors.getSkippedColor());
 
         try {
             template.process(customStatusColors, stringWriter);

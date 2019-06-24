@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Match;
@@ -31,7 +32,8 @@ public class AllScenariosPageRendererTest {
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         propertyManager = mock(PropertyManager.class);
-        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, propertyManager);
+        ChartConfiguration chartConfiguration = new ChartConfiguration(propertyManager);
+        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
     }
 
     @Test

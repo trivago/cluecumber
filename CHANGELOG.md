@@ -16,6 +16,7 @@ Back to [Readme](README.md).
 ### Added
 
 * Fully customizable passed, failed and skipped colors through new properties (#172)
+* Proper pluralization of all words within summaries and headers
 
 ### Changed
 

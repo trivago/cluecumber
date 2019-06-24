@@ -33,8 +33,9 @@ preheadlineLink="">
         <@page.card width="3" title="Feature Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    ${totalNumberOfFeatures} Feature(s) with
-                    <br>${totalNumberOfScenarios} Scenario(s):
+                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/><br>
+                    in
+                    ${totalNumberOfFeatures} <@common.pluralize word="Feature" unitCount=totalNumberOfFeatures/>
                 </li>
                 <li class="list-group-item">
                     ${totalNumberOfPassedFeatures} passed <@common.status status="passed"/>

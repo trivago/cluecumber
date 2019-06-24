@@ -16,7 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
-import com.trivago.cluecumber.constants.Charts;
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
@@ -43,9 +43,15 @@ import java.util.Map;
 @Singleton
 public class AllFeaturesPageRenderer extends PageRenderer {
 
+    private final ChartConfiguration chartConfiguration;
+
     @Inject
-    public AllFeaturesPageRenderer(final ChartJsonConverter chartJsonConverter) {
+    public AllFeaturesPageRenderer(
+            final ChartJsonConverter chartJsonConverter,
+            final ChartConfiguration chartConfiguration
+    ) {
         super(chartJsonConverter);
+        this.chartConfiguration = chartConfiguration;
     }
 
     public String getRenderedContent(
@@ -78,21 +84,21 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         Dataset passedDataset = new Dataset();
         passedDataset.setLabel(Status.PASSED.getStatusString());
         passedDataset.setData(passed);
-        List<String> passedBG = new ArrayList<>(Collections.nCopies(passed.size(), Charts.Color.getChartColorStringByStatus(Status.PASSED)));
+        List<String> passedBG = new ArrayList<>(Collections.nCopies(passed.size(), chartConfiguration.getPassedColorRgbaString()));
         passedDataset.setBackgroundColor(passedBG);
         datasets.add(passedDataset);
 
         Dataset failedDataset = new Dataset();
         failedDataset.setLabel(Status.FAILED.getStatusString());
         failedDataset.setData(failed);
-        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), Charts.Color.getChartColorStringByStatus(Status.FAILED)));
+        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), chartConfiguration.getFailedColorRgbaString()));
         failedDataset.setBackgroundColor(failedBG);
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
         skippedDataset.setLabel(Status.SKIPPED.getStatusString());
         skippedDataset.setData(skipped);
-        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), Charts.Color.getChartColorStringByStatus(Status.SKIPPED)));
+        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), chartConfiguration.getSkippedColorRgbaString()));
         skippedDataset.setBackgroundColor(skippedBG);
         datasets.add(skippedDataset);
 
@@ -135,7 +141,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType(Charts.Type.bar);
+        chart.setType(ChartConfiguration.Type.bar);
 
         allFeaturesPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

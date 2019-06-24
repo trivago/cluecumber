@@ -32,10 +32,10 @@ preheadlineLink="">
         </@page.card>
         <@page.card width="3" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
-                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
-                    ${totalNumberOfScenarios} Tagged Scenario(s):
+                <li class="list-group-item">${totalNumberOfTags}  in<br>
+                    ${totalNumberOfScenarios} Tagged <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
-                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
+                <li class="list-group-item">${totalNumberOfTags} <@common.pluralize word="Tag" unitCount=totalNumberOfTags/> in<br>
                     ${totalNumberOfPassed} passed <@common.status status="passed"/>
                     <br>
                     ${totalNumberOfFailed} failed <@common.status status="failed"/>

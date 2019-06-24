@@ -1,6 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.charts;
 
-import com.trivago.cluecumber.constants.Charts;
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Data;
@@ -184,7 +184,7 @@ public class ChartJsonConverterTest {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType(Charts.Type.bar);
+        chart.setType(ChartConfiguration.Type.bar);
 
         assertThat(chartJsonConverter.convertChartToJson(chart), is(expected));
     }

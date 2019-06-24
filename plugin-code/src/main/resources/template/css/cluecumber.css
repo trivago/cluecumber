@@ -33,7 +33,7 @@ a {
     color: #004ea2;
 }
 
-.bg-dark {
+.navbar, .footer {
     background-color: #5e6974 !important;
 }
 
@@ -47,7 +47,6 @@ a {
     width: 100%;
     height: 60px;
     line-height: 60px;
-    background-color: #fafafa;
     color: #a5abae;
 }
 
