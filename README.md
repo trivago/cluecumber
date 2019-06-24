@@ -25,12 +25,15 @@
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
-    - [customParameters](#customparameters)
-    - [customParametersFile](#customparametersfile)
-    - [skip](#skip)
-    - [failScenariosOnPendingOrUndefinedSteps](#failscenariosonpendingorundefinedsteps)
-    - [customCSS](#customcss)
-    - [expandBeforeAfterHooks, expandStepHooks, expandDocStrings](#expandbeforeafterhooks-expandstephooks-expanddocstrings)
+    - [Add Custom Information to the Report](#add-custom-information-to-the-report)
+      - [Add Custom Information Using a Property](#add-custom-information-using-a-property)
+      - [Add Custom Information Using a File](#add-custom-information-using-a-file)
+    - [Skip Report Generation](#skip-report-generation)
+    - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
+    - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
+  - [Optional Configuration Parameters for Changing the Report Design](#optional-configuration-parameters-for-changing-the-report-design)
+    - [Defining a custom CSS file](#defining-a-custom-css-file)
+    - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
 - [Running the reporting goal directly via command line](#running-the-reporting-goal-directly-via-command-line)
   - [Passing properties via command line](#passing-properties-via-command-line)
   - [Passing custom parameters via command line](#passing-custom-parameters-via-command-line)
@@ -147,7 +150,9 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ## Optional Configuration Parameters
 
-### customParameters
+### Add Custom Information to the Report
+
+#### Add Custom Information Using a Property
 
 The `customParameters` block can be used to define custom information that should be displayed on the report start page.
 
@@ -168,7 +173,7 @@ The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
 
-### customParametersFile
+#### Add Custom Information Using a File
 
 You can also set custom parameters by specifying the path to a `.properties` file in the `customParametersFile` property like this:
 
@@ -193,7 +198,7 @@ The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
 
-### skip
+### Skip Report Generation
 
 The `skip` property is used to skip the report generation. The default value is `false`
 
@@ -204,9 +209,9 @@ The `skip` property is used to skip the report generation. The default value is 
 </configuration>
 ```
 
-### failScenariosOnPendingOrUndefinedSteps
+### Fail Scenarios on Pending or Undefined Steps
 
-This optional property can be set to `true` if you scenarios should be marked as `failed` when they contain `pending` or `skipped` steps.
+The optional `failScenariosOnPendingOrUndefinedSteps` property can be set to `true` if you scenarios should be marked as `failed` when they contain `pending` or `skipped` steps.
 The default setting is `false`, meaning that those scenarios will be marked as `skipped`.
 
 ```xml
@@ -216,7 +221,24 @@ The default setting is `false`, meaning that those scenarios will be marked as `
 </configuration>
 ```
 
-### customCSS
+### Auto-expand Certain Report Sections
+
+The `expandBeforeAfterHooks`, `expandStepHooks` and `expandDocStrings` options can be set to `true` to expand or collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
+
+If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail page to expand those sections on demand.
+
+```xml
+<configuration>
+    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
+    <expandStepHooks>true|false</expandStepHooks>
+    <expandDocStrings>true|false</expandDocStrings>
+    ...
+</configuration>
+```
+
+## Optional Configuration Parameters for Changing the Report Design
+
+### Defining a custom CSS file
 
 The `customCSS` property can be used to define a custom CSS file that will be automatically loaded on top of Cluecumber's default styles.
 
@@ -236,6 +258,7 @@ To use this files, specify it like so in your pom file or as a system property:
 ```xml
 <configuration>
     <customCss>custom/custom.css</customCss>
+    ...
 </configuration>
 ```
 
@@ -251,20 +274,20 @@ Likewise, if you want to hide elements from the report, e.g. the total time on t
 }
 ```
 
-### expandBeforeAfterHooks, expandStepHooks, expandDocStrings
+### Defining custom passed, skipped and failed colors
 
-These options can be set to `true` to expand or collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
-
-If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail page to expand those sections on demand.
+It is possible to set these properties to change the color scheme for passed, failed and skipped steps and scenarios
+including the displayed diagrams. The values have to be valid hex colors:
 
 ```xml
 <configuration>
-    <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
-    <expandStepHooks>true|false</expandStepHooks>
-    <expandDocStrings>true|false</expandDocStrings>
+    <customStatusColorPassed>#00ff00</customStatusColorPassed>
+    <customStatusColorFailed>#ff0000</customStatusColorFailed>
+    <customStatusColorSkipped>#00ffff</customStatusColorSkipped>
     ...
-</configuration>
+</configuration>    
 ```
+
 
 # Running the reporting goal directly via command line
 

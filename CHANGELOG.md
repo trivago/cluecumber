@@ -15,11 +15,11 @@ Back to [Readme](README.md).
 
 ### Added
 
-* Fully customizable passed, failed and skipped colors through new properties
+* Fully customizable passed, failed and skipped colors through new properties (#172)
 
 ### Changed
 
-* Better layout with larger graphs for tag, feature and step summary pages
+* Better layout with larger graphs for tag, feature and step summary pages (#180)
 * Moved timing information to a dedicated box in each report page
 
 ## [2.0.1] - 2019-06-15
