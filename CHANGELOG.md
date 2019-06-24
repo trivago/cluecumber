@@ -14,6 +14,7 @@ Back to [Readme](README.md).
 * Fully customizable passed, failed and skipped colors through new properties (#172)
 * Proper pluralization of all words within summaries and headers
 * Ability to set a custom report title (#176)
+* Support for custom parameters with hidden keys (#183)
 
 ### Changed
 

@@ -32,12 +32,12 @@ public class CustomParameter {
     }
 
     public String getValue() {
-        return value != null ? value : "";
+        return value != null ? value.trim() : "";
     }
 
     public boolean isUrl() {
         try {
-            new URL(value);
+            new URL(getValue());
             return true;
         } catch (Exception e) {
             return false;

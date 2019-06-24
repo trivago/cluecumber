@@ -57,15 +57,19 @@ preheadlineLink="">
                     <tbody>
                     <#list customParameters as customParameter>
                         <tr>
-                            <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
-                            <td class="text-left wrap">
-                                <#if customParameter.url>
-                                    <a href="${customParameter.value}" style="word-break: break-all;"
-                                       target="_blank">${customParameter.value}</a>
-                                <#else>
-                                    ${customParameter.value}
-                                </#if>
-                            </td>
+                            <#if !customParameter.key?starts_with(" ")>
+                                <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
+                                <td class="text-left wrap">
+                                    <#if customParameter.url>
+                                        <a href="${customParameter.value}" style="word-break: break-all;"
+                                           target="_blank">${customParameter.value}</a>
+                                    <#else>
+                                        ${customParameter.value}
+                                    </#if>
+                                </td>
+                            <#else>
+                                <td class="text-left text-nowrap" colspan="2">${customParameter.value}</td>
+                            </#if>
                         </tr>
                     </#list>
                     </tbody>

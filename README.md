@@ -26,12 +26,13 @@
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
     - [Add Custom Information to the Report](#add-custom-information-to-the-report)
-      - [Add Custom Information Using a Property](#add-custom-information-using-a-property)
+      - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
-  - [Optional Configuration Parameters for Changing the Report Design](#optional-configuration-parameters-for-changing-the-report-design)
+  - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
+    - [Defining a custom report title](#defining-a-custom-report-title)
     - [Defining a custom CSS file](#defining-a-custom-css-file)
     - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
 - [Running the reporting goal directly via command line](#running-the-reporting-goal-directly-via-command-line)
@@ -152,18 +153,20 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ### Add Custom Information to the Report
 
-#### Add Custom Information Using a Property
+#### Add Custom Information Using Properties
 
 The `customParameters` block can be used to define custom information that should be displayed on the report start page.
 
 __Note:__ Underscores in the parameter names are automatically turned into spaces in the report.
 Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
+If a parameter name starts with an underscore (`_`), only the value is displayed. 
 
 ```xml
 <configuration>
     <customParameters>
         <Custom_Parameter>This is a test</Custom_Parameter>
         <Custom_URL>http://www.google.com</Custom_URL>
+        <_Text>This is a long text that is displayed without the key. This can be used to display longer texts in the report!</_Text>
     </customParameters>
     ...
 </configuration>
