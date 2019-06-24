@@ -211,7 +211,18 @@ i {
     padding: .5rem 1rem .3rem 1rem;
 }
 
+td.noKey {
+    white-space: normal !important;
+}
+
 span.nobr {
     white-space: nowrap;
     hyphens: none;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -50px;
+    visibility: hidden;
 }

@@ -68,7 +68,7 @@ preheadlineLink="">
                                     </#if>
                                 </td>
                             <#else>
-                                <td class="text-left text-nowrap" colspan="2">${customParameter.value}</td>
+                                <td class="text-left noKey" colspan="2">${customParameter.value}</td>
                             </#if>
                         </tr>
                     </#list>
