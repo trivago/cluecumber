@@ -21,28 +21,33 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With <i>${tagFilter.name}</i>">
+    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
+    <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios in Feature<br><i>${featureFilter.name}</i>">
+    <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
+    <#assign pageName = "Scenarios in Feature">
     <#assign highlight = "feature_summary">
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios using Step<br><i>${stepFilter.returnNameWithArgumentPlaceholders()}</i>">
+    <#assign headline = "Scenarios using Step '${stepFilter.returnNameWithArgumentPlaceholders()}'">
+    <#assign pageName = "Scenarios with Step">
     <#assign highlight = "step_summary">
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">
     <#assign headline = "Scenario Sequence">
+    <#assign pageName = "Scenario Sequence">
     <#assign highlight = "scenario_sequence">
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
+    <#assign pageName = "All Scenarios">
     <#assign highlight = "scenario_summary">
 </#if>
 
 <@page.page
-title="${pageTitle} - ${headline}"
+title="${pageTitle} - ${pageName}"
 base=base
 highlight=highlight
 headline=headline
@@ -105,17 +110,25 @@ preheadlineLink="">
                     ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    <a href="javascript:;"
-                       onclick="document.location.hash='anchor-passed';">${totalNumberOfPassedScenarios}
-                        passed</a> <@common.status status="passed"/>
-                    <br>
-                    <a href="javascript:;"
-                       onclick="document.location.hash='anchor-failed';">${totalNumberOfFailedScenarios}
-                        failed</a> <@common.status status="failed"/>
-                    <br>
-                    <a href="javascript:;"
-                       onclick="document.location.hash='anchor-skipped';">${totalNumberOfSkippedScenarios}
-                        skipped</a> <@common.status status="skipped"/>
+                    <#if (scenarioSequence??)>
+                        ${totalNumberOfPassedScenarios} passed <@common.status status="passed"/>
+                        <br>
+                        ${totalNumberOfFailedScenarios} failed <@common.status status="failed"/>
+                        <br>
+                        ${totalNumberOfSkippedScenarios} skipped <@common.status status="skipped"/>
+                    <#else>
+                        <a href="javascript:;"
+                           onclick="document.location.hash='anchor-passed';">${totalNumberOfPassedScenarios}
+                            passed</a> <@common.status status="passed"/>
+                        <br>
+                        <a href="javascript:;"
+                           onclick="document.location.hash='anchor-failed';">${totalNumberOfFailedScenarios}
+                            failed</a> <@common.status status="failed"/>
+                        <br>
+                        <a href="javascript:;"
+                           onclick="document.location.hash='anchor-skipped';">${totalNumberOfSkippedScenarios}
+                            skipped</a> <@common.status status="skipped"/>
+                    </#if>
                 </li>
             </ul>
         </@page.card>

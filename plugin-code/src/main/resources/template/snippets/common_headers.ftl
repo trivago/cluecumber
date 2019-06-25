@@ -26,4 +26,3 @@ font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="${pageTitle}">
 <meta name="author" content="${reportDetails.generatorName}">
-<title>${pageTitle} - ${reportDetails.date}</title>

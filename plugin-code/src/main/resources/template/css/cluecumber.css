@@ -19,6 +19,11 @@ html {
     min-height: 100%;
 }
 
+
+.container {
+    max-width: 1080px;
+}
+
 h2, h3, h4, h5 {
     overflow-wrap: break-word;
 }
@@ -51,7 +56,7 @@ a {
 }
 
 .cluecumber-template {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1rem;
     text-align: center;
 }
 
