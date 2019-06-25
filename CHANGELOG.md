@@ -20,6 +20,7 @@ Back to [Readme](README.md).
 
 * Better layout with larger graphs for tag, feature and step summary pages (#180)
 * Moved timing information to a dedicated box in each report page
+* Refined navigation (#177)
 
 ## [2.0.1] - 2019-06-15
 
