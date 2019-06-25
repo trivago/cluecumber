@@ -16,16 +16,15 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
-import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
 import com.trivago.cluecumber.rendering.pages.visitors.Visitable;
 
@@ -43,7 +42,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     private Step stepFilter;
 
     public AllScenariosPageCollection(final String pageTitle) {
-        super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME, pageTitle);
+        super(pageTitle);
     }
 
     public List<Report> getReports() {

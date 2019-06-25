@@ -22,7 +22,7 @@ limitations under the License.
 <@page.page
 title="${pageTitle} - Scenario Detail"
 base="../.."
-links=["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]
+highlight=""
 headline="${element.name?html}"
 subheadline="${element.description?html}"
 preheadline="${element.featureName?html}"

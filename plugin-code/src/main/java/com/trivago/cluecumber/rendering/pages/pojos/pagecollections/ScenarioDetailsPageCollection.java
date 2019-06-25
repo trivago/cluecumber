@@ -16,14 +16,13 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.json.pojo.Element;
 
 public class ScenarioDetailsPageCollection extends PageCollection {
     private final Element element;
 
     public ScenarioDetailsPageCollection(final Element element, final String pageTitle) {
-        super(PluginSettings.SCENARIO_DETAIL_PAGE_NAME, pageTitle);
+        super(pageTitle);
         this.element = element;
     }
 

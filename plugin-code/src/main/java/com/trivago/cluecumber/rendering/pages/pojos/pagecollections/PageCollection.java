@@ -25,8 +25,8 @@ public class PageCollection implements Cloneable {
     private boolean expandStepHooks;
     private boolean expandDocStrings;
 
-    PageCollection(final String pageName, final String pageTitle) {
-        this.reportDetails = new ReportDetails(pageName);
+    PageCollection(final String pageTitle) {
+        this.reportDetails = new ReportDetails();
         this.pageTitle = pageTitle;
     }
 

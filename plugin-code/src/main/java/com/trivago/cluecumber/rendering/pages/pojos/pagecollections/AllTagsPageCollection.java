@@ -16,7 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
@@ -30,7 +29,7 @@ public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
     private Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
 
     public AllTagsPageCollection(List<Report> reports, final String pageTitle) {
-        super(PluginSettings.TAG_SUMMARY_PAGE_NAME, pageTitle);
+        super(pageTitle);
         calculateTagResultCounts(reports);
     }
 

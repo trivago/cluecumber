@@ -13,7 +13,7 @@ public class ReportDetailsTest {
 
     @Before
     public void setup() {
-        reportDetails = new ReportDetails("Page Name");
+        reportDetails = new ReportDetails();
     }
 
     @Test
@@ -22,13 +22,8 @@ public class ReportDetailsTest {
     }
 
     @Test
-    public void getPageNameTest() {
-        MatcherAssert.assertThat(reportDetails.getPageName(), is("Page Name"));
-    }
-
-    @Test
     public void reportDetailsDateTest() {
-        ReportDetails reportDetails = new ReportDetails("");
+        ReportDetails reportDetails = new ReportDetails();
         assertThat(reportDetails.getDate(), is(notNullValue()));
     }
 }

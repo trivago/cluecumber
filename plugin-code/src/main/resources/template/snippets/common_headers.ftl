@@ -24,6 +24,6 @@ frame-src * data: blob: ;
 style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="${reportDetails.generatorName} - ${reportDetails.pageName}">
+<meta name="description" content="${pageTitle}">
 <meta name="author" content="${reportDetails.generatorName}">
-<title>${reportDetails.pageName} - ${reportDetails.date}</title>
+<title>${pageTitle} - ${reportDetails.date}</title>

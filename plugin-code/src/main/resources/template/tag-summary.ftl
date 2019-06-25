@@ -21,7 +21,7 @@ limitations under the License.
 <@page.page
 title="${pageTitle} - All Tags"
 base=".."
-links=["feature_summary", "step_summary", "scenario_sequence", "scenario_summary"]
+highlight="tag_summary"
 headline="All Tags"
 subheadline=""
 preheadline=""

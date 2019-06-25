@@ -92,9 +92,10 @@ limitations under the License.
                                             <#if allRequested>
                                                 <td class="text-right">${element.scenarioIndex}</td>
                                             </#if>
-                                            <td class="text-left"><span data-toggle="tooltip"
-                                                                        title="${tooltipText}"><a
-                                                            href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a></span>
+                                            <td class="text-left">
+                                                <span data-toggle="tooltip" title="${tooltipText}">
+                                                    <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
+                                                </span>
                                             </td>
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"

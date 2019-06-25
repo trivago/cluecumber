@@ -10,8 +10,8 @@ public class ScenarioSummaryPageCollection extends SummaryPageCollection {
     private Set<Integer> totalPassed = new HashSet<>();
     private Set<Integer> totalSkipped = new HashSet<>();
 
-    ScenarioSummaryPageCollection(final String pageName, final String pageTitle) {
-        super(pageName, pageTitle);
+    ScenarioSummaryPageCollection(final String pageTitle) {
+        super(pageTitle);
     }
 
     public int getTotalNumberOfScenarios() {

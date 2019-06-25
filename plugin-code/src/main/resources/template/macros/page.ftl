@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#macro page title base links headline subheadline preheadline preheadlineLink>
+<#macro page title base highlight headline subheadline preheadline preheadlineLink>
     <!--
     Copyright 2019 trivago N.V.
 
@@ -40,7 +40,7 @@ limitations under the License.
         <#include "../snippets/js.ftl">
     </head>
     <body>
-    <@navigation.build links=links />
+    <@navigation.build highlight=highlight />
     <main role="main" class="container">
         <div class="cluecumber-template">
             <div class="pb-2 mt-4 mb-2 border-bottom">
@@ -83,7 +83,7 @@ limitations under the License.
 </#macro>
 
 <#macro graph>
-    <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart">
+    <div id="canvas-holder" class="w-100 text-center" style="min-height: 15rem;" data-cluecumber-item="chart">
         <canvas id="chart-area" class="w-100"></canvas>
     </div>
 </#macro>

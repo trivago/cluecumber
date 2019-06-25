@@ -16,7 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
@@ -32,7 +31,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
     private int totalNumberOfScenarios;
 
     public AllFeaturesPageCollection(final List<Report> reports, final String pageTitle) {
-        super(PluginSettings.FEATURE_SUMMARY_PAGE_NAME, pageTitle);
+        super(pageTitle);
         calculateFeatureResultCounts(reports);
     }
 
