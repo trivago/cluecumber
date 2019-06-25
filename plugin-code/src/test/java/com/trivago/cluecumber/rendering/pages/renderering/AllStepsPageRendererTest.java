@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
@@ -20,7 +21,8 @@ public class AllStepsPageRendererTest {
     @Before
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
-        allStepsPageRenderer = new AllStepsPageRenderer(chartJsonConverter);
+        ChartConfiguration chartConfiguration = mock(ChartConfiguration.class);
+        allStepsPageRenderer = new AllStepsPageRenderer(chartJsonConverter, chartConfiguration);
     }
 
     @Test
@@ -29,7 +31,7 @@ public class AllStepsPageRendererTest {
         Report report = new Report();
         List<Report> reports = new ArrayList<>();
         reports.add(report);
-        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(reports);
+        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(reports, "");
         allStepsPageRenderer.getRenderedContent(allStepsPageCollection, template);
     }
 }

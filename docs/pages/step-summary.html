@@ -1,6 +1,6 @@
 
     <!--
-    Copyright 2018 trivago N.V.
+    Copyright 2019 trivago N.V.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
     <!DOCTYPE html>
     <html lang="en">
     <base href="..">
-    <head title="Cucumber Report Head">
-        <title>Cluecumber Report</title>
+    <head title="My Report - All Steps">
+        <title>My Report - All Steps</title>
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -30,16 +30,15 @@ frame-src * data: blob: ;
 style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Cluecumber Report Plugin version 2.0.0 - Step Summary">
-<meta name="author" content="Cluecumber Report Plugin version 2.0.0">
-<title>Step Summary - 2019-06-14 14:33:37</title>
+<meta name="description" content="My Report">
+<meta name="author" content="Cluecumber Report Plugin version 2.1.0">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="css/cluecumber.css" type="text/css">
-<link rel="stylesheet" href="css/cluecumber_custom.css"/>
 <link rel="stylesheet" href="css/datatables.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="css/jquery.fancybox.min.css"/>
-
+<link rel="stylesheet" href="css/cluecumber.css" type="text/css">
+<link rel="stylesheet" href="css/cluecumber-custom.css"/>
+<link rel="stylesheet" href="css/cluecumber-additional.css"/>
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -485,8 +484,7 @@ font-src * data: blob: 'unsafe-inline';"/>
     }
 </script>    </head>
     <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <span class="navbar-brand">Step Summary</span>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -495,19 +493,21 @@ font-src * data: blob: 'unsafe-inline';"/>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                                <a class="nav-link" href="pages/feature-summary.html">All Features</a>
+                                <a class="nav-link " href="index.html">All Scenarios</a>
                     </li>
                     <li class="nav-item">
-                                <a class="nav-link" href="pages/tag-summary.html">All Tags</a>
+                                <a class="nav-link " href="pages/scenario-sequence.html">Scenario Sequence</a>
                     </li>
                     <li class="nav-item">
-                                <a class="nav-link" href="pages/scenario-sequence.html">Scenario Sequence</a>
+                                <a class="nav-link " href="pages/tag-summary.html">All Tags</a>
                     </li>
                     <li class="nav-item">
-                                <a class="nav-link" href="index.html">All Scenarios</a>
+                                <a class="nav-link text-white" href="pages/step-summary.html">All Steps</a>
+                    </li>
+                    <li class="nav-item">
                     </li>
             </ul>
-            <span class="text-light">2019-06-14 14:33:37</span>
+            <span class="text-light">2019-06-25 17:50:30</span>
         </div>
     </nav>
     <main role="main" class="container">
@@ -517,36 +517,42 @@ font-src * data: blob: 'unsafe-inline';"/>
             </div>
 
     <div class="row">
-    <div class="col-sm-8  h-auto" data-cluecumber-item="card">
+    <div class="col-sm-9  h-auto" data-cluecumber-item="card">
         <div class="card h-100">
                 <div class="card-header">Step Summary Result Chart</div>
             <div class="card-body">
-    <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart">
+    <div id="canvas-holder" class="w-100 text-center" style="min-height: 15rem;" data-cluecumber-item="chart">
         <canvas id="chart-area" class="w-100"></canvas>
     </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-4  h-auto" data-cluecumber-item="card">
+    <div class="col-sm-3  h-auto" data-cluecumber-item="card">
         <div class="card h-100">
                 <div class="card-header">Steps Summary</div>
             <div class="card-body">
             <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
-                <li class="list-group-item">45 Step(s) in<br>
-                    18 Scenario(s)
+                <li class="list-group-item">
+                    45         Steps
+ in
+                    <br>
+                    18         Scenarios
+
                 </li>
-            </ul>
-            <li class="list-group-item">
-                8     <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip"
+                <li class="list-group-item">
+                    8 passed     <i class="color-passed cluecumber-icon icon-passed" data-toggle="tooltip"
        title="passed"><span style="display:none">passed</span></i>
 
-                9     <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip"
+                    <br>
+                    9 failed     <i class="color-failed cluecumber-icon icon-failed" data-toggle="tooltip"
        title="failed"><span style="display:none">failed</span></i>
 
-                1     <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip"
+                    <br>
+                    1 skipped    <i class="color-skipped cluecumber-icon icon-skipped" data-toggle="tooltip"
        title="skipped"><span style="display:none">skipped</span></i>
 
-            </li>
+                </li>
+            </ul>
             </div>
         </div>
     </div>
@@ -563,13 +569,13 @@ font-src * data: blob: 'unsafe-inline';"/>
                 <tr>
                     <th>Step</th>
                     <th>Total</th>
-                    <th>    <i class="text-success cluecumber-icon icon-passed" data-toggle="tooltip"
+                    <th>    <i class="color-passed cluecumber-icon icon-passed" data-toggle="tooltip"
        title="passed"><span style="display:none">passed</span></i>
 </th>
-                    <th>    <i class="text-danger cluecumber-icon icon-failed" data-toggle="tooltip"
+                    <th>    <i class="color-failed cluecumber-icon icon-failed" data-toggle="tooltip"
        title="failed"><span style="display:none">failed</span></i>
 </th>
-                    <th>    <i class="text-warning cluecumber-icon icon-skipped" data-toggle="tooltip"
+                    <th>    <i class="color-skipped cluecumber-icon icon-skipped" data-toggle="tooltip"
        title="skipped"><span style="display:none">skipped</span></i>
 </th>
                     <th>Min Time</th>
@@ -1359,9 +1365,9 @@ font-src * data: blob: 'unsafe-inline';"/>
         </div>
     </main>
 
-<footer class="footer navbar-dark bg-dark">
+<footer class="footer navbar-dark">
     <div class="container-fluid">
-        <span>Cluecumber Report Plugin version 2.0.0 - Report generated on 2019-06-14 14:33:37.</span>
+        <span>Cluecumber Report Plugin version 2.1.0 - Report generated on 2019-06-25 17:50:30.</span>
     </div>
 </footer>    </body>
     </html>

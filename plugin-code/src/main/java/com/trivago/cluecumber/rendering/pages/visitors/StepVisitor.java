@@ -5,11 +5,11 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.AllScenariosPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderering.AllStepsPageRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -43,7 +43,9 @@ public class StepVisitor implements PageVisitor {
 
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(allScenariosPageCollection.getReports());
+        AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(
+                allScenariosPageCollection.getReports(), propertyManager.getCustomPageTitle()
+        );
 
         // All steps page
         fileIO.writeContentToFile(

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,13 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.json.pojo.Element;
 
 public class ScenarioDetailsPageCollection extends PageCollection {
     private final Element element;
 
-    public ScenarioDetailsPageCollection(final Element element) {
-        super(PluginSettings.SCENARIO_DETAIL_PAGE_NAME);
+    public ScenarioDetailsPageCollection(final Element element, final String pageTitle) {
+        super(pageTitle);
         this.element = element;
     }
 

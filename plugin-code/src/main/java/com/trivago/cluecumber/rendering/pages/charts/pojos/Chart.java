@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,13 @@
 
 package com.trivago.cluecumber.rendering.pages.charts.pojos;
 
-import com.trivago.cluecumber.constants.Charts;
+import com.trivago.cluecumber.constants.ChartConfiguration;
 
 public class Chart {
 
     private Data data;
     private Options options;
-    private Charts.Type type;
+    private ChartConfiguration.Type type;
 
     public Data getData() {
         return data;
@@ -32,11 +32,11 @@ public class Chart {
         this.data = data;
     }
 
-    public Charts.Type getType() {
+    public ChartConfiguration.Type getType() {
         return type;
     }
 
-    public void setType(final Charts.Type type) {
+    public void setType(final ChartConfiguration.Type type) {
         this.type = type;
     }
 

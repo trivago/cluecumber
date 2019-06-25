@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,26 +19,29 @@ limitations under the License.
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page
+title="${pageTitle} - All Tags"
 base=".."
-links=["feature_summary", "step_summary", "scenario_sequence", "scenario_summary"]
+highlight="tag_summary"
 headline="All Tags"
 subheadline=""
 preheadline=""
 preheadlineLink="">
 
     <div class="row">
-        <@page.card width="8" title="Tag Summary Result Chart" subtitle="" classes="">
+        <@page.card width="9" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Tag Summary" subtitle="" classes="">
+        <@page.card width="3" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
-                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
-                    ${totalNumberOfScenarios} Tagged Scenario(s)
+                <li class="list-group-item">${totalNumberOfTags}  in<br>
+                    ${totalNumberOfScenarios} Tagged <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
-                <li class="list-group-item">
-                    ${totalNumberOfPassed} <@common.status status="passed"/>
-                    ${totalNumberOfFailed} <@common.status status="failed"/>
-                    ${totalNumberOfSkipped} <@common.status status="skipped"/>
+                <li class="list-group-item">${totalNumberOfTags} <@common.pluralize word="Tag" unitCount=totalNumberOfTags/> in<br>
+                    ${totalNumberOfPassed} passed <@common.status status="passed"/>
+                    <br>
+                    ${totalNumberOfFailed} failed <@common.status status="failed"/>
+                    <br>
+                    ${totalNumberOfSkipped} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>

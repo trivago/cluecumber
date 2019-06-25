@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
-import com.trivago.cluecumber.constants.Charts;
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -43,13 +43,16 @@ import java.util.stream.IntStream;
 
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
+    private final ChartConfiguration chartConfiguration;
     private PropertyManager propertyManager;
 
     @Inject
     public ScenarioDetailsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
+            final ChartConfiguration chartConfiguration,
             final PropertyManager propertyManager) {
         super(chartJsonConverter);
+        this.chartConfiguration = chartConfiguration;
         this.propertyManager = propertyManager;
     }
 
@@ -93,7 +96,20 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
             dataset.setData(dataList);
             dataset.setLabel(status.getStatusString());
             dataset.setStack("complete");
-            dataset.setBackgroundColor(new ArrayList<>(Collections.nCopies(dataList.size(), Charts.Color.getChartColorStringByStatus(status))));
+
+            String statusColorString;
+            switch (status) {
+                case FAILED:
+                    statusColorString = chartConfiguration.getFailedColorRgbaString();
+                    break;
+                case SKIPPED:
+                    statusColorString = chartConfiguration.getSkippedColorRgbaString();
+                    break;
+                default:
+                    statusColorString = chartConfiguration.getPassedColorRgbaString();
+            }
+
+            dataset.setBackgroundColor(new ArrayList<>(Collections.nCopies(dataList.size(), statusColorString)));
             datasets.add(dataset);
         }
 
@@ -129,7 +145,7 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         options.setScales(scales);
         chart.setOptions(options);
 
-        chart.setType(Charts.Type.bar);
+        chart.setType(ChartConfiguration.Type.bar);
 
         scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

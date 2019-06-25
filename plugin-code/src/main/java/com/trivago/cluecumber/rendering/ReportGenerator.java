@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,65 +18,69 @@ package com.trivago.cluecumber.rendering;
 
 import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.exceptions.filesystem.PathCreationException;
+import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
+import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
+import com.trivago.cluecumber.rendering.pages.visitors.*;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.ArrayList;
 import java.util.List;
 
 @Singleton
 public class ReportGenerator {
-
+    private final FileIO fileIO;
+    private final TemplateEngine templateEngine;
     private final PropertyManager propertyManager;
     private final FileSystemManager fileSystemManager;
 
-    private List<PageVisitor> visitors = new ArrayList<>();
+    private CustomCssRenderer customCssRenderer;
+    private List<PageVisitor> visitors;
 
     @Inject
-    public ReportGenerator(
+    ReportGenerator(
+            final FileIO fileIO,
+            final TemplateEngine templateEngine,
             final PropertyManager propertyManager,
             final FileSystemManager fileSystemManager,
-            final ScenarioVisitor scenarioVisitor,
-            final FeatureVisitor featureVisitor,
-            final TagVisitor tagVisitor,
-            final StepVisitor stepVisitor
+            final CustomCssRenderer customCssRenderer,
+            final VisitorDirectory visitorDirectory
     ) {
+        this.fileIO = fileIO;
+        this.templateEngine = templateEngine;
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
+        this.customCssRenderer = customCssRenderer;
 
-        visitors.add(scenarioVisitor);
-        visitors.add(featureVisitor);
-        visitors.add(tagVisitor);
-        visitors.add(stepVisitor);
+        visitors = visitorDirectory.getVisitors();
     }
 
     /**
      * Generate the full report.
+     *
      * @param allScenariosPageCollection {{@link AllScenariosPageCollection}.
      * @throws CluecumberPluginException In case of error.
      */
     public void generateReport(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
-        copyReportAssets();
+        String reportDirectory = propertyManager.getGeneratedHtmlReportDirectory();
+        createDirectories(reportDirectory);
+        copyStaticReportAssets(reportDirectory);
+        copyCustomCss(reportDirectory);
         for (PageVisitor visitor : visitors) {
             allScenariosPageCollection.accept(visitor);
         }
     }
 
     /**
-     * Copy all needed report assets to the specified target directory.
+     * Create all needed sub directories in the specified target directory.
      *
-     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     * @throws PathCreationException The {@link PathCreationException}.
      */
-    private void copyReportAssets() throws CluecumberPluginException {
-        String reportDirectory = propertyManager.getGeneratedHtmlReportDirectory();
+    private void createDirectories(final String reportDirectory) throws PathCreationException {
         fileSystemManager.createDirectory(reportDirectory);
         fileSystemManager.createDirectory(
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
@@ -84,7 +88,34 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.TAG_SCENARIO_PAGE_PATH);
         fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.STEP_SCENARIO_PAGE_PATH);
+    }
 
+    /**
+     * Render and copy custom css assets to the specified target directory.
+     *
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void copyCustomCss(final String reportDirectory) throws CluecumberPluginException {
+        // Either use the specified custom CSS file or the empty cluecumber-additional.css file that comes with Cluecumber
+        String customCss = propertyManager.getCustomCssFile();
+        if (customCss != null && !customCss.isEmpty()) {
+            fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber-additional.css");
+        } else {
+            copyFileFromJarToReportDirectory("/css/cluecumber-additional.css");
+        }
+
+        // Render the custom-css.ftl and copy it to the css directory
+        fileIO.writeContentToFile(customCssRenderer.getRenderedCustomCssContent(
+                templateEngine.getTemplate(TemplateEngine.Template.CUSTOM_CSS)
+        ), reportDirectory + "/css/cluecumber-custom.css");
+    }
+
+    /**
+     * Copy all needed static report assets to the specified target directory.
+     *
+     * @throws CluecumberPluginException The {@link CluecumberPluginException}.
+     */
+    private void copyStaticReportAssets(final String reportDirectory) throws CluecumberPluginException {
         // Copy CSS resources
         fileSystemManager.createDirectory(reportDirectory + "/css");
         copyFileFromJarToReportDirectory("/css/bootstrap.min.css");
@@ -92,14 +123,6 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/css/datatables.min.css");
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
         copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
-
-        // Either use the custom CSS or the dummy CSS files that comes with Cluecumber
-        String customCss = propertyManager.getCustomCssFile();
-        if (customCss != null && !customCss.isEmpty()) {
-            fileSystemManager.copyResource(customCss, reportDirectory + "/css/cluecumber_custom.css");
-        } else {
-            copyFileFromJarToReportDirectory("/css/cluecumber_custom.css");
-        }
 
         // Copy webfont resources
         fileSystemManager.createDirectory(reportDirectory + "/font");

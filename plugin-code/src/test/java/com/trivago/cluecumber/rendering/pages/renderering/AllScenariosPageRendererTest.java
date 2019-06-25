@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
+import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Match;
@@ -31,20 +32,21 @@ public class AllScenariosPageRendererTest {
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         propertyManager = mock(PropertyManager.class);
-        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, propertyManager);
+        ChartConfiguration chartConfiguration = new ChartConfiguration(propertyManager);
+        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
     }
 
     @Test
     public void testContentRendering() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection, template);
     }
 
     @Test
     public void getRenderedContentParametersTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key", "value");
         when(propertyManager.getCustomParameters()).thenReturn(customParameters);
@@ -54,7 +56,7 @@ public class AllScenariosPageRendererTest {
     @Test
     public void getRenderedContentByTagFilterTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Tag tag = new Tag();
         tag.setName("test");
         Report report = new Report();
@@ -74,7 +76,7 @@ public class AllScenariosPageRendererTest {
     @Test
     public void getRenderedContentByStepFilterTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
 
         Step step = new Step();
         step.setName("test");
@@ -95,7 +97,7 @@ public class AllScenariosPageRendererTest {
     @Test
     public void getRenderedContentByFeatureFilterTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Report report = new Report();
         report.setFeatureIndex(12);
         Report[] reportList = new Report[]{report};

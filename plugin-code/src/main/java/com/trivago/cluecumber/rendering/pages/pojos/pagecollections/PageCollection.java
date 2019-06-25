@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,14 @@ import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
 
 public class PageCollection implements Cloneable {
     private final ReportDetails reportDetails;
+    private final String pageTitle;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
 
-    PageCollection(String pageName) {
-        this.reportDetails = new ReportDetails(pageName);
+    PageCollection(final String pageTitle) {
+        this.reportDetails = new ReportDetails();
+        this.pageTitle = pageTitle;
     }
 
     public ReportDetails getReportDetails() {
@@ -54,5 +56,9 @@ public class PageCollection implements Cloneable {
 
     public void setExpandDocStrings(final boolean expandDocStrings) {
         this.expandDocStrings = expandDocStrings;
+    }
+
+    public String getPageTitle() {
+        return pageTitle;
     }
 }

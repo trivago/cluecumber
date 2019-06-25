@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,15 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
-import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
 import com.trivago.cluecumber.rendering.pages.visitors.Visitable;
 
@@ -42,8 +41,8 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     private Feature featureFilter;
     private Step stepFilter;
 
-    public AllScenariosPageCollection() {
-        super(PluginSettings.SCENARIO_SUMMARY_PAGE_NAME);
+    public AllScenariosPageCollection(final String pageTitle) {
+        super(pageTitle);
     }
 
     public List<Report> getReports() {
@@ -102,11 +101,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     long getTotalDuration() {
-        long totalDurationNanoseconds = 0;
-        for (Report report : reports) {
-            totalDurationNanoseconds += report.getTotalDuration();
-        }
-        return totalDurationNanoseconds;
+        return reports.stream().mapToLong(Report::getTotalDuration).sum();
     }
 
     public String getTotalDurationString() {

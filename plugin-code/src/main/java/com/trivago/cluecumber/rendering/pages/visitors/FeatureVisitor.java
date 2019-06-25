@@ -44,7 +44,7 @@ public class FeatureVisitor implements PageVisitor {
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
         AllFeaturesPageCollection allFeaturesPageCollection =
-                new AllFeaturesPageCollection(allScenariosPageCollection.getReports());
+                new AllFeaturesPageCollection(allScenariosPageCollection.getReports(), propertyManager.getCustomPageTitle());
 
         // All features summary page
         fileIO.writeContentToFile(

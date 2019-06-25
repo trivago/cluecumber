@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,6 +24,5 @@ frame-src * data: blob: ;
 style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="${reportDetails.generatorName} - ${reportDetails.pageName}">
+<meta name="description" content="${pageTitle}">
 <meta name="author" content="${reportDetails.generatorName}">
-<title>${reportDetails.pageName} - ${reportDetails.date}</title>

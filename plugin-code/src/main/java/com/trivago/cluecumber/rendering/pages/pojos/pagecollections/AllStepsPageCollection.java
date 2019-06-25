@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
@@ -32,8 +30,8 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
     private Map<Step, ResultCount> stepResultCounts = new HashMap<>();
     private Map<Step, Times> stepTimes = new HashMap<>();
 
-    public AllStepsPageCollection(List<Report> reports) {
-        super(PluginSettings.STEP_SUMMARY_PAGE_NAME);
+    public AllStepsPageCollection(List<Report> reports, final String pageTitle) {
+        super(pageTitle);
         calculateStepResultCounts(reports);
     }
 
@@ -81,21 +79,19 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
      */
     private void calculateStepResultCounts(final List<Report> reports) {
         if (reports == null) return;
-        for (Report report : reports) {
-            for (Element element : report.getElements()) {
-                int scenarioIndex = element.getScenarioIndex();
-                for (Step step : element.getSteps()) {
-                    ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
-                    updateResultCount(stepResultCount, step.getStatus());
-                    stepResultCounts.put(step, stepResultCount);
-                    addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
-                    Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
-                    if (!step.isSkipped()) {
-                        stepTimes.addTime(step.getResult().getDuration(), scenarioIndex);
-                    }
-                    this.stepTimes.put(step, stepTimes);
+        reports.forEach(report -> report.getElements().forEach(element -> {
+            int scenarioIndex = element.getScenarioIndex();
+            element.getSteps().forEach(step -> {
+                ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
+                updateResultCount(stepResultCount, step.getStatus());
+                stepResultCounts.put(step, stepResultCount);
+                addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
+                Times stepTimes = this.stepTimes.getOrDefault(step, new Times());
+                if (!step.isSkipped()) {
+                    stepTimes.addTime(step.getResult().getDuration(), scenarioIndex);
                 }
-            }
-        }
+                this.stepTimes.put(step, stepTimes);
+            });
+        }));
     }
 }

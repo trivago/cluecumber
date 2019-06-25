@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,8 @@ public class TemplateEngine {
         SCENARIO_SEQUENCE("scenario-sequence"),
         ALL_STEPS("step-summary"),
         ALL_TAGS("tag-summary"),
-        SCENARIO_DETAILS("scenario-detail");
+        SCENARIO_DETAILS("scenario-detail"),
+        CUSTOM_CSS("custom-css");
 
         private String fileName;
 

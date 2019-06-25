@@ -22,14 +22,14 @@ public class AllStepsPageCollectionTest {
     @Test
     public void getEmptyStepStatsTest() {
         List<Report> reports = new ArrayList<>();
-        allStepsPageCollection = new AllStepsPageCollection(reports);
+        allStepsPageCollection = new AllStepsPageCollection(reports, "");
         Map<Step, ResultCount> tagStats = allStepsPageCollection.getStepResultCounts();
         assertThat(tagStats.size(), is(0));
     }
 
     @Test
     public void getStepStatsTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Map<Step, ResultCount> stepStats = allStepsPageCollection.getStepResultCounts();
         assertThat(stepStats.size(), is(2));
 
@@ -58,7 +58,7 @@ public class AllStepsPageCollectionTest {
 
     @Test
     public void getStepResultsTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         assertThat(allStepsPageCollection.getTotalNumberOfSteps(), is(2));
         assertThat(allStepsPageCollection.getTotalNumberOfFailed(), is(1));
         assertThat(allStepsPageCollection.getTotalNumberOfPassed(), is(1));
@@ -67,47 +67,47 @@ public class AllStepsPageCollectionTest {
 
     @Test
     public void getTotalNumberOfStepScenariosTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         assertThat(allStepsPageCollection.getTotalNumberOfScenarios(), is(3));
     }
 
     @Test
     public void getTotalNumberOfStepsTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         assertThat(allStepsPageCollection.getTotalNumberOfSteps(), is(2));
     }
 
     @Test
     public void getMinimumTimeFromStepTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Step step  = allStepsPageCollection.getSteps().iterator().next();
         assertThat(allStepsPageCollection.getMinimumTimeFromStep(step), is("0m 00s 000ms"));
     }
 
     @Test
     public void getMinimumTimeScenarioIndexFromStepTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Step step  = allStepsPageCollection.getSteps().iterator().next();
         assertThat(allStepsPageCollection.getMaximumTimeScenarioIndexFromStep(step), is(0));
     }
 
     @Test
     public void getMaximumTimeFromStepTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Step step  = allStepsPageCollection.getSteps().iterator().next();
         assertThat(allStepsPageCollection.getMaximumTimeFromStep(step), is("0m 00s 000ms"));
     }
 
     @Test
     public void getMaximumTimeScenarioIndexFromStepTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Step step  = allStepsPageCollection.getSteps().iterator().next();
         assertThat(allStepsPageCollection.getMinimumTimeScenarioIndexFromStep(step), is(0));
     }
 
     @Test
     public void getAverageTimeFromStepTest() {
-        allStepsPageCollection = new AllStepsPageCollection(getTestReports());
+        allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Step step  = allStepsPageCollection.getSteps().iterator().next();
         assertThat(allStepsPageCollection.getAverageTimeFromStep(step), is("0m 00s 000ms"));
     }

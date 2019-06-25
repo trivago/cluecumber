@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,23 +26,33 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Singleton
 public class PropertyManager {
 
+    private static final String COLOR_PATTERN = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
+
     private final CluecumberLogger logger;
-    private FileIO fileIO;
-    private PropertiesFileLoader propertiesFileLoader;
+    private final FileIO fileIO;
+    private final PropertiesFileLoader propertiesFileLoader;
 
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
-    private Map<String, String> customParameters = new LinkedHashMap<>();
+
     private boolean failScenariosOnPendingOrUndefinedSteps;
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
+
+    private Map<String, String> customParameters = new LinkedHashMap<>();
     private String customCssFile;
     private String customParametersFile;
+
+    private String customStatusColorPassed = "#28a745";
+    private String customStatusColorFailed = "#dc3545";
+    private String customStatusColorSkipped = "#ffc107";
+    private String customPageTitle = "Cluecumber Report";
 
     @Inject
     public PropertyManager(
@@ -149,6 +159,46 @@ public class PropertyManager {
         }
     }
 
+    public String getCustomStatusColorPassed() {
+        return this.customStatusColorPassed;
+    }
+
+    public void setCustomStatusColorPassed(final String customStatusColorPassed) throws WrongOrMissingPropertyException {
+        if (!isSet(customStatusColorPassed)) return;
+        checkHexColorValidity(customStatusColorPassed, "customStatusColorPassed");
+        this.customStatusColorPassed = customStatusColorPassed;
+    }
+
+    public String getCustomStatusColorFailed() {
+        return this.customStatusColorFailed;
+    }
+
+    public void setCustomStatusColorFailed(final String customStatusColorFailed) throws WrongOrMissingPropertyException {
+        if (!isSet(customStatusColorFailed)) return;
+        checkHexColorValidity(customStatusColorFailed, "customStatusColorFailed");
+        this.customStatusColorFailed = customStatusColorFailed;
+    }
+
+    public String getCustomStatusColorSkipped() {
+        return this.customStatusColorSkipped;
+    }
+
+    public void setCustomStatusColorSkipped(final String customStatusColorSkipped) throws WrongOrMissingPropertyException {
+        if (!isSet(customStatusColorSkipped)) return;
+        checkHexColorValidity(customStatusColorSkipped, "customStatusColorSkipped");
+        this.customStatusColorSkipped = customStatusColorSkipped;
+    }
+
+    public String getCustomPageTitle() {
+        return this.customPageTitle;
+    }
+
+    public void setCustomPageTitle(final String customPageTitle) {
+        if (isSet(customPageTitle)) {
+            this.customPageTitle = customPageTitle;
+        }
+    }
+
     public void logProperties() {
         logger.info("- source JSON report directory     : " + sourceJsonReportDirectory);
         logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory);
@@ -175,15 +225,25 @@ public class PropertyManager {
         logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks);
         logger.info("- expand step hooks                : " + expandStepHooks);
         logger.info("- expand doc strings               : " + expandDocStrings);
+        logger.info("- page title                       : " + customPageTitle);
 
         if (isSet(customCssFile)) {
             logger.info("- custom CSS file                  : " + customCssFile);
         }
+
+        logger.info("- colors (passed, failed, skipped) : " +
+                customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped);
 
         logger.logSeparator();
     }
 
     private boolean isSet(final String string) {
         return string != null && !string.trim().isEmpty();
+    }
+
+    private void checkHexColorValidity(String color, String colorPropertyName) throws WrongOrMissingPropertyException {
+        if (!Pattern.compile(COLOR_PATTERN).matcher(color).matches()) {
+            throw new WrongOrMissingPropertyException(colorPropertyName);
+        }
     }
 }

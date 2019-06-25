@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -55,7 +56,7 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(6)).info(anyString());
+        verify(logger, times(8)).info(anyString());
     }
 
     @Test
@@ -135,11 +136,45 @@ public class PropertyManagerTest {
         assertThat(propertyManager.getCustomCssFile(), is(customCss));
     }
 
+    @Test
+    public void customCssNotSetTest() throws MissingFileException {
+        String customCss = null;
+        propertyManager.setCustomCssFile(customCss);
+        assertThat(propertyManager.getCustomCssFile(), is(nullValue()));
+    }
+
     @Test(expected = MissingFileException.class)
     public void customCssMissingFileTest() throws MissingFileException {
         String customCss = "MyCss";
         when(fileIO.isExistingFile(customCss)).thenReturn(false);
         propertyManager.setCustomCssFile(customCss);
+    }
+
+    @Test
+    public void customPageTitleTest() throws MissingFileException {
+        String customPageTitle = "Custom Title";
+        propertyManager.setCustomPageTitle(customPageTitle);
+        assertThat(propertyManager.getCustomPageTitle(), is(customPageTitle));
+    }
+
+    @Test
+    public void customPageTitleNotSetTest() {
+        assertThat(propertyManager.getCustomPageTitle(), is("Cluecumber Report"));
+    }
+
+    @Test
+    public void customColorsTest() throws WrongOrMissingPropertyException {
+        assertThat(propertyManager.getCustomStatusColorPassed(), is("#28a745"));
+        assertThat(propertyManager.getCustomStatusColorFailed(), is("#dc3545"));
+        assertThat(propertyManager.getCustomStatusColorSkipped(), is("#ffc107"));
+
+        propertyManager.setCustomStatusColorPassed("#aaaaaa");
+        propertyManager.setCustomStatusColorFailed("#bbbbbb");
+        propertyManager.setCustomStatusColorSkipped("#cccccc");
+
+        assertThat(propertyManager.getCustomStatusColorPassed(), is("#aaaaaa"));
+        assertThat(propertyManager.getCustomStatusColorFailed(), is("#bbbbbb"));
+        assertThat(propertyManager.getCustomStatusColorSkipped(), is("#cccccc"));
     }
 
     @Test
@@ -153,6 +188,6 @@ public class PropertyManagerTest {
         propertyManager.setCustomCssFile("test");
 
         propertyManager.logProperties();
-        verify(logger, times(9)).info(anyString());
+        verify(logger, times(11)).info(anyString());
     }
 }

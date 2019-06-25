@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,8 @@ import java.util.Date;
 public class ReportDetails {
     private String chartJson;
     private final String date;
-    private final String pageName;
 
-    public ReportDetails(final String pageName) {
-        this.pageName = pageName;
+    public ReportDetails() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         this.date = dateFormat.format(date);
@@ -50,9 +48,5 @@ public class ReportDetails {
     public String getGeneratorName() {
         return String.format("%s version %s",
                 PluginSettings.NAME, RenderingUtils.getPluginVersion());
-    }
-
-    public String getPageName() {
-        return pageName;
     }
 }

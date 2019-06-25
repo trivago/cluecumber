@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,12 +32,12 @@ public class CustomParameter {
     }
 
     public String getValue() {
-        return value != null ? value : "";
+        return value != null ? value.trim() : "";
     }
 
     public boolean isUrl() {
         try {
-            new URL(value);
+            new URL(getValue());
             return true;
         } catch (Exception e) {
             return false;

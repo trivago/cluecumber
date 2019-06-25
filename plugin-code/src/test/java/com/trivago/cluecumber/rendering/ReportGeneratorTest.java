@@ -8,10 +8,9 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertiesFileLoader;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
-import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
+import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
+import com.trivago.cluecumber.rendering.pages.visitors.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,9 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class ReportGeneratorTest {
 
@@ -32,26 +29,37 @@ public class ReportGeneratorTest {
     public void setup() {
         fileSystemManager = mock(FileSystemManager.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
-        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
         FileIO fileIO = mock(FileIO.class);
+        TemplateEngine templateEngine = mock(TemplateEngine.class);
+        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
         PropertyManager propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
+        CustomCssRenderer customCssRenderer = mock(CustomCssRenderer.class);
+
         ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
         TagVisitor tagVisitor = mock(TagVisitor.class);
         StepVisitor stepVisitor = mock(StepVisitor.class);
+
+        VisitorDirectory visitorDirectory = mock(VisitorDirectory.class);
+        List<PageVisitor> visitors = new ArrayList<>();
+        visitors.add(scenarioVisitor);
+        visitors.add(featureVisitor);
+        visitors.add(tagVisitor);
+        visitors.add(stepVisitor);
+        when(visitorDirectory.getVisitors()).thenReturn(visitors);
+
         reportGenerator = new ReportGenerator(
+                fileIO,
+                templateEngine,
                 propertyManager,
                 fileSystemManager,
-                scenarioVisitor,
-                featureVisitor,
-                tagVisitor,
-                stepVisitor
-        );
+                customCssRenderer,
+                visitorDirectory);
     }
 
     @Test
     public void fileOperationsTest() throws Exception {
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
 
         Report report1 = new Report();
         List<Element> elements1 = new ArrayList<>();

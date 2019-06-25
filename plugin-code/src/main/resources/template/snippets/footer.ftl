@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<footer class="footer navbar-dark bg-dark">
+<footer class="footer navbar-dark">
     <div class="container-fluid">
         <span>${reportDetails.generatorName} - Report generated on ${reportDetails.date}.</span>
     </div>

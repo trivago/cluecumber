@@ -7,25 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.1.0] - UNRELEASED
+
+### Added
+
+* Fully customizable passed, failed and skipped colors through new properties (#172)
+* Proper pluralization of all words within summaries and headers
+* Ability to set a custom report title (#176)
+* Support for custom parameters with hidden keys (#183)
+
+### Changed
+
+* Better layout with larger graphs for tag, feature and step summary pages (#180)
+* Moved timing information to a dedicated box in each report page
+* Refined navigation (#177)
+* Increased max report width
+
 ## [2.0.1] - 2019-06-15
 
 ### Fixed
+
 * Error when `customParametersFile` property was not set (#171)
 * Wrong log format for `customCssFile` property
 
 ### Added
+
 * Better error messages for missing files
 
 ## [2.0.0] - 2019-06-14
 
 ### Added
+
 * Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed by gazler22)
 
 ### Fixed
+
 * Custom parameters are now displayed in the order of definition (#157)
 * Better logging and error handling
 
 ### Changed
+
 * Major internal architecture change to ease future extension
 
 ## [1.11.0] - 2019-05-21
@@ -479,6 +500,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
 [2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
 [2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
 [1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
