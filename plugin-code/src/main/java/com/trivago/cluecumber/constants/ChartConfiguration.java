@@ -51,9 +51,9 @@ public class ChartConfiguration {
             hex = hex.substring(1);
         }
         final int[] rgbEntries = new int[3];
-        for (int i = 0; i < 3; i++) {
-            rgbEntries[i] = Integer.parseInt(hex.substring(i * 2, i * 2 + 2), 16);
-        }
+        rgbEntries[0] = Integer.parseInt(hex.substring(0, 2), 16);
+        rgbEntries[1] = Integer.parseInt(hex.substring(2, 4), 16);
+        rgbEntries[2] = Integer.parseInt(hex.substring(4, 6), 16);
         return String.format("rgba(%d, %d, %d, 1.000)", rgbEntries[0], rgbEntries[1], rgbEntries[2]);
     }
 }

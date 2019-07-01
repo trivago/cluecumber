@@ -38,6 +38,7 @@ import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Singleton
 public class AllScenariosPageRenderer extends PageRenderer {
@@ -73,15 +74,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setTagFilter(tag);
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            List<Element> elements = new ArrayList<>();
-            for (Element element : report.getElements()) {
-                if (element.getTags().contains(tag)) {
-                    elements.add(element);
-                }
-            }
+        allScenariosPageCollectionClone.getReports().forEach(report -> {
+            List<Element> elements = report.getElements().stream().filter(element -> element.getTags().contains(tag)).collect(Collectors.toList());
             report.setElements(elements);
-        }
+        });
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -93,15 +89,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setStepFilter(step);
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            List<Element> elements = new ArrayList<>();
-            for (Element element : report.getElements()) {
-                if (element.getSteps().contains(step)) {
-                    elements.add(element);
-                }
-            }
+        allScenariosPageCollectionClone.getReports().forEach(report -> {
+            List<Element> elements = report.getElements().stream().filter(element -> element.getSteps().contains(step)).collect(Collectors.toList());
             report.setElements(elements);
-        }
+        });
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
@@ -113,13 +104,7 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setFeatureFilter(feature);
-        List<Report> reports = new ArrayList<>();
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            if (report.getFeatureIndex() == feature.getIndex()) {
-                reports.add(report);
-            }
-        }
-        Report[] reportArray = reports.toArray(new Report[0]);
+        Report[] reportArray = allScenariosPageCollectionClone.getReports().stream().filter(report -> report.getFeatureIndex() == feature.getIndex()).toArray(Report[]::new);
         allScenariosPageCollectionClone.clearReports();
         allScenariosPageCollectionClone.addReports(reportArray);
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
@@ -166,15 +151,14 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         // <customParameters> in the pom configuration section
         List<CustomParameter> customParameters = new ArrayList<>();
-        for (Map.Entry<String, String> stringStringEntry : customParameterMap.entrySet()) {
-            String value = stringStringEntry.getValue();
+        customParameterMap.forEach((key1, value) -> {
             if (value == null || value.trim().isEmpty()) {
-                continue;
+                return;
             }
-            String key = stringStringEntry.getKey().replace("_", " ");
+            String key = key1.replace("_", " ");
             CustomParameter customParameter = new CustomParameter(key, value);
             customParameters.add(customParameter);
-        }
+        });
 
         allScenariosPageCollection.setCustomParameters(customParameters);
     }

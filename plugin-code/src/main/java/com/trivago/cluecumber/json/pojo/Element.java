@@ -275,16 +275,9 @@ public class Element {
     }
 
     public long getTotalDuration() {
-        long totalDurationNanoseconds = 0;
-        for (ResultMatch beforeStep : before) {
-            totalDurationNanoseconds += beforeStep.getResult().getDuration();
-        }
-        for (Step step : steps) {
-            totalDurationNanoseconds += step.getTotalDuration();
-        }
-        for (ResultMatch afterStep : after) {
-            totalDurationNanoseconds += afterStep.getResult().getDuration();
-        }
+        long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
+        totalDurationNanoseconds += steps.stream().mapToLong(Step::getTotalDuration).sum();
+        totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
         return totalDurationNanoseconds;
     }
 
