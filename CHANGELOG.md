@@ -9,6 +9,10 @@ Back to [Readme](README.md).
 
 ## [2.1.1] - UNRELEASED
 
+### Added
+
+* Hide scenarios with matching status on the `Scenario Sequence` page when disabling a status in the diagram (#175)
+
 ### Fixed
 
 * Wrong wording in `All Tags` page

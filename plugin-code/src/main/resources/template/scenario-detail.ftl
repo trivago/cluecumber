@@ -84,7 +84,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <@page.card width="12" title="Before Hooks" subtitle="" classes="scenarioHook collapse">
                 <li class="list-group-item">
                     <#list element.before as before>
-                        <div class="row row_${before.consolidatedStatusString}">
+                        <div class="row row_${before.consolidatedStatusString} table-row-${before.consolidatedStatusString}">
                             <div class="col-1 text-left small">${before?counter}.</div>
                             <div class="col-8 text-left">
                                 <i>${before.glueMethodName}</i>
@@ -111,7 +111,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
                         <@scenario.stepHooks step.before />
 
-                        <div class="row row_${step.consolidatedStatusString}">
+                        <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
                             <div class="col-1 text-left small">${step?counter}.</div>
                             <div class="col-8 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
@@ -165,7 +165,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 <@page.card width="12" title="After Hooks" subtitle="" classes="">
                     <li class="list-group-item">
                         <#list element.after as after>
-                            <div class="row row_${after.consolidatedStatusString}">
+                            <div class="row row_${after.consolidatedStatusString} table-row-${after.consolidatedStatusString}">
                                 <div class="col-1 text-left small">${after?counter}.</div>
                                 <div class="col-8 text-left">
                                     <i>${after.glueMethodName}</i>

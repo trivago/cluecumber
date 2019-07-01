@@ -30,7 +30,8 @@ limitations under the License.
             "oLanguage": {
                 "sSearch": "Search:"
             },
-            "pageLength": 25
+            "pageLength": 25,
+            "responsive": true
         });
 
         $('.collapse').on('shown.bs.collapse', function (e) {
@@ -62,10 +63,14 @@ limitations under the License.
             original.call(this, evt, label);
 
             var card = $("#card_" + label.text);
-            label.hidden ? card.show() : card.hide();
-
-            var row = $(".row_" + label.text);
-            label.hidden ? row.show() : row.hide();
+            var row = $(".table-row-" + label.text);
+            if (label.hidden){
+                card.show();
+                row.show();
+            } else {
+                card.hide();
+                row.hide();
+            }
         };
         </#if>
 
