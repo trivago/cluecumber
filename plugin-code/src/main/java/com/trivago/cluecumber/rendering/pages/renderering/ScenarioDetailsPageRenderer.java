@@ -22,8 +22,8 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.ResultMatch;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.charts.ChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
+import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Data;
@@ -70,8 +70,8 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {
-        ChartBuilder chartBuilder = new ChartBuilder(ChartConfiguration.Type.bar, chartConfiguration);
-        Chart chart = chartBuilder.build();
+        StackedBarChartBuilder stackedBarChartBuilder = new StackedBarChartBuilder(chartConfiguration);
+        Chart chart = stackedBarChartBuilder.build();
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();

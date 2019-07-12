@@ -10,19 +10,17 @@ import com.trivago.cluecumber.rendering.pages.charts.pojos.Options;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChartBuilder {
-    private final ChartConfiguration.Type chartType;
+public class StackedBarChartBuilder {
     private final ChartConfiguration chartConfiguration;
     private List<ValueSet> valueSets;
     private List<String> labels;
 
-    public ChartBuilder(final ChartConfiguration.Type chartType, final ChartConfiguration chartConfiguration) {
-        this.chartType = chartType;
+    public StackedBarChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
         valueSets = new ArrayList<>();
     }
 
-    public ChartBuilder useStandardLabels() {
+    public StackedBarChartBuilder useStandardLabels() {
         List<String> labels = new ArrayList<>();
         labels.add(Status.PASSED.getStatusString());
         labels.add(Status.FAILED.getStatusString());
@@ -30,12 +28,12 @@ public class ChartBuilder {
         return setLabels(labels);
     }
 
-    public ChartBuilder setLabels(final List<String> labels) {
+    public StackedBarChartBuilder setLabels(final List<String> labels) {
         this.labels = labels;
         return this;
     }
 
-    public ChartBuilder addValue(final int value, final Status status) {
+    public StackedBarChartBuilder addValue(final int value, final Status status) {
         String color;
         switch (status) {
             case FAILED:
@@ -76,7 +74,7 @@ public class ChartBuilder {
         Chart chart = new Chart();
         chart.setData(data);
         chart.setOptions(new Options());
-        chart.setType(chartType);
+        chart.setType(ChartConfiguration.Type.bar);
         return chart;
     }
 

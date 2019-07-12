@@ -24,8 +24,8 @@ import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.charts.ChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
+import com.trivago.cluecumber.rendering.pages.charts.PieChartBuilder;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
@@ -119,7 +119,8 @@ public class AllScenariosPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {
-        allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(new ChartBuilder(ChartConfiguration.Type.pie, chartConfiguration)
+        allScenariosPageCollection.getReportDetails()
+                .setChartJson(convertChartToJson(new PieChartBuilder(chartConfiguration)
                         .addValue(allScenariosPageCollection.getTotalNumberOfPassedScenarios(), Status.PASSED)
                         .addValue(allScenariosPageCollection.getTotalNumberOfFailedScenarios(), Status.FAILED)
                         .addValue(allScenariosPageCollection.getTotalNumberOfSkippedScenarios(), Status.SKIPPED)

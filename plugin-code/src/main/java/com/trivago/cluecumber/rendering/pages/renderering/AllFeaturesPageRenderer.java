@@ -19,8 +19,8 @@ package com.trivago.cluecumber.rendering.pages.renderering;
 import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.rendering.pages.charts.ChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
+import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Data;
@@ -64,8 +64,8 @@ public class AllFeaturesPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final AllFeaturesPageCollection allFeaturesPageCollection) {
-        ChartBuilder chartBuilder = new ChartBuilder(ChartConfiguration.Type.bar, chartConfiguration);
-        Chart chart = chartBuilder.build();
+        StackedBarChartBuilder stackedBarChartBuilder = new StackedBarChartBuilder(chartConfiguration);
+        Chart chart = stackedBarChartBuilder.build();
 
         Data data = new Data();
         chart.setData(data);
