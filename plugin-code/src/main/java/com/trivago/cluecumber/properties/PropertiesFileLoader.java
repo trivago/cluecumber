@@ -8,7 +8,7 @@ import javax.inject.Singleton;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @Singleton
 public class PropertiesFileLoader {
@@ -21,7 +21,7 @@ public class PropertiesFileLoader {
     }
 
     LinkedHashMap<String, String> loadPropertiesMap(final String propertiesFilePath) throws CluecumberPluginException {
-        LinkedHashMap<String, String> propertiesMap = new LinkedHashMap<>();
+        LinkedHashMap<String, String> propertiesMap;
         String content = fileIO.readContentFromFile(propertiesFilePath);
         LinkedProperties properties = new LinkedProperties();
         try {
@@ -29,9 +29,7 @@ public class PropertiesFileLoader {
         } catch (IOException e) {
             throw new CluecumberPluginException("Could not parse properties file '" + "': " + e.getMessage());
         }
-        for (Map.Entry<Object, Object> propertyEntry : properties.entrySet()) {
-            propertiesMap.put((String) propertyEntry.getKey(), (String) propertyEntry.getValue());
-        }
+        propertiesMap = properties.entrySet().stream().collect(Collectors.toMap(propertyEntry -> (String) propertyEntry.getKey(), propertyEntry -> (String) propertyEntry.getValue(), (a, b) -> b, LinkedHashMap::new));
         return propertiesMap;
     }
 }

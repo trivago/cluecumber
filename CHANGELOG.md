@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.2.0] - UNRELEASED
+
+### Added
+
+* Hide scenarios with matching status on the `Scenario Sequence` page when disabling a status in the diagram (#175)
+
+### Fixed
+
+* Wrong wording in `All Tags` page
+
 ## [2.1.0] - 2019-06-25
 
 ### Added
@@ -21,7 +31,7 @@ Back to [Readme](README.md).
 * Better layout with larger graphs for tag, feature and step summary pages (#180)
 * Moved timing information to a dedicated box in each report page
 * Refined navigation (#177)
-* Increased maximum report width for larger screens
+* Increased max report width
 
 ## [2.0.1] - 2019-06-15
 
@@ -500,6 +510,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.1
 [2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
 [2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
 [2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0

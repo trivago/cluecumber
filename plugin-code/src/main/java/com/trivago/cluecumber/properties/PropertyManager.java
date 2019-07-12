@@ -213,10 +213,8 @@ public class PropertyManager {
             if (!customParametersFileExists) {
                 logger.logSeparator();
             }
-            for (Map.Entry<String, String> entry : customParameters.entrySet()) {
-                logger.info("- custom parameter                 : " +
-                        entry.getKey() + " -> " + entry.getValue());
-            }
+            customParameters.entrySet().stream().map(entry -> "- custom parameter                 : " +
+                    entry.getKey() + " -> " + entry.getValue()).forEach(logger::info);
         }
 
         logger.logSeparator();

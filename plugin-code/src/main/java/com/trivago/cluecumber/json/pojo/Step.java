@@ -116,15 +116,9 @@ public class Step extends ResultMatch {
     }
 
     public long getTotalDuration() {
-        long totalDurationNanoseconds = 0;
-
-        for (ResultMatch beforeStep : before) {
-            totalDurationNanoseconds += beforeStep.getResult().getDuration();
-        }
+        long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
         totalDurationNanoseconds += getResult().getDuration();
-        for (ResultMatch afterStep : after) {
-            totalDurationNanoseconds += afterStep.getResult().getDuration();
-        }
+        totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
         return totalDurationNanoseconds;
     }
 

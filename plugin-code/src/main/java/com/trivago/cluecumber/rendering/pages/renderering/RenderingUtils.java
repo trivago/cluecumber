@@ -22,6 +22,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
@@ -72,7 +73,7 @@ public class RenderingUtils {
      */
     public static String escapeHTML(final String sourceString) {
         StringBuilder stringBuilder = new StringBuilder(Math.max(16, sourceString.length()));
-        for (int i = 0; i < sourceString.length(); i++) {
+        IntStream.range(0, sourceString.length()).forEachOrdered(i -> {
             char character = sourceString.charAt(i);
             if (character > 127 || character == '"' || character == '<' || character == '>' || character == '&') {
                 stringBuilder.append("&#");
@@ -81,7 +82,7 @@ public class RenderingUtils {
             } else {
                 stringBuilder.append(character);
             }
-        }
+        });
         return stringBuilder.toString();
     }
 

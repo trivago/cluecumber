@@ -88,7 +88,7 @@ limitations under the License.
 
                                 <#list report.elements as element>
                                     <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                        <tr>
+                                        <tr class="table-row-${element.status.statusString}">
                                             <#if allRequested>
                                                 <td class="text-right">${element.scenarioIndex}</td>
                                             </#if>
@@ -172,7 +172,7 @@ limitations under the License.
 <#macro stepHooks hooks>
     <#list hooks as hook>
         <div class="stepHook collapse">
-            <div class="row row_${hook.consolidatedStatusString}">
+            <div class="row row_${hook.consolidatedStatusString} table-row-${hook.consolidatedStatusString}">
                 <div class="col-1"></div>
                 <div class="col-8 text-left">
                     <i>${hook.glueMethodName}</i>

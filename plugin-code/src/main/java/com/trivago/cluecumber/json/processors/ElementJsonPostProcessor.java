@@ -68,22 +68,16 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
      */
     private void processAttachments(final List<Step> steps, List<ResultMatch> afterHooks) {
         // Process step attachments
-        for (Step step : steps) {
+        steps.forEach(step -> {
             for (ResultMatch before : step.getBefore()) {
                 processEmbedding(before.getEmbeddings());
             }
-
             processEmbedding(step.getEmbeddings());
-            
-            for (ResultMatch after : step.getAfter()) {
-                processEmbedding(after.getEmbeddings());
-            }
-        }
+            step.getAfter().stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
+        });
 
         // Process after hook attachments (Cucumber 2)
-        for (ResultMatch afterHook : afterHooks) {
-            processEmbedding(afterHook.getEmbeddings());
-        }
+        afterHooks.stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
     }
 
    /**
@@ -92,11 +86,11 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
      * @param embeddings The {@link Embedding} list.
      */
     private void processEmbedding(final List<Embedding> embeddings) {
-        for (Embedding embedding : embeddings) {
-        	String filename = saveEmbeddingToFileAndGetFilename(embedding);
+        embeddings.forEach(embedding -> {
+            String filename = saveEmbeddingToFileAndGetFilename(embedding);
             embedding.setFilename(filename);
             attachmentIndex++;
-        }
+        });
     }
 
     /**
