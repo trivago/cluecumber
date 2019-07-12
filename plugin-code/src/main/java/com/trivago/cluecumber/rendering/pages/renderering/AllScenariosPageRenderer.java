@@ -24,10 +24,8 @@ import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
+import com.trivago.cluecumber.rendering.pages.charts.ChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Data;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Dataset;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
@@ -75,7 +73,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setTagFilter(tag);
         allScenariosPageCollectionClone.getReports().forEach(report -> {
-            List<Element> elements = report.getElements().stream().filter(element -> element.getTags().contains(tag)).collect(Collectors.toList());
+            List<Element> elements = report.getElements()
+                    .stream()
+                    .filter(element -> element.getTags().contains(tag))
+                    .collect(Collectors.toList());
             report.setElements(elements);
         });
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
@@ -90,7 +91,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setStepFilter(step);
         allScenariosPageCollectionClone.getReports().forEach(report -> {
-            List<Element> elements = report.getElements().stream().filter(element -> element.getSteps().contains(step)).collect(Collectors.toList());
+            List<Element> elements = report.getElements()
+                    .stream()
+                    .filter(element -> element.getSteps().contains(step))
+                    .collect(Collectors.toList());
             report.setElements(elements);
         });
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
@@ -104,7 +108,10 @@ public class AllScenariosPageRenderer extends PageRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setFeatureFilter(feature);
-        Report[] reportArray = allScenariosPageCollectionClone.getReports().stream().filter(report -> report.getFeatureIndex() == feature.getIndex()).toArray(Report[]::new);
+        Report[] reportArray = allScenariosPageCollectionClone.getReports()
+                .stream()
+                .filter(report -> report.getFeatureIndex() == feature.getIndex())
+                .toArray(Report[]::new);
         allScenariosPageCollectionClone.clearReports();
         allScenariosPageCollectionClone.addReports(reportArray);
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
@@ -112,35 +119,13 @@ public class AllScenariosPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {
-        Chart chart = new Chart();
-        Data data = new Data();
+        allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(new ChartBuilder(ChartConfiguration.Type.pie, chartConfiguration)
+                        .addValue(allScenariosPageCollection.getTotalNumberOfPassedScenarios(), Status.PASSED)
+                        .addValue(allScenariosPageCollection.getTotalNumberOfFailedScenarios(), Status.FAILED)
+                        .addValue(allScenariosPageCollection.getTotalNumberOfSkippedScenarios(), Status.SKIPPED)
+                        .useStandardLabels()
+                        .build()));
 
-        List<String> labels = new ArrayList<>();
-        labels.add(Status.PASSED.getStatusString());
-        labels.add(Status.FAILED.getStatusString());
-        labels.add(Status.SKIPPED.getStatusString());
-        data.setLabels(labels);
-
-        List<Dataset> datasets = new ArrayList<>();
-        Dataset dataset = new Dataset();
-        List<Integer> values = new ArrayList<>();
-        values.add(allScenariosPageCollection.getTotalNumberOfPassedScenarios());
-        values.add(allScenariosPageCollection.getTotalNumberOfFailedScenarios());
-        values.add(allScenariosPageCollection.getTotalNumberOfSkippedScenarios());
-        dataset.setData(values);
-        datasets.add(dataset);
-
-        List<String> backgroundColors = new ArrayList<>();
-        backgroundColors.add(chartConfiguration.getPassedColorRgbaString());
-        backgroundColors.add(chartConfiguration.getFailedColorRgbaString());
-        backgroundColors.add(chartConfiguration.getSkippedColorRgbaString());
-        dataset.setBackgroundColor(backgroundColors);
-        data.setDatasets(datasets);
-
-        chart.setData(data);
-        chart.setType(ChartConfiguration.Type.pie);
-
-        allScenariosPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }
 
     private void addCustomParametersToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {

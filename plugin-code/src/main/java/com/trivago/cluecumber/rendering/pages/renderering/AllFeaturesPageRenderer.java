@@ -19,6 +19,7 @@ package com.trivago.cluecumber.rendering.pages.renderering;
 import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.rendering.pages.charts.ChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
@@ -63,7 +64,9 @@ public class AllFeaturesPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final AllFeaturesPageCollection allFeaturesPageCollection) {
-        Chart chart = new Chart();
+        ChartBuilder chartBuilder = new ChartBuilder(ChartConfiguration.Type.bar, chartConfiguration);
+        Chart chart = chartBuilder.build();
+
         Data data = new Data();
         chart.setData(data);
 
@@ -91,14 +94,14 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         Dataset failedDataset = new Dataset();
         failedDataset.setLabel(Status.FAILED.getStatusString());
         failedDataset.setData(failed);
-        List<String> failedBG = new ArrayList<>(Collections.nCopies(passed.size(), chartConfiguration.getFailedColorRgbaString()));
+        List<String> failedBG = new ArrayList<>(Collections.nCopies(failed.size(), chartConfiguration.getFailedColorRgbaString()));
         failedDataset.setBackgroundColor(failedBG);
         datasets.add(failedDataset);
 
         Dataset skippedDataset = new Dataset();
         skippedDataset.setLabel(Status.SKIPPED.getStatusString());
         skippedDataset.setData(skipped);
-        List<String> skippedBG = new ArrayList<>(Collections.nCopies(passed.size(), chartConfiguration.getSkippedColorRgbaString()));
+        List<String> skippedBG = new ArrayList<>(Collections.nCopies(skipped.size(), chartConfiguration.getSkippedColorRgbaString()));
         skippedDataset.setBackgroundColor(skippedBG);
         datasets.add(skippedDataset);
 
@@ -140,8 +143,6 @@ public class AllFeaturesPageRenderer extends PageRenderer {
 
         options.setScales(scales);
         chart.setOptions(options);
-
-        chart.setType(ChartConfiguration.Type.bar);
 
         allFeaturesPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }

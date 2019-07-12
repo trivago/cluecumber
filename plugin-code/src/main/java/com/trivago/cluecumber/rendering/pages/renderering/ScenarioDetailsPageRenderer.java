@@ -22,6 +22,7 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.ResultMatch;
 import com.trivago.cluecumber.properties.PropertyManager;
+import com.trivago.cluecumber.rendering.pages.charts.ChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
@@ -69,14 +70,17 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {
-        Chart chart = new Chart();
+        ChartBuilder chartBuilder = new ChartBuilder(ChartConfiguration.Type.bar, chartConfiguration);
+        Chart chart = chartBuilder.build();
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
-        IntStream.rangeClosed(1, element.getBefore().size()).mapToObj(i -> "Before " + i).forEachOrdered(labels::add);
-        IntStream.rangeClosed(1, element.getSteps().size()).mapToObj(i -> "Step " + i).forEachOrdered(labels::add);
+        IntStream.rangeClosed(1, element.getBefore().size()).mapToObj(i -> "").forEachOrdered(labels::add);
+        IntStream.rangeClosed(1, element.getSteps().size()).mapToObj(i -> "" + i).forEachOrdered(labels::add);
         if (element.getAfter().size() > 0) {
-            IntStream.rangeClosed(element.getBefore().size(), element.getAfter().size()).mapToObj(i -> "After " + i).forEachOrdered(labels::add);
+            IntStream.rangeClosed(element.getBefore().size(), element.getAfter().size())
+                    .mapToObj(i -> "")
+                    .forEachOrdered(labels::add);
         }
 
         Data data = new Data();
@@ -144,8 +148,6 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
 
         options.setScales(scales);
         chart.setOptions(options);
-
-        chart.setType(ChartConfiguration.Type.bar);
 
         scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }
