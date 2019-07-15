@@ -79,6 +79,7 @@ public class ChartJsonConverterTest {
                 "        {\n" +
                 "          \"ticks\": {\n" +
                 "            \"min\": 0,\n" +
+                "            \"stepSize\": 0,\n" +
                 "            \"display\": true\n" +
                 "          },\n" +
                 "          \"stacked\": false,\n" +
@@ -93,6 +94,7 @@ public class ChartJsonConverterTest {
                 "        {\n" +
                 "          \"ticks\": {\n" +
                 "            \"min\": 0,\n" +
+                "            \"stepSize\": 0,\n" +
                 "            \"display\": true\n" +
                 "          },\n" +
                 "          \"stacked\": true,\n" +

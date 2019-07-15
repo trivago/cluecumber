@@ -42,8 +42,8 @@ limitations under the License.
                             <#case "step_summary">
                                 <a class="nav-link ${highlightClass}" href="pages/step-summary.html">All Steps</a>
                                 <#break>
-                            <#case "feature_summary ${highlightClass}">
-                                <a class="nav-link" href="pages/feature-summary.html">All Features</a>
+                            <#case "feature_summary">
+                                <a class="nav-link ${highlightClass}" href="pages/feature-summary.html">All Features</a>
                                 <#break>
                         </#switch>
                     </li>

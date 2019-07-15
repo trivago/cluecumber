@@ -124,7 +124,6 @@ public class AllScenariosPageRenderer extends PageRenderer {
                         .addValue(allScenariosPageCollection.getTotalNumberOfPassedScenarios(), Status.PASSED)
                         .addValue(allScenariosPageCollection.getTotalNumberOfFailedScenarios(), Status.FAILED)
                         .addValue(allScenariosPageCollection.getTotalNumberOfSkippedScenarios(), Status.SKIPPED)
-                        .useStandardLabels()
                         .build()));
 
     }

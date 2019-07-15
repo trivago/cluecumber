@@ -20,7 +20,6 @@ import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
-import com.trivago.cluecumber.json.pojo.ResultMatch;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
@@ -70,8 +69,6 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {
-        StackedBarChartBuilder stackedBarChartBuilder = new StackedBarChartBuilder(chartConfiguration);
-        Chart chart = stackedBarChartBuilder.build();
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
@@ -87,35 +84,25 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         data.setLabels(labels);
 
         List<Dataset> datasets = new ArrayList<>();
-        for (Status status : Status.BASIC_STATES) {
+        Status.BASIC_STATES.forEach(status -> {
             Dataset dataset = new Dataset();
             List<Integer> dataList = new ArrayList<>();
-            for (ResultMatch resultMatch : element.getAllResultMatches()) {
+            element.getAllResultMatches().forEach(resultMatch -> {
                 if (resultMatch.getConsolidatedStatus() == status) {
                     dataList.add((int) resultMatch.getResult().getDurationInMilliseconds());
                 } else {
                     dataList.add(0);
                 }
-            }
+            });
             dataset.setData(dataList);
             dataset.setLabel(status.getStatusString());
             dataset.setStack("complete");
-
-            String statusColorString;
-            switch (status) {
-                case FAILED:
-                    statusColorString = chartConfiguration.getFailedColorRgbaString();
-                    break;
-                case SKIPPED:
-                    statusColorString = chartConfiguration.getSkippedColorRgbaString();
-                    break;
-                default:
-                    statusColorString = chartConfiguration.getPassedColorRgbaString();
-            }
-
+            String statusColorString = chartConfiguration.getColorRgbaStringByStatus(status);
             dataset.setBackgroundColor(new ArrayList<>(Collections.nCopies(dataList.size(), statusColorString)));
             datasets.add(dataset);
-        }
+        });
+
+        Chart chart = new StackedBarChartBuilder(chartConfiguration).build();
 
         data.setDatasets(datasets);
         chart.setData(data);

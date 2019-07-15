@@ -16,6 +16,8 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Wrong wording in `All Tags` page
+* Wrong y axis scale labels in stacked bar charts
+* Missing `All Features` navigation link
 
 ## [2.1.0] - 2019-06-25
 

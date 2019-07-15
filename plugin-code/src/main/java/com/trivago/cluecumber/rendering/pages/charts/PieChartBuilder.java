@@ -13,39 +13,14 @@ import java.util.List;
 public class PieChartBuilder {
     private final ChartConfiguration chartConfiguration;
     private List<ValueSet> valueSets;
-    private List<String> labels;
 
     public PieChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
         valueSets = new ArrayList<>();
     }
 
-    public PieChartBuilder useStandardLabels() {
-        List<String> labels = new ArrayList<>();
-        labels.add(Status.PASSED.getStatusString());
-        labels.add(Status.FAILED.getStatusString());
-        labels.add(Status.SKIPPED.getStatusString());
-        return setLabels(labels);
-    }
-
-    public PieChartBuilder setLabels(final List<String> labels) {
-        this.labels = labels;
-        return this;
-    }
-
     public PieChartBuilder addValue(final int value, final Status status) {
-        String color;
-        switch (status) {
-            case FAILED:
-                color = chartConfiguration.getFailedColorRgbaString();
-                break;
-            case SKIPPED:
-                color = chartConfiguration.getSkippedColorRgbaString();
-                break;
-            default:
-                color = chartConfiguration.getPassedColorRgbaString();
-        }
-
+        String color = chartConfiguration.getColorRgbaStringByStatus(status);
         valueSets.add(new ValueSet(value, color));
         return this;
     }
@@ -65,6 +40,10 @@ public class PieChartBuilder {
         dataset.setData(values);
 
         Data data = new Data();
+        List<String> labels = new ArrayList<>();
+        labels.add(Status.PASSED.getStatusString());
+        labels.add(Status.FAILED.getStatusString());
+        labels.add(Status.SKIPPED.getStatusString());
         data.setLabels(labels);
 
         List<Dataset> datasets = new ArrayList<>();

@@ -21,6 +21,17 @@ public class ChartConfiguration {
         this.propertyManager = propertyManager;
     }
 
+    public String getColorRgbaStringByStatus(final Status status) {
+        switch (status) {
+            case FAILED:
+                return getFailedColorRgbaString();
+            case SKIPPED:
+                return getSkippedColorRgbaString();
+            default:
+                return getPassedColorRgbaString();
+        }
+    }
+
     public String getPassedColorRgbaString() {
         if (passedColorRgbaString == null) {
             passedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorPassed());

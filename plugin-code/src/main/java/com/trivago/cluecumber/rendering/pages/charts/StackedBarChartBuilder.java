@@ -2,30 +2,39 @@ package com.trivago.cluecumber.rendering.pages.charts;
 
 import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
+import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Data;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Dataset;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Options;
+import com.trivago.cluecumber.rendering.pages.charts.pojos.ScaleLabel;
+import com.trivago.cluecumber.rendering.pages.charts.pojos.Scales;
+import com.trivago.cluecumber.rendering.pages.charts.pojos.Ticks;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class StackedBarChartBuilder {
     private final ChartConfiguration chartConfiguration;
-    private List<ValueSet> valueSets;
     private List<String> labels;
+    private List<Dataset> datasets = new ArrayList<>();
+    private String xAxisLabel;
+    private String yAxisLabel;
 
     public StackedBarChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
-        valueSets = new ArrayList<>();
     }
 
-    public StackedBarChartBuilder useStandardLabels() {
-        List<String> labels = new ArrayList<>();
-        labels.add(Status.PASSED.getStatusString());
-        labels.add(Status.FAILED.getStatusString());
-        labels.add(Status.SKIPPED.getStatusString());
-        return setLabels(labels);
+    public StackedBarChartBuilder addValues(final List<Integer> values, final Status status) {
+        String color = chartConfiguration.getColorRgbaStringByStatus(status);
+        Dataset dataset = new Dataset();
+        dataset.setLabel(status.getStatusString());
+        dataset.setData(values);
+        List<String> colors = new ArrayList<>(Collections.nCopies(values.size(), color));
+        dataset.setBackgroundColor(colors);
+        datasets.add(dataset);
+        return this;
     }
 
     public StackedBarChartBuilder setLabels(final List<String> labels) {
@@ -33,58 +42,56 @@ public class StackedBarChartBuilder {
         return this;
     }
 
-    public StackedBarChartBuilder addValue(final int value, final Status status) {
-        String color;
-        switch (status) {
-            case FAILED:
-                color = chartConfiguration.getFailedColorRgbaString();
-                break;
-            case SKIPPED:
-                color = chartConfiguration.getSkippedColorRgbaString();
-                break;
-            default:
-                color = chartConfiguration.getPassedColorRgbaString();
-        }
+    public StackedBarChartBuilder setxAxisLabel(final String xAxisLabel) {
+        this.xAxisLabel = xAxisLabel;
+        return this;
+    }
 
-        valueSets.add(new ValueSet(value, color));
+    public StackedBarChartBuilder setyAxisLabel(final String yAxisLabel) {
+        this.yAxisLabel = yAxisLabel;
         return this;
     }
 
     public Chart build() {
-
-        List<Integer> values = new ArrayList<>();
-        List<String> colors = new ArrayList<>();
-
-        for (ValueSet valueSet : valueSets) {
-            values.add(valueSet.value);
-            colors.add(valueSet.color);
-        }
-
-        Dataset dataset = new Dataset();
-        dataset.setBackgroundColor(colors);
-        dataset.setData(values);
+        Chart chart = new Chart();
+        chart.setType(ChartConfiguration.Type.bar);
 
         Data data = new Data();
         data.setLabels(labels);
-
-        List<Dataset> datasets = new ArrayList<>();
-        datasets.add(dataset);
         data.setDatasets(datasets);
-
-        Chart chart = new Chart();
         chart.setData(data);
-        chart.setOptions(new Options());
-        chart.setType(ChartConfiguration.Type.bar);
+
+        Options options = new Options();
+        Scales scales = new Scales();
+        List<Axis> xAxes = new ArrayList<>();
+        Axis xAxis = new Axis();
+        xAxis.setStacked(true);
+        Ticks xTicks = new Ticks();
+        xTicks.setDisplay(false);
+        xAxis.setTicks(xTicks);
+        ScaleLabel xScaleLabel = new ScaleLabel();
+        xScaleLabel.setDisplay(true);
+        xScaleLabel.setLabelString(xAxisLabel);
+        xAxis.setScaleLabel(xScaleLabel);
+        xAxes.add(xAxis);
+        scales.setxAxes(xAxes);
+
+        List<Axis> yAxes = new ArrayList<>();
+        Axis yAxis = new Axis();
+        yAxis.setStacked(true);
+        Ticks yTicks = new Ticks();
+        yTicks.setStepSize(1);
+        yAxis.setTicks(yTicks);
+        ScaleLabel yScaleLabel = new ScaleLabel();
+        yScaleLabel.setDisplay(true);
+        yScaleLabel.setLabelString(yAxisLabel);
+        yAxis.setScaleLabel(yScaleLabel);
+        yAxes.add(yAxis);
+        scales.setyAxes(yAxes);
+
+        options.setScales(scales);
+        chart.setOptions(options);
+
         return chart;
-    }
-
-    private class ValueSet {
-        private final int value;
-        private final String color;
-
-        ValueSet(final int value, final String color) {
-            this.value = value;
-            this.color = color;
-        }
     }
 }
