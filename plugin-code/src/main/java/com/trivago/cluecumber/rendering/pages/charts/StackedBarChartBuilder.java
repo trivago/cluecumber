@@ -21,6 +21,8 @@ public class StackedBarChartBuilder {
     private List<Dataset> datasets = new ArrayList<>();
     private String xAxisLabel;
     private String yAxisLabel;
+    private int yAxisStepSize = 1;
+    private boolean stacked = true;
 
     public StackedBarChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
@@ -52,12 +54,29 @@ public class StackedBarChartBuilder {
         return this;
     }
 
+    public StackedBarChartBuilder setyAxisStepSize(final int yAxisStepSize) {
+        this.yAxisStepSize = yAxisStepSize;
+        return this;
+    }
+
+    public StackedBarChartBuilder setStacked(final boolean stacked) {
+        this.stacked = stacked;
+        return this;
+    }
+
     public Chart build() {
         Chart chart = new Chart();
         chart.setType(ChartConfiguration.Type.bar);
 
         Data data = new Data();
         data.setLabels(labels);
+
+        for (Dataset dataset : datasets) {
+            if (!stacked) {
+                dataset.setStack("complete");
+            }
+        }
+
         data.setDatasets(datasets);
         chart.setData(data);
 
@@ -80,7 +99,7 @@ public class StackedBarChartBuilder {
         Axis yAxis = new Axis();
         yAxis.setStacked(true);
         Ticks yTicks = new Ticks();
-        yTicks.setStepSize(1);
+        yTicks.setStepSize(yAxisStepSize);
         yAxis.setTicks(yTicks);
         ScaleLabel yScaleLabel = new ScaleLabel();
         yScaleLabel.setDisplay(true);
