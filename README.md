@@ -314,9 +314,9 @@ including the displayed diagrams. The values have to be valid hex colors:
 
 ```xml
 <configuration>
-    <customStatusColorPassed>#00ff00</customStatusColorPassed>
-    <customStatusColorFailed>#ff0000</customStatusColorFailed>
-    <customStatusColorSkipped>#00ffff</customStatusColorSkipped>
+    <customStatusColorPassed>#017FAF</customStatusColorPassed>
+    <customStatusColorFailed>#C94A38</customStatusColorFailed>
+    <customStatusColorSkipped>#F48F00</customStatusColorSkipped>
     ...
 </configuration>    
 ```
