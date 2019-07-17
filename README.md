@@ -25,7 +25,6 @@
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
-    - [Plugin Logging](#plugin-logging)
     - [Add Custom Information to the Report](#add-custom-information-to-the-report)
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
@@ -205,6 +204,7 @@ This file needs to have a format like this:
 ```properties
 Custom_Parameter=This is a test
 Custom_URL=http://www.google.com
+_Text=This is a long text that is displayed without the key. This can be used to display longer texts in the report!
 ```
 
 __Note:__ These custom parameters behave exactly like the ones defined by the `customParameters` property and will be added on top of already defined properties. 
