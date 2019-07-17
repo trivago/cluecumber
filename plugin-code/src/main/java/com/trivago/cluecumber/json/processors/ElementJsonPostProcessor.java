@@ -106,7 +106,7 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
         try {
             fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
         } catch (FileCreationException e) {
-            logger.error("Could not process image " + filename + " but will continue report generation...");
+            logger.warn("Could not process image " + filename + " but will continue report generation...");
         }
         embedding.encodeData(embedding.getData());
         // Clear attachment data to reduce memory

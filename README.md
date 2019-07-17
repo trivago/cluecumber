@@ -143,6 +143,26 @@ This points to the root directory of the generated Cluecumber HTML report.
 
 ## Optional Configuration Parameters
 
+### Plugin Logging
+
+By default, Cluecumber logs all information including
+
+* its own name and version
+* all passed property values
+* the generated report location
+
+This can be configured by passing the `logLevel` property:
+
+```
+<logLevel>default|compact|minimal|off</logLevel>
+```
+
+* _default_ will log all the mentioned information
+* _compact_ will only log the source and target directories, plugin name and version and the generated report location
+* _minimal_ will only log the generated report location
+* _off_ will prevent any logging
+
+
 ### Add Custom Information to the Report
 
 #### Add Custom Information Using Properties

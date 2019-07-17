@@ -21,25 +21,18 @@ import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.ResultMatch;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Axis;
+import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Data;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Dataset;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Options;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.ScaleLabel;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Scales;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Ticks;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
@@ -69,84 +62,43 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
     }
 
     private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {
-        Chart chart = new Chart();
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
-        IntStream.rangeClosed(1, element.getBefore().size()).mapToObj(i -> "Before " + i).forEachOrdered(labels::add);
-        IntStream.rangeClosed(1, element.getSteps().size()).mapToObj(i -> "Step " + i).forEachOrdered(labels::add);
+        if (element.getBefore().size() > 0) {
+            element.getBefore().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
+        }
+        if (element.getSteps().size() > 0) {
+            element.getSteps().stream().map(Step::getName).forEach(labels::add);
+        }
         if (element.getAfter().size() > 0) {
-            IntStream.rangeClosed(element.getBefore().size(), element.getAfter().size()).mapToObj(i -> "After " + i).forEachOrdered(labels::add);
+            element.getAfter().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
         }
 
-        Data data = new Data();
-        data.setLabels(labels);
-
-        List<Dataset> datasets = new ArrayList<>();
-        for (Status status : Status.BASIC_STATES) {
-            Dataset dataset = new Dataset();
-            List<Integer> dataList = new ArrayList<>();
-            for (ResultMatch resultMatch : element.getAllResultMatches()) {
-                if (resultMatch.getConsolidatedStatus() == status) {
-                    dataList.add((int) resultMatch.getResult().getDurationInMilliseconds());
-                } else {
-                    dataList.add(0);
-                }
-            }
-            dataset.setData(dataList);
-            dataset.setLabel(status.getStatusString());
-            dataset.setStack("complete");
-
-            String statusColorString;
-            switch (status) {
-                case FAILED:
-                    statusColorString = chartConfiguration.getFailedColorRgbaString();
-                    break;
-                case SKIPPED:
-                    statusColorString = chartConfiguration.getSkippedColorRgbaString();
-                    break;
-                default:
-                    statusColorString = chartConfiguration.getPassedColorRgbaString();
-            }
-
-            dataset.setBackgroundColor(new ArrayList<>(Collections.nCopies(dataList.size(), statusColorString)));
-            datasets.add(dataset);
-        }
-
-        data.setDatasets(datasets);
-        chart.setData(data);
-
-        Options options = new Options();
-        Scales scales = new Scales();
-        List<Axis> xAxes = new ArrayList<>();
-        Axis xAxis = new Axis();
-        xAxis.setStacked(true);
-        Ticks xTicks = new Ticks();
-        xAxis.setTicks(xTicks);
-        ScaleLabel xScaleLabel = new ScaleLabel();
-        xScaleLabel.setDisplay(true);
-        xScaleLabel.setLabelString("Step(s)");
-        xAxis.setScaleLabel(xScaleLabel);
-        xAxes.add(xAxis);
-        scales.setxAxes(xAxes);
-
-        List<Axis> yAxes = new ArrayList<>();
-        Axis yAxis = new Axis();
-        yAxis.setStacked(true);
-        Ticks yTicks = new Ticks();
-        yAxis.setTicks(yTicks);
-        ScaleLabel yScaleLabel = new ScaleLabel();
-        yScaleLabel.setDisplay(true);
-        yScaleLabel.setLabelString("Step Runtime");
-        yAxis.setScaleLabel(yScaleLabel);
-        yAxes.add(yAxis);
-        scales.setyAxes(yAxes);
-
-        options.setScales(scales);
-        chart.setOptions(options);
-
-        chart.setType(ChartConfiguration.Type.bar);
+        Chart chart =
+                new StackedBarChartBuilder(chartConfiguration)
+                        .setxAxisLabel("Steps")
+                        .setyAxisLabel("Step Runtime (seconds)")
+                        .setyAxisStepSize(0)
+                        .setLabels(labels)
+                        .setStacked(false)
+                        .addValues(getValuesByStatus(element, Status.PASSED), Status.PASSED)
+                        .addValues(getValuesByStatus(element, Status.FAILED), Status.FAILED)
+                        .addValues(getValuesByStatus(element, Status.SKIPPED), Status.SKIPPED)
+                        .build();
 
         scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
+    }
+
+    private List<Integer> getValuesByStatus(final Element element, final Status status) {
+        List<Integer> values = new ArrayList<>();
+        element.getAllResultMatches().forEach(resultMatch -> {
+            if (resultMatch.getConsolidatedStatus() == status) {
+                values.add((int) resultMatch.getResult().getDurationInMilliseconds() / 1000);
+            } else {
+                values.add(0);
+            }
+        });
+        return values;
     }
 }

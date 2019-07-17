@@ -16,9 +16,12 @@
 
 package com.trivago.cluecumber.rendering.pages.charts.pojos;
 
+import java.util.List;
+
 public class Options {
     private Scales scales;
     private Legend legend;
+    private List<String> events;
 
     public Scales getScales() {
         return scales;
@@ -34,5 +37,13 @@ public class Options {
 
     public void setLegend(final Legend legend) {
         this.legend = legend;
+    }
+
+    public void setEvents(final List<String> events) {
+        this.events = events;
+    }
+
+    public List<String> getEvents() {
+        return events;
     }
 }

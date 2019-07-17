@@ -15,7 +15,11 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class PropertyManagerTest {
     private PropertyManager propertyManager;
@@ -56,7 +60,11 @@ public class PropertyManagerTest {
     @Test
     public void logBasePropertiesTest() {
         propertyManager.logProperties();
-        verify(logger, times(8)).info(anyString());
+        verify(logger, times(2)).info(anyString(),
+                eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
+                eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
+        verify(logger, times(6)).info(anyString(),
+                eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 
     @Test
@@ -188,6 +196,10 @@ public class PropertyManagerTest {
         propertyManager.setCustomCssFile("test");
 
         propertyManager.logProperties();
-        verify(logger, times(11)).info(anyString());
+        verify(logger, times(2)).info(anyString(),
+                eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
+                eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
+        verify(logger, times(9)).info(anyString(),
+                eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 }

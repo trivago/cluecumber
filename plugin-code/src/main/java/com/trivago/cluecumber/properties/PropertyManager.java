@@ -28,6 +28,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
+import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.DEFAULT;
+
 @Singleton
 public class PropertyManager {
 
@@ -200,39 +203,39 @@ public class PropertyManager {
     }
 
     public void logProperties() {
-        logger.info("- source JSON report directory     : " + sourceJsonReportDirectory);
-        logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory);
+        logger.info("- source JSON report directory     : " + sourceJsonReportDirectory, DEFAULT, COMPACT);
+        logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory, DEFAULT, COMPACT);
 
         boolean customParametersFileExists = isSet(customParametersFile);
         if (customParametersFileExists) {
-            logger.logSeparator();
-            logger.info("- custom parameters file           : " + customParametersFile);
+            logger.logInfoSeparator(DEFAULT);
+            logger.info("- custom parameters file           : " + customParametersFile, DEFAULT);
         }
 
         if (customParameters != null && !customParameters.isEmpty()) {
             if (!customParametersFileExists) {
-                logger.logSeparator();
+                logger.logInfoSeparator();
             }
             customParameters.entrySet().stream().map(entry -> "- custom parameter                 : " +
-                    entry.getKey() + " -> " + entry.getValue()).forEach(logger::info);
+                    entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
         }
 
-        logger.logSeparator();
+        logger.logInfoSeparator(DEFAULT);
 
-        logger.info("- fail pending/undefined scenarios : " + failScenariosOnPendingOrUndefinedSteps);
-        logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks);
-        logger.info("- expand step hooks                : " + expandStepHooks);
-        logger.info("- expand doc strings               : " + expandDocStrings);
-        logger.info("- page title                       : " + customPageTitle);
+        logger.info("- fail pending/undefined scenarios : " + failScenariosOnPendingOrUndefinedSteps, DEFAULT);
+        logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks, DEFAULT);
+        logger.info("- expand step hooks                : " + expandStepHooks, DEFAULT);
+        logger.info("- expand doc strings               : " + expandDocStrings, DEFAULT);
+        logger.info("- page title                       : " + customPageTitle, DEFAULT);
 
         if (isSet(customCssFile)) {
-            logger.info("- custom CSS file                  : " + customCssFile);
+            logger.info("- custom CSS file                  : " + customCssFile, DEFAULT);
         }
 
         logger.info("- colors (passed, failed, skipped) : " +
-                customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped);
+                customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped, DEFAULT);
 
-        logger.logSeparator();
+        logger.logInfoSeparator(DEFAULT);
     }
 
     private boolean isSet(final String string) {
