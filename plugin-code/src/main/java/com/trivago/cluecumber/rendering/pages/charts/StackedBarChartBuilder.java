@@ -109,6 +109,10 @@ public class StackedBarChartBuilder {
         scales.setyAxes(yAxes);
 
         options.setScales(scales);
+        List<String> events = new ArrayList<>();
+        events.add("click");
+        events.add("mousemove");
+        options.setEvents(events);
         chart.setOptions(options);
 
         return chart;

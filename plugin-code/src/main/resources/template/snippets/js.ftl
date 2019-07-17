@@ -23,67 +23,89 @@ limitations under the License.
 
 <script>
     $(document).ready(function () {
-        // Data tables
-        $('.renderAsDataTable').on('draw.dt', function () {
+            // Data tables
+            $('.renderAsDataTable').on('draw.dt', function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            }).DataTable({
+                "oLanguage": {
+                    "sSearch": "Search:"
+                },
+                "pageLength": 25,
+                "responsive": true
+            });
+
+            $('.collapse').on('shown.bs.collapse', function (e) {
+                $(e.target).find("iframe").each(function (index, iframe) {
+                    resizeIframe(iframe);
+                })
+            });
+
+            // Lightbox
+            $("a.grouped_elements").fancybox();
+
+            // Tool tips
             $('[data-toggle="tooltip"]').tooltip();
-        }).DataTable({
-            "oLanguage": {
-                "sSearch": "Search:"
-            },
-            "pageLength": 25,
-            "responsive": true
-        });
 
-        $('.collapse').on('shown.bs.collapse', function (e) {
-            $(e.target).find("iframe").each(function (index, iframe) {
-                resizeIframe(iframe);
-            })
-        });
+            // Chart
+            <#if (reportDetails.chartJson?has_content)>
+            var canvas = document.getElementById('chart-area');
+            var ctx = canvas.getContext("2d");
+            var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
 
-        // Lightbox
-        $("a.grouped_elements").fancybox();
-
-        // Tool tips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Chart
-        <#if (reportDetails.chartJson?has_content)>
-        var canvas = document.getElementById('chart-area');
-        var ctx = canvas.getContext("2d");
-        var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
-
-        var original;
-        if (chart.config.type === "pie") {
-            original = Chart.defaults.pie.legend.onClick;
-        } else {
-            original = Chart.defaults.global.legend.onClick;
-        }
-
-        chart.options.legend.onClick = function (evt, label) {
-            original.call(this, evt, label);
-
-            var card = $("#card_" + label.text);
-            var row = $(".table-row-" + label.text);
-            if (label.hidden){
-                card.show();
-                row.show();
+            var original;
+            if (chart.config.type === "pie") {
+                original = Chart.defaults.pie.legend.onClick;
             } else {
-                card.hide();
-                row.hide();
+                original = Chart.defaults.global.legend.onClick;
             }
-        };
-        </#if>
 
-        if (${expandBeforeAfterHooks?c}) {
-            $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+            chart.options.onClick = function (evt, elements) {
+                if (chart.config.type !== "pie") return;
+                chartArea = elements[0];
+                if (chartArea === undefined) return;
+                chartArea.hidden = !chartArea.hidden;
+                chart.update();
+                toggleVisibilityByStatus(chartArea._model.label, !chartArea.hidden)
+            };
+
+            chart.options.legend.onClick = function (evt, label) {
+                original.call(this, evt, label);
+                toggleVisibilityByStatus(label.text, label.hidden);
+            };
+
+            function toggleVisibilityByStatus(statusText, show) {
+                var card = $("#card_" + statusText);
+                if (card !== undefined) {
+                    if (show) {
+                        card.show();
+                    } else {
+                        card.hide();
+                    }
+                }
+
+                var row = $(".table-row-" + statusText);
+                if (row !== undefined) {
+                    if (show) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            }
+
+            </#if>
+
+            if (${expandBeforeAfterHooks?c}) {
+                $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+            }
+            if (${expandStepHooks?c}) {
+                $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
+            }
+            if (${expandDocStrings?c}) {
+                $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
+            }
         }
-        if (${expandStepHooks?c}) {
-            $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
-        }
-        if (${expandDocStrings?c}) {
-            $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
-        }
-    });
+    );
 
     function resizeIframe(iframe) {
         iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';

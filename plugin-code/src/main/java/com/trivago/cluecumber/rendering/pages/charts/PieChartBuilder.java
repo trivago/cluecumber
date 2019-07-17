@@ -52,7 +52,13 @@ public class PieChartBuilder {
 
         Chart chart = new Chart();
         chart.setData(data);
-        chart.setOptions(new Options());
+
+        final Options options = new Options();
+        List<String> events = new ArrayList<>();
+        events.add("click");
+        events.add("mousemove");
+        options.setEvents(events);
+        chart.setOptions(options);
         chart.setType(ChartConfiguration.Type.pie);
         return chart;
     }
