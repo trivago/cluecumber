@@ -25,6 +25,7 @@
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
+    - [Plugin Logging](#plugin-logging)
     - [Add Custom Information to the Report](#add-custom-information-to-the-report)
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
