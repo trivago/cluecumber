@@ -45,9 +45,9 @@
                     </customParameters>
 
                     <!-- Optional custom colors for passed, failed and skipped -->
-                    <customStatusColorPassed>#017FAF</customStatusColorPassed>
-                    <customStatusColorFailed>#C94A38</customStatusColorFailed>
-                    <customStatusColorSkipped>#F48F00</customStatusColorSkipped>
+                    <!--<customStatusColorPassed>#017FAF</customStatusColorPassed>-->
+                    <!--<customStatusColorFailed>#C94A38</customStatusColorFailed>-->
+                    <!--<customStatusColorSkipped>#F48F00</customStatusColorSkipped>-->
 
                     <!-- Optional report page title -->
                     <customPageTitle>My Report</customPageTitle>
@@ -69,7 +69,7 @@
                     <!-- optional: Cluecumber log level -->
                     <!--<logLevel>default</logLevel>-->
                     <!--<logLevel>compact</logLevel>-->
-                    <logLevel>minimal</logLevel>
+                    <!--<logLevel>minimal</logLevel>-->
                     <!--<logLevel>off</logLevel>-->
 
                     <!-- Optionally skip the whole report generation -->
