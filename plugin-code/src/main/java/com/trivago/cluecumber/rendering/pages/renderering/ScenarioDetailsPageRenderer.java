@@ -20,6 +20,8 @@ import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
+import com.trivago.cluecumber.json.pojo.ResultMatch;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
@@ -31,7 +33,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
@@ -65,23 +66,19 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
         if (element.getBefore().size() > 0) {
-            IntStream.rangeClosed(1, element.getBefore().size())
-                    .mapToObj(i -> "Before " + i)
-                    .forEachOrdered(labels::add);
+            element.getBefore().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
         }
         if (element.getSteps().size() > 0) {
-            IntStream.rangeClosed(1, element.getSteps().size()).mapToObj(i -> "Step " + i).forEachOrdered(labels::add);
+            element.getSteps().stream().map(Step::getName).forEach(labels::add);
         }
         if (element.getAfter().size() > 0) {
-            IntStream.rangeClosed(1, element.getAfter().size())
-                    .mapToObj(i -> "After " + i)
-                    .forEachOrdered(labels::add);
+            element.getAfter().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
         }
 
         Chart chart =
                 new StackedBarChartBuilder(chartConfiguration)
-                        .setxAxisLabel("Step(s)")
-                        .setyAxisLabel("Step Runtime")
+                        .setxAxisLabel("Steps")
+                        .setyAxisLabel("Step Runtime (seconds)")
                         .setyAxisStepSize(0)
                         .setLabels(labels)
                         .setStacked(false)
@@ -97,7 +94,7 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
         List<Integer> values = new ArrayList<>();
         element.getAllResultMatches().forEach(resultMatch -> {
             if (resultMatch.getConsolidatedStatus() == status) {
-                values.add((int) resultMatch.getResult().getDurationInMilliseconds());
+                values.add((int) resultMatch.getResult().getDurationInMilliseconds() / 1000);
             } else {
                 values.add(0);
             }

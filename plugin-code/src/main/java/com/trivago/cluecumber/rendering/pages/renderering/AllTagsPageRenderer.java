@@ -75,7 +75,7 @@ public class AllTagsPageRenderer extends PageRenderer {
         Chart chart =
                 new StackedBarChartBuilder(chartConfiguration)
                         .setLabels(keys)
-                        .setxAxisLabel(allTagsPageCollection.getTotalNumberOfTags() + " Tag(s)")
+                        .setxAxisLabel(allTagsPageCollection.getTotalNumberOfTags() + " Tags")
                         .setyAxisLabel("Number of Scenarios")
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)

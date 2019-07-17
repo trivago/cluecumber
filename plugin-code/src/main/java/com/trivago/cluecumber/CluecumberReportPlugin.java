@@ -34,6 +34,9 @@ import javax.inject.Inject;
 import java.nio.file.Path;
 import java.util.List;
 
+import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
+import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.DEFAULT;
+
 /**
  * The main plugin class.
  */
@@ -81,16 +84,18 @@ public final class CluecumberReportPlugin extends PropertyCollector {
      */
     public void execute() throws CluecumberPluginException {
         // Initialize logger to be available outside the AbstractMojo class
-        logger.setMojoLogger(getLog());
+        logger.initialize(getLog(), logLevel);
 
         if (skip) {
-            logger.info("Cluecumber report generation was skipped using the <skip> property.");
+            logger.info("Cluecumber report generation was skipped using the <skip> property.",
+                    DEFAULT);
             return;
         }
 
-        logger.logSeparator();
-        logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
-        logger.logSeparator();
+        logger.logInfoSeparator(DEFAULT);
+        logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage()
+                .getImplementationVersion()), DEFAULT);
+        logger.logInfoSeparator(DEFAULT, COMPACT);
 
         super.execute();
 
@@ -105,14 +110,18 @@ public final class CluecumberReportPlugin extends PropertyCollector {
                 Report[] reports = jsonPojoConverter.convertJsonToReportPojos(jsonString);
                 allScenariosPageCollection.addReports(reports);
             } catch (CluecumberPluginException e) {
-                logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
+                logger.warn("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION,
+                DEFAULT,
+                COMPACT,
+                CluecumberLogger.CluecumberLogLevel.MINIMAL
+        );
     }
 }
 

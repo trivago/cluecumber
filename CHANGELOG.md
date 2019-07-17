@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [2.2.0] - UNRELEASED
+## [2.2.0] - 2019-07-17
 
 ### Added
 
 * Hide scenarios with matching status on the `Scenario Sequence` page when disabling a status in the diagram (#175)
+* Clicking a pie chart slice toggles the according scenarios in `All Scenarios` and `Scenario Sequence` (#175)
+* Logging can be configured via the `logLevel` property (#189)
+
+### Changed
+
+* Changed internal chart generation to simplify future chart features
+* Scenario runtimes is now displayed in seconds in the `Scenario Detail` page graph (#193)
+* Renamed y axis of `All Steps` page graph to `Number of Usages` (#193)
 
 ### Fixed
 
@@ -512,6 +520,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0
 [2.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.1
 [2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
 [2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1

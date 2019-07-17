@@ -74,7 +74,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         Chart chart =
                 new StackedBarChartBuilder(chartConfiguration)
                         .setLabels(keys)
-                        .setxAxisLabel(allFeaturesPageCollection.getTotalNumberOfFeatures() + " Feature(s)")
+                        .setxAxisLabel(allFeaturesPageCollection.getTotalNumberOfFeatures() + " Features")
                         .setyAxisLabel("Number of Scenarios")
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)

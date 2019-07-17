@@ -17,7 +17,7 @@ public class CluecumberLoggerTest {
     public void setup() {
         mockedLogger = mock(Log.class);
         logger = new CluecumberLogger();
-        logger.setMojoLogger(mockedLogger);
+        logger.initialize(mockedLogger, null);
     }
 
     @Test
@@ -28,15 +28,15 @@ public class CluecumberLoggerTest {
     }
 
     @Test
-    public void errorTest() {
-        logger.error("Test");
+    public void warnTest() {
+        logger.warn("Test");
         verify(mockedLogger, times(1))
-                .error("Test");
+                .warn("Test");
     }
 
     @Test
     public void separatorTest() {
-        logger.logSeparator();
+        logger.logInfoSeparator();
         verify(mockedLogger, times(1))
                 .info("------------------------------------------------------------------------");
     }

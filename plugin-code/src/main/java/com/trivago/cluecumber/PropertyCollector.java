@@ -95,6 +95,13 @@ public class PropertyCollector extends AbstractMojo {
     @Parameter(property = "reporting.customPageTitle")
     private String customPageTitle;
 
+    /**
+     * Optional log level to control what information is logged in the console.
+     * Allowed values: default, compact, minimal, off
+     */
+    @Parameter(property = "parallel.logLevel", defaultValue = "default")
+    String logLevel;
+
     @Inject
     public PropertyCollector(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
