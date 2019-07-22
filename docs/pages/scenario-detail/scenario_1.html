@@ -31,7 +31,7 @@ style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="My Report">
-<meta name="author" content="Cluecumber Report Plugin version 2.1.0">
+<meta name="author" content="Cluecumber Report Plugin version 2.2.0">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/datatables.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
@@ -48,64 +48,65 @@ font-src * data: blob: 'unsafe-inline';"/>
 
 <script>
     $(document).ready(function () {
-        // Data tables
-        $('.renderAsDataTable').on('draw.dt', function () {
+            // Data tables
+            $('.renderAsDataTable').on('draw.dt', function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            }).DataTable({
+                "oLanguage": {
+                    "sSearch": "Search:"
+                },
+                "pageLength": 25,
+                "responsive": true
+            });
+
+            $('.collapse').on('shown.bs.collapse', function (e) {
+                $(e.target).find("iframe").each(function (index, iframe) {
+                    resizeIframe(iframe);
+                })
+            });
+
+            // Lightbox
+            $("a.grouped_elements").fancybox();
+
+            // Tool tips
             $('[data-toggle="tooltip"]').tooltip();
-        }).DataTable({
-            "oLanguage": {
-                "sSearch": "Search:"
-            },
-            "pageLength": 25
-        });
 
-        $('.collapse').on('shown.bs.collapse', function (e) {
-            $(e.target).find("iframe").each(function (index, iframe) {
-                resizeIframe(iframe);
-            })
-        });
-
-        // Lightbox
-        $("a.grouped_elements").fancybox();
-
-        // Tool tips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Chart
-        var canvas = document.getElementById('chart-area');
-        var ctx = canvas.getContext("2d");
-        var chart = new Chart(ctx, eval({
+            // Chart
+            var canvas = document.getElementById('chart-area');
+            var ctx = canvas.getContext("2d");
+            var chart = new Chart(ctx, eval({
   "data": {
     "labels": [
-      "Before 1",
-      "Step 1",
-      "Step 2",
-      "Step 3",
-      "Step 4",
-      "Step 5",
-      "Step 6",
-      "Step 7",
-      "Step 8",
-      "Step 9",
-      "Step 10",
-      "Step 11",
-      "Step 12",
-      "Step 13",
-      "Step 14",
-      "Step 15",
-      "Step 16",
-      "Step 17",
-      "Step 18",
-      "Step 19",
-      "Step 20",
-      "Step 21",
-      "Step 22",
-      "After 1"
+      "Steps.setup()",
+      "Open Dummy Site",
+      "Log in to your account with",
+      "Go to Services Page",
+      "Service Open Service \"P1\"",
+      "Create a widget on local with name \"AffiliateWidget\" with Dummyid as \"2366\"",
+      "open widget with name \"AffiliateWidget\"",
+      "Widget go \"1\" Months Later with kind of service as \"tour\"",
+      "Check Dummy in Iframe id as \"2366\" and kind of service as \"tour\"",
+      "Widget Select Day as \"13\" kind of service as \"tour\"",
+      "Widget Select Hour \"900\" kind of service as \"tour\"",
+      "Widget Input Ticket kind services as \"tour\" position \"1\" and value \"1\"",
+      "Widget click next button service flow \"tour\"",
+      "Widget Step2 Input Full Name as \"TestAffiliate\" service flow \"tour\"",
+      "Widget Step2 Input Email as \"someone@test.com\" service flow \"tour\"",
+      "Widget Step2 click make dummy service flow \"tour\"",
+      "Success Page click go back",
+      "Open Dummy Site",
+      "Log in to your account with",
+      "Go to dummys Page",
+      "dummys Search Client",
+      "dummys Click Search Button",
+      "dummys Check Agent Name in dummy position \"1\" as \"affiliate\"",
+      "Steps.tearDown(Scenario)"
     ],
     "datasets": [
       {
         "data": [
-          1178,
-          3120,
+          1,
+          3,
           0,
           0,
           0,
@@ -127,33 +128,33 @@ font-src * data: blob: 'unsafe-inline';"/>
           0,
           0,
           0,
-          2226
+          2
         ],
         "backgroundColor": [
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)",
-          "rgba(40, 167, 69, 1.000)"
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)",
+          "rgba(1, 127, 175, 1.000)"
         ],
         "label": "passed",
         "stack": "complete"
@@ -162,7 +163,7 @@ font-src * data: blob: 'unsafe-inline';"/>
         "data": [
           0,
           0,
-          12793,
+          12,
           0,
           0,
           0,
@@ -186,30 +187,30 @@ font-src * data: blob: 'unsafe-inline';"/>
           0
         ],
         "backgroundColor": [
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)",
-          "rgba(220, 53, 69, 1.000)"
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)",
+          "rgba(201, 74, 56, 1.000)"
         ],
         "label": "failed",
         "stack": "complete"
@@ -242,30 +243,30 @@ font-src * data: blob: 'unsafe-inline';"/>
           0
         ],
         "backgroundColor": [
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)",
-          "rgba(255, 193, 7, 1.000)"
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)",
+          "rgba(244, 143, 0, 1.000)"
         ],
         "label": "skipped",
         "stack": "complete"
@@ -278,12 +279,13 @@ font-src * data: blob: 'unsafe-inline';"/>
         {
           "ticks": {
             "min": 0,
-            "display": true
+            "stepSize": 0,
+            "display": false
           },
           "stacked": true,
           "scaleLabel": {
             "display": true,
-            "labelString": "Step(s)"
+            "labelString": "Steps"
           },
           "stepSize": 0.0
         }
@@ -292,48 +294,79 @@ font-src * data: blob: 'unsafe-inline';"/>
         {
           "ticks": {
             "min": 0,
+            "stepSize": 0,
             "display": true
           },
           "stacked": true,
           "scaleLabel": {
             "display": true,
-            "labelString": "Step Runtime"
+            "labelString": "Step Runtime (seconds)"
           },
           "stepSize": 0.0
         }
       ]
-    }
+    },
+    "events": [
+      "click",
+      "mousemove"
+    ]
   },
   "type": "bar"
 }));
 
-        var original;
-        if (chart.config.type === "pie") {
-            original = Chart.defaults.pie.legend.onClick;
-        } else {
-            original = Chart.defaults.global.legend.onClick;
-        }
+            var original;
+            if (chart.config.type === "pie") {
+                original = Chart.defaults.pie.legend.onClick;
+            } else {
+                original = Chart.defaults.global.legend.onClick;
+            }
 
-        chart.options.legend.onClick = function (evt, label) {
-            original.call(this, evt, label);
+            chart.options.onClick = function (evt, elements) {
+                if (chart.config.type !== "pie") return;
+                chartArea = elements[0];
+                if (chartArea === undefined) return;
+                chartArea.hidden = !chartArea.hidden;
+                chart.update();
+                toggleVisibilityByStatus(chartArea._model.label, !chartArea.hidden)
+            };
 
-            var card = $("#card_" + label.text);
-            label.hidden ? card.show() : card.hide();
+            chart.options.legend.onClick = function (evt, label) {
+                original.call(this, evt, label);
+                toggleVisibilityByStatus(label.text, label.hidden);
+            };
 
-            var row = $(".row_" + label.text);
-            label.hidden ? row.show() : row.hide();
-        };
+            function toggleVisibilityByStatus(statusText, show) {
+                var card = $("#card_" + statusText);
+                if (card !== undefined) {
+                    if (show) {
+                        card.show();
+                    } else {
+                        card.hide();
+                    }
+                }
 
-        if (false) {
-            $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+                var row = $(".table-row-" + statusText);
+                if (row !== undefined) {
+                    if (show) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            }
+
+
+            if (false) {
+                $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+            }
+            if (false) {
+                $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
+            }
+            if (false) {
+                $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
+            }
         }
-        if (false) {
-            $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
-        }
-        if (false) {
-            $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
-        }
-    });
+    );
 
     function resizeIframe(iframe) {
         iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
@@ -361,9 +394,10 @@ font-src * data: blob: 'unsafe-inline';"/>
                                 <a class="nav-link " href="pages/step-summary.html">All Steps</a>
                     </li>
                     <li class="nav-item">
+                                <a class="nav-link " href="pages/feature-summary.html">All Features</a>
                     </li>
             </ul>
-            <span class="text-light">2019-06-25 17:50:30</span>
+            <span class="text-light">2019-07-17 15:26:22</span>
         </div>
     </nav>
     <main role="main" class="container">
@@ -432,7 +466,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                 <div class="card-header">Before Hooks</div>
             <div class="card-body">
                 <li class="list-group-item">
-                        <div class="row row_passed">
+                        <div class="row row_passed table-row-passed">
                             <div class="col-1 text-left small">1.</div>
                             <div class="col-8 text-left">
                                 <i>Steps.setup()</i>
@@ -457,7 +491,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                 <li class="list-group-item">
 
 
-                        <div class="row row_passed">
+                        <div class="row row_passed table-row-passed">
                             <div class="col-1 text-left small">1.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.openLoginPage()">
@@ -475,7 +509,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                         </div>
 
 
-                        <div class="row row_failed">
+                        <div class="row row_failed table-row-failed">
                             <div class="col-1 text-left small">2.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.logInAccountWith(String,String>)">
@@ -546,7 +580,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">3.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.go_to_services_page()">
@@ -564,7 +598,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">4.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.service_open_service_something(String)">
@@ -582,7 +616,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">5.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.create_a_widget_on_local_with_name_something_with_affiliate_id_as_something(String,String)">
@@ -600,7 +634,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">6.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.open_widget_with_name_something(String)">
@@ -618,7 +652,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">7.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_go_something_months_later_with_kind_of_service_as_something(String,String)">
@@ -636,7 +670,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">8.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.check_affiliate_in_iframe_id_as_something_and_kind_of_service_as_something(String,String)">
@@ -654,7 +688,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">9.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_select_day_as_something_kind_of_service_as_something(String,String)">
@@ -672,7 +706,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">10.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_select_hour_in_position_something_kind_of_service_as_something(String,String)">
@@ -690,7 +724,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">11.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_input_ticket_kind_services_as_something_position_something_and_value_something(String,String,String)">
@@ -708,7 +742,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">12.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_click_next_button_service_flow_something(String)">
@@ -726,7 +760,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">13.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_step2_input_full_name_as_something_service_flow_something(String,String)">
@@ -744,7 +778,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">14.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_step2_input_email_as_something_service_flow_something(String,String)">
@@ -762,7 +796,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">15.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.widget_step2_click_make_dummy_service_flow_something(String)">
@@ -780,7 +814,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">16.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.success_page_click_go_back()">
@@ -798,7 +832,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">17.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.openLoginPage()">
@@ -816,7 +850,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">18.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.logInAccountWith(String,String>)">
@@ -848,7 +882,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">19.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.go_to_dummy_page()">
@@ -912,7 +946,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">20.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.dummys_search_buyer()">
@@ -930,7 +964,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">21.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.dummys_click_search_button()">
@@ -948,7 +982,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                         </div>
 
 
-                        <div class="row row_skipped">
+                        <div class="row row_skipped table-row-skipped">
                             <div class="col-1 text-left small">22.</div>
                             <div class="col-8 text-left">
                                 <span data-toggle="tooltip" title="Steps.dummys_check_agent_name_in_dummy_position_something_as_something(String,String)">
@@ -975,7 +1009,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
                 <div class="card-header">After Hooks</div>
             <div class="card-body">
                     <li class="list-group-item">
-                            <div class="row row_passed">
+                            <div class="row row_passed table-row-passed">
                                 <div class="col-1 text-left small">1.</div>
                                 <div class="col-8 text-left">
                                     <i>Steps.tearDown(Scenario)</i>
@@ -999,7 +1033,7 @@ Session ID: f67b5098b72c8041926198c3705e02c1
 
 <footer class="footer navbar-dark">
     <div class="container-fluid">
-        <span>Cluecumber Report Plugin version 2.1.0 - Report generated on 2019-06-25 17:50:30.</span>
+        <span>Cluecumber Report Plugin version 2.2.0 - Report generated on 2019-07-17 15:26:22.</span>
     </div>
 </footer>    </body>
     </html>
