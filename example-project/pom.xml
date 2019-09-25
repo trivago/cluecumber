@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cucumber.report.json.location>${project.basedir}/json</cucumber.report.json.location>
+        <cucumber.report.json.location>${project.basedir}/json2</cucumber.report.json.location>
         <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
     </properties>
 
@@ -46,9 +46,9 @@
                     </customParameters>
 
                     <!-- Optional custom colors for passed, failed and skipped -->
-                    <!--<customStatusColorPassed>#017FAF</customStatusColorPassed>-->
-                    <!--<customStatusColorFailed>#C94A38</customStatusColorFailed>-->
-                    <!--<customStatusColorSkipped>#F48F00</customStatusColorSkipped>-->
+                    <!-- <customStatusColorPassed>#017FAF</customStatusColorPassed> -->
+                    <!-- <customStatusColorFailed>#C94A38</customStatusColorFailed> -->
+                    <!-- <customStatusColorSkipped>#F48F00</customStatusColorSkipped> -->
 
                     <!-- Optional report page title -->
                     <customPageTitle>My Report</customPageTitle>

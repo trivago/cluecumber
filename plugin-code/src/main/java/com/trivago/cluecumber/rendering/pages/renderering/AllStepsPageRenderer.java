@@ -58,6 +58,7 @@ public class AllStepsPageRenderer extends PageRenderer {
                 new StackedBarChartBuilder(chartConfiguration)
                         .setLabels(keys)
                         .setxAxisLabel(allTagsPageCollection.getTotalNumberOfSteps() + " Steps")
+                        .setyAxisStepSize(keys.size())
                         .setyAxisLabel("Number of Usages")
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)

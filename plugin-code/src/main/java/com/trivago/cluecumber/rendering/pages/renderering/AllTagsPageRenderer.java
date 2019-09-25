@@ -77,6 +77,7 @@ public class AllTagsPageRenderer extends PageRenderer {
                         .setLabels(keys)
                         .setxAxisLabel(allTagsPageCollection.getTotalNumberOfTags() + " Tags")
                         .setyAxisLabel("Number of Scenarios")
+                        .setyAxisStepSize(keys.size())
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)
                         .addValues(skipped, Status.SKIPPED)

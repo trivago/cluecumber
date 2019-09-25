@@ -76,6 +76,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
                         .setLabels(keys)
                         .setxAxisLabel(allFeaturesPageCollection.getTotalNumberOfFeatures() + " Features")
                         .setyAxisLabel("Number of Scenarios")
+                        .setyAxisStepSize(keys.size())
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)
                         .addValues(skipped, Status.SKIPPED)

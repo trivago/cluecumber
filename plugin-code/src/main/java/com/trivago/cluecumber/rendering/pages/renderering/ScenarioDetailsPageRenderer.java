@@ -79,7 +79,7 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
                 new StackedBarChartBuilder(chartConfiguration)
                         .setxAxisLabel("Steps")
                         .setyAxisLabel("Step Runtime (seconds)")
-                        .setyAxisStepSize(0)
+                        .setyAxisStepSize(labels.size())
                         .setLabels(labels)
                         .setStacked(false)
                         .addValues(getValuesByStatus(element, Status.PASSED), Status.PASSED)
