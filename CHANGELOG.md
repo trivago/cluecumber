@@ -14,6 +14,9 @@ Back to [Readme](README.md).
 * Updated dependencies
 * Removed `eval` from report template (#199)
 
+### Fixed
+
+* Chart y axis step size adapts to displayed values
 
 ## [2.2.0] - 2019-07-17
 
