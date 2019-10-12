@@ -23,6 +23,7 @@ import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
+import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import freemarker.template.Template;
 
@@ -30,6 +31,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Singleton
@@ -59,11 +61,16 @@ public class AllFeaturesPageRenderer extends PageRenderer {
         List<Integer> failed = new ArrayList<>();
         List<Integer> skipped = new ArrayList<>();
 
-        allFeaturesPageCollection.getFeatureResultCounts().forEach((key, value) -> {
+        int maximumNumberOfRuns = 0;
+        for (Map.Entry<Feature, ResultCount> entry : allFeaturesPageCollection.getFeatureResultCounts().entrySet()) {
+            ResultCount value = entry.getValue();
             passed.add(value.getPassed());
             failed.add(value.getFailed());
             skipped.add(value.getSkipped());
-        });
+            if (value.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = value.getTotal();
+            }
+        }
 
         List<String> keys = allFeaturesPageCollection.getFeatureResultCounts()
                 .keySet()
@@ -76,6 +83,7 @@ public class AllFeaturesPageRenderer extends PageRenderer {
                         .setLabels(keys)
                         .setxAxisLabel(allFeaturesPageCollection.getTotalNumberOfFeatures() + " Features")
                         .setyAxisLabel("Number of Scenarios")
+                        .setyAxisStepSize(maximumNumberOfRuns)
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)
                         .addValues(skipped, Status.SKIPPED)

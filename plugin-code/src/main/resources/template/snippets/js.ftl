@@ -50,7 +50,7 @@ limitations under the License.
             <#if (reportDetails.chartJson?has_content)>
             var canvas = document.getElementById('chart-area');
             var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, eval(${reportDetails.chartJson}));
+            var chart = new Chart(ctx, ${reportDetails.chartJson});
 
             var original;
             if (chart.config.type === "pie") {

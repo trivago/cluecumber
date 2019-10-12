@@ -61,10 +61,15 @@ public class AllTagsPageRenderer extends PageRenderer {
         List<Integer> failed = new ArrayList<>();
         List<Integer> skipped = new ArrayList<>();
 
+        int maximumNumberOfRuns = 0;
         for (Map.Entry<Tag, ResultCount> entry : allTagsPageCollection.getTagResultCounts().entrySet()) {
-            passed.add(entry.getValue().getPassed());
-            failed.add(entry.getValue().getFailed());
-            skipped.add(entry.getValue().getSkipped());
+            ResultCount value = entry.getValue();
+            passed.add(value.getPassed());
+            failed.add(value.getFailed());
+            skipped.add(value.getSkipped());
+            if (value.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = value.getTotal();
+            }
         }
 
         List<String> keys = new ArrayList<>();
@@ -77,6 +82,7 @@ public class AllTagsPageRenderer extends PageRenderer {
                         .setLabels(keys)
                         .setxAxisLabel(allTagsPageCollection.getTotalNumberOfTags() + " Tags")
                         .setyAxisLabel("Number of Scenarios")
+                        .setyAxisStepSize(maximumNumberOfRuns)
                         .addValues(passed, Status.PASSED)
                         .addValues(failed, Status.FAILED)
                         .addValues(skipped, Status.SKIPPED)

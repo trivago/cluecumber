@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.3.0] - UNRELEASED
+
+### Changed
+
+* Updated dependencies
+* Removed `eval` from report template (#199)
+
+### Fixed
+
+* Chart y axis step size adapts to displayed values
+
 ## [2.2.0] - 2019-07-17
 
 ### Added
