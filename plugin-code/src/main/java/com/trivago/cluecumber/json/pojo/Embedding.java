@@ -28,6 +28,7 @@ public class Embedding {
     private String decodedData;
     @SerializedName("mime_type")
     private MimeType mimeType = MimeType.UNKNOWN;
+    private String name = "";
 
     private transient String filename;
 
@@ -58,6 +59,14 @@ public class Embedding {
 
     public void setMimeType(final MimeType mimeType) {
         this.mimeType = mimeType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public String getFilename() {

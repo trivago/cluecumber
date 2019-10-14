@@ -9,6 +9,10 @@ Back to [Readme](README.md).
 
 ## [2.3.0] - UNRELEASED
 
+### Added
+
+* Support for named attachments
+
 ### Changed
 
 * Updated dependencies
@@ -531,6 +535,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.0
 [2.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0
 [2.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.1
 [2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
