@@ -32,7 +32,10 @@ import freemarker.template.Template;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
@@ -65,26 +68,28 @@ public class ScenarioDetailsPageRenderer extends PageRenderer {
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
-        if (element.getBefore().size() > 0) {
-            element.getBefore().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
-        }
-        if (element.getSteps().size() > 0) {
-            element.getSteps().stream().map(Step::getName).forEach(labels::add);
-        }
-        if (element.getAfter().size() > 0) {
-            element.getAfter().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
-        }
+        element.getBefore().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
+        element.getSteps().stream().map(Step::getName).forEach(labels::add);
+        element.getAfter().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
+
+        final List<Integer> passedValues = getValuesByStatus(element, Status.PASSED);
+        final List<Integer> failedValues = getValuesByStatus(element, Status.FAILED);
+        final List<Integer> skippedValues = getValuesByStatus(element, Status.SKIPPED);
+        int passedMax = passedValues.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+        int failedMax = failedValues.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+        int skippedMax = skippedValues.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+        final Integer maximumValue = Collections.max(Arrays.asList(passedMax, failedMax, skippedMax));
 
         Chart chart =
                 new StackedBarChartBuilder(chartConfiguration)
                         .setxAxisLabel("Steps")
                         .setyAxisLabel("Step Runtime (seconds)")
-                        .setyAxisStepSize(labels.size())
+                        .setyAxisStepSize(maximumValue)
                         .setLabels(labels)
                         .setStacked(false)
-                        .addValues(getValuesByStatus(element, Status.PASSED), Status.PASSED)
-                        .addValues(getValuesByStatus(element, Status.FAILED), Status.FAILED)
-                        .addValues(getValuesByStatus(element, Status.SKIPPED), Status.SKIPPED)
+                        .addValues(passedValues, Status.PASSED)
+                        .addValues(failedValues, Status.FAILED)
+                        .addValues(skippedValues, Status.SKIPPED)
                         .build();
 
         scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));

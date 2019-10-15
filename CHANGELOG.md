@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.3.1] - 2019-10-15
+
+### Fixed
+* Chart y axis step size in scenario view
+
 ## [2.3.0] - 2019-10-14
 
 ### Added
