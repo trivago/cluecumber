@@ -3,11 +3,18 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.trivago.rta</groupId>
+        <artifactId>cluecumber-builder</artifactId>
+        <version>2.3.2</version>
+        <relativePath>../cluecumber-builder/pom.xml</relativePath>
+    </parent>
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-maven-plugin</artifactId>
-    <version>2.3.1</version>
+    <version>2.3.2</version>
     <url>https://github.com/trivago/cluecumber-report-plugin</url>
+
 
     <name>Cluecumber Maven Plugin for Cucumber Reports</name>
     <description>Plugin for generating clear Cucumber BDD test result reports.</description>
@@ -208,6 +215,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>sample.Env</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -287,8 +302,6 @@
                 <groupId>com.trivago.rta</groupId>
                 <artifactId>cluecumber-plugin-core</artifactId>
                 <version>2.3.1</version>
-                <scope>system</scope>
-                <systemPath>${project.basedir}/../plugin-core/target/plugin-core.jar</systemPath>
             </dependency>
     </dependencies>
 </project>
