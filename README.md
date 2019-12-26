@@ -1,3 +1,4 @@
+Fast demo
 ![cluecumber logo](documentation/img/cluecumber.png)
 
 ### Clear and Concise Cucumber Reporting
