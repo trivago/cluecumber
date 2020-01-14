@@ -20,11 +20,17 @@ import java.util.Objects;
 
 public class Feature {
     private final String name;
+    private final String description;
     private final int index;
 
-    public Feature(final String name, final int index) {
+    public Feature(final String name, final String description,  final int index) {
         this.name = name;
+        this.description = description;
         this.index = index;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getName() {
@@ -43,6 +49,7 @@ public class Feature {
                 '}';
     }
 
+    // description is not taken into account in comparaison
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
