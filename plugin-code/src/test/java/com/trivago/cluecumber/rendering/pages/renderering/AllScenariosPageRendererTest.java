@@ -102,7 +102,7 @@ public class AllScenariosPageRendererTest {
         report.setFeatureIndex(12);
         Report[] reportList = new Report[]{report};
         allScenariosPageCollection.addReports(reportList);
-        Feature feature = new Feature("feature", 12);
+        Feature feature = new Feature("feature", "description\non some line", 12);
         allScenariosPageRenderer.getRenderedContentByFeatureFilter(allScenariosPageCollection, template, feature);
     }
 }

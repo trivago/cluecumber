@@ -24,26 +24,31 @@ limitations under the License.
     <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
     <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
+    <#assign subheadline = "">
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
     <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
     <#assign pageName = "Scenarios in Feature">
     <#assign highlight = "feature_summary">
+    <#assign subheadline = "${featureFilter.description?html}">
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
     <#assign headline = "Scenarios using Step '${stepFilter.returnNameWithArgumentPlaceholders()}'">
     <#assign pageName = "Scenarios with Step">
     <#assign highlight = "step_summary">
+    <#assign subheadline = "">
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">
     <#assign headline = "Scenario Sequence">
     <#assign pageName = "Scenario Sequence">
     <#assign highlight = "scenario_sequence">
+    <#assign subheadline = "">
 <#else>
     <#assign base = ".">
     <#assign headline = "All Scenarios">
     <#assign pageName = "All Scenarios">
     <#assign highlight = "scenario_summary">
+    <#assign subheadline = "">
 </#if>
 
 <@page.page
@@ -51,7 +56,7 @@ title="${pageTitle} - ${pageName}"
 base=base
 highlight=highlight
 headline=headline
-subheadline=""
+subheadline=subheadline
 preheadline=""
 preheadlineLink="">
 

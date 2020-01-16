@@ -74,7 +74,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
         resultCounts = new HashMap<>();
         totalNumberOfScenarios = 0;
         reports.forEach(report -> {
-            Feature feature = new Feature(report.getName(), report.getFeatureIndex());
+            Feature feature = new Feature(report.getName(), report.getDescription(), report.getFeatureIndex());
             ResultCount featureResultCount = this.resultCounts.getOrDefault(feature, new ResultCount());
             totalNumberOfScenarios += report.getElements().size();
             report.getElements().forEach(element -> updateResultCount(featureResultCount, element.getStatus()));

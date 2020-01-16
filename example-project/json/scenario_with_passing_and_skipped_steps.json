@@ -1,6 +1,6 @@
 [
   {
-    "description": "This is a feature description 2",
+    "description": "This is a feature description 2\nand this is the next line of description",
     "elements": [
       {
         "description": "",
