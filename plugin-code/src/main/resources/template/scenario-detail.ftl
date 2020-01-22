@@ -28,7 +28,7 @@ subheadline="${element.description?html}"
 preheadline="${element.featureName?html}"
 preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
 
-    <div class="row">
+    <div class="row" id="ScenarioDetail">
         <@page.card width="6" title="Step Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>

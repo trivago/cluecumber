@@ -28,6 +28,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,7 +104,7 @@ public class FileSystemManager {
         Path sourcePath = Paths.get(source);
         Path destinationPath = Paths.get(destination);
         try {
-            Files.copy(sourcePath, destinationPath);
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new CluecumberPluginException("Cannot copy resource '" + source + "': " + e.getMessage());
         }

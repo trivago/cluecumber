@@ -27,7 +27,7 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row">
+    <div class="row" id="TagsSummary">
         <@page.card width="9" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
@@ -48,7 +48,7 @@ preheadlineLink="">
         </@page.card>
     </div>
 
-    <div class="row">
+    <div class="row" id="AvailableTags">
         <@page.card width="12" title="Available Tags" subtitle="" classes="">
             <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
                 <thead>
