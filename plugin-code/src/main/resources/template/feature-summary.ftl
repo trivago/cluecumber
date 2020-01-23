@@ -27,7 +27,7 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row" id="FeaturesSummary">
+    <div class="row" id="features-summary">
         <@page.card width="9" title="Feature Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
@@ -49,7 +49,7 @@ preheadlineLink="">
         </@page.card>
     </div>
 
-    <div class="row" id="AvailableFeatures">
+    <div class="row" id="available-features">
         <@page.card width="12" title="Available Features" subtitle="" classes="">
             <table id="feature_summary" class="table table-hover renderAsDataTable">
                 <thead>
