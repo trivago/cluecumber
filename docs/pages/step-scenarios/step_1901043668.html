@@ -32,7 +32,7 @@ style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="My Report">
-<meta name="author" content="Cluecumber Report Plugin version 2.2.0">
+<meta name="author" content="Cluecumber Report Plugin version 2.3.2">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/datatables.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
@@ -75,7 +75,7 @@ font-src * data: blob: 'unsafe-inline';"/>
             // Chart
             var canvas = document.getElementById('chart-area');
             var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, eval({
+            var chart = new Chart(ctx, {
   "data": {
     "labels": [
       "passed",
@@ -90,9 +90,9 @@ font-src * data: blob: 'unsafe-inline';"/>
           1
         ],
         "backgroundColor": [
-          "rgba(1, 127, 175, 1.000)",
-          "rgba(201, 74, 56, 1.000)",
-          "rgba(244, 143, 0, 1.000)"
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(255, 193, 7, 1.000)"
         ]
       }
     ]
@@ -104,7 +104,7 @@ font-src * data: blob: 'unsafe-inline';"/>
     ]
   },
   "type": "pie"
-}));
+});
 
             var original;
             if (chart.config.type === "pie") {
@@ -189,7 +189,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                 <a class="nav-link " href="pages/feature-summary.html">All Features</a>
                     </li>
             </ul>
-            <span class="text-light">2019-07-17 15:26:21</span>
+            <span class="text-light">2020-01-23 11:25:02</span>
         </div>
     </nav>
     <main role="main" class="container">
@@ -199,7 +199,7 @@ font-src * data: blob: 'unsafe-inline';"/>
             </div>
 
 
-    <div class="row">
+    <div class="row" id="scenario-summary">
     <div class="col-sm-6  h-auto" data-cluecumber-item="card">
         <div class="card h-100">
                 <div class="card-header">Scenario Results</div>
@@ -232,19 +232,19 @@ font-src * data: blob: 'unsafe-inline';"/>
 
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-passed';">1
                             passed</a>     <i class="color-passed cluecumber-icon icon-passed" data-toggle="tooltip"
        title="passed"><span style="display:none">passed</span></i>
 
                         <br>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-failed';">1
                             failed</a>     <i class="color-failed cluecumber-icon icon-failed" data-toggle="tooltip"
        title="failed"><span style="display:none">failed</span></i>
 
                         <br>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-skipped';">1
                             skipped</a>     <i class="color-skipped cluecumber-icon icon-skipped" data-toggle="tooltip"
        title="skipped"><span style="display:none">skipped</span></i>
@@ -291,7 +291,8 @@ font-src * data: blob: 'unsafe-inline';"/>
 
                                         <tr class="table-row-failed">
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="This is a feature description 2 | features/feature2.feature">
+                                                <span data-toggle="tooltip" title="This is a feature description 2
+and this is the next line of description | features/feature2.feature">
                                                     <a href="pages/feature-scenarios/feature_4.html">Feature 2</a>
                                                 </span>
                                             </td>
@@ -303,7 +304,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="521,812,654">
+                                                data-order="521.812.654">
                                                 <span class="nobr">0m 00s 521ms</span>
                                             </td>
                                         </tr>
@@ -373,7 +374,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="181,208,436">
+                                                data-order="181.208.436">
                                                 <span class="nobr">0m 00s 181ms</span>
                                             </td>
                                         </tr>
@@ -417,7 +418,8 @@ font-src * data: blob: 'unsafe-inline';"/>
 
                                         <tr class="table-row-passed">
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="This is a feature description 2 | features/feature2.feature">
+                                                <span data-toggle="tooltip" title="This is a feature description 2
+and this is the next line of description | features/feature2.feature">
                                                     <a href="pages/feature-scenarios/feature_4.html">Feature 2</a>
                                                 </span>
                                             </td>
@@ -429,7 +431,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="521,812,654">
+                                                data-order="521.812.654">
                                                 <span class="nobr">0m 00s 521ms</span>
                                             </td>
                                         </tr>
@@ -453,7 +455,7 @@ font-src * data: blob: 'unsafe-inline';"/>
 
 <footer class="footer navbar-dark">
     <div class="container-fluid">
-        <span>Cluecumber Report Plugin version 2.2.0 - Report generated on 2019-07-17 15:26:21.</span>
+        <span>Cluecumber Report Plugin version 2.3.2 - Report generated on 2020-01-23 11:25:02.</span>
     </div>
 </footer>    </body>
     </html>

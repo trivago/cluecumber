@@ -21,11 +21,12 @@ html {
 
 
 .container {
-    max-width: 1080px;
+    max-width: 2000px;
 }
 
 h2, h3, h4, h5 {
     overflow-wrap: break-word;
+    white-space: pre-line;
 }
 
 body {
