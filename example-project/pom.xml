@@ -60,7 +60,7 @@
                     <!--<failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>-->
 
                     <!-- Optional custom CSS for custom styling -->
-                    <!--<customCss>custom/custom.css</customCss>-->
+                    <customCss>custom/custom.css</customCss>
 
                     <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
                     <!--<expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->

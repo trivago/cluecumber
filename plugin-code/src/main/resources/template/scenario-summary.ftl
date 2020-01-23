@@ -61,7 +61,7 @@ preheadline=""
 preheadlineLink="">
 
     <#if hasCustomParameters()>
-        <div class="row">
+        <div class="row" id="custom-parameters">
             <@page.card width="12" title="" subtitle="" classes="customParameters">
                 <table class="table table-fit">
                     <tbody>
@@ -88,7 +88,7 @@ preheadlineLink="">
         </div>
     </#if>
 
-    <div class="row">
+    <div class="row" id="scenario-summary">
         <@page.card width="6" title="Scenario Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>

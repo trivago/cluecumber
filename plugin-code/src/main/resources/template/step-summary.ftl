@@ -27,7 +27,7 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row">
+    <div class="row" id="steps-summary">
         <@page.card width="9" title="Step Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
@@ -49,7 +49,7 @@ preheadlineLink="">
         </@page.card>
     </div>
 
-    <div class="row">
+    <div class="row" id="available-steps">
         <@page.card width="12" title="Available Steps" subtitle="" classes="">
             <table id="step_summary" class="table table-hover renderAsDataTable"
                    data-cluecumber-item="step-summary-table">
