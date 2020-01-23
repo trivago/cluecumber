@@ -27,7 +27,7 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row" id="steps-summary">
+    <div class="row" id="step-summary">
         <@page.card width="9" title="Step Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>

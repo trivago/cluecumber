@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.3.2] - 2020-01-23
+
+### Fixed
+
+* Missing feature description in scenario details (#222, contributed by Labouh)
+
+### Added
+
+* Explicit html element ids for better custom css styling (#228, contributed by Labouh)
+
 ## [2.3.1] - 2019-10-15
 
 ### Fixed
+
 * Chart y axis step size in scenario view
 
 ## [2.3.0] - 2019-10-14
@@ -540,6 +551,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.3.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2
 [2.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.1
 [2.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.0
 [2.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0
