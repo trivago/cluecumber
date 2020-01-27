@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>2.3.2</version>
+    <version>2.3.3</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -63,7 +63,7 @@
                     <!-- <customCss>custom/custom.css</customCss> -->
 
                     <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
-                    <!--<expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->
+                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
                     <!--<expandStepHooks>true</expandStepHooks>-->
                     <!--<expandDocStrings>true</expandDocStrings>-->
 

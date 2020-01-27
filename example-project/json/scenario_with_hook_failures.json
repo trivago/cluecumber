@@ -70,6 +70,12 @@
           },
           {
             "name": "@test"
+          },
+          {
+            "name": "@çà"
+          },
+          {
+            "name": "@this/is/a/tag"
           }
         ],
         "type": "scenario"
