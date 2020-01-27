@@ -30,7 +30,7 @@ public class Embedding {
     private MimeType mimeType = MimeType.UNKNOWN;
     private String name = "";
 
-    private transient String filename;
+    private transient String filename = "";
 
     public String getData() {
         return data;

@@ -25,7 +25,7 @@ public class ElementJsonPostProcessorTest {
     public void setup() {
         PropertyManager propertyManager = mock(PropertyManager.class);
         FileIO fileIO = mock(FileIO.class);
-        CluecumberLogger logger = new CluecumberLogger();
+        CluecumberLogger logger = mock(CluecumberLogger.class);
         elementJsonPostProcessor = new ElementJsonPostProcessor(propertyManager, fileIO, logger);
     }
 

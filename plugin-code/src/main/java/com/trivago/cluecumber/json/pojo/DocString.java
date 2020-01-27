@@ -1,6 +1,7 @@
 package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 public class DocString {

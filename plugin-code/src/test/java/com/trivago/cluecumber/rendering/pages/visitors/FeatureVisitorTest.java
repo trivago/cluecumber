@@ -4,7 +4,11 @@ import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.rendering.pages.renderering.AllFeaturesPageRenderer;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class FeatureVisitorTest extends VisitorTest {
 

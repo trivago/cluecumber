@@ -23,7 +23,6 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Embedding;
 import com.trivago.cluecumber.json.pojo.ResultMatch;
-import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import io.gsonfire.PostProcessor;
@@ -57,30 +56,28 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
         element.setFailOnPendingOrUndefined(propertyManager.isFailScenariosOnPendingOrUndefinedSteps());
-        processAttachments(element.getSteps(), element.getAfter());
+        processAttachments(element);
     }
 
     /**
      * Process attachments in steps and after hooks.
      *
-     * @param steps      The {@link Step} list.
-     * @param afterHooks The {@link ResultMatch} list.
+     * @param element The {@link Element} to process.
      */
-    private void processAttachments(final List<Step> steps, List<ResultMatch> afterHooks) {
+    private void processAttachments(final Element element) {
         // Process step attachments
-        steps.forEach(step -> {
-            for (ResultMatch before : step.getBefore()) {
-                processEmbedding(before.getEmbeddings());
-            }
+        element.getSteps().forEach(step -> {
+            step.getBefore().stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
             processEmbedding(step.getEmbeddings());
             step.getAfter().stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
         });
 
-        // Process after hook attachments (Cucumber 2)
-        afterHooks.stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
+        // Process before and after hook attachments (Cucumber 2)
+        element.getBefore().stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
+        element.getAfter().stream().map(ResultMatch::getEmbeddings).forEach(this::processEmbedding);
     }
 
-   /**
+    /**
      * Save embeddings to files, clear their Base64 content from JSON and store their filenames in order to save memory
      *
      * @param embeddings The {@link Embedding} list.
@@ -99,14 +96,14 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
      * @param embedding The {@link Embedding} to process.
      * @return The filename to the processed image.
      */
-    private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) {        
+    private String saveEmbeddingToFileAndGetFilename(final Embedding embedding) {
         String fileEnding = "." + embedding.getFileEnding();
         byte[] dataBytes = Base64.decodeBase64(embedding.getData().getBytes(StandardCharsets.UTF_8));
         String filename = String.format("attachment%03d%s", attachmentIndex, fileEnding);
         try {
             fileIO.writeContentToFile(dataBytes, propertyManager.getGeneratedHtmlReportDirectory() + "/attachments/" + filename);
         } catch (FileCreationException e) {
-            logger.warn("Could not process image " + filename + " but will continue report generation...");
+            logger.warn("Could not process file  " + filename + " but will continue report generation...");
         }
         embedding.encodeData(embedding.getData());
         // Clear attachment data to reduce memory
