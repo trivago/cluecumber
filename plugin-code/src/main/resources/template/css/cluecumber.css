@@ -233,11 +233,11 @@ a.anchor {
     visibility: hidden;
 }
 
-parameter {
+span.parameter {
     font-weight: bold;
 }
 
-keyword {
+span.keyword {
     font-weight: bold;
     color: darkblue;
 }
