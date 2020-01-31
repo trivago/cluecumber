@@ -65,7 +65,7 @@ public class Step extends ResultMatch {
         for (int i = arguments.size() - 1; i >= 0; i--) {
             String argument = arguments.get(i).getVal();
             if (argument != null) {
-                tmpName = tmpName.replaceFirst(Pattern.quote(argument), Matcher.quoteReplacement("<strong>" + argument + "</strong>"));
+                tmpName = tmpName.replaceFirst(Pattern.quote(argument), Matcher.quoteReplacement("<parameter>" + argument + "</parameter>"));
             }
         }
         return tmpName;

@@ -49,7 +49,7 @@ public class StepTest {
         arguments.add(argument);
         when(step.getArguments()).thenReturn(arguments);
         step.setResult(result);
-        assertThat(step.returnNameWithArguments(), is("This is a name with an <strong>argument</strong> inside."));
+        assertThat(step.returnNameWithArguments(), is("This is a name with an <parameter>argument</parameter> inside."));
     }
 
     @Test
