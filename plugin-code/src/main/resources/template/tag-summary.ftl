@@ -27,7 +27,7 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row" id="tags-summary">
+    <div class="row" id="tag-summary">
         <@page.card width="9" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>

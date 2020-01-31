@@ -31,7 +31,7 @@ style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="My Report">
-<meta name="author" content="Cluecumber Report Plugin version 2.2.0">
+<meta name="author" content="Cluecumber Report Plugin version 2.3.2">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/datatables.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
@@ -74,7 +74,7 @@ font-src * data: blob: 'unsafe-inline';"/>
             // Chart
             var canvas = document.getElementById('chart-area');
             var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, eval({
+            var chart = new Chart(ctx, {
   "data": {
     "labels": [
       "this step has an image attachment",
@@ -87,8 +87,8 @@ font-src * data: blob: 'unsafe-inline';"/>
           3
         ],
         "backgroundColor": [
-          "rgba(1, 127, 175, 1.000)",
-          "rgba(1, 127, 175, 1.000)"
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(40, 167, 69, 1.000)"
         ],
         "label": "passed",
         "stack": "complete"
@@ -99,8 +99,8 @@ font-src * data: blob: 'unsafe-inline';"/>
           0
         ],
         "backgroundColor": [
-          "rgba(201, 74, 56, 1.000)",
-          "rgba(201, 74, 56, 1.000)"
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)"
         ],
         "label": "failed",
         "stack": "complete"
@@ -111,8 +111,8 @@ font-src * data: blob: 'unsafe-inline';"/>
           0
         ],
         "backgroundColor": [
-          "rgba(244, 143, 0, 1.000)",
-          "rgba(244, 143, 0, 1.000)"
+          "rgba(255, 193, 7, 1.000)",
+          "rgba(255, 193, 7, 1.000)"
         ],
         "label": "skipped",
         "stack": "complete"
@@ -140,7 +140,7 @@ font-src * data: blob: 'unsafe-inline';"/>
         {
           "ticks": {
             "min": 0,
-            "stepSize": 0,
+            "stepSize": 3,
             "display": true
           },
           "stacked": true,
@@ -158,7 +158,7 @@ font-src * data: blob: 'unsafe-inline';"/>
     ]
   },
   "type": "bar"
-}));
+});
 
             var original;
             if (chart.config.type === "pie") {
@@ -243,7 +243,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                 <a class="nav-link " href="pages/feature-summary.html">All Features</a>
                     </li>
             </ul>
-            <span class="text-light">2019-07-17 15:26:22</span>
+            <span class="text-light">2020-01-23 11:25:03</span>
         </div>
     </nav>
     <main role="main" class="container">
@@ -254,7 +254,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                     <h5>Attachment in every step</h5>
             </div>
 
-    <div class="row">
+    <div class="row" id="scenario-detail">
     <div class="col-sm-6  h-auto" data-cluecumber-item="card">
         <div class="card h-100">
                 <div class="card-header">Step Results</div>
@@ -370,7 +370,7 @@ font-src * data: blob: 'unsafe-inline';"/>
 
 <footer class="footer navbar-dark">
     <div class="container-fluid">
-        <span>Cluecumber Report Plugin version 2.2.0 - Report generated on 2019-07-17 15:26:22.</span>
+        <span>Cluecumber Report Plugin version 2.3.2 - Report generated on 2020-01-23 11:25:03.</span>
     </div>
 </footer>    </body>
     </html>

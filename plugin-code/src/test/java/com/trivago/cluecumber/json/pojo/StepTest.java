@@ -1,6 +1,5 @@
 package com.trivago.cluecumber.json.pojo;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -77,8 +76,8 @@ public class StepTest {
         afterSteps.add(after);
         step.setAfter(afterSteps);
 
-        MatcherAssert.assertThat(step.getTotalDuration(), is(8000000000L));
-        MatcherAssert.assertThat(step.returnTotalDurationString(), is("0m 08s 000ms"));
+        assertThat(step.getTotalDuration(), is(8000000000L));
+        assertThat(step.returnTotalDurationString(), is("0m 08s 000ms"));
     }
 
     @Test

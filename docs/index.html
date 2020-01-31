@@ -32,7 +32,7 @@ style-src * data: blob: 'unsafe-inline';
 font-src * data: blob: 'unsafe-inline';"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="My Report">
-<meta name="author" content="Cluecumber Report Plugin version 2.2.0">
+<meta name="author" content="Cluecumber Report Plugin version 2.3.2">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="css/datatables.min.css">
 <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
@@ -75,7 +75,7 @@ font-src * data: blob: 'unsafe-inline';"/>
             // Chart
             var canvas = document.getElementById('chart-area');
             var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, eval({
+            var chart = new Chart(ctx, {
   "data": {
     "labels": [
       "passed",
@@ -90,9 +90,9 @@ font-src * data: blob: 'unsafe-inline';"/>
           1
         ],
         "backgroundColor": [
-          "rgba(1, 127, 175, 1.000)",
-          "rgba(201, 74, 56, 1.000)",
-          "rgba(244, 143, 0, 1.000)"
+          "rgba(40, 167, 69, 1.000)",
+          "rgba(220, 53, 69, 1.000)",
+          "rgba(255, 193, 7, 1.000)"
         ]
       }
     ]
@@ -104,7 +104,7 @@ font-src * data: blob: 'unsafe-inline';"/>
     ]
   },
   "type": "pie"
-}));
+});
 
             var original;
             if (chart.config.type === "pie") {
@@ -189,7 +189,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                 <a class="nav-link " href="pages/feature-summary.html">All Features</a>
                     </li>
             </ul>
-            <span class="text-light">2019-07-17 15:26:21</span>
+            <span class="text-light">2020-01-23 11:25:02</span>
         </div>
     </nav>
     <main role="main" class="container">
@@ -198,7 +198,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                     <h3>All Scenarios</h3>
             </div>
 
-        <div class="row">
+        <div class="row" id="custom-parameters">
     <div class="col-sm-12 customParameters h-auto" data-cluecumber-item="card">
         <div class="card h-100">
             <div class="card-body">
@@ -227,7 +227,7 @@ font-src * data: blob: 'unsafe-inline';"/>
     </div>
         </div>
 
-    <div class="row">
+    <div class="row" id="scenario-summary">
     <div class="col-sm-6  h-auto" data-cluecumber-item="card">
         <div class="card h-100">
                 <div class="card-header">Scenario Results</div>
@@ -264,19 +264,19 @@ font-src * data: blob: 'unsafe-inline';"/>
 
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-passed';">8
                             passed</a>     <i class="color-passed cluecumber-icon icon-passed" data-toggle="tooltip"
        title="passed"><span style="display:none">passed</span></i>
 
                         <br>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-failed';">9
                             failed</a>     <i class="color-failed cluecumber-icon icon-failed" data-toggle="tooltip"
        title="failed"><span style="display:none">failed</span></i>
 
                         <br>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-skipped';">1
                             skipped</a>     <i class="color-skipped cluecumber-icon icon-skipped" data-toggle="tooltip"
        title="skipped"><span style="display:none">skipped</span></i>
@@ -327,7 +327,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="19,317,878,115">
+                                                data-order="19.317.878.115">
                                                 <span class="nobr">0m 19s 317ms</span>
                                             </td>
                                         </tr>
@@ -346,7 +346,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="27,548,588,128">
+                                                data-order="27.548.588.128">
                                                 <span class="nobr">0m 27s 548ms</span>
                                             </td>
                                         </tr>
@@ -365,7 +365,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="48,638,503,180">
+                                                data-order="48.638.503.180">
                                                 <span class="nobr">0m 48s 638ms</span>
                                             </td>
                                         </tr>
@@ -384,14 +384,15 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 2019-04-11<br>10:00:25
                                             </td>
                                             <td class="text-right small"
-                                                data-order="10,368,366,451">
+                                                data-order="10.368.366.451">
                                                 <span class="nobr">0m 10s 368ms</span>
                                             </td>
                                         </tr>
 
                                         <tr class="table-row-failed">
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="features/feature2.feature">
+                                                <span data-toggle="tooltip" title="This is a feature description 2
+and this is the next line of description | features/feature2.feature">
                                                     <a href="pages/feature-scenarios/feature_4.html">Feature 2</a>
                                                 </span>
                                             </td>
@@ -403,7 +404,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="5,456,794,196">
+                                                data-order="5.456.794.196">
                                                 <span class="nobr">0m 05s 456ms</span>
                                             </td>
                                         </tr>
@@ -412,7 +413,8 @@ font-src * data: blob: 'unsafe-inline';"/>
 
                                         <tr class="table-row-failed">
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="This is a feature description 2 | features/feature2.feature">
+                                                <span data-toggle="tooltip" title="This is a feature description 2
+and this is the next line of description | features/feature2.feature">
                                                     <a href="pages/feature-scenarios/feature_4.html">Feature 2</a>
                                                 </span>
                                             </td>
@@ -424,14 +426,15 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="340,604,218">
+                                                data-order="340.604.218">
                                                 <span class="nobr">0m 00s 340ms</span>
                                             </td>
                                         </tr>
 
                                         <tr class="table-row-failed">
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="This is a feature description 2 | features/feature2.feature">
+                                                <span data-toggle="tooltip" title="This is a feature description 2
+and this is the next line of description | features/feature2.feature">
                                                     <a href="pages/feature-scenarios/feature_4.html">Feature 2</a>
                                                 </span>
                                             </td>
@@ -443,7 +446,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="521,812,654">
+                                                data-order="521.812.654">
                                                 <span class="nobr">0m 00s 521ms</span>
                                             </td>
                                         </tr>
@@ -462,7 +465,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="1,559,011,059">
+                                                data-order="1.559.011.059">
                                                 <span class="nobr">0m 01s 559ms</span>
                                             </td>
                                         </tr>
@@ -486,7 +489,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="19,317,878,115">
+                                                data-order="19.317.878.115">
                                                 <span class="nobr">0m 19s 317ms</span>
                                             </td>
                                         </tr>
@@ -549,7 +552,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="181,208,436">
+                                                data-order="181.208.436">
                                                 <span class="nobr">0m 00s 181ms</span>
                                             </td>
                                         </tr>
@@ -602,7 +605,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 2019-04-11<br>10:00:23
                                             </td>
                                             <td class="text-right small"
-                                                data-order="2,159,519,273">
+                                                data-order="2.159.519.273">
                                                 <span class="nobr">0m 02s 159ms</span>
                                             </td>
                                         </tr>
@@ -620,7 +623,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 2019-04-11<br>10:00:15
                                             </td>
                                             <td class="text-right small"
-                                                data-order="8,574,984,049">
+                                                data-order="8.574.984.049">
                                                 <span class="nobr">0m 08s 574ms</span>
                                             </td>
                                         </tr>
@@ -640,14 +643,15 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="3,279,305,657">
+                                                data-order="3.279.305.657">
                                                 <span class="nobr">0m 03s 279ms</span>
                                             </td>
                                         </tr>
 
                                         <tr class="table-row-passed">
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="This is a feature description 2 | features/feature2.feature">
+                                                <span data-toggle="tooltip" title="This is a feature description 2
+and this is the next line of description | features/feature2.feature">
                                                     <a href="pages/feature-scenarios/feature_4.html">Feature 2</a>
                                                 </span>
                                             </td>
@@ -659,7 +663,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="521,812,654">
+                                                data-order="521.812.654">
                                                 <span class="nobr">0m 00s 521ms</span>
                                             </td>
                                         </tr>
@@ -681,7 +685,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="499,542,353">
+                                                data-order="499.542.353">
                                                 <span class="nobr">0m 00s 499ms</span>
                                             </td>
                                         </tr>
@@ -700,7 +704,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="499,542,353">
+                                                data-order="499.542.353">
                                                 <span class="nobr">0m 00s 499ms</span>
                                             </td>
                                         </tr>
@@ -719,7 +723,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="4,167,748,802">
+                                                data-order="4.167.748.802">
                                                 <span class="nobr">0m 04s 167ms</span>
                                             </td>
                                         </tr>
@@ -738,7 +742,7 @@ font-src * data: blob: 'unsafe-inline';"/>
                                                 <br>
                                             </td>
                                             <td class="text-right small"
-                                                data-order="2,062,701,410">
+                                                data-order="2.062.701.410">
                                                 <span class="nobr">0m 02s 062ms</span>
                                             </td>
                                         </tr>
@@ -755,7 +759,7 @@ font-src * data: blob: 'unsafe-inline';"/>
 
 <footer class="footer navbar-dark">
     <div class="container-fluid">
-        <span>Cluecumber Report Plugin version 2.2.0 - Report generated on 2019-07-17 15:26:21.</span>
+        <span>Cluecumber Report Plugin version 2.3.2 - Report generated on 2020-01-23 11:25:02.</span>
     </div>
 </footer>    </body>
     </html>

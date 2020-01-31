@@ -79,7 +79,7 @@ public class PieChartBuilder {
         return chart;
     }
 
-    private class ValueSet {
+    private static class ValueSet {
         private final int value;
         private final String color;
 

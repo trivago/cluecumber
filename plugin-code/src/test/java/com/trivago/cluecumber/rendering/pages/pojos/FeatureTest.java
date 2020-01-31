@@ -3,15 +3,15 @@ package com.trivago.cluecumber.rendering.pages.pojos;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 public class FeatureTest {
 
     private Feature feature;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         feature = new Feature("myFeature", "ma desc", 1);
     }
 

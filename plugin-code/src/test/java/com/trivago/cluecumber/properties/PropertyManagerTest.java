@@ -25,13 +25,12 @@ public class PropertyManagerTest {
     private PropertyManager propertyManager;
     private CluecumberLogger logger;
     private FileIO fileIO;
-    private PropertiesFileLoader propertiesFileLoader;
 
     @Before
     public void setup() {
         logger = mock(CluecumberLogger.class);
         fileIO = mock(FileIO.class);
-        propertiesFileLoader = new PropertiesFileLoader(fileIO);
+        PropertiesFileLoader propertiesFileLoader = new PropertiesFileLoader(fileIO);
         propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
     }
 
@@ -146,8 +145,7 @@ public class PropertyManagerTest {
 
     @Test
     public void customCssNotSetTest() throws MissingFileException {
-        String customCss = null;
-        propertyManager.setCustomCssFile(customCss);
+        propertyManager.setCustomCssFile(null);
         assertThat(propertyManager.getCustomCssFile(), is(nullValue()));
     }
 
@@ -159,7 +157,7 @@ public class PropertyManagerTest {
     }
 
     @Test
-    public void customPageTitleTest() throws MissingFileException {
+    public void customPageTitleTest() {
         String customPageTitle = "Custom Title";
         propertyManager.setCustomPageTitle(customPageTitle);
         assertThat(propertyManager.getCustomPageTitle(), is(customPageTitle));

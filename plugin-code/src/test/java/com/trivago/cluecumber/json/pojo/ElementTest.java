@@ -1,11 +1,9 @@
 package com.trivago.cluecumber.json.pojo;
 
 import com.trivago.cluecumber.constants.Status;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;

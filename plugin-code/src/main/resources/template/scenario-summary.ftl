@@ -122,15 +122,15 @@ preheadlineLink="">
                         <br>
                         ${totalNumberOfSkippedScenarios} skipped <@common.status status="skipped"/>
                     <#else>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-passed';">${totalNumberOfPassedScenarios}
                             passed</a> <@common.status status="passed"/>
                         <br>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-failed';">${totalNumberOfFailedScenarios}
                             failed</a> <@common.status status="failed"/>
                         <br>
-                        <a href="javascript:;"
+                        <a href="javascript:"
                            onclick="document.location.hash='anchor-skipped';">${totalNumberOfSkippedScenarios}
                             skipped</a> <@common.status status="skipped"/>
                     </#if>

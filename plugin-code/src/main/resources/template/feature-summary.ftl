@@ -27,7 +27,7 @@ subheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row" id="features-summary">
+    <div class="row" id="feature-summary">
         <@page.card width="9" title="Feature Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>

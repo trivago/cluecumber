@@ -4,8 +4,8 @@ import com.trivago.cluecumber.properties.PropertyManager;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

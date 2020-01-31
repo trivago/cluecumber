@@ -10,7 +10,12 @@ import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
 import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
-import com.trivago.cluecumber.rendering.pages.visitors.*;
+import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.VisitorDirectory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ReportGeneratorTest {
 

@@ -62,7 +62,7 @@ public class Times {
         );
     }
 
-    class FeatureTime {
+    static class FeatureTime {
         private final long time;
         private final int scenarioIndex;
 
