@@ -1,0 +1,34 @@
+[
+  {
+    "description": "This is a description of undefined scenarion",
+    "elements": [
+      {
+        "description": "hook is failing\nwhy?",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "This is a undefined scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "NativeConstructorAccessorImplFails.java:-2"
+            },
+            "name": "this step fails",
+            "result": {
+              "duration": 340604218,
+              "status": "undefined"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Feature 2 Undefined Scenario",
+    "uri": "features/feature2.feature"
+  }
+]

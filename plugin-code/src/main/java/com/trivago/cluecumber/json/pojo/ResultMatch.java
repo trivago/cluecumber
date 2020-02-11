@@ -102,10 +102,10 @@ public class ResultMatch {
                 return Status.PASSED;
             case SKIPPED:
             case PENDING:
-                return Status.SKIPPED;
-            case FAILED:
             case AMBIGUOUS:
             case UNDEFINED:
+                return Status.SKIPPED;
+            case FAILED:
             default:
                 return Status.FAILED;
         }
