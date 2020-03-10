@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.3.4] - 2020-02-11
+
+### Added
+
+* Custom CSS classes for keywords and parameters (#235, contributed by Labouh)
+
+### Fixed
+
+* Unknown steps are now reported as skipped by default (unless `failScenariosOnPendingOrUndefinedSteps` is set to true) (#236)
+
 ## [2.3.3] - 2020-01-27
 
 ### Fixed
@@ -558,6 +568,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.3.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.4
 [2.3.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.3
 [2.3.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2
 [2.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.1

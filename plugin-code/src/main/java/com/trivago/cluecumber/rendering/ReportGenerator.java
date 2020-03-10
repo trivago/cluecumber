@@ -25,7 +25,8 @@ import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
 import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
-import com.trivago.cluecumber.rendering.pages.visitors.*;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.VisitorDirectory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -84,10 +85,11 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(reportDirectory);
         fileSystemManager.createDirectory(
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
-        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
-        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
-        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.TAG_SCENARIO_PAGE_PATH);
-        fileSystemManager.createDirectory(reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/" + PluginSettings.STEP_SCENARIO_PAGE_PATH);
+        String pagesDirectory = reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/";
+        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.TAG_SCENARIO_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.STEP_SCENARIO_PAGE_PATH);
     }
 
     /**
