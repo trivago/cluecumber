@@ -51,7 +51,10 @@ public class PluginSettings {
     public final static String FEATURE_SUMMARY_PAGE_PATH = "feature-summary";
     public static final String FEATURE_SCENARIOS_PAGE_PATH = "feature-scenarios";
     public static final String FEATURE_SCENARIOS_PAGE_FRAGMENT = "/" + FEATURE_SCENARIOS_PAGE_PATH + "/feature_";
-    
+
+    public final static String REQUIREMENT_SUMMARY_PAGE_NAME = "Requirement Summary";
+    public final static String REQUIREMENT_SUMMARY_PAGE_PATH = "requirement-summary";
+
     PluginSettings() {
     }
 }

@@ -18,10 +18,13 @@ package com.trivago.cluecumber.rendering.pages.pojos;
 
 import java.util.Objects;
 
+import com.trivago.cluecumber.constants.Status;
+
 public class Feature {
     private final String name;
     private final String description;
     private final int index;
+    private ResultCount resultCount;
 
     public Feature(final String name, final String description, final int index) {
         this.name = name;
@@ -62,5 +65,23 @@ public class Feature {
     @Override
     public int hashCode() {
         return Objects.hash(name, index);
+    }
+
+	public void setResultcount(ResultCount featureResultCount) {
+        resultCount = featureResultCount;
+    }
+    
+    public ResultCount getResultcount() {
+        return resultCount;
+    }
+    
+    public Status getStatus() {
+        if (resultCount.getFailed() > 0) {
+            return Status.FAILED;
+        }
+        if (resultCount.getSkipped() > 0) {
+            return Status.SKIPPED;
+        }
+        return Status.PASSED;
     }
 }

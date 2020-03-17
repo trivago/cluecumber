@@ -241,3 +241,22 @@ span.keyword {
     font-weight: bold;
     color: darkblue;
 }
+
+.feature:before {
+    content: '\1F952';
+}
+
+.requirement:before {
+    content: '\1F4C1';
+}
+
+.requirement {
+font-weight: bold;
+}
+
+.firstcol {
+    width: 60%;
+}
+.nextcol {
+    width: 10%;
+}

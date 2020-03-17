@@ -22,7 +22,7 @@ limitations under the License.
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <#assign links = ['scenario_summary', 'scenario_sequence', 'tag_summary', 'step_summary', 'feature_summary']>
+                <#assign links = ['scenario_summary', 'scenario_sequence', 'tag_summary', 'step_summary', 'feature_summary', 'requirement_summary']>
                 <#list links as link>
                     <li class="nav-item">
                         <#assign highlightClass="">
@@ -44,6 +44,9 @@ limitations under the License.
                                 <#break>
                             <#case "feature_summary">
                                 <a class="nav-link ${highlightClass}" href="pages/feature-summary.html">All Features</a>
+                                <#break>
+                            <#case "requirement_summary">
+                                <a class="nav-link ${highlightClass}" href="pages/requirement-summary.html">All Requirements</a>
                                 <#break>
                         </#switch>
                     </li>

@@ -19,8 +19,11 @@ package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
+import com.trivago.cluecumber.rendering.pages.pojos.Requirement;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +32,7 @@ import java.util.Set;
 public class AllFeaturesPageCollection extends SummaryPageCollection {
     private Map<Feature, ResultCount> resultCounts;
     private int totalNumberOfScenarios;
+    private Requirement root;
 
     public AllFeaturesPageCollection(final List<Report> reports, final String pageTitle) {
         super(pageTitle);
@@ -64,6 +68,24 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
         return getNumberOfResultsWithStatus(resultCounts.values(), Status.SKIPPED);
     }
 
+    private void constructReqList(Collection<Requirement> reqs, List<Requirement> result) {
+        for (Requirement req : reqs) {
+            result.add(req);
+            constructReqList(req.getChildren(), result);
+        } 
+    }
+
+    public List<Requirement> getRequirements() {
+        ArrayList<Requirement> reqs = new ArrayList<>();
+        reqs.add(root);
+        constructReqList(root.getChildren(), reqs); 
+        return reqs;
+    }
+
+    public Requirement getRoot() {
+        return root;
+    }
+
     /**
      * Calculate the numbers of failures, successes and skips per feature.
      *
@@ -73,13 +95,19 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
         if (reports == null) return;
         resultCounts = new HashMap<>();
         totalNumberOfScenarios = 0;
+        root = new Requirement("", 0, "");
         reports.forEach(report -> {
             Feature feature = new Feature(report.getName(), report.getDescription(), report.getFeatureIndex());
+            Requirement req = root.getSubRequirement(report.getUri());
+            req.addFeature(feature);
             ResultCount featureResultCount = this.resultCounts.getOrDefault(feature, new ResultCount());
+            feature.setResultcount(featureResultCount);
             totalNumberOfScenarios += report.getElements().size();
             report.getElements().forEach(element -> updateResultCount(featureResultCount, element.getStatus()));
             this.resultCounts.put(feature, featureResultCount);
         });
+        // update the passed/failed/skip of requirements
+        root.computeResultCount();
     }
 
     public int getTotalNumberOfScenarios() {

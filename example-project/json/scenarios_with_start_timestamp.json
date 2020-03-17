@@ -173,7 +173,7 @@
     "description": "I\u0027d like to be able to search for my favourite book",
     "id": "vendor-shopping-cart",
     "keyword": "Feature",
-    "uri": "classpath:org/ShoppingCart.feature",
+    "uri": "features/ShoppingCart.feature",
     "tags": []
   }
 ]

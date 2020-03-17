@@ -98,6 +98,6 @@
     "description": "Login Page",
     "id": "login-page",
     "keyword": "Feature",
-    "uri": "target/parallel/features/Login_scenario002_run001_IT.feature"
+    "uri": "features/parallel/Login_scenario002_run001_IT.feature"
   }
 ]

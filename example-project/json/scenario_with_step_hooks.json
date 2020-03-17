@@ -118,7 +118,7 @@
     "description": "",
     "id": "some-scenario",
     "keyword": "Feature",
-    "uri": "src/test/resources/features/cucumber3/Foo.feature",
+    "uri": "features/cucumber 3/Foo.feature",
     "tags": [
       {
         "name": "@tag1",

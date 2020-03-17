@@ -494,7 +494,7 @@
     "description": "",
     "id": "affiliates:-check-affiliate-url",
     "keyword": "Feature",
-    "uri": "parallel/features/AffiliateUrl_scenario001_run001_IT.feature",
+    "uri": "features/parallel/AffiliateUrl_scenario001_run001_IT.feature",
     "tags": [
       {
         "name": "@Affiliates",

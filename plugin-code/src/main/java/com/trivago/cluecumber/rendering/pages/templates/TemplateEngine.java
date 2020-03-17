@@ -28,6 +28,7 @@ public class TemplateEngine {
 
     public enum Template {
         ALL_FEATURES("feature-summary"),
+        ALL_REQUIREMENTS("requirement-summary"),
         ALL_SCENARIOS("scenario-summary"),
         SCENARIO_SEQUENCE("scenario-sequence"),
         ALL_STEPS("step-summary"),

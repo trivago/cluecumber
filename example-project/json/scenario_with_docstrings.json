@@ -207,10 +207,10 @@
         ]
       }
     ],
-    "name": "services/DocString.feature",
+    "name": "DocString",
     "description": "Doc String Feature",
     "id": "doc-string-feature",
     "keyword": "Feature",
-    "uri": "services/DocString.feature"
+    "uri": "features/services/doc/DocString.feature"
   }
 ]

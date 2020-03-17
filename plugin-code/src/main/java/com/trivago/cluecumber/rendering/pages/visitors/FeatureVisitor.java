@@ -16,6 +16,7 @@ import javax.inject.Singleton;
 
 import static com.trivago.cluecumber.rendering.pages.templates.TemplateEngine.Template.ALL_FEATURES;
 import static com.trivago.cluecumber.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
+import static com.trivago.cluecumber.rendering.pages.templates.TemplateEngine.Template.ALL_REQUIREMENTS;
 
 @Singleton
 public class FeatureVisitor implements PageVisitor {
@@ -52,6 +53,14 @@ public class FeatureVisitor implements PageVisitor {
                         templateEngine.getTemplate(ALL_FEATURES)),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+        // All features organised by requirement
+        fileIO.writeContentToFile(
+                allFeaturesPageRenderer.getRenderedContent(allFeaturesPageCollection,
+                                templateEngine.getTemplate(ALL_REQUIREMENTS)),
+                        propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                                PluginSettings.REQUIREMENT_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                    
 
         // Scenarios by feature pages
         for (Feature feature : allFeaturesPageCollection.getFeatures()) {
