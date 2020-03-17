@@ -34,7 +34,9 @@ preheadlineLink="">
                 <#list requirements as requirement >
                     <#if requirement.level != 0>
                         <#if requirement.level <= level>
+                            <#list requirement.level..level as n>
                             </div>
+                            </#list>
                         </#if>
                         <div class="deeper parent active">
                         <table width="100%">

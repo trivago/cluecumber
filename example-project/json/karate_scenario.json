@@ -141,6 +141,6 @@
     "description": "ReqRes API checks",
     "id": "reqres-api-checks",
     "keyword": "Feature",
-    "uri": "features/Karate.feature"
+    "uri": "features/karate/kata/Karate.feature"
   }
 ]
