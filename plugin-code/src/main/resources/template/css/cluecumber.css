@@ -242,9 +242,6 @@ span.keyword {
     color: darkblue;
 }
 
-.feature:before {
-    content: '\1F952';
-}
 
 .requirement:before {
     content: '\1F4C1';
@@ -259,4 +256,13 @@ font-weight: bold;
 }
 .nextcol {
     width: 10%;
+}
+
+.bar {
+    width: var(--bar-value);
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: white;
+    color: white;
+    text-align: center;
 }

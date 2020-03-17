@@ -22,6 +22,10 @@ limitations under the License.
     border: 2px solid ${passedColor} !important;
 }
 
+.bar-color-passed {
+    background-color: ${passedColor} !important;
+}
+
 .color-failed {
     color: ${failedColor} !important;
 }
@@ -30,10 +34,18 @@ limitations under the License.
     border: 2px solid ${failedColor} !important;
 }
 
+.bar-color-failed {
+    background-color: ${failedColor} !important;
+}
+
 .color-skipped  {
     color: ${skippedColor} !important;
 }
 
 .border-color-skipped  {
     border: 2px solid ${skippedColor} !important;
+}
+
+.bar-color-skipped  {
+    background-color: ${skippedColor} !important;
 }

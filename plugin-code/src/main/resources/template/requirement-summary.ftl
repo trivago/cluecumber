@@ -43,11 +43,22 @@ preheadlineLink="">
                                 <a style="padding-left: ${(requirement.level-1) * 15}px" class="collapsed requirement" data-toggle="collapse" id="menu-group${requirement.id}" href="#sub-item${requirement.id}">
                                     ${requirement.name}
                                 </a>
-                            </td>                        
-                            <td class="text-right nextcol"><strong>${requirement.count.total}</strong></td>
-                            <td class="text-right color-passed nextcol">${requirement.count.passed}</td>
-                            <td class="text-right color-failed nextcol">${requirement.count.failed}</td>
-                            <td class="text-right color-skipped nextcol">${requirement.count.skipped}</td>
+                            </td>
+                            <#if requirement.count.passed!=0>                        
+                            <td class="bar-color-passed bar" style="--bar-value:${requirement.count.passed/requirement.count.total * 0.4 * 100}%;">
+                                ${requirement.count.passed}    
+                            </td>
+                            </#if>
+                            <#if requirement.count.failed!=0>                        
+                            <td class="bar-color-failed bar" style="--bar-value:${requirement.count.failed/requirement.count.total * 0.4  * 100}%;">
+                                ${requirement.count.failed}
+                            </td>
+                            </#if>
+                            <#if requirement.count.skipped!=0>                        
+                            <td class="bar-color-skipped bar" style="--bar-value:${requirement.count.skipped/requirement.count.total * 0.4  * 100}%;">
+                                ${requirement.count.skipped}
+                            </td>
+                            </#if>
                         </tr>
                         </table>
 
@@ -59,8 +70,13 @@ preheadlineLink="">
                     <div class="deeper parent active">
                     <table width="100%">
                     <tr>
-                        <td class="text-left firstcol"><a style="padding-left: ${requirement.level * 15}px" class="feature"
-                                    href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a>
+                        <td class="text-left firstcol">
+                            <a style="padding-left: ${requirement.level * 15}px"
+                                class="feature"
+                                href="pages/feature-scenarios/feature_${feature.index?c}.html">
+                                <i class="color-${feature.status?lower_case} icon-${feature.status?lower_case}"></i>
+                                ${feature.name}
+                            </a>
                         </td>                        
                         <td class="text-right nextcol"><strong>${feature.resultcount.total}</strong></td>
                         <td class="text-right color-passed nextcol">${feature.resultcount.passed}</td>
