@@ -46,18 +46,21 @@ preheadlineLink="">
                                     ${requirement.name}
                                 </a>
                             </td>
-                            <#if requirement.count.passed!=0>                        
-                            <td class="bar-color-passed bar" style="--bar-value:${requirement.count.passed/requirement.count.total * 0.4 * 100}%;">
+                            <#if requirement.count.passed!=0>
+                            <#assign percent = requirement.count.passed/requirement.count.total * 0.4 * 100>
+                            <td class="bar-color-passed bar" style="--bar-value:${percent?c}%;">
                                 ${requirement.count.passed}    
                             </td>
                             </#if>
-                            <#if requirement.count.failed!=0>                        
-                            <td class="bar-color-failed bar" style="--bar-value:${requirement.count.failed/requirement.count.total * 0.4  * 100}%;">
+                            <#if requirement.count.failed!=0>
+                            <#assign percent = requirement.count.failed/requirement.count.total * 0.4 * 100>                    
+                            <td class="bar-color-failed bar" style="--bar-value:${percent?c}%;">
                                 ${requirement.count.failed}
                             </td>
                             </#if>
-                            <#if requirement.count.skipped!=0>                        
-                            <td class="bar-color-skipped bar" style="--bar-value:${requirement.count.skipped/requirement.count.total * 0.4  * 100}%;">
+                            <#if requirement.count.skipped!=0>
+                            <#assign percent = requirement.count.skipped/requirement.count.total * 0.4 * 100>                    
+                            <td class="bar-color-skipped bar" style="--bar-value:${percent?c}%;">
                                 ${requirement.count.skipped}
                             </td>
                             </#if>
