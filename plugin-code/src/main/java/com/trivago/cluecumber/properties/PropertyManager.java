@@ -48,7 +48,7 @@ public class PropertyManager {
     private boolean expandStepHooks;
     private boolean expandDocStrings;
 
-    private Map<String, String> customParameters = new LinkedHashMap<>();
+    private final Map<String, String> customParameters = new LinkedHashMap<>();
     private String customCssFile;
     private String customParametersFile;
 
@@ -212,7 +212,7 @@ public class PropertyManager {
             logger.info("- custom parameters file           : " + customParametersFile, DEFAULT);
         }
 
-        if (customParameters != null && !customParameters.isEmpty()) {
+        if (!customParameters.isEmpty()) {
             if (!customParametersFileExists) {
                 logger.logInfoSeparator();
             }

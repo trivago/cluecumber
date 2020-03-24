@@ -39,8 +39,8 @@ public class ReportGenerator {
     private final PropertyManager propertyManager;
     private final FileSystemManager fileSystemManager;
 
-    private CustomCssRenderer customCssRenderer;
-    private List<PageVisitor> visitors;
+    private final CustomCssRenderer customCssRenderer;
+    private final List<PageVisitor> visitors;
 
     @Inject
     ReportGenerator(

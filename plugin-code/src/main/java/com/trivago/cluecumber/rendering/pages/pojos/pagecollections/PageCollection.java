@@ -18,6 +18,7 @@ package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
 
+@SuppressWarnings("unused")
 public class PageCollection implements Cloneable {
     private final ReportDetails reportDetails;
     private final String pageTitle;

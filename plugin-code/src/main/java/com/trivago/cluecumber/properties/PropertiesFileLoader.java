@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Singleton
 public class PropertiesFileLoader {
 
-    private FileIO fileIO;
+    private final FileIO fileIO;
 
     @Inject
     public PropertiesFileLoader(final FileIO fileIO) {

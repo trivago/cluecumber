@@ -61,6 +61,7 @@ public class CustomCssRenderer {
         return stringWriter.toString();
     }
 
+    @SuppressWarnings("unused")
     public static class CustomStatusColors {
 
         private final String passedColor;

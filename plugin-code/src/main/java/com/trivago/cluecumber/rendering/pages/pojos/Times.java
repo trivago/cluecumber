@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Times {
-    private List<FeatureTime> times = new ArrayList<>();
+    private final List<FeatureTime> times = new ArrayList<>();
 
     public void addTime(final long nanoseconds, final int featureIndex) {
         times.add(new FeatureTime(nanoseconds, featureIndex));

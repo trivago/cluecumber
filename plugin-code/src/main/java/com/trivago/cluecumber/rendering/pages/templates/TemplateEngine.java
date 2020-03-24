@@ -35,7 +35,7 @@ public class TemplateEngine {
         SCENARIO_DETAILS("scenario-detail"),
         CUSTOM_CSS("custom-css");
 
-        private String fileName;
+        private final String fileName;
 
         Template(final String fileName) {
             this.fileName = fileName;

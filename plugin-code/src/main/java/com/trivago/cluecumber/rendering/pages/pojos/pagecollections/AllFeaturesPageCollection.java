@@ -82,6 +82,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
         });
     }
 
+    @SuppressWarnings("unused")
     public int getTotalNumberOfScenarios() {
         return totalNumberOfScenarios;
     }

@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageRenderer {
     private final ChartConfiguration chartConfiguration;
-    private PropertyManager propertyManager;
+    private final PropertyManager propertyManager;
 
     @Inject
     public ScenarioDetailsPageRenderer(
