@@ -165,9 +165,7 @@ limitations under the License.
 <#macro  output step>
     <#if step.hasOutputs()>
         <div class="row w-100 p-3 m-0 scenarioOutput">
-            <div class="w-100 text-left small p-2">
-                ${step.returnEscapedOutputs()?join("<br>")}
-            </div>
+            <div class="w-100 text-left small p-2">${step.returnEscapedOutputs()?join("<br><br>")}</div>
         </div>
     </#if>
 </#macro>
