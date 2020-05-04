@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [2.3.4] - UNRELEASED
+## [2.4.0] - 2020-05-04
 
 ### Added
 
@@ -16,6 +16,7 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Cluecumber did not consider line breaks in scenario outputs (#244)
+* Cluecumber failed on missing json files (#247)
 
 ## [2.3.4] - 2020-02-11
 
