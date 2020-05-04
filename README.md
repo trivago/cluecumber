@@ -26,14 +26,15 @@
     - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
     - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
-      - [Plugin Logging](#plugin-logging)
-      - [Add Custom Information to the Report](#add-custom-information-to-the-report)
+    - [Plugin Logging](#plugin-logging)
+    - [Add Custom Information to the Report](#add-custom-information-to-the-report)
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
   - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
+    - [Defining the report start page](#defining-the-report-start-page)
     - [Defining a custom report title](#defining-a-custom-report-title)
     - [Defining a custom CSS file](#defining-a-custom-css-file)
     - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
@@ -255,6 +256,18 @@ If they are not set, they default to false. This means that the report user has 
 ```
 
 ## Optional Configuration Parameters for Changing the Report Appearance
+
+### Defining the report start page
+
+The default start page of the reports (if not overwritten by the `startPage` property) is the scenario overview page.
+
+This can be customized with one of the following values:
+
+* `ALL_SCENARIOS` (scenario overview page, default)
+* `SCENARIO_SEQUENCE` (scenario sequence page)
+* `ALL_TAGS` (tag overview page)
+* `ALL_STEPS` (step overview page)
+* `ALL_FEATURES` (feature overview page)
 
 ### Defining a custom report title
 
