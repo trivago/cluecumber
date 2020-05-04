@@ -85,8 +85,6 @@ public class ReportGenerator {
     }
 
     private void generateStartPage() throws CluecumberPluginException {
-        System.out.println("START PAGE IS " + propertyManager.getStartPage());
-        System.out.println("START PAGE IS " + propertyManager.getStartPage().getPageName());
         fileIO.writeContentToFile(startPageRenderer.getRenderedContent(
                 templateEngine.getTemplate(TemplateEngine.Template.START_PAGE), propertyManager.getStartPage()
         ), propertyManager.getGeneratedHtmlReportDirectory() + "/" + START_PAGE_PATH + HTML_FILE_EXTENSION);

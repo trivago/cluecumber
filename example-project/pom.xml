@@ -53,8 +53,8 @@
                     <!-- <customStatusColorFailed>#C94A38</customStatusColorFailed> -->
                     <!-- <customStatusColorSkipped>#F48F00</customStatusColorSkipped> -->
 
-                    <!-- Optional report start page (default: AllScenarios) -->
-                    <startPage>AllFeatures</startPage>
+                    <!-- Optional start page: ALL_SCENARIOS (default), SCENARIO_SEQUENCE, ALL_TAGS, ALL_STEPS, ALL_FEATURES -->
+                    <startPage>ALL_FEATURES</startPage>
 
                     <!-- Optional custom parameters file -->
                     <!--<customParametersFile>custom/custom.properties</customParametersFile>-->
@@ -66,7 +66,7 @@
                     <!-- <customCss>custom/custom.css</customCss> -->
 
                     <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
-                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
+                    <!-- <expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->
                     <!--<expandStepHooks>true</expandStepHooks>-->
                     <!--<expandDocStrings>true</expandDocStrings>-->
 

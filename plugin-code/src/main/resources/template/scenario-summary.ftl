@@ -20,19 +20,19 @@ limitations under the License.
 <#import "macros/navigation.ftl" as navigation>
 
 <#if (tagFilter??)>
-    <#assign base = "./..">
+    <#assign base = "./../..">
     <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
     <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
     <#assign subheadline = "">
 <#elseif (featureFilter??)>
-    <#assign base = "./..">
+    <#assign base = "./../..">
     <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
     <#assign pageName = "Scenarios in Feature">
     <#assign highlight = "feature_summary">
     <#assign subheadline = "${featureFilter.description?html}">
 <#elseif (stepFilter??)>
-    <#assign base = "./..">
+    <#assign base = "./../..">
     <#assign headline = "Scenarios using Step '${stepFilter.returnNameWithArgumentPlaceholders()}'">
     <#assign pageName = "Scenarios with Step">
     <#assign highlight = "step_summary">
