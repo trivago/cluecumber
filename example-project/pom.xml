@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cucumber.report.json.location>${project.basedir}/json</cucumber.report.json.location>
+        <cucumber.report.json.location>${project.basedir}/none.json</cucumber.report.json.location>
         <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
     </properties>
 
@@ -54,7 +54,7 @@
                     <!-- <customStatusColorSkipped>#F48F00</customStatusColorSkipped> -->
 
                     <!-- Optional start page: ALL_SCENARIOS (default), SCENARIO_SEQUENCE, ALL_TAGS, ALL_STEPS, ALL_FEATURES -->
-                    <startPage>ALL_FEATURES</startPage>
+                    <!-- <startPage>ALL_FEATURES</startPage>-->
 
                     <!-- Optional custom parameters file -->
                     <!--<customParametersFile>custom/custom.properties</customParametersFile>-->
