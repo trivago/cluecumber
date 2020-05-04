@@ -118,7 +118,7 @@ public final class CluecumberReportPlugin extends PropertyCollector {
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION,
+                        PluginSettings.START_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION,
                 DEFAULT,
                 COMPACT,
                 CluecumberLogger.CluecumberLogLevel.MINIMAL

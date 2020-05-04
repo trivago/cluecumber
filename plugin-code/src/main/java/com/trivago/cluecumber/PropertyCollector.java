@@ -112,9 +112,10 @@ public class PropertyCollector extends AbstractMojo {
     private String customPageTitle;
 
     /**
-     * Custom start page (default: 'AllScenarios').
+     * Custom start page (default: ALL_SCENARIOS).
+     * Allowed values: ALL_SCENARIOS, SCENARIO_SEQUENCE, ALL_FEATURES, ALL_TAGS, ALL_STEPS
      */
-    @Parameter(property = "reporting.startPage")
+    @Parameter(property = "reporting.startPage", defaultValue = "ALL_SCENARIOS")
     private String startPage;
 
     /**
