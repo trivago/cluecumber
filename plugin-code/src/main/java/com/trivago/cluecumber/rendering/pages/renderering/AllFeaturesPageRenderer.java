@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Singleton
-public class AllFeaturesPageRenderer extends PageRenderer {
+public class AllFeaturesPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
 

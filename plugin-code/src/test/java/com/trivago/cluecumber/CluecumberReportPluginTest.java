@@ -61,7 +61,6 @@ public class CluecumberReportPluginTest {
     @Test
     public void noErrorOnUnparsableJsonTest() throws CluecumberPluginException {
         when(fileIO.readContentFromFile(any())).thenReturn("json");
-        long endTime = 0;
         when(jsonPojoConverter.convertJsonToReportPojos("json")).thenThrow(new CluecumberPluginException("failure"));
         cluecumberReportPlugin.execute();
     }

@@ -26,7 +26,7 @@ public class LinkedProperties extends Properties {
 
     private static final long serialVersionUID = 1L;
 
-    private Map<Object, Object> linkMap = new LinkedHashMap<>();
+    private final Map<Object, Object> linkMap = new LinkedHashMap<>();
 
     @Override
     public synchronized Object put(Object key, Object value) {

@@ -54,6 +54,7 @@ public final class CluecumberReportPlugin extends PropertyCollector {
     /**
      * Skip Cluecumber report generation.
      */
+    @SuppressWarnings("unused")
     @Parameter(defaultValue = "false", property = "skip")
     private boolean skip;
 

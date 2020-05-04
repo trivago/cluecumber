@@ -24,6 +24,7 @@ import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.StartPageRenderer;
 import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
 import com.trivago.cluecumber.rendering.pages.visitors.VisitorDirectory;
@@ -32,6 +33,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
 
+import static com.trivago.cluecumber.constants.PluginSettings.HTML_FILE_EXTENSION;
+import static com.trivago.cluecumber.constants.PluginSettings.START_PAGE_PATH;
+
 @Singleton
 public class ReportGenerator {
     private final FileIO fileIO;
@@ -39,8 +43,9 @@ public class ReportGenerator {
     private final PropertyManager propertyManager;
     private final FileSystemManager fileSystemManager;
 
-    private CustomCssRenderer customCssRenderer;
-    private List<PageVisitor> visitors;
+    private final StartPageRenderer startPageRenderer;
+    private final CustomCssRenderer customCssRenderer;
+    private final List<PageVisitor> visitors;
 
     @Inject
     ReportGenerator(
@@ -48,6 +53,7 @@ public class ReportGenerator {
             final TemplateEngine templateEngine,
             final PropertyManager propertyManager,
             final FileSystemManager fileSystemManager,
+            final StartPageRenderer startPageRenderer,
             final CustomCssRenderer customCssRenderer,
             final VisitorDirectory visitorDirectory
     ) {
@@ -55,6 +61,7 @@ public class ReportGenerator {
         this.templateEngine = templateEngine;
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
+        this.startPageRenderer = startPageRenderer;
         this.customCssRenderer = customCssRenderer;
 
         visitors = visitorDirectory.getVisitors();
@@ -71,9 +78,16 @@ public class ReportGenerator {
         createDirectories(reportDirectory);
         copyStaticReportAssets(reportDirectory);
         copyCustomCss(reportDirectory);
+        generateStartPage();
         for (PageVisitor visitor : visitors) {
             allScenariosPageCollection.accept(visitor);
         }
+    }
+
+    private void generateStartPage() throws CluecumberPluginException {
+        fileIO.writeContentToFile(startPageRenderer.getRenderedContent(
+                templateEngine.getTemplate(TemplateEngine.Template.START_PAGE), propertyManager.getStartPage()
+        ), propertyManager.getGeneratedHtmlReportDirectory() + "/" + START_PAGE_PATH + HTML_FILE_EXTENSION);
     }
 
     /**

@@ -39,7 +39,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Singleton
-public class AllScenariosPageRenderer extends PageRenderer {
+public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
     private final PropertyManager propertyManager;
     private final ChartConfiguration chartConfiguration;

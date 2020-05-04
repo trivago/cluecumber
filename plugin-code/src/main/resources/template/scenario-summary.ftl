@@ -44,7 +44,7 @@ limitations under the License.
     <#assign highlight = "scenario_sequence">
     <#assign subheadline = "">
 <#else>
-    <#assign base = ".">
+    <#assign base = "./..">
     <#assign headline = "All Scenarios">
     <#assign pageName = "All Scenarios">
     <#assign highlight = "scenario_summary">
