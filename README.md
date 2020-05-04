@@ -261,6 +261,13 @@ If they are not set, they default to false. This means that the report user has 
 
 The default start page of the reports (if not overwritten by the `startPage` property) is the scenario overview page.
 
+```xml
+<configuration>
+    <startPage>ALL_SCENARIOS</startPage>
+    ...
+</configuration>
+```
+
 This can be customized with one of the following values:
 
 * `ALL_SCENARIOS` (scenario overview page, default)
