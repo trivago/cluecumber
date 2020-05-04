@@ -13,6 +13,10 @@ Back to [Readme](README.md).
 
 * Optional `startPage` property to set the report start page (#217)
 
+### Fixed
+
+* Cluecumber did not consider line breaks in scenario outputs (#244)
+
 ## [2.3.4] - 2020-02-11
 
 ### Added
