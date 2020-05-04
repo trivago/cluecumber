@@ -33,9 +33,10 @@ public class TemplateEngine {
         ALL_STEPS("step-summary"),
         ALL_TAGS("tag-summary"),
         SCENARIO_DETAILS("scenario-detail"),
-        CUSTOM_CSS("custom-css");
+        CUSTOM_CSS("custom-css"),
+        START_PAGE("index");
 
-        private String fileName;
+        private final String fileName;
 
         Template(final String fileName) {
             this.fileName = fileName;

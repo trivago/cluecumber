@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
-    private Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
+    private final Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
 
     public AllTagsPageCollection(List<Report> reports, final String pageTitle) {
         super(pageTitle);

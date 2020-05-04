@@ -28,7 +28,7 @@ import java.util.List;
 
 public class PieChartBuilder {
     private final ChartConfiguration chartConfiguration;
-    private List<ValueSet> valueSets;
+    private final List<ValueSet> valueSets;
 
     public PieChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;

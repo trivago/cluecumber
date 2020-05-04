@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class AllStepsPageRenderer extends PageRenderer {
+public class AllStepsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
 
@@ -46,7 +46,6 @@ public class AllStepsPageRenderer extends PageRenderer {
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Step, ResultCount> entry : allTagsPageCollection.getStepResultCounts().entrySet()) {
-            Step key = entry.getKey();
             ResultCount value = entry.getValue();
             passed.add(value.getPassed());
             failed.add(value.getFailed());

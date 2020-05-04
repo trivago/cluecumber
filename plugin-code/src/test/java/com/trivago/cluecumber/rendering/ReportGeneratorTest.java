@@ -9,6 +9,7 @@ import com.trivago.cluecumber.properties.PropertiesFileLoader;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.StartPageRenderer;
 import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
 import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
@@ -41,7 +42,10 @@ public class ReportGeneratorTest {
         TemplateEngine templateEngine = mock(TemplateEngine.class);
         PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
         PropertyManager propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
+        propertyManager.setStartPage("ALL_SCENARIOS");
+
         CustomCssRenderer customCssRenderer = mock(CustomCssRenderer.class);
+        StartPageRenderer startPageRenderer = mock(StartPageRenderer.class);
 
         ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
@@ -61,6 +65,7 @@ public class ReportGeneratorTest {
                 templateEngine,
                 propertyManager,
                 fileSystemManager,
+                startPageRenderer,
                 customCssRenderer,
                 visitorDirectory);
     }

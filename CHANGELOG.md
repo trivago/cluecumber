@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.3.4] - UNRELEASED
+
+### Added
+
+* Optional `startPage` property to set the report start page (#217)
+
 ## [2.3.4] - 2020-02-11
 
 ### Added
@@ -568,6 +574,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.4.0
 [2.3.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.4
 [2.3.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.3
 [2.3.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2

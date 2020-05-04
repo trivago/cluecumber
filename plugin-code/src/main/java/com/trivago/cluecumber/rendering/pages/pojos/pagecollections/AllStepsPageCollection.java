@@ -27,8 +27,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
-    private Map<Step, ResultCount> stepResultCounts = new HashMap<>();
-    private Map<Step, Times> stepTimes = new HashMap<>();
+    private final Map<Step, ResultCount> stepResultCounts = new HashMap<>();
+    private final Map<Step, Times> stepTimes = new HashMap<>();
 
     public AllStepsPageCollection(List<Report> reports, final String pageTitle) {
         super(pageTitle);

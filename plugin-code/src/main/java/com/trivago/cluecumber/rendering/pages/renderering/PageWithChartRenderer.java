@@ -17,6 +17,7 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
@@ -27,29 +28,16 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
-public class PageRenderer {
+public class PageWithChartRenderer extends PageRenderer {
+
+    private final ChartJsonConverter chartJsonConverter;
 
     @Inject
-    public PageRenderer() {
+    public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter) {
+        this.chartJsonConverter = chartJsonConverter;
     }
 
-    /**
-     * Return the completely rendered template content using a page collection.
-     *
-     * @param template       The Freemarker template.
-     * @param pageCollection The page collection to take the data from.
-     * @return The fully rendered content.
-     * @throws CluecumberPluginException In case of a rendering error.
-     */
-    String processedContent(final Template template, final Object pageCollection)
-            throws CluecumberPluginException {
-
-        Writer stringWriter = new StringWriter();
-        try {
-            template.process(pageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
-            throw new CluecumberPluginException("Could not render page content: " + e.getMessage());
-        }
-        return stringWriter.toString();
+    String convertChartToJson(final Chart chart) {
+        return chartJsonConverter.convertChartToJson(chart);
     }
 }

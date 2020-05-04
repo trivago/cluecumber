@@ -6,11 +6,11 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.AllScenariosPageRenderer;
 import com.trivago.cluecumber.rendering.pages.renderering.ScenarioDetailsPageRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -49,7 +49,7 @@ public class ScenarioVisitor implements PageVisitor {
         fileIO.writeContentToFile(
                 allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection,
                         templateEngine.getTemplate(ALL_SCENARIOS)),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 
         // Scenario sequence page

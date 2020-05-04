@@ -33,6 +33,7 @@ public class ReportDetails {
         this.date = dateFormat.format(date);
     }
 
+    @SuppressWarnings("unused")
     public String getChartJson() {
         return chartJson;
     }

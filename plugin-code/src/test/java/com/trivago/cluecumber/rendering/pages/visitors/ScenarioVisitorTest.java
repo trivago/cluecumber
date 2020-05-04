@@ -34,7 +34,7 @@ public class ScenarioVisitorTest extends VisitorTest {
         when(scenarioDetailsPageRenderer.getRenderedContent(any(), any())).thenReturn("MyRenderedScenarioDetails");
         scenarioVisitor.visit(getAllScenarioPageCollection());
         verify(fileIo, times(1))
-                .writeContentToFile("MyRenderedScenarios", "dummyPath/index.html");
+                .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/scenario-summary.html");
         verify(fileIo, times(1))
                 .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/scenario-sequence.html");
         verify(fileIo, times(1))
