@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Singleton
-public class ScenarioDetailsPageRenderer extends PageRenderer {
+public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 

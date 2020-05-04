@@ -16,6 +16,7 @@
 
 package com.trivago.cluecumber.properties;
 
+import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
@@ -24,6 +25,7 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -56,6 +58,8 @@ public class PropertyManager {
     private String customStatusColorFailed = "#dc3545";
     private String customStatusColorSkipped = "#ffc107";
     private String customPageTitle = "Cluecumber Report";
+
+    private PluginSettings.StartPage startPage;
 
     @Inject
     public PropertyManager(
@@ -227,6 +231,7 @@ public class PropertyManager {
         logger.info("- expand step hooks                : " + expandStepHooks, DEFAULT);
         logger.info("- expand doc strings               : " + expandDocStrings, DEFAULT);
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
+        logger.info("- start page                       : " + startPage, DEFAULT);
 
         if (isSet(customCssFile)) {
             logger.info("- custom CSS file                  : " + customCssFile, DEFAULT);
@@ -245,6 +250,19 @@ public class PropertyManager {
     private void checkHexColorValidity(String color, String colorPropertyName) throws WrongOrMissingPropertyException {
         if (!Pattern.compile(COLOR_PATTERN).matcher(color).matches()) {
             throw new WrongOrMissingPropertyException(colorPropertyName);
+        }
+    }
+
+    public PluginSettings.StartPage getStartPage() {
+        return startPage;
+    }
+
+    public void setStartPage(final String startPage) {
+        try {
+            this.startPage = PluginSettings.StartPage.valueOf(startPage.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            logger.warn("Unknown start page '" + startPage + "'. Must be one of " + Arrays.toString(PluginSettings.StartPage.values()));
+            this.startPage = PluginSettings.StartPage.ALL_SCENARIOS;
         }
     }
 }

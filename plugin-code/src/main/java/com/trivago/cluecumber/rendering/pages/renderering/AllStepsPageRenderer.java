@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class AllStepsPageRenderer extends PageRenderer {
+public class AllStepsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
 

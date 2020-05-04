@@ -31,7 +31,7 @@ limitations under the License.
                         </#if>
                         <#switch link>
                             <#case "scenario_summary">
-                                <a class="nav-link ${highlightClass}" href="index.html">All Scenarios</a>
+                                <a class="nav-link ${highlightClass}" href="pages/scenario-summary.html">All Scenarios</a>
                                 <#break>
                             <#case "scenario_sequence">
                                 <a class="nav-link ${highlightClass}" href="pages/scenario-sequence.html">Scenario Sequence</a>

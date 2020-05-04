@@ -19,19 +19,19 @@ import static org.mockito.Mockito.mock;
 
 public class PageRendererTest {
 
-    private PageRenderer pageRenderer;
+    private PageWithChartRenderer pageWithChartRenderer;
 
     @Before
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
-        pageRenderer = new PageRenderer(chartJsonConverter);
+        pageWithChartRenderer = new PageWithChartRenderer(chartJsonConverter);
     }
 
     @Test
     public void processedContentTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
         PageCollection pageCollection = mock(PageCollection.class);
-        String processedContent = pageRenderer.processedContent(template, pageCollection);
+        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection);
         assertThat(processedContent, is(""));
     }
 
@@ -40,7 +40,7 @@ public class PageRendererTest {
         Template template = mock(Template.class);
         doThrow(new TemplateException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
         PageCollection pageCollection = mock(PageCollection.class);
-        String processedContent = pageRenderer.processedContent(template, pageCollection);
+        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection);
         assertThat(processedContent, is(""));
     }
 
@@ -49,7 +49,7 @@ public class PageRendererTest {
         Template template = mock(Template.class);
         doThrow(new IOException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
         PageCollection pageCollection = mock(PageCollection.class);
-        String processedContent = pageRenderer.processedContent(template, pageCollection);
+        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection);
         assertThat(processedContent, is(""));
     }
 }

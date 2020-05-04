@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 @Singleton
-public class AllTagsPageRenderer extends PageRenderer {
+public class AllTagsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
 
