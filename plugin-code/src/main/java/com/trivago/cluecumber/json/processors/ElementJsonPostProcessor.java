@@ -105,7 +105,7 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
         } catch (FileCreationException e) {
             logger.warn("Could not process file  " + filename + " but will continue report generation...");
         }
-        embedding.encodeData(embedding.getData());
+        embedding.decodeData(embedding.getData());
         // Clear attachment data to reduce memory
         embedding.setData("");
         return filename;

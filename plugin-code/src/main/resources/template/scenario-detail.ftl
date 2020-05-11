@@ -25,6 +25,7 @@ base="../.."
 highlight=""
 headline="${element.name?html}"
 subheadline="${element.description?html}"
+subsubheadline="${element.featureUri}"
 preheadline="${element.featureName?html}"
 preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
 
@@ -116,7 +117,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <div class="col-8 text-left">
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip" title="${step.glueMethodName}">
-                                    <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span class="keyword">${step.keyword}</span> ${stepName}</a>
+                                    <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
+                                                class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
                             </div>
                             <div class="col-2 text-left small">

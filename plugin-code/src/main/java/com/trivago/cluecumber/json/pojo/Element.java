@@ -24,10 +24,12 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
     private String featureName = "";
+    private String featureUri = "";
     private String name = "";
     private String description = "";
     private String id = "";
@@ -317,23 +319,31 @@ public class Element {
         return resultMatches;
     }
 
-    public void setFeatureName(final String featureName) {
-        this.featureName = featureName;
-    }
-
     public String getFeatureName() {
         return featureName;
     }
 
-    public void setFeatureIndex(final int featureIndex) {
-        this.featureIndex = featureIndex;
+    public void setFeatureName(final String featureName) {
+        this.featureName = featureName;
     }
 
     public int getFeatureIndex() {
         return featureIndex;
     }
 
+    public void setFeatureIndex(final int featureIndex) {
+        this.featureIndex = featureIndex;
+    }
+
     public void setFailOnPendingOrUndefined(final boolean failOnPendingOrUndefined) {
         this.failOnPendingOrUndefined = failOnPendingOrUndefined;
+    }
+
+    public String getFeatureUri() {
+        return featureUri;
+    }
+
+    public void setFeatureUri(String featureUri) {
+        this.featureUri = featureUri;
     }
 }

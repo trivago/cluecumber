@@ -6,14 +6,14 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>2.4.0</version>
+    <version>2.5.0</version>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cucumber.report.json.location>${project.basedir}/none.json</cucumber.report.json.location>
+        <cucumber.report.json.location>${project.basedir}/json</cucumber.report.json.location>
         <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
     </properties>
 
@@ -34,7 +34,7 @@
                 </executions>
                 <configuration>
                     <!-- The only two mandatory properties -->
-                    <sourceJsonReportDirectory>${cucumber.report.json.location}</sourceJsonReportDirectory>
+                    <sourceJsonReportDirectory>${cucumber.report.json.location}/TEST.json</sourceJsonReportDirectory>
                     <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
 
                     <!-- Optional custom parameters that are shown on the start page (if they have a value) -->
@@ -42,7 +42,9 @@
                     <customParameters>
                         <Custom_Parameter>This is a test</Custom_Parameter>
                         <Custom_URL>http://www.google.com</Custom_URL>
-                        <_KeysStartingWithAnUnderscoreAreHidden>This is a long text that is displayed without the key. This can be used to display longer texts in the report!</_KeysStartingWithAnUnderscoreAreHidden>
+                        <_KeysStartingWithAnUnderscoreAreHidden>This is a long text that is displayed without the key.
+                            This can be used to display longer texts in the report!
+                        </_KeysStartingWithAnUnderscoreAreHidden>
                     </customParameters>
 
                     <!-- Optional report page title -->
@@ -66,7 +68,7 @@
                     <!-- <customCss>custom/custom.css</customCss> -->
 
                     <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
-                    <!-- <expandBeforeAfterHooks>true</expandBeforeAfterHooks>-->
+                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
                     <!--<expandStepHooks>true</expandStepHooks>-->
                     <!--<expandDocStrings>true</expandDocStrings>-->
 

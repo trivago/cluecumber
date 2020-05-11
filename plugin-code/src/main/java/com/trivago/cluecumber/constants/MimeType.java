@@ -19,44 +19,32 @@ package com.trivago.cluecumber.constants;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Enum to get all MimeTypes for embedding's.
+ * Enum to get all MimeTypes for embedded content.
  */
 public enum MimeType {
-	@SerializedName("image/png") 
-	PNG ("image/png"),
-	@SerializedName("image/gif") 
-	GIF ("image/gif"),
-	@SerializedName("image/bmp") 
-	BMP ("image/bmp"),
-	@SerializedName("image/jpg") 
-	JPG ("image/jpg"),	
-	@SerializedName("image/jpeg") 
-	JPEG ("image/jpeg"),
-	@SerializedName("image/svg") 
-	SVG ("image/svg"),
-	@SerializedName("image/svg+xml") 
-	SVG_XML ("image/svg+xml"),
-	@SerializedName("text/html") 
-	HTML ("text/html"),
-	@SerializedName("text/xml") 
-	XML ("text/xml"),
-	@SerializedName("application/xml") 
-	APPLICATION_XML ("application/xml"),
-	@SerializedName("application/json") 
-	JSON ("application/json"),
-	@SerializedName("text/plain") 
-	TXT ("text/plain"),
-	@SerializedName("application/pdf") 
-	PDF ("application/pdf"),
-	UNKNOWN ("unknown");
-	
+    @SerializedName("image/png") PNG("image/png"),
+    @SerializedName("image/gif") GIF("image/gif"),
+    @SerializedName("image/bmp") BMP("image/bmp"),
+    @SerializedName("image/jpg") JPG("image/jpg"),
+    @SerializedName("image/jpeg") JPEG("image/jpeg"),
+    @SerializedName("image/svg") SVG("image/svg"),
+    @SerializedName("image/svg+xml") SVG_XML("image/svg+xml"),
+    @SerializedName("text/html") HTML("text/html"),
+    @SerializedName("text/xml") XML("text/xml"),
+    @SerializedName("application/xml") APPLICATION_XML("application/xml"),
+    @SerializedName("application/json") JSON("application/json"),
+    @SerializedName("text/plain") TXT("text/plain"),
+    @SerializedName("application/pdf") PDF("application/pdf"),
+    @SerializedName("video/mp4") MP4("video/mp4"),
+    @SerializedName("unknown") UNKNOWN("unknown");
+
     private final String contentType;
-    
+
     MimeType(String contentType) {
         this.contentType = contentType;
     }
- 
+
     public String getContentType() {
         return contentType;
-    }    
+    }
 }

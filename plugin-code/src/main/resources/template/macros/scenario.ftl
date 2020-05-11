@@ -134,7 +134,7 @@ limitations under the License.
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}" style="max-width: 100%"
+                            <img src="attachments/${attachment.filename}" style="max-width: 50%"
                                  alt="Attachment ${attachment.filename}"/>
                         </a>
                     <#elseif attachment.mimeType == "HTML">
@@ -143,6 +143,14 @@ limitations under the License.
                                 onload="resizeIframe(this);"></iframe>
                     <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
                         <pre class="embedding-content small">${attachment.decodedData}</pre>
+                    <#elseif attachment.mimeType == "MP4">
+                        <#if attachment.externalContent>
+                            <video controls="controls" style="max-width:50%;">
+                                <source src="${attachment.decodedData}" type="video/mp4"/>
+                            </video>
+                        </#if>
+                    <#elseif attachment.mimeType == "UNKNOWN">
+                        <p class="small text-danger">Unknown content type.</p>
                     <#else>
                         <embed src="attachments/${attachment.filename}" width="100%" height="500"/>
                     </#if>

@@ -23,6 +23,7 @@ import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.StartPageCollection;
 import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
 import com.trivago.cluecumber.rendering.pages.renderering.StartPageRenderer;
 import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
@@ -78,15 +79,21 @@ public class ReportGenerator {
         createDirectories(reportDirectory);
         copyStaticReportAssets(reportDirectory);
         copyCustomCss(reportDirectory);
-        generateStartPage();
+
+        boolean redirectToFirstScenarioPage =
+                propertyManager.getStartPage() == PluginSettings.StartPage.ALL_SCENARIOS &&
+                        allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
+
+        generateStartPage(redirectToFirstScenarioPage);
         for (PageVisitor visitor : visitors) {
             allScenariosPageCollection.accept(visitor);
         }
     }
 
-    private void generateStartPage() throws CluecumberPluginException {
+    private void generateStartPage(boolean redirectToFirstScenarioPage) throws CluecumberPluginException {
+        StartPageCollection startPageCollection = new StartPageCollection(propertyManager.getStartPage(), redirectToFirstScenarioPage);
         fileIO.writeContentToFile(startPageRenderer.getRenderedContent(
-                templateEngine.getTemplate(TemplateEngine.Template.START_PAGE), propertyManager.getStartPage()
+                templateEngine.getTemplate(TemplateEngine.Template.START_PAGE), startPageCollection
         ), propertyManager.getGeneratedHtmlReportDirectory() + "/" + START_PAGE_PATH + HTML_FILE_EXTENSION);
     }
 

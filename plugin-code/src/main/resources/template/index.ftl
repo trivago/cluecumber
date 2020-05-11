@@ -17,9 +17,12 @@ limitations under the License.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Redirecting to ${pageName}</title>
-    <meta http-equiv="refresh"
-          content="0; url=pages/${pageName}.html">
+    <title>Redirecting to ${startPage.pageName}</title>
+    <#if redirectToFirstScenario>
+        <meta http-equiv="refresh" content="0; url=pages/scenario-detail/scenario_1.html">
+    <#else>
+        <meta http-equiv="refresh" content="0; url=pages/${startPage.pageName}.html">
+    </#if>
 </head>
 <body>
 </body>

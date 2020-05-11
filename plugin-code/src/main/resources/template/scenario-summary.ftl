@@ -25,30 +25,45 @@ limitations under the License.
     <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
     <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios in Feature '${featureFilter.name}'">
+    <#assign headline = "Scenarios in Feature">
     <#assign pageName = "Scenarios in Feature">
     <#assign highlight = "feature_summary">
     <#assign subheadline = "${featureFilter.description?html}">
+    <#assign subsubheadline = "${featureFilter.uri}">
+    <#assign preheadline = "${featureFilter.name}">
+    <#assign preheadlineLink="pages/feature-scenarios/feature_${featureFilter.index?c}.html">
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
     <#assign headline = "Scenarios using Step '${stepFilter.returnNameWithArgumentPlaceholders()}'">
     <#assign pageName = "Scenarios with Step">
     <#assign highlight = "step_summary">
     <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">
     <#assign headline = "Scenario Sequence">
     <#assign pageName = "Scenario Sequence">
     <#assign highlight = "scenario_sequence">
     <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#else>
     <#assign base = "./..">
     <#assign headline = "All Scenarios">
     <#assign pageName = "All Scenarios">
     <#assign highlight = "scenario_summary">
     <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 </#if>
 
 <@page.page
@@ -57,8 +72,9 @@ base=base
 highlight=highlight
 headline=headline
 subheadline=subheadline
-preheadline=""
-preheadlineLink="">
+subsubheadline=subsubheadline
+preheadline=preheadline
+preheadlineLink=preheadlineLink>
 
     <#if hasCustomParameters()>
         <div class="row" id="custom-parameters">

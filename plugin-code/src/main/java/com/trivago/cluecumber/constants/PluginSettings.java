@@ -36,6 +36,7 @@ public class PluginSettings {
             this.pageName = pageName;
         }
 
+        @SuppressWarnings("unused")
         public String getPageName() {
             return pageName;
         }
