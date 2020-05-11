@@ -16,7 +16,8 @@ Back to [Readme](README.md).
 ### Changed
 
 * Maximum image / video width is half the report width
-* Feature URL is displayed on scenario summary and feature summary pages (#)
+* Feature URL is displayed on scenario summary and feature summary pages (#233)
+* Automatic redirect to scenario detail page if only one scenario exists
 
 ## [2.4.0] - 2020-05-04
 
