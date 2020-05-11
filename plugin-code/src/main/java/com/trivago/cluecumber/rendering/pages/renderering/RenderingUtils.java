@@ -16,6 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
+import java.net.URL;
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -133,5 +134,14 @@ public class RenderingUtils {
         } catch (Exception ignored) {
         }
         return "";
+    }
+
+    public static boolean isUrl(String value) {
+        try {
+            new URL(value);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

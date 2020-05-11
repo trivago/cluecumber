@@ -24,6 +24,7 @@ base=".."
 highlight="tag_summary"
 headline="All Tags"
 subheadline=""
+subsubheadline=""
 preheadline=""
 preheadlineLink="">
 

@@ -16,6 +16,8 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos;
 
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
+
 import java.net.URL;
 
 public class CustomParameter {
@@ -36,12 +38,7 @@ public class CustomParameter {
     }
 
     public boolean isUrl() {
-        try {
-            new URL(getValue());
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return RenderingUtils.isUrl(getValue());
     }
 
     @Override

@@ -50,8 +50,10 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
     private void addFeatureInformationToScenarios(final Report report) {
         List<Tag> reportTags = report.getTags();
         String featureName = report.getName();
+        String featureUri = report.getUri();
         int featureIndex = report.getFeatureIndex();
         for (Element element : report.getElements()) {
+            element.setFeatureUri(report.getUri());
             element.setFeatureName(featureName);
             element.setFeatureIndex(featureIndex);
             if (reportTags.size() > 0) {

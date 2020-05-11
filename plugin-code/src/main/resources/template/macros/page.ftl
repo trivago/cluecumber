@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<#macro page title base highlight headline subheadline preheadline preheadlineLink>
+<#macro page title base highlight headline subheadline subsubheadline preheadline preheadlineLink>
     <!--
     Copyright 2019 trivago N.V.
 
@@ -45,11 +45,14 @@ limitations under the License.
         <div class="cluecumber-template">
             <div class="pb-2 mt-4 mb-2 border-bottom">
                 <#if preheadline != "">
-                    <#if preheadlineLink != "">
-                        <h5><a href="${preheadlineLink}">${preheadline}</a></h5>
-                    <#else>
-                        <h5>${preheadline}</h5>
-                    </#if>
+                    <h5>
+                        <#if preheadlineLink != "">
+                            <a href="${preheadlineLink}">${preheadline}</a>
+                        <#else>
+                            ${preheadline}
+                        </#if>
+                        <span class="small"><#if subsubheadline != "">${subsubheadline}</#if></span>
+                    </h5>
                 </#if>
                 <#if headline != "">
                     <h3>${headline}</h3>

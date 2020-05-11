@@ -18,6 +18,7 @@ package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.MimeType;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import org.codehaus.plexus.util.Base64;
 
 import java.nio.charset.StandardCharsets;
@@ -29,6 +30,7 @@ public class Embedding {
     @SerializedName("mime_type")
     private MimeType mimeType = MimeType.UNKNOWN;
     private String name = "";
+    private boolean isExternalContent;
 
     private transient String filename = "";
 
@@ -44,12 +46,23 @@ public class Embedding {
         return decodedData;
     }
 
-    public void encodeData(final String data) {
+    public void decodeData(final String data) {
         decodedData = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-        if (mimeType == MimeType.XML || mimeType == MimeType.APPLICATION_XML) {
-            decodedData = decodedData.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        } else if (mimeType == MimeType.HTML) {
-            decodedData = decodedData.replaceAll("\"", "'");
+        switch (mimeType) {
+            case HTML:
+                decodedData = decodedData.replaceAll("\"", "'");
+                break;
+            case XML:
+            case APPLICATION_XML:
+                decodedData = decodedData.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+                break;
+            case TXT:
+            case PDF:
+            case MP4:
+                isExternalContent = RenderingUtils.isUrl(decodedData);
+                break;
+            case UNKNOWN:
+                break;
         }
     }
 
@@ -113,5 +126,9 @@ public class Embedding {
             default:
                 return "unknown";
         }
+    }
+
+    public boolean isExternalContent() {
+        return isExternalContent;
     }
 }
