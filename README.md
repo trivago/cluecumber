@@ -6,7 +6,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-report-plugin.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-report-plugin/)
 [![Build Status](https://travis-ci.org/trivago/cluecumber-report-plugin.svg?branch=master)](https://travis-ci.org/trivago/cluecumber-report-plugin)
 [![codecov](https://codecov.io/gh/trivago/cluecumber-report-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/trivago/cluecumber-report-plugin)
-[![Example Report](https://img.shields.io/badge/Example-Report-blue.svg)](http://tech.trivago.com/cluecumber-report-plugin/)
+[![Example Report](https://img.shields.io/badge/Example-Report-blue.svg)](http://cluecumber.softwaretester.blog/)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
 
 ![Cucumber animation](documentation/img/cluecumber.gif)
