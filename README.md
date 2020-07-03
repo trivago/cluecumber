@@ -67,7 +67,7 @@ If you need to run Cucumber tests in parallel, please check out our [Cucable](ht
 
 ## Example report
 
-A fully generated example report can also be [viewed online](http://tech.trivago.com/cluecumber-report-plugin/)!
+A fully generated example report can also be [viewed online](http://cluecumber.softwaretester.blog/)!
 
 ## Changelog
 
