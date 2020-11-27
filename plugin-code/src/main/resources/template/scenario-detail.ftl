@@ -59,13 +59,13 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     ${element.totalNumberOfSkippedSteps} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
-            <#if element.hasHooks() && (element.anyBeforeHookHasContent() || element.anyAfterHookHasContent())>
+            <#if element.hasHooks() && element.hasHooksWithContent()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="before-after-hooks-button"
                         data-target=".scenarioHook">Scenario Hooks with content
                 </button>
             </#if>
-            <#if element.hasStepHooks()>
+            <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="step-hooks-button"
                         data-target=".stepHook">Step Hooks with content

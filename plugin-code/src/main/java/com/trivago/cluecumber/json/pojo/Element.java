@@ -149,7 +149,7 @@ public class Element {
     }
 
     public boolean anyAfterHookHasContent() {
-        for (ResultMatch resultMatch : before) {
+        for (ResultMatch resultMatch : after) {
             if (resultMatch.hasContent()) {
                 return true;
             }
@@ -319,6 +319,10 @@ public class Element {
         return getBefore().size() > 0 || getAfter().size() > 0;
     }
 
+    public boolean hasHooksWithContent() {
+        return anyBeforeHookHasContent() || anyAfterHookHasContent();
+    }
+
     public boolean hasDocStrings() {
         for (Step step : backgroundSteps) {
             if (step.getDocString() != null) {
@@ -347,6 +351,22 @@ public class Element {
                 return true;
             }
             if (step.getAfter().size() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasStepHooksWithContent() {
+        for (Step step : backgroundSteps) {
+            if (step.hasHooksWithContent())
+            {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasHooksWithContent())
+            {
                 return true;
             }
         }

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.6.1] - 2020-11-27
+
+### Fixed
+* After hooks with content were not displayed anymore
+
 ## [2.6.0] - 2020-11-27
 
 ### Fixed
@@ -603,6 +608,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1
 [2.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.0
 [2.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.5.0
 [2.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.4.0

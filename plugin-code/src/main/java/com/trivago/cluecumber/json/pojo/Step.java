@@ -35,6 +35,20 @@ public class Step extends ResultMatch {
     @SerializedName("doc_string")
     private DocString docString;
 
+    public boolean hasHooksWithContent() {
+        for (ResultMatch resultMatch : before) {
+            if (resultMatch.hasContent()) {
+                return true;
+            }
+        }
+        for (ResultMatch resultMatch : after) {
+            if (resultMatch.hasContent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<ResultMatch> getBefore() {
         return before;
     }
@@ -65,7 +79,10 @@ public class Step extends ResultMatch {
         for (int i = arguments.size() - 1; i >= 0; i--) {
             String argument = arguments.get(i).getVal();
             if (argument != null) {
-                tmpName = tmpName.replaceFirst(Pattern.quote(argument), Matcher.quoteReplacement("<span class=\"parameter\">" + argument + "</span>"));
+                tmpName = tmpName.replaceFirst(
+                        Pattern.quote(argument),
+                        Matcher.quoteReplacement("<span class=\"parameter\">" + argument + "</span>")
+                );
             }
         }
         return tmpName;
@@ -116,7 +133,8 @@ public class Step extends ResultMatch {
     }
 
     public long getTotalDuration() {
-        long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
+        long totalDurationNanoseconds =
+                before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
         totalDurationNanoseconds += getResult().getDuration();
         totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
         return totalDurationNanoseconds;
@@ -132,8 +150,12 @@ public class Step extends ResultMatch {
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Step step = (Step) o;
         return Objects.equals(getGlueMethodName(), step.getGlueMethodName());
     }

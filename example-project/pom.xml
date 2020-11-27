@@ -6,7 +6,7 @@
 
     <groupId>de.benjamin-bischoff</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>2.6.0</version>
+    <version>2.6.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -69,8 +69,8 @@
 
                     <!-- Optional properties to expand scenario hooks, step hooks and doc strings when scenario details are shown (default: false) -->
                     <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
-                    <!--<expandStepHooks>true</expandStepHooks>-->
-                    <!--<expandDocStrings>true</expandDocStrings>-->
+                    <expandStepHooks>true</expandStepHooks>
+                    <expandDocStrings>true</expandDocStrings>
 
                     <!-- optional: Cluecumber log level -->
                     <!--<logLevel>default</logLevel>-->
