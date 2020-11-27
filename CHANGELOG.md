@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.6.0] - 2020-11-27
+
+### Fixed
+* Fixed HTML encoding for attachments (#263)
+
+### Added
+
+
 ## [2.5.0] - 2020-05-11
 
 ### Added

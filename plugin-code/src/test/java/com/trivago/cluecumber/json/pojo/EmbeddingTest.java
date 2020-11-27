@@ -68,6 +68,15 @@ public class EmbeddingTest {
     }
 
     @Test
+    public void getDecodedDataHtmlTest() {
+        String originalInput = "<pre>&lt;h1&gt;should be escapedd&lt;/h1&gt;</pre>";
+        String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));
+        embedding.setMimeType(MimeType.HTML);
+        embedding.decodeData(encodeString);
+        assertThat(embedding.getDecodedData(), is("<pre>&amp;lt;h1&amp;gt;should be escapedd&amp;lt;/h1&amp;gt;</pre>"));
+    }
+
+    @Test
     public void getDecodedDataForXMLTest() {
         String originalInput = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
         String encodeString = new String(Base64.encodeBase64(originalInput.getBytes()));

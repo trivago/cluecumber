@@ -50,7 +50,9 @@ public class Embedding {
         decodedData = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
         switch (mimeType) {
             case HTML:
-                decodedData = decodedData.replaceAll("\"", "'");
+                decodedData = decodedData.replaceAll("\"", "'")
+                                         .replaceAll("&", "&amp;")
+                                         .replaceAll("\"", "&quot;");
                 break;
             case XML:
             case APPLICATION_XML:
@@ -92,12 +94,12 @@ public class Embedding {
 
     public boolean isImage() {
         return mimeType == MimeType.PNG ||
-                mimeType == MimeType.GIF ||
-                mimeType == MimeType.BMP ||
-                mimeType == MimeType.JPEG ||
-                mimeType == MimeType.JPG ||
-                mimeType == MimeType.SVG ||
-                mimeType == MimeType.SVG_XML;
+               mimeType == MimeType.GIF ||
+               mimeType == MimeType.BMP ||
+               mimeType == MimeType.JPEG ||
+               mimeType == MimeType.JPG ||
+               mimeType == MimeType.SVG ||
+               mimeType == MimeType.SVG_XML;
     }
 
     public boolean isPlainText() {
