@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.6.0] - 2020-11-27
+
+### Fixed
+* Fixed HTML encoding for attachments (#263)
+
+### Added
+* Background steps are now displayed in a separate section of the report
+
+### Changed
+* Only hooks with outputs are considered and displayed in the scenario detail pages (#211) 
+* Various design cleanups
+
 ## [2.5.0] - 2020-05-11
 
 ### Added

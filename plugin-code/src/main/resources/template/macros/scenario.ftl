@@ -180,22 +180,24 @@ limitations under the License.
 
 <#macro stepHooks hooks>
     <#list hooks as hook>
-        <div class="stepHook collapse">
-            <div class="row row_${hook.consolidatedStatusString} table-row-${hook.consolidatedStatusString}">
-                <div class="col-1"></div>
-                <div class="col-8 text-left">
-                    <i>${hook.glueMethodName}</i>
+        <#if hook.hasContent()>
+            <div class="stepHook collapse">
+                <div class="row row_${hook.consolidatedStatusString} table-row-${hook.consolidatedStatusString}">
+                    <div class="col-1"></div>
+                    <div class="col-8 text-left">
+                        <i>${hook.glueMethodName}</i>
+                    </div>
+                    <div class="col-2 text-left small">
+                        <span class="nobr">${hook.result.returnDurationString()}</span>
+                    </div>
+                    <div class="col-1 text-right">
+                        <@common.status status=hook.consolidatedStatusString/>
+                    </div>
+                    <@scenario.errorMessage step=hook/>
+                    <@scenario.output step=hook/>
+                    <@scenario.attachments step=hook/>
                 </div>
-                <div class="col-2 text-left small">
-                    <span class="nobr">${hook.result.returnDurationString()}</span>
-                </div>
-                <div class="col-1 text-right">
-                    <@common.status status=hook.consolidatedStatusString/>
-                </div>
-                <@scenario.errorMessage step=hook/>
-                <@scenario.output step=hook/>
-                <@scenario.attachments step=hook/>
             </div>
-        </div>
+        </#if>
     </#list>
 </#macro>
