@@ -87,8 +87,16 @@ pre {
     padding: 1rem;
 }
 
+.list-group {
+    margin-bottom: auto;
+}
+
 .list-group-item .row:hover {
     background-color: rgba(0, 0, 0, .075);
+}
+
+.list-group-flush .list-group-item:last-child {
+    margin-bottom: 0;
 }
 
 div.tooltip-inner {
@@ -188,15 +196,14 @@ iframe {
 
 button.btn {
     white-space: inherit;
-}
-
-.btn.focus {
-    outline: none;
+    border: gainsboro 1px solid;
     box-shadow: none;
 }
 
-.btn-outline-secondary, .btn-outline-secondary.focus, .btn-outline-secondary:focus {
-    border: none;
+.btn-outline-secondary.active:focus,
+.btn-outline-secondary:focus,
+.btn-outline-secondary:active:focus {
+    outline: 0;
     box-shadow: none;
 }
 

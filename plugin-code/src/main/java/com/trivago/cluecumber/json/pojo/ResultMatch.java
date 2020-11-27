@@ -52,6 +52,10 @@ public class ResultMatch {
         this.embeddings = embeddings;
     }
 
+    public boolean hasEmbeddings() {
+        return embeddings.size() > 0;
+    }
+
     public List<String> getOutput() {
         return output;
     }
@@ -94,6 +98,10 @@ public class ResultMatch {
 
     public boolean isSkipped() {
         return getConsolidatedStatus() == Status.SKIPPED;
+    }
+
+    public boolean hasContent() {
+        return hasOutputs() || hasEmbeddings();
     }
 
     public Status getConsolidatedStatus() {

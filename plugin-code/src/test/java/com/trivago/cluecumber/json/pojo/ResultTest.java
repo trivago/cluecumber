@@ -23,12 +23,6 @@ public class ResultTest {
     }
 
     @Test
-    public void utf8SymbolInErrorMessageTest() {
-        result.setErrorMessage("This is a strange symbol: âœ½");
-        assertThat(result.returnErrorMessageWithClickableLinks(), is(""));
-    }
-
-    @Test
     public void durationTest() {
         result.setDuration(1234567890);
         assertThat(result.getDurationInMilliseconds(), is(1234L));

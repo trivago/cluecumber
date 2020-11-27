@@ -13,7 +13,11 @@ Back to [Readme](README.md).
 * Fixed HTML encoding for attachments (#263)
 
 ### Added
+* Background steps are now displayed in a separate section of the report
 
+### Changed
+* Only hooks with outputs are considered and displayed in the scenario detail pages (#211) 
+* Various design cleanups
 
 ## [2.5.0] - 2020-05-11
 

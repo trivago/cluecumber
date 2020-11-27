@@ -36,6 +36,7 @@ public class Element {
     private List<ResultMatch> after = new ArrayList<>();
     private String type = "";
     private String keyword = "";
+    private List<Step> backgroundSteps = new ArrayList<>();
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
@@ -98,6 +99,15 @@ public class Element {
         this.before = before;
     }
 
+    public boolean anyBeforeHookHasContent() {
+        for (ResultMatch resultMatch : before) {
+            if (resultMatch.hasContent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getLine() {
         return line;
     }
@@ -138,6 +148,15 @@ public class Element {
         this.after = after;
     }
 
+    public boolean anyAfterHookHasContent() {
+        for (ResultMatch resultMatch : before) {
+            if (resultMatch.hasContent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getType() {
         return type;
     }
@@ -160,6 +179,14 @@ public class Element {
 
     public void setSteps(final List<Step> steps) {
         this.steps = steps;
+    }
+
+    public List<Step> getBackgroundSteps() {
+        return backgroundSteps;
+    }
+
+    public void setBackgroundSteps(final List<Step> steps) {
+        this.backgroundSteps = steps;
     }
 
     public boolean isScenario() {
@@ -278,6 +305,7 @@ public class Element {
 
     public long getTotalDuration() {
         long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
+        totalDurationNanoseconds += backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum();
         totalDurationNanoseconds += steps.stream().mapToLong(Step::getTotalDuration).sum();
         totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
         return totalDurationNanoseconds;
@@ -292,6 +320,11 @@ public class Element {
     }
 
     public boolean hasDocStrings() {
+        for (Step step : backgroundSteps) {
+            if (step.getDocString() != null) {
+                return true;
+            }
+        }
         for (Step step : steps) {
             if (step.getDocString() != null) {
                 return true;
@@ -301,6 +334,14 @@ public class Element {
     }
 
     public boolean hasStepHooks() {
+        for (Step step : backgroundSteps) {
+            if (step.getBefore().size() > 0) {
+                return true;
+            }
+            if (step.getAfter().size() > 0) {
+                return true;
+            }
+        }
         for (Step step : steps) {
             if (step.getBefore().size() > 0) {
                 return true;
@@ -314,6 +355,7 @@ public class Element {
 
     public List<ResultMatch> getAllResultMatches() {
         List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
+        resultMatches.addAll(getBackgroundSteps());
         resultMatches.addAll(getSteps());
         resultMatches.addAll(getAfter());
         return resultMatches;

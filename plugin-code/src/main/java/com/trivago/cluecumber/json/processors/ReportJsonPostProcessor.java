@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import io.gsonfire.PostProcessor;
 
@@ -66,19 +67,19 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
     }
 
     private void mergeBackgroundScenarios(final Report report) {
-        List<Element> cleanedUpElements = new ArrayList<>();
-        Element currentBackgroundElement = null;
+        List<Element> updatedElements = new ArrayList<>();
+        List<Step> currentBackgroundSteps = null;
         for (Element element : report.getElements()) {
             if (element.getType().equalsIgnoreCase("background")) {
-                currentBackgroundElement = element;
+                currentBackgroundSteps = element.getSteps();
             } else {
-                if (currentBackgroundElement != null) {
-                    element.getSteps().addAll(0, currentBackgroundElement.getSteps());
+                if (currentBackgroundSteps != null) {
+                    element.setBackgroundSteps(currentBackgroundSteps);
                 }
-                cleanedUpElements.add(element);
+                updatedElements.add(element);
             }
         }
-        report.setElements(cleanedUpElements);
+        report.setElements(updatedElements);
     }
 
     private void addFeatureIndex(final Report report) {
