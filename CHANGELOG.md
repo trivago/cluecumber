@@ -7,15 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.6.2] - UNRELEASED
+
+### Added
+* More css classes for report customization (#270, contributed by GregJohnStewart)
+
 ## [2.6.1] - 2020-11-27
 
 ### Fixed
 * After hooks with content were not displayed anymore
-
-## [2.6.1] - UNRELEASED
-
-### Added
-* More css classes for report customization (#270, contributed by GregJohnStewart)
 
 ## [2.6.0] - 2020-11-27
 
@@ -613,6 +613,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.2
 [2.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1
 [2.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.0
 [2.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.5.0
