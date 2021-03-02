@@ -12,6 +12,11 @@ Back to [Readme](README.md).
 ### Fixed
 * After hooks with content were not displayed anymore
 
+## [2.6.1] - UNRELEASED
+
+### Added
+* More css classes for report customization (#270, contributed by GregJohnStewart)
+
 ## [2.6.0] - 2020-11-27
 
 ### Fixed
