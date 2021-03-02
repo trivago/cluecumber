@@ -57,9 +57,9 @@ preheadlineLink="">
                 <tr>
                     <th>Feature</th>
                     <th>Total</th>
-                    <th><@common.status status="passed"/></th>
-                    <th><@common.status status="failed"/></th>
-                    <th><@common.status status="skipped"/></th>
+                    <th class="passedCell"><@common.status status="passed"/></th>
+                    <th class="failedCell"><@common.status status="failed"/></th>
+                    <th class="skippedCell"><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,9 +69,9 @@ preheadlineLink="">
                                     href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a>
                         </td>
                         <td class="text-right"><strong>${featureResultCount.total}</strong></td>
-                        <td class="text-right">${featureResultCount.passed}</td>
-                        <td class="text-right">${featureResultCount.failed}</td>
-                        <td class="text-right">${featureResultCount.skipped}</td>
+                        <td class="text-right passedCell">${featureResultCount.passed}</td>
+                        <td class="text-right failedCell">${featureResultCount.failed}</td>
+                        <td class="text-right skippedCell">${featureResultCount.skipped}</td>
                     </tr>
                 </#list>
                 </tbody>

@@ -58,9 +58,9 @@ preheadlineLink="">
                 <tr>
                     <th>Step</th>
                     <th>Total</th>
-                    <th><@common.status status="passed"/></th>
-                    <th><@common.status status="failed"/></th>
-                    <th><@common.status status="skipped"/></th>
+                    <th class="passedCell"><@common.status status="passed"/></th>
+                    <th class="failedCell"><@common.status status="failed"/></th>
+                    <th class="skippedCell"><@common.status status="skipped"/></th>
                     <th>Min Time</th>
                     <th>Max Time</th>
                     <th>Ø Time</th>
@@ -75,9 +75,9 @@ preheadlineLink="">
                             </span>
                         </td>
                         <td class="text-right"><strong>${stepResultCount.total}</strong></td>
-                        <td class="text-right">${stepResultCount.passed}</td>
-                        <td class="text-right">${stepResultCount.failed}</td>
-                        <td class="text-right">${stepResultCount.skipped}</td>
+                        <td class="text-right passedCell">${stepResultCount.passed}</td>
+                        <td class="text-right failedCell">${stepResultCount.failed}</td>
+                        <td class="text-right skippedCell">${stepResultCount.skipped}</td>
                         <td class="text-right small">
                             <#if (getMinimumTimeScenarioIndexFromStep(step) > -1)>
                                 <a href="pages/scenario-detail/scenario_${getMinimumTimeScenarioIndexFromStep(step)}.html">${getMinimumTimeFromStep(step)}</a>
