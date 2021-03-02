@@ -56,9 +56,9 @@ preheadlineLink="">
                 <tr>
                     <th>Tag</th>
                     <th>Total</th>
-                    <th><@common.status status="passed"/></th>
-                    <th><@common.status status="failed"/></th>
-                    <th><@common.status status="skipped"/></th>
+                    <th class="passedCell"><@common.status status="passed"/></th>
+                    <th class="failedCell"><@common.status status="failed"/></th>
+                    <th class="skippedCell"><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,9 +67,9 @@ preheadlineLink="">
                         <td class="text-left"><a
                                     href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
-                        <td class="text-right">${tagResultCount.passed}</td>
-                        <td class="text-right">${tagResultCount.failed}</td>
-                        <td class="text-right">${tagResultCount.skipped}</td>
+                        <td class="text-right passedCell">${tagResultCount.passed}</td>
+                        <td class="text-right failedCell">${tagResultCount.failed}</td>
+                        <td class="text-right skippedCell">${tagResultCount.skipped}</td>
                     </tr>
                 </#list>
                 </tbody>
