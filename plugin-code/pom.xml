@@ -81,7 +81,7 @@
         <maven.plugin.annotations.version>3.6.1</maven.plugin.annotations.version>
         <maven.source.plugin.version>2.4</maven.source.plugin.version>
         <plexus.utilities.version>3.3.0</plexus.utilities.version>
-        <jacoco.version>0.8.4</jacoco.version>
+        <jacoco.version>0.8.7</jacoco.version>
 
         <mockito.version>3.9.0</mockito.version>
         <junit5.vintage.version>5.8.0-M1</junit5.vintage.version>
