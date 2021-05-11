@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [2.7.0] - UNRELEASED
+## [2.7.0] - 2021-05-11
 
 ### Added
 * More css classes for report customization (#270, contributed by GregJohnStewart)
