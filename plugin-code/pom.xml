@@ -46,7 +46,7 @@
     <scm>
         <connection>scm:git:git@github.com:trivago/cluecumber-report-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:trivago/cluecumber-report-plugin.git</developerConnection>
-        <url>git@github.com:trivago/cluecumber-report-plugin.git</url>
+        <url>https://git@github.com:trivago/cluecumber-report-plugin.git</url>
     </scm>
 
     <distributionManagement>
