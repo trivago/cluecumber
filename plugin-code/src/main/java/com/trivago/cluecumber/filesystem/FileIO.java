@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.trivago.cluecumber.exceptions.filesystem.FileCreationException;
 import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 
 import javax.inject.Singleton;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.file.Files;
@@ -78,5 +79,16 @@ public class FileIO {
         } catch (IOException e) {
             throw new MissingFileException(filePath);
         }
+    }
+
+    /**
+     * Check if a file exists.
+     *
+     * @param filePath the complete path to the file.
+     * @return true if the file exists.
+     */
+    public boolean isExistingFile(final String filePath) {
+        File file = new File(filePath);
+        return file.exists() && file.isFile();
     }
 }

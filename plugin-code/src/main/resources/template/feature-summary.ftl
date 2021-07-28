@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,40 +19,47 @@ limitations under the License.
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page
+title="${pageTitle} - All Features"
 base=".."
-links=["tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]
+highlight="feature_summary"
 headline="All Features"
 subheadline=""
+subsubheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row">
-        <@page.card width="8" title="Feature Summary Result Chart" subtitle="" classes="">
+    <div class="row" id="feature-summary">
+        <@page.card width="9" title="Feature Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Feature Summary" subtitle="" classes="">
+        <@page.card width="3" title="Feature Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">${totalNumberOfFeatures} Feature(s)</li>
                 <li class="list-group-item">
-                    Feature Scenario(s):<br>
-                    ${totalNumberOfPassedFeatures} <@common.status status="passed"/>
-                    ${totalNumberOfFailedFeatures} <@common.status status="failed"/>
-                    ${totalNumberOfSkippedFeatures} <@common.status status="skipped"/>
+                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/><br>
+                    in
+                    ${totalNumberOfFeatures} <@common.pluralize word="Feature" unitCount=totalNumberOfFeatures/>
+                </li>
+                <li class="list-group-item">
+                    ${totalNumberOfPassedFeatures} passed <@common.status status="passed"/>
+                    <br>
+                    ${totalNumberOfFailedFeatures} failed <@common.status status="failed"/>
+                    <br>
+                    ${totalNumberOfSkippedFeatures} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>
     </div>
 
-    <div class="row">
+    <div class="row" id="available-features">
         <@page.card width="12" title="Available Features" subtitle="" classes="">
             <table id="feature_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
                     <th>Feature</th>
                     <th>Total</th>
-                    <th><@common.status status="passed"/></th>
-                    <th><@common.status status="failed"/></th>
-                    <th><@common.status status="skipped"/></th>
+                    <th class="passedCell"><@common.status status="passed"/></th>
+                    <th class="failedCell"><@common.status status="failed"/></th>
+                    <th class="skippedCell"><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,9 +69,9 @@ preheadlineLink="">
                                     href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a>
                         </td>
                         <td class="text-right"><strong>${featureResultCount.total}</strong></td>
-                        <td class="text-right">${featureResultCount.passed}</td>
-                        <td class="text-right">${featureResultCount.failed}</td>
-                        <td class="text-right">${featureResultCount.skipped}</td>
+                        <td class="text-right passedCell">${featureResultCount.passed}</td>
+                        <td class="text-right failedCell">${featureResultCount.failed}</td>
+                        <td class="text-right skippedCell">${featureResultCount.skipped}</td>
                     </tr>
                 </#list>
                 </tbody>

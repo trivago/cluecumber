@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ScenarioSummaryPageCollection extends SummaryPageCollection {
-    private Set<Integer> totalFailed = new HashSet<>();
-    private Set<Integer> totalPassed = new HashSet<>();
-    private Set<Integer> totalSkipped = new HashSet<>();
+    private final Set<Integer> totalFailed = new HashSet<>();
+    private final Set<Integer> totalPassed = new HashSet<>();
+    private final Set<Integer> totalSkipped = new HashSet<>();
 
-    ScenarioSummaryPageCollection(final String pageName) {
-        super(pageName);
+    ScenarioSummaryPageCollection(final String pageTitle) {
+        super(pageTitle);
     }
 
     public int getTotalNumberOfScenarios() {

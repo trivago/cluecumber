@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,6 +52,10 @@ public class ResultMatch {
         this.embeddings = embeddings;
     }
 
+    public boolean hasEmbeddings() {
+        return embeddings.size() > 0;
+    }
+
     public List<String> getOutput() {
         return output;
     }
@@ -96,16 +100,20 @@ public class ResultMatch {
         return getConsolidatedStatus() == Status.SKIPPED;
     }
 
+    public boolean hasContent() {
+        return hasOutputs() || hasEmbeddings();
+    }
+
     public Status getConsolidatedStatus() {
         switch (getStatus()) {
             case PASSED:
                 return Status.PASSED;
             case SKIPPED:
             case PENDING:
-                return Status.SKIPPED;
-            case FAILED:
             case AMBIGUOUS:
             case UNDEFINED:
+                return Status.SKIPPED;
+            case FAILED:
             default:
                 return Status.FAILED;
         }

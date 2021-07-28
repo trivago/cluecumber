@@ -1,10 +1,11 @@
 package com.trivago.cluecumber.json.pojo;
 
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class ResultTest {
     private Result result;
@@ -29,7 +30,7 @@ public class ResultTest {
     }
 
     @Test
-    public void returnErrorMessageWithClickableLinksTest() {
+    public void returnErrorMessageWithClickableLinksTest() throws CluecumberPluginException {
         result.setErrorMessage("Error in http://google.com found!");
         String error = result.returnErrorMessageWithClickableLinks();
         assertThat(error, is("Error in <a href='http://google.com' target='_blank'>http://google.com</a> found!"));

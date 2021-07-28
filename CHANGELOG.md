@@ -7,6 +7,164 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.7.0] - 2021-05-11
+
+### Added
+* More css classes for report customization (#270, contributed by GregJohnStewart)
+
+### Changed
+* Updated dependencies
+
+## [2.6.1] - 2020-11-27
+
+### Fixed
+* After hooks with content were not displayed anymore
+
+## [2.6.0] - 2020-11-27
+
+### Fixed
+* Fixed HTML encoding for attachments (#263)
+
+### Added
+* Background steps are now displayed in a separate section of the report
+
+### Changed
+* Only hooks with outputs are considered and displayed in the scenario detail pages (#211) 
+* Various design cleanups
+
+## [2.5.0] - 2020-05-11
+
+### Added
+
+* Support for external mp4 video attachments (mime type `video/mp4` with an external URL)
+
+### Changed
+
+* Maximum image / video width is half the report width
+* Feature URL is displayed on scenario summary and feature summary pages (#233)
+* Automatic redirect to scenario detail page if only one scenario exists
+
+## [2.4.0] - 2020-05-04
+
+### Added
+
+* Optional `startPage` property to set the report start page (#217)
+
+### Fixed
+
+* Cluecumber did not consider line breaks in scenario outputs (#244)
+* Cluecumber failed on missing json files (#247)
+
+## [2.3.4] - 2020-02-11
+
+### Added
+
+* Custom CSS classes for keywords and parameters (#235, contributed by Labouh)
+
+### Fixed
+
+* Unknown steps are now reported as skipped by default (unless `failScenariosOnPendingOrUndefinedSteps` is set to true) (#236)
+
+## [2.3.3] - 2020-01-27
+
+### Fixed
+
+* Broken links on special characters in tabs (#231)
+* Before hook attachments of legacy Cucumber versions were ignored and caused rendering errors (#323)
+
+## [2.3.2] - 2020-01-23
+
+### Fixed
+
+* Missing feature description in scenario details (#222, contributed by Labouh)
+
+### Added
+
+* Explicit html element ids for better custom css styling (#228, contributed by Labouh)
+
+## [2.3.1] - 2019-10-15
+
+### Fixed
+
+* Chart y axis step size in scenario view
+
+## [2.3.0] - 2019-10-14
+
+### Added
+
+* Support for named attachments
+
+### Changed
+
+* Updated dependencies
+* Removed `eval` from report template (#199)
+
+### Fixed
+
+* Chart y axis step size adapts to displayed values
+
+## [2.2.0] - 2019-07-17
+
+### Added
+
+* Hide scenarios with matching status on the `Scenario Sequence` page when disabling a status in the diagram (#175)
+* Clicking a pie chart slice toggles the according scenarios in `All Scenarios` and `Scenario Sequence` (#175)
+* Logging can be configured via the `logLevel` property (#189)
+
+### Changed
+
+* Changed internal chart generation to simplify future chart features
+* Scenario runtimes is now displayed in seconds in the `Scenario Detail` page graph (#193)
+* Renamed y axis of `All Steps` page graph to `Number of Usages` (#193)
+
+### Fixed
+
+* Wrong wording in `All Tags` page
+* Wrong y axis scale labels in stacked bar charts
+* Missing `All Features` navigation link
+
+## [2.1.0] - 2019-06-25
+
+### Added
+
+* Fully customizable passed, failed and skipped colors through new properties (#172)
+* Proper pluralization of all words within summaries and headers
+* Ability to set a custom report title (#176)
+* Support for custom parameters with hidden keys (#183)
+
+### Changed
+
+* Better layout with larger graphs for tag, feature and step summary pages (#180)
+* Moved timing information to a dedicated box in each report page
+* Refined navigation (#177)
+* Increased max report width
+
+## [2.0.1] - 2019-06-15
+
+### Fixed
+
+* Error when `customParametersFile` property was not set (#171)
+* Wrong log format for `customCssFile` property
+
+### Added
+
+* Better error messages for missing files
+
+## [2.0.0] - 2019-06-14
+
+### Added
+
+* Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed by gazler22)
+
+### Fixed
+
+* Custom parameters are now displayed in the order of definition (#157)
+* Better logging and error handling
+
+### Changed
+
+* Major internal architecture change to ease future extension
+
 ## [1.11.0] - 2019-05-21
 
 ### Fixed
@@ -458,6 +616,21 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.0
+[2.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1
+[2.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.0
+[2.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.5.0
+[2.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.4.0
+[2.3.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.4
+[2.3.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.3
+[2.3.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2
+[2.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.1
+[2.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.0
+[2.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0
+[2.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.1
+[2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
+[2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
+[2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
 [1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
 [1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
 [1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1

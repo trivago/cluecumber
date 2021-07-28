@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,15 +20,27 @@ import java.util.Objects;
 
 public class Feature {
     private final String name;
+    private final String description;
     private final int index;
+    private final String uri;
 
-    public Feature(final String name, final int index) {
+    public Feature(final String name, final String description, final String uri, final int index) {
         this.name = name;
+        this.description = description;
+        this.uri = uri;
         this.index = index;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getUri() {
+        return uri;
     }
 
     public int getIndex() {
@@ -43,6 +55,7 @@ public class Feature {
                 '}';
     }
 
+    // description is not taken into account in comparison
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

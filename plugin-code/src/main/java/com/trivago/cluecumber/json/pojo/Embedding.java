@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.MimeType;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import org.codehaus.plexus.util.Base64;
 
 import java.nio.charset.StandardCharsets;
@@ -28,8 +29,10 @@ public class Embedding {
     private String decodedData;
     @SerializedName("mime_type")
     private MimeType mimeType = MimeType.UNKNOWN;
+    private String name = "";
+    private boolean isExternalContent;
 
-    private transient String filename;
+    private transient String filename = "";
 
     public String getData() {
         return data;
@@ -43,12 +46,25 @@ public class Embedding {
         return decodedData;
     }
 
-    public void encodeData(final String data) {
+    public void decodeData(final String data) {
         decodedData = new String(Base64.decodeBase64(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-        if (mimeType == MimeType.XML || mimeType == MimeType.APPLICATION_XML) {
-            decodedData = decodedData.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        } else if (mimeType == MimeType.HTML) {
-            decodedData = decodedData.replaceAll("\"", "'");
+        switch (mimeType) {
+            case HTML:
+                decodedData = decodedData.replaceAll("\"", "'")
+                                         .replaceAll("&", "&amp;")
+                                         .replaceAll("\"", "&quot;");
+                break;
+            case XML:
+            case APPLICATION_XML:
+                decodedData = decodedData.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+                break;
+            case TXT:
+            case PDF:
+            case MP4:
+                isExternalContent = RenderingUtils.isUrl(decodedData);
+                break;
+            case UNKNOWN:
+                break;
         }
     }
 
@@ -58,6 +74,14 @@ public class Embedding {
 
     public void setMimeType(final MimeType mimeType) {
         this.mimeType = mimeType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 
     public String getFilename() {
@@ -70,12 +94,12 @@ public class Embedding {
 
     public boolean isImage() {
         return mimeType == MimeType.PNG ||
-                mimeType == MimeType.GIF ||
-                mimeType == MimeType.BMP ||
-                mimeType == MimeType.JPEG ||
-                mimeType == MimeType.JPG ||
-                mimeType == MimeType.SVG ||
-                mimeType == MimeType.SVG_XML;
+               mimeType == MimeType.GIF ||
+               mimeType == MimeType.BMP ||
+               mimeType == MimeType.JPEG ||
+               mimeType == MimeType.JPG ||
+               mimeType == MimeType.SVG ||
+               mimeType == MimeType.SVG_XML;
     }
 
     public boolean isPlainText() {
@@ -104,5 +128,9 @@ public class Embedding {
             default:
                 return "unknown";
         }
+    }
+
+    public boolean isExternalContent() {
+        return isExternalContent;
     }
 }

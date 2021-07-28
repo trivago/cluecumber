@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 
 package com.trivago.cluecumber.rendering.pages.pojos;
+
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.net.URL;
 
@@ -32,16 +34,11 @@ public class CustomParameter {
     }
 
     public String getValue() {
-        return value != null ? value : "";
+        return value != null ? value.trim() : "";
     }
 
     public boolean isUrl() {
-        try {
-            new URL(value);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return RenderingUtils.isUrl(getValue());
     }
 
     @Override

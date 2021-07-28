@@ -1,3 +1,8 @@
 *.iml
 .idea/
 */target
+.project
+.settings
+.classpath
+.factorypath
+.DS_Store

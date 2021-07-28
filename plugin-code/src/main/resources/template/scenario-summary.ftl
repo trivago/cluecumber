@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,50 +21,81 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With <i>${tagFilter.name}</i>">
-    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
+    <#assign pageName = "Tagged Scenarios">
+    <#assign highlight = "tag_summary">
+    <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#elseif (featureFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios in Feature<br><i>${featureFilter.name}</i>">
-    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios in Feature">
+    <#assign pageName = "Scenarios in Feature">
+    <#assign highlight = "feature_summary">
+    <#assign subheadline = "${featureFilter.description?html}">
+    <#assign subsubheadline = "${featureFilter.uri}">
+    <#assign preheadline = "${featureFilter.name}">
+    <#assign preheadlineLink="pages/feature-scenarios/feature_${featureFilter.index?c}.html">
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios using Step<br><i>${stepFilter.returnNameWithArgumentPlaceholders()}</i>">
-    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence", "scenario_summary"]>
+    <#assign headline = "Scenarios using Step '${stepFilter.returnNameWithArgumentPlaceholders()}'">
+    <#assign pageName = "Scenarios with Step">
+    <#assign highlight = "step_summary">
+    <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#elseif (scenarioSequence??)>
     <#assign base = "./..">
     <#assign headline = "Scenario Sequence">
-    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_summary"]>
+    <#assign pageName = "Scenario Sequence">
+    <#assign highlight = "scenario_sequence">
+    <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#else>
-    <#assign base = ".">
+    <#assign base = "./..">
     <#assign headline = "All Scenarios">
-    <#assign links = ["feature_summary", "tag_summary", "step_summary", "scenario_sequence"]>
+    <#assign pageName = "All Scenarios">
+    <#assign highlight = "scenario_summary">
+    <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 </#if>
 
 <@page.page
+title="${pageTitle} - ${pageName}"
 base=base
-links=links
+highlight=highlight
 headline=headline
-subheadline=""
-preheadline=""
-preheadlineLink="">
+subheadline=subheadline
+subsubheadline=subsubheadline
+preheadline=preheadline
+preheadlineLink=preheadlineLink>
 
     <#if hasCustomParameters()>
-        <div class="row">
+        <div class="row" id="custom-parameters">
             <@page.card width="12" title="" subtitle="" classes="customParameters">
                 <table class="table table-fit">
                     <tbody>
                     <#list customParameters as customParameter>
                         <tr>
-                            <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
-                            <td class="text-left wrap">
-                                <#if customParameter.url>
-                                    <a href="${customParameter.value}" style="word-break: break-all;"
-                                       target="_blank">${customParameter.value}</a>
-                                <#else>
-                                    ${customParameter.value}
-                                </#if>
-                            </td>
+                            <#if !customParameter.key?starts_with(" ")>
+                                <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
+                                <td class="text-left wrap">
+                                    <#if customParameter.url>
+                                        <a href="${customParameter.value}" style="word-break: break-all;"
+                                           target="_blank">${customParameter.value}</a>
+                                    <#else>
+                                        ${customParameter.value}
+                                    </#if>
+                                </td>
+                            <#else>
+                                <td class="text-left noKey" colspan="2">${customParameter.value}</td>
+                            </#if>
                         </tr>
                     </#list>
                     </tbody>
@@ -73,43 +104,62 @@ preheadlineLink="">
         </div>
     </#if>
 
-    <div class="row">
-        <@page.card width="8" title="Scenario Result Chart" subtitle="" classes="">
+    <div class="row" id="scenario-summary">
+        <@page.card width="6" title="Scenario Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Scenario Summary" subtitle="" classes="">
+        <@page.card width="3" title="Test Suite Time" subtitle="" classes="">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    ${totalNumberOfScenarios} Scenario(s):<br>
-                    ${totalNumberOfPassedScenarios} <@common.status status="passed"/>
-                    ${totalNumberOfFailedScenarios} <@common.status status="failed"/>
-                    ${totalNumberOfSkippedScenarios} <@common.status status="skipped"/>
-                </li>
-
                 <#assign startDateTimeString = returnStartDateTimeString()>
                 <#if startDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-start">
                         Started on:<br>${startDateTimeString}</li>
                 </#if>
-
                 <#assign endDateTimeString = returnEndDateTimeString()>
                 <#if endDateTimeString?has_content>
                     <li class="list-group-item" data-cluecumber-item="total-end">
                         Ended on:<br>${endDateTimeString}</li>
                 </#if>
-
                 <li class="list-group-item" data-cluecumber-item="total-runtime">
                     Test Runtime:<br>${totalDurationString}
+                </li>
+            </ul>
+        </@page.card>
+        <@page.card width="3" title="Test Suite Summary" subtitle="" classes="">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
+                </li>
+                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                    <#if (scenarioSequence??)>
+                        ${totalNumberOfPassedScenarios} passed <@common.status status="passed"/>
+                        <br>
+                        ${totalNumberOfFailedScenarios} failed <@common.status status="failed"/>
+                        <br>
+                        ${totalNumberOfSkippedScenarios} skipped <@common.status status="skipped"/>
+                    <#else>
+                        <a href="javascript:"
+                           onclick="document.location.hash='anchor-passed';">${totalNumberOfPassedScenarios}
+                            passed</a> <@common.status status="passed"/>
+                        <br>
+                        <a href="javascript:"
+                           onclick="document.location.hash='anchor-failed';">${totalNumberOfFailedScenarios}
+                            failed</a> <@common.status status="failed"/>
+                        <br>
+                        <a href="javascript:"
+                           onclick="document.location.hash='anchor-skipped';">${totalNumberOfSkippedScenarios}
+                            skipped</a> <@common.status status="skipped"/>
+                    </#if>
                 </li>
             </ul>
         </@page.card>
     </div>
 
     <#if (scenarioSequence??)>
-        <@scenario.table status="all"/>
+        <@scenario.table status="all" numberOfScenarios=totalNumberOfScenarios />
     <#else>
-        <@scenario.table status="failed"/>
-        <@scenario.table status="skipped"/>
-        <@scenario.table status="passed"/>
+        <@scenario.table status="failed" numberOfScenarios=totalNumberOfFailedScenarios />
+        <@scenario.table status="skipped" numberOfScenarios=totalNumberOfSkippedScenarios />
+        <@scenario.table status="passed" numberOfScenarios=totalNumberOfPassedScenarios />
     </#if>
 </@page.page>

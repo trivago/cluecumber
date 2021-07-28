@@ -4,14 +4,18 @@ import com.trivago.cluecumber.constants.Status;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 
 public class ElementTest {
     private Element element;
+    private String oldTimeZoneId;
 
     @Before
     public void setup() {
@@ -200,8 +204,8 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertThat(status, is(Status.FAILED));
-        assertThat(element.isFailed(), is(true));
+        assertThat(status, is(Status.SKIPPED));
+        assertThat(element.isSkipped(), is(true));
     }
 
     @Test
@@ -289,7 +293,7 @@ public class ElementTest {
     }
 
     @Test
-    public void hasDocStringsTest(){
+    public void hasDocStringsTest() {
         assertThat(element.hasDocStrings(), is(false));
 
         List<Step> steps = new ArrayList<>();
@@ -307,7 +311,7 @@ public class ElementTest {
     }
 
     @Test
-    public void hasStepHooksBeforeTest(){
+    public void hasStepHooksBeforeTest() {
         assertThat(element.hasStepHooks(), is(false));
 
         List<Step> steps = new ArrayList<>();
@@ -327,7 +331,7 @@ public class ElementTest {
     }
 
     @Test
-    public void hasStepHooksAfterTest(){
+    public void hasStepHooksAfterTest() {
         assertThat(element.hasStepHooks(), is(false));
 
         List<Step> steps = new ArrayList<>();
@@ -342,7 +346,75 @@ public class ElementTest {
         steps.add(step2);
 
         element.setSteps(steps);
-
         assertThat(element.hasStepHooks(), is(true));
+    }
+
+    @Test
+    public void getStartDateTimeTest() {
+        element.setStartTimestamp("2019-04-11T08:00:23.668Z");
+        assertThat(element.getStartDateTime().format(DateTimeFormatter.ISO_DATE_TIME), is("2019-04-11T08:00:23.668Z"));
+    }
+
+    @Test
+    public void getEndDateTimeTest() {
+        element.setStartTimestamp("2019-04-11T08:00:23.668Z");
+        List<com.trivago.cluecumber.json.pojo.ResultMatch> beforeSteps = new ArrayList<>();
+        com.trivago.cluecumber.json.pojo.ResultMatch before = new com.trivago.cluecumber.json.pojo.ResultMatch();
+        Result beforeResult = new Result();
+        beforeResult.setDuration(10000000000000L);
+        before.setResult(beforeResult);
+        beforeSteps.add(before);
+        element.setBefore(beforeSteps);
+        assertThat(element.getEndDateTime().format(DateTimeFormatter.ISO_DATE_TIME), is("2019-04-11T10:47:03.668Z"));
+    }
+
+    @Test
+    public void getEndDateTimeNoStartDateTest() {
+        List<com.trivago.cluecumber.json.pojo.ResultMatch> beforeSteps = new ArrayList<>();
+        com.trivago.cluecumber.json.pojo.ResultMatch before = new com.trivago.cluecumber.json.pojo.ResultMatch();
+        Result beforeResult = new Result();
+        beforeResult.setDuration(10000000000000L);
+        before.setResult(beforeResult);
+        beforeSteps.add(before);
+        element.setBefore(beforeSteps);
+        assertThat(element.getEndDateTime(), is(nullValue()));
+    }
+
+    @Test
+    public void getStartDateStringTest() {
+        element.setStartTimestamp("2019-04-11T08:00:23.668Z");
+        assertThat(element.getStartDateString(), is("2019-04-11"));
+    }
+
+    @Test
+    public void getStartTimeStringTest() {
+        element.setStartTimestamp("2019-04-11T08:00:23.668Z");
+        assertThat(element.getStartTimeString(), endsWith(":00:23"));
+    }
+
+    @Test
+    public void getEndDateStringTest() {
+        element.setStartTimestamp("2019-04-11T08:00:23.668Z");
+        List<com.trivago.cluecumber.json.pojo.ResultMatch> beforeSteps = new ArrayList<>();
+        com.trivago.cluecumber.json.pojo.ResultMatch before = new com.trivago.cluecumber.json.pojo.ResultMatch();
+        Result beforeResult = new Result();
+        beforeResult.setDuration(10000000000000L);
+        before.setResult(beforeResult);
+        beforeSteps.add(before);
+        element.setBefore(beforeSteps);
+        assertThat(element.getEndDateString(), is("2019-04-11"));
+    }
+
+    @Test
+    public void getEndTimeStringTest() {
+        element.setStartTimestamp("2019-04-11T08:00:23.668Z");
+        List<com.trivago.cluecumber.json.pojo.ResultMatch> beforeSteps = new ArrayList<>();
+        com.trivago.cluecumber.json.pojo.ResultMatch before = new com.trivago.cluecumber.json.pojo.ResultMatch();
+        Result beforeResult = new Result();
+        beforeResult.setDuration(10000000000000L);
+        before.setResult(beforeResult);
+        beforeSteps.add(before);
+        element.setBefore(beforeSteps);
+        assertThat(element.getEndTimeString(), endsWith(":47:03"));
     }
 }

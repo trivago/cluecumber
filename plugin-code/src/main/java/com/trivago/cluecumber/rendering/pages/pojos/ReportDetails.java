@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package com.trivago.cluecumber.rendering.pages.pojos;
 
 import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,15 +26,14 @@ import java.util.Date;
 public class ReportDetails {
     private String chartJson;
     private final String date;
-    private final String pageName;
 
-    public ReportDetails(final String pageName) {
-        this.pageName = pageName;
+    public ReportDetails() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         this.date = dateFormat.format(date);
     }
 
+    @SuppressWarnings("unused")
     public String getChartJson() {
         return chartJson;
     }
@@ -50,9 +49,5 @@ public class ReportDetails {
     public String getGeneratorName() {
         return String.format("%s version %s",
                 PluginSettings.NAME, RenderingUtils.getPluginVersion());
-    }
-
-    public String getPageName() {
-        return pageName;
     }
 }

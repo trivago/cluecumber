@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,8 @@ package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.Status;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 public class Result {
 

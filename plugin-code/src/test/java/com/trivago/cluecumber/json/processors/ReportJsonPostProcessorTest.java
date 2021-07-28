@@ -10,8 +10,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.core.Is.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 public class ReportJsonPostProcessorTest {
     private ReportJsonPostProcessor reportJsonPostProcessor;
@@ -72,11 +72,14 @@ public class ReportJsonPostProcessorTest {
         Element firstElement = report.getElements().get(0);
         assertThat(firstElement.getTags().size(), is(2));
         List<Step> firstElementSteps = firstElement.getSteps();
-        assertThat(firstElementSteps.size(), is(4));
-        assertThat(firstElementSteps.get(0).getName(), is("background step 1"));
-        assertThat(firstElementSteps.get(1).getName(), is("background step 2"));
-        assertThat(firstElementSteps.get(2).getName(), is("element step 1"));
-        assertThat(firstElementSteps.get(3).getName(), is("element step 2"));
+        assertThat(firstElementSteps.size(), is(2));
+        assertThat(firstElementSteps.get(0).getName(), is("element step 1"));
+        assertThat(firstElementSteps.get(1).getName(), is("element step 2"));
+
+        List<Step> firstElementBackgroundSteps = firstElement.getBackgroundSteps();
+        assertThat(firstElementBackgroundSteps.size(), is(2));
+        assertThat(firstElementBackgroundSteps.get(0).getName(), is("background step 1"));
+        assertThat(firstElementBackgroundSteps.get(1).getName(), is("background step 2"));
     }
 
     @Test

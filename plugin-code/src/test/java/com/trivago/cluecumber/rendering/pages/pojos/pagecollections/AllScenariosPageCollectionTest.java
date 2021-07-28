@@ -22,12 +22,12 @@ public class AllScenariosPageCollectionTest {
 
     @Before
     public void setup() {
-        allScenariosPageCollection = new AllScenariosPageCollection();
+        allScenariosPageCollection = new AllScenariosPageCollection("");
     }
 
     @Test
     public void addReportsNullReportListTest() {
-        allScenariosPageCollection.addReports((Report[]) null);
+        allScenariosPageCollection.addReports(null);
         assertThat(allScenariosPageCollection.getReports().size(), is(0));
         assertThat(allScenariosPageCollection.getTotalNumberOfScenarios(), is(0));
     }

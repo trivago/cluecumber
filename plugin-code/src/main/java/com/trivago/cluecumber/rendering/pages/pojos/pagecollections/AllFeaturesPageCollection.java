@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
-import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
@@ -30,9 +28,10 @@ import java.util.Set;
 
 public class AllFeaturesPageCollection extends SummaryPageCollection {
     private Map<Feature, ResultCount> resultCounts;
+    private int totalNumberOfScenarios;
 
-    public AllFeaturesPageCollection(final List<Report> reports) {
-        super(PluginSettings.FEATURE_SUMMARY_PAGE_NAME);
+    public AllFeaturesPageCollection(final List<Report> reports, final String pageTitle) {
+        super(pageTitle);
         calculateFeatureResultCounts(reports);
     }
 
@@ -73,13 +72,20 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
     private void calculateFeatureResultCounts(final List<Report> reports) {
         if (reports == null) return;
         resultCounts = new HashMap<>();
-        for (Report report : reports) {
-            Feature feature = new Feature(report.getName(), report.getFeatureIndex());
+        totalNumberOfScenarios = 0;
+        reports.forEach(report -> {
+            Feature feature = new Feature(
+                    report.getName(), report.getDescription(), report.getUri(), report.getFeatureIndex()
+            );
             ResultCount featureResultCount = this.resultCounts.getOrDefault(feature, new ResultCount());
-            for (Element element : report.getElements()) {
-                updateResultCount(featureResultCount, element.getStatus());
-            }
+            totalNumberOfScenarios += report.getElements().size();
+            report.getElements().forEach(element -> updateResultCount(featureResultCount, element.getStatus()));
             this.resultCounts.put(feature, featureResultCount);
-        }
+        });
+    }
+
+    @SuppressWarnings("unused")
+    public int getTotalNumberOfScenarios() {
+        return totalNumberOfScenarios;
     }
 }

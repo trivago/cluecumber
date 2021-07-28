@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,41 +19,46 @@ limitations under the License.
 <#import "macros/navigation.ftl" as navigation>
 
 <@page.page
+title="${pageTitle} - All Tags"
 base=".."
-links=["feature_summary", "step_summary", "scenario_sequence", "scenario_summary"]
+highlight="tag_summary"
 headline="All Tags"
 subheadline=""
+subsubheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <div class="row">
-        <@page.card width="8" title="Tag Summary Result Chart" subtitle="" classes="">
+    <div class="row" id="tag-summary">
+        <@page.card width="9" title="Tag Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="4" title="Tag Summary" subtitle="" classes="">
+        <@page.card width="3" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
-                <li class="list-group-item">${totalNumberOfTags} Tag(s) in<br>
-                    ${totalNumberOfScenarios} Tagged Scenario(s)
+                <li class="list-group-item">${totalNumberOfTags} <@common.pluralize word="Tag" unitCount=totalNumberOfTags/> in
+                    <br>
+                    ${totalNumberOfScenarios} Tagged <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
                 </li>
                 <li class="list-group-item">
-                    ${totalNumberOfPassed} <@common.status status="passed"/>
-                    ${totalNumberOfFailed} <@common.status status="failed"/>
-                    ${totalNumberOfSkipped} <@common.status status="skipped"/>
+                    ${totalNumberOfPassed} passed <@common.status status="passed"/>
+                    <br>
+                    ${totalNumberOfFailed} failed <@common.status status="failed"/>
+                    <br>
+                    ${totalNumberOfSkipped} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
         </@page.card>
     </div>
 
-    <div class="row">
+    <div class="row" id="available-tags">
         <@page.card width="12" title="Available Tags" subtitle="" classes="">
             <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
                 <thead>
                 <tr>
                     <th>Tag</th>
                     <th>Total</th>
-                    <th><@common.status status="passed"/></th>
-                    <th><@common.status status="failed"/></th>
-                    <th><@common.status status="skipped"/></th>
+                    <th class="passedCell"><@common.status status="passed"/></th>
+                    <th class="failedCell"><@common.status status="failed"/></th>
+                    <th class="skippedCell"><@common.status status="skipped"/></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -62,9 +67,9 @@ preheadlineLink="">
                         <td class="text-left"><a
                                     href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
                         <td class="text-right"><strong>${tagResultCount.total}</strong></td>
-                        <td class="text-right">${tagResultCount.passed}</td>
-                        <td class="text-right">${tagResultCount.failed}</td>
-                        <td class="text-right">${tagResultCount.skipped}</td>
+                        <td class="text-right passedCell">${tagResultCount.passed}</td>
+                        <td class="text-right failedCell">${tagResultCount.failed}</td>
+                        <td class="text-right skippedCell">${tagResultCount.skipped}</td>
                     </tr>
                 </#list>
                 </tbody>

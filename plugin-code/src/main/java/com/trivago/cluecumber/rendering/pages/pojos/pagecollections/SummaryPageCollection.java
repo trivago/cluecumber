@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
 import java.util.Collection;
 
 class SummaryPageCollection extends PageCollection {
-    SummaryPageCollection(final String pageName) {
-        super(pageName);
+    SummaryPageCollection(final String pageTitle) {
+        super(pageTitle);
     }
 
     void updateResultCount(ResultCount resultCount, final Status status) {

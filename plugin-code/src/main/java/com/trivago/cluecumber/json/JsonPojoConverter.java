@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.trivago.cluecumber.json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
+import com.google.gson.stream.JsonReader;
 import com.trivago.cluecumber.constants.MimeType;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -28,6 +29,12 @@ import io.gsonfire.GsonFireBuilder;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 @Singleton
 public class JsonPojoConverter {
@@ -44,6 +51,19 @@ public class JsonPojoConverter {
                 .registerPostProcessor(Element.class, elementJsonPostProcessor)
                 .enumDefaultValue(MimeType.class, MimeType.UNKNOWN);
         gsonParserWithProcessors = builder.createGson();
+    }
+
+    public List<Report> readJsonStream(InputStream in) throws CluecumberPluginException, IOException {
+        JsonReader reader = new JsonReader(new InputStreamReader(in, StandardCharsets.UTF_8));
+        List<Report> reports = new ArrayList<Report>();
+        reader.beginArray();
+        while (reader.hasNext()) {
+            Report report = gsonParserWithProcessors.fromJson(reader, Report.class);
+            reports.add(report);
+        }
+        reader.endArray();
+        reader.close();
+        return reports;
     }
 
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberPluginException {

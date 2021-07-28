@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,21 +27,21 @@ import com.trivago.cluecumber.logging.CluecumberLogger;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.ReportGenerator;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import javax.inject.Inject;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
+import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.DEFAULT;
 
 /**
  * The main plugin class.
  */
 @Mojo(name = "reporting")
-public final class CluecumberReportPlugin extends AbstractMojo {
+public final class CluecumberReportPlugin extends PropertyCollector {
 
     private final CluecumberLogger logger;
     private final PropertyManager propertyManager;
@@ -52,62 +52,9 @@ public final class CluecumberReportPlugin extends AbstractMojo {
     private final ReportGenerator reportGenerator;
 
     /**
-     * The path to the Cucumber JSON files.
-     */
-    @Parameter(property = "reporting.sourceJsonReportDirectory", required = true)
-    private String sourceJsonReportDirectory = "";
-
-    /**
-     * The location of the generated report.
-     */
-    @Parameter(property = "reporting.generatedHtmlReportDirectory", required = true)
-    private String generatedHtmlReportDirectory = "";
-
-    /**
-     * Custom parameters to add to the report.
-     */
-    @Parameter(property = "reporting.customParameters")
-    private Map<String, String> customParameters = new HashMap<>();
-
-    /**
-     * Custom parameters file to load custom parameters from.
-     */
-    @Parameter(property = "reporting.customParametersFile")
-    private String customParametersFile = "";
-    
-    /**
-    * Mark scenarios as failed if they contain pending or undefined steps (default: false).
-    */
-    @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
-    private boolean failScenariosOnPendingOrUndefinedSteps;
-
-    /**
-     * Custom CSS that is applied on top of Cluecumber's default styles.
-     */
-    @Parameter(property = "reporting.customCss")
-    private String customCss = "";
-
-    /**
-     * Custom flag that determines if before and after hook sections of scenario detail pages should be expanded (default: false).
-     */
-    @Parameter(property = "reporting.expandBeforeAfterHooks", defaultValue = "false")
-    private boolean expandBeforeAfterHooks;
-
-    /**
-     * Custom flag that determines if step hook sections of scenario detail pages should be expanded (default: false).
-     */
-    @Parameter(property = "reporting.expandStepHooks", defaultValue = "false")
-    private boolean expandStepHooks;
-
-    /**
-     * Custom flag that determines if doc string sections of scenario detail pages should be expanded (default: false).
-     */
-    @Parameter(property = "reporting.expandDocStrings", defaultValue = "false")
-    private boolean expandDocStrings;
-
-    /**
      * Skip Cluecumber report generation.
      */
+    @SuppressWarnings("unused")
     @Parameter(defaultValue = "false", property = "skip")
     private boolean skip;
 
@@ -121,6 +68,7 @@ public final class CluecumberReportPlugin extends AbstractMojo {
             final ElementIndexPreProcessor elementIndexPreProcessor,
             final ReportGenerator reportGenerator
     ) {
+        super(propertyManager);
         this.propertyManager = propertyManager;
         this.fileSystemManager = fileSystemManager;
         this.fileIO = fileIO;
@@ -137,37 +85,25 @@ public final class CluecumberReportPlugin extends AbstractMojo {
      */
     public void execute() throws CluecumberPluginException {
         // Initialize logger to be available outside the AbstractMojo class
-        logger.setMojoLogger(getLog());
+        logger.initialize(getLog(), logLevel);
 
         if (skip) {
-            getLog().info("Cluecumber report generation was skipped by a configuration flag.");
+            logger.info("Cluecumber report generation was skipped using the <skip> property.",
+                    DEFAULT);
             return;
         }
 
-        // Initialize and validate passed pom properties
-        propertyManager.setSourceJsonReportDirectory(sourceJsonReportDirectory);
-        propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
-        propertyManager.setCustomParameters(customParameters);
-        propertyManager.setCustomParametersFile(customParametersFile);
-        propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
-        propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
-        propertyManager.setExpandStepHooks(expandStepHooks);
-        propertyManager.setExpandDocStrings(expandDocStrings);
-        propertyManager.setCustomCss(customCss);
-        propertyManager.validateSettings();
-        propertyManager.initCustomParamatersFromFile();
-        
-        logger.info("-----------------------------------------------");
+        logger.logInfoSeparator(DEFAULT);
+        logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage()
+                .getImplementationVersion()), DEFAULT);
+        logger.logInfoSeparator(DEFAULT, COMPACT);
 
-        logger.logSeparator();
-        logger.info(String.format(" Cluecumber Report Maven Plugin, version %s", getClass().getPackage().getImplementationVersion()));
-        logger.logSeparator();
-        propertyManager.logProperties();
+        super.execute();
 
         // Create attachment directory here since they are handled during json generation.
         fileSystemManager.createDirectory(propertyManager.getGeneratedHtmlReportDirectory() + "/attachments");
 
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection(propertyManager.getCustomPageTitle());
         List<Path> jsonFilePaths = fileSystemManager.getJsonFilePaths(propertyManager.getSourceJsonReportDirectory());
         for (Path jsonFilePath : jsonFilePaths) {
             String jsonString = fileIO.readContentFromFile(jsonFilePath.toString());
@@ -175,14 +111,18 @@ public final class CluecumberReportPlugin extends AbstractMojo {
                 Report[] reports = jsonPojoConverter.convertJsonToReportPojos(jsonString);
                 allScenariosPageCollection.addReports(reports);
             } catch (CluecumberPluginException e) {
-                logger.error("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
+                logger.warn("Could not parse JSON in file '" + jsonFilePath.toString() + "': " + e.getMessage());
             }
         }
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                        PluginSettings.START_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION,
+                DEFAULT,
+                COMPACT,
+                CluecumberLogger.CluecumberLogLevel.MINIMAL
+        );
     }
 }
 

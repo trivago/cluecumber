@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos;
 
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Times {
-    private List<FeatureTime> times = new ArrayList<>();
+    private final List<FeatureTime> times = new ArrayList<>();
 
     public void addTime(final long nanoseconds, final int featureIndex) {
         times.add(new FeatureTime(nanoseconds, featureIndex));
@@ -62,7 +62,7 @@ public class Times {
         );
     }
 
-    class FeatureTime {
+    static class FeatureTime {
         private final long time;
         private final int scenarioIndex;
 

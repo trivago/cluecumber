@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,30 +16,23 @@ limitations under the License.
 
 <#macro status status>
     <#if status == "failed">
-        <#assign class = "text-danger" />
+        <#assign class = "color-failed" />
         <#assign icon = "failed" />
     <#elseif status == "skipped">
-        <#assign class = "text-warning" />
+        <#assign class = "color-skipped" />
         <#assign icon = "skipped" />
     <#else>
-        <#assign class = "text-success" />
+        <#assign class = "color-passed" />
         <#assign icon = "passed" />
     </#if>
     <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
        title="${status}"><span style="display:none">${status}</span></i>
 </#macro>
 
-<#macro startStatus status>
-    <#if status == "failed">
-        <#assign class = "text-white" />
-        <#assign icon = "failed" />
-    <#elseif status == "skipped">
-        <#assign class = "text-black" />
-        <#assign icon = "skipped" />
+<#macro pluralize word unitCount>
+    <#if unitCount gt 1>
+        ${word}s
     <#else>
-        <#assign class = "text-white" />
-        <#assign icon = "passed" />
+        ${word}
     </#if>
-    <i class="${class} cluecumber-icon icon-${icon}" data-toggle="tooltip"
-       title="${status}"><span style="display:none">${status}</span></i>
 </#macro>

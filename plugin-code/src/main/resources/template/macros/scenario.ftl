@@ -1,5 +1,5 @@
 <#--
-Copyright 2018 trivago N.V.
+Copyright 2019 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ limitations under the License.
 
 <#import "../macros/common.ftl" as common>
 
-<#macro table status>
+<#macro table status numberOfScenarios>
     <#assign skippedRequested = status == "skipped">
     <#assign failedRequested = status == "failed">
     <#assign passedRequested = status == "passed">
@@ -28,25 +28,37 @@ limitations under the License.
     (passedRequested && hasPassedScenarios()) ||
     allRequested
     >
+        <a class="anchor" id="anchor-${status}"></a>
         <div class="row" id="card_${status}" data-cluecumber-item="scenario-summary-table">
             <div class=" col-sm-12">
                 <div class="card">
 
                     <#switch status>
                         <#case "skipped">
-                            <div class="card-header border-warning bg-warning">Skipped
-                                Scenarios <@common.startStatus status="skipped"/></div>
+                            <div class="card-header border-color-skipped">
+                                ${numberOfScenarios}
+                                <@common.pluralize word="skipped Scenario" unitCount=numberOfScenarios/>
+                                <@common.status status="skipped"/>
+                            </div>
                             <#break>
                         <#case "failed">
-                            <div class="card-header border-danger bg-danger text-white">Failed
-                                Scenarios <@common.startStatus status="failed"/></div>
+                            <div class="card-header border-color-failed">
+                                ${numberOfScenarios}
+                                <@common.pluralize word="failed Scenario" unitCount=numberOfScenarios/>
+                                <@common.status status="failed"/>
+                            </div>
                             <#break>
                         <#case "passed">
-                            <div class="card-header border-success bg-success text-white">Passed
-                                Scenarios <@common.startStatus status="passed"/></div>
+                            <div class="card-header border-color-passed">
+                                ${numberOfScenarios}
+                                <@common.pluralize word="passed Scenario" unitCount=numberOfScenarios/>
+                                <@common.status status="passed"/>
+                            </div>
                             <#break>
                         <#case "all">
-                            <div class="card-header border-light bg-info text-white">Scenario Sequence</div>
+                            <div class="card-header">
+                                Scenario Sequence (${numberOfScenarios})
+                            </div>
                             <#break>
                     </#switch>
 
@@ -76,13 +88,14 @@ limitations under the License.
 
                                 <#list report.elements as element>
                                     <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                        <tr>
+                                        <tr class="table-row-${element.status.statusString}">
                                             <#if allRequested>
                                                 <td class="text-right">${element.scenarioIndex}</td>
                                             </#if>
-                                            <td class="text-left"><span data-toggle="tooltip"
-                                                                        title="${tooltipText}"><a
-                                                            href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a></span>
+                                            <td class="text-left">
+                                                <span data-toggle="tooltip" title="${tooltipText}">
+                                                    <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
+                                                </span>
                                             </td>
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
@@ -115,19 +128,31 @@ limitations under the License.
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
             <div class="row w-100 p-3 m-0 scenarioAttachment">
+                <#if attachment.name != "">
+                    <div class="w-100 p-1 m-0 border-bottom small text-left">${attachment.name}</div>
+                </#if>
                 <div class="w-100 text-left m-auto">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}" style="max-width: 100%" alt="Attachment ${attachment.filename}"/>
+                            <img src="attachments/${attachment.filename}" class="embedded-image" style="max-width: 50%;"
+                                 alt="Attachment ${attachment.filename}"/>
                         </a>
                     <#elseif attachment.mimeType == "HTML">
                         <iframe src="attachments/${attachment.filename}"
                                 srcdoc="${attachment.decodedData}" width="100%" height="1"
-                                onload="resizeIframe(this);"></iframe>
+                                onload="resizeIframe(this);" class="embedded-html"></iframe>
                     <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
-                        <pre class="embedding-content small">${attachment.decodedData}</pre>
+                        <pre class="embedding-content small embedded-txt">${attachment.decodedData}</pre>
+                    <#elseif attachment.mimeType == "MP4">
+                        <#if attachment.externalContent>
+                            <video controls="controls" class="embedded-mp4" style="max-width:50%;">
+                                <source src="${attachment.decodedData}" type="video/mp4"/>
+                            </video>
+                        </#if>
+                    <#elseif attachment.mimeType == "UNKNOWN">
+                        <p class="small text-danger">Unknown content type.</p>
                     <#else>
-                        <embed src="attachments/${attachment.filename}" width="100%" height="500"/>
+                        <embed src="attachments/${attachment.filename}" class="embedded-file" width="100%" height="500"/>
                     </#if>
                 </div>
             </div>
@@ -148,31 +173,31 @@ limitations under the License.
 <#macro  output step>
     <#if step.hasOutputs()>
         <div class="row w-100 p-3 m-0 scenarioOutput">
-            <div class="w-100 text-left small p-2">
-                ${step.returnEscapedOutputs()?join("<br>")}
-            </div>
+            <div class="w-100 text-left small p-2">${step.returnEscapedOutputs()?join("<br><br>")}</div>
         </div>
     </#if>
 </#macro>
 
 <#macro stepHooks hooks>
     <#list hooks as hook>
-        <div class="stepHook collapse">
-            <div class="row row_${hook.consolidatedStatusString}">
-                <div class="col-1"></div>
-                <div class="col-8 text-left">
-                    <i>${hook.glueMethodName}</i>
+        <#if hook.hasContent()>
+            <div class="stepHook collapse">
+                <div class="row row_${hook.consolidatedStatusString} table-row-${hook.consolidatedStatusString}">
+                    <div class="col-1"></div>
+                    <div class="col-8 text-left">
+                        <i>${hook.glueMethodName}</i>
+                    </div>
+                    <div class="col-2 text-left small">
+                        <span class="nobr">${hook.result.returnDurationString()}</span>
+                    </div>
+                    <div class="col-1 text-right">
+                        <@common.status status=hook.consolidatedStatusString/>
+                    </div>
+                    <@scenario.errorMessage step=hook/>
+                    <@scenario.output step=hook/>
+                    <@scenario.attachments step=hook/>
                 </div>
-                <div class="col-2 text-left small">
-                    <span class="nobr">${hook.result.returnDurationString()}</span>
-                </div>
-                <div class="col-1 text-right">
-                    <@common.status status=hook.consolidatedStatusString/>
-                </div>
-                <@scenario.errorMessage step=hook/>
-                <@scenario.output step=hook/>
-                <@scenario.attachments step=hook/>
             </div>
-        </div>
+        </#if>
     </#list>
 </#macro>

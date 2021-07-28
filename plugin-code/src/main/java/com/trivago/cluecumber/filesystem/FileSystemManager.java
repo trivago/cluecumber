@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,9 @@ package com.trivago.cluecumber.filesystem;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.PathCreationException;
+import com.trivago.cluecumber.logging.CluecumberLogger;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,20 +30,29 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Singleton
 public class FileSystemManager {
+
+    private CluecumberLogger logger;
+
+    @Inject
+    public FileSystemManager(final CluecumberLogger logger) {
+        this.logger = logger;
+    }
+
     /**
      * Return a list of JSON files in a given directory.
      *
      * @param sourcePath The path in which to search for JSON files.
      * @return A list of JSON file paths.
-     * @throws CluecumberPluginException see {@link CluecumberPluginException}.
      */
-    public List<Path> getJsonFilePaths(final String sourcePath) throws CluecumberPluginException {
-        List<Path> jsonFilePaths;
+    public List<Path> getJsonFilePaths(final String sourcePath) {
+        List<Path> jsonFilePaths = new ArrayList<>();
         try {
             jsonFilePaths =
                     Files.walk(Paths.get(sourcePath))
@@ -50,8 +61,7 @@ public class FileSystemManager {
                             .collect(Collectors.toList());
 
         } catch (IOException e) {
-            throw new CluecumberPluginException(
-                    "Unable to traverse JSON files in " + sourcePath);
+            logger.warn("Unable to traverse JSON files in " + sourcePath);
         }
         return jsonFilePaths;
     }
@@ -103,7 +113,7 @@ public class FileSystemManager {
         Path sourcePath = Paths.get(source);
         Path destinationPath = Paths.get(destination);
         try {
-            Files.copy(sourcePath, destinationPath);
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new CluecumberPluginException("Cannot copy resource '" + source + "': " + e.getMessage());
         }

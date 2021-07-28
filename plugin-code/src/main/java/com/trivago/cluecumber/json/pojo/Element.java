@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,22 +18,25 @@ package com.trivago.cluecumber.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.constants.Status;
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
     private String featureName = "";
+    private String featureUri = "";
     private String name = "";
     private String description = "";
     private String id = "";
     private List<ResultMatch> after = new ArrayList<>();
     private String type = "";
     private String keyword = "";
+    private List<Step> backgroundSteps = new ArrayList<>();
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
@@ -96,6 +99,15 @@ public class Element {
         this.before = before;
     }
 
+    public boolean anyBeforeHookHasContent() {
+        for (ResultMatch resultMatch : before) {
+            if (resultMatch.hasContent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getLine() {
         return line;
     }
@@ -136,6 +148,15 @@ public class Element {
         this.after = after;
     }
 
+    public boolean anyAfterHookHasContent() {
+        for (ResultMatch resultMatch : after) {
+            if (resultMatch.hasContent()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getType() {
         return type;
     }
@@ -158,6 +179,14 @@ public class Element {
 
     public void setSteps(final List<Step> steps) {
         this.steps = steps;
+    }
+
+    public List<Step> getBackgroundSteps() {
+        return backgroundSteps;
+    }
+
+    public void setBackgroundSteps(final List<Step> steps) {
+        this.backgroundSteps = steps;
     }
 
     public boolean isScenario() {
@@ -275,16 +304,10 @@ public class Element {
     }
 
     public long getTotalDuration() {
-        long totalDurationNanoseconds = 0;
-        for (ResultMatch beforeStep : before) {
-            totalDurationNanoseconds += beforeStep.getResult().getDuration();
-        }
-        for (Step step : steps) {
-            totalDurationNanoseconds += step.getTotalDuration();
-        }
-        for (ResultMatch afterStep : after) {
-            totalDurationNanoseconds += afterStep.getResult().getDuration();
-        }
+        long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
+        totalDurationNanoseconds += backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum();
+        totalDurationNanoseconds += steps.stream().mapToLong(Step::getTotalDuration).sum();
+        totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
         return totalDurationNanoseconds;
     }
 
@@ -296,7 +319,16 @@ public class Element {
         return getBefore().size() > 0 || getAfter().size() > 0;
     }
 
+    public boolean hasHooksWithContent() {
+        return anyBeforeHookHasContent() || anyAfterHookHasContent();
+    }
+
     public boolean hasDocStrings() {
+        for (Step step : backgroundSteps) {
+            if (step.getDocString() != null) {
+                return true;
+            }
+        }
         for (Step step : steps) {
             if (step.getDocString() != null) {
                 return true;
@@ -306,6 +338,14 @@ public class Element {
     }
 
     public boolean hasStepHooks() {
+        for (Step step : backgroundSteps) {
+            if (step.getBefore().size() > 0) {
+                return true;
+            }
+            if (step.getAfter().size() > 0) {
+                return true;
+            }
+        }
         for (Step step : steps) {
             if (step.getBefore().size() > 0) {
                 return true;
@@ -317,30 +357,55 @@ public class Element {
         return false;
     }
 
+    public boolean hasStepHooksWithContent() {
+        for (Step step : backgroundSteps) {
+            if (step.hasHooksWithContent())
+            {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasHooksWithContent())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<ResultMatch> getAllResultMatches() {
         List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
+        resultMatches.addAll(getBackgroundSteps());
         resultMatches.addAll(getSteps());
         resultMatches.addAll(getAfter());
         return resultMatches;
-    }
-
-    public void setFeatureName(final String featureName) {
-        this.featureName = featureName;
     }
 
     public String getFeatureName() {
         return featureName;
     }
 
-    public void setFeatureIndex(final int featureIndex) {
-        this.featureIndex = featureIndex;
+    public void setFeatureName(final String featureName) {
+        this.featureName = featureName;
     }
 
     public int getFeatureIndex() {
         return featureIndex;
     }
 
+    public void setFeatureIndex(final int featureIndex) {
+        this.featureIndex = featureIndex;
+    }
+
     public void setFailOnPendingOrUndefined(final boolean failOnPendingOrUndefined) {
         this.failOnPendingOrUndefined = failOnPendingOrUndefined;
+    }
+
+    public String getFeatureUri() {
+        return featureUri;
+    }
+
+    public void setFeatureUri(String featureUri) {
+        this.featureUri = featureUri;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
 import io.gsonfire.PostProcessor;
 
@@ -50,8 +51,10 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
     private void addFeatureInformationToScenarios(final Report report) {
         List<Tag> reportTags = report.getTags();
         String featureName = report.getName();
+        String featureUri = report.getUri();
         int featureIndex = report.getFeatureIndex();
         for (Element element : report.getElements()) {
+            element.setFeatureUri(report.getUri());
             element.setFeatureName(featureName);
             element.setFeatureIndex(featureIndex);
             if (reportTags.size() > 0) {
@@ -64,19 +67,19 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
     }
 
     private void mergeBackgroundScenarios(final Report report) {
-        List<Element> cleanedUpElements = new ArrayList<>();
-        Element currentBackgroundElement = null;
+        List<Element> updatedElements = new ArrayList<>();
+        List<Step> currentBackgroundSteps = null;
         for (Element element : report.getElements()) {
             if (element.getType().equalsIgnoreCase("background")) {
-                currentBackgroundElement = element;
+                currentBackgroundSteps = element.getSteps();
             } else {
-                if (currentBackgroundElement != null) {
-                    element.getSteps().addAll(0, currentBackgroundElement.getSteps());
+                if (currentBackgroundSteps != null) {
+                    element.setBackgroundSteps(currentBackgroundSteps);
                 }
-                cleanedUpElements.add(element);
+                updatedElements.add(element);
             }
         }
-        report.setElements(cleanedUpElements);
+        report.setElements(updatedElements);
     }
 
     private void addFeatureIndex(final Report report) {

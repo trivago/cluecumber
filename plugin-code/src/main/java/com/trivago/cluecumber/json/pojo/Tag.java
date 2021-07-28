@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,11 @@
 
 package com.trivago.cluecumber.json.pojo;
 
-import com.trivago.cluecumber.rendering.RenderingUtils;
+import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Objects;
 
 public class Tag {
@@ -32,7 +35,12 @@ public class Tag {
     }
 
     public String getUrlFriendlyName() {
-        return RenderingUtils.escapeHTML(getName()).replace("@", "");
+        String escapedTag = RenderingUtils.escapeHTML(getName()).replace("@", "");
+        try {
+            return URLEncoder.encode(escapedTag, "UTF-8").replace("%", "");
+        } catch (UnsupportedEncodingException ignored) {
+        }
+        return escapedTag;
     }
 
     @Override

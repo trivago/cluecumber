@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 trivago N.V.
+ * Copyright 2019 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
-import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.rendering.pages.pojos.ResultCount;
@@ -28,10 +26,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
-    private Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
+    private final Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
 
-    public AllTagsPageCollection(List<Report> reports) {
-        super(PluginSettings.TAG_SUMMARY_PAGE_NAME);
+    public AllTagsPageCollection(List<Report> reports, final String pageTitle) {
+        super(pageTitle);
         calculateTagResultCounts(reports);
     }
 
@@ -59,15 +57,11 @@ public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
      */
     private void calculateTagResultCounts(final List<Report> reports) {
         if (reports == null) return;
-        for (Report report : reports) {
-            for (Element element : report.getElements()) {
-                for (Tag tag : element.getTags()) {
-                    ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
-                    updateResultCount(tagResultCount, element.getStatus());
-                    tagResultCounts.put(tag, tagResultCount);
-                    addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
-                }
-            }
-        }
+        reports.forEach(report -> report.getElements().forEach(element -> element.getTags().forEach(tag -> {
+            ResultCount tagResultCount = tagResultCounts.getOrDefault(tag, new ResultCount());
+            updateResultCount(tagResultCount, element.getStatus());
+            tagResultCounts.put(tag, tagResultCount);
+            addScenarioIndexByStatus(element.getStatus(), element.getScenarioIndex());
+        })));
     }
 }

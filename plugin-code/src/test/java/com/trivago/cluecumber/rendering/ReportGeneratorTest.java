@@ -5,21 +5,25 @@ import com.trivago.cluecumber.filesystem.FileSystemManager;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.logging.CluecumberLogger;
+import com.trivago.cluecumber.properties.PropertiesFileLoader;
 import com.trivago.cluecumber.properties.PropertyManager;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllStepsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
+import com.trivago.cluecumber.rendering.pages.renderering.CustomCssRenderer;
+import com.trivago.cluecumber.rendering.pages.renderering.StartPageRenderer;
+import com.trivago.cluecumber.rendering.pages.templates.TemplateEngine;
+import com.trivago.cluecumber.rendering.pages.visitors.FeatureVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.ScenarioVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.StepVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.TagVisitor;
+import com.trivago.cluecumber.rendering.pages.visitors.VisitorDirectory;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -27,27 +31,48 @@ import static org.mockito.Mockito.when;
 
 public class ReportGeneratorTest {
 
-    private TemplateEngine templateEngine;
-    private FileIO fileIO;
     private FileSystemManager fileSystemManager;
-
     private ReportGenerator reportGenerator;
 
     @Before
     public void setup() {
-        templateEngine = mock(TemplateEngine.class);
         fileSystemManager = mock(FileSystemManager.class);
-        fileIO = mock(FileIO.class);
         CluecumberLogger logger = mock(CluecumberLogger.class);
-        PropertyManager propertyManager = new PropertyManager(logger);
+        FileIO fileIO = mock(FileIO.class);
+        TemplateEngine templateEngine = mock(TemplateEngine.class);
+        PropertiesFileLoader propertiesFileLoader = mock(PropertiesFileLoader.class);
+        PropertyManager propertyManager = new PropertyManager(logger, fileIO, propertiesFileLoader);
+        propertyManager.setStartPage("ALL_SCENARIOS");
+
+        CustomCssRenderer customCssRenderer = mock(CustomCssRenderer.class);
+        StartPageRenderer startPageRenderer = mock(StartPageRenderer.class);
+
+        ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
+        FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
+        TagVisitor tagVisitor = mock(TagVisitor.class);
+        StepVisitor stepVisitor = mock(StepVisitor.class);
+
+        VisitorDirectory visitorDirectory = mock(VisitorDirectory.class);
+        List<PageVisitor> visitors = new ArrayList<>();
+        visitors.add(scenarioVisitor);
+        visitors.add(featureVisitor);
+        visitors.add(tagVisitor);
+        visitors.add(stepVisitor);
+        when(visitorDirectory.getVisitors()).thenReturn(visitors);
+
         reportGenerator = new ReportGenerator(
-                templateEngine, fileIO, propertyManager, fileSystemManager
-        );
+                fileIO,
+                templateEngine,
+                propertyManager,
+                fileSystemManager,
+                startPageRenderer,
+                customCssRenderer,
+                visitorDirectory);
     }
 
     @Test
     public void fileOperationsTest() throws Exception {
-        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection();
+        AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
 
         Report report1 = new Report();
         List<Element> elements1 = new ArrayList<>();
@@ -64,20 +89,9 @@ public class ReportGeneratorTest {
         Report[] reportList = {report1, report2};
         allScenariosPageCollection.addReports(reportList);
 
-        when(templateEngine.getRenderedScenarioSummaryPageContent(allScenariosPageCollection)).thenReturn("RENDERED_START_PAGE_CONTENT");
-        when(templateEngine.getRenderedScenarioDetailPageContent(any(ScenarioDetailsPageCollection.class))).thenReturn("RENDERED_DETAIL_PAGE_CONTENT");
-        when(templateEngine.getRenderedTagSummaryPageContent(any(AllTagsPageCollection.class))).thenReturn("RENDERED_TAG_PAGE_CONTENT");
-        when(templateEngine.getRenderedFeatureSummaryPageContent(any(AllFeaturesPageCollection.class))).thenReturn("RENDERED_FEATURE_PAGE_CONTENT");
-        when(templateEngine.getRenderedStepSummaryPageContent(any(AllStepsPageCollection.class))).thenReturn("RENDERED_STEPS_PAGE_CONTENT");
-
         reportGenerator.generateReport(allScenariosPageCollection);
 
         verify(fileSystemManager, times(8)).createDirectory(anyString());
         verify(fileSystemManager, times(17)).copyResourceFromJar(anyString(), anyString());
-        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_START_PAGE_CONTENT"), anyString());
-        verify(fileIO, times(2)).writeContentToFile(eq("RENDERED_DETAIL_PAGE_CONTENT"), anyString());
-        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_TAG_PAGE_CONTENT"), anyString());
-        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_STEPS_PAGE_CONTENT"), anyString());
-        verify(fileIO, times(1)).writeContentToFile(eq("RENDERED_FEATURE_PAGE_CONTENT"), anyString());
     }
 }
