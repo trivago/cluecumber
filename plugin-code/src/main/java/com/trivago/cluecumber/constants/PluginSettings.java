@@ -44,8 +44,7 @@ public class PluginSettings {
 
     public enum CustomParamDisplayMode {
         ALL_PAGES("ALL_PAGES"),
-        START_PAGE("START_PAGE"),
-        NONE("NONE");
+        START_PAGE("START_PAGE");
 
         private final String value;
 

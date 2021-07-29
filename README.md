@@ -229,6 +229,22 @@ The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
 
+#### Decide How To Display The Custom Parameters
+
+You can decide how to display the custom parameters in the report using the `customParametersDisplayMode` property.
+The following display modes are available for displaying the custom parameters:
+* `START_PAGE`: Display only on the starting page (uses the `startPage` property).
+* `ALL_PAGES`: Display on all the pages in the report.
+
+```xml
+<configuration>
+    <customParametersDisplayMode>ALL_PAGES</customParametersDisplayMode>
+    ...
+</configuration>
+```
+
+The default value for this property is `START_PAGE`.
+
 ### Skip Report Generation
 
 The `skip` property is used to skip the report generation. The default value is `false`

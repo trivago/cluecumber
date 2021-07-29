@@ -89,18 +89,12 @@ public class PageCollection implements Cloneable {
     public boolean hasCustomParameters(String currentPage) {
         boolean paramsNotEmpty = customParameters != null && !customParameters.isEmpty();
 
-        if(displayMode == null) {
-            return paramsNotEmpty;
+        if (displayMode != null && displayMode == PluginSettings.CustomParamDisplayMode.START_PAGE)
+        {
+            return currentPage.equals(startPage) && paramsNotEmpty;
         }
 
-        switch (displayMode) {
-            case START_PAGE:
-                return currentPage.equals(startPage) && paramsNotEmpty;
-            case NONE:
-                return false;
-            default:
-                return paramsNotEmpty;
-        }
+        return paramsNotEmpty;
     }
 
 }
