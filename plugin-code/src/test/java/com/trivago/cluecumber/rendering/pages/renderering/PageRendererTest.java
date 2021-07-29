@@ -21,12 +21,11 @@ import static org.mockito.Mockito.mock;
 public class PageRendererTest {
 
     private PageWithChartRenderer pageWithChartRenderer;
-    private PropertyManager propertyManager;
 
     @Before
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
-        propertyManager = mock(PropertyManager.class);
+        PropertyManager propertyManager = mock(PropertyManager.class);
         pageWithChartRenderer = new PageWithChartRenderer(chartJsonConverter, propertyManager);
     }
 

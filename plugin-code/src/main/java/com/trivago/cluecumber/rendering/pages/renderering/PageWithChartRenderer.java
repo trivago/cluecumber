@@ -45,8 +45,9 @@ public class PageWithChartRenderer extends PageRenderer {
 
     protected void addCustomParametersToReportDetails(final PageCollection pageCollection){
         PluginSettings.CustomParamDisplayMode displayMode = propertyManager.getCustomParametersDisplayMode();
+        PluginSettings.StartPage startPage = propertyManager.getStartPage();
         pageCollection.setDisplayMode(displayMode);
-        pageCollection.setStartPage(propertyManager.getStartPage().getPageName());
+        pageCollection.setStartPage(startPage != null ? startPage.getPageName() : null);
 
         Map<String, String> customParameterMap = propertyManager.getCustomParameters();
         if (customParameterMap == null || customParameterMap.isEmpty())

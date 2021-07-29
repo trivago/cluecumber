@@ -95,7 +95,7 @@ public class PageCollection implements Cloneable {
 
         switch (displayMode) {
             case START_PAGE:
-                return startPage.equals(currentPage) && paramsNotEmpty;
+                return currentPage.equals(startPage) && paramsNotEmpty;
             case NONE:
                 return false;
             default:
