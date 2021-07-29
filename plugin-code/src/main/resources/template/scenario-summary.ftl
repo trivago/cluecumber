@@ -18,6 +18,7 @@ limitations under the License.
 <#import "macros/scenario.ftl" as scenario>
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
+<#import "macros/custom-parameters.ftl" as customparams>
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
@@ -55,6 +56,7 @@ limitations under the License.
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
+    <#assign currentPage = "scenario-sequence">
 <#else>
     <#assign base = "./..">
     <#assign headline = "All Scenarios">
@@ -64,6 +66,7 @@ limitations under the License.
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
+    <#assign currentPage = "scenario-summary">
 </#if>
 
 <@page.page
@@ -76,32 +79,8 @@ subsubheadline=subsubheadline
 preheadline=preheadline
 preheadlineLink=preheadlineLink>
 
-    <#if hasCustomParameters()>
-        <div class="row" id="custom-parameters">
-            <@page.card width="12" title="" subtitle="" classes="customParameters">
-                <table class="table table-fit">
-                    <tbody>
-                    <#list customParameters as customParameter>
-                        <tr>
-                            <#if !customParameter.key?starts_with(" ")>
-                                <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
-                                <td class="text-left wrap">
-                                    <#if customParameter.url>
-                                        <a href="${customParameter.value}" style="word-break: break-all;"
-                                           target="_blank">${customParameter.value}</a>
-                                    <#else>
-                                        ${customParameter.value}
-                                    </#if>
-                                </td>
-                            <#else>
-                                <td class="text-left noKey" colspan="2">${customParameter.value}</td>
-                            </#if>
-                        </tr>
-                    </#list>
-                    </tbody>
-                </table>
-            </@page.card>
-        </div>
+    <#if hasCustomParameters(currentPage)>
+        <@customparams.card customParams=customParameters/>
     </#if>
 
     <div class="row" id="scenario-summary">

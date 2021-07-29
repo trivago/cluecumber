@@ -54,6 +54,8 @@ public class PropertyManager {
     private String customCssFile;
     private String customParametersFile;
 
+    private PluginSettings.CustomParamDisplayMode customParametersDisplayMode;
+
     private String customStatusColorPassed = "#28a745";
     private String customStatusColorFailed = "#dc3545";
     private String customStatusColorSkipped = "#ffc107";
@@ -118,6 +120,21 @@ public class PropertyManager {
         }
         Map<String, String> customParameters = propertiesFileLoader.loadPropertiesMap(customParametersFile);
         this.customParameters.putAll(customParameters);
+    }
+
+    public PluginSettings.CustomParamDisplayMode getCustomParametersDisplayMode()
+    {
+        return customParametersDisplayMode;
+    }
+
+    public void setCustomParametersDisplayMode(String customParametersDisplayMode)
+    {
+        try {
+            this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            logger.warn("Unknown start page '" + customParametersDisplayMode + "'. Must be one of " + Arrays.toString(PluginSettings.CustomParamDisplayMode.values()));
+            this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.START_PAGE;
+        }
     }
 
     public boolean isFailScenariosOnPendingOrUndefinedSteps() {

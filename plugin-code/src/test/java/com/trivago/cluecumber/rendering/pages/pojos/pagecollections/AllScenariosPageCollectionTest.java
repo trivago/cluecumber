@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
+import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Result;
@@ -168,11 +169,11 @@ public class AllScenariosPageCollectionTest {
 
     @Test
     public void hasCustomParametersTest() {
-        assertThat(allScenariosPageCollection.hasCustomParameters(), is(false));
+        assertThat(allScenariosPageCollection.hasCustomParameters(PluginSettings.StartPage.ALL_SCENARIOS.getPageName()), is(false));
         List<CustomParameter> customParameters = new ArrayList<>();
         CustomParameter parameter = new CustomParameter("key", "value");
         customParameters.add(parameter);
         allScenariosPageCollection.setCustomParameters(customParameters);
-        assertThat(allScenariosPageCollection.hasCustomParameters(), is(true));
+        assertThat(allScenariosPageCollection.hasCustomParameters(PluginSettings.StartPage.ALL_SCENARIOS.getPageName()), is(true));
     }
 }

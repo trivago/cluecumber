@@ -22,7 +22,6 @@ import com.trivago.cluecumber.json.pojo.Element;
 import com.trivago.cluecumber.json.pojo.Report;
 import com.trivago.cluecumber.json.pojo.Step;
 import com.trivago.cluecumber.json.pojo.Tag;
-import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 import com.trivago.cluecumber.rendering.pages.visitors.PageVisitor;
@@ -37,7 +36,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
-    private List<CustomParameter> customParameters;
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
@@ -164,18 +162,6 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
                     RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
         }
         return "";
-    }
-
-    public List<CustomParameter> getCustomParameters() {
-        return customParameters;
-    }
-
-    public void setCustomParameters(final List<CustomParameter> customParameters) {
-        this.customParameters = customParameters;
-    }
-
-    public boolean hasCustomParameters() {
-        return customParameters != null && !customParameters.isEmpty();
     }
 
     public Tag getTagFilter() {

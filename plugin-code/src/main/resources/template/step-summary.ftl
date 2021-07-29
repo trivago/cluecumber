@@ -17,6 +17,7 @@ limitations under the License.
 <#import "macros/page.ftl"as page>
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
+<#import "macros/custom-parameters.ftl" as customparams>
 
 <@page.page
 title="${pageTitle} - All Steps"
@@ -27,6 +28,9 @@ subheadline=""
 subsubheadline=""
 preheadline=""
 preheadlineLink="">
+    <#if hasCustomParameters("step-summary")>
+        <@customparams.card customParams=customParameters/>
+    </#if>
 
     <div class="row" id="step-summary">
         <@page.card width="9" title="Step Summary Result Chart" subtitle="" classes="">

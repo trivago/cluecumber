@@ -3,6 +3,7 @@ package com.trivago.cluecumber.rendering.pages.renderering;
 import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Report;
+import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllTagsPageCollection;
 import freemarker.template.Template;
@@ -22,7 +23,9 @@ public class AllTagsPageRendererTest {
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         ChartConfiguration chartConfiguration = mock(ChartConfiguration.class);
-        allTagsPageRenderer = new AllTagsPageRenderer(chartJsonConverter, chartConfiguration);
+        PropertyManager propertyManager = mock(PropertyManager.class);
+
+        allTagsPageRenderer = new AllTagsPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
     }
 
     @Test

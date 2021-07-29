@@ -19,6 +19,7 @@ package com.trivago.cluecumber.rendering.pages.renderering;
 import com.trivago.cluecumber.constants.ChartConfiguration;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
@@ -42,9 +43,10 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
     @Inject
     public AllFeaturesPageRenderer(
             final ChartJsonConverter chartJsonConverter,
-            final ChartConfiguration chartConfiguration
+            final ChartConfiguration chartConfiguration,
+            final PropertyManager propertyManager
     ) {
-        super(chartJsonConverter);
+        super(chartJsonConverter, propertyManager);
         this.chartConfiguration = chartConfiguration;
     }
 
@@ -53,6 +55,7 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
             throws CluecumberPluginException {
 
         addChartJsonToReportDetails(allFeaturesPageCollection);
+		addCustomParametersToReportDetails(allFeaturesPageCollection);
         return processedContent(template, allFeaturesPageCollection);
     }
 

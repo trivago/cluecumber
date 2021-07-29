@@ -26,6 +26,7 @@ import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
+import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import freemarker.template.Template;
 
@@ -41,13 +42,14 @@ import java.util.stream.Collectors;
 public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
+    private List<CustomParameter> customParameters;
 
     @Inject
     public ScenarioDetailsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
             final ChartConfiguration chartConfiguration,
             final PropertyManager propertyManager) {
-        super(chartJsonConverter);
+        super(chartJsonConverter, propertyManager);
         this.chartConfiguration = chartConfiguration;
         this.propertyManager = propertyManager;
     }

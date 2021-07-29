@@ -42,6 +42,23 @@ public class PluginSettings {
         }
     }
 
+    public enum CustomParamDisplayMode {
+        ALL_PAGES("ALL_PAGES"),
+        START_PAGE("START_PAGE"),
+        NONE("NONE");
+
+        private final String value;
+
+        CustomParamDisplayMode(final String pageName) {
+            this.value = pageName;
+        }
+
+        @SuppressWarnings("unused")
+        public String getValue() {
+            return value;
+        }
+    }
+
     public static final String TEMPLATE_FILE_EXTENSION = ".ftl";
     public static final String HTML_FILE_EXTENSION = ".html";
     public static final String BASE_TEMPLATE_PATH = "/template";
