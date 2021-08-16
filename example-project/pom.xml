@@ -50,7 +50,7 @@
                     <!-- Optional report page title -->
                     <customPageTitle>My Report</customPageTitle>
 
-                    <!-- Optional display mode for custom parameters START_PAGE (default), ALL_PAGES, NONE -->
+                    <!-- Optional display mode for custom parameters START_PAGE (default), ALL_PAGES -->
                     <!--<customParametersDisplayMode>START_PAGE</customParametersDisplayMode>-->
 
                     <!-- Optional custom colors for passed, failed and skipped -->
