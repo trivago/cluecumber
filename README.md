@@ -40,6 +40,7 @@ Thanks to everyone using, testing and improving Cluecumber over the last years!
     - [Add Custom Information to the Report](#add-custom-information-to-the-report)
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
+      - [Decide How To Display The Custom Parameters](#decide-how-to-display-the-custom-parameters)
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
