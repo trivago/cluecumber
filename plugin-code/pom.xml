@@ -122,6 +122,17 @@
                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
                         </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.thoughtworks.xstream</groupId>
+                                <artifactId>xstream</artifactId>
+                                <version>1.4.15</version>
+                            </dependency>
+                            <!--
+                            Remove after OSSRH-66257, NEXUS-26993 are fixed,
+                            possibly via https://github.com/sonatype/nexus-maven-plugins/pull/91
+                            -->
+                        </dependencies>
                     </plugin>
                 </plugins>
             </build>
