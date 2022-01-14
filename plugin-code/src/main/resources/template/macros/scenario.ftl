@@ -128,10 +128,12 @@ limitations under the License.
     <#if step.embeddings??>
         <#list step.embeddings as attachment>
             <div class="row w-100 p-3 m-0 scenarioAttachment">
+                <#assign attachmentID = attachment.hashCode()?string["0"]>
                 <#if attachment.name != "">
                     <div class="w-100 p-1 m-0 border-bottom small text-left">${attachment.name}</div>
                 </#if>
-                <div class="w-100 text-left m-auto">
+                <a class="btn btn-outline-secondary btn-block" data-toggle="collapse" href="#expandable${attachmentID}" role="button" aria-expanded="false" aria-controls="expandable${attachmentID}">Show/Hide</a>
+                <div class="w-100 text-left m-auto collapse" id="expandable${attachmentID}">
                     <#if attachment.image>
                         <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
                             <img src="attachments/${attachment.filename}" class="embedded-image" style="max-width: 50%;"
