@@ -17,8 +17,6 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
-import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -28,6 +26,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 public class PageRenderer {
+
 
     @Inject
     public PageRenderer() {

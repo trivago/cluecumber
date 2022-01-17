@@ -17,10 +17,14 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.StartPageCollection;
 import freemarker.template.Template;
 
 public class StartPageRenderer extends PageRenderer {
+
+    public StartPageRenderer() {
+    }
 
     public String getRenderedContent(final Template template, final StartPageCollection startPageCollection)
             throws CluecumberPluginException {

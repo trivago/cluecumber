@@ -16,28 +16,57 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
-import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.constants.PluginSettings;
+import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
+import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PageWithChartRenderer extends PageRenderer {
 
     private final ChartJsonConverter chartJsonConverter;
+    private final PropertyManager propertyManager;
 
     @Inject
-    public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter) {
+    public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter, final PropertyManager propertyManager) {
         this.chartJsonConverter = chartJsonConverter;
+        this.propertyManager = propertyManager;
     }
 
     String convertChartToJson(final Chart chart) {
         return chartJsonConverter.convertChartToJson(chart);
+    }
+
+    protected void addCustomParametersToReportDetails(final PageCollection pageCollection){
+        PluginSettings.CustomParamDisplayMode displayMode = propertyManager.getCustomParametersDisplayMode();
+        PluginSettings.StartPage startPage = propertyManager.getStartPage();
+        pageCollection.setDisplayMode(displayMode);
+        pageCollection.setStartPage(startPage != null ? startPage.getPageName() : null);
+
+        Map<String, String> customParameterMap = propertyManager.getCustomParameters();
+        if (customParameterMap == null || customParameterMap.isEmpty())
+        {
+            return;
+        }
+
+        // <customParameters> in the pom configuration section
+        List<CustomParameter> customParameters = new ArrayList<>();
+        customParameterMap.forEach((key1, value) -> {
+            if (value == null || value.trim().isEmpty())
+            {
+                return;
+            }
+            String key = key1.replace("_", " ");
+            CustomParameter customParameter = new CustomParameter(key, value);
+            customParameters.add(customParameter);
+        });
+
+        pageCollection.setCustomParameters(customParameters);
     }
 }

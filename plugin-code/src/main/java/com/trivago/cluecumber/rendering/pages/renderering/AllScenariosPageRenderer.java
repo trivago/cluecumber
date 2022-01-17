@@ -26,22 +26,18 @@ import com.trivago.cluecumber.json.pojo.Tag;
 import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.PieChartBuilder;
-import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import freemarker.template.Template;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Singleton
 public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
-    private final PropertyManager propertyManager;
     private final ChartConfiguration chartConfiguration;
 
     @Inject
@@ -50,8 +46,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final ChartConfiguration chartConfiguration,
             final PropertyManager propertyManager
     ) {
-        super(chartJsonConverter);
-        this.propertyManager = propertyManager;
+        super(chartJsonConverter, propertyManager);
         this.chartConfiguration = chartConfiguration;
     }
 
@@ -126,26 +121,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                         .addValue(allScenariosPageCollection.getTotalNumberOfSkippedScenarios(), Status.SKIPPED)
                         .build()));
 
-    }
-
-    private void addCustomParametersToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {
-        Map<String, String> customParameterMap = propertyManager.getCustomParameters();
-        if (customParameterMap == null || customParameterMap.isEmpty()) {
-            return;
-        }
-
-        // <customParameters> in the pom configuration section
-        List<CustomParameter> customParameters = new ArrayList<>();
-        customParameterMap.forEach((key1, value) -> {
-            if (value == null || value.trim().isEmpty()) {
-                return;
-            }
-            String key = key1.replace("_", " ");
-            CustomParameter customParameter = new CustomParameter(key, value);
-            customParameters.add(customParameter);
-        });
-
-        allScenariosPageCollection.setCustomParameters(customParameters);
     }
 
     private AllScenariosPageCollection getAllScenariosPageCollectionClone(

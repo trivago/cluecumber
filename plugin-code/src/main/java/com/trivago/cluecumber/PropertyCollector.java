@@ -58,6 +58,16 @@ public class PropertyCollector extends AbstractMojo {
     private String customParametersFile = "";
 
     /**
+     * Path to a properties file. The included properties are converted to custom parameters and added to the others.
+     * <pre>
+     * My_Custom_Parameter=This is my custom value
+     * My_Custom_Parameter2=This is another value
+     * </pre>
+     */
+    @Parameter(property = "reporting.customParametersDisplayMode", defaultValue = "START_PAGE")
+    private String customParametersDisplayMode = "";
+
+    /**
      * Mark scenarios as failed if they contain pending or undefined steps (default: false).
      */
     @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
@@ -138,6 +148,7 @@ public class PropertyCollector extends AbstractMojo {
             propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
             propertyManager.setCustomParameters(customParameters);
             propertyManager.setCustomParametersFile(customParametersFile);
+            propertyManager.setCustomParametersDisplayMode(customParametersDisplayMode);
             propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
             propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
             propertyManager.setExpandStepHooks(expandStepHooks);
