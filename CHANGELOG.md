@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.8.0] - 2022-01-18
+
+### Added
+* New options to display custom parameters on scenario pages or all pages (#273, code base contributed by zutshiy)
+* Attachments are collapsed by default and can be expanded (#279, contributed by beirtipol)
+
 ## [2.7.1] - 2021-11-05
 
 ### Changed
@@ -621,6 +627,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.8.0
 [2.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.1
 [2.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.0
 [2.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1
