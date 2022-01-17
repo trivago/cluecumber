@@ -31,42 +31,13 @@ import java.util.Map;
 public class PageWithChartRenderer extends PageRenderer {
 
     private final ChartJsonConverter chartJsonConverter;
-    private final PropertyManager propertyManager;
 
     @Inject
-    public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter, final PropertyManager propertyManager) {
+    public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter) {
         this.chartJsonConverter = chartJsonConverter;
-        this.propertyManager = propertyManager;
     }
 
     String convertChartToJson(final Chart chart) {
         return chartJsonConverter.convertChartToJson(chart);
-    }
-
-    protected void addCustomParametersToReportDetails(final PageCollection pageCollection){
-        PluginSettings.CustomParamDisplayMode displayMode = propertyManager.getCustomParametersDisplayMode();
-        PluginSettings.StartPage startPage = propertyManager.getStartPage();
-        pageCollection.setDisplayMode(displayMode);
-        pageCollection.setStartPage(startPage != null ? startPage.getPageName() : null);
-
-        Map<String, String> customParameterMap = propertyManager.getCustomParameters();
-        if (customParameterMap == null || customParameterMap.isEmpty())
-        {
-            return;
-        }
-
-        // <customParameters> in the pom configuration section
-        List<CustomParameter> customParameters = new ArrayList<>();
-        customParameterMap.forEach((key1, value) -> {
-            if (value == null || value.trim().isEmpty())
-            {
-                return;
-            }
-            String key = key1.replace("_", " ");
-            CustomParameter customParameter = new CustomParameter(key, value);
-            customParameters.add(customParameter);
-        });
-
-        pageCollection.setCustomParameters(customParameters);
     }
 }

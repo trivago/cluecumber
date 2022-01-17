@@ -28,7 +28,8 @@ subheadline=""
 subsubheadline=""
 preheadline=""
 preheadlineLink="">
-    <#if hasCustomParameters("step-summary")>
+
+    <#if hasCustomParameters()>
         <@customparams.card customParams=customParameters/>
     </#if>
 

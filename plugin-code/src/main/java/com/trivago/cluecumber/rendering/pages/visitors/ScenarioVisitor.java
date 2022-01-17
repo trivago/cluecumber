@@ -47,8 +47,10 @@ public class ScenarioVisitor implements PageVisitor {
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberPluginException {
         // All scenarios page
         fileIO.writeContentToFile(
-                allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection,
-                        templateEngine.getTemplate(ALL_SCENARIOS)),
+                allScenariosPageRenderer.getRenderedContent(
+                        allScenariosPageCollection,
+                        templateEngine.getTemplate(ALL_SCENARIOS)
+                ),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 

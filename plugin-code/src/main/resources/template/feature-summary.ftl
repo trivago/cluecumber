@@ -29,7 +29,7 @@ subsubheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <#if hasCustomParameters("feature-summary")>
+    <#if hasCustomParameters()>
         <@customparams.card customParams=customParameters/>
     </#if>
 

@@ -26,7 +26,7 @@ public class PageRendererTest {
     public void setup() {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         PropertyManager propertyManager = mock(PropertyManager.class);
-        pageWithChartRenderer = new PageWithChartRenderer(chartJsonConverter, propertyManager);
+        pageWithChartRenderer = new PageWithChartRenderer(chartJsonConverter);
     }
 
     @Test

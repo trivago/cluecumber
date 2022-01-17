@@ -169,11 +169,11 @@ public class AllScenariosPageCollectionTest {
 
     @Test
     public void hasCustomParametersTest() {
-        assertThat(allScenariosPageCollection.hasCustomParameters(PluginSettings.StartPage.ALL_SCENARIOS.getPageName()), is(false));
+        assertThat(allScenariosPageCollection.hasCustomParameters(), is(false));
         List<CustomParameter> customParameters = new ArrayList<>();
         CustomParameter parameter = new CustomParameter("key", "value");
         customParameters.add(parameter);
         allScenariosPageCollection.setCustomParameters(customParameters);
-        assertThat(allScenariosPageCollection.hasCustomParameters(PluginSettings.StartPage.ALL_SCENARIOS.getPageName()), is(true));
+        assertThat(allScenariosPageCollection.hasCustomParameters(), is(true));
     }
 }

@@ -16,7 +16,11 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
+import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
+import com.trivago.cluecumber.properties.PropertyManager;
+import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -24,13 +28,11 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PageRenderer {
-
-
-    @Inject
-    public PageRenderer() {
-    }
 
     /**
      * Return the completely rendered template content using a page collection.
@@ -50,5 +52,23 @@ public class PageRenderer {
             throw new CluecumberPluginException("Could not render page content: " + e.getMessage());
         }
         return stringWriter.toString();
+    }
+
+    protected void addCustomParametersToReportDetails(final PageCollection pageCollection,
+                                                      final Map<String, String> customParameterMap) {
+
+        if (customParameterMap == null || customParameterMap.isEmpty()) {
+            return;
+        }
+        List<CustomParameter> customParameters = new ArrayList<>();
+        customParameterMap.forEach((key, value) -> {
+            if (value != null && !value.trim().isEmpty()) {
+                String newKey = key.replace("_", " ");
+                CustomParameter customParameter = new CustomParameter(newKey, value);
+                customParameters.add(customParameter);
+            }
+        });
+
+        pageCollection.setCustomParameters(customParameters);
     }
 }

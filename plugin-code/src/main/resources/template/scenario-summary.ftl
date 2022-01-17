@@ -56,7 +56,6 @@ limitations under the License.
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
-    <#assign currentPage = "scenario-sequence">
 <#else>
     <#assign base = "./..">
     <#assign headline = "All Scenarios">
@@ -66,7 +65,6 @@ limitations under the License.
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
-    <#assign currentPage = "scenario-summary">
 </#if>
 
 <@page.page
@@ -79,7 +77,7 @@ subsubheadline=subsubheadline
 preheadline=preheadline
 preheadlineLink=preheadlineLink>
 
-    <#if hasCustomParameters(currentPage)>
+    <#if hasCustomParameters()>
         <@customparams.card customParams=customParameters/>
     </#if>
 

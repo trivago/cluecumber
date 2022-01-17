@@ -17,6 +17,7 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.constants.ChartConfiguration;
+import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.json.pojo.Element;
@@ -38,15 +39,17 @@ import java.util.stream.Collectors;
 @Singleton
 public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
+    private final PropertyManager propertyManager;
     private final ChartConfiguration chartConfiguration;
 
     @Inject
     AllScenariosPageRenderer(
+            final PropertyManager propertyManager,
             final ChartJsonConverter chartJsonConverter,
-            final ChartConfiguration chartConfiguration,
-            final PropertyManager propertyManager
+            final ChartConfiguration chartConfiguration
     ) {
-        super(chartJsonConverter, propertyManager);
+        super(chartJsonConverter);
+        this.propertyManager = propertyManager;
         this.chartConfiguration = chartConfiguration;
     }
 
@@ -54,10 +57,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
-        addChartJsonToReportDetails(allScenariosPageCollectionClone);
-        addCustomParametersToReportDetails(allScenariosPageCollectionClone);
-        return processedContent(template, allScenariosPageCollectionClone);
+        return processedContent(template, getAllScenariosPageCollectionClone(allScenariosPageCollection));
     }
 
     public String getRenderedContentByTagFilter(
@@ -74,7 +74,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                     .collect(Collectors.toList());
             report.setElements(elements);
         });
-        addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
 
@@ -92,7 +91,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                     .collect(Collectors.toList());
             report.setElements(elements);
         });
-        addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
 
@@ -109,7 +107,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                 .toArray(Report[]::new);
         allScenariosPageCollectionClone.clearReports();
         allScenariosPageCollectionClone.addReports(reportArray);
-        addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone);
     }
 
@@ -120,7 +117,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                         .addValue(allScenariosPageCollection.getTotalNumberOfFailedScenarios(), Status.FAILED)
                         .addValue(allScenariosPageCollection.getTotalNumberOfSkippedScenarios(), Status.SKIPPED)
                         .build()));
-
     }
 
     private AllScenariosPageCollection getAllScenariosPageCollectionClone(
@@ -131,6 +127,8 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         } catch (CloneNotSupportedException e) {
             throw new CluecumberPluginException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
         }
+        addChartJsonToReportDetails(clone);
+        addCustomParametersToReportDetails(clone, propertyManager.getCustomParameters());
         return clone;
     }
 }

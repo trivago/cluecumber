@@ -17,6 +17,7 @@
 package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.constants.ChartConfiguration;
+import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.Status;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.properties.PropertyManager;
@@ -39,6 +40,7 @@ import java.util.stream.Collectors;
 public class AllFeaturesPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
+    private final PropertyManager propertyManager;
 
     @Inject
     public AllFeaturesPageRenderer(
@@ -46,8 +48,9 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
             final ChartConfiguration chartConfiguration,
             final PropertyManager propertyManager
     ) {
-        super(chartJsonConverter, propertyManager);
+        super(chartJsonConverter);
         this.chartConfiguration = chartConfiguration;
+        this.propertyManager = propertyManager;
     }
 
     public String getRenderedContent(
@@ -55,7 +58,11 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
             throws CluecumberPluginException {
 
         addChartJsonToReportDetails(allFeaturesPageCollection);
-		addCustomParametersToReportDetails(allFeaturesPageCollection);
+
+        if (propertyManager.getCustomParametersDisplayMode() == PluginSettings.CustomParamDisplayMode.ALL_PAGES) {
+            addCustomParametersToReportDetails(allFeaturesPageCollection, propertyManager.getCustomParameters());
+        }
+
         return processedContent(template, allFeaturesPageCollection);
     }
 

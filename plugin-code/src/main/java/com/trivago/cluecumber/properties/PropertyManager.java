@@ -122,18 +122,16 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
-    public PluginSettings.CustomParamDisplayMode getCustomParametersDisplayMode()
-    {
+    public PluginSettings.CustomParamDisplayMode getCustomParametersDisplayMode() {
         return customParametersDisplayMode;
     }
 
-    public void setCustomParametersDisplayMode(String customParametersDisplayMode)
-    {
+    public void setCustomParametersDisplayMode(String customParametersDisplayMode) {
         try {
             this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
         } catch (IllegalArgumentException e) {
-            logger.warn("Unknown start page '" + customParametersDisplayMode + "'. Must be one of " + Arrays.toString(PluginSettings.CustomParamDisplayMode.values()));
-            this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.START_PAGE;
+            logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode + "'. Must be one of " + Arrays.toString(PluginSettings.CustomParamDisplayMode.values()));
+            this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES;
         }
     }
 
@@ -249,6 +247,7 @@ public class PropertyManager {
         logger.info("- expand doc strings               : " + expandDocStrings, DEFAULT);
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
         logger.info("- start page                       : " + startPage, DEFAULT);
+        logger.info("- custom parameters display mode   : " + customParametersDisplayMode, DEFAULT);
 
         if (isSet(customCssFile)) {
             logger.info("- custom CSS file                  : " + customCssFile, DEFAULT);

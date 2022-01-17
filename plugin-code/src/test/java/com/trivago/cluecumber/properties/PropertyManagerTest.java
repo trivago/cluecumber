@@ -1,5 +1,6 @@
 package com.trivago.cluecumber.properties;
 
+import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
@@ -62,7 +63,7 @@ public class PropertyManagerTest {
         verify(logger, times(2)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
                 eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
-        verify(logger, times(7)).info(anyString(),
+        verify(logger, times(8)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 
@@ -73,6 +74,18 @@ public class PropertyManagerTest {
         propertyManager.setCustomParameters(customParameters);
         assertThat(propertyManager.getCustomParameters().size(), is(1));
         assertThat(propertyManager.getCustomParameters().get("key"), is("value"));
+    }
+
+    @Test
+    public void customParametersDisplayModeTest() {
+        propertyManager.setCustomParametersDisplayMode(PluginSettings.CustomParamDisplayMode.ALL_PAGES.name());
+        assertThat(propertyManager.getCustomParametersDisplayMode(), is(PluginSettings.CustomParamDisplayMode.ALL_PAGES));
+    }
+
+    @Test
+    public void customParametersDisplayModeUnknownTest() {
+        propertyManager.setCustomParametersDisplayMode("SomethingElse");
+        assertThat(propertyManager.getCustomParametersDisplayMode(), is(PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES));
     }
 
     @Test(expected = MissingFileException.class)
@@ -197,7 +210,7 @@ public class PropertyManagerTest {
         verify(logger, times(2)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
                 eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
-        verify(logger, times(10)).info(anyString(),
+        verify(logger, times(11)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 }

@@ -2,6 +2,7 @@ package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
 
+@SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class StartPageCollection {
     private PluginSettings.StartPage startPage;
     private boolean redirectToFirstScenario;

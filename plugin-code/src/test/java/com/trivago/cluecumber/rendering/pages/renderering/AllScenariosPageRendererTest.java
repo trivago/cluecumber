@@ -33,7 +33,7 @@ public class AllScenariosPageRendererTest {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         propertyManager = mock(PropertyManager.class);
         ChartConfiguration chartConfiguration = new ChartConfiguration(propertyManager);
-        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
+        allScenariosPageRenderer = new AllScenariosPageRenderer(propertyManager, chartJsonConverter, chartConfiguration);
     }
 
     @Test
@@ -87,7 +87,6 @@ public class AllScenariosPageRendererTest {
         Report report = new Report();
         report.setFeatureIndex(12);
         List<Element> elements = new ArrayList<>();
-        Element element = new Element();
         report.setElements(elements);
         Report[] reportList = new Report[]{report};
         allScenariosPageCollection.addReports(reportList);

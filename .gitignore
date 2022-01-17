@@ -6,3 +6,4 @@
 .classpath
 .factorypath
 .DS_Store
+package-lock.json

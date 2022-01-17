@@ -17,12 +17,13 @@
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.constants.PluginSettings;
+import com.trivago.cluecumber.constants.PluginSettings.CustomParamDisplayMode;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
 
 import java.util.List;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "CloneableClassWithoutClone"})
 public class PageCollection implements Cloneable {
     private final ReportDetails reportDetails;
     private final String pageTitle;
@@ -30,8 +31,7 @@ public class PageCollection implements Cloneable {
     private boolean expandStepHooks;
     private boolean expandDocStrings;
     private List<CustomParameter> customParameters;
-    private String startPage;
-    private PluginSettings.CustomParamDisplayMode displayMode;
+    private CustomParamDisplayMode displayMode;
 
     PageCollection(final String pageTitle) {
         this.reportDetails = new ReportDetails();
@@ -78,23 +78,15 @@ public class PageCollection implements Cloneable {
         this.customParameters = customParameters;
     }
 
-    public void setStartPage(String startPage) {
-        this.startPage = startPage;
+    public boolean hasCustomParameters() {
+        return customParameters != null && !customParameters.isEmpty();
     }
 
-    public void setDisplayMode(PluginSettings.CustomParamDisplayMode displayMode) {
+    public CustomParamDisplayMode getDisplayMode() {
+        return displayMode;
+    }
+
+    public void setDisplayMode(CustomParamDisplayMode displayMode) {
         this.displayMode = displayMode;
     }
-
-    public boolean hasCustomParameters(String currentPage) {
-        boolean paramsNotEmpty = customParameters != null && !customParameters.isEmpty();
-
-        if (displayMode != null && displayMode == PluginSettings.CustomParamDisplayMode.START_PAGE)
-        {
-            return currentPage.equals(startPage) && paramsNotEmpty;
-        }
-
-        return paramsNotEmpty;
-    }
-
 }

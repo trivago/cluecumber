@@ -24,7 +24,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import javax.inject.Inject;
 import java.util.LinkedHashMap;
 
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"FieldCanBeLocal", "FieldMayBeFinal"})
 public class PropertyCollector extends AbstractMojo {
 
     private final PropertyManager propertyManager;
@@ -64,7 +64,7 @@ public class PropertyCollector extends AbstractMojo {
      * My_Custom_Parameter2=This is another value
      * </pre>
      */
-    @Parameter(property = "reporting.customParametersDisplayMode", defaultValue = "START_PAGE")
+    @Parameter(property = "reporting.customParametersDisplayMode", defaultValue = "SCENARIO_PAGES")
     private String customParametersDisplayMode = "";
 
     /**

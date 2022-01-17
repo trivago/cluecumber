@@ -40,7 +40,7 @@ Thanks to everyone using, testing and improving Cluecumber over the last years!
     - [Add Custom Information to the Report](#add-custom-information-to-the-report)
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
-      - [Decide How To Display The Custom Parameters](#decide-how-to-display-the-custom-parameters)
+      - [Where To Display Custom Parameters](#where-to-display-custom-parameters)
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
@@ -230,11 +230,12 @@ The property definitions above are shown in the report like this:
 
 ![custom parameters](documentation/img/custom_params.png)
 
-#### Decide How To Display The Custom Parameters
+#### Where to Display Custom Parameters
 
 You can decide how to display the custom parameters in the report using the `customParametersDisplayMode` property.
+
 The following display modes are available for displaying the custom parameters:
-* `START_PAGE`: Display only on the starting page (uses the `startPage` property).
+* `SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (_default_)
 * `ALL_PAGES`: Display on all the pages in the report.
 
 ```xml

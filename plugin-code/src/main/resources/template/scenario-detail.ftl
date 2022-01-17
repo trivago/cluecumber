@@ -18,6 +18,7 @@ limitations under the License.
 <#import "macros/scenario.ftl" as scenario>
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
+<#import "macros/custom-parameters.ftl" as customparams>
 
 <@page.page
 title="${pageTitle} - Scenario Detail"
@@ -28,6 +29,10 @@ subheadline="${element.description?html}"
 subsubheadline="${element.featureUri}"
 preheadline="${element.featureName?html}"
 preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
+
+    <#if hasCustomParameters()>
+        <@customparams.card customParams=customParameters/>
+    </#if>
 
     <div class="row" id="scenario-detail">
         <@page.card width="6" title="Step Results" subtitle="" classes="">

@@ -47,11 +47,11 @@
                         </_KeysStartingWithAnUnderscoreAreHidden>
                     </customParameters>
 
+                    <!-- Optional display mode for custom parameters SCENARIO_PAGES (default), ALL_PAGES -->
+                    <customParametersDisplayMode>ALL_PAGES</customParametersDisplayMode>
+
                     <!-- Optional report page title -->
                     <customPageTitle>My Report</customPageTitle>
-
-                    <!-- Optional display mode for custom parameters START_PAGE (default), ALL_PAGES -->
-                    <!--<customParametersDisplayMode>START_PAGE</customParametersDisplayMode>-->
 
                     <!-- Optional custom colors for passed, failed and skipped -->
                     <!-- <customStatusColorPassed>#017FAF</customStatusColorPassed> -->
