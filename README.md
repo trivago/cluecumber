@@ -13,14 +13,6 @@
 
 ---
 
-### Note:
-
-This project is feature-complete. Expect mostly bug fixes from this point on.
-
-Thanks to everyone using, testing and improving Cluecumber over the last years!
-
----
-
 ![Cucumber compatible](documentation/img/cucumber-compatible-black-64.png)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
