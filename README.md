@@ -26,7 +26,6 @@ Thanks to everyone using, testing and improving Cluecumber over the last years!
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
   - [Example report](#example-report)
   - [Changelog](#changelog)
@@ -40,7 +39,7 @@ Thanks to everyone using, testing and improving Cluecumber over the last years!
     - [Add Custom Information to the Report](#add-custom-information-to-the-report)
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
-      - [Where To Display Custom Parameters](#where-to-display-custom-parameters)
+      - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
@@ -281,6 +280,7 @@ If they are not set, they default to false. This means that the report user has 
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
     <expandDocStrings>true|false</expandDocStrings>
+    <expandAttachments>true|false</expandAttachments>
     ...
 </configuration>
 ```
@@ -469,7 +469,7 @@ It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7C
 
 ## License
 
-Copyright 2018 trivago NV
+Copyright 2018 - 2022 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

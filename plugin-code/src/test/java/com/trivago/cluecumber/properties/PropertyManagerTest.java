@@ -63,7 +63,7 @@ public class PropertyManagerTest {
         verify(logger, times(2)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
                 eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
-        verify(logger, times(8)).info(anyString(),
+        verify(logger, times(9)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 
@@ -210,7 +210,7 @@ public class PropertyManagerTest {
         verify(logger, times(2)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
                 eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
-        verify(logger, times(11)).info(anyString(),
+        verify(logger, times(12)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 }

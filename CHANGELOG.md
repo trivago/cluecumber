@@ -10,8 +10,9 @@ Back to [Readme](README.md).
 ## [2.8.0] - 2022-01-18
 
 ### Added
-* New options to display custom parameters on scenario pages or all pages (#273, code base contributed by zutshiy)
-* Attachments are collapsed by default and can be expanded (#279, contributed by beirtipol)
+* New `customParametersDisplayMode` option to display custom parameters on scenario pages or all pages (#273, base implementation contributed by zutshiy)
+* New `expandAttachments` option to expand or collapse attachments by default
+* Attachments are collapsed by default and can be expanded (#279, base implementation contributed by beirtipol)
 
 ## [2.7.1] - 2021-11-05
 

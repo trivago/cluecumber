@@ -49,6 +49,7 @@ public class PropertyManager {
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
+    private boolean expandAttachments;
 
     private final Map<String, String> customParameters = new LinkedHashMap<>();
     private String customCssFile;
@@ -167,6 +168,14 @@ public class PropertyManager {
         this.expandDocStrings = expandDocStrings;
     }
 
+    public boolean isExpandAttachments() {
+        return expandAttachments;
+    }
+
+    public void setExpandAttachments(final boolean expandAttachments) {
+        this.expandAttachments = expandAttachments;
+    }
+
     public String getCustomCssFile() {
         return customCssFile;
     }
@@ -245,6 +254,7 @@ public class PropertyManager {
         logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks, DEFAULT);
         logger.info("- expand step hooks                : " + expandStepHooks, DEFAULT);
         logger.info("- expand doc strings               : " + expandDocStrings, DEFAULT);
+        logger.info("- expand attachments               : " + expandAttachments, DEFAULT);
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
         logger.info("- start page                       : " + startPage, DEFAULT);
         logger.info("- custom parameters display mode   : " + customParametersDisplayMode, DEFAULT);

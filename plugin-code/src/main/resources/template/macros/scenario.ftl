@@ -129,34 +129,41 @@ limitations under the License.
         <#list step.embeddings as attachment>
             <div class="row w-100 p-3 m-0 scenarioAttachment">
                 <#assign attachmentID = attachment.hashCode()?string["0"]>
-                <#if attachment.name != "">
-                    <div class="w-100 p-1 m-0 border-bottom small text-left">${attachment.name}</div>
-                </#if>
-                <div class="w-100 text-left m-auto">
-                    <a class="btn btn-outline-secondary btn-block" data-toggle="collapse" href="#expandable${attachmentID}" role="button" aria-expanded="false" aria-controls="expandable${attachmentID}">Toggle ${attachment.mimeType} attachment</a>
-                    <div class="w-100 text-left m-auto collapse" id="expandable${attachmentID}">
-                    <#if attachment.image>
-                        <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
-                            <img src="attachments/${attachment.filename}" class="embedded-image" style="max-width: 50%;"
-                                 alt="Attachment ${attachment.filename}"/>
-                        </a>
-                    <#elseif attachment.mimeType == "HTML">
-                        <iframe src="attachments/${attachment.filename}"
-                                srcdoc="${attachment.decodedData}" width="100%" height="1"
-                                onload="resizeIframe(this);" class="embedded-html"></iframe>
-                    <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
-                        <pre class="embedding-content small embedded-txt">${attachment.decodedData}</pre>
-                    <#elseif attachment.mimeType == "MP4">
-                        <#if attachment.externalContent>
-                            <video controls="controls" class="embedded-mp4" style="max-width:50%;">
-                                <source src="${attachment.decodedData}" type="video/mp4"/>
-                            </video>
-                        </#if>
-                    <#elseif attachment.mimeType == "UNKNOWN">
-                        <p class="small text-danger">Unknown content type.</p>
+                <div class="w-100 p-1 m-0 border-bottom small text-left">
+                    <a class="btn-link" data-toggle="collapse" href="#expandable${attachmentID}" role="button"
+                       aria-expanded="false" aria-controls="expandable${attachmentID}">Toggle</a> |
+                    <#if attachment.name != "">
+                        ${attachment.name} (${attachment.mimeType} attachment)
                     <#else>
-                        <embed src="attachments/${attachment.filename}" class="embedded-file" width="100%" height="500"/>
+                        ${attachment.mimeType} attachment
                     </#if>
+                </div>
+                <div class="w-100 text-left m-auto">
+                    <div class="w-100 text-left m-auto collapse ${expandAttachments?then("show", "")}" id="expandable${attachmentID}">
+                        <#if attachment.image>
+                            <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
+                                <img src="attachments/${attachment.filename}" class="embedded-image"
+                                     style="max-width: 50%;"
+                                     alt="Attachment ${attachment.filename}"/>
+                            </a>
+                        <#elseif attachment.mimeType == "HTML">
+                            <iframe src="attachments/${attachment.filename}"
+                                    srcdoc="${attachment.decodedData}" width="100%" height="1"
+                                    onload="resizeIframe(this);" class="embedded-html"></iframe>
+                        <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
+                            <pre class="embedding-content small embedded-txt">${attachment.decodedData}</pre>
+                        <#elseif attachment.mimeType == "MP4">
+                            <#if attachment.externalContent>
+                                <video controls="controls" class="embedded-mp4" style="max-width:50%;">
+                                    <source src="${attachment.decodedData}" type="video/mp4"/>
+                                </video>
+                            </#if>
+                        <#elseif attachment.mimeType == "UNKNOWN">
+                            <p class="small text-danger">Unknown content type.</p>
+                        <#else>
+                            <embed src="attachments/${attachment.filename}" class="embedded-file" width="100%"
+                                   height="500"/>
+                        </#if>
                     </div>
                 </div>
             </div>

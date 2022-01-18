@@ -98,6 +98,12 @@ public class PropertyCollector extends AbstractMojo {
     private boolean expandDocStrings;
 
     /**
+     * Custom flag that determines if attachment sections of scenario detail pages should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandAttachments", defaultValue = "false")
+    private boolean expandAttachments;
+
+    /**
      * Custom hex color for passed scenarios (e.g. '#00ff00')'.
      */
     @Parameter(property = "reporting.customStatusColorPassed")
@@ -153,6 +159,7 @@ public class PropertyCollector extends AbstractMojo {
             propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
             propertyManager.setExpandStepHooks(expandStepHooks);
             propertyManager.setExpandDocStrings(expandDocStrings);
+            propertyManager.setExpandAttachments(expandAttachments);
             propertyManager.setCustomCssFile(customCss);
             propertyManager.setCustomStatusColorPassed(customStatusColorPassed);
             propertyManager.setCustomStatusColorFailed(customStatusColorFailed);

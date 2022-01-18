@@ -30,6 +30,7 @@ public class PageCollection implements Cloneable {
     private boolean expandBeforeAfterHooks;
     private boolean expandStepHooks;
     private boolean expandDocStrings;
+    private boolean expandAttachments;
     private List<CustomParameter> customParameters;
     private CustomParamDisplayMode displayMode;
 
@@ -64,6 +65,14 @@ public class PageCollection implements Cloneable {
 
     public void setExpandDocStrings(final boolean expandDocStrings) {
         this.expandDocStrings = expandDocStrings;
+    }
+
+    public boolean isExpandAttachments() {
+        return expandAttachments;
+    }
+
+    public void setExpandAttachments(final boolean expandAttachments) {
+        this.expandAttachments = expandAttachments;
     }
 
     public String getPageTitle() {
