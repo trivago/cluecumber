@@ -35,6 +35,7 @@
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
+    - [Auto-expand Attachments](#auto-expand-attachments)
   - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
     - [Defining the report start page](#defining-the-report-start-page)
     - [Defining a custom report title](#defining-a-custom-report-title)
@@ -272,6 +273,16 @@ If they are not set, they default to false. This means that the report user has 
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
     <expandDocStrings>true|false</expandDocStrings>
+    ...
+</configuration>
+```
+
+### Auto-expand Attachments
+
+By default, attachments are collapsed and can be toggled individually. If the `expandAttachments` options is set to `true`, they are automatically expanded.
+
+```xml
+<configuration>
     <expandAttachments>true|false</expandAttachments>
     ...
 </configuration>
