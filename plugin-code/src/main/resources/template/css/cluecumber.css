@@ -47,6 +47,11 @@ a {
     height: 60px;
 }
 
+.card-header {
+    background-color: ghostwhite;
+    border-bottom: lightgray 1px solid;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -67,7 +72,7 @@ a {
 
 .navbar, .card {
     margin: 0 0 .5rem 0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.3);
+    border: lightgray 1px solid;
 }
 
 .scenarioAttachment > div, .scenarioOutput > div {
@@ -92,7 +97,7 @@ pre {
 }
 
 .list-group-item .row:hover {
-    background-color: rgba(0, 0, 0, .075);
+    background-color: lightgray;
 }
 
 .list-group-flush .list-group-item:last-child {

@@ -19,7 +19,7 @@ limitations under the License.
 }
 
 .border-color-passed {
-    border: 2px solid ${passedColor} !important;
+    border-bottom: 2px solid ${passedColor} !important;
 }
 
 .color-failed {
@@ -27,7 +27,7 @@ limitations under the License.
 }
 
 .border-color-failed {
-    border: 2px solid ${failedColor} !important;
+    border-bottom: 2px solid ${failedColor} !important;
 }
 
 .color-skipped  {
@@ -35,5 +35,5 @@ limitations under the License.
 }
 
 .border-color-skipped  {
-    border: 2px solid ${skippedColor} !important;
+    border-bottom: 2px solid ${skippedColor} !important;
 }
