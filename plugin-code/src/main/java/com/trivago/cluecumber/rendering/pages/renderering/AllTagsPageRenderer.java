@@ -62,7 +62,7 @@ public class AllTagsPageRenderer extends PageWithChartRenderer {
             addCustomParametersToReportDetails(allTagsPageCollection, propertyManager.getCustomParameters());
         }
 
-        return processedContent(template, allTagsPageCollection);
+        return processedContent(template, allTagsPageCollection, propertyManager.getNavigationLinks());
     }
 
     private void addChartJsonToReportDetails(final AllTagsPageCollection allTagsPageCollection) {

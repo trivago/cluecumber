@@ -68,6 +68,12 @@ public class PropertyCollector extends AbstractMojo {
     private String customParametersDisplayMode = "";
 
     /**
+     * Custom links to other pages that will be added to the report navigation bar.
+     */
+    @Parameter(property = "reporting.customNavigationLinks")
+    private LinkedHashMap<String, String> customNavigationLinks = new LinkedHashMap<>();
+
+    /**
      * Mark scenarios as failed if they contain pending or undefined steps (default: false).
      */
     @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
@@ -154,6 +160,8 @@ public class PropertyCollector extends AbstractMojo {
             propertyManager.setGeneratedHtmlReportDirectory(generatedHtmlReportDirectory);
             propertyManager.setCustomParameters(customParameters);
             propertyManager.setCustomParametersFile(customParametersFile);
+            propertyManager.setCustomParametersDisplayMode(customParametersDisplayMode);
+            propertyManager.setCustomNavigationLinks(customNavigationLinks);
             propertyManager.setCustomParametersDisplayMode(customParametersDisplayMode);
             propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
             propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);

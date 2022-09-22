@@ -16,18 +16,19 @@
 
 package com.trivago.cluecumber.properties;
 
+import com.trivago.cluecumber.constants.Navigation;
 import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.exceptions.properties.WrongOrMissingPropertyException;
 import com.trivago.cluecumber.filesystem.FileIO;
 import com.trivago.cluecumber.logging.CluecumberLogger;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.Link;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.LinkType;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
@@ -63,11 +64,12 @@ public class PropertyManager {
     private String customPageTitle = "Cluecumber Report";
 
     private PluginSettings.StartPage startPage;
+    private final Map<String, String> customNavigationLinks = new LinkedHashMap<>();
 
     @Inject
     public PropertyManager(
             final CluecumberLogger logger,
-            FileIO fileIO,
+            final FileIO fileIO,
             final PropertiesFileLoader propertiesFileLoader
     ) {
         this.logger = logger;
@@ -107,7 +109,7 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
-    String getCustomParametersFile() {
+    public String getCustomParametersFile() {
         return customParametersFile;
     }
 
@@ -131,9 +133,25 @@ public class PropertyManager {
         try {
             this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
         } catch (IllegalArgumentException e) {
-            logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode + "'. Must be one of " + Arrays.toString(PluginSettings.CustomParamDisplayMode.values()));
+            logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode +
+                    "'. Must be one of " + Arrays.toString(PluginSettings.CustomParamDisplayMode.values()));
             this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES;
         }
+    }
+
+    public void setCustomNavigationLinks(final Map<String, String> customNavigationLinks) {
+        this.customNavigationLinks.putAll(customNavigationLinks);
+    }
+
+    public List<Link> getNavigationLinks() {
+        List<Link> links = new LinkedList<>(Navigation.internalLinks);
+
+        for (Map.Entry<String, String> entry : customNavigationLinks.entrySet()) {
+            String linkName = entry.getKey().replace("_", " ");
+            links.add(new Link(linkName, entry.getValue(), LinkType.EXTERNAL));
+        }
+
+        return links;
     }
 
     public boolean isFailScenariosOnPendingOrUndefinedSteps() {
@@ -258,6 +276,12 @@ public class PropertyManager {
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
         logger.info("- start page                       : " + startPage, DEFAULT);
         logger.info("- custom parameters display mode   : " + customParametersDisplayMode, DEFAULT);
+
+        if (!customNavigationLinks.isEmpty()) {
+            customNavigationLinks.entrySet().stream().map(entry -> "- custom navigation link           : " +
+                    entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+        }
+
 
         if (isSet(customCssFile)) {
             logger.info("- custom CSS file                  : " + customCssFile, DEFAULT);

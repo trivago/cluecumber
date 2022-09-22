@@ -33,7 +33,7 @@ public class PageRendererTest {
     public void processedContentTest() throws CluecumberPluginException {
         Template template = mock(Template.class);
         PageCollection pageCollection = mock(PageCollection.class);
-        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection);
+        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection, null);
         assertThat(processedContent, is(""));
     }
 
@@ -42,7 +42,7 @@ public class PageRendererTest {
         Template template = mock(Template.class);
         doThrow(new TemplateException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
         PageCollection pageCollection = mock(PageCollection.class);
-        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection);
+        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection, null);
         assertThat(processedContent, is(""));
     }
 
@@ -51,7 +51,7 @@ public class PageRendererTest {
         Template template = mock(Template.class);
         doThrow(new IOException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
         PageCollection pageCollection = mock(PageCollection.class);
-        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection);
+        String processedContent = pageWithChartRenderer.processedContent(template, pageCollection, null);
         assertThat(processedContent, is(""));
     }
 }

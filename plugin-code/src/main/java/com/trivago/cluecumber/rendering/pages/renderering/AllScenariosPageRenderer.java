@@ -57,7 +57,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberPluginException {
 
-        return processedContent(template, getAllScenariosPageCollectionClone(allScenariosPageCollection));
+        return processedContent(template, getAllScenariosPageCollectionClone(allScenariosPageCollection), propertyManager.getNavigationLinks());
     }
 
     public String getRenderedContentByTagFilter(
@@ -74,7 +74,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                     .collect(Collectors.toList());
             report.setElements(elements);
         });
-        return processedContent(template, allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
     public String getRenderedContentByStepFilter(
@@ -91,7 +91,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                     .collect(Collectors.toList());
             report.setElements(elements);
         });
-        return processedContent(template, allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
     public String getRenderedContentByFeatureFilter(
@@ -107,7 +107,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                 .toArray(Report[]::new);
         allScenariosPageCollectionClone.clearReports();
         allScenariosPageCollectionClone.addReports(reportArray);
-        return processedContent(template, allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
     private void addChartJsonToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {

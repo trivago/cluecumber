@@ -27,7 +27,6 @@ import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.rendering.pages.charts.pojos.Chart;
-import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
 import freemarker.template.Template;
 
@@ -69,7 +68,7 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
             addCustomParametersToReportDetails(scenarioDetailsPageCollection, propertyManager.getCustomParameters());
         }
 
-        return processedContent(template, scenarioDetailsPageCollection);
+        return processedContent(template, scenarioDetailsPageCollection, propertyManager.getNavigationLinks());
     }
 
     private void addChartJsonToReportDetails(final ScenarioDetailsPageCollection scenarioDetailsPageCollection) {

@@ -16,6 +16,6 @@ limitations under the License.
 
 <footer class="footer navbar-dark">
     <div class="container-fluid">
-        <span>${reportDetails.generatorName} - Report generated on ${reportDetails.date}.</span>
+        <span><a href="https://github.com/trivago/cluecumber-report-plugin" target="_blank" class="text-white">${reportDetails.generatorName}</a> - Report generated on ${reportDetails.date}.</span>
     </div>
 </footer>

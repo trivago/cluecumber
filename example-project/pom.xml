@@ -84,6 +84,10 @@
 
                     <!-- Optionally skip the whole report generation -->
                     <!--<skip>true</skip>-->
+
+                    <customNavigationLinks>
+                        <Test_Blog>https://www.softwaretester.blog</Test_Blog>
+                    </customNavigationLinks>
                 </configuration>
             </plugin>
         </plugins>

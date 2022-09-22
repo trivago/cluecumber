@@ -16,7 +16,6 @@
 
 package com.trivago.cluecumber.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.constants.PluginSettings.CustomParamDisplayMode;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.rendering.pages.pojos.ReportDetails;
@@ -33,6 +32,7 @@ public class PageCollection implements Cloneable {
     private boolean expandAttachments;
     private List<CustomParameter> customParameters;
     private CustomParamDisplayMode displayMode;
+    private List<Link> links;
 
     PageCollection(final String pageTitle) {
         this.reportDetails = new ReportDetails();
@@ -97,5 +97,13 @@ public class PageCollection implements Cloneable {
 
     public void setDisplayMode(CustomParamDisplayMode displayMode) {
         this.displayMode = displayMode;
+    }
+
+    public void setNavigationLinks(List<Link> links) {
+        this.links = links;
+    }
+
+    public List<Link> getNavigationLinks() {
+        return this.links;
     }
 }

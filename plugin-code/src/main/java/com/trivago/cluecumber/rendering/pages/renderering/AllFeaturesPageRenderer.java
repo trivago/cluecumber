@@ -63,7 +63,7 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
             addCustomParametersToReportDetails(allFeaturesPageCollection, propertyManager.getCustomParameters());
         }
 
-        return processedContent(template, allFeaturesPageCollection);
+        return processedContent(template, allFeaturesPageCollection, propertyManager.getNavigationLinks());
     }
 
     private void addChartJsonToReportDetails(final AllFeaturesPageCollection allFeaturesPageCollection) {

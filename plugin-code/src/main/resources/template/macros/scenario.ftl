@@ -143,7 +143,7 @@ limitations under the License.
                         <#if attachment.image>
                             <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
                                 <img src="attachments/${attachment.filename}" class="embedded-image"
-                                     style="max-width: 50%;"
+                                     style="max-width: 45%; border: grey solid 1px; margin: 10px;"
                                      alt="Attachment ${attachment.filename}"/>
                             </a>
                         <#elseif attachment.mimeType == "HTML">

@@ -45,7 +45,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
             addCustomParametersToReportDetails(allStepsPageCollection, propertyManager.getCustomParameters());
         }
 
-        return processedContent(template, allStepsPageCollection);
+        return processedContent(template, allStepsPageCollection, propertyManager.getNavigationLinks());
     }
 
     private void addChartJsonToReportDetails(final AllStepsPageCollection allTagsPageCollection) {
