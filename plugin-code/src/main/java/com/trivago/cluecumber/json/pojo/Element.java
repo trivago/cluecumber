@@ -101,7 +101,7 @@ public class Element {
 
     public boolean anyBeforeHookHasContent() {
         for (ResultMatch resultMatch : before) {
-            if (resultMatch.hasContent()) {
+            if (resultMatch.hasContent() || resultMatch.isFailed()) {
                 return true;
             }
         }
@@ -150,7 +150,7 @@ public class Element {
 
     public boolean anyAfterHookHasContent() {
         for (ResultMatch resultMatch : after) {
-            if (resultMatch.hasContent()) {
+            if (resultMatch.hasContent() || resultMatch.isFailed()) {
                 return true;
             }
         }
@@ -275,6 +275,61 @@ public class Element {
         return Status.FAILED;
     }
 
+    public String getFirstExceptionClass() {
+        String firstException = getFirstException();
+        String exceptionClass = firstException.split("\n")[0].trim().split(":")[0].trim();
+
+        if (exceptionClass.isEmpty()) {
+            exceptionClass = "unknown";
+        }
+
+        return exceptionClass;
+    }
+
+    public String getFirstException() {
+        for (ResultMatch beforeHook : before) {
+            if (beforeHook.isFailed()) {
+                return beforeHook.getResult().getErrorMessage();
+            }
+        }
+        for (Step step : backgroundSteps) {
+            for (ResultMatch beforeStepHook : step.getBefore()) {
+                if (beforeStepHook.isFailed()) {
+                    return beforeStepHook.getResult().getErrorMessage();
+                }
+            }
+            if (step.isFailed()) {
+                return step.getResult().getErrorMessage();
+            }
+            for (ResultMatch afterStepHook : step.getAfter()) {
+                if (afterStepHook.isFailed()) {
+                    return afterStepHook.getResult().getErrorMessage();
+                }
+            }
+        }
+        for (Step step : steps) {
+            for (ResultMatch beforeStepHook : step.getBefore()) {
+                if (beforeStepHook.isFailed()) {
+                    return beforeStepHook.getResult().getErrorMessage();
+                }
+            }
+            if (step.isFailed()) {
+                return step.getResult().getErrorMessage();
+            }
+            for (ResultMatch afterStepHook : step.getAfter()) {
+                if (afterStepHook.isFailed()) {
+                    return afterStepHook.getResult().getErrorMessage();
+                }
+            }
+        }
+        for (ResultMatch afterHook : after) {
+            if (afterHook.isFailed()) {
+                return afterHook.getResult().getErrorMessage();
+            }
+        }
+        return "";
+    }
+
     public int getScenarioIndex() {
         return scenarioIndex;
     }
@@ -359,14 +414,12 @@ public class Element {
 
     public boolean hasStepHooksWithContent() {
         for (Step step : backgroundSteps) {
-            if (step.hasHooksWithContent())
-            {
+            if (step.hasHooksWithContent()) {
                 return true;
             }
         }
         for (Step step : steps) {
-            if (step.hasHooksWithContent())
-            {
+            if (step.hasHooksWithContent()) {
                 return true;
             }
         }

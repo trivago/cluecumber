@@ -90,7 +90,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <@page.card width="12" title="Before Hooks" subtitle="" classes="scenarioHook collapse">
                 <li class="list-group-item">
                     <#list element.before as before>
-                        <#if before.hasContent()>
+                        <#if before.hasContent() || before.isFailed()>
                             <div class="row row_${before.consolidatedStatusString} table-row-${before.consolidatedStatusString}">
                                 <div class="col-9 text-left">
                                     <span class="text-left">${before?counter}.</span>
@@ -231,7 +231,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 <@page.card width="12" title="After Hooks" subtitle="" classes="">
                     <li class="list-group-item">
                         <#list element.after as after>
-                            <#if after.hasContent()>
+                            <#if after.hasContent() || after.isFailed()>
                                 <div class="row row_${after.consolidatedStatusString} table-row-${after.consolidatedStatusString}">
                                     <div class="col-9 text-left">
                                         <span class="text-left">${after?counter}.</span>
