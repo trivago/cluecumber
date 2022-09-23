@@ -21,7 +21,7 @@
 - [Cluecumber Report Maven Plugin](#cluecumber-report-maven-plugin)
   - [Example report](#example-report)
   - [Changelog](#changelog)
-  - [Star history](#star-history)
+  - [Star History](#star-history)
 - [Prerequisites](#prerequisites)
 - [Maven POM settings](#maven-pom-settings)
   - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
@@ -33,6 +33,7 @@
       - [Add Custom Information Using Properties](#add-custom-information-using-properties)
       - [Add Custom Information Using a File](#add-custom-information-using-a-file)
       - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
+    - [Add custom navigation links](#add-custom-navigation-links)
     - [Skip Report Generation](#skip-report-generation)
     - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
     - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
@@ -241,6 +242,25 @@ The following display modes are available for displaying the custom parameters:
 ```
 
 The default value for this property is `START_PAGE`.
+
+### Add custom navigation links
+
+If you have other pages or files you want to make accessible from the central navigation bar,
+this is possible via the `a` property.
+
+```xml
+<configuration>
+    <customNavigationLinks>
+        <Test_Blog>https://www.softwaretester.blog</Test_Blog>
+        <Twitter>https://twitter.com/BischoffDev</Twitter>
+    </customNavigationLinks>    ...
+</configuration>
+```
+
+These links will be added to the right of the navigation bar. If there are underscores ("_") in the property key,
+these are replaces with spaces for the link name:
+
+![Custom link](/Users/bbischoff/Development/Java/cluecumber-report-plugin/documentation/img/custom_link.png)
 
 ### Skip Report Generation
 

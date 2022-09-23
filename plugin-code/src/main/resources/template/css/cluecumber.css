@@ -40,7 +40,11 @@ a {
 }
 
 .navbar, .footer {
-    background-color: #5e6974 !important;
+    background-color: black !important;
+}
+
+.navbar-dark .navbar-nav .nav-link.customLink {
+    color: yellowgreen;
 }
 
 .header {
@@ -48,8 +52,9 @@ a {
 }
 
 .card-header {
-    background-color: ghostwhite;
-    border-bottom: lightgray 1px solid;
+    font-weight: 600;
+    background-color: lightgray;
+    border-bottom: darktgray 3px solid;
 }
 
 .footer {
@@ -72,7 +77,7 @@ a {
 
 .navbar, .card {
     margin: 0 0 .5rem 0;
-    border: lightgray 1px solid;
+    border: darktgray 1px solid;
 }
 
 .scenarioAttachment > div, .scenarioOutput > div {
@@ -191,7 +196,7 @@ iframe {
 }
 
 [data-cluecumber-item="chart"] div {
-    min-height: 20rem;
+    height: 20rem;
 }
 
 .card-body .card {

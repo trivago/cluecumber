@@ -22,7 +22,6 @@ limitations under the License.
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-
             <#list navigationLinks as link>
                 <li class="nav-item">
                     <#assign highlightClass="">
@@ -49,7 +48,7 @@ limitations under the License.
                         </#switch>
                         <a class="nav-link ${highlightClass}" href="${link.target}">${name}</a>
                     <#elseif link.type == "EXTERNAL">
-                        <a class="nav-link" href="${link.target}" target="_blank">${link.name}</a>
+                        <div class=""><a class="nav-link customLink" href="${link.target}" target="_blank">${link.name}</a></div>
                     </#if>
                 </li>
             </#list>
