@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [2.8.1] - 2022-09-23
+## [2.9.0] - 2022-09-24
 
 ### Added
 * Ability to add custom external links to the navigation bar via `customNavigationLinks` property
@@ -20,7 +20,7 @@ Back to [Readme](README.md).
 * Dependency updates
 * Design adjustments
 * Reworked navigation for future improvements
-* #280 - moved to GitHub actions
+* #280 - moved deployment to GitHub actions
 
 ## [2.8.0] - 2022-01-18
 
