@@ -1,9 +1,0 @@
-language:
-  java
-
-before_script:
-  - cd plugin-code
-  - pip install --user codecov
-
-after_success:
-  - codecov
