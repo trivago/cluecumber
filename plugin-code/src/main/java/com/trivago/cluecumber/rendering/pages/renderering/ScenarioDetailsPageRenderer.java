@@ -79,13 +79,32 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         element.getSteps().stream().map(Step::getName).forEach(labels::add);
         element.getAfter().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
 
-        final List<Integer> passedValues = getValuesByStatus(element, Status.PASSED);
-        final List<Integer> failedValues = getValuesByStatus(element, Status.FAILED);
-        final List<Integer> skippedValues = getValuesByStatus(element, Status.SKIPPED);
-        int passedMax = passedValues.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-        int failedMax = failedValues.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-        int skippedMax = skippedValues.stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-        final Integer maximumValue = Collections.max(Arrays.asList(passedMax, failedMax, skippedMax));
+        final List<Float> passedValues = getValuesByStatus(element, Status.PASSED);
+        final List<Float> failedValues = getValuesByStatus(element, Status.FAILED);
+        final List<Float> skippedValues = getValuesByStatus(element, Status.SKIPPED);
+
+        float passedMax = 0;
+        for (Float passedValue : passedValues) {
+            if (passedValue > passedMax) {
+                passedMax = passedValue;
+            }
+        }
+
+        float skippedMax = 0;
+        for (Float skippedValue : skippedValues) {
+            if (skippedValue > skippedMax) {
+                skippedMax = skippedValue;
+            }
+        }
+
+        float failedMax = 0;
+        for (Float failedValue : failedValues) {
+            if (failedValue > failedMax) {
+                failedMax = failedValue;
+            }
+        }
+
+        final Float maximumValue = Collections.max(Arrays.asList(passedMax, failedMax, skippedMax));
 
         Chart chart =
                 new StackedBarChartBuilder(chartConfiguration)
@@ -102,13 +121,13 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         scenarioDetailsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
     }
 
-    private List<Integer> getValuesByStatus(final Element element, final Status status) {
-        List<Integer> values = new ArrayList<>();
+    private List<Float> getValuesByStatus(final Element element, final Status status) {
+        List<Float> values = new ArrayList<>();
         element.getAllResultMatches().forEach(resultMatch -> {
             if (resultMatch.getConsolidatedStatus() == status) {
-                values.add((int) resultMatch.getResult().getDurationInMilliseconds() / 1000);
+                values.add(resultMatch.getResult().getDurationInMilliseconds() / 1000f);
             } else {
-                values.add(0);
+                values.add(0f);
             }
         });
         return values;

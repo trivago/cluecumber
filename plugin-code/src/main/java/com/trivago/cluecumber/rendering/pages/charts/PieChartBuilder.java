@@ -43,7 +43,7 @@ public class PieChartBuilder {
 
     public Chart build() {
 
-        List<Integer> values = new ArrayList<>();
+        List<Float> values = new ArrayList<>();
         List<String> colors = new ArrayList<>();
 
         for (ValueSet valueSet : valueSets) {
@@ -80,10 +80,10 @@ public class PieChartBuilder {
     }
 
     private static class ValueSet {
-        private final int value;
+        private final float value;
         private final String color;
 
-        ValueSet(final int value, final String color) {
+        ValueSet(final float value, final String color) {
             this.value = value;
             this.color = color;
         }

@@ -11,14 +11,16 @@ Back to [Readme](README.md).
 
 ### Added
 * Ability to add custom external links to the navigation bar via `customNavigationLinks` property
+* #281 - enable Cluecumber to be invoked without a POM project
 
 ### Fixed
-* #281 - enable Cluecumber to be invoked without a POM project
+* #278 - Chart bars of steps with low times did not render at all
 
 ### Changed
 * Dependency updates
 * Design adjustments
 * Reworked navigation for future improvements
+* #280 - moved to GitHub actions
 
 ## [2.8.0] - 2022-01-18
 

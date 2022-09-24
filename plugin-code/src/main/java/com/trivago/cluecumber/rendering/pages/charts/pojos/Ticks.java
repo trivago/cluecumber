@@ -18,7 +18,7 @@ package com.trivago.cluecumber.rendering.pages.charts.pojos;
 
 public class Ticks {
     private int min;
-    private int stepSize;
+    private float stepSize;
     private boolean display = true;
 
     public int getMin() {
@@ -37,11 +37,11 @@ public class Ticks {
         this.display = display;
     }
 
-    public int getStepSize() {
+    public float getStepSize() {
         return stepSize;
     }
 
-    public void setStepSize(final int stepSize) {
+    public void setStepSize(final float stepSize) {
         this.stepSize = stepSize;
     }
 }
