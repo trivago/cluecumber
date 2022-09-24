@@ -76,7 +76,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.plugin.testing.harness.version>3.3.0</maven.plugin.testing.harness.version>
         <javax.inject.version>1</javax.inject.version>
-        <cobertura.maven.plugin>2.7</cobertura.maven.plugin>
         <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
         <plexus.component.annotations.version>2.1.1</plexus.component.annotations.version>
         <maven.plugin.annotations.version>3.6.4</maven.plugin.annotations.version>
