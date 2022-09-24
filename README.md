@@ -260,7 +260,7 @@ this is possible via the `a` property.
 These links will be added to the right of the navigation bar. If there are underscores ("_") in the property key,
 these are replaces with spaces for the link name:
 
-![Custom link](/Users/bbischoff/Development/Java/cluecumber-report-plugin/documentation/img/custom_link.png)
+![Custom link](documentation/img/custom_link.png)
 
 ### Skip Report Generation
 
