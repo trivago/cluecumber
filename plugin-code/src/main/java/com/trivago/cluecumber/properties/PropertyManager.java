@@ -58,9 +58,9 @@ public class PropertyManager {
 
     private PluginSettings.CustomParamDisplayMode customParametersDisplayMode;
 
-    private String customStatusColorPassed = "#28a745";
-    private String customStatusColorFailed = "#dc3545";
-    private String customStatusColorSkipped = "#ffc107";
+    private String customStatusColorPassed = "#60cc79";
+    private String customStatusColorFailed = "#fc7180";
+    private String customStatusColorSkipped = "#f7c42b";
     private String customPageTitle = "Cluecumber Report";
 
     private PluginSettings.StartPage startPage;

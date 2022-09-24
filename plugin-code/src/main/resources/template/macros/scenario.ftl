@@ -101,7 +101,7 @@ limitations under the License.
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
                                                    style="word-break: break-all">${element.name?html}</a>
                                                    <#if element.failed>
-                                                       <br><span class="text-left small text-gray">${element.firstExceptionClass}</span>
+                                                       <br><span class="text-left small text-gray" style="word-break: break-all">${element.firstExceptionClass}</span>
                                                    </#if>
                                             </td>
                                             <td class="text-center small" data-order="${element.startTimestamp}">
