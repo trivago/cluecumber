@@ -241,12 +241,12 @@ The following display modes are available for displaying the custom parameters:
 </configuration>
 ```
 
-The default value for this property is `START_PAGE`.
+The default value for this property is `SCENARIO_PAGES`.
 
 ### Add custom navigation links
 
 If you have other pages or files you want to make accessible from the central navigation bar,
-this is possible via the `a` property.
+this is possible via the `customNavigationLinks` property.
 
 ```xml
 <configuration>
