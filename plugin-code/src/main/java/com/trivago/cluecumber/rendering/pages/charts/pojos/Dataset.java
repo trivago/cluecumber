@@ -19,16 +19,16 @@ package com.trivago.cluecumber.rendering.pages.charts.pojos;
 import java.util.List;
 
 public class Dataset {
-    private List<Integer> data;
+    private List<Float> data;
     private List<String> backgroundColor;
     private String label;
     private String stack;
 
-    public List<Integer> getData() {
+    public List<Float> getData() {
         return data;
     }
 
-    public void setData(final List<Integer> data) {
+    public void setData(final List<Float> data) {
         this.data = data;
     }
 

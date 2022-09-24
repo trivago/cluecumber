@@ -183,9 +183,9 @@ public class PropertyManagerTest {
 
     @Test
     public void customColorsTest() throws WrongOrMissingPropertyException {
-        assertThat(propertyManager.getCustomStatusColorPassed(), is("#28a745"));
-        assertThat(propertyManager.getCustomStatusColorFailed(), is("#dc3545"));
-        assertThat(propertyManager.getCustomStatusColorSkipped(), is("#ffc107"));
+        assertThat(propertyManager.getCustomStatusColorPassed(), is("#60cc79"));
+        assertThat(propertyManager.getCustomStatusColorFailed(), is("#fc7180"));
+        assertThat(propertyManager.getCustomStatusColorSkipped(), is("#f7c42b"));
 
         propertyManager.setCustomStatusColorPassed("#aaaaaa");
         propertyManager.setCustomStatusColorFailed("#bbbbbb");

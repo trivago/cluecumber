@@ -16,15 +16,13 @@
 
 package com.trivago.cluecumber.rendering.pages.renderering;
 
-import com.trivago.cluecumber.constants.PluginSettings;
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
-import com.trivago.cluecumber.properties.PropertyManager;
 import com.trivago.cluecumber.rendering.pages.pojos.CustomParameter;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.Link;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.PageCollection;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
@@ -42,8 +40,12 @@ public class PageRenderer {
      * @return The fully rendered content.
      * @throws CluecumberPluginException In case of a rendering error.
      */
-    String processedContent(final Template template, final Object pageCollection)
+    String processedContent(final Template template, final Object pageCollection, final List<Link> navigation)
             throws CluecumberPluginException {
+
+        if (pageCollection instanceof PageCollection){
+            ((PageCollection) pageCollection).setNavigationLinks(navigation);
+        }
 
         Writer stringWriter = new StringWriter();
         try {

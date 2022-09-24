@@ -43,7 +43,7 @@ limitations under the License.
     <@navigation.build highlight=highlight />
     <main role="main" class="container">
         <div class="cluecumber-template">
-            <div class="pb-2 mt-4 mb-2 border-bottom">
+            <div class="pb-2 mt-4 mb-2">
                 <#if preheadline != "">
                     <h5>
                         <#if preheadlineLink != "">

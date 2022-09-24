@@ -43,12 +43,12 @@ public class ChartJsonConverterTest {
                 "    \"datasets\": [\n" +
                 "      {\n" +
                 "        \"data\": [\n" +
-                "          340,\n" +
-                "          0,\n" +
-                "          0,\n" +
-                "          440,\n" +
-                "          340,\n" +
-                "          0\n" +
+                "          340.0,\n" +
+                "          0.0,\n" +
+                "          0.0,\n" +
+                "          440.0,\n" +
+                "          340.0,\n" +
+                "          0.0\n" +
                 "        ],\n" +
                 "        \"backgroundColor\": [\n" +
                 "          \"rgba(240,0,0,1.000)\"\n" +
@@ -58,12 +58,12 @@ public class ChartJsonConverterTest {
                 "      },\n" +
                 "      {\n" +
                 "        \"data\": [\n" +
-                "          0,\n" +
-                "          340,\n" +
-                "          440,\n" +
-                "          0,\n" +
-                "          0,\n" +
-                "          340\n" +
+                "          0.0,\n" +
+                "          340.0,\n" +
+                "          440.0,\n" +
+                "          0.0,\n" +
+                "          0.0,\n" +
+                "          340.0\n" +
                 "        ],\n" +
                 "        \"backgroundColor\": [\n" +
                 "          \"rgba(0,240,0,1.000)\"\n" +
@@ -79,7 +79,7 @@ public class ChartJsonConverterTest {
                 "        {\n" +
                 "          \"ticks\": {\n" +
                 "            \"min\": 0,\n" +
-                "            \"stepSize\": 0,\n" +
+                "            \"stepSize\": 0.0,\n" +
                 "            \"display\": true\n" +
                 "          },\n" +
                 "          \"stacked\": false,\n" +
@@ -94,7 +94,7 @@ public class ChartJsonConverterTest {
                 "        {\n" +
                 "          \"ticks\": {\n" +
                 "            \"min\": 0,\n" +
-                "            \"stepSize\": 0,\n" +
+                "            \"stepSize\": 0.0,\n" +
                 "            \"display\": true\n" +
                 "          },\n" +
                 "          \"stacked\": true,\n" +
@@ -127,13 +127,13 @@ public class ChartJsonConverterTest {
 
         Dataset dataset1 = new Dataset();
 
-        List<Integer> data1 = new ArrayList<>();
-        data1.add(340);
-        data1.add(0);
-        data1.add(0);
-        data1.add(440);
-        data1.add(340);
-        data1.add(0);
+        List<Float> data1 = new ArrayList<>();
+        data1.add(340f);
+        data1.add(0f);
+        data1.add(0f);
+        data1.add(440f);
+        data1.add(340f);
+        data1.add(0f);
         dataset1.setData(data1);
         dataset1.setLabel("failed");
         dataset1.setStack("complete");
@@ -141,13 +141,13 @@ public class ChartJsonConverterTest {
         datasets.add(dataset1);
 
         Dataset dataset2 = new Dataset();
-        List<Integer> data2 = new ArrayList<>();
-        data2.add(0);
-        data2.add(340);
-        data2.add(440);
-        data2.add(0);
-        data2.add(0);
-        data2.add(340);
+        List<Float> data2 = new ArrayList<>();
+        data2.add(0f);
+        data2.add(340f);
+        data2.add(440f);
+        data2.add(0f);
+        data2.add(0f);
+        data2.add(340f);
         dataset2.setData(data2);
         dataset2.setLabel("passed");
         dataset2.setStack("complete");

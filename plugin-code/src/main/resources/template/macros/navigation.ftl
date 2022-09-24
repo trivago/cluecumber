@@ -22,32 +22,36 @@ limitations under the License.
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <#assign links = ['scenario_summary', 'scenario_sequence', 'tag_summary', 'step_summary', 'feature_summary']>
-                <#list links as link>
-                    <li class="nav-item">
-                        <#assign highlightClass="">
-                        <#if link == highlight>
-                            <#assign highlightClass="text-white">
-                        </#if>
-                        <#switch link>
+            <#list navigationLinks as link>
+                <li class="nav-item">
+                    <#assign highlightClass="">
+                    <#if link.name == highlight>
+                        <#assign highlightClass="text-white">
+                    </#if>
+                    <#if link.type == "INTERNAL">
+                        <#switch link.name>
                             <#case "scenario_summary">
-                                <a class="nav-link ${highlightClass}" href="pages/scenario-summary.html">All Scenarios</a>
+                                <#assign name="All Scenarios">
                                 <#break>
                             <#case "scenario_sequence">
-                                <a class="nav-link ${highlightClass}" href="pages/scenario-sequence.html">Scenario Sequence</a>
+                                <#assign name="Scenario Sequence">
                                 <#break>
                             <#case "tag_summary">
-                                <a class="nav-link ${highlightClass}" href="pages/tag-summary.html">All Tags</a>
+                                <#assign name="All Tags">
                                 <#break>
                             <#case "step_summary">
-                                <a class="nav-link ${highlightClass}" href="pages/step-summary.html">All Steps</a>
+                                <#assign name="All Steps">
                                 <#break>
                             <#case "feature_summary">
-                                <a class="nav-link ${highlightClass}" href="pages/feature-summary.html">All Features</a>
+                                <#assign name="All Features">
                                 <#break>
                         </#switch>
-                    </li>
-                </#list>
+                        <a class="nav-link ${highlightClass}" href="${link.target}">${name}</a>
+                    <#elseif link.type == "EXTERNAL">
+                        <div class=""><a class="nav-link customLink" href="${link.target}" target="_blank">${link.name}</a></div>
+                    </#if>
+                </li>
+            </#list>
             </ul>
             <span class="text-light">${reportDetails.date}</span>
         </div>

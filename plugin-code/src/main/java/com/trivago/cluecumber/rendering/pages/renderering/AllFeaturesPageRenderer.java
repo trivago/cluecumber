@@ -63,20 +63,20 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
             addCustomParametersToReportDetails(allFeaturesPageCollection, propertyManager.getCustomParameters());
         }
 
-        return processedContent(template, allFeaturesPageCollection);
+        return processedContent(template, allFeaturesPageCollection, propertyManager.getNavigationLinks());
     }
 
     private void addChartJsonToReportDetails(final AllFeaturesPageCollection allFeaturesPageCollection) {
-        List<Integer> passed = new ArrayList<>();
-        List<Integer> failed = new ArrayList<>();
-        List<Integer> skipped = new ArrayList<>();
+        List<Float> passed = new ArrayList<>();
+        List<Float> failed = new ArrayList<>();
+        List<Float> skipped = new ArrayList<>();
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Feature, ResultCount> entry : allFeaturesPageCollection.getFeatureResultCounts().entrySet()) {
             ResultCount value = entry.getValue();
-            passed.add(value.getPassed());
-            failed.add(value.getFailed());
-            skipped.add(value.getSkipped());
+            passed.add((float) value.getPassed());
+            failed.add((float) value.getFailed());
+            skipped.add((float) value.getSkipped());
             if (value.getTotal() > maximumNumberOfRuns) {
                 maximumNumberOfRuns = value.getTotal();
             }

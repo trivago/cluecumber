@@ -30,10 +30,10 @@ public class RenderingUtils {
     private static final Pattern URL_PATTERN = Pattern.compile("(file.*)|((ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?)");
 
     /**
-     * Convert nanoseconds to a human readable time string.
+     * Convert nanoseconds to a human-readable time string.
      *
      * @param nanoseconds The amount of nanoseconds.
-     * @return The human readable string representation.
+     * @return The human-readable string representation.
      */
     public static String convertNanosecondsToTimeString(final long nanoseconds) {
         Duration durationMilliseconds = Duration.ofMillis(nanoseconds / MICROSECOND_FACTOR);

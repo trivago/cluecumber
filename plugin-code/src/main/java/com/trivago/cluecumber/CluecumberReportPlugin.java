@@ -40,7 +40,7 @@ import static com.trivago.cluecumber.logging.CluecumberLogger.CluecumberLogLevel
 /**
  * The main plugin class.
  */
-@Mojo(name = "reporting")
+@Mojo(name = "reporting", requiresProject = false)
 public final class CluecumberReportPlugin extends PropertyCollector {
 
     private final CluecumberLogger logger;

@@ -37,14 +37,14 @@ public class StackedBarChartBuilder {
     private final List<Dataset> datasets = new ArrayList<>();
     private String xAxisLabel;
     private String yAxisLabel;
-    private int yAxisStepSize = 1;
+    private float yAxisStepSize = 1f;
     private boolean stacked = true;
 
     public StackedBarChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
     }
 
-    public StackedBarChartBuilder addValues(final List<Integer> values, final Status status) {
+    public StackedBarChartBuilder addValues(final List<Float> values, final Status status) {
         String color = chartConfiguration.getColorRgbaStringByStatus(status);
         Dataset dataset = new Dataset();
         dataset.setLabel(status.getStatusString());
@@ -70,7 +70,7 @@ public class StackedBarChartBuilder {
         return this;
     }
 
-    public StackedBarChartBuilder setyAxisStepSize(final int yAxisStepSize) {
+    public StackedBarChartBuilder setyAxisStepSize(final float yAxisStepSize) {
         this.yAxisStepSize = yAxisStepSize;
         return this;
     }

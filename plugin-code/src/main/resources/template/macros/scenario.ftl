@@ -100,6 +100,9 @@ limitations under the License.
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
                                                    style="word-break: break-all">${element.name?html}</a>
+                                                   <#if element.failed>
+                                                       <br><span class="text-left small text-gray" style="word-break: break-all">${element.firstExceptionClass}</span>
+                                                   </#if>
                                             </td>
                                             <td class="text-center small" data-order="${element.startTimestamp}">
                                                 ${element.startDateString}<br>${element.startTimeString}
@@ -143,7 +146,7 @@ limitations under the License.
                         <#if attachment.image>
                             <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
                                 <img src="attachments/${attachment.filename}" class="embedded-image"
-                                     style="max-width: 50%;"
+                                     style="max-width: 45%; border: grey solid 1px; margin: 10px;"
                                      alt="Attachment ${attachment.filename}"/>
                             </a>
                         <#elseif attachment.mimeType == "HTML">

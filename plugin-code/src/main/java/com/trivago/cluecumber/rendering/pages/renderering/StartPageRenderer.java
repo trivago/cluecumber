@@ -18,16 +18,16 @@ package com.trivago.cluecumber.rendering.pages.renderering;
 
 import com.trivago.cluecumber.exceptions.CluecumberPluginException;
 import com.trivago.cluecumber.properties.PropertyManager;
+import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.Link;
 import com.trivago.cluecumber.rendering.pages.pojos.pagecollections.StartPageCollection;
 import freemarker.template.Template;
 
+import java.util.List;
+
 public class StartPageRenderer extends PageRenderer {
 
-    public StartPageRenderer() {
-    }
-
-    public String getRenderedContent(final Template template, final StartPageCollection startPageCollection)
+    public String getRenderedContent(final Template template, final StartPageCollection startPageCollection, final List<Link> navigation)
             throws CluecumberPluginException {
-        return processedContent(template, startPageCollection);
+        return processedContent(template, startPageCollection, navigation);
     }
 }

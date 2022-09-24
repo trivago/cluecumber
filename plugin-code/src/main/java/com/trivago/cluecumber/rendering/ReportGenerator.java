@@ -93,7 +93,9 @@ public class ReportGenerator {
     private void generateStartPage(boolean redirectToFirstScenarioPage) throws CluecumberPluginException {
         StartPageCollection startPageCollection = new StartPageCollection(propertyManager.getStartPage(), redirectToFirstScenarioPage);
         fileIO.writeContentToFile(startPageRenderer.getRenderedContent(
-                templateEngine.getTemplate(TemplateEngine.Template.START_PAGE), startPageCollection
+                templateEngine.getTemplate(TemplateEngine.Template.START_PAGE),
+                startPageCollection,
+                propertyManager.getNavigationLinks()
         ), propertyManager.getGeneratedHtmlReportDirectory() + "/" + START_PAGE_PATH + HTML_FILE_EXTENSION);
     }
 
