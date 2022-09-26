@@ -7,11 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.9.1] - 2022-09-26
+
+### Added
+* Display error messages on scenario overview pages
+
 ## [2.9.0] - 2022-09-24
 
 ### Added
 * Ability to add custom external links to the navigation bar via `customNavigationLinks` property
 * #281 - enable Cluecumber to be invoked without a POM project
+* Display error classes on scenario overview pages
 
 ### Fixed
 * #278 - Chart bars of steps with low times did not render at all
