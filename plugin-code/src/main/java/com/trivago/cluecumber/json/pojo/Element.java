@@ -277,7 +277,7 @@ public class Element {
 
     public String getFirstExceptionClass() {
         String firstException = getFirstException();
-        String exceptionClass = firstException.split("\n")[0].trim().split(":")[0].trim();
+        String exceptionClass = firstException.split("\n")[0].trim();
 
         if (exceptionClass.isEmpty()) {
             exceptionClass = "unknown";

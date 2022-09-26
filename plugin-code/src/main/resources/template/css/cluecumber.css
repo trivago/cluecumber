@@ -262,3 +262,9 @@ span.keyword {
     font-weight: bold;
     color: darkblue;
 }
+
+p.firstException {
+    word-break: break-word;
+    border: 1px solid lightgray;
+    padding: 0.5rem;
+}
