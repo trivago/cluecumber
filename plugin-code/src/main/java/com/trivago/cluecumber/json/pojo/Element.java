@@ -22,6 +22,7 @@ import com.trivago.cluecumber.rendering.pages.renderering.RenderingUtils;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -287,47 +288,54 @@ public class Element {
     }
 
     public String getFirstException() {
-        for (ResultMatch beforeHook : before) {
-            if (beforeHook.isFailed()) {
-                return beforeHook.getResult().getErrorMessage();
-            }
+        String exception = getResultListException(before);
+        if (exception != null){
+            return exception;
         }
-        for (Step step : backgroundSteps) {
-            for (ResultMatch beforeStepHook : step.getBefore()) {
-                if (beforeStepHook.isFailed()) {
-                    return beforeStepHook.getResult().getErrorMessage();
-                }
-            }
-            if (step.isFailed()) {
-                return step.getResult().getErrorMessage();
-            }
-            for (ResultMatch afterStepHook : step.getAfter()) {
-                if (afterStepHook.isFailed()) {
-                    return afterStepHook.getResult().getErrorMessage();
-                }
-            }
+
+        exception = getStepException(backgroundSteps);
+        if (exception != null){
+            return exception;
         }
-        for (Step step : steps) {
-            for (ResultMatch beforeStepHook : step.getBefore()) {
-                if (beforeStepHook.isFailed()) {
-                    return beforeStepHook.getResult().getErrorMessage();
-                }
-            }
-            if (step.isFailed()) {
-                return step.getResult().getErrorMessage();
-            }
-            for (ResultMatch afterStepHook : step.getAfter()) {
-                if (afterStepHook.isFailed()) {
-                    return afterStepHook.getResult().getErrorMessage();
-                }
-            }
+
+        exception = getStepException(steps);
+        if (exception != null){
+            return RenderingUtils.escapeHTML(exception);
         }
-        for (ResultMatch afterHook : after) {
-            if (afterHook.isFailed()) {
-                return afterHook.getResult().getErrorMessage();
-            }
+
+        exception = getResultListException(after);
+        if (exception != null){
+            return exception;
         }
         return "";
+    }
+
+    private String getStepException(final List<Step> steps) {
+        for (Step step : steps) {
+            String exception = getResultListException(step.getBefore());
+            if (exception != null){
+                return exception;
+            }
+
+            if (step.isFailed()) {
+                return step.getResult().getErrorMessage();
+            }
+
+            exception = getResultListException(step.getAfter());
+            if (exception != null){
+                return exception;
+            }
+        }
+        return null;
+    }
+
+    private String getResultListException(final List<ResultMatch> resultMatches) {
+        for (ResultMatch match : resultMatches) {
+            if (match.isFailed()) {
+                return RenderingUtils.escapeHTML(match.getResult().getErrorMessage());
+            }
+        }
+        return null;
     }
 
     public int getScenarioIndex() {

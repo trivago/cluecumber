@@ -42,7 +42,7 @@
             "name": "this step fails",
             "result": {
               "duration": 340604218,
-              "error_message": "java.lang.RuntimeException: this step failed\n\tat Steps.lambda$new$2(Steps.java:14)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)",
+              "error_message": "java.lang.RuntimeException <b>Something</b>: this step failed\n\tat Steps.lambda$new$2(Steps.java:14)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)",
               "status": "failed"
             },
             "embeddings": [

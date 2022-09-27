@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.9.2] - 2022-09-27
+
+### Fixed
+* #293 - unescaped html in exception messages
+
 ## [2.9.1] - 2022-09-26
 
 ### Added
@@ -649,6 +654,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.9.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.2
 [2.9.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.1
 [2.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.0
 [2.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.8.0
