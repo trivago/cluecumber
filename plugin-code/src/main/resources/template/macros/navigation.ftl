@@ -48,7 +48,9 @@ limitations under the License.
                         </#switch>
                         <a class="nav-link ${highlightClass}" href="${link.target}">${name}</a>
                     <#elseif link.type == "EXTERNAL">
-                        <div class=""><a class="nav-link customLink" href="${link.target}" target="_blank">${link.name}</a></div>
+                        <#if link.target??>
+                            <a class="nav-link customLink" href="${link.target}" target="_blank">${link.name}</a>
+                        </#if>
                     </#if>
                 </li>
             </#list>

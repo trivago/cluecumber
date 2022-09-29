@@ -41,6 +41,10 @@ public class CustomParameter {
         return RenderingUtils.isUrl(getValue());
     }
 
+    public boolean isRelativeUrl() {
+        return RenderingUtils.isRelativeUrl(getValue());
+    }
+
     @Override
     public String toString() {
         return "CustomParameter{" +

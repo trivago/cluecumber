@@ -26,7 +26,7 @@ limitations under the License.
                         <#if !customParameter.key?starts_with(" ")>
                             <td class="text-left text-nowrap"><strong>${customParameter.key}:</strong></td>
                             <td class="text-left wrap">
-                                <#if customParameter.url>
+                                <#if customParameter.url || customParameter.relativeUrl>
                                     <a href="${customParameter.value}" style="word-break: break-all;"
                                        target="_blank">${customParameter.value}</a>
                                 <#else>

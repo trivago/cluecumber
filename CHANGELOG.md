@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.9.3] - 2022-09-29
+
+### Added
+* Custom parameter values starting with `./`, `../` or `#` are now interpreted as relative URLs
+* Custom navigation links without values are now hidden
+
 ## [2.9.2] - 2022-09-27
 
 ### Fixed

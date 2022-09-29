@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>2.9.2</version>
+    <version>2.9.3</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -42,6 +42,7 @@
                     <customParameters>
                         <Custom_Parameter>This is a test</Custom_Parameter>
                         <Custom_URL>https://www.google.com</Custom_URL>
+                        <Custom_Relative_URL>./css/cluecumber.css</Custom_Relative_URL>
                         <_KeysStartingWithAnUnderscoreAreHidden>This is a long text that is displayed without the key.
                             This can be used to display longer texts in the report!
                         </_KeysStartingWithAnUnderscoreAreHidden>
@@ -85,9 +86,11 @@
                     <!-- Optionally skip the whole report generation -->
                     <!--<skip>true</skip>-->
 
+                    <!-- Optional custom navigation links that are shown in the main top navigation (if they have a value) -->
                     <customNavigationLinks>
                         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
                         <Twitter>https://twitter.com/BischoffDev</Twitter>
+                        <Empty_Link></Empty_Link>
                     </customNavigationLinks>
                 </configuration>
             </plugin>

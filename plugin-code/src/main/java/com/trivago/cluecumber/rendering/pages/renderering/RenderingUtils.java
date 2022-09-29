@@ -144,4 +144,8 @@ public class RenderingUtils {
             return false;
         }
     }
+
+    public static boolean isRelativeUrl(final String value){
+        return value.startsWith("./") || value.startsWith("../") || value.startsWith("#");
+    }
 }
