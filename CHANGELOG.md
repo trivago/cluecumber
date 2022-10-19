@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [2.9.4] - 2022-10-19
+
+### Changed
+* Using new JQuery because of appsec vulnerability (#294)
+
 ## [2.9.3] - 2022-09-29
 
 ### Added
@@ -660,6 +665,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[2.9.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4
 [2.9.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.3
 [2.9.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.2
 [2.9.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.1
