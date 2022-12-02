@@ -1,0 +1,509 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 1178038685,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.setup()"
+            }
+          }
+        ],
+        "line": 4,
+        "name": "Check DummyUrl",
+        "description": "",
+        "id": "affiliates:-check-affiliate-url;check-affiliate-url",
+        "after": [
+          {
+            "embeddings": [],
+            "result": {
+              "duration": 2226359417,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Steps.tearDown(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3120117078,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Open Dummy Site",
+            "match": {
+              "location": "Steps.openLoginPage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"id\",\"selector\":\"desktop_nav_link_logout\"}\n  (Session info: chrome\u003d63.0.3239.132)\n  (Driver info: chromedriver\u003d2.34.522913 (36222509aa6e819815938cbf2709b4849735537c),platform\u003dLinux 4.13.0-26-generic x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 0 milliseconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: \u00273.8.1\u0027, revision: \u00276e95a6684b\u0027, time: \u00272017-12-01T18:33:54.468Z\u0027\nSystem info: host: \u0027intel3-01\u0027, ip: \u0027127.0.1.1\u0027, os.name: \u0027Linux\u0027, os.arch: \u0027amd64\u0027, os.version: \u00274.13.0-26-generic\u0027, java.version: \u00271.8.0_151\u0027\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities {acceptSslCerts: true, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.34.522913 (36222509aa6e81..., userDataDir: /tmp/.org.chromium.Chromium...}, cssSelectorsEnabled: true, databaseEnabled: false, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: LINUX, platformName: LINUX, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: accept, unhandledPromptBehavior: accept, version: 63.0.3239.132, webStorageEnabled: true}\nSession ID: f67b5098b72c8041926198c3705e02c1\n*** Element info: {Using\u003did, value\u003ddesktop_nav_link_logout}\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)\n\tat org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)\n\tat org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)\n\tat org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)\n\tat org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:164)\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:371)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElementById(RemoteWebDriver.java:417)\n\tat org.openqa.selenium.By$ById.findElement(By.java:218)\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)\n\tat org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)\n\tat org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)\n\tat com.sun.proxy.$Proxy21.getText(Unknown Source)\n\tat com.Dummytesting.pagesobjects.DummyMenu.isPageOpened(DummyMenu.kt:35)\n\tat com.Dummytesting.pagesobjects.LoginPage.isPageOpened(LoginPage.kt:36)\n\tat com.Dummytesting.Steps.logInAccountWith(Steps.kt:91)\n\tat ✽.Log in to your account with(parallel/features/AffiliateUrl_scenario001_run001_IT.feature:7)\n",
+              "duration": 12793362935,
+              "status": "failed"
+            },
+            "line": 7,
+            "name": "Log in to your account with",
+            "match": {
+              "location": "Steps.logInAccountWith(String,String\u003e)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Username",
+                  "test"
+                ]
+              },
+              {
+                "cells": [
+                  "Password",
+                  "123456"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 10,
+            "name": "Go to Services Page",
+            "match": {
+              "location": "Steps.go_to_services_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 11,
+            "name": "Service Open Service \"P1\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "P1",
+                  "offset": 22
+                }
+              ],
+              "location": "Steps.service_open_service_something(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "Create a widget on local with name \"AffiliateWidget\" with Dummyid as \"2366\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AffiliateWidget",
+                  "offset": 36
+                },
+                {
+                  "val": "2366",
+                  "offset": 75
+                }
+              ],
+              "location": "Steps.create_a_widget_on_local_with_name_something_with_affiliate_id_as_something(String,String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "open widget with name \"AffiliateWidget\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "AffiliateWidget",
+                  "offset": 23
+                }
+              ],
+              "location": "Steps.open_widget_with_name_something(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "name": "Widget go \"1\" Months Later with kind of service as \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 11
+                },
+                {
+                  "val": "dummy",
+                  "offset": 52
+                }
+              ],
+              "location": "Steps.widget_go_something_months_later_with_kind_of_service_as_something(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "name": "Check Dummy in Iframe id as \"2366\" and kind of service as \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "2366",
+                  "offset": 33
+                },
+                {
+                  "val": "dummy",
+                  "offset": 63
+                }
+              ],
+              "location": "Steps.check_affiliate_in_iframe_id_as_something_and_kind_of_service_as_something(String,String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 16,
+            "name": "Widget Select Day as \"13\" kind of service as \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "13",
+                  "offset": 22
+                },
+                {
+                  "val": "dummy",
+                  "offset": 46
+                }
+              ],
+              "location": "Steps.widget_select_day_as_something_kind_of_service_as_something(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 17,
+            "name": "Widget Select Hour \"900\" kind of service as \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "900",
+                  "offset": 20
+                },
+                {
+                  "val": "dummy",
+                  "offset": 45
+                }
+              ],
+              "location": "Steps.widget_select_hour_in_position_something_kind_of_service_as_something(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 18,
+            "name": "Widget Input Ticket kind services as \"tour\" position \"1\" and value \"1\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "dummy",
+                  "offset": 38
+                },
+                {
+                  "val": "1",
+                  "offset": 54
+                },
+                {
+                  "val": "1",
+                  "offset": 68
+                }
+              ],
+              "location": "Steps.widget_input_ticket_kind_services_as_something_position_something_and_value_something(String,String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 19,
+            "name": "Widget click next button service flow \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "dummy",
+                  "offset": 39
+                }
+              ],
+              "location": "Steps.widget_click_next_button_service_flow_something(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 20,
+            "name": "Widget Step2 Input Full Name as \"TestAffiliate\" service flow \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "TestAffiliate",
+                  "offset": 33
+                },
+                {
+                  "val": "dummy",
+                  "offset": 62
+                }
+              ],
+              "location": "Steps.widget_step2_input_full_name_as_something_service_flow_something(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 21,
+            "name": "Widget Step2 Input Email as \"someone@test.com\" service flow \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "someone@test.com",
+                  "offset": 29
+                },
+                {
+                  "val": "dummy",
+                  "offset": 64
+                }
+              ],
+              "location": "Steps.widget_step2_input_email_as_something_service_flow_something(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 22,
+            "name": "Widget Step2 click make dummy service flow \"tour\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "dummy",
+                  "offset": 46
+                }
+              ],
+              "location": "Steps.widget_step2_click_make_dummy_service_flow_something(String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 23,
+            "name": "Success Page click go back",
+            "match": {
+              "location": "Steps.success_page_click_go_back()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 24,
+            "name": "Open Dummy Site",
+            "match": {
+              "location": "Steps.openLoginPage()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 25,
+            "name": "Log in to your account with",
+            "match": {
+              "location": "Steps.logInAccountWith(String,String\u003e)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Username",
+                  "test"
+                ]
+              },
+              {
+                "cells": [
+                  "Password",
+                  "123456"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 28,
+            "name": "Go to dummys Page",
+            "match": {
+              "location": "Steps.go_to_dummy_page()"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "Job Number",
+                  "Job Name",
+                  "Expected Duration"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              },
+              {
+                "cells": [
+                  "XXXXX",
+                  "One word, two words, three words",
+                  "10"
+                ]
+              }
+            ],
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 29,
+            "name": "dummys Search Client",
+            "match": {
+              "location": "Steps.dummys_search_buyer()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 30,
+            "name": "dummys Click Search Button",
+            "match": {
+              "location": "Steps.dummys_click_search_button()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "name": "dummys Check Agent Name in dummy position \"1\" as \"affiliate\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "1",
+                  "offset": 47
+                },
+                {
+                  "val": "affiliate",
+                  "offset": 54
+                }
+              ],
+              "location": "Steps.dummys_check_agent_name_in_dummy_position_something_as_something(String,String)"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Affiliates"
+          }
+        ]
+      }
+    ],
+    "name": "Affiliates: Check DummyUrl",
+    "description": "",
+    "id": "affiliates:-check-affiliate-url",
+    "keyword": "Feature",
+    "uri": "parallel/features/AffiliateUrl_scenario001_run001_IT.feature",
+    "tags": [
+      {
+        "name": "@Affiliates",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

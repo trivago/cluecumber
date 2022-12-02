@@ -1,0 +1,103 @@
+[
+  {
+    "comments": [
+      {
+        "line": 1,
+        "value": "# language: en"
+      }
+    ],
+    "line": 3,
+    "elements": [
+      {
+        "before": [
+          {
+            "result": {
+              "duration": 15566430948,
+              "status": "passed"
+            },
+            "match": {
+              "location": "Hooks.setupChrome(Scenario)"
+            }
+          }
+        ],
+        "line": 9,
+        "name": "Login",
+        "description": "",
+        "id": "login",
+        "after": [
+          {
+            "result": {
+              "duration": 8405608,
+              "error_message": "org.openqa.selenium.NoSuchWindowException",
+              "status": "failed"
+            },
+            "match": {
+              "location": "Hooks.tearDown(Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 287891231,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I browse the Login Page",
+            "match": {
+              "location": "browse()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 11685860341,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the list should contain $ element on \"pf1\" with a value in !]0,100[",
+            "match": {
+              "arguments": [
+                {
+                  "val": "$",
+                  "offset": 30
+                },
+                {
+                  "val": "pf1",
+                  "offset": 42
+                },
+                {
+                  "val": "!]0,100[",
+                  "offset": 78
+                }
+              ],
+              "location": "CommonOrderSteps.orderListShouldContain(String,String,String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 6,
+            "name": "@Chrome"
+          },
+          {
+            "line": 7,
+            "name": "@Firefox"
+          },
+          {
+            "line": 8,
+            "name": "@IE"
+          }
+        ]
+      }
+    ],
+    "name": "login page",
+    "description": "Login Page",
+    "id": "login-page",
+    "keyword": "Feature",
+    "uri": "target/parallel/features/Login_scenario002_run001_IT.feature"
+  }
+]

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cluecumber-core</artifactId>
+    <version>3.0.0</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <artifactId>cluecumber-parent</artifactId>
+        <groupId>com.trivago.rta</groupId>
+        <version>3.0.0</version>
+    </parent>
+
+    <name>Cluecumber Core</name>
+    <description>The Cluecumber core component for the JVM.</description>
+
+    <inceptionYear>2022</inceptionYear>
+
+    <organization>
+        <name>trivago N.V.</name>
+        <url>https://www.trivago.de</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Benjamin Bischoff</name>
+            <organization>trivago N.V.</organization>
+            <organizationUrl>https://www.trivago.de</organizationUrl>
+            <roles>
+                <role>Test Automation Engineer</role>
+            </roles>
+            <url>https://www.softwaretester.blog</url>
+        </developer>
+    </developers>
+
+    <properties>
+        <maven.compiler.release>11</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.trivago.rta</groupId>
+            <artifactId>cluecumber-engine</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

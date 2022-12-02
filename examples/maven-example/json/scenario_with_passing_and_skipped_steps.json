@@ -1,0 +1,58 @@
+[
+  {
+    "description": "This is a feature description 2\nand this is the next line of description",
+    "elements": [
+      {
+        "description": "",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "This is a scenario with passing and skipped steps",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "location"
+            },
+            "name": "this step passes",
+            "result": {
+              "duration": 40604218,
+              "status": "passed"
+            }
+          },
+          {
+            "keyword": "And ",
+            "line": 3,
+            "match": {
+              "location": "NativeConstructorAccessorImplSkipped.java:-2"
+            },
+            "name": "this step is skipped",
+            "result": {
+              "duration": 140604218,
+              "status": "skipped"
+            }
+          },
+          {
+            "keyword": "Then ",
+            "line": 3,
+            "match": {
+              "location": "NativeConstructorAccessorImplPass.java:-2"
+            },
+            "name": "this step passes",
+            "result": {
+              "duration": 340604218,
+              "status": "passed"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Feature 2",
+    "uri": "features/feature2.feature"
+  }
+]

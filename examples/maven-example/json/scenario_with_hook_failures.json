@@ -1,0 +1,90 @@
+[
+  {
+    "description": "This is a feature description 2\nand this is the next line of description",
+    "elements": [
+      {
+        "before": [
+          {
+            "match": {
+              "location": "Steps.java:6"
+            },
+            "output": [
+              "Output 1",
+              "Output 2"
+            ],
+            "result": {
+              "duration": 1452264732,
+              "error_message": "java.lang.RuntimeException: failing before hook\n\tat Steps.lambda$new$0(Steps.java:7)\n\tat cucumber.runtime.java8.Java8HookDefinition.lambda$execute$0(Java8HookDefinition.java:51)",
+              "status": "failed"
+            }
+          }
+        ],
+        "description": "",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "This is a scenario with failing hooks",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 4,
+            "match": {
+              "location": "NativeConstructorAccessorImplSkipped.java:-2"
+            },
+            "name": "this step is skipped",
+            "result": {
+              "duration": 2552264732,
+              "status": "skipped"
+            },
+            "output": [
+              "Output 5",
+              "Output 6"
+            ]
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "After.java:6"
+            },
+            "result": {
+              "duration": 1452264732,
+              "error_message": "Some errors",
+              "status": "failed"
+            },
+            "output": [
+              "Output 3",
+              "Output 4"
+            ],
+            "embeddings": [
+              {
+                "data": "PGRpdiBhbGlnbj0nY2VudGVyJyBzdHlsZT0naGVpZ2h0OiAxNTBweCc+PGEgaHJlZj0naHR0cHM6Ly93d3cuZ29vZ2xlLmNvbScgdGFyZ2V0PSdfYmxhbmsnPkdvb2dsZS4uPC9hPjwvZGl2Pg==",
+                "mime_type": "text/html"
+              }
+            ]
+          }
+        ],
+        "tags": [
+          {
+            "name": "@failing-before"
+          },
+          {
+            "name": "@test"
+          },
+          {
+            "name": "@çà"
+          },
+          {
+            "name": "@this/is/a/tag"
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Feature 2",
+    "uri": "features/feature2.feature"
+  }
+]
