@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.0.0] - 2022-12-03
+
+This marks a new chapter in Cluecumber development.
+
+From now on it will be possible to develop separate versions with different invocations and for different platforms since 
+the core component is now the reporting engine that is the base for other forms of Cluecumber.
+
+### Changed
+* Separated functionality of Cluecumber Maven into three components:
+  * Cluecumber Engine (_reporting engine_)
+  * Cluecumber Core (_JVM code version_)
+  * Cluecumber Maven (_Maven version_)
+* Overhauled documentation
+
+### Added
+* New example projects for Cluecumber Core and Cluecumber Maven.
+
 ## [2.9.4] - 2022-10-19
 
 ### Changed
@@ -665,6 +682,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.0
 [2.9.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4
 [2.9.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.3
 [2.9.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.2

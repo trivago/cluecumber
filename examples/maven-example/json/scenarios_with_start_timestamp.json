@@ -1,0 +1,179 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2019-04-11T08:00:23.668Z",
+        "line": 6,
+        "name": "Scenario with timestamp 1",
+        "description": "",
+        "id": "shopping",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 467889821,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1691629452,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2019-04-11T08:00:15.091Z",
+        "line": 10,
+        "name": "Scenario with timestamp 2",
+        "description": "",
+        "id": "vendor-shopping-cart;search-for-book",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 5224289914,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "I am on a vendor page",
+            "match": {
+              "location": "MySteps.I_visit_vendor()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1084130235,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 2266563900,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2019-04-11T08:00:25.829Z",
+        "line": 10,
+        "name": "Scenario with timestamp 3",
+        "description": "",
+        "id": "vendor-shopping-cart;search-for-book",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "error_message": "org.openqa.selenium.TimeoutException: Expected condition failed: waiting for title to contain \"Vendor.com: Online Shopping \".",
+              "duration": 10368348419,
+              "status": "failed"
+            },
+            "line": 11,
+            "name": "I am on a vendor page",
+            "match": {
+              "location": "MySteps.I_visit_vendor()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 13530,
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 4502,
+              "status": "skipped"
+            },
+            "line": 13,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Vendor Shopping Cart",
+    "description": "I\u0027d like to be able to search for my favourite book",
+    "id": "vendor-shopping-cart",
+    "keyword": "Feature",
+    "uri": "classpath:org/ShoppingCart.feature",
+    "tags": []
+  }
+]
