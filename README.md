@@ -13,14 +13,14 @@
   <strong>Cluecumber Core</strong>
   <ul>
    <li><a href="core">Documentation</a></li>
-   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/" alt="Cluecumber Core" /></li>
+   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg" alt="Cluecumber Core" /></li>
   </ul>
  </p>
  <p>
   <strong>Cluecumber Maven</strong>
   <ul>
    <li><a href="maven">Documentation</a></li>
-   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-maven/" alt="Cluecumber Maven" /></li>
+   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg" alt="Cluecumber Maven" /></li>
   </ul>
  </p>
  </td>
