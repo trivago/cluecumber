@@ -9,9 +9,11 @@
 <table>
 <tr>
  <td>
- * Cluecumber Core
-  * <a href="core">Documentation</a>
-  * [![Cluecumber Core](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/)
+  <strong>Cluecumber Core</strong>
+  <ul>
+   <li><a href="core">Documentation</a></li>
+   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/" alt="Cluecumber Core" /></li>
+  </ul>
 * Cluecumber Maven
   * [Documentation](maven)
   * [![Cluecumber Maven](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-maven/)
