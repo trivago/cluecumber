@@ -7,8 +7,6 @@
 [![Example Report](https://img.shields.io/badge/Example-Report-blue.svg)](http://cluecumber.softwaretester.blog/)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
 
----
-
 ![Cucumber compatible](../documentation/img/cucumber-compatible-black-64.png)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
