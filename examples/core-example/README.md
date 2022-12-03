@@ -1,6 +1,7 @@
+<img alt="Cluecumber Core logo" src="../../documentation/img/cluecumber_core.png" width="250"/>
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Cluecumber Core Example](#cluecumber-core-example)
   - [Configuration options](#configuration-options)
