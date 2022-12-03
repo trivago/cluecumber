@@ -57,19 +57,6 @@
 This project creates aggregated test reports from Cucumber compatible JSON files that are generated
 by [Cucumber BDD](https://github.com/cucumber), [Karate](https://github.com/intuit/karate) and other frameworks.
 
-## Prerequisites
-
-In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in
-your Cucumber runner configuration:
-
-```
-@CucumberOptions(
-    plugin = {"json:target/cucumber-report/cucumber.json"}
-)
-```
-
-This will generate JSON results for all Cucumber tests.
-
 ## Cluecumber Core (usage from Java code)
 
 [Cluecumber Core](core) is intended to be used directly from Java code, e.g.
