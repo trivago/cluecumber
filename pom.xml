@@ -12,6 +12,7 @@
 
     <name>Cluecumber Parent</name>
     <description>The Cluecumber parent POM defining core dependencies.</description>
+    <url>https://github.com/trivago/cluecumber</url>
 
     <modules>
         <module>engine</module>
