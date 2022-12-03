@@ -20,6 +20,7 @@
    <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg" alt="Cluecumber Core" /></li>
   </ul>
  </p>
+ <hr>
  <p>
   <strong>Cluecumber Maven</strong><br>
    generates reports from Maven
@@ -28,11 +29,11 @@
    <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg" alt="Cluecumber Maven" /></li>
   </ul>
  </p>
+ <hr>
+ <img src="documentation/img/cucumber-compatible-black-64.png" alt="Cluecumber compatible" width="200" />
  </td> 
 </tr>
 <table>
-
-![Cucumber compatible](documentation/img/cucumber-compatible-black-64.png)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
