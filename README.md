@@ -9,17 +9,23 @@
 <table>
 <tr>
  <td>
+  <p>
   <strong>Cluecumber Core</strong>
   <ul>
    <li><a href="core">Documentation</a></li>
-   <li><a href="https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/"><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg" /></a></li>
+   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/" alt="Cluecumber Core" /></li>
   </ul>
-* Cluecumber Maven
-  * [Documentation](maven)
-  * [![Cluecumber Maven](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-maven/)
+ </p>
+ <p>
+  <strong>Cluecumber Maven</strong>
+  <ul>
+   <li><a href="maven">Documentation</a></li>
+   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-maven/" alt="Cluecumber Maven" /></li>
+  </ul>
+ </p>
  </td>
  <td>
- ![Cucumber animation](documentation/img/cluecumber.gif)
+ <img src="documentation/img/cluecumber.gif" alt="Cluecumber animation" />
  </td>
 </tr>
 <table>
