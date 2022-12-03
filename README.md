@@ -7,11 +7,11 @@
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
 
 <table>
-<tr style="vertical-align: top;">
+<tr>
  <td>
  <img src="documentation/img/cluecumber.gif" alt="Cluecumber animation" />
  </td>
- <td>
+ <td style="vertical-align: top;">
   <p>
   <strong>Cluecumber Core</strong>
   <ul>
