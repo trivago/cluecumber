@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.0.0] - UNRELEASED
+## [3.0.0] - 2022-12-03
 
 This marks a new chapter in Cluecumber development.
 
