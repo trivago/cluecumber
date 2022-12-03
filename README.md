@@ -13,14 +13,14 @@
  </td>
  <td style="vertical-align: top;">
   <p>
-  <strong>Cluecumber Core</strong>
+  <strong>Cluecumber Core</strong> generates reports from code.
   <ul>
    <li><a href="core">Documentation</a></li>
    <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg" alt="Cluecumber Core" /></li>
   </ul>
  </p>
  <p>
-  <strong>Cluecumber Maven</strong>
+  <strong>Cluecumber Maven</strong> generates reports from Maven.
   <ul>
    <li><a href="maven">Documentation</a></li>
    <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg" alt="Cluecumber Maven" /></li>
