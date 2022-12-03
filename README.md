@@ -12,7 +12,7 @@
   <strong>Cluecumber Core</strong>
   <ul>
    <li><a href="core">Documentation</a></li>
-   <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/" alt="Cluecumber Core" /></li>
+   <li><a href="https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/"><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg" /></a></li>
   </ul>
 * Cluecumber Maven
   * [Documentation](maven)
