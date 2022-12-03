@@ -2,6 +2,7 @@ package com.trivago.cluecumber.engine.json.pojo;
 
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.filters.FilterPackageInfo;
+import com.openpojo.reflection.filters.FilterSyntheticClasses;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
 import com.openpojo.validation.ValidatorBuilder;
@@ -14,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class PojoTest {
-    private static final int EXPECTED_CLASS_COUNT = 13;
+    private static final int EXPECTED_CLASS_COUNT = 11;
     private static final String POJO_PACKAGE = "com.trivago.cluecumber.engine.json.pojo";
 
     @BeforeAll
@@ -24,9 +25,10 @@ public class PojoTest {
 
     @Test
     public void ensureExpectedPojoCount() {
-        List<PojoClass> pojoClasses = PojoClassFactory.getPojoClasses(POJO_PACKAGE,
-                pojoClass -> !pojoClass.getSourcePath().contains("/test-classes/"));
-        Affirm.affirmEquals("Classes added / removed?", EXPECTED_CLASS_COUNT, pojoClasses.size());
+        List<PojoClass> pojoClasses = PojoClassFactory.getPojoClasses(POJO_PACKAGE, new FilterSyntheticClasses());
+        int count = (int) pojoClasses.stream().filter(
+                pojoClass -> !pojoClass.getSourcePath().contains("/test-classes/")).count();
+        Affirm.affirmEquals("Classes added / removed?", EXPECTED_CLASS_COUNT, count);
     }
 
     @Test
