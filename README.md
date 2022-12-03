@@ -6,8 +6,6 @@
 [![Example Report](https://img.shields.io/badge/Example-Report-blue.svg)](http://cluecumber.softwaretester.blog/)
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
 
----
-
 * Cluecumber Core
   * [Documentation](core)
   * [![Cluecumber Core](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/)
@@ -15,10 +13,7 @@
   * [Documentation](maven)
   * [![Cluecumber Maven](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-maven/)
 
----
-
 ![Cucumber animation](documentation/img/cluecumber.gif)
-
 
 ![Cucumber compatible](documentation/img/cucumber-compatible-black-64.png)
 
