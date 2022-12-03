@@ -12,6 +12,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Maven dependency](#maven-dependency)
+  - [Prerequisites](#prerequisites) 
   - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
   - [Optional Configuration Parameters](#optional-configuration-parameters)
     - [Logging](#logging)
@@ -43,6 +44,20 @@
   <version>3.0.0</version>
 </dependency>
 ```
+
+## Prerequisites
+
+In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in
+your Cucumber runner configuration:
+
+```
+@CucumberOptions(
+    plugin = {"json:target/cucumber-report/cucumber.json"}
+)
+```
+
+This will generate JSON results for all Cucumber tests.
+
 
 ## Mandatory Configuration Parameters
 
