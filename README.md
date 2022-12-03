@@ -9,6 +9,9 @@
 <table>
 <tr>
  <td>
+ <img src="documentation/img/cluecumber.gif" alt="Cluecumber animation" />
+ </td>
+ <td style="vertical-align: top;">
   <p>
   <strong>Cluecumber Core</strong>
   <ul>
@@ -23,10 +26,7 @@
    <li><img src="https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg" alt="Cluecumber Maven" /></li>
   </ul>
  </p>
- </td>
- <td>
- <img src="documentation/img/cluecumber.gif" alt="Cluecumber animation" />
- </td>
+ </td> 
 </tr>
 <table>
 
