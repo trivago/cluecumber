@@ -10,7 +10,7 @@
 <tr>
  <td>
  * Cluecumber Core
-  * [Documentation](core)
+  * <a href="core">Documentation</a>
   * [![Cluecumber Core](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-core.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-core/)
 * Cluecumber Maven
   * [Documentation](maven)
