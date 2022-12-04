@@ -40,7 +40,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Cluecumber](#cluecumber)
-  - [Prerequisites](#prerequisites)
   - [Cluecumber Core (usage from Java code)](#cluecumber-core-usage-from-java-code)
   - [Cluecumber Maven (usage from Maven)](#cluecumber-maven-usage-from-maven)
   - [Example report](#example-report)
@@ -63,17 +62,13 @@ by [Cucumber BDD](https://github.com/cucumber), [Karate](https://github.com/intu
 [Cluecumber Core](core) is intended to be used directly from Java code, e.g.
 for [Karate](https://github.com/intuit/karate) test runners.
 
-Please check out the documentation here: [Cluecumber Core documentation](core)
-
-For an example, please check out the [Cluecumber Core Example](examples/core-example).
+Please check out the documentation here: [Cluecumber Core documentation](core). For an example, please check out the [Cluecumber Core Example](examples/core-example).
 
 ## Cluecumber Maven (usage from Maven)
 
 [Cluecumber Maven](maven) is intended to be used through Maven invocation.
 
-Please check out the documentation here: [Cluecumber Maven](maven)
-
-For an example, please check out the [Cluecumber Maven Example](examples/maven-example).
+Please check out the documentation here: [Cluecumber Maven](maven). For an example, please check out the [Cluecumber Maven Example](examples/maven-example).
 
 ## Example report
 
@@ -87,7 +82,7 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 
 ## Building
 
-Cluecumber requires Java >= 8 and Maven >= 3.3.9.
+Cluecumber requires Java >= 11 and Maven >= 3.3.9.
 It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
 
 ## Generated pages
