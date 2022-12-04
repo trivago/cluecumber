@@ -62,17 +62,17 @@ by [Cucumber BDD](https://github.com/cucumber), [Karate](https://github.com/intu
 [Cluecumber Core](core) is intended to be used directly from Java code, e.g.
 for [Karate](https://github.com/intuit/karate) test runners.
 
-Please check out the documentation here: [Cluecumber Core documentation](core). For an example, please check out the [Cluecumber Core Example](examples/core-example).
+The full documentation can be found here: [Cluecumber Core documentation](core). For an example, please check out the [Cluecumber Core Example](examples/core-example).
 
 ## Cluecumber Maven (usage from Maven)
 
 [Cluecumber Maven](maven) is intended to be used through Maven invocation.
 
-Please check out the documentation here: [Cluecumber Maven](maven). For an example, please check out the [Cluecumber Maven Example](examples/maven-example).
+The full documentation can be found here: [Cluecumber Maven](maven). For an example, please check out the [Cluecumber Maven Example](examples/maven-example).
 
 ## Example report
 
-A fully generated example report can also be [viewed online](http://cluecumber.softwaretester.blog/)!
+A fully generated example report can be [viewed online](http://cluecumber.softwaretester.blog/)!
 
 ## Changelog
 
