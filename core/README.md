@@ -63,7 +63,7 @@ This will generate JSON results for all Cucumber tests.
 
 # Mandatory Configuration Parameters
 
-There are two mandatory parameters that have to be passed to the constructor:
+There are two mandatory parameters that have to be passed to the `generateReports` method:
 
 ```
 String jsonDirectory = "examples/core-example/json";
