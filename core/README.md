@@ -12,23 +12,23 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Maven dependency](#maven-dependency)
-  - [Prerequisites](#prerequisites) 
-  - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
-  - [Optional Configuration Parameters](#optional-configuration-parameters)
-    - [Logging](#logging)
-    - [Add Custom Information to the Report](#add-custom-information-to-the-report)
-      - [Add Custom Information](#add-custom-information)
-      - [Add Custom Information Using a File](#add-custom-information-using-a-file)
-      - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
-    - [Add custom navigation links](#add-custom-navigation-links)
-    - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
-    - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
-    - [Auto-expand Attachments](#auto-expand-attachments)
-  - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
-    - [Defining the report start page](#defining-the-report-start-page)
-    - [Defining a custom report title](#defining-a-custom-report-title)
-    - [Defining a custom CSS file](#defining-a-custom-css-file)
-    - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
+- [Prerequisites](#prerequisites) 
+- [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
+- [Optional Configuration Parameters](#optional-configuration-parameters)
+  - [Logging](#logging)
+  - [Add Custom Information to the Report](#add-custom-information-to-the-report)
+    - [Add Custom Information](#add-custom-information)
+    - [Add Custom Information Using a File](#add-custom-information-using-a-file)
+    - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
+  - [Add custom navigation links](#add-custom-navigation-links)
+  - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
+  - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
+  - [Auto-expand Attachments](#auto-expand-attachments)
+- [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
+  - [Defining the report start page](#defining-the-report-start-page)
+  - [Defining a custom report title](#defining-a-custom-report-title)
+  - [Defining a custom CSS file](#defining-a-custom-css-file)
+  - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
 - [Appendix](#appendix)
   - [Building](#building)
   - [License](#license)
@@ -45,7 +45,7 @@
 </dependency>
 ```
 
-## Prerequisites
+# Prerequisites
 
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in
 your Cucumber runner configuration:
@@ -59,7 +59,7 @@ your Cucumber runner configuration:
 This will generate JSON results for all Cucumber tests.
 
 
-## Mandatory Configuration Parameters
+# Mandatory Configuration Parameters
 
 There are two mandatory parameters that have to be passed to the constructor:
 
@@ -76,9 +76,9 @@ new CluecumberCore.Builder()
 
 __Note:__ Typically, both properties point to directories inside the Maven ```target``` directory.
 
-## Optional Configuration Parameters
+# Optional Configuration Parameters
 
-### Logging
+## Logging
 
 By default, Cluecumber logs all information including
 
@@ -99,9 +99,9 @@ new CluecumberCore.Builder()
 * `CluecumberLogger.CluecumberLogLevel.MINIMAL` will only log the generated report location
 * `CluecumberLogger.CluecumberLogLevel.OFF` will prevent any logging
 
-### Add Custom Information to the Report
+## Add Custom Information to the Report
 
-#### Add Custom Information
+### Add Custom Information
 
 `setCustomParameters` can be used to define custom information that should be displayed on the report start page.
 
@@ -119,7 +119,7 @@ The property definitions above are shown in the report like this:
 
 ![custom parameters](../documentation/img/custom_params.png)
 
-#### Add Custom Information Using a File
+### Add Custom Information Using a File
 
 You can also set custom parameters by specifying the path to a `.properties` file in the `customParametersFile` property
 like this:
@@ -146,7 +146,7 @@ The property definitions above are shown in the report like this:
 
 ![custom parameters](../documentation/img/custom_params.png)
 
-#### Where to Display Custom Parameters
+### Where to Display Custom Parameters
 
 You can decide how to display the custom parameters in the report using the `customParametersDisplayMode` property.
 
@@ -164,7 +164,7 @@ new CluecumberCore.Builder()
 
 The default value for this property is `SCENARIO_PAGES`.
 
-### Add custom navigation links
+## Add custom navigation links
 
 If you have other pages or files you want to make accessible from the central navigation bar,
 this is possible via the `customNavigationLinks` property.
@@ -184,7 +184,7 @@ these are replaces with spaces for the link name:
 
 ![Custom link](../documentation/img/custom_link.png)
 
-### Fail Scenarios on Pending or Undefined Steps
+## Fail Scenarios on Pending or Undefined Steps
 
 The optional `setFailScenariosOnPendingOrUndefinedSteps` property can be set to `true` if you scenarios should be marked
 as `failed` when they contain `pending` or `skipped` steps.
@@ -196,7 +196,7 @@ new CluecumberCore.Builder()
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
-### Auto-expand Certain Report Sections
+## Auto-expand Certain Report Sections
 
 The `expandBeforeAfterHooks`, `expandStepHooks` and `expandDocStrings` options can be set to `true` to expand or
 collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
@@ -212,7 +212,7 @@ new CluecumberCore.Builder()
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
-### Auto-expand Attachments
+## Auto-expand Attachments
 
 By default, attachments are collapsed and can be toggled individually. If the `expandAttachments` options is set
 to `true`, they are automatically expanded.
@@ -223,9 +223,9 @@ new CluecumberCore.Builder()
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
-## Optional Configuration Parameters for Changing the Report Appearance
+# Optional Configuration Parameters for Changing the Report Appearance
 
-### Defining the report start page
+## Defining the report start page
 
 The default start page of the reports (if not overwritten by the `startPage` property) is the scenario overview page.
 
@@ -243,7 +243,7 @@ This can be customized with one of the following values:
 * `PluginSettings.StartPage.ALL_STEPS` (step overview page)
 * `PluginSettings.StartPage.ALL_FEATURES` (feature overview page)
 
-### Defining a custom report title
+## Defining a custom report title
 
 By default, the page html title of the report pages is `Cluecumber Report` plus the current page name,
 e.g. `Cluecumber Report - All Tags`.
@@ -260,7 +260,7 @@ This would lead to a report title like this:
 
 ![Custom Title](../documentation/img/custom_title.png)
 
-### Defining a custom CSS file
+## Defining a custom CSS file
 
 The `setCustomCss` method can be used to define a custom CSS file that will be automatically loaded on top of
 Cluecumber's default styles.
@@ -299,7 +299,7 @@ Likewise, if you want to hide elements from the report, you can also add this to
 }
 ```
 
-### Defining custom passed, skipped and failed colors
+## Defining custom passed, skipped and failed colors
 
 It is possible to set these properties to change the color scheme for passed, failed and skipped steps and scenarios
 including the displayed diagrams. The values have to be valid hex colors:
