@@ -420,7 +420,7 @@ specified execution and is ignored when you run `mvn cluecumber-report:reporting
 
 You can also pass built-in properties directly on the command line, e.g.
 
-`mvn cluecumber-report:reporting -Dreporting.startPage=ALL_TAGS`
+`mvn cluecumber:reporting -Dreporting.startPage=ALL_TAGS`
 
 These properties start with `reporting.`!
 
@@ -449,7 +449,7 @@ Also define it in the Cluecumber section in your POM:
 When invoking the reporting, you can now pass this property via the `-D` option:
 
 ```
-mvn cluecumber-report:reporting -DsomeProperty="this is cool" -D...
+mvn cluecumber:reporting -DsomeProperty="this is cool" -D...
 ```
 
 __Note:__ If you don't pass this property, Cluecumber will ignore it and not show it in the report.
