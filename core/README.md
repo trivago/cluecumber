@@ -45,6 +45,8 @@
 </dependency>
 ```
 
+__Note:__ From version 3.0.0 on, the Maven goal for command line invocation changed to `cluecumber:reporting`!
+
 # Prerequisites
 
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in
