@@ -8,11 +8,11 @@
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/bischoffdev)
 
 <table>
-<tr>
+<tr style="vertical-align: top;">
  <td width="60%">
  <img src="documentation/img/cluecumber.gif" alt="Cluecumber animation" />
  </td>
- <td style="vertical-align: top;"  width="40%">
+ <td width="40%">
   <p>
   <strong>Cluecumber Core</strong><br>
    generates reports from code
