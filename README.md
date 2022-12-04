@@ -9,10 +9,10 @@
 
 <table>
 <tr>
- <td>
+ <td width="75%">
  <img src="documentation/img/cluecumber.gif" alt="Cluecumber animation" />
  </td>
- <td style="vertical-align: top;">
+ <td style="vertical-align: top;"  width="25%">
   <p>
   <strong>Cluecumber Core</strong><br>
    generates reports from code
