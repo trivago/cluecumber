@@ -38,7 +38,7 @@
 
 # Maven dependency
 
-```
+```xml
 <dependency>
   <groupId>com.trivago.rta</groupId>
   <artifactId>cluecumber-core</artifactId>
@@ -53,7 +53,7 @@ __Note:__ From version 3.0.0 on, the Maven goal for command line invocation chan
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in
 your Cucumber runner configuration:
 
-```
+```java
 @CucumberOptions(
     plugin = {"json:target/cucumber-report/cucumber.json"}
 )
@@ -65,7 +65,7 @@ This will generate JSON results for all Cucumber tests.
 
 There are two mandatory parameters that have to be passed to the `generateReports` method:
 
-```
+```java
 String jsonDirectory = "examples/core-example/json";
 String reportDirectory = "examples/core-example/target/cluecumber_report";
 
@@ -82,7 +82,7 @@ __Note:__ Typically, both properties point to directories inside the Maven ```ta
 
 For use in Karate, just place the Cluecumber code in between the test runner code and the final assertion as seen below:
 
-```
+```java
 @Test
 void testParallel() throws CluecumberException {
   final int threads = 10;
@@ -117,7 +117,7 @@ By default, Cluecumber logs all information including
 
 This can be configured by passing the `logLevel` property:
 
-```
+```java
 new CluecumberCore.Builder()
         .setLogLevel(CluecumberLogger.CluecumberLogLevel.MINIMAL)
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -138,7 +138,7 @@ __Note:__ Underscores in the parameter names are automatically turned into space
 Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
 If a parameter name starts with an underscore (`_`), only the value is displayed.
 
-```
+```java
 new CluecumberCore.Builder()
         .setCustomParameters(parameters)
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -153,7 +153,7 @@ The property definitions above are shown in the report like this:
 You can also set custom parameters by specifying the path to a `.properties` file in the `customParametersFile` property
 like this:
 
-```
+```java
 new CluecumberCore.Builder()
         .setCustomParametersFile("c:/myProperties.properties")
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -184,7 +184,7 @@ The following display modes are available for displaying the custom parameters:
 * `PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (_default_)
 * `PluginSettings.CustomParamDisplayMode.ALL_PAGES`: Display on all the pages in the report.
 
-```
+```java
 new CluecumberCore.Builder()
         .setCustomParameters(parameters)
         .setCustomParametersDisplayMode(PluginSettings.CustomParamDisplayMode.ALL_PAGES)
@@ -198,7 +198,7 @@ The default value for this property is `SCENARIO_PAGES`.
 If you have other pages or files you want to make accessible from the central navigation bar,
 this is possible via the `customNavigationLinks` property.
 
-```
+```java
 LinkedHashMap<String, String> links = new LinkedHashMap<>();
 links.put("Test Blog", "https://www.softwaretester.blog");
 links.put("Twitter", "https://twitter.com/BischoffDev");
@@ -219,7 +219,7 @@ The optional `setFailScenariosOnPendingOrUndefinedSteps` property can be set to 
 as `failed` when they contain `pending` or `skipped` steps.
 The default setting is `false`, meaning that those scenarios will be marked as `skipped`.
 
-```
+```java
 new CluecumberCore.Builder()
         .setFailScenariosOnPendingOrUndefinedSteps(true)
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -233,7 +233,7 @@ collapse before/after hooks, step hooks or docstrings respectively on scenario d
 If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail
 page to expand those sections on demand.
 
-```
+```java
 new CluecumberCore.Builder()
         .setExpandBeforeAfterHooks(true)
         .setExpandStepHooks(true)
@@ -246,7 +246,7 @@ new CluecumberCore.Builder()
 By default, attachments are collapsed and can be toggled individually. If the `expandAttachments` options is set
 to `true`, they are automatically expanded.
 
-```
+```java
 new CluecumberCore.Builder()
         .setExpandAttachments(true)
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -258,7 +258,7 @@ new CluecumberCore.Builder()
 
 The default start page of the reports (if not overwritten by the `startPage` property) is the scenario overview page.
 
-```
+```java
 new CluecumberCore.Builder()
         .setStartPage(PluginSettings.StartPage.ALL_SCENARIOS)
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -279,7 +279,7 @@ e.g. `Cluecumber Report - All Tags`.
 
 By setting the property `customPageTitle`, this can be changed:
 
-```
+```java
 new CluecumberCore.Builder()
         .setCustomPageTitle("My Report")
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -297,7 +297,7 @@ Cluecumber's default styles.
 If you have a custom CSS file called `custom/custom.css` in your project, you could use it to change the report's
 background and header colors:
 
-```
+```css
 body {
     background-color: black;
 }
@@ -309,7 +309,7 @@ h3, h4, h5 {
 
 To use this files, specify it like so in your pom file or as a system property:
 
-```
+```java
 new CluecumberCore.Builder()
         .setCustomCssFile("custom/custom.css")
         .build().generateReports(jsonDirectory, reportDirectory);
@@ -322,7 +322,7 @@ other styles:
 
 Likewise, if you want to hide elements from the report, you can also add this to the custom css like so:
 
-```
+```css
 .some_element {
     display: none;
 }
@@ -333,7 +333,7 @@ Likewise, if you want to hide elements from the report, you can also add this to
 It is possible to set these properties to change the color scheme for passed, failed and skipped steps and scenarios
 including the displayed diagrams. The values have to be valid hex colors:
 
-```
+```java
 new CluecumberCore.Builder()
         .setCustomStatusColorPassed("#017FAF")
         .setCustomStatusColorFailed("#C94A38")
