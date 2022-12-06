@@ -43,7 +43,7 @@
 
 # Maven POM settings
 
-```
+```xml
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-report-plugin</artifactId>
@@ -69,7 +69,7 @@
 In order to have the JSON files as a source for the Cluecumber Report generation, you need to specify this option in
 your Cucumber runner configuration:
 
-```
+```java
 @CucumberOptions(
     plugin = {"json:target/cucumber-report/cucumber.json"}
 )
@@ -89,7 +89,6 @@ __Note:__ Typically, both properties point to directories inside the Maven ```ta
 This specifies the source folder of the Cucumber JSON result files.
 
 ```xml
-
 <configuration>
     <sourceJsonReportDirectory>c:/example/json-files</sourceJsonReportDirectory>
     ...
@@ -101,7 +100,6 @@ This specifies the source folder of the Cucumber JSON result files.
 This points to the root directory of the generated Cluecumber HTML report.
 
 ```xml
-
 <configuration>
     <generatedHtmlReportDirectory>c:/example/my-report</generatedHtmlReportDirectory>
     ...
@@ -120,7 +118,7 @@ By default, Cluecumber logs all information including
 
 This can be configured by passing the `logLevel` property:
 
-```
+```xml
 <logLevel>default|compact|minimal|off</logLevel>
 ```
 
@@ -139,7 +137,7 @@ __Note:__ Underscores in the parameter names are automatically turned into space
 Valid URLs that start with a protocol (http, https, ftp) are automatically recognized and turned into clickable links.
 If a parameter name starts with an underscore (`_`), only the value is displayed.
 
-```
+```xml
 <configuration>
     <customParameters>
         <Custom_Parameter>This is a test</Custom_Parameter>
@@ -161,8 +159,7 @@ The property definitions above are shown in the report like this:
 You can also set custom parameters by specifying the path to a `.properties` file in the `customParametersFile` property
 like this:
 
-```
-
+```xml
 <configuration>
     <customParametersFile>path/to/your/customParameters.properties</customParametersFile>
     ...
@@ -171,7 +168,7 @@ like this:
 
 This file needs to have a format like this:
 
-```
+```properties
 Custom_Parameter=This is a test
 Custom_URL=http://www.google.com
 _Text=This is a long text that is displayed without the key. This can be used to display longer texts in the report!
@@ -194,8 +191,7 @@ The following display modes are available for displaying the custom parameters:
 * `SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (_default_)
 * `ALL_PAGES`: Display on all the pages in the report.
 
-```
-
+```xml
 <configuration>
     <customParametersDisplayMode>ALL_PAGES</customParametersDisplayMode>
     ...
@@ -209,8 +205,7 @@ The default value for this property is `SCENARIO_PAGES`.
 If you have other pages or files you want to make accessible from the central navigation bar,
 this is possible via the `customNavigationLinks` property.
 
-```
-
+```xml
 <configuration>
     <customNavigationLinks>
         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
@@ -229,8 +224,7 @@ these are replaces with spaces for the link name:
 
 The `skip` property is used to skip the report generation. The default value is `false`
 
-```
-
+```xml
 <configuration>
     <skip>true</skip>
     ...
@@ -243,8 +237,7 @@ The optional `failScenariosOnPendingOrUndefinedSteps` property can be set to `tr
 as `failed` when they contain `pending` or `skipped` steps.
 The default setting is `false`, meaning that those scenarios will be marked as `skipped`.
 
-```
-
+```xml
 <configuration>
     <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>
     ...
@@ -259,8 +252,7 @@ collapse before/after hooks, step hooks or docstrings respectively on scenario d
 If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail
 page to expand those sections on demand.
 
-```
-
+```xml
 <configuration>
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
@@ -274,8 +266,7 @@ page to expand those sections on demand.
 By default, attachments are collapsed and can be toggled individually. If the `expandAttachments` options is set
 to `true`, they are automatically expanded.
 
-```
-
+```xml
 <configuration>
     <expandAttachments>true|false</expandAttachments>
     ...
@@ -288,8 +279,7 @@ to `true`, they are automatically expanded.
 
 The default start page of the reports (if not overwritten by the `startPage` property) is the scenario overview page.
 
-```
-
+```xml
 <configuration>
     <startPage>ALL_SCENARIOS</startPage>
     ...
@@ -311,8 +301,7 @@ e.g. `Cluecumber Report - All Tags`.
 
 By setting the property `customPageTitle`, this can be changed:
 
-```
-
+```xml
 <configuration>
     <customPageTitle>My Report</customPageTitle>
     ...
@@ -331,7 +320,7 @@ Cluecumber's default styles.
 If you have a custom CSS file called `custom/custom.css` in your project, you could use it to change the report's
 background and header colors:
 
-```
+```css
 body {
     background-color: black;
 }
@@ -343,8 +332,7 @@ h3, h4, h5 {
 
 To use this files, specify it like so in your pom file or as a system property:
 
-```
-
+```xml
 <configuration>
     <customCss>custom/custom.css</customCss>
     ...
@@ -358,7 +346,7 @@ other styles:
 
 Likewise, if you want to hide elements from the report, you can also add this to the custom css like so:
 
-```
+```css
 .some_element {
     display: none;
 }
@@ -369,8 +357,7 @@ Likewise, if you want to hide elements from the report, you can also add this to
 It is possible to set these properties to change the color scheme for passed, failed and skipped steps and scenarios
 including the displayed diagrams. The values have to be valid hex colors:
 
-```
-
+```xml
 <configuration>
     <customStatusColorPassed>#017FAF</customStatusColorPassed>
     <customStatusColorFailed>#C94A38</customStatusColorFailed>
@@ -398,7 +385,7 @@ __Note:__ If you want this invocation to consider the configuration that is incl
 the `configuration` block must be outside of your `executions` block. Otherwise, it only applies to the
 specified execution and is ignored when you run `mvn cluecumber-report:reporting` from the command line:
 
-```
+```xml
 <executions>
     <execution>
         <id>report</id>
@@ -432,7 +419,7 @@ If you want to set a [custom parameter](#customparameters), you can do it like t
 
 Set an empty property in your pom file's properties block:
 
-```
+```xml
 <properties>
     <someProperty/>
 </properties>
@@ -440,7 +427,7 @@ Set an empty property in your pom file's properties block:
 
 Also define it in the Cluecumber section in your POM:
 
-```
+```xml
 <customParameters>
     <My_Parameter_Name>${someProperty}</Base_Url>
 </customParameters>
@@ -448,7 +435,7 @@ Also define it in the Cluecumber section in your POM:
 
 When invoking the reporting, you can now pass this property via the `-D` option:
 
-```
+```bash
 mvn cluecumber:reporting -DsomeProperty="this is cool" -D...
 ```
 
@@ -460,8 +447,7 @@ __Note:__ If you don't pass this property, Cluecumber will ignore it and not sho
 
 Cluecumber requires Java >= 11 and Maven >= 3.3.9.
 It is available
-in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22)
-.
+in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
 
 ## License
 
