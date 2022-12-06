@@ -96,7 +96,7 @@ void testParallel() throws CluecumberException {
       .setCustomPageTitle("My cool report")
       .build()
       .generateReports(
-          "target/json",
+          "target/karate-reports",
           "target/cluecumber");
 
   assertEquals(0, results.getFailCount(), results.getErrorMessages());
