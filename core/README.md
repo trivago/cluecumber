@@ -103,6 +103,8 @@ void testParallel() throws CluecumberException {
 }
 ```
 
+This will generate a test report regardless of any failure of tests since the overall test run failure state is determined afterwards.
+
 # Optional Configuration Parameters
 
 ## Logging
