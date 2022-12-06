@@ -14,6 +14,7 @@
 - [Maven dependency](#maven-dependency)
 - [Prerequisites](#prerequisites) 
 - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
+- [Karate Example](#karate-example)
 - [Optional Configuration Parameters](#optional-configuration-parameters)
   - [Logging](#logging)
   - [Add Custom Information to the Report](#add-custom-information-to-the-report)
@@ -60,7 +61,6 @@ your Cucumber runner configuration:
 
 This will generate JSON results for all Cucumber tests.
 
-
 # Mandatory Configuration Parameters
 
 There are two mandatory parameters that have to be passed to the `generateReports` method:
@@ -77,6 +77,31 @@ new CluecumberCore.Builder()
 * `reportDirectory` points to the root directory of the generated Cluecumber HTML report.
 
 __Note:__ Typically, both properties point to directories inside the Maven ```target``` directory.
+
+# Karate example
+
+For use in Karate, just place the Cluecumber code in between the test runner code and the final assertion as seen below:
+
+```
+@Test
+void testParallel() throws CluecumberException {
+  final int threads = 10;
+
+  Results results= Runner.path("classpath:karate/features")
+      .outputCucumberJson(true)
+      .outputHtmlReport(false)
+      .parallel(threads);
+
+  new CluecumberCore.Builder()
+      .setCustomPageTitle("My cool report")
+      .build()
+      .generateReports(
+          "target/json",
+          "target/cluecumber");
+
+  assertEquals(0, results.getFailCount(), results.getErrorMessages());
+}
+```
 
 # Optional Configuration Parameters
 
