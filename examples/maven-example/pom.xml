@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>cluecumber-test-project</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -25,7 +25,7 @@
             <plugin>
                 <groupId>com.trivago.rta</groupId>
                 <artifactId>cluecumber-maven</artifactId>
-                <version>3.0.0</version>
+                <version>${project.version}</version>
                 <executions>
                     <execution>
                         <id>report</id>

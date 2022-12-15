@@ -7,7 +7,7 @@
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-parent</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <packaging>pom</packaging>
 
     <name>Cluecumber Parent</name>
@@ -52,6 +52,11 @@
             <url>https://www.softwaretester.blog</url>
         </developer>
     </developers>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/trivago/cluecumber/issues</url>
+    </issueManagement>
 
     <licenses>
         <license>
