@@ -123,7 +123,7 @@ table.table {
 }
 
 .table td {
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 table.table-fit {
@@ -264,7 +264,13 @@ span.keyword {
 }
 
 p.firstException {
+    color: indianred;
     word-break: break-word;
-    border: 1px solid lightgray;
+    border: 1px solid indianred;
     padding: 0.5rem;
+    margin-top: .5rem;
+}
+
+tr.even td, tr.odd td{
+    border-bottom: #ebebeb 1px solid;
 }

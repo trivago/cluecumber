@@ -100,9 +100,9 @@ limitations under the License.
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
                                                    style="word-break: break-all">${element.name?html}</a>
-                                                   <#if element.failed>
-                                                       <p class="firstException text-left small text-gray" style="word-break: break-word">${element.firstExceptionClass}</p>
-                                                   </#if>
+                                                <#if element.firstExceptionClass != "">
+                                                    <p class="firstException text-left small text-gray" style="word-break: break-word">${element.firstExceptionClass}</p>
+                                                </#if>
                                             </td>
                                             <td class="text-center small" data-order="${element.startTimestamp}">
                                                 ${element.startDateString}<br>${element.startTimeString}

@@ -280,7 +280,7 @@ public class Element {
         String exceptionClass = firstException.split("\n")[0].trim();
 
         if (exceptionClass.isEmpty()) {
-            exceptionClass = "unknown";
+            exceptionClass = "";
         }
 
         return exceptionClass;
@@ -316,8 +316,9 @@ public class Element {
                 return exception;
             }
 
-            if (step.isFailed()) {
-                return step.getResult().getErrorMessage();
+            exception = step.getResult().getErrorMessage();
+            if (exception != null) {
+                return exception;
             }
 
             exception = getResultListException(step.getAfter());

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.0.1] - 2022-12-15
+
+### Fixed
+* Exception messages for skipped scenarios were not displayed (#299)
+
+### Changed
+* Separators between scenarios on the overview page
+* Changed alignment to top for tables
+* Changed error message display to dark red
+
 ## [3.0.0] - 2022-12-03
 
 This marks a new chapter in Cluecumber development.
@@ -682,6 +692,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.1
 [3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.0
 [2.9.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4
 [2.9.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.3
