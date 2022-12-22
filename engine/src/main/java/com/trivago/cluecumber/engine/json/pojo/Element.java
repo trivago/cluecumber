@@ -288,22 +288,22 @@ public class Element {
 
     public String getFirstException() {
         String exception = getResultListException(before);
-        if (exception != null){
+        if (exception != null && !exception.isEmpty()){
             return exception;
         }
 
         exception = getStepException(backgroundSteps);
-        if (exception != null){
+        if (exception != null && !exception.isEmpty()){
             return exception;
         }
 
         exception = getStepException(steps);
-        if (exception != null){
+        if (exception != null && !exception.isEmpty()){
             return RenderingUtils.escapeHTML(exception);
         }
 
         exception = getResultListException(after);
-        if (exception != null){
+        if (exception != null && !exception.isEmpty()){
             return exception;
         }
         return "";
@@ -312,17 +312,17 @@ public class Element {
     private String getStepException(final List<Step> steps) {
         for (Step step : steps) {
             String exception = getResultListException(step.getBefore());
-            if (exception != null){
+            if (exception != null && !exception.isEmpty()){
                 return exception;
             }
 
             exception = step.getResult().getErrorMessage();
-            if (exception != null) {
+            if (exception != null && !exception.isEmpty()) {
                 return exception;
             }
 
             exception = getResultListException(step.getAfter());
-            if (exception != null){
+            if (exception != null && !exception.isEmpty()){
                 return exception;
             }
         }
