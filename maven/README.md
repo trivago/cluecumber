@@ -46,8 +46,8 @@
 ```xml
 <plugin>
     <groupId>com.trivago.rta</groupId>
-    <artifactId>cluecumber-report-plugin</artifactId>
-    <version>3.0.0</version>
+    <artifactId>cluecumber-maven</artifactId>
+    <version>3.0.2</version>
     <executions>
         <execution>
             <id>report</id>
