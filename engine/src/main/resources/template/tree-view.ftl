@@ -33,32 +33,13 @@ preheadlineLink="">
         <@customparams.card customParams=customParameters/>
     </#if>
 
-    <div class="row" id="available-features">
+    <div class="row" id="tree-view">
         <@page.card width="12" title="Available Features and Scenarios" subtitle="" classes="">
-            <table id="feature_summary" class="table table-hover renderAsDataTable">
-                <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>Total</th>
-                    <th class="passedCell"><@common.status status="passed"/></th>
-                    <th class="failedCell"><@common.status status="failed"/></th>
-                    <th class="skippedCell"><@common.status status="skipped"/></th>
-                </tr>
-                </thead>
-                <tbody>
+            <ul>
                 <#list featureResultCounts as feature, featureResultCount>
-                    <tr>
-                        <td class="text-left"><a
-                                    href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a>
-                        </td>
-                        <td class="text-right"><strong>${featureResultCount.total}</strong></td>
-                        <td class="text-right passedCell">${featureResultCount.passed}</td>
-                        <td class="text-right failedCell">${featureResultCount.failed}</td>
-                        <td class="text-right skippedCell">${featureResultCount.skipped}</td>
-                    </tr>
+                    <li><a href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a></li>
                 </#list>
-                </tbody>
-            </table>
+            </ul>
         </@page.card>
     </div>
 </@page.page>
