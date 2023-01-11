@@ -47,7 +47,7 @@
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-maven</artifactId>
-    <version>3.0.2</version>
+    <version>3.1.0</version>
     <executions>
         <execution>
             <id>report</id>

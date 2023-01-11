@@ -9,6 +9,7 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllFe
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.AllFeaturesPageRenderer;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.AllScenariosPageRenderer;
+import com.trivago.cluecumber.engine.rendering.pages.renderering.TreeViewPageRenderer;
 import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine;
 
 import javax.inject.Inject;
@@ -16,6 +17,7 @@ import javax.inject.Singleton;
 
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_FEATURES;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
+import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.TREE_VIEW;
 
 @Singleton
 public class FeatureVisitor implements PageVisitor {
@@ -25,6 +27,7 @@ public class FeatureVisitor implements PageVisitor {
     private final PropertyManager propertyManager;
     private final AllFeaturesPageRenderer allFeaturesPageRenderer;
     private final AllScenariosPageRenderer allScenariosPageRenderer;
+    private final TreeViewPageRenderer treeViewPageRenderer;
 
     @Inject
     public FeatureVisitor(
@@ -32,13 +35,15 @@ public class FeatureVisitor implements PageVisitor {
             final TemplateEngine templateEngine,
             final PropertyManager propertyManager,
             final AllFeaturesPageRenderer allFeaturesPageRenderer,
-            final AllScenariosPageRenderer allScenariosPageRenderer
+            final AllScenariosPageRenderer allScenariosPageRenderer,
+            final TreeViewPageRenderer treeViewPageRenderer
     ) {
         this.fileIO = fileIO;
         this.templateEngine = templateEngine;
         this.propertyManager = propertyManager;
         this.allFeaturesPageRenderer = allFeaturesPageRenderer;
         this.allScenariosPageRenderer = allScenariosPageRenderer;
+        this.treeViewPageRenderer = treeViewPageRenderer;
     }
 
     @Override
@@ -52,6 +57,14 @@ public class FeatureVisitor implements PageVisitor {
                         templateEngine.getTemplate(ALL_FEATURES)),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+
+        // Tree view page
+        fileIO.writeContentToFile(
+                treeViewPageRenderer.getRenderedContent(allFeaturesPageCollection,
+                        templateEngine.getTemplate(TREE_VIEW)),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.TREE_VIEW + PluginSettings.HTML_FILE_EXTENSION);
+
 
         // Scenarios by feature pages
         for (Feature feature : allFeaturesPageCollection.getFeatures()) {

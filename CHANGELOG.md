@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.0.2] - 2022-12-22
+## [3.1.0] - UNRELEASED
+* Added new test overview page
+* Feature titles are now shown instead of feature files
+
+## [3.1.0] - 2022-12-22
 
 ### Fixed
 * Exception message for non-given step was not shown in overview (#302)
@@ -697,6 +701,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.1.0
 [3.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.2
 [3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.1
 [3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.0

@@ -12,6 +12,7 @@ public class Navigation {
             new Link("scenario_sequence", "pages/scenario-sequence.html", LinkType.INTERNAL),
             new Link("tag_summary", "pages/tag-summary.html", LinkType.INTERNAL),
             new Link("step_summary", "pages/step-summary.html", LinkType.INTERNAL),
-            new Link("feature_summary", "pages/feature-summary.html", LinkType.INTERNAL)
+            new Link("feature_summary", "pages/feature-summary.html", LinkType.INTERNAL),
+            new Link("tree_view", "pages/tree-view.html", LinkType.INTERNAL)
     );
 }

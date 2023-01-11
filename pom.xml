@@ -7,7 +7,7 @@
 
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-parent</artifactId>
-    <version>3.0.2</version>
+    <version>3.1.0</version>
     <packaging>pom</packaging>
 
     <name>Cluecumber Parent</name>
