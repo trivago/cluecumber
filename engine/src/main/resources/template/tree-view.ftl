@@ -29,16 +29,18 @@ preheadline=""
 preheadlineLink="">
 
     <div class="row" id="tree-view">
-        <@page.card width="12" title="Available Features and Scenarios" subtitle="" classes="">
+        <@page.card width="12" title="" subtitle="" classes="">
             <ul>
                 <#list elements as feature, scenarios>
                     <li><a href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name?html}</a></li>
-                    <#list scenarios as scenario>
-                        <ul>
-                            <li style="list-style-type: none;"><a href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
-                                                                  style="word-break: break-all">${scenario.name?html}</a></li>
-                        </ul>
-                    </#list>
+                    <ol type="1">
+                        <#list scenarios as scenario>
+                            <li style="list-style-type: decimal;"><a
+                                        href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
+                                        style="word-break: break-all">${scenario.name?html}</a></li>
+                        </#list>
+                    </ol>
+                    <hr>
                 </#list>
             </ul>
         </@page.card>
