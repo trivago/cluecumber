@@ -17,7 +17,6 @@ limitations under the License.
 <#import "macros/page.ftl"as page>
 <#import "macros/common.ftl" as common>
 <#import "macros/navigation.ftl" as navigation>
-<#import "macros/custom-parameters.ftl" as customparams>
 
 <@page.page
 title="${pageTitle} - Tree View"
@@ -29,15 +28,17 @@ subsubheadline=""
 preheadline=""
 preheadlineLink="">
 
-    <#if hasCustomParameters()>
-        <@customparams.card customParams=customParameters/>
-    </#if>
-
     <div class="row" id="tree-view">
         <@page.card width="12" title="Available Features and Scenarios" subtitle="" classes="">
             <ul>
-                <#list featureResultCounts as feature, featureResultCount>
-                    <li><a href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a></li>
+                <#list elements as feature, scenarios>
+                    <li><a href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name?html}</a></li>
+                    <#list scenarios as scenario>
+                        <ul>
+                            <li style="list-style-type: none;"><a href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
+                                                                  style="word-break: break-all">${scenario.name?html}</a></li>
+                        </ul>
+                    </#list>
                 </#list>
             </ul>
         </@page.card>

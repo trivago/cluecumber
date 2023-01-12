@@ -58,14 +58,6 @@ public class FeatureVisitor implements PageVisitor {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
                         PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
 
-        // Tree view page
-        fileIO.writeContentToFile(
-                treeViewPageRenderer.getRenderedContent(allFeaturesPageCollection,
-                        templateEngine.getTemplate(TREE_VIEW)),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.TREE_VIEW + PluginSettings.HTML_FILE_EXTENSION);
-
-
         // Scenarios by feature pages
         for (Feature feature : allFeaturesPageCollection.getFeatures()) {
             fileIO.writeContentToFile(
@@ -78,5 +70,14 @@ public class FeatureVisitor implements PageVisitor {
                             PluginSettings.PAGES_DIRECTORY + PluginSettings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
                             feature.getIndex() + PluginSettings.HTML_FILE_EXTENSION);
         }
+
+        // Tree view page
+        fileIO.writeContentToFile(
+                treeViewPageRenderer.getRenderedContent(
+                        allFeaturesPageCollection,
+                        allScenariosPageCollection,
+                        templateEngine.getTemplate(TREE_VIEW)),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
+                        PluginSettings.TREE_VIEW + PluginSettings.HTML_FILE_EXTENSION);
     }
 }

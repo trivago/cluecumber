@@ -34,7 +34,7 @@ public class VisitorTest {
 
     AllScenariosPageCollection getAllScenarioPageCollection() {
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
-        Feature feature = new Feature("MyFeature", "", "", 12);
+        Feature feature = new Feature("MyFeature", "", "uri",12);
         Report[] reportList = new Report[1];
         Report report = new Report();
         report.setName(feature.getName());

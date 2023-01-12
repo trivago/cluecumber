@@ -16,6 +16,7 @@
 
 package com.trivago.cluecumber.engine.rendering.pages.pojos;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Feature {
@@ -23,6 +24,7 @@ public class Feature {
     private final String description;
     private final int index;
     private final String uri;
+
 
     public Feature(final String name, final String description, final String uri, final int index) {
         this.name = name;

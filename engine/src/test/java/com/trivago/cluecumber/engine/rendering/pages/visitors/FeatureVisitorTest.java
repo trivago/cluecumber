@@ -37,7 +37,7 @@ public class FeatureVisitorTest extends VisitorTest {
     public void visitTest() throws CluecumberException {
         when(allFeaturesPageRenderer.getRenderedContent(any(), any())).thenReturn("MyRenderedFeatures");
         when(allScenariosPageRenderer.getRenderedContentByFeatureFilter(any(), any(), any())).thenReturn("MyRenderedScenarios");
-        when(treeViewPageRenderer.getRenderedContent(any(), any())).thenReturn("MyRenderedTreeView");
+        when(treeViewPageRenderer.getRenderedContent(any(), any(), any())).thenReturn("MyRenderedTreeView");
         featureVisitor.visit(getAllScenarioPageCollection());
         verify(fileIo, times(1))
                 .writeContentToFile("MyRenderedFeatures", "dummyPath/pages/feature-summary.html");

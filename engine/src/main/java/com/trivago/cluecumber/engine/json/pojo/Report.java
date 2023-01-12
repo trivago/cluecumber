@@ -18,6 +18,7 @@ package com.trivago.cluecumber.engine.json.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Report implements Cloneable {
     private int line;
