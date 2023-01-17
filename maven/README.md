@@ -293,6 +293,7 @@ This can be customized with one of the following values:
 * `ALL_TAGS` (tag overview page)
 * `ALL_STEPS` (step overview page)
 * `ALL_FEATURES` (feature overview page)
+* `TREE_VIEW` (tree view of features and scenarios)
 
 ## Defining a custom report title
 

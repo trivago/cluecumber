@@ -23,7 +23,7 @@ limitations under the License.
 title="${pageTitle} - All Steps"
 base=".."
 highlight="step_summary"
-headline="${totalNumberOfSteps} ${common.pluralizeFn('Step', totalNumberOfSteps)}"
+headline="All Steps"
 subheadline=""
 subsubheadline=""
 preheadline=""

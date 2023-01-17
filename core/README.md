@@ -271,6 +271,7 @@ This can be customized with one of the following values:
 * `PluginSettings.StartPage.ALL_TAGS` (tag overview page)
 * `PluginSettings.StartPage.ALL_STEPS` (step overview page)
 * `PluginSettings.StartPage.ALL_FEATURES` (feature overview page)
+* `PluginSettings.StartPage.TREE_VIEW` (tree view of features and scenarios)
 
 ## Defining a custom report title
 

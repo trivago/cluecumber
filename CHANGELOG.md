@@ -15,9 +15,11 @@ Back to [Readme](README.md).
 ### Fixed
 * Aligned counts and use of plurals in headlines
 * Fixed misaligned numbers in tag, step and feature overview page tables
+* Various small design adjustments and fixes
 
 ### Changed
 * Clearer custom parameters box
+* Tags are now displayed as buttons
 
 ## [3.0.2] - 2022-12-22
 

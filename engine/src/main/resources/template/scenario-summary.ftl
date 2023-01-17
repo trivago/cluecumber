@@ -22,7 +22,7 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
+    <#assign headline = "Scenarios tagged with '${tagFilter.name}'">
     <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
     <#assign subheadline = "">
