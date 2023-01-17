@@ -29,7 +29,7 @@ public class FeatureTest {
 
     @Test
     public void equalsDifferentNameAndIndexTest() {
-        final Feature featureToCompare = new Feature("otherName", "", "", 2);
+        final Feature featureToCompare = new Feature("otherName", "", "uri", 2);
         assertNotEquals(feature, featureToCompare);
     }
 

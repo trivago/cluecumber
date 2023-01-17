@@ -47,14 +47,14 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </#if>
             <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
             <li class="list-group-item"><#list element.tags as tag>
-                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a><#sep>,
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>,
                 </#list>
             </li>
         </@page.card>
         <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    ${element.totalNumberOfSteps} <@common.pluralize word="Step" unitCount=element.totalNumberOfSteps/>
+                    ${element.totalNumberOfSteps} ${common.pluralizeFn("Step", element.totalNumberOfSteps)}
                 </li>
                 <li class="list-group-item">
                     ${element.totalNumberOfPassedSteps} passed <@common.status status="passed"/>

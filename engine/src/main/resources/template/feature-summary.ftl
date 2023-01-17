@@ -40,9 +40,8 @@ preheadlineLink="">
         <@page.card width="3" title="Feature Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/><br>
-                    in
-                    ${totalNumberOfFeatures} <@common.pluralize word="Feature" unitCount=totalNumberOfFeatures/>
+                    ${totalNumberOfFeatures} ${common.pluralizeFn("Feature", totalNumberOfFeatures)}<br>
+                    with ${totalNumberOfScenarios} ${common.pluralizeFn("Scenario", totalNumberOfScenarios)}
                 </li>
                 <li class="list-group-item">
                     ${totalNumberOfPassedFeatures} passed <@common.status status="passed"/>
@@ -56,7 +55,7 @@ preheadlineLink="">
     </div>
 
     <div class="row" id="available-features">
-        <@page.card width="12" title="Available Features" subtitle="" classes="">
+        <@page.card width="12" title="${totalNumberOfFeatures} ${common.pluralizeFn('Feature', totalNumberOfFeatures)}" subtitle="" classes="">
             <table id="feature_summary" class="table table-hover renderAsDataTable">
                 <thead>
                 <tr>
@@ -73,10 +72,10 @@ preheadlineLink="">
                         <td class="text-left"><a
                                     href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name}</a>
                         </td>
-                        <td class="text-right"><strong>${featureResultCount.total}</strong></td>
-                        <td class="text-right passedCell">${featureResultCount.passed}</td>
-                        <td class="text-right failedCell">${featureResultCount.failed}</td>
-                        <td class="text-right skippedCell">${featureResultCount.skipped}</td>
+                        <td class="text-center"><strong>${featureResultCount.total}</strong></td>
+                        <td class="text-center passedCell">${featureResultCount.passed}</td>
+                        <td class="text-center failedCell">${featureResultCount.failed}</td>
+                        <td class="text-center skippedCell">${featureResultCount.skipped}</td>
                     </tr>
                 </#list>
                 </tbody>

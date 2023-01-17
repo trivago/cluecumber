@@ -39,9 +39,9 @@ preheadlineLink="">
         </@page.card>
         <@page.card width="3" title="Tag Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
-                <li class="list-group-item">${totalNumberOfTags} <@common.pluralize word="Tag" unitCount=totalNumberOfTags/> in
+                <li class="list-group-item">${totalNumberOfTags} ${common.pluralizeFn("Tag", totalNumberOfTags)} in
                     <br>
-                    ${totalNumberOfScenarios} Tagged <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
+                    ${totalNumberOfScenarios} Tagged ${common.pluralizeFn("Scenario", totalNumberOfScenarios)}
                 </li>
                 <li class="list-group-item">
                     ${totalNumberOfPassed} passed <@common.status status="passed"/>
@@ -55,7 +55,7 @@ preheadlineLink="">
     </div>
 
     <div class="row" id="available-tags">
-        <@page.card width="12" title="Available Tags" subtitle="" classes="">
+        <@page.card width="12" title="${totalNumberOfTags} ${common.pluralizeFn('Tag', totalNumberOfTags)}" subtitle="" classes="">
             <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
                 <thead>
                 <tr>
@@ -71,10 +71,10 @@ preheadlineLink="">
                     <tr>
                         <td class="text-left"><a
                                     href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html">${tag.name}</a></td>
-                        <td class="text-right"><strong>${tagResultCount.total}</strong></td>
-                        <td class="text-right passedCell">${tagResultCount.passed}</td>
-                        <td class="text-right failedCell">${tagResultCount.failed}</td>
-                        <td class="text-right skippedCell">${tagResultCount.skipped}</td>
+                        <td class="text-center"><strong>${tagResultCount.total}</strong></td>
+                        <td class="text-center passedCell">${tagResultCount.passed}</td>
+                        <td class="text-center failedCell">${tagResultCount.failed}</td>
+                        <td class="text-center skippedCell">${tagResultCount.skipped}</td>
                     </tr>
                 </#list>
                 </tbody>

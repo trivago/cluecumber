@@ -29,6 +29,10 @@ h2, h3, h4, h5 {
     white-space: pre-line;
 }
 
+h5 {
+
+}
+
 body {
     padding-top: 3rem;
     background-color: #fdfdfe;
@@ -36,7 +40,7 @@ body {
 }
 
 a {
-    color: #004ea2;
+    color: #06284d;
 }
 
 .navbar, .footer {
@@ -47,14 +51,19 @@ a {
     color: darkgoldenrod;
 }
 
+.navbar-dark .navbar-nav .nav-link.customLink:hover {
+    color: orange;
+}
+
 .header {
     height: 5rem;
 }
 
 .card-header {
     color: white;
-    background-color: #646464;
+    background-color: #676767;
     border-width: thick;
+    padding: 0.5rem 1.25rem;
 }
 
 .footer {
@@ -67,8 +76,17 @@ a {
 }
 
 .cluecumber-template {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
     text-align: center;
+}
+
+#tree-view li {
+    list-style-type: none;
+    text-align: left;
+}
+
+#tree-view ul li {
+    margin-bottom: .4rem;
 }
 
 .embedding-content {
@@ -77,7 +95,7 @@ a {
 
 .navbar, .card {
     margin: 0 0 .5rem 0;
-    border: darktgray 1px solid;
+    border: 1px solid darkgray;
 }
 
 .scenarioAttachment > div, .scenarioOutput > div {
@@ -238,6 +256,11 @@ i {
     padding: .5rem 1rem .3rem 1rem;
 }
 
+.customParameters .card-header {
+    background-color: lightgray;
+    color: black;
+}
+
 td.noKey {
     white-space: normal !important;
 }
@@ -271,6 +294,6 @@ p.firstException {
     margin-top: .5rem;
 }
 
-tr.even td, tr.odd td{
+tr.even td, tr.odd td {
     border-bottom: #ebebeb 1px solid;
 }

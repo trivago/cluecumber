@@ -43,9 +43,9 @@ limitations under the License.
     <@navigation.build highlight=highlight />
     <main role="main" class="container">
         <div class="cluecumber-template">
-            <div class="pb-2 mt-4 mb-2">
+            <div class="col-sm-12 h-auto text-center">
                 <#if preheadline != "">
-                    <h5>
+                    <h5 class="font-italic">
                         <#if preheadlineLink != "">
                             <a href="${preheadlineLink}">${preheadline}</a>
                         <#else>
@@ -86,7 +86,7 @@ limitations under the License.
 </#macro>
 
 <#macro graph>
-    <div id="canvas-holder" class="w-100 text-center" style="min-height: 15rem;" data-cluecumber-item="chart">
+    <div id="canvas-holder" class="w-auto h-auto text-center" style="min-height: 15rem;" data-cluecumber-item="chart">
         <canvas id="chart-area" class="w-100"></canvas>
     </div>
 </#macro>

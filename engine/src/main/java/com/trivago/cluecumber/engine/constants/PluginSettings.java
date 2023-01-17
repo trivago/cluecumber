@@ -28,7 +28,8 @@ public class PluginSettings {
         SCENARIO_SEQUENCE(SCENARIO_SEQUENCE_PAGE_PATH),
         ALL_TAGS(TAG_SUMMARY_PAGE_PATH),
         ALL_STEPS(STEP_SUMMARY_PAGE_PATH),
-        ALL_FEATURES(FEATURE_SUMMARY_PAGE_PATH);
+        ALL_FEATURES(FEATURE_SUMMARY_PAGE_PATH),
+        TREE_VIEW(TREE_VIEW_PAGE_PATH);
 
         private final String pageName;
 
@@ -71,6 +72,7 @@ public class PluginSettings {
     public final static String FEATURE_SUMMARY_PAGE_PATH = "feature-summary";
     public static final String FEATURE_SCENARIOS_PAGE_PATH = "feature-scenarios";
     public static final String FEATURE_SCENARIOS_PAGE_FRAGMENT = "/" + FEATURE_SCENARIOS_PAGE_PATH + "/feature_";
+    public static final String TREE_VIEW_PAGE_PATH = "tree-view";
 
     PluginSettings() {
     }

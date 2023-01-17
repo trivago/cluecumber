@@ -47,7 +47,7 @@
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-maven</artifactId>
-    <version>3.0.2</version>
+    <version>3.1.0</version>
     <executions>
         <execution>
             <id>report</id>
@@ -293,6 +293,7 @@ This can be customized with one of the following values:
 * `ALL_TAGS` (tag overview page)
 * `ALL_STEPS` (step overview page)
 * `ALL_FEATURES` (feature overview page)
+* `TREE_VIEW` (tree view of features and scenarios)
 
 ## Defining a custom report title
 

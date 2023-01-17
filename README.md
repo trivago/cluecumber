@@ -95,6 +95,7 @@ It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7C
 * __Scenarios by Tag__: all scenarios including a specific tag
 * __Scenarios by Feature__: all scenarios belonging to a specific feature
 * __Scenario by Step__: all scenarios that include a specific step
+* __Tree View__: all features and scenarios in a tree for an easy overview of the test suite
 
 ## Star History
 

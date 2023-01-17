@@ -27,6 +27,7 @@ public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
 
     public enum Template {
+        TREE_VIEW("tree-view"),
         ALL_FEATURES("feature-summary"),
         ALL_SCENARIOS("scenario-summary"),
         SCENARIO_SEQUENCE("scenario-sequence"),

@@ -53,6 +53,7 @@ public class CluecumberCore {
     }
 
     public static class Builder {
+        public LinkedHashMap<String, String> customViews;
         protected String customCssFile;
         protected LinkedHashMap<String, String> customNavigationLinks;
         protected String customPageTitle;

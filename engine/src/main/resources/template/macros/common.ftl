@@ -26,10 +26,10 @@ limitations under the License.
        title="${status}"><span style="display:none">${status}</span></i>
 </#macro>
 
-<#macro pluralize word unitCount>
+<#function pluralizeFn word unitCount>
     <#if unitCount gt 1>
-        ${word}s
+        <#return "${word}s" />
     <#else>
-        ${word}
+        <#return "${word}" />
     </#if>
-</#macro>
+</#function>

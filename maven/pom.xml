@@ -7,12 +7,12 @@
 
     <artifactId>cluecumber-maven</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>3.0.2</version>
+    <version>3.1.0</version>
 
     <parent>
         <artifactId>cluecumber-parent</artifactId>
         <groupId>com.trivago.rta</groupId>
-        <version>3.0.2</version>
+        <version>3.1.0</version>
     </parent>
 
     <name>Cluecumber Maven</name>

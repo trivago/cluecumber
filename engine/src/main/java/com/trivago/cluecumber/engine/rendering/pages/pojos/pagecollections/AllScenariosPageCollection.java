@@ -31,7 +31,9 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
@@ -46,6 +48,14 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
 
     public List<Report> getReports() {
         return reports;
+    }
+
+    public List<Element> getElementsByFeatureIndex(final int featureIndex){
+        return getReports().stream()
+                .filter(report -> report.getFeatureIndex() == featureIndex)
+                .flatMap(report -> report.getElements().stream())
+                .sorted(Comparator.comparing(Element::getName))
+                .collect(Collectors.toList());
     }
 
     public void clearReports() {

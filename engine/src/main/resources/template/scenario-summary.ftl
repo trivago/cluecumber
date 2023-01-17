@@ -22,7 +22,7 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios Tagged With '${tagFilter.name}'">
+    <#assign headline = "Scenarios tagged with '${tagFilter.name}'">
     <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
     <#assign subheadline = "">
@@ -105,7 +105,7 @@ preheadlineLink=preheadlineLink>
         <@page.card width="3" title="Test Suite Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
+                    ${totalNumberOfScenarios} ${common.pluralizeFn("Scenario", totalNumberOfScenarios)}
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
                     <#if (scenarioSequence??)>

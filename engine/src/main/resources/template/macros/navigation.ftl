@@ -45,6 +45,9 @@ limitations under the License.
                             <#case "feature_summary">
                                 <#assign linkName="All Features">
                                 <#break>
+                            <#case "tree_view">
+                                <#assign linkName="Tree View">
+                                <#break>
                         </#switch>
                         <a class="nav-link ${highlightClass}" href="${link.target}">${linkName}</a>
                     <#elseif link.type == "EXTERNAL">

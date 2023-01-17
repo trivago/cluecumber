@@ -31,7 +31,6 @@ public class CustomCssRendererTest {
         when(propertyManager.getCustomStatusColorSkipped()).thenReturn("skipped");
         Template template = new Template("test", "${passedColor} - ${failedColor} - ${skippedColor}", new Configuration(new Version("2.3.0")));
         String renderedCustomCssContent = customCssRenderer.getRenderedCustomCssContent(template);
-        System.out.println(renderedCustomCssContent);
         assertEquals(renderedCustomCssContent, "passed - failed - skipped");
     }
 }
