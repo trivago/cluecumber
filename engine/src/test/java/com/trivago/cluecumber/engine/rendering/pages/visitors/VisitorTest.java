@@ -24,7 +24,6 @@ public class VisitorTest {
     AllScenariosPageRenderer allScenariosPageRenderer;
 
     public void setUp()  {
-        System.out.println("Yo");
         fileIo = mock(FileIO.class);
         templateEngine = mock(TemplateEngine.class);
         propertyManager = mock(PropertyManager.class);

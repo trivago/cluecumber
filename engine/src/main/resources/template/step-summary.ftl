@@ -23,7 +23,7 @@ limitations under the License.
 title="${pageTitle} - All Steps"
 base=".."
 highlight="step_summary"
-headline="All Steps"
+headline="${totalNumberOfSteps} ${common.pluralizeFn('Step', totalNumberOfSteps)}"
 subheadline=""
 subsubheadline=""
 preheadline=""
@@ -37,12 +37,12 @@ preheadlineLink="">
         <@page.card width="9" title="Step Summary Result Chart" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="3" title="Steps Summary" subtitle="" classes="">
+        <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
                 <li class="list-group-item">
-                    ${totalNumberOfSteps} <@common.pluralize word="Step" unitCount=totalNumberOfSteps/> in
+                    ${totalNumberOfSteps} ${common.pluralizeFn("Step", totalNumberOfSteps)} from
                     <br>
-                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
+                    ${totalNumberOfScenarios} ${common.pluralizeFn("Scenario", totalNumberOfScenarios)}
                 </li>
                 <li class="list-group-item">
                     ${totalNumberOfPassed} passed <@common.status status="passed"/>
@@ -56,7 +56,7 @@ preheadlineLink="">
     </div>
 
     <div class="row" id="available-steps">
-        <@page.card width="12" title="Available Steps" subtitle="" classes="">
+        <@page.card width="12" title="${totalNumberOfSteps} ${common.pluralizeFn('Step', totalNumberOfSteps)}" subtitle="" classes="">
             <table id="step_summary" class="table table-hover renderAsDataTable"
                    data-cluecumber-item="step-summary-table">
                 <thead>
@@ -79,10 +79,10 @@ preheadlineLink="">
                                 <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html">${step.returnNameWithArgumentPlaceholders()}</a>
                             </span>
                         </td>
-                        <td class="text-right"><strong>${stepResultCount.total}</strong></td>
-                        <td class="text-right passedCell">${stepResultCount.passed}</td>
-                        <td class="text-right failedCell">${stepResultCount.failed}</td>
-                        <td class="text-right skippedCell">${stepResultCount.skipped}</td>
+                        <td class="text-center"><strong>${stepResultCount.total}</strong></td>
+                        <td class="text-center passedCell">${stepResultCount.passed}</td>
+                        <td class="text-center failedCell">${stepResultCount.failed}</td>
+                        <td class="text-center skippedCell">${stepResultCount.skipped}</td>
                         <td class="text-right small">
                             <#if (getMinimumTimeScenarioIndexFromStep(step) > -1)>
                                 <a href="pages/scenario-detail/scenario_${getMinimumTimeScenarioIndexFromStep(step)}.html">${getMinimumTimeFromStep(step)}</a>

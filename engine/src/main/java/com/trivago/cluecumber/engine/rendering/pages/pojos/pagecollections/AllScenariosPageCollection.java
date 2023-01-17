@@ -31,6 +31,7 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +54,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return getReports().stream()
                 .filter(report -> report.getFeatureIndex() == featureIndex)
                 .flatMap(report -> report.getElements().stream())
+                .sorted(Comparator.comparing(Element::getName))
                 .collect(Collectors.toList());
     }
 

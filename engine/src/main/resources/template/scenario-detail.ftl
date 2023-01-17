@@ -54,7 +54,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    ${element.totalNumberOfSteps} <@common.pluralize word="Step" unitCount=element.totalNumberOfSteps/>
+                    ${element.totalNumberOfSteps} ${common.pluralizeFn("Step", element.totalNumberOfSteps)}
                 </li>
                 <li class="list-group-item">
                     ${element.totalNumberOfPassedSteps} passed <@common.status status="passed"/>

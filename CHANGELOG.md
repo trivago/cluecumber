@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.1.0] - UNRELEASED
-* Added new test overview page
-* Feature titles are now shown instead of feature files
+## [3.1.0] - 2023-01-17
 
-## [3.1.0] - 2022-12-22
+### Added
+* Added new test overview tree view page
+
+### Fixed
+* Aligned counts and use of plurals in headlines
+* Fixed misaligned numbers in tag, step and feature overview page tables
+
+### Changed
+* Clearer custom parameters box
+
+## [3.0.2] - 2022-12-22
 
 ### Fixed
 * Exception message for non-given step was not shown in overview (#302)

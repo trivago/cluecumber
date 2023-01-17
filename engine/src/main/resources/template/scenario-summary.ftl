@@ -105,7 +105,7 @@ preheadlineLink=preheadlineLink>
         <@page.card width="3" title="Test Suite Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                    ${totalNumberOfScenarios} <@common.pluralize word="Scenario" unitCount=totalNumberOfScenarios/>
+                    ${totalNumberOfScenarios} ${common.pluralizeFn("Scenario", totalNumberOfScenarios)}
                 </li>
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
                     <#if (scenarioSequence??)>

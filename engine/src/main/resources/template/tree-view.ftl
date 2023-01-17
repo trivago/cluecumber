@@ -29,10 +29,19 @@ preheadline=""
 preheadlineLink="">
 
     <div class="row" id="tree-view">
-        <@page.card width="12" title="" subtitle="" classes="">
+        <@page.card width="12" title="${numberOfFeatures} ${common.pluralizeFn('Feature', numberOfFeatures)} with ${numberOfScenarios} ${common.pluralizeFn('Scenario', numberOfScenarios)}" subtitle="" classes="">
             <ul>
                 <#list elements as feature, scenarios>
-                    <li><a href="pages/feature-scenarios/feature_${feature.index?c}.html">${feature.name?html}</a></li>
+                    <#assign tooltipText = "">
+                    <#if feature.description?has_content>
+                        <#assign tooltipText = "${feature.description} | ">
+                    </#if>
+                    <#assign tooltipText = "${tooltipText}${feature.uri}">
+                    <li>
+                        <span data-toggle="tooltip" title="${tooltipText}">
+                            <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>
+                        </span>
+                    </li>
                     <ol type="1">
                         <#list scenarios as scenario>
                             <li style="list-style-type: decimal;"><a

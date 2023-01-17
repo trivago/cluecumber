@@ -37,27 +37,27 @@ limitations under the License.
                         <#case "skipped">
                             <div class="card-header border-color-skipped">
                                 ${numberOfScenarios}
-                                <@common.pluralize word="skipped Scenario" unitCount=numberOfScenarios/>
+                                ${common.pluralizeFn("skipped Scenario", numberOfScenarios)}
                                 <@common.status status="skipped"/>
                             </div>
                             <#break>
                         <#case "failed">
                             <div class="card-header border-color-failed">
                                 ${numberOfScenarios}
-                                <@common.pluralize word="failed Scenario" unitCount=numberOfScenarios/>
+                                ${common.pluralizeFn("failed Scenario", numberOfScenarios)}
                                 <@common.status status="failed"/>
                             </div>
                             <#break>
                         <#case "passed">
                             <div class="card-header border-color-passed">
                                 ${numberOfScenarios}
-                                <@common.pluralize word="passed Scenario" unitCount=numberOfScenarios/>
+                                ${common.pluralizeFn("passed Scenario", numberOfScenarios)}
                                 <@common.status status="passed"/>
                             </div>
                             <#break>
                         <#case "all">
                             <div class="card-header">
-                                Scenario Sequence (${numberOfScenarios})
+                                ${numberOfScenarios} ${common.pluralizeFn("Scenario", numberOfScenarios)}
                             </div>
                             <#break>
                     </#switch>

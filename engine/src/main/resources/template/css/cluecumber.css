@@ -47,6 +47,10 @@ a {
     color: darkgoldenrod;
 }
 
+.navbar-dark .navbar-nav .nav-link.customLink:hover {
+    color: orange;
+}
+
 .header {
     height: 5rem;
 }
@@ -72,8 +76,12 @@ a {
 }
 
 #tree-view li {
-    list-style-type: disclosure-open;
+    list-style-type: none;
     text-align: left;
+}
+
+#tree-view ul li {
+    margin-bottom: .4rem;
 }
 
 .embedding-content {
@@ -82,7 +90,7 @@ a {
 
 .navbar, .card {
     margin: 0 0 .5rem 0;
-    border: darktgray 1px solid;
+    border: 1px solid darkgray;
 }
 
 .scenarioAttachment > div, .scenarioOutput > div {
@@ -276,6 +284,6 @@ p.firstException {
     margin-top: .5rem;
 }
 
-tr.even td, tr.odd td{
+tr.even td, tr.odd td {
     border-bottom: #ebebeb 1px solid;
 }

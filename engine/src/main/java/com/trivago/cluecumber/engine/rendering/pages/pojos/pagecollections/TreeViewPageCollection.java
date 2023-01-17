@@ -33,5 +33,13 @@ public class TreeViewPageCollection extends PageCollection {
     public Map<Feature, List<Element>> getElements() {
         return elements;
     }
+
+    public int getNumberOfFeatures() {
+        return elements.size();
+    }
+
+    public int getNumberOfScenarios() {
+        return elements.values().stream().mapToInt(List::size).sum();
+    }
 }
 

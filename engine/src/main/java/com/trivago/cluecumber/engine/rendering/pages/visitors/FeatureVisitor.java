@@ -78,6 +78,6 @@ public class FeatureVisitor implements PageVisitor {
                         allScenariosPageCollection,
                         templateEngine.getTemplate(TREE_VIEW)),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.TREE_VIEW + PluginSettings.HTML_FILE_EXTENSION);
+                        PluginSettings.TREE_VIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
     }
 }

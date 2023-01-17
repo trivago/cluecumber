@@ -27,9 +27,13 @@ limitations under the License.
 </#macro>
 
 <#macro pluralize word unitCount>
-    <#if unitCount gt 1>
-        ${word}s
-    <#else>
-        ${word}
-    </#if>
+    ${pluralizeFn(word, unitCount)}
 </#macro>
+
+<#function pluralizeFn word unitCount>
+    <#if unitCount gt 1>
+        <#return "${word}s" />
+    <#else>
+        <#return "${word}" />
+    </#if>
+</#function>
