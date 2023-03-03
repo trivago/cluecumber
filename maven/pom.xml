@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cluecumber-maven</artifactId>
+    <artifactId>maven</artifactId>
     <packaging>maven-plugin</packaging>
     <version>3.1.0</version>
 
@@ -54,7 +54,7 @@
     <dependencies>
         <dependency>
             <groupId>com.trivago.rta</groupId>
-            <artifactId>cluecumber-core</artifactId>
+            <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

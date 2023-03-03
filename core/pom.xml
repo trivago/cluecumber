@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cluecumber-core</artifactId>
+    <artifactId>core</artifactId>
     <version>3.1.0</version>
     <packaging>jar</packaging>
 
@@ -54,7 +54,7 @@
     <dependencies>
         <dependency>
             <groupId>com.trivago.rta</groupId>
-            <artifactId>cluecumber-engine</artifactId>
+            <artifactId>engine</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

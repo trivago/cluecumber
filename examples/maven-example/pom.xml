@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>blog.softwaretester</groupId>
-    <artifactId>cluecumber-test-project</artifactId>
+    <artifactId>maven-example</artifactId>
     <version>3.1.0</version>
     <packaging>pom</packaging>
 
