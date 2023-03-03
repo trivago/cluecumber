@@ -16,9 +16,11 @@
 
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
+import com.trivago.cluecumber.engine.constants.ChartConfiguration;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
@@ -35,11 +37,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the feature and scenario tree view page.
+ */
 @Singleton
 public class TreeViewPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public TreeViewPageRenderer(
             final PropertyManager propertyManager

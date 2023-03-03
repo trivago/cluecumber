@@ -50,6 +50,11 @@ public class CluecumberLogger {
         }
     }
 
+
+    /**
+     * Output a separator line in the logs.
+     * @param cluecumberLogLevels The {@link CluecumberLogLevel} setting.
+     */
     public void logInfoSeparator(final CluecumberLogLevel... cluecumberLogLevels) {
         info("------------------------------------------------------------------------", cluecumberLogLevels);
     }
@@ -103,10 +108,18 @@ public class CluecumberLogger {
         }
     }
 
+
+    /**
+     * Enum for the Logger log levels.
+     */
     private enum LogLevel {
         INFO, WARN
     }
 
+
+    /**
+     * Enum for the Cluecumber log levels.
+     */
     public enum CluecumberLogLevel {
         DEFAULT, COMPACT, MINIMAL, OFF
     }

@@ -81,6 +81,8 @@ public final class CluecumberEngine {
     /**
      * Cluecumber Report start method.
      *
+     * @param sourceJsonReportDirectory    The source directory of Cucumber JSON files.
+     * @param generatedHtmlReportDirectory The target directory of the generated report.
      * @throws CluecumberException When thrown, the plugin execution is stopped.
      */
     public void build(
@@ -127,6 +129,11 @@ public final class CluecumberEngine {
         );
     }
 
+    /**
+     * Custom parameters to display at the top of the test report.
+     *
+     * @param customParameters A map of custom key value pairs.
+     */
     public void setCustomParameters(final LinkedHashMap<String, String> customParameters) {
         if (customParameters == null) {
             return;
@@ -134,10 +141,21 @@ public final class CluecumberEngine {
         propertyManager.setCustomParameters(customParameters);
     }
 
+    /**
+     * Set a file that contains custom parameters as properties.
+     *
+     * @param customParametersFile The path to a properties file.
+     * @throws CluecumberException Thrown on any error.
+     */
     public void setCustomParametersFile(final String customParametersFile) throws CluecumberException {
         propertyManager.setCustomParametersFile(customParametersFile);
     }
 
+    /**
+     * Where to display custom parameters.
+     *
+     * @param customParametersDisplayMode The display mode for custom parameters.
+     */
     public void setCustomParametersDisplayMode(final String customParametersDisplayMode) {
         if (customParametersDisplayMode == null) {
             return;
@@ -145,30 +163,66 @@ public final class CluecumberEngine {
         propertyManager.setCustomParametersDisplayMode(customParametersDisplayMode);
     }
 
+    /**
+     * Custom navigation links to display at the end of the default navigation.
+     *
+     * @param customNavigationLinks A map of custom key value pairs (key is the link name, value is the URL).
+     */
     public void setCustomNavigationLinks(final LinkedHashMap<String, String> customNavigationLinks) {
         propertyManager.setCustomNavigationLinks(customNavigationLinks);
     }
 
+    /**
+     * Whether to fail scenarios when steps are pending or undefined.
+     *
+     * @param failScenariosOnPendingOrUndefinedSteps On true, it will fail scenarios with pending or undefined steps.
+     */
     public void setFailScenariosOnPendingOrUndefinedSteps(final boolean failScenariosOnPendingOrUndefinedSteps) {
         propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
     }
 
+    /**
+     * Whether to expand before and after hooks or not.
+     *
+     * @param expandBeforeAfterHooks If true, before and after hooks will be expanded.
+     */
     public void setExpandBeforeAfterHooks(final boolean expandBeforeAfterHooks) {
         propertyManager.setExpandBeforeAfterHooks(expandBeforeAfterHooks);
     }
 
+    /**
+     * Whether to expand step hooks or not.
+     *
+     * @param expandStepHooks If true, step hooks will be expanded.
+     */
     public void setExpandStepHooks(final boolean expandStepHooks) {
         propertyManager.setExpandStepHooks(expandStepHooks);
     }
 
+    /**
+     * Whether to expand doc strings or not.
+     *
+     * @param expandDocStrings If true, doc strings will be expanded.
+     */
     public void setExpandDocStrings(final boolean expandDocStrings) {
         propertyManager.setExpandStepHooks(expandDocStrings);
     }
 
+    /**
+     * Whether to expand attachments or not.
+     *
+     * @param expandAttachments If true, attachments will be expanded.
+     */
     public void setExpandAttachments(final boolean expandAttachments) {
         propertyManager.setExpandAttachments(expandAttachments);
     }
 
+    /**
+     * Custom CSS file to override default styles.
+     *
+     * @param customCss The path to a CSS file.
+     * @throws MissingFileException Thrown if the specified file does not exist.
+     */
     public void setCustomCssFile(final String customCss) throws MissingFileException {
         if (customCss == null) {
             return;
@@ -176,22 +230,50 @@ public final class CluecumberEngine {
         propertyManager.setCustomCssFile(customCss);
     }
 
+    /**
+     * Set a custom color for passed scenarios.
+     *
+     * @param customStatusColorPassed A color in hex format.
+     * @throws WrongOrMissingPropertyException Thrown if the property is missing or in a wrong format.
+     */
     public void setCustomStatusColorPassed(final String customStatusColorPassed) throws WrongOrMissingPropertyException {
         propertyManager.setCustomStatusColorPassed(customStatusColorPassed);
     }
 
+    /**
+     * Set a custom color for failed scenarios.
+     *
+     * @param customStatusColorFailed A color in hex format.
+     * @throws WrongOrMissingPropertyException Thrown if the property is missing or in a wrong format.
+     */
     public void setCustomStatusColorFailed(final String customStatusColorFailed) throws WrongOrMissingPropertyException {
         propertyManager.setCustomStatusColorFailed(customStatusColorFailed);
     }
 
+    /**
+     * Set a custom color for skipped scenarios.
+     *
+     * @param customStatusColorSkipped A color in hex format.
+     * @throws WrongOrMissingPropertyException Thrown in case of a missing or incompatible property.
+     */
     public void setCustomStatusColorSkipped(final String customStatusColorSkipped) throws WrongOrMissingPropertyException {
         propertyManager.setCustomStatusColorSkipped(customStatusColorSkipped);
     }
 
+    /**
+     * Set a custom page tite for the report.
+     *
+     * @param customPageTitle The custom page title.
+     */
     public void setCustomPageTitle(final String customPageTitle) {
         propertyManager.setCustomPageTitle(customPageTitle);
     }
 
+    /**
+     * Set the start page of the test report that should be directed to.
+     *
+     * @param startPage The name of the start page (referring to {@link com.trivago.cluecumber.engine.constants.PluginSettings.StartPage}).
+     */
     public void setStartPage(final String startPage) {
         if (startPage == null) {
             return;
@@ -199,6 +281,11 @@ public final class CluecumberEngine {
         propertyManager.setStartPage(startPage);
     }
 
+    /**
+     * Set the log level for Cluecumber output.
+     *
+     * @param logLevel The log level (referring to {@link com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel}).
+     */
     public void setLogLevel(final String logLevel) {
         logger.setLogLevel(logLevel);
     }

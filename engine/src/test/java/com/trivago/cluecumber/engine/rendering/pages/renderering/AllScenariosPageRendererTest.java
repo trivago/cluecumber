@@ -33,7 +33,7 @@ public class AllScenariosPageRendererTest {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         propertyManager = mock(PropertyManager.class);
         ChartConfiguration chartConfiguration = new ChartConfiguration(propertyManager);
-        allScenariosPageRenderer = new AllScenariosPageRenderer(propertyManager, chartJsonConverter, chartConfiguration);
+        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
     }
 
     @Test

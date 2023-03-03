@@ -22,6 +22,9 @@ import com.trivago.cluecumber.engine.properties.PropertyManager;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * This stores the colors and type of a report chart.
+ */
 @Singleton
 public class ChartConfiguration {
 

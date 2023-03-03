@@ -54,7 +54,7 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
         String featureUri = report.getUri();
         int featureIndex = report.getFeatureIndex();
         for (Element element : report.getElements()) {
-            element.setFeatureUri(report.getUri());
+            element.setFeatureUri(featureUri);
             element.setFeatureName(featureName);
             element.setFeatureIndex(featureIndex);
             if (reportTags.size() > 0) {

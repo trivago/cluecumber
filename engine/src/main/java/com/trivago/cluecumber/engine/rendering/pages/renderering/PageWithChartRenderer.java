@@ -21,6 +21,10 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 
 import javax.inject.Inject;
 
+
+/**
+ * The renderer for pages with charts.
+ */
 public class PageWithChartRenderer extends PageRenderer {
 
     private final ChartJsonConverter chartJsonConverter;

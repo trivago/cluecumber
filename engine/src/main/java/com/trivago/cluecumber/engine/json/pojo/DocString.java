@@ -1,21 +1,13 @@
 package com.trivago.cluecumber.engine.json.pojo;
 
-import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
+/**
+ * The class to hold docstring information of steps.
+ */
 public class DocString {
-    @SerializedName("content_type")
-    private String contentType = "";
     private int line;
     private String value = "";
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(final String contentType) {
-        this.contentType = contentType;
-    }
 
     public int getLine() {
         return line;

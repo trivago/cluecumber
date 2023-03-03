@@ -7,12 +7,12 @@
 
     <artifactId>cluecumber-maven</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>3.1.0</version>
+    <version>3.2.0</version>
 
     <parent>
         <artifactId>cluecumber-parent</artifactId>
         <groupId>com.trivago.rta</groupId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
     </parent>
 
     <name>Cluecumber Maven</name>
@@ -54,7 +54,7 @@
     <dependencies>
         <dependency>
             <groupId>com.trivago.rta</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>cluecumber-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

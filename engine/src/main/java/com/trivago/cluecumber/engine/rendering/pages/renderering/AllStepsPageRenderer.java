@@ -19,11 +19,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the steps overview page.
+ */
 public class AllStepsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public AllStepsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
@@ -56,12 +66,12 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Step, ResultCount> entry : allTagsPageCollection.getStepResultCounts().entrySet()) {
-            ResultCount value = entry.getValue();
-            passed.add((float) value.getPassed());
-            failed.add((float) value.getFailed());
-            skipped.add((float) value.getSkipped());
-            if (value.getTotal() > maximumNumberOfRuns) {
-                maximumNumberOfRuns = value.getTotal();
+            ResultCount stepResultCount = entry.getValue();
+            passed.add((float) stepResultCount.getPassed());
+            failed.add((float) stepResultCount.getFailed());
+            skipped.add((float) stepResultCount.getSkipped());
+            if (stepResultCount.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = stepResultCount.getTotal();
             }
         }
 

@@ -23,6 +23,9 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * Helper class to convert charts to JSON data.
+ */
 @Singleton
 public class ChartJsonConverter {
 

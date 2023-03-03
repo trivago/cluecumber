@@ -18,6 +18,10 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
 import java.util.List;
 
+
+/**
+ * The class to hold chart data.
+ */
 public class Dataset {
     private List<Float> data;
     private List<String> backgroundColor;

@@ -35,12 +35,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The renderer for the tags overview page.
+ */
 @Singleton
 public class AllTagsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public AllTagsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
@@ -73,12 +83,12 @@ public class AllTagsPageRenderer extends PageWithChartRenderer {
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Tag, ResultCount> entry : allTagsPageCollection.getTagResultCounts().entrySet()) {
-            ResultCount value = entry.getValue();
-            passed.add((float) value.getPassed());
-            failed.add((float) value.getFailed());
-            skipped.add((float) value.getSkipped());
-            if (value.getTotal() > maximumNumberOfRuns) {
-                maximumNumberOfRuns = value.getTotal();
+            ResultCount tagResultCount = entry.getValue();
+            passed.add((float) tagResultCount.getPassed());
+            failed.add((float) tagResultCount.getFailed());
+            skipped.add((float) tagResultCount.getSkipped());
+            if (tagResultCount.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = tagResultCount.getTotal();
             }
         }
 

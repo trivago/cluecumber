@@ -37,11 +37,21 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The renderer for the scenario details page.
+ */
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public ScenarioDetailsPageRenderer(
             final ChartJsonConverter chartJsonConverter,

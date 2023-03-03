@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Navigation {
-    public static List<Link> internalLinks = Arrays.asList(
+    public static final List<Link> internalLinks = Arrays.asList(
             new Link("scenario_summary", "pages/scenario-summary.html", LinkType.INTERNAL),
             new Link("scenario_sequence", "pages/scenario-sequence.html", LinkType.INTERNAL),
             new Link("tag_summary", "pages/tag-summary.html", LinkType.INTERNAL),

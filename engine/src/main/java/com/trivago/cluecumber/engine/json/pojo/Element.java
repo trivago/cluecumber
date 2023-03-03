@@ -46,6 +46,11 @@ public class Element {
     private transient int scenarioIndex = 0;
     private transient boolean failOnPendingOrUndefined = false;
 
+    /**
+     * Get the list of tags of this scenario.
+     *
+     * @return The tag list.
+     */
     public List<Tag> getTags() {
         return tags;
     }
@@ -54,6 +59,11 @@ public class Element {
         this.tags = tags;
     }
 
+    /**
+     * Get the start timestamp.
+     *
+     * @return The start timestamp.
+     */
     public String getStartTimestamp() {
         return startTimestamp;
     }
@@ -62,10 +72,20 @@ public class Element {
         this.startTimestamp = startTimestamp;
     }
 
+    /**
+     * Get the start time including a timezone.
+     *
+     * @return The start time.
+     */
     public ZonedDateTime getStartDateTime() {
         return RenderingUtils.convertTimestampToZonedDateTime(startTimestamp);
     }
 
+    /**
+     * Get the end time including a timezone.
+     *
+     * @return The start time.
+     */
     public ZonedDateTime getEndDateTime() {
         ZonedDateTime startDateTime = getStartDateTime();
         if (startDateTime != null) {
@@ -75,22 +95,47 @@ public class Element {
         }
     }
 
+    /**
+     * Get the start date of this scenario run.
+     *
+     * @return The date.
+     */
     public String getStartDateString() {
         return RenderingUtils.convertZonedDateTimeToDateString(getStartDateTime());
     }
 
+    /**
+     * Get the start time of this scenario run.
+     *
+     * @return The date.
+     */
     public String getStartTimeString() {
         return RenderingUtils.convertZonedDateTimeToTimeString(getStartDateTime());
     }
 
+    /**
+     * Get the end date of this scenario run.
+     *
+     * @return The date.
+     */
     public String getEndDateString() {
         return RenderingUtils.convertZonedDateTimeToDateString(getEndDateTime());
     }
 
+    /**
+     * Get the end time of this scenario run.
+     *
+     * @return The time.
+     */
     public String getEndTimeString() {
         return RenderingUtils.convertZonedDateTimeToTimeString(getEndDateTime());
     }
 
+    /**
+     * Get the before hooks.
+     *
+     * @return The before hooks.
+     */
     public List<ResultMatch> getBefore() {
         return before;
     }
@@ -99,6 +144,11 @@ public class Element {
         this.before = before;
     }
 
+    /**
+     * Determine if any before hooks contain data.
+     *
+     * @return true if any before hooks contain data.
+     */
     public boolean anyBeforeHookHasContent() {
         for (ResultMatch resultMatch : before) {
             if (resultMatch.hasContent() || resultMatch.isFailed()) {
@@ -108,6 +158,11 @@ public class Element {
         return false;
     }
 
+    /**
+     * Get the starting line number of the scenario in the feature file.
+     *
+     * @return The scenario line number.
+     */
     public int getLine() {
         return line;
     }
@@ -116,6 +171,11 @@ public class Element {
         this.line = line;
     }
 
+    /**
+     * Get the scenario name.
+     *
+     * @return The scenario name.
+     */
     public String getName() {
         return !name.isEmpty() ? name : "[Unnamed]";
     }
@@ -124,6 +184,11 @@ public class Element {
         this.name = name;
     }
 
+    /**
+     * Get the scenario description.
+     *
+     * @return The scenario description.
+     */
     public String getDescription() {
         return description;
     }
@@ -132,14 +197,11 @@ public class Element {
         this.description = description;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(final String id) {
-        this.id = id;
-    }
-
+    /**
+     * Get the scenario's after hooks.
+     *
+     * @return The after hooks.
+     */
     public List<ResultMatch> getAfter() {
         return after;
     }
@@ -148,6 +210,10 @@ public class Element {
         this.after = after;
     }
 
+
+    /**
+     * @return Check if after hooks has con
+     */
     public boolean anyAfterHookHasContent() {
         for (ResultMatch resultMatch : after) {
             if (resultMatch.hasContent() || resultMatch.isFailed()) {
@@ -161,18 +227,20 @@ public class Element {
         return type;
     }
 
+    /**
+     * Set the type of this scenario element.
+     *
+     * @param type "scenario" or "background".
+     */
     public void setType(final String type) {
         this.type = type;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(final String keyword) {
-        this.keyword = keyword;
-    }
-
+    /**
+     * Get the scenario's steps.
+     *
+     * @return The steps.
+     */
     public List<Step> getSteps() {
         return steps;
     }
@@ -181,6 +249,11 @@ public class Element {
         this.steps = steps;
     }
 
+    /**
+     * Get the scenario's background steps.
+     *
+     * @return The background steps.
+     */
     public List<Step> getBackgroundSteps() {
         return backgroundSteps;
     }
@@ -189,22 +262,47 @@ public class Element {
         this.backgroundSteps = steps;
     }
 
+    /**
+     * Determine if this is of type scenario.
+     *
+     * @return true if this is a scenario.
+     */
     public boolean isScenario() {
         return type.equals("scenario");
     }
 
+    /**
+     * Check if this scenario failed.
+     *
+     * @return true if the status is failed.
+     */
     public boolean isFailed() {
         return getStatus() == Status.FAILED;
     }
 
+    /**
+     * Check if this scenario passed.
+     *
+     * @return true if the status is passed.
+     */
     public boolean isPassed() {
         return getStatus() == Status.PASSED;
     }
 
+    /**
+     * Check if this scenario skipped.
+     *
+     * @return true if the status is skipped.
+     */
     public boolean isSkipped() {
         return getStatus() == Status.SKIPPED;
     }
 
+    /**
+     * Get the overall scenario status based on its step results.
+     *
+     * @return The overall status.
+     */
     public Status getStatus() {
         int totalSteps = steps.size();
 
@@ -275,6 +373,11 @@ public class Element {
         return Status.FAILED;
     }
 
+    /**
+     * Determine the first exception class in the stack trace to display on the scenario overview page.
+     *
+     * @return The exception class string.
+     */
     public String getFirstExceptionClass() {
         String firstException = getFirstException();
         String exceptionClass = firstException.split("\n")[0].trim();
@@ -286,33 +389,43 @@ public class Element {
         return exceptionClass;
     }
 
+    /**
+     * Determine the first exception message in the stack trace to display on the scenario overview page.
+     *
+     * @return The exception message string.
+     */
     public String getFirstException() {
         String exception = getResultListException(before);
-        if (exception != null && !exception.isEmpty()){
+        if (exception != null && !exception.isEmpty()) {
             return exception;
         }
 
         exception = getStepException(backgroundSteps);
-        if (exception != null && !exception.isEmpty()){
+        if (exception != null && !exception.isEmpty()) {
             return exception;
         }
 
         exception = getStepException(steps);
-        if (exception != null && !exception.isEmpty()){
+        if (exception != null && !exception.isEmpty()) {
             return RenderingUtils.escapeHTML(exception);
         }
 
         exception = getResultListException(after);
-        if (exception != null && !exception.isEmpty()){
+        if (exception != null && !exception.isEmpty()) {
             return exception;
         }
         return "";
     }
 
+    /**
+     * Determine the first exception message from the steps.
+     *
+     * @return The exception message string.
+     */
     private String getStepException(final List<Step> steps) {
         for (Step step : steps) {
             String exception = getResultListException(step.getBefore());
-            if (exception != null && !exception.isEmpty()){
+            if (exception != null && !exception.isEmpty()) {
                 return exception;
             }
 
@@ -322,13 +435,18 @@ public class Element {
             }
 
             exception = getResultListException(step.getAfter());
-            if (exception != null && !exception.isEmpty()){
+            if (exception != null && !exception.isEmpty()) {
                 return exception;
             }
         }
         return null;
     }
 
+    /**
+     * Determine the first exception message within the {@link ResultMatch} instances.
+     *
+     * @return The exception message string.
+     */
     private String getResultListException(final List<ResultMatch> resultMatches) {
         for (ResultMatch match : resultMatches) {
             if (match.isFailed()) {
@@ -338,6 +456,11 @@ public class Element {
         return null;
     }
 
+    /**
+     * Get the internal scenario index.
+     *
+     * @return The scenario index.
+     */
     public int getScenarioIndex() {
         return scenarioIndex;
     }
@@ -346,22 +469,48 @@ public class Element {
         this.scenarioIndex = scenarioIndex;
     }
 
+    /**
+     * Get the total number of steps in this scenario.
+     *
+     * @return The number of steps.
+     */
     public int getTotalNumberOfSteps() {
         return getSteps().size();
     }
 
+    /**
+     * Get the total number of passed steps in this scenario.
+     *
+     * @return The number of passed steps.
+     */
     public int getTotalNumberOfPassedSteps() {
         return getNumberOfStepsWithStatus(Status.PASSED);
     }
 
+    /**
+     * Get the total number of failed steps in this scenario.
+     *
+     * @return The number of failed steps.
+     */
     public int getTotalNumberOfFailedSteps() {
         return getNumberOfStepsWithStatus(Status.FAILED);
     }
 
+    /**
+     * Get the total number of skipped steps in this scenario.
+     *
+     * @return The number of skipped steps.
+     */
     public int getTotalNumberOfSkippedSteps() {
         return getNumberOfStepsWithStatus(Status.SKIPPED);
     }
 
+    /**
+     * Get the total number of steps that match a given status.
+     *
+     * @param status The status to filter the steps by.
+     * @return The number of step.
+     */
     private int getNumberOfStepsWithStatus(final Status status) {
         return (int) getSteps().stream().filter(step -> step.getConsolidatedStatus() == status).count();
     }
@@ -382,10 +531,20 @@ public class Element {
         return getBefore().size() > 0 || getAfter().size() > 0;
     }
 
+    /**
+     * Check if this scenario contains any hooks with content.
+     *
+     * @return true if there are hooks with content.
+     */
     public boolean hasHooksWithContent() {
         return anyBeforeHookHasContent() || anyAfterHookHasContent();
     }
 
+    /**
+     * Check if this scenario contains docstrings.
+     *
+     * @return true if there are docstrings.
+     */
     public boolean hasDocStrings() {
         for (Step step : backgroundSteps) {
             if (step.getDocString() != null) {
@@ -400,6 +559,11 @@ public class Element {
         return false;
     }
 
+    /**
+     * Check if this scenario contains hooks.
+     *
+     * @return true if there are hooks.
+     */
     public boolean hasStepHooks() {
         for (Step step : backgroundSteps) {
             if (step.getBefore().size() > 0) {
@@ -420,6 +584,11 @@ public class Element {
         return false;
     }
 
+    /**
+     * Check if any step hooks have content.
+     *
+     * @return true means that there are step hooks with content.
+     */
     public boolean hasStepHooksWithContent() {
         for (Step step : backgroundSteps) {
             if (step.hasHooksWithContent()) {
@@ -434,6 +603,12 @@ public class Element {
         return false;
     }
 
+
+    /**
+     * Get all results from all background steps, steps and after hooks.
+     *
+     * @return The results.
+     */
     public List<ResultMatch> getAllResultMatches() {
         List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
         resultMatches.addAll(getBackgroundSteps());
@@ -442,6 +617,11 @@ public class Element {
         return resultMatches;
     }
 
+    /**
+     * Get the feature name.
+     *
+     * @return The feature name.
+     */
     public String getFeatureName() {
         return featureName;
     }
@@ -450,6 +630,11 @@ public class Element {
         this.featureName = featureName;
     }
 
+    /**
+     * Get the internal feature index.
+     *
+     * @return The feature index.
+     */
     public int getFeatureIndex() {
         return featureIndex;
     }
@@ -462,6 +647,11 @@ public class Element {
         this.failOnPendingOrUndefined = failOnPendingOrUndefined;
     }
 
+    /**
+     * Get the URI of this feature file.
+     *
+     * @return The feature file URI.
+     */
     public String getFeatureUri() {
         return featureUri;
     }

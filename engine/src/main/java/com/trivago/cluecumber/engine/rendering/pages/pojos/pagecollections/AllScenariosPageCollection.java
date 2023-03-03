@@ -35,22 +35,40 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("unused")
+/**
+ * Page collection for the scenario overview page.
+ */
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
 
+    /**
+     * Constructor.
+     *
+     * @param pageTitle The page title.
+     */
     public AllScenariosPageCollection(final String pageTitle) {
         super(pageTitle);
     }
 
+    /**
+     * Get all reports.
+     *
+     * @return The list of {@link Report} instances.
+     */
     public List<Report> getReports() {
         return reports;
     }
 
-    public List<Element> getElementsByFeatureIndex(final int featureIndex){
+    /**
+     * Get scenarios by feature index.
+     *
+     * @param featureIndex The feature index.
+     * @return The list of related {@link Element} instances.
+     */
+    public List<Element> getElementsByFeatureIndex(final int featureIndex) {
         return getReports().stream()
                 .filter(report -> report.getFeatureIndex() == featureIndex)
                 .flatMap(report -> report.getElements().stream())
@@ -58,10 +76,20 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
                 .collect(Collectors.toList());
     }
 
+
+    /**
+     * Empty report list.
+     */
     public void clearReports() {
         reports = new ArrayList<>();
     }
 
+
+    /**
+     * Add reports to the existing report list.
+     *
+     * @param reportList An array of {@link Report} instances to add.
+     */
     public void addReports(final Report[] reportList) {
         if (reportList == null) {
             return;
@@ -182,6 +210,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         this.tagFilter = tagFilter;
     }
 
+    /**
+     * Return the feature by which scenarios are filtered.
+     *
+     * @return The {@link Feature} to filter by.
+     */
     public Feature getFeatureFilter() {
         return featureFilter;
     }
@@ -190,6 +223,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         this.featureFilter = featureFilter;
     }
 
+    /**
+     * Return the step by which scenarios are filtered.
+     *
+     * @return The {@link Step} to filter by.
+     */
     public Step getStepFilter() {
         return stepFilter;
     }

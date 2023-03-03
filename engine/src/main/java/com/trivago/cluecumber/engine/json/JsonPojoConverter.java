@@ -53,19 +53,6 @@ public class JsonPojoConverter {
         gsonParserWithProcessors = builder.createGson();
     }
 
-    public List<Report> readJsonStream(InputStream in) throws CluecumberException, IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-        List<Report> reports = new ArrayList<Report>();
-        reader.beginArray();
-        while (reader.hasNext()) {
-            Report report = gsonParserWithProcessors.fromJson(reader, Report.class);
-            reports.add(report);
-        }
-        reader.endArray();
-        reader.close();
-        return reports;
-    }
-
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberException {
         Report[] reports;
         try {

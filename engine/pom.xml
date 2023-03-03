@@ -8,11 +8,11 @@
     <parent>
         <artifactId>cluecumber-parent</artifactId>
         <groupId>com.trivago.rta</groupId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
     </parent>
 
     <artifactId>cluecumber-engine</artifactId>
-    <version>3.1.0</version>
+    <version>3.2.0</version>
     <packaging>jar</packaging>
 
     <name>Cluecumber Engine</name>
@@ -146,6 +146,7 @@
                 </executions>
                 <configuration>
                     <failOnWarnings>false</failOnWarnings>
+                    <sourcepath>${basedir}/src/main/java</sourcepath>
                 </configuration>
             </plugin>
         </plugins>

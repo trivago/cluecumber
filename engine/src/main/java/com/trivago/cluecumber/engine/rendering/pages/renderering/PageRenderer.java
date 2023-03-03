@@ -30,6 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * The base class for page rendering.
+ */
 public class PageRenderer {
 
     /**
@@ -43,7 +47,7 @@ public class PageRenderer {
     String processedContent(final Template template, final Object pageCollection, final List<Link> navigation)
             throws CluecumberException {
 
-        if (pageCollection instanceof PageCollection){
+        if (pageCollection instanceof PageCollection) {
             ((PageCollection) pageCollection).setNavigationLinks(navigation);
         }
 

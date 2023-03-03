@@ -16,8 +16,10 @@
 
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
+import com.trivago.cluecumber.engine.constants.ChartConfiguration;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -27,11 +29,19 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
+/**
+ * The renderer for the custom CSS styles.
+ */
 @Singleton
 public class CustomCssRenderer {
 
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param propertyManager The {@link PropertyManager} instance.
+     */
     @Inject
     public CustomCssRenderer(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
@@ -40,7 +50,7 @@ public class CustomCssRenderer {
     /**
      * Return the completely rendered custom css content.
      *
-     * @param template           The Freemarker template.
+     * @param template The Freemarker template.
      * @return The fully rendered content.
      * @throws CluecumberException In case of a rendering error.
      */

@@ -24,6 +24,9 @@ import freemarker.template.Template;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * The renderer for the index page that redirects to the chosen start page.
+ */
 public class StartPageRenderer extends PageRenderer {
 
     @Inject

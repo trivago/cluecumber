@@ -20,6 +20,7 @@ import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Tag {
@@ -35,11 +36,7 @@ public class Tag {
 
     public String getUrlFriendlyName() {
         String escapedTag = RenderingUtils.escapeHTML(getName()).replace("@", "");
-        try {
-            return URLEncoder.encode(escapedTag, "UTF-8").replace("%", "");
-        } catch (UnsupportedEncodingException ignored) {
-        }
-        return escapedTag;
+        return URLEncoder.encode(escapedTag, StandardCharsets.UTF_8).replace("%", "");
     }
 
     @Override

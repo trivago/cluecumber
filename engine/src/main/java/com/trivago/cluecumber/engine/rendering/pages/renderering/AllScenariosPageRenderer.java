@@ -35,21 +35,31 @@ import javax.inject.Singleton;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the scenario overview page.
+ */
 @Singleton
 public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
     private final PropertyManager propertyManager;
     private final ChartConfiguration chartConfiguration;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     AllScenariosPageRenderer(
-            final PropertyManager propertyManager,
             final ChartJsonConverter chartJsonConverter,
-            final ChartConfiguration chartConfiguration
+            final ChartConfiguration chartConfiguration,
+            final PropertyManager propertyManager
     ) {
         super(chartJsonConverter);
-        this.propertyManager = propertyManager;
         this.chartConfiguration = chartConfiguration;
+        this.propertyManager = propertyManager;
     }
 
     public String getRenderedContent(
