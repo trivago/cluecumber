@@ -23,6 +23,9 @@ import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+/**
+ * This class represents scenario attachments.
+ */
 public class Embedding {
 
     private String data;
@@ -34,25 +37,45 @@ public class Embedding {
 
     private transient String filename = "";
 
+    /**
+     * Get the raw attachment data.
+     *
+     * @return The data as string.
+     */
     public String getData() {
         return data;
     }
 
+    /**
+     * Set the attachment data.
+     *
+     * @param data The data string.
+     */
     public void setData(final String data) {
         this.data = data;
     }
 
+    /**
+     * Retrieve the decoded data.
+     *
+     * @return The decoded data string.
+     */
     public String getDecodedData() {
         return decodedData;
     }
 
+    /**
+     * Encode the data based on its mime type.
+     *
+     * @param data The data string.
+     */
     public void decodeData(final String data) {
         decodedData = new String(Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
         switch (mimeType) {
             case HTML:
                 decodedData = decodedData.replaceAll("\"", "'")
-                                         .replaceAll("&", "&amp;")
-                                         .replaceAll("\"", "&quot;");
+                        .replaceAll("&", "&amp;")
+                        .replaceAll("\"", "&quot;");
                 break;
             case XML:
             case APPLICATION_XML:
@@ -68,44 +91,89 @@ public class Embedding {
         }
     }
 
+    /**
+     * Retrieve the mime type of this attachment.
+     *
+     * @return The {@link MimeType} instance.
+     */
     public MimeType getMimeType() {
         return mimeType;
     }
 
+    /**
+     * Set the attachment's mime type.
+     *
+     * @param mimeType The {@link MimeType} instance.
+     */
     public void setMimeType(final MimeType mimeType) {
         this.mimeType = mimeType;
     }
 
+    /**
+     * Get the name of this attachment.
+     *
+     * @return The name string.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set the name of this attachment.
+     *
+     * @param name The attachment name string.
+     */
     public void setName(final String name) {
         this.name = name;
     }
 
+    /**
+     * Retrieve the attachment's file name after preprocessing.
+     *
+     * @return The file name string.
+     */
     public String getFilename() {
         return filename;
     }
 
+    /**
+     * Set the filename after preprocessing.
+     *
+     * @param filename The file name string.
+     */
     public void setFilename(final String filename) {
         this.filename = filename;
     }
 
+    /**
+     * Check if the attachment is an image.
+     *
+     * @return true if this is an image.
+     */
     public boolean isImage() {
         return mimeType == MimeType.PNG ||
-               mimeType == MimeType.GIF ||
-               mimeType == MimeType.BMP ||
-               mimeType == MimeType.JPEG ||
-               mimeType == MimeType.JPG ||
-               mimeType == MimeType.SVG ||
-               mimeType == MimeType.SVG_XML;
+                mimeType == MimeType.GIF ||
+                mimeType == MimeType.BMP ||
+                mimeType == MimeType.JPEG ||
+                mimeType == MimeType.JPG ||
+                mimeType == MimeType.SVG ||
+                mimeType == MimeType.SVG_XML;
     }
 
+    /**
+     * Check if the attachment is a plain text.
+     *
+     * @return true if this is text.
+     */
     public boolean isPlainText() {
         return mimeType.getContentType().equalsIgnoreCase("text/plain");
     }
 
+    /**
+     * Determine the generated file ending.
+     *
+     * @return The file ending as string.
+     */
     public String getFileEnding() {
         switch (mimeType) {
             case PNG:
@@ -130,6 +198,12 @@ public class Embedding {
         }
     }
 
+
+    /**
+     * This specifies if it is a link that refers to external data, e.g. an externally hosted video file.
+     *
+     * @return true if this is externally hosted.s
+     */
     public boolean isExternalContent() {
         return isExternalContent;
     }

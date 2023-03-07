@@ -55,6 +55,11 @@ public class Element {
         return tags;
     }
 
+    /**
+     * Set the scenario tags.
+     *
+     * @param tags The list of tags.
+     */
     public void setTags(final List<Tag> tags) {
         this.tags = tags;
     }
@@ -68,6 +73,11 @@ public class Element {
         return startTimestamp;
     }
 
+    /**
+     * Set the scenario's start timestamp.
+     *
+     * @param startTimestamp The start timestamp.
+     */
     public void setStartTimestamp(final String startTimestamp) {
         this.startTimestamp = startTimestamp;
     }
@@ -140,12 +150,17 @@ public class Element {
         return before;
     }
 
+    /**
+     * Add before hooks.
+     *
+     * @param before The list of before hooks.
+     */
     public void setBefore(final List<ResultMatch> before) {
         this.before = before;
     }
 
     /**
-     * Determine if any before hooks contain data.
+     * Determine if any before hooks contain data or an exception.
      *
      * @return true if any before hooks contain data.
      */
@@ -167,6 +182,11 @@ public class Element {
         return line;
     }
 
+    /**
+     * Add the starting line number of this scenario within the feature file.
+     *
+     * @param line the line number.
+     */
     public void setLine(final int line) {
         this.line = line;
     }
@@ -180,6 +200,11 @@ public class Element {
         return !name.isEmpty() ? name : "[Unnamed]";
     }
 
+    /**
+     * Add the scenario name.
+     *
+     * @param name The scenario name.
+     */
     public void setName(final String name) {
         this.name = name;
     }
@@ -193,6 +218,11 @@ public class Element {
         return description;
     }
 
+    /**
+     * Set the scenario description.
+     *
+     * @param description The description.
+     */
     public void setDescription(final String description) {
         this.description = description;
     }
@@ -200,19 +230,26 @@ public class Element {
     /**
      * Get the scenario's after hooks.
      *
-     * @return The after hooks.
+     * @return The list of hooks.
      */
     public List<ResultMatch> getAfter() {
         return after;
     }
 
+    /**
+     * Set the scenario after hooks
+     *
+     * @param after The list of hooks.
+     */
     public void setAfter(final List<ResultMatch> after) {
         this.after = after;
     }
 
 
     /**
-     * @return Check if after hooks has con
+     * Check if after hooks has content or an exception.
+     *
+     * @return true if the after hook has content.
      */
     public boolean anyAfterHookHasContent() {
         for (ResultMatch resultMatch : after) {
@@ -223,6 +260,11 @@ public class Element {
         return false;
     }
 
+    /**
+     * Get the type of this element.
+     *
+     * @return The string "scenario" or "background".
+     */
     public String getType() {
         return type;
     }
@@ -230,7 +272,7 @@ public class Element {
     /**
      * Set the type of this scenario element.
      *
-     * @param type "scenario" or "background".
+     * @param type The string "scenario" or "background".
      */
     public void setType(final String type) {
         this.type = type;
@@ -245,6 +287,11 @@ public class Element {
         return steps;
     }
 
+    /**
+     * Set the scenario steps.
+     *
+     * @param steps The list of steps.
+     */
     public void setSteps(final List<Step> steps) {
         this.steps = steps;
     }
@@ -258,6 +305,11 @@ public class Element {
         return backgroundSteps;
     }
 
+    /**
+     * Set the background scenario steps.
+     *
+     * @param steps The list of steps.
+     */
     public void setBackgroundSteps(final List<Step> steps) {
         this.backgroundSteps = steps;
     }
@@ -465,6 +517,11 @@ public class Element {
         return scenarioIndex;
     }
 
+    /**
+     * Set the internal scenario index that is used for report links to scenario details.
+     *
+     * @param scenarioIndex The scenario index.
+     */
     public void setScenarioIndex(final int scenarioIndex) {
         this.scenarioIndex = scenarioIndex;
     }
@@ -515,6 +572,11 @@ public class Element {
         return (int) getSteps().stream().filter(step -> step.getConsolidatedStatus() == status).count();
     }
 
+    /**
+     * Get the total duration of this scenario.
+     *
+     * @return the duration in nanoseconds.
+     */
     public long getTotalDuration() {
         long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
         totalDurationNanoseconds += backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum();
@@ -523,10 +585,20 @@ public class Element {
         return totalDurationNanoseconds;
     }
 
+    /**
+     * Get the human-readable time string.
+     *
+     * @return the time string.
+     */
     public String returnTotalDurationString() {
         return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
     }
 
+    /**
+     * Check if this scenario has before or after hooks.
+     *
+     * @return true if there are before or after hooks.
+     */
     public boolean hasHooks() {
         return getBefore().size() > 0 || getAfter().size() > 0;
     }
@@ -618,7 +690,7 @@ public class Element {
     }
 
     /**
-     * Get the feature name.
+     * Get the scenario's parent feature name.
      *
      * @return The feature name.
      */
@@ -626,6 +698,11 @@ public class Element {
         return featureName;
     }
 
+    /**
+     * Set the scenario's parent feature name.
+     *
+     * @param featureName The feature name.
+     */
     public void setFeatureName(final String featureName) {
         this.featureName = featureName;
     }
@@ -639,16 +716,26 @@ public class Element {
         return featureIndex;
     }
 
+    /**
+     * Set the internal feature index.
+     *
+     * @param featureIndex The feature index.
+     */
     public void setFeatureIndex(final int featureIndex) {
         this.featureIndex = featureIndex;
     }
 
+    /**
+     * Choose if a scenario should be failed on pending or undefined steps.
+     *
+     * @param failOnPendingOrUndefined If true, the scenario is failed on pending or undefined steps.
+     */
     public void setFailOnPendingOrUndefined(final boolean failOnPendingOrUndefined) {
         this.failOnPendingOrUndefined = failOnPendingOrUndefined;
     }
 
     /**
-     * Get the URI of this feature file.
+     * Get the URI of the parent feature file.
      *
      * @return The feature file URI.
      */
@@ -656,6 +743,11 @@ public class Element {
         return featureUri;
     }
 
+    /**
+     * Set the URI of the parent feature file.
+     *
+     * @param featureUri The feature file URI.
+     */
     public void setFeatureUri(String featureUri) {
         this.featureUri = featureUri;
     }

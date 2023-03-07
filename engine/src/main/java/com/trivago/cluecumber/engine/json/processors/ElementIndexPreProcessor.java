@@ -10,13 +10,25 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class preprocesses {@link Element} JSON to add additional information to it and extract attachments.
+ */
 @Singleton
 public class ElementIndexPreProcessor {
 
+    /**
+     * The default constructor.
+     */
     @Inject
     public ElementIndexPreProcessor() {
     }
 
+    /**
+     * This adds the internal scenario index to each scenario.
+     * It is a sequential number that is unique for every scenario.
+     *
+     * @param reports The list of reports to cycle  through.
+     */
     public void addScenarioIndices(final List<Report> reports) {
         List<Element> elements = new ArrayList<>();
         for (Report report : reports) {
