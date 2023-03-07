@@ -21,5 +21,11 @@ import com.trivago.cluecumber.engine.exceptions.CluecumberException;
  * Base interface for page collections to accept visitor classes.
  */
 public interface Visitable {
+    /**
+     * The method to accept a visitor.
+     *
+     * @param visitor The {@link PageVisitor} instance.
+     * @throws CluecumberException Thrown on any error.
+     */
     void accept(final PageVisitor visitor) throws CluecumberException;
 }

@@ -155,6 +155,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return reports.stream().mapToLong(Report::getTotalDuration).sum();
     }
 
+    /**
+     * Return a human-readable time string of the total duration.
+     *
+     * @return The time string.
+     */
     public String getTotalDurationString() {
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
@@ -198,6 +203,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return latestEndDateTime;
     }
 
+    /**
+     * Return the start date and time string of the earliest scenario that was started in the test run.
+     *
+     * @return The time string.
+     */
     public String returnStartDateTimeString() {
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         if (earliestStartDateTime != null) {
@@ -207,6 +217,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return "";
     }
 
+    /**
+     * Return the human-readable time and date string of the latest scenario end.
+     *
+     * @return The time string.
+     */
     public String returnEndDateTimeString() {
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
         if (latestEndDateTime != null) {
@@ -216,10 +231,20 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return "";
     }
 
+    /**
+     * Get the current tag filter to filter scenario by a specific tag.
+     *
+     * @return The {@link Tag} to filter by.
+     */
     public Tag getTagFilter() {
         return tagFilter;
     }
 
+    /**
+     * Set the current tag filter to filter scenario by a specific tag.
+     *
+     * @param tagFilter The {@link Tag} to filter by.
+     */
     public void setTagFilter(final Tag tagFilter) {
         this.tagFilter = tagFilter;
     }
@@ -233,6 +258,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return featureFilter;
     }
 
+    /**
+     * Set the feature by which scenarios should be filtered.
+     *
+     * @param featureFilter The {@link Feature} to filter by.
+     */
     public void setFeatureFilter(final Feature featureFilter) {
         this.featureFilter = featureFilter;
     }
@@ -246,10 +276,21 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return stepFilter;
     }
 
+    /**
+     * Set the step by which scenarios should be filtered.
+     *
+     * @param stepFilter The {@link Step} to filter by.
+     */
     public void setStepFilter(final Step stepFilter) {
         this.stepFilter = stepFilter;
     }
 
+    /**
+     * Function to clone the {@link AllScenariosPageCollection} including all included data.
+     *
+     * @return The clone of the {@link AllScenariosPageCollection}
+     * @throws CloneNotSupportedException thrown on any cloning error.
+     */
     @Override
     public Object clone() throws CloneNotSupportedException {
         final AllScenariosPageCollection clone = (AllScenariosPageCollection) super.clone();
@@ -265,6 +306,12 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return clone;
     }
 
+    /**
+     * Method to accept a {@link PageVisitor}.
+     *
+     * @param visitor The {@link PageVisitor} instance.
+     * @throws CluecumberException thrown on any error.
+     */
     @Override
     public void accept(final PageVisitor visitor) throws CluecumberException {
         visitor.visit(this);
