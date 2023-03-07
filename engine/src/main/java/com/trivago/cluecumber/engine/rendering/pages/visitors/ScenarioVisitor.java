@@ -19,6 +19,9 @@ import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEn
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.SCENARIO_DETAILS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.SCENARIO_SEQUENCE;
 
+/**
+ * The visitor for scenario related pages.
+ */
 @Singleton
 public class ScenarioVisitor implements PageVisitor {
 
@@ -28,6 +31,15 @@ public class ScenarioVisitor implements PageVisitor {
     private final AllScenariosPageRenderer allScenariosPageRenderer;
     private final ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO                      The {@link FileIO} instance.
+     * @param templateEngine              The Freemarker template engine.
+     * @param propertyManager             The {@link PropertyManager} instance.
+     * @param allScenariosPageRenderer    The renderer for the scenario pages.
+     * @param scenarioDetailsPageRenderer The renderer for scenario detail pages.
+     */
     @Inject
     public ScenarioVisitor(
             final FileIO fileIO,
@@ -43,6 +55,12 @@ public class ScenarioVisitor implements PageVisitor {
         this.scenarioDetailsPageRenderer = scenarioDetailsPageRenderer;
     }
 
+    /**
+     * The main method that is called on this visitor.
+     *
+     * @param allScenariosPageCollection The scenarios page collection.
+     * @throws CluecumberException Thrown on all errors.
+     */
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         // All scenarios page

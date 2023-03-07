@@ -1,13 +1,15 @@
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
+/**
+ * The legend for charts shown in the report.
+ */
 public class Legend {
-    private boolean display = true;
-
+    /**
+     * Return if the legend should be displayed.
+     *
+     * @return true since legends should always be shown.
+     */
     public boolean isDisplay() {
-        return display;
-    }
-
-    public void setDisplay(final boolean display) {
-        this.display = display;
+        return true;
     }
 }

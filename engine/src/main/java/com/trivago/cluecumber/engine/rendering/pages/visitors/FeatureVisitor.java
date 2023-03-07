@@ -19,6 +19,9 @@ import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEn
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.TREE_VIEW;
 
+/**
+ * The visitor for feature related pages.
+ */
 @Singleton
 public class FeatureVisitor implements PageVisitor {
 
@@ -29,6 +32,16 @@ public class FeatureVisitor implements PageVisitor {
     private final AllScenariosPageRenderer allScenariosPageRenderer;
     private final TreeViewPageRenderer treeViewPageRenderer;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO                   The {@link FileIO} instance.
+     * @param templateEngine           The Freemarker template engine.
+     * @param propertyManager          The {@link PropertyManager} instance.
+     * @param allFeaturesPageRenderer  The renderer for the feature pages.
+     * @param allScenariosPageRenderer The renderer for the scenario pages.
+     * @param treeViewPageRenderer     The renderer for the feature/scenario tree view.
+     */
     @Inject
     public FeatureVisitor(
             final FileIO fileIO,
@@ -46,6 +59,12 @@ public class FeatureVisitor implements PageVisitor {
         this.treeViewPageRenderer = treeViewPageRenderer;
     }
 
+    /**
+     * The main method that is called on this visitor.
+     *
+     * @param allScenariosPageCollection The scenarios page collection.
+     * @throws CluecumberException Thrown on all errors.
+     */
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         AllFeaturesPageCollection allFeaturesPageCollection =

@@ -36,6 +36,9 @@ import static java.nio.file.Files.readAllBytes;
 @Singleton
 public class FileIO {
 
+    /**
+     * Base constructor.
+     */
     @Inject
     public FileIO() {
     }

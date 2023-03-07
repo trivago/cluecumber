@@ -17,6 +17,9 @@ import javax.inject.Singleton;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_STEPS;
 
+/**
+ * The visitor for scenario step related pages.
+ */
 @Singleton
 public class StepVisitor implements PageVisitor {
 
@@ -26,6 +29,15 @@ public class StepVisitor implements PageVisitor {
     private final AllStepsPageRenderer allStepsPageRenderer;
     private final AllScenariosPageRenderer allScenariosPageRenderer;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO                   The {@link FileIO} instance.
+     * @param templateEngine           The Freemarker template engine.
+     * @param propertyManager          The {@link PropertyManager} instance.
+     * @param allStepsPageRenderer     The renderer for scenario step pages.
+     * @param allScenariosPageRenderer The renderer for the scenario pages.
+     */
     @Inject
     public StepVisitor(
             final FileIO fileIO,
@@ -41,6 +53,12 @@ public class StepVisitor implements PageVisitor {
         this.allScenariosPageRenderer = allScenariosPageRenderer;
     }
 
+    /**
+     * The main method that is called on this visitor.
+     *
+     * @param allScenariosPageCollection The scenarios page collection.
+     * @throws CluecumberException Thrown on all errors.
+     */
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         AllStepsPageCollection allStepsPageCollection = new AllStepsPageCollection(

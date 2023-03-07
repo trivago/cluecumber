@@ -5,6 +5,9 @@ import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * List of visitors
+ */
 @Singleton
 public class VisitorDirectory {
 

@@ -29,11 +29,20 @@ import io.gsonfire.GsonFireBuilder;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * The converter to turn JSON into a report array including pre- and post-processing.
+ */
 @Singleton
 public class JsonPojoConverter {
 
     private final Gson gsonParserWithProcessors;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param reportJsonPostProcessor  The {@link ReportJsonPostProcessor} instance.
+     * @param elementJsonPostProcessor The {@link ElementJsonPostProcessor} instance.
+     */
     @Inject
     public JsonPojoConverter(
             final ReportJsonPostProcessor reportJsonPostProcessor,
@@ -46,6 +55,13 @@ public class JsonPojoConverter {
         gsonParserWithProcessors = builder.createGson();
     }
 
+    /**
+     * Turn Cucumber JSON into a report array.
+     *
+     * @param json The JSON data.
+     * @return The {@link Report} array.
+     * @throws CluecumberException Thrown on all errors.
+     */
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberException {
         Report[] reports;
         try {

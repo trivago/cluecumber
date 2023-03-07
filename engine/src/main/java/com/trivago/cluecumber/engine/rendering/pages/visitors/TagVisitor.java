@@ -17,6 +17,9 @@ import javax.inject.Singleton;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_TAGS;
 
+/**
+ * The visitor for tag related pages.
+ */
 @Singleton
 public class TagVisitor implements PageVisitor {
 
@@ -26,6 +29,15 @@ public class TagVisitor implements PageVisitor {
     private final AllTagsPageRenderer allTagsPageRenderer;
     private final AllScenariosPageRenderer allScenariosPageRenderer;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO                   The {@link FileIO} instance.
+     * @param templateEngine           The Freemarker template engine.
+     * @param propertyManager          The {@link PropertyManager} instance.
+     * @param allTagsPageRenderer      The renderer for tag pages.
+     * @param allScenariosPageRenderer The renderer for the scenario pages.
+     */
     @Inject
     public TagVisitor(
             final FileIO fileIO,
@@ -41,6 +53,12 @@ public class TagVisitor implements PageVisitor {
         this.allScenariosPageRenderer = allScenariosPageRenderer;
     }
 
+    /**
+     * The main method that is called on this visitor.
+     *
+     * @param allScenariosPageCollection The scenarios page collection.
+     * @throws CluecumberException Thrown on all errors.
+     */
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         AllTagsPageCollection allTagsPageCollection = new AllTagsPageCollection(

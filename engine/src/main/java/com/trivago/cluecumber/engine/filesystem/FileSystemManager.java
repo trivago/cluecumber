@@ -40,6 +40,11 @@ public class FileSystemManager {
 
     private final CluecumberLogger logger;
 
+    /**
+     * Constructor for dependency exception.
+     *
+     * @param logger The {@link CluecumberLogger} instance.
+     */
     @Inject
     public FileSystemManager(final CluecumberLogger logger) {
         this.logger = logger;
@@ -70,6 +75,7 @@ public class FileSystemManager {
      * Creates a directory if it does not exists.
      *
      * @param dirName Name of directory.
+     * @throws PathCreationException Thrown if the path cannot be created.
      */
     public void createDirectory(final String dirName) throws PathCreationException {
         File directory = new File(dirName);

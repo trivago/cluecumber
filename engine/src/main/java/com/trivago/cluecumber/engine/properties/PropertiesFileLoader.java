@@ -26,16 +26,31 @@ import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * Loads a properties file.
+ */
 @Singleton
 public class PropertiesFileLoader {
 
     private final FileIO fileIO;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO The {@link FileIO} instance.
+     */
     @Inject
     public PropertiesFileLoader(final FileIO fileIO) {
         this.fileIO = fileIO;
     }
 
+    /**
+     * Loads a property file and returns it as a {@link LinkedHashMap}.
+     *
+     * @param propertiesFilePath The path to the properties file.
+     * @return A {@link LinkedHashMap} of property keys and values.
+     * @throws CluecumberException Thrown on any error.
+     */
     LinkedHashMap<String, String> loadPropertiesMap(final String propertiesFilePath) throws CluecumberException {
         LinkedHashMap<String, String> propertiesMap;
         String content = fileIO.readContentFromFile(propertiesFilePath);
