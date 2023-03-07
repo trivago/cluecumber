@@ -12,6 +12,10 @@ Back to [Readme](README.md).
 ### Changed
 * Updated dependencies
 * Small visual tweaks
+* Code clean-up
+
+### Added
+* Full javadoc coverage
 
 ## [3.1.0] - 2023-01-17
 
