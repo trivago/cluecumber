@@ -21,7 +21,6 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.ReportDetails;
 
 import java.util.List;
 
-@SuppressWarnings({"unused", "CloneableClassWithoutClone"})
 public class PageCollection implements Cloneable {
     private final ReportDetails reportDetails;
     private final String pageTitle;
@@ -98,11 +97,21 @@ public class PageCollection implements Cloneable {
         this.displayMode = displayMode;
     }
 
+    public List<Link> getNavigationLinks() {
+        return this.links;
+    }
+
     public void setNavigationLinks(List<Link> links) {
         this.links = links;
     }
 
-    public List<Link> getNavigationLinks() {
-        return this.links;
+    @Override
+    public PageCollection clone() throws CloneNotSupportedException {
+        try {
+            PageCollection clone = (PageCollection) super.clone();
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

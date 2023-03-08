@@ -114,7 +114,7 @@ public class ResultMatchTest {
     }
 
     @Test
-    public void hasOutputsTest(){
+    public void hasOutputsTest() {
         assertFalse(resultMatch.hasOutputs());
         List<String> output = new ArrayList<>();
         output.add("Test");
@@ -123,7 +123,7 @@ public class ResultMatchTest {
     }
 
     @Test
-    public void returnEscapedOutputsTest(){
+    public void returnEscapedOutputsTest() {
         List<String> output = new ArrayList<>();
         output.add("Testäöüß");
         resultMatch.setOutput(output);

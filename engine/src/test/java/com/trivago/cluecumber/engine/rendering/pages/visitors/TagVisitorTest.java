@@ -17,7 +17,7 @@ public class TagVisitorTest extends VisitorTest {
     private AllTagsPageRenderer allTagsPageRenderer;
 
     @BeforeEach
-    public void setUp()  {
+    public void setUp() {
         super.setUp();
         allTagsPageRenderer = mock(AllTagsPageRenderer.class);
         tagVisitor = new TagVisitor(

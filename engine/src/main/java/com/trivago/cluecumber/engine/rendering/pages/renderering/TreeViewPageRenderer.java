@@ -47,7 +47,7 @@ public class TreeViewPageRenderer extends PageRenderer {
     /**
      * Constructor for dependency injection.
      *
-     * @param propertyManager    The {@link PropertyManager} instance.
+     * @param propertyManager The {@link PropertyManager} instance.
      */
     @Inject
     public TreeViewPageRenderer(

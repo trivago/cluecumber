@@ -35,8 +35,8 @@ import java.util.List;
  */
 public class StackedBarChartBuilder {
     private final ChartConfiguration chartConfiguration;
-    private List<String> labels;
     private final List<Dataset> datasets = new ArrayList<>();
+    private List<String> labels;
     private String xAxisLabel;
     private String yAxisLabel;
     private float yAxisStepSize = 1f;

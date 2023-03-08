@@ -52,6 +52,7 @@ public class CluecumberLogger {
 
     /**
      * Output a separator line in the logs.
+     *
      * @param cluecumberLogLevels The {@link CluecumberLogLevel} setting.
      */
     public void logInfoSeparator(final CluecumberLogLevel... cluecumberLogLevels) {

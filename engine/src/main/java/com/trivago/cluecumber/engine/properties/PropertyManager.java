@@ -45,30 +45,24 @@ public class PropertyManager {
     private final CluecumberLogger logger;
     private final FileIO fileIO;
     private final PropertiesFileLoader propertiesFileLoader;
-
+    private final Map<String, String> customParameters = new LinkedHashMap<>();
+    private final Map<String, String> customNavigationLinks = new LinkedHashMap<>();
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
-
     private boolean failScenariosOnPendingOrUndefinedSteps = false;
     private boolean expandBeforeAfterHooks = false;
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
-
-    private final Map<String, String> customParameters = new LinkedHashMap<>();
     private String customCssFile;
     private String customParametersFile;
-
     private PluginSettings.CustomParamDisplayMode customParametersDisplayMode =
             PluginSettings.CustomParamDisplayMode.ALL_PAGES;
-
     private String customStatusColorPassed = "#60cc79";
     private String customStatusColorFailed = "#fc7180";
     private String customStatusColorSkipped = "#f7c42b";
     private String customPageTitle = "Cluecumber Report";
-
     private PluginSettings.StartPage startPage = PluginSettings.StartPage.ALL_SCENARIOS;
-    private final Map<String, String> customNavigationLinks = new LinkedHashMap<>();
 
     @Inject
     public PropertyManager(

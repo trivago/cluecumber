@@ -67,6 +67,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
 
     /**
      * Get the feature count.
+     *
      * @return The number of features.
      */
     public int getTotalNumberOfFeatures() {
@@ -75,6 +76,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
 
     /**
      * Get the passed feature count.
+     *
      * @return The number of passed features.
      */
     public int getTotalNumberOfPassedFeatures() {
@@ -83,6 +85,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
 
     /**
      * Get the failed feature count.
+     *
      * @return The number of failed features.
      */
     public int getTotalNumberOfFailedFeatures() {
@@ -91,6 +94,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
 
     /**
      * Get the skipped feature count.
+     *
      * @return The number of skipped features.
      */
     public int getTotalNumberOfSkippedFeatures() {
@@ -118,6 +122,7 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
 
     /**
      * Get the scenario count.
+     *
      * @return The number of scenarios.
      */
     @SuppressWarnings("unused")

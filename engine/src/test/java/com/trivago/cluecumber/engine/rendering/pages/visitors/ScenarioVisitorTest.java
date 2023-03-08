@@ -17,7 +17,7 @@ public class ScenarioVisitorTest extends VisitorTest {
     private ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
 
     @BeforeEach
-    public void setUp()  {
+    public void setUp() {
         super.setUp();
         scenarioDetailsPageRenderer = mock(ScenarioDetailsPageRenderer.class);
         scenarioVisitor = new ScenarioVisitor(

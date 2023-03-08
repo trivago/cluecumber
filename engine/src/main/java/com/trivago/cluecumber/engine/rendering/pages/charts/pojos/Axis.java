@@ -26,6 +26,7 @@ public class Axis {
 
     /**
      * Get the ticks on this chart axis.
+     *
      * @return The ticks of the axis.
      */
     public Ticks getTicks() {
@@ -34,6 +35,7 @@ public class Axis {
 
     /**
      * Set the ticks on this chart axis.
+     *
      * @param ticks The ticks of the axis.
      */
     public void setTicks(final Ticks ticks) {
@@ -42,6 +44,7 @@ public class Axis {
 
     /**
      * Determine if this axis is stacked.
+     *
      * @return true if this axis is stacked.
      */
     public boolean isStacked() {
@@ -50,6 +53,7 @@ public class Axis {
 
     /**
      * Set if this axis is stacked.
+     *
      * @param stacked true means the axis is stacked.
      */
     public void setStacked(final boolean stacked) {

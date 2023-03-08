@@ -19,7 +19,7 @@ public class FeatureVisitorTest extends VisitorTest {
     private TreeViewPageRenderer treeViewPageRenderer;
 
     @BeforeEach
-    public void setUp()  {
+    public void setUp() {
         super.setUp();
         allFeaturesPageRenderer = mock(AllFeaturesPageRenderer.class);
         treeViewPageRenderer = mock(TreeViewPageRenderer.class);

@@ -42,11 +42,11 @@ public class Options {
         this.legend = legend;
     }
 
-    public void setEvents(final List<String> events) {
-        this.events = events;
-    }
-
     public List<String> getEvents() {
         return events;
+    }
+
+    public void setEvents(final List<String> events) {
+        this.events = events;
     }
 }

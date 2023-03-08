@@ -22,29 +22,55 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Information about the report generation date and Cluecumber version.
+ */
 public class ReportDetails {
-    private String chartJson;
     private final String date;
+    private String chartJson;
 
+
+    /**
+     * Constructor setting the generation date.
+     */
     public ReportDetails() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         this.date = dateFormat.format(date);
     }
 
-    @SuppressWarnings("unused")
+    /**
+     * Return the chart JSON.
+     *
+     * @return The JSON string.
+     */
     public String getChartJson() {
         return chartJson;
     }
 
+    /**
+     * Set the chart JSON to include.
+     *
+     * @param chartJson The chart JSON.
+     */
     public void setChartJson(final String chartJson) {
         this.chartJson = chartJson;
     }
 
+    /**
+     * Get the generation date of this report.
+     *
+     * @return The date.
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * Return the Cluecumber name and version.
+     *
+     * @return The Cluecumber name and version string.
+     */
     public String getGeneratorName() {
         return String.format("%s version %s",
                 PluginSettings.NAME, RenderingUtils.getPluginVersion());

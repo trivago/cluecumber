@@ -28,14 +28,10 @@ import javax.inject.Singleton;
 @Singleton
 public class ChartConfiguration {
 
-    public enum Type {bar, pie}
-
     private final PropertyManager propertyManager;
-
     private String passedColorRgbaString;
     private String failedColorRgbaString;
     private String skippedColorRgbaString;
-
     @Inject
     public ChartConfiguration(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
@@ -87,4 +83,6 @@ public class ChartConfiguration {
         rgbEntries[2] = Integer.parseInt(hex.substring(4, 6), 16);
         return String.format("rgba(%d, %d, %d, 1.000)", rgbEntries[0], rgbEntries[1], rgbEntries[2]);
     }
+
+    public enum Type {bar, pie}
 }

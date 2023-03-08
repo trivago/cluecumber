@@ -25,6 +25,23 @@ import javax.inject.Singleton;
 public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
 
+    @Inject
+    public TemplateEngine(final TemplateConfiguration templateConfiguration) {
+        this.templateConfiguration = templateConfiguration;
+        templateConfiguration.init(PluginSettings.BASE_TEMPLATE_PATH);
+    }
+
+    /**
+     * Retrieve a template by {@link Template} type.
+     *
+     * @param template The template type.
+     * @return The requested template.
+     * @throws CluecumberException In case the template cannot be found.
+     */
+    public freemarker.template.Template getTemplate(final Template template) throws CluecumberException {
+        return templateConfiguration.getTemplate(template.fileName);
+    }
+
     public enum Template {
         TREE_VIEW("tree-view"),
         ALL_FEATURES("feature-summary"),
@@ -45,22 +62,5 @@ public class TemplateEngine {
         public String getFileName() {
             return fileName;
         }
-    }
-
-    @Inject
-    public TemplateEngine(final TemplateConfiguration templateConfiguration) {
-        this.templateConfiguration = templateConfiguration;
-        templateConfiguration.init(PluginSettings.BASE_TEMPLATE_PATH);
-    }
-
-    /**
-     * Retrieve a template by {@link Template} type.
-     *
-     * @param template The template type.
-     * @return The requested template.
-     * @throws CluecumberException In case the template cannot be found.
-     */
-    public freemarker.template.Template getTemplate(final Template template) throws CluecumberException {
-        return templateConfiguration.getTemplate(template.fileName);
     }
 }

@@ -111,38 +111,80 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         addReports(Arrays.asList(reportList));
     }
 
+    /**
+     * Add reports to this page collection.
+     *
+     * @param reportList The {@link Report} list.
+     */
     private void addReports(final List<Report> reportList) {
         this.reports.addAll(reportList);
     }
 
+
+    /**
+     * Return the total scenario count.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfScenarios() {
         return reports.stream().map(Report::getElements).
                 mapToInt(elements -> (int) elements.stream().filter(Element::isScenario).count()).sum();
     }
 
+    /**
+     * Check if there are failed scenarios.
+     *
+     * @return true if there are failed scenarios.
+     */
     public boolean hasFailedScenarios() {
         return getTotalNumberOfFailedScenarios() > 0;
     }
 
+    /**
+     * Check if there are passed scenarios.
+     *
+     * @return true if there are passed scenarios.
+     */
     public boolean hasPassedScenarios() {
         return getTotalNumberOfPassedScenarios() > 0;
     }
 
+    /**
+     * Check if there are skipped scenarios.
+     *
+     * @return true if there are skipped scenarios.
+     */
     public boolean hasSkippedScenarios() {
         return getTotalNumberOfSkippedScenarios() > 0;
     }
 
+    /**
+     * Return the number of passed scenarios.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfPassedScenarios() {
         return getNumberOfScenariosWithStatus(Status.PASSED);
     }
 
+    /**
+     * Return the number of failed scenarios.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfFailedScenarios() {
         return getNumberOfScenariosWithStatus(Status.FAILED);
     }
 
+    /**
+     * Return the number of skipped scenarios.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfSkippedScenarios() {
         return getNumberOfScenariosWithStatus(Status.SKIPPED);
     }
+
 
     private int getNumberOfScenariosWithStatus(final Status status) {
         return reports.stream().mapToInt(
@@ -289,10 +331,9 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      * Function to clone the {@link AllScenariosPageCollection} including all included data.
      *
      * @return The clone of the {@link AllScenariosPageCollection}
-     * @throws CloneNotSupportedException thrown on any cloning error.
      */
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public AllScenariosPageCollection clone() throws CloneNotSupportedException {
         final AllScenariosPageCollection clone = (AllScenariosPageCollection) super.clone();
         clone.setFeatureFilter(null);
         clone.setStepFilter(null);
