@@ -30,6 +30,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The builder class for stacked bar charts.
+ */
 public class StackedBarChartBuilder {
     private final ChartConfiguration chartConfiguration;
     private List<String> labels;
@@ -39,6 +42,11 @@ public class StackedBarChartBuilder {
     private float yAxisStepSize = 1f;
     private boolean stacked = true;
 
+    /**
+     * The builder for this chart.
+     *
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     */
     public StackedBarChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
     }
@@ -54,31 +62,66 @@ public class StackedBarChartBuilder {
         return this;
     }
 
+    /**
+     * Add labels to this chart.
+     *
+     * @param labels The list of string labels.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setLabels(final List<String> labels) {
         this.labels = labels;
         return this;
     }
 
+    /**
+     * Set the label for the x axis.
+     *
+     * @param xAxisLabel The label to use.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setxAxisLabel(final String xAxisLabel) {
         this.xAxisLabel = xAxisLabel;
         return this;
     }
 
+    /**
+     * Set the label for the y axis.
+     *
+     * @param yAxisLabel The label to use.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setyAxisLabel(final String yAxisLabel) {
         this.yAxisLabel = yAxisLabel;
         return this;
     }
 
+    /**
+     * Set the label for the y axis.
+     *
+     * @param yAxisStepSize The step size for this axis.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setyAxisStepSize(final float yAxisStepSize) {
         this.yAxisStepSize = yAxisStepSize;
         return this;
     }
 
+    /**
+     * Set if this chart should be stacked.
+     *
+     * @param stacked true means stacked.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setStacked(final boolean stacked) {
         this.stacked = stacked;
         return this;
     }
 
+    /**
+     * Builds the final chart.
+     *
+     * @return The {@link Chart} instance.
+     */
     public Chart build() {
         Chart chart = new Chart();
         chart.setType(ChartConfiguration.Type.bar);

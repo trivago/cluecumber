@@ -22,18 +22,38 @@ public class Match {
     private String location = "";
     private List<Argument> arguments = new ArrayList<>();
 
+    /**
+     * Get the class and method where this step is defined.
+     *
+     * @return The location string.
+     */
     public String getLocation() {
         return location;
     }
 
+    /**
+     * Set the class and method where this step is defined.
+     *
+     * @param location The location string.
+     */
     public void setLocation(final String location) {
         this.location = location;
     }
 
+    /**
+     * Get the list of arguments of the step method.
+     *
+     * @return The {@link Argument} list.
+     */
     public List<Argument> getArguments() {
         return arguments;
     }
 
+    /**
+     * Set the list of arguments of the step method.
+     *
+     * @param arguments The {@link Argument} list.
+     */
     public void setArguments(final List<Argument> arguments) {
         this.arguments = arguments;
     }

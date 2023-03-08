@@ -15,6 +15,9 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
+/**
+ * Enum to define is a link points to an internal report page or an external resource.
+ */
 public enum LinkType {
     INTERNAL,
     EXTERNAL

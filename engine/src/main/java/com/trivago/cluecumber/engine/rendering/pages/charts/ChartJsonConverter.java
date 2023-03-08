@@ -30,11 +30,20 @@ public class ChartJsonConverter {
 
     private final Gson gson;
 
+    /**
+     * Constructor for dependency injection.
+     */
     @Inject
     public ChartJsonConverter() {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
+    /**
+     * Creates a JSON representation of the {@link Chart} instance.
+     *
+     * @param chart The {@link Chart} instance.
+     * @return The JSON string.
+     */
     public String convertChartToJson(final Chart chart) {
         return gson.toJson(chart);
     }

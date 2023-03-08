@@ -17,6 +17,10 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
 import java.util.List;
 
+
+/**
+ * Chart options.
+ */
 public class Options {
     private Scales scales;
     private Legend legend;

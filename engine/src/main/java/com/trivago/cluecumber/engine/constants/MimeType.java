@@ -22,20 +22,65 @@ import com.google.gson.annotations.SerializedName;
  * Enum to get all MimeTypes for embedded content.
  */
 public enum MimeType {
+    /**
+     * PNG image format
+     */
     @SerializedName("image/png") PNG("image/png"),
+    /**
+     * GIF image format
+     */
     @SerializedName("image/gif") GIF("image/gif"),
+    /**
+     * BMP image format
+     */
     @SerializedName("image/bmp") BMP("image/bmp"),
+    /**
+     * JPG image format
+     */
     @SerializedName("image/jpg") JPG("image/jpg"),
+    /**
+     * JPEG image format
+     */
     @SerializedName("image/jpeg") JPEG("image/jpeg"),
+    /**
+     * SVG image format
+     */
     @SerializedName("image/svg") SVG("image/svg"),
+    /**
+     * SVG with XML image format
+     */
     @SerializedName("image/svg+xml") SVG_XML("image/svg+xml"),
+    /**
+     * HTML format
+     */
     @SerializedName("text/html") HTML("text/html"),
+    /**
+     * XML format
+     */
     @SerializedName("text/xml") XML("text/xml"),
+    /**
+     * Alternative XML format
+     */
     @SerializedName("application/xml") APPLICATION_XML("application/xml"),
+    /**
+     * JSON format
+     */
     @SerializedName("application/json") JSON("application/json"),
+    /**
+     * Plain TXT format
+     */
     @SerializedName("text/plain") TXT("text/plain"),
+    /**
+     * PDF format
+     */
     @SerializedName("application/pdf") PDF("application/pdf"),
+    /**
+     * MP4 video format
+     */
     @SerializedName("video/mp4") MP4("video/mp4"),
+    /**
+     * Unknown format
+     */
     @SerializedName("unknown") UNKNOWN("unknown");
 
     private final String contentType;
@@ -44,6 +89,11 @@ public enum MimeType {
         this.contentType = contentType;
     }
 
+    /**
+     * Get the content type of this mime type.
+     *
+     * @return The content type.
+     */
     public String getContentType() {
         return contentType;
     }

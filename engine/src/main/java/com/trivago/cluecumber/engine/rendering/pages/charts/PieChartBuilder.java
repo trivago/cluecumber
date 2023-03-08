@@ -25,21 +25,41 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Options;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The builder class for pie charts.
+ */
 public class PieChartBuilder {
     private final ChartConfiguration chartConfiguration;
     private final List<ValueSet> valueSets;
 
+    /**
+     * Default constructor of the chart builder.
+     *
+     * @param chartConfiguration The {@link ChartConfiguration} instance to use.
+     */
     public PieChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
         valueSets = new ArrayList<>();
     }
 
+    /**
+     * Add a new value for a specific status.
+     *
+     * @param value  The numeric value.
+     * @param status The status to assign it to.
+     * @return The {@link PieChartBuilder}.
+     */
     public PieChartBuilder addValue(final int value, final Status status) {
         String color = chartConfiguration.getColorRgbaStringByStatus(status);
         valueSets.add(new ValueSet(value, color));
         return this;
     }
 
+    /**
+     * Create the final chart.
+     *
+     * @return The {@link Chart} instance.
+     */
     public Chart build() {
 
         List<Float> values = new ArrayList<>();
