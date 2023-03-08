@@ -17,19 +17,39 @@ package com.trivago.cluecumber.engine.rendering.pages.pojos;
 
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
+/**
+ * Custom report parameters.
+ */
 public class CustomParameter {
     private final String key;
     private final String value;
 
+    /**
+     * Constructor.
+     *
+     * @param key   They parameter name to display.
+     * @param value The parameter value to display.
+     */
     public CustomParameter(final String key, final String value) {
         this.key = key;
         this.value = value;
     }
 
+
+    /**
+     * Return the parameter name.
+     *
+     * @return The name.
+     */
     public String getKey() {
         return key;
     }
 
+    /**
+     * Return the parameter value.
+     *
+     * @return The value.
+     */
     public String getValue() {
         return value != null ? value.trim() : "";
     }
@@ -40,13 +60,5 @@ public class CustomParameter {
 
     public boolean isRelativeUrl() {
         return RenderingUtils.isRelativeUrl(getValue());
-    }
-
-    @Override
-    public String toString() {
-        return "CustomParameter{" +
-                "key='" + key + '\'' +
-                ", value='" + value + '\'' +
-                '}';
     }
 }

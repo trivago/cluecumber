@@ -17,32 +17,66 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
 
+/**
+ * The base class for all charts.
+ */
 public class Chart {
 
     private Data data;
     private Options options;
     private ChartConfiguration.Type type;
 
+    /**
+     * Get the chart data.
+     *
+     * @return The {@link Data} instance.
+     */
     public Data getData() {
         return data;
     }
 
+    /**
+     * Set the chart data.
+     *
+     * @param data The {@link Data} instance.
+     */
     public void setData(final Data data) {
         this.data = data;
     }
 
+
+    /**
+     * Get the chart type.
+     *
+     * @return The chart type.
+     */
     public ChartConfiguration.Type getType() {
         return type;
     }
 
+    /**
+     * Set the chart type.
+     *
+     * @param type The chart type.
+     */
     public void setType(final ChartConfiguration.Type type) {
         this.type = type;
     }
 
+    /**
+     * Get the chart configuration options.
+     *
+     * @return The {@link Options} instance.
+     */
     public Options getOptions() {
         return options;
     }
 
+    /**
+     * Set the chart configuration options.
+     *
+     * @param options The {@link Options} instance.
+     */
     public void setOptions(final Options options) {
         this.options = options;
     }
