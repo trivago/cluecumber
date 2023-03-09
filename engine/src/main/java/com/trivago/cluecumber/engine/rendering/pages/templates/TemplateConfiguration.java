@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.templates;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -28,6 +28,9 @@ import javax.inject.Singleton;
 public class TemplateConfiguration {
     private Configuration cfg;
 
+    /**
+     * Default constructor.
+     */
     @Inject
     public TemplateConfiguration() {
     }
@@ -44,7 +47,7 @@ public class TemplateConfiguration {
     public Template getTemplate(final String templateName) throws CluecumberException {
         Template template;
         try {
-            template = cfg.getTemplate(templateName + PluginSettings.TEMPLATE_FILE_EXTENSION);
+            template = cfg.getTemplate(templateName + Settings.TEMPLATE_FILE_EXTENSION);
         } catch (Exception e) {
             throw new CluecumberException("Template '" + templateName + "' was not found or not parsable: " +
                     e.getMessage());

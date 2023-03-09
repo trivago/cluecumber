@@ -16,7 +16,7 @@
 package com.trivago.cluecumber.engine.properties;
 
 import com.trivago.cluecumber.engine.constants.Navigation;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.engine.exceptions.properties.WrongOrMissingPropertyException;
@@ -37,6 +37,9 @@ import java.util.regex.Pattern;
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.DEFAULT;
 
+/**
+ * This class stores and serves all Cluecumber properties.
+ */
 @Singleton
 public class PropertyManager {
 
@@ -56,14 +59,21 @@ public class PropertyManager {
     private boolean expandAttachments = true;
     private String customCssFile;
     private String customParametersFile;
-    private PluginSettings.CustomParamDisplayMode customParametersDisplayMode =
-            PluginSettings.CustomParamDisplayMode.ALL_PAGES;
+    private Settings.CustomParamDisplayMode customParametersDisplayMode =
+            Settings.CustomParamDisplayMode.ALL_PAGES;
     private String customStatusColorPassed = "#60cc79";
     private String customStatusColorFailed = "#fc7180";
     private String customStatusColorSkipped = "#f7c42b";
     private String customPageTitle = "Cluecumber Report";
-    private PluginSettings.StartPage startPage = PluginSettings.StartPage.ALL_SCENARIOS;
+    private Settings.StartPage startPage = Settings.StartPage.ALL_SCENARIOS;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param logger               The {@link CluecumberLogger} instance.
+     * @param fileIO               The {@link FileIO} instance.
+     * @param propertiesFileLoader The {@link PropertiesFileLoader} instance.
+     */
     @Inject
     public PropertyManager(
             final CluecumberLogger logger,
@@ -75,10 +85,21 @@ public class PropertyManager {
         this.propertiesFileLoader = propertiesFileLoader;
     }
 
+    /**
+     * Get the root directory of the source JSON files.
+     *
+     * @return The path.
+     */
     public String getSourceJsonReportDirectory() {
         return sourceJsonReportDirectory;
     }
 
+    /**
+     * Set the root directory of the source JSON files.
+     *
+     * @param sourceJsonReportDirectory The path.
+     * @throws WrongOrMissingPropertyException Thrown on any error.
+     */
     public void setSourceJsonReportDirectory(final String sourceJsonReportDirectory)
             throws WrongOrMissingPropertyException {
 
@@ -88,10 +109,21 @@ public class PropertyManager {
         this.sourceJsonReportDirectory = sourceJsonReportDirectory;
     }
 
+    /**
+     * Get the root directory of the target HTML report.
+     *
+     * @return The path.
+     */
     public String getGeneratedHtmlReportDirectory() {
         return generatedHtmlReportDirectory;
     }
 
+    /**
+     * Set the root directory of the target HTML report.
+     *
+     * @param generatedHtmlReportDirectory The path.
+     * @throws WrongOrMissingPropertyException Thrown on any error.
+     */
     public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory) throws WrongOrMissingPropertyException {
         if (!isSet(generatedHtmlReportDirectory)) {
             throw new WrongOrMissingPropertyException("generatedHtmlReportDirectory");
@@ -99,10 +131,20 @@ public class PropertyManager {
         this.generatedHtmlReportDirectory = generatedHtmlReportDirectory;
     }
 
+    /**
+     * Get the custom parameters to be shown at the top of the report.
+     *
+     * @return The map of custom parameter key value pairs.
+     */
     public Map<String, String> getCustomParameters() {
         return customParameters;
     }
 
+    /**
+     * Set the custom parameters to be shown at the top of the report.
+     *
+     * @param customParameters The map of custom parameter key value pairs.
+     */
     public void setCustomParameters(final Map<String, String> customParameters) {
         this.customParameters.putAll(customParameters);
     }
@@ -123,17 +165,17 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
-    public PluginSettings.CustomParamDisplayMode getCustomParametersDisplayMode() {
+    public Settings.CustomParamDisplayMode getCustomParametersDisplayMode() {
         return customParametersDisplayMode;
     }
 
     public void setCustomParametersDisplayMode(String customParametersDisplayMode) {
         try {
-            this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
+            this.customParametersDisplayMode = Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
         } catch (IllegalArgumentException e) {
             logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode +
-                    "'. Must be one of " + Arrays.toString(PluginSettings.CustomParamDisplayMode.values()));
-            this.customParametersDisplayMode = PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES;
+                    "'. Must be one of " + Arrays.toString(Settings.CustomParamDisplayMode.values()));
+            this.customParametersDisplayMode = Settings.CustomParamDisplayMode.SCENARIO_PAGES;
         }
     }
 
@@ -209,46 +251,92 @@ public class PropertyManager {
         }
     }
 
+    /**
+     * Get the custom hex color for passed elements.
+     *
+     * @return The hex color string.
+     */
     public String getCustomStatusColorPassed() {
         return this.customStatusColorPassed;
     }
 
+    /**
+     * Set a custom hex color for passed elements.
+     *
+     * @param customStatusColorPassed The color as a hex string (e.g. '#00ff00').
+     * @throws WrongOrMissingPropertyException Thrown on any error.
+     */
     public void setCustomStatusColorPassed(final String customStatusColorPassed) throws WrongOrMissingPropertyException {
         if (!isSet(customStatusColorPassed)) return;
         checkHexColorValidity(customStatusColorPassed, "customStatusColorPassed");
         this.customStatusColorPassed = customStatusColorPassed;
     }
 
+    /**
+     * Get the custom hex color for failed elements.
+     *
+     * @return The hex color string.
+     */
     public String getCustomStatusColorFailed() {
         return this.customStatusColorFailed;
     }
 
+    /**
+     * Set a custom hex color for failed elements.
+     *
+     * @param customStatusColorFailed The color as a hex string (e.g. '#00ff00').
+     * @throws WrongOrMissingPropertyException Thrown on any error.
+     */
     public void setCustomStatusColorFailed(final String customStatusColorFailed) throws WrongOrMissingPropertyException {
         if (!isSet(customStatusColorFailed)) return;
         checkHexColorValidity(customStatusColorFailed, "customStatusColorFailed");
         this.customStatusColorFailed = customStatusColorFailed;
     }
 
+    /**
+     * Get the custom hex color for skipped elements.
+     *
+     * @return The hex color string.
+     */
     public String getCustomStatusColorSkipped() {
         return this.customStatusColorSkipped;
     }
 
+    /**
+     * Set a custom hex color for skipped elements.
+     *
+     * @param customStatusColorSkipped The color as a hex string (e.g. '#00ff00').
+     * @throws WrongOrMissingPropertyException Thrown on any error.
+     */
     public void setCustomStatusColorSkipped(final String customStatusColorSkipped) throws WrongOrMissingPropertyException {
         if (!isSet(customStatusColorSkipped)) return;
         checkHexColorValidity(customStatusColorSkipped, "customStatusColorSkipped");
         this.customStatusColorSkipped = customStatusColorSkipped;
     }
 
+    /**
+     * Get the custom page title of the report.
+     *
+     * @return The page title.
+     */
     public String getCustomPageTitle() {
         return this.customPageTitle;
     }
 
+    /**
+     * Set the custom page title of the report.
+     *
+     * @param customPageTitle The page title.
+     */
     public void setCustomPageTitle(final String customPageTitle) {
         if (isSet(customPageTitle)) {
             this.customPageTitle = customPageTitle;
         }
     }
 
+    /**
+     * Log Cluecumber properties on the command line based on the set log level.
+     */
     public void logProperties() {
         logger.info("- source JSON report directory     : " + sourceJsonReportDirectory, DEFAULT, COMPACT);
         logger.info("- generated HTML report directory  : " + generatedHtmlReportDirectory, DEFAULT, COMPACT);
@@ -304,16 +392,26 @@ public class PropertyManager {
         }
     }
 
-    public PluginSettings.StartPage getStartPage() {
+    /**
+     * Get the start page of the report.
+     *
+     * @return The {@link com.trivago.cluecumber.engine.constants.Settings.StartPage} value.
+     */
+    public Settings.StartPage getStartPage() {
         return startPage;
     }
 
+    /**
+     * Set the start page of the report.
+     *
+     * @param startPage The name of the start page (must be included in the {@link com.trivago.cluecumber.engine.constants.Settings.StartPage} enum.
+     */
     public void setStartPage(final String startPage) {
         try {
-            this.startPage = PluginSettings.StartPage.valueOf(startPage.toUpperCase());
+            this.startPage = Settings.StartPage.valueOf(startPage.toUpperCase());
         } catch (IllegalArgumentException e) {
-            logger.warn("Unknown start page '" + startPage + "'. Must be one of " + Arrays.toString(PluginSettings.StartPage.values()));
-            this.startPage = PluginSettings.StartPage.ALL_SCENARIOS;
+            logger.warn("Unknown start page '" + startPage + "'. Must be one of " + Arrays.toString(Settings.StartPage.values()));
+            this.startPage = Settings.StartPage.ALL_SCENARIOS;
         }
     }
 }

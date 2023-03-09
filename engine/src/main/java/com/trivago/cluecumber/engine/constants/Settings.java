@@ -18,37 +18,96 @@ package com.trivago.cluecumber.engine.constants;
 /**
  * Holder class for static plugin settings
  */
-public class PluginSettings {
+public class Settings {
 
-    public final static String NAME = "Cluecumber Report Plugin";
+    /**
+     * The name of the Cluecumber plugin.
+     */
+    public final static String NAME = "Cluecumber Report";
+    /**
+     * The file extension for Freemarker template files.
+     */
     public static final String TEMPLATE_FILE_EXTENSION = ".ftl";
+    /**
+     * The file extension for HTML files.
+     */
     public static final String HTML_FILE_EXTENSION = ".html";
+    /**
+     * The folder for Freemarker template files.
+     */
     public static final String BASE_TEMPLATE_PATH = "/template";
+    /**
+     * The folder for report pages.
+     */
     public static final String PAGES_DIRECTORY = "pages";
-    public final static String START_PAGE_PATH = "index";
+    /**
+     * The name of the report start page.
+     */
+    public final static String START_PAGE = "index";
+    /**
+     * The folder of the scenario summary pages.
+     */
     public final static String SCENARIO_SUMMARY_PAGE_PATH = "scenario-summary";
+    /**
+     * The folder of the scenario sequence page.
+     */
     public final static String SCENARIO_SEQUENCE_PAGE_PATH = "scenario-sequence";
+    /**
+     * The folder of the scenario detail pages.
+     */
     public final static String SCENARIO_DETAIL_PAGE_PATH = "scenario-detail";
+    /**
+     * The first part of the name of scenario detail pages.
+     */
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/" + SCENARIO_DETAIL_PAGE_PATH + "/scenario_";
-    public final static String TAG_SUMMARY_PAGE_PATH = "tag-summary";
+    /**
+     * The name of the tag summary page.
+     */
+    public final static String TAG_SUMMARY_PAGE = "tag-summary";
+    /**
+     * The folder of the scenarios by tag pages.
+     */
     public static final String TAG_SCENARIO_PAGE_PATH = "tag-scenarios";
+    /**
+     * The first part of the name of scenario by tag pages.
+     */
     public static final String TAG_SCENARIO_PAGE_FRAGMENT = "/" + TAG_SCENARIO_PAGE_PATH + "/tag_";
-    public final static String STEP_SUMMARY_PAGE_PATH = "step-summary";
+    /**
+     * The name of the step summary page.
+     */
+    public final static String STEP_SUMMARY_PAGE = "step-summary";
+    /**
+     * The folder of the scenarios by step pages.
+     */
     public static final String STEP_SCENARIO_PAGE_PATH = "step-scenarios";
+    /**
+     * The first part of the name of scenarios by step pages.
+     */
     public static final String STEP_SCENARIO_PAGE_FRAGMENT = "/" + STEP_SCENARIO_PAGE_PATH + "/step_";
-    public final static String FEATURE_SUMMARY_PAGE_PATH = "feature-summary";
+    /**
+     * The name of the feature summary page.
+     */
+    public final static String FEATURE_SUMMARY_PAGE = "feature-summary";
+    /**
+     * The folder of the scenarios by feature pages.
+     */
     public static final String FEATURE_SCENARIOS_PAGE_PATH = "feature-scenarios";
+    /**
+     * The first part of the name of scenarios by feature pages.
+     */
     public static final String FEATURE_SCENARIOS_PAGE_FRAGMENT = "/" + FEATURE_SCENARIOS_PAGE_PATH + "/feature_";
-    public static final String TREE_VIEW_PAGE_PATH = "tree-view";
-    PluginSettings() {
-    }
+    /**
+     * The name of the tree view page.
+     */
+    public static final String TREE_VIEW_PAGE = "tree-view";
+
     public enum StartPage {
         ALL_SCENARIOS(SCENARIO_SUMMARY_PAGE_PATH),
         SCENARIO_SEQUENCE(SCENARIO_SEQUENCE_PAGE_PATH),
-        ALL_TAGS(TAG_SUMMARY_PAGE_PATH),
-        ALL_STEPS(STEP_SUMMARY_PAGE_PATH),
-        ALL_FEATURES(FEATURE_SUMMARY_PAGE_PATH),
-        TREE_VIEW(TREE_VIEW_PAGE_PATH);
+        ALL_TAGS(TAG_SUMMARY_PAGE),
+        ALL_STEPS(STEP_SUMMARY_PAGE),
+        ALL_FEATURES(FEATURE_SUMMARY_PAGE),
+        TREE_VIEW(TREE_VIEW_PAGE);
 
         private final String pageName;
 

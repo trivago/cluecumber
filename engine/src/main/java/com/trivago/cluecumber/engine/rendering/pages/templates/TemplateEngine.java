@@ -15,8 +15,9 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.templates;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -25,10 +26,15 @@ import javax.inject.Singleton;
 public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param templateConfiguration The {@link TemplateConfiguration} instance.
+     */
     @Inject
     public TemplateEngine(final TemplateConfiguration templateConfiguration) {
         this.templateConfiguration = templateConfiguration;
-        templateConfiguration.init(PluginSettings.BASE_TEMPLATE_PATH);
+        templateConfiguration.init(Settings.BASE_TEMPLATE_PATH);
     }
 
     /**

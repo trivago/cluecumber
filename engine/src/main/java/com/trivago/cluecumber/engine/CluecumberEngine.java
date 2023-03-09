@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.engine.exceptions.properties.WrongOrMissingPropertyException;
@@ -27,6 +27,7 @@ import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.ReportGenerator;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
@@ -58,6 +59,17 @@ public final class CluecumberEngine {
     @SuppressWarnings("unused")
     private boolean skip;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param elementIndexPreProcessor The {@link ElementIndexPreProcessor} instance.
+     * @param fileIO                   The {@link FileIO} instance.
+     * @param fileSystemManager        The {@link FileSystemManager} instance.
+     * @param jsonPojoConverter        The {@link JsonPojoConverter} instance.
+     * @param logger                   The {@link CluecumberLogger} instance.
+     * @param propertyManager          The {@link PropertyManager} instance.
+     * @param reportGenerator          The {@link ReportGenerator} instance.
+     */
     @Inject
     public CluecumberEngine(
             final CluecumberLogger logger,
@@ -121,7 +133,7 @@ public final class CluecumberEngine {
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        PluginSettings.START_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION,
+                        Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
                 DEFAULT,
                 COMPACT,
                 MINIMAL
@@ -271,7 +283,7 @@ public final class CluecumberEngine {
     /**
      * Set the start page of the test report that should be directed to.
      *
-     * @param startPage The name of the start page (referring to {@link com.trivago.cluecumber.engine.constants.PluginSettings.StartPage}).
+     * @param startPage The name of the start page (referring to {@link Settings.StartPage}).
      */
     public void setStartPage(final String startPage) {
         if (startPage == null) {

@@ -15,19 +15,19 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class StartPageCollection {
-    private PluginSettings.StartPage startPage;
+    private Settings.StartPage startPage;
     private boolean redirectToFirstScenario;
 
-    public StartPageCollection(PluginSettings.StartPage startPage, boolean redirectToFirstScenario) {
+    public StartPageCollection(Settings.StartPage startPage, boolean redirectToFirstScenario) {
         this.startPage = startPage;
         this.redirectToFirstScenario = redirectToFirstScenario;
     }
 
-    public PluginSettings.StartPage getStartPage() {
+    public Settings.StartPage getStartPage() {
         return startPage;
     }
 

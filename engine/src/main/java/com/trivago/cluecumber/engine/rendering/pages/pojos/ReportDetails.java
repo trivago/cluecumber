@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
 import java.text.DateFormat;
@@ -73,6 +73,6 @@ public class ReportDetails {
      */
     public String getGeneratorName() {
         return String.format("%s version %s",
-                PluginSettings.NAME, RenderingUtils.getPluginVersion());
+                Settings.NAME, RenderingUtils.getPluginVersion());
     }
 }

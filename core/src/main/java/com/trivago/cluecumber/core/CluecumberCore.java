@@ -16,7 +16,7 @@
 package com.trivago.cluecumber.core;
 
 import com.trivago.cluecumber.engine.CluecumberEngine;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.dagger.DaggerCluecumberCoreGraph;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
@@ -133,7 +133,7 @@ public class CluecumberCore {
          * @param customParametersDisplayMode The display mode for custom parameters.
          * @return The {@link Builder}.
          */
-        public Builder setCustomParametersDisplayMode(final PluginSettings.CustomParamDisplayMode customParametersDisplayMode) {
+        public Builder setCustomParametersDisplayMode(final Settings.CustomParamDisplayMode customParametersDisplayMode) {
             this.customParametersDisplayMode = customParametersDisplayMode.name();
             return this;
         }
@@ -243,7 +243,7 @@ public class CluecumberCore {
          * @param startPage The page to set as a start page.
          * @return The {@link Builder}.
          */
-        public Builder setStartPage(final PluginSettings.StartPage startPage) {
+        public Builder setStartPage(final Settings.StartPage startPage) {
             this.startPage = startPage.name();
             return this;
         }

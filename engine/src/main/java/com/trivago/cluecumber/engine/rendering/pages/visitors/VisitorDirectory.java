@@ -15,6 +15,8 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
@@ -28,6 +30,14 @@ public class VisitorDirectory {
 
     private final ArrayList<PageVisitor> visitors;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param featureVisitor  The {@link FeatureVisitor} instance.
+     * @param scenarioVisitor The {@link ScenarioVisitor} instance.
+     * @param stepVisitor     The {@link StepVisitor} instance.
+     * @param tagVisitor      The {@link TagVisitor} instance.
+     */
     @Inject
     public VisitorDirectory(
             final ScenarioVisitor scenarioVisitor,

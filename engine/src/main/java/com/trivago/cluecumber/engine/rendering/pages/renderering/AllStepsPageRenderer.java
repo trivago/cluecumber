@@ -16,7 +16,7 @@
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Step;
@@ -66,7 +66,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
 
         addChartJsonToReportDetails(allStepsPageCollection);
 
-        if (propertyManager.getCustomParametersDisplayMode() == PluginSettings.CustomParamDisplayMode.ALL_PAGES) {
+        if (propertyManager.getCustomParametersDisplayMode() == Settings.CustomParamDisplayMode.ALL_PAGES) {
             addCustomParametersToReportDetails(allStepsPageCollection, propertyManager.getCustomParameters());
         }
 

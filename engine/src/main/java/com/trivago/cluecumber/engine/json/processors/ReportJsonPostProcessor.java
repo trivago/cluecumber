@@ -35,6 +35,10 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
 
     private final List<String> featureUris;
 
+
+    /**
+     * The default constructor.
+     */
     @Inject
     public ReportJsonPostProcessor() {
         featureUris = new ArrayList<>();

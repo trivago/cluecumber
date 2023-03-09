@@ -26,6 +26,9 @@ public class CluecumberLogger {
 
     private CluecumberLogLevel currentLogLevel;
 
+    /**
+     * The default constructor.
+     */
     @Inject
     public CluecumberLogger() {
     }

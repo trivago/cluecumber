@@ -31,7 +31,7 @@ public class ChartJsonConverter {
     private final Gson gson;
 
     /**
-     * Constructor for dependency injection.
+     * Default constructor.
      */
     @Inject
     public ChartJsonConverter() {

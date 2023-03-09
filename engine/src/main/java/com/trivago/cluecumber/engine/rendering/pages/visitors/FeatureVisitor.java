@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
@@ -89,8 +89,8 @@ public class FeatureVisitor implements PageVisitor {
         fileIO.writeContentToFile(
                 allFeaturesPageRenderer.getRenderedContent(allFeaturesPageCollection,
                         templateEngine.getTemplate(ALL_FEATURES)),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.FEATURE_SUMMARY_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenarios by feature pages
         for (Feature feature : allFeaturesPageCollection.getFeatures()) {
@@ -101,8 +101,8 @@ public class FeatureVisitor implements PageVisitor {
                             feature
                     ),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
-                            feature.getIndex() + PluginSettings.HTML_FILE_EXTENSION);
+                            Settings.PAGES_DIRECTORY + Settings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
+                            feature.getIndex() + Settings.HTML_FILE_EXTENSION);
         }
 
         // Tree view page
@@ -111,7 +111,7 @@ public class FeatureVisitor implements PageVisitor {
                         allFeaturesPageCollection,
                         allScenariosPageCollection,
                         templateEngine.getTemplate(TREE_VIEW)),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.TREE_VIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.TREE_VIEW_PAGE + Settings.HTML_FILE_EXTENSION);
     }
 }

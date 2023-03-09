@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings.CustomParamDisplayMode;
+import com.trivago.cluecumber.engine.constants.Settings.CustomParamDisplayMode;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.ReportDetails;
 

@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.json.pojo.Tag;
@@ -86,8 +86,8 @@ public class TagVisitor implements PageVisitor {
                         allTagsPageCollection,
                         templateEngine.getTemplate(ALL_TAGS)
                 ),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.TAG_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.TAG_SUMMARY_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenarios by tag pages
         for (Tag tag : allTagsPageCollection.getTags()) {
@@ -95,8 +95,8 @@ public class TagVisitor implements PageVisitor {
                     allScenariosPageRenderer.getRenderedContentByTagFilter(
                             allScenariosPageCollection, templateEngine.getTemplate(ALL_SCENARIOS), tag),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.TAG_SCENARIO_PAGE_FRAGMENT +
-                            tag.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
+                            Settings.PAGES_DIRECTORY + Settings.TAG_SCENARIO_PAGE_FRAGMENT +
+                            tag.getUrlFriendlyName() + Settings.HTML_FILE_EXTENSION);
         }
     }
 }

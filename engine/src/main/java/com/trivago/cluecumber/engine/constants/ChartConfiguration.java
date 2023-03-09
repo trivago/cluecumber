@@ -18,6 +18,7 @@ package com.trivago.cluecumber.engine.constants;
 
 
 import com.trivago.cluecumber.engine.properties.PropertyManager;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -32,6 +33,12 @@ public class ChartConfiguration {
     private String passedColorRgbaString;
     private String failedColorRgbaString;
     private String skippedColorRgbaString;
+
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param propertyManager The {@link PropertyManager} instance.
+     */
     @Inject
     public ChartConfiguration(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;

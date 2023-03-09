@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.json.pojo.Step;
@@ -86,8 +86,8 @@ public class StepVisitor implements PageVisitor {
                         allStepsPageCollection,
                         templateEngine.getTemplate(ALL_STEPS)
                 ),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.STEP_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.STEP_SUMMARY_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenarios by step pages
         for (Step step : allStepsPageCollection.getSteps()) {
@@ -95,8 +95,8 @@ public class StepVisitor implements PageVisitor {
                     allScenariosPageRenderer.getRenderedContentByStepFilter(
                             allScenariosPageCollection, templateEngine.getTemplate(ALL_SCENARIOS), step),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.STEP_SCENARIO_PAGE_FRAGMENT +
-                            step.getUrlFriendlyName() + PluginSettings.HTML_FILE_EXTENSION);
+                            Settings.PAGES_DIRECTORY + Settings.STEP_SCENARIO_PAGE_FRAGMENT +
+                            step.getUrlFriendlyName() + Settings.HTML_FILE_EXTENSION);
         }
     }
 }

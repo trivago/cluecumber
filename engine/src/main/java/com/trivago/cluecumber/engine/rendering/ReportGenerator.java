@@ -15,12 +15,13 @@
  */
 package com.trivago.cluecumber.engine.rendering;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.exceptions.filesystem.PathCreationException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.filesystem.FileSystemManager;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.StartPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.CustomCssRenderer;
@@ -33,8 +34,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.List;
 
-import static com.trivago.cluecumber.engine.constants.PluginSettings.HTML_FILE_EXTENSION;
-import static com.trivago.cluecumber.engine.constants.PluginSettings.START_PAGE_PATH;
+import static com.trivago.cluecumber.engine.constants.Settings.HTML_FILE_EXTENSION;
+import static com.trivago.cluecumber.engine.constants.Settings.START_PAGE;
 
 @Singleton
 public class ReportGenerator {
@@ -47,6 +48,17 @@ public class ReportGenerator {
     private final CustomCssRenderer customCssRenderer;
     private final List<PageVisitor> visitors;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param customCssRenderer The {@link CustomCssRenderer} instance.
+     * @param fileIO            The {@link FileIO} instance.
+     * @param fileSystemManager The {@link FileSystemManager} instance.
+     * @param propertyManager   The {@link PropertyManager} instance.
+     * @param startPageRenderer The {@link StartPageRenderer} instance.
+     * @param templateEngine    The {@link TemplateEngine} instance.
+     * @param visitorDirectory  The {@link VisitorDirectory} instance.
+     */
     @Inject
     ReportGenerator(
             final FileIO fileIO,
@@ -80,7 +92,7 @@ public class ReportGenerator {
         copyCustomCss(reportDirectory);
 
         boolean redirectToFirstScenarioPage =
-                propertyManager.getStartPage() == PluginSettings.StartPage.ALL_SCENARIOS &&
+                propertyManager.getStartPage() == Settings.StartPage.ALL_SCENARIOS &&
                         allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
 
         generateStartPage(redirectToFirstScenarioPage);
@@ -95,7 +107,7 @@ public class ReportGenerator {
                 templateEngine.getTemplate(TemplateEngine.Template.START_PAGE),
                 startPageCollection,
                 propertyManager.getNavigationLinks()
-        ), propertyManager.getGeneratedHtmlReportDirectory() + "/" + START_PAGE_PATH + HTML_FILE_EXTENSION);
+        ), propertyManager.getGeneratedHtmlReportDirectory() + "/" + START_PAGE + HTML_FILE_EXTENSION);
     }
 
     /**
@@ -106,12 +118,12 @@ public class ReportGenerator {
     private void createDirectories(final String reportDirectory) throws PathCreationException {
         fileSystemManager.createDirectory(reportDirectory);
         fileSystemManager.createDirectory(
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY);
-        String pagesDirectory = reportDirectory + "/" + PluginSettings.PAGES_DIRECTORY + "/";
-        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.SCENARIO_DETAIL_PAGE_PATH);
-        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.FEATURE_SCENARIOS_PAGE_PATH);
-        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.TAG_SCENARIO_PAGE_PATH);
-        fileSystemManager.createDirectory(pagesDirectory + PluginSettings.STEP_SCENARIO_PAGE_PATH);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY);
+        String pagesDirectory = reportDirectory + "/" + Settings.PAGES_DIRECTORY + "/";
+        fileSystemManager.createDirectory(pagesDirectory + Settings.SCENARIO_DETAIL_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + Settings.FEATURE_SCENARIOS_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + Settings.TAG_SCENARIO_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + Settings.STEP_SCENARIO_PAGE_PATH);
     }
 
     /**
@@ -174,7 +186,7 @@ public class ReportGenerator {
      */
     private void copyFileFromJarToReportDirectory(final String fileName) throws CluecumberException {
         fileSystemManager.copyResourceFromJar(
-                PluginSettings.BASE_TEMPLATE_PATH + fileName,
+                Settings.BASE_TEMPLATE_PATH + fileName,
                 propertyManager.getGeneratedHtmlReportDirectory() + fileName);
     }
 }

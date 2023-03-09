@@ -28,6 +28,11 @@ public class PageWithChartRenderer extends PageRenderer {
 
     private final ChartJsonConverter chartJsonConverter;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     */
     @Inject
     public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter) {
         this.chartJsonConverter = chartJsonConverter;

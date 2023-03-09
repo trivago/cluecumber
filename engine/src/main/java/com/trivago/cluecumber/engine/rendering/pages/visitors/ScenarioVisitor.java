@@ -15,7 +15,7 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.json.pojo.Element;
@@ -84,8 +84,8 @@ public class ScenarioVisitor implements PageVisitor {
                         allScenariosPageCollection,
                         templateEngine.getTemplate(ALL_SCENARIOS)
                 ),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.SCENARIO_SUMMARY_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
         // Scenario sequence page
         fileIO.writeContentToFile(
@@ -93,8 +93,8 @@ public class ScenarioVisitor implements PageVisitor {
                         allScenariosPageCollection,
                         templateEngine.getTemplate(SCENARIO_SEQUENCE)
                 ),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.SCENARIO_SEQUENCE_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.SCENARIO_SEQUENCE_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
         // Scenario detail pages
         ScenarioDetailsPageCollection scenarioDetailsPageCollection;
@@ -107,8 +107,8 @@ public class ScenarioVisitor implements PageVisitor {
                                 templateEngine.getTemplate(SCENARIO_DETAILS)
                         ),
                         propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                                PluginSettings.PAGES_DIRECTORY + PluginSettings.SCENARIO_DETAIL_PAGE_FRAGMENT +
-                                element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
+                                Settings.PAGES_DIRECTORY + Settings.SCENARIO_DETAIL_PAGE_FRAGMENT +
+                                element.getScenarioIndex() + Settings.HTML_FILE_EXTENSION);
             }
         }
     }

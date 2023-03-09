@@ -17,7 +17,7 @@ public class ReportDetailsTest {
 
     @Test
     public void getGeneratorNameTest() {
-        assertTrue(reportDetails.getGeneratorName().startsWith("Cluecumber Report Plugin version"));
+        assertTrue(reportDetails.getGeneratorName().startsWith("Cluecumber Report version"));
     }
 
     @Test

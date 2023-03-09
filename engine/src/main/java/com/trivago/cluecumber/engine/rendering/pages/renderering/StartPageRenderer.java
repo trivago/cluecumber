@@ -28,6 +28,9 @@ import java.util.List;
  */
 public class StartPageRenderer extends PageRenderer {
 
+    /**
+     * Default constructor.
+     */
     @Inject
     public StartPageRenderer() {
     }
