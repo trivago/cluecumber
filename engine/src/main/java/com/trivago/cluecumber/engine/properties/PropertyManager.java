@@ -149,10 +149,20 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
+    /**
+     * Get the path to the custom parameter file.
+     *
+     * @return The path as string.
+     */
     public String getCustomParametersFile() {
         return customParametersFile;
     }
 
+    /**
+     * Set the path to the custom parameter file.
+     *
+     * @param customParametersFile The path as string.
+     */
     public void setCustomParametersFile(String customParametersFile) throws CluecumberException {
         this.customParametersFile = customParametersFile;
         if (!isSet(customParametersFile)) {
@@ -165,10 +175,21 @@ public class PropertyManager {
         this.customParameters.putAll(customParameters);
     }
 
+    /**
+     * Get the display mode for custom parameters (on which page they should appear).
+     *
+     * @return The {@link com.trivago.cluecumber.engine.constants.Settings.CustomParamDisplayMode} value.
+     */
     public Settings.CustomParamDisplayMode getCustomParametersDisplayMode() {
         return customParametersDisplayMode;
     }
 
+    /**
+     * Set the display mode for custom parameters (on which page they should appear).
+     * Must be a value of {@link com.trivago.cluecumber.engine.constants.Settings.CustomParamDisplayMode}.
+     *
+     * @param customParametersDisplayMode The display mode string.
+     */
     public void setCustomParametersDisplayMode(String customParametersDisplayMode) {
         try {
             this.customParametersDisplayMode = Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
@@ -179,6 +200,12 @@ public class PropertyManager {
         }
     }
 
+    /**
+     * Set the custom navigation links to appear next to the default Cluecumber navigation.
+     * The map key represents the caption to be display in the navigation, the value is the actual URL to link to.
+     *
+     * @param customNavigationLinks The map of key value pairs.
+     */
     public void setCustomNavigationLinks(final Map<String, String> customNavigationLinks) {
         if (customNavigationLinks == null) {
             return;
@@ -186,6 +213,12 @@ public class PropertyManager {
         this.customNavigationLinks.putAll(customNavigationLinks);
     }
 
+    /**
+     * Get the custom navigation links to appear next to the default Cluecumber navigation.
+     * The map key represents the caption to be display in the navigation, the value is the actual URL to link to.
+     *
+     * @return The map of key value pairs.
+     */
     public List<Link> getNavigationLinks() {
         List<Link> links = new LinkedList<>(Navigation.internalLinks);
 
@@ -197,50 +230,110 @@ public class PropertyManager {
         return links;
     }
 
+    /**
+     * This determines whether a scenario should be considered failed if it contains pending or undefined steps.
+     *
+     * @return true means fail on pending or undefined steps.
+     */
     public boolean isFailScenariosOnPendingOrUndefinedSteps() {
         return failScenariosOnPendingOrUndefinedSteps;
     }
 
+    /**
+     * Set whether a scenario should be considered failed if it contains pending or undefined steps.
+     *
+     * @param failScenariosOnPendingOrUndefinedSteps true means fail on pending or undefined steps.
+     */
     public void setFailScenariosOnPendingOrUndefinedSteps(final boolean failScenariosOnPendingOrUndefinedSteps) {
         this.failScenariosOnPendingOrUndefinedSteps = failScenariosOnPendingOrUndefinedSteps;
     }
 
+    /**
+     * This determines whether before and after hooks should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
     public boolean isExpandBeforeAfterHooks() {
         return expandBeforeAfterHooks;
     }
 
+    /**
+     * Set whether before and after hooks should be expanded by default.
+     *
+     * @param expandBeforeAfterHooks true means they should be expanded.
+     */
     public void setExpandBeforeAfterHooks(final boolean expandBeforeAfterHooks) {
         this.expandBeforeAfterHooks = expandBeforeAfterHooks;
     }
 
+    /**
+     * This determines whether step hooks should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
     public boolean isExpandStepHooks() {
         return expandStepHooks;
     }
 
+    /**
+     * Set whether step hooks should be expanded by default.
+     *
+     * @param expandStepHooks true means they should be expanded.
+     */
     public void setExpandStepHooks(final boolean expandStepHooks) {
         this.expandStepHooks = expandStepHooks;
     }
 
+    /**
+     * This determines whether doc strings should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
     public boolean isExpandDocStrings() {
         return expandDocStrings;
     }
 
+    /**
+     * Set whether doc strings should be expanded by default.
+     *
+     * @param expandDocStrings true means they should be expanded.
+     */
     public void setExpandDocStrings(final boolean expandDocStrings) {
         this.expandDocStrings = expandDocStrings;
     }
 
+    /**
+     * This determines whether attachments should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
     public boolean isExpandAttachments() {
         return expandAttachments;
     }
 
+    /**
+     * Set whether attachments should be expanded by default.
+     *
+     * @param expandAttachments true means they should be expanded.
+     */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
     }
 
+    /**
+     * Get the custom CSS file path.
+     *
+     * @return The path.
+     */
     public String getCustomCssFile() {
         return customCssFile;
     }
 
+    /**
+     * Set the custom CSS file path.
+     *
+     * @param customCssFile The path.
+     */
     public void setCustomCssFile(final String customCssFile) throws MissingFileException {
         this.customCssFile = customCssFile;
         if (!isSet(customCssFile)) {

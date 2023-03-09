@@ -38,6 +38,12 @@ public class PageWithChartRenderer extends PageRenderer {
         this.chartJsonConverter = chartJsonConverter;
     }
 
+    /**
+     * Convert a chart object to a JSON string representation.
+     *
+     * @param chart The {@link Chart} instance.
+     * @return The JSON string.
+     */
     String convertChartToJson(final Chart chart) {
         return chartJsonConverter.convertChartToJson(chart);
     }
