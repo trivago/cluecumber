@@ -147,6 +147,12 @@
                 <configuration>
                     <failOnWarnings>false</failOnWarnings>
                     <sourcepath>${basedir}/src/main/java</sourcepath>
+                    <additionalJOptions>
+                        <additionalJOption>-Xmaxerrs</additionalJOption>
+                        <additionalJOption>65536</additionalJOption>
+                        <additionalJOption>-Xmaxwarns</additionalJOption>
+                        <additionalJOption>65536</additionalJOption>
+                    </additionalJOptions>
                 </configuration>
             </plugin>
         </plugins>
