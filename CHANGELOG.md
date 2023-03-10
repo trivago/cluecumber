@@ -13,7 +13,6 @@ Back to [Readme](README.md).
 * Updated dependencies
 * Small visual tweaks
 * Code clean-up
-* Full JavaDoc coverage
 
 ### Added
 * Full javadoc coverage
