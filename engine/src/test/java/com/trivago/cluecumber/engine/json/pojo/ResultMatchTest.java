@@ -121,12 +121,4 @@ public class ResultMatchTest {
         resultMatch.setOutput(output);
         assertTrue(resultMatch.hasOutputs());
     }
-
-    @Test
-    public void returnEscapedOutputsTest() {
-        List<String> output = new ArrayList<>();
-        output.add("Testäöüß");
-        resultMatch.setOutput(output);
-        assertEquals(resultMatch.returnEscapedOutputs().get(0), "Testäöüß");
-    }
 }

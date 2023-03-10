@@ -119,6 +119,12 @@ public class RenderingUtils {
         }
     }
 
+    /**
+     * Convert a time zone date time to a human-readable year, month and day string.
+     *
+     * @param startDateTime The {@link ZonedDateTime} instance.
+     * @return The string representation.
+     */
     public static String convertZonedDateTimeToDateString(final ZonedDateTime startDateTime) {
         try {
             return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
@@ -128,6 +134,12 @@ public class RenderingUtils {
         return "";
     }
 
+    /**
+     * Convert a time zone date time to a human-readable hour, minute and second string.
+     *
+     * @param startDateTime The {@link ZonedDateTime} instance.
+     * @return The string representation.
+     */
     public static String convertZonedDateTimeToTimeString(final ZonedDateTime startDateTime) {
         try {
             return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
@@ -137,6 +149,12 @@ public class RenderingUtils {
         return "";
     }
 
+    /**
+     * Check if a string is a URL.
+     *
+     * @param value The string to check.
+     * @return true if it is a URL.
+     */
     public static boolean isUrl(String value) {
         try {
             new URL(value);
@@ -146,6 +164,12 @@ public class RenderingUtils {
         }
     }
 
+    /**
+     * Check if a string is a relative URL.
+     *
+     * @param value The string to check.
+     * @return true if it is a relative URL.
+     */
     public static boolean isRelativeUrl(final String value) {
         return value.startsWith("./") || value.startsWith("../") || value.startsWith("#");
     }

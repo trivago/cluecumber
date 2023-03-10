@@ -17,20 +17,39 @@ package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.engine.constants.Settings;
 
+/**
+ * Necessary properties for the start page.
+ */
 @SuppressWarnings({"FieldMayBeFinal", "unused"})
 public class StartPageCollection {
     private Settings.StartPage startPage;
     private boolean redirectToFirstScenario;
 
+    /**
+     * Default constructor.
+     *
+     * @param startPage               The {@link com.trivago.cluecumber.engine.constants.Settings.StartPage} enum.
+     * @param redirectToFirstScenario true if it should redirect to the first scenario.
+     */
     public StartPageCollection(Settings.StartPage startPage, boolean redirectToFirstScenario) {
         this.startPage = startPage;
         this.redirectToFirstScenario = redirectToFirstScenario;
     }
 
+    /**
+     * Return the start page.
+     *
+     * @return The {@link com.trivago.cluecumber.engine.constants.Settings.StartPage} enum.
+     */
     public Settings.StartPage getStartPage() {
         return startPage;
     }
 
+    /**
+     * Should the start page redirect to the first scenario?
+     *
+     * @return true if it should redirect to the first scenario.
+     */
     public boolean isRedirectToFirstScenario() {
         return redirectToFirstScenario;
     }

@@ -37,6 +37,9 @@ import java.util.List;
 import static com.trivago.cluecumber.engine.constants.Settings.HTML_FILE_EXTENSION;
 import static com.trivago.cluecumber.engine.constants.Settings.START_PAGE;
 
+/**
+ * The main report generator.
+ */
 @Singleton
 public class ReportGenerator {
     private final FileIO fileIO;

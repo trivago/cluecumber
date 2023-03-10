@@ -25,10 +25,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Page collection for the step overview page.
+ */
 public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
     private final Map<Step, ResultCount> stepResultCounts = new HashMap<>();
     private final Map<Step, Times> stepTimes = new HashMap<>();
 
+    /**
+     * Constructor.
+     *
+     * @param reports   The list of {@link Report} instances.
+     * @param pageTitle The page title.
+     */
     public AllStepsPageCollection(List<Report> reports, final String pageTitle) {
         super(pageTitle);
         calculateStepResultCounts(reports);

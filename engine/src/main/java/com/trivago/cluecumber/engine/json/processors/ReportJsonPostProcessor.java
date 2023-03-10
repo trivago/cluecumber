@@ -30,6 +30,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Post processor for GUICE that adds feature indices, merges background scenarios into
+ * scenarios and adds feature information to scenarios.
+ */
 @Singleton
 public class ReportJsonPostProcessor implements PostProcessor<Report> {
 
@@ -44,6 +48,13 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
         featureUris = new ArrayList<>();
     }
 
+    /**
+     * Adds feature indices, merges background scenarios into scenarios and adds feature information to scenarios.
+     *
+     * @param report      The {@link Report} instance.
+     * @param jsonElement The {@link JsonElement} that is being deserialized, unused here.
+     * @param gson        The {@link Gson} instance for JSON conversion.
+     */
     @Override
     public void postDeserialize(final Report report, final JsonElement jsonElement, final Gson gson) {
         addFeatureIndex(report);
@@ -95,6 +106,13 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
         report.setFeatureIndex(featureUris.indexOf(featureName));
     }
 
+    /**
+     * Unused post serialize hook.
+     *
+     * @param jsonElement The {@link JsonElement} that was deserialized.
+     * @param report      The {@link Report} instance.
+     * @param gson        The {@link Gson} instance.
+     */
     @Override
     public void postSerialize(final JsonElement jsonElement, final Report report, final Gson gson) {
         // not used

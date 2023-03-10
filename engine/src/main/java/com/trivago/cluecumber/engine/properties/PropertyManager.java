@@ -162,6 +162,7 @@ public class PropertyManager {
      * Set the path to the custom parameter file.
      *
      * @param customParametersFile The path as string.
+     * @throws CluecumberException Thrown on every error.
      */
     public void setCustomParametersFile(String customParametersFile) throws CluecumberException {
         this.customParametersFile = customParametersFile;
@@ -333,6 +334,7 @@ public class PropertyManager {
      * Set the custom CSS file path.
      *
      * @param customCssFile The path.
+     * @throws MissingFileException Thrown if the file is not found.
      */
     public void setCustomCssFile(final String customCssFile) throws MissingFileException {
         this.customCssFile = customCssFile;

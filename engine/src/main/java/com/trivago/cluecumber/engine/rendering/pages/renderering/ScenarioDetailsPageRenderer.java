@@ -61,6 +61,14 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param scenarioDetailsPageCollection The {@link ScenarioDetailsPageCollection} instance.
+     * @param template                      The {@link Template} instance.
+     * @return The HTML string.
+     * @throws CluecumberException Thrown on any errors.
+     */
     public String getRenderedContent(
             final ScenarioDetailsPageCollection scenarioDetailsPageCollection,
             final Template template) throws CluecumberException {

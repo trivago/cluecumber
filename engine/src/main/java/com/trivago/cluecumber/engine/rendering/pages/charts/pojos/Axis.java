@@ -60,18 +60,38 @@ public class Axis {
         this.stacked = stacked;
     }
 
+    /**
+     * Get the scale label for this axis.
+     *
+     * @return The label.
+     */
     public ScaleLabel getScaleLabel() {
         return scaleLabel;
     }
 
+    /**
+     * Set the scale label for this axis.
+     *
+     * @param scaleLabel The label.
+     */
     public void setScaleLabel(final ScaleLabel scaleLabel) {
         this.scaleLabel = scaleLabel;
     }
 
+    /**
+     * Get the step size for this axis.
+     *
+     * @return The step size.
+     */
     public float getStepSize() {
         return stepSize;
     }
 
+    /**
+     * Set the step size for this axis.
+     *
+     * @param stepSize The step size.
+     */
     public void setStepSize(final float stepSize) {
         this.stepSize = stepSize;
     }

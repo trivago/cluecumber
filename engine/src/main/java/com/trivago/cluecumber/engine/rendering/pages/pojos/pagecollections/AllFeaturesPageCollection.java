@@ -29,9 +29,6 @@ import java.util.Set;
  * Page collection for the feature overview page.
  */
 public class AllFeaturesPageCollection extends SummaryPageCollection {
-    /**
-     * Total results per feature.
-     */
     private Map<Feature, ResultCount> resultCounts;
     private int totalNumberOfScenarios;
 

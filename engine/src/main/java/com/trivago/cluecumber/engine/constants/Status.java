@@ -37,13 +37,34 @@ import java.util.List;
  * Enum to manage all states for steps and scenarios.
  */
 public enum Status {
+    /**
+     * Passed status.
+     */
     PASSED("passed"),
+    /**
+     * Failed status.
+     */
     FAILED("failed"),
+    /**
+     * Skipped status.
+     */
     SKIPPED("skipped"),
+    /**
+     * Pending status.
+     */
     PENDING("pending"),
+    /**
+     * Undefined status.
+     */
     UNDEFINED("undefined"),
+    /**
+     * Ambiguous status.
+     */
     AMBIGUOUS("ambiguous");
 
+    /**
+     * The three basic states: passed, failed and skipped.
+     */
     public static final List<Status> BASIC_STATES = Arrays.asList(Status.PASSED, Status.FAILED, Status.SKIPPED);
 
     private final String status;
@@ -52,10 +73,21 @@ public enum Status {
         this.status = statusString;
     }
 
+    /**
+     * Get a status enum from a status string.
+     *
+     * @param status The status string.
+     * @return The matching {@link Status} enum.
+     */
     public static Status fromString(String status) {
         return valueOf(status.toUpperCase());
     }
 
+    /**
+     * Return the status string from this enum.
+     *
+     * @return The status string.
+     */
     public String getStatusString() {
         return status;
     }

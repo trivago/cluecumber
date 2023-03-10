@@ -59,6 +59,12 @@ public class PageRenderer {
         return stringWriter.toString();
     }
 
+    /**
+     * Add converted custom parameters to the page collection.
+     *
+     * @param pageCollection     The {@link PageCollection} instance.
+     * @param customParameterMap The map of custom parameter key value pairs.
+     */
     protected void addCustomParametersToReportDetails(final PageCollection pageCollection,
                                                       final Map<String, String> customParameterMap) {
 

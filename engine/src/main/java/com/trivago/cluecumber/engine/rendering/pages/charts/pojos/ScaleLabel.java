@@ -15,22 +15,41 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
+/**
+ * The
+ */
 public class ScaleLabel {
     private boolean display;
     private String labelString;
 
+    /**
+     * Whether the label should be displayed.
+     * @return true if it should be displayed.
+     */
     public boolean isDisplay() {
         return display;
     }
 
+    /**
+     * Set if this label should be displayed.
+     * @param display true if it should be displayed.
+     */
     public void setDisplay(final boolean display) {
         this.display = display;
     }
 
+    /**
+     * Get the label.
+     * @return The label string.
+     */
     public String getLabelString() {
         return labelString;
     }
 
+    /**
+     * Set the label.
+     * @param labelString The label string.
+     */
     public void setLabelString(final String labelString) {
         this.labelString = labelString;
     }

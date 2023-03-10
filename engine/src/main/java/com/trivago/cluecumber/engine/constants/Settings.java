@@ -101,12 +101,33 @@ public class Settings {
      */
     public static final String TREE_VIEW_PAGE = "tree-view";
 
+    /**
+     * Defines all possible start pages.
+     */
     public enum StartPage {
+        /**
+         * The scenario overview page.
+         */
         ALL_SCENARIOS(SCENARIO_SUMMARY_PAGE_PATH),
+        /**
+         * The scenario sequence page.
+         */
         SCENARIO_SEQUENCE(SCENARIO_SEQUENCE_PAGE_PATH),
+        /**
+         * The tag overview page.
+         */
         ALL_TAGS(TAG_SUMMARY_PAGE),
+        /**
+         * The step overview page.
+         */
         ALL_STEPS(STEP_SUMMARY_PAGE),
+        /**
+         * The feature overview page.
+         */
         ALL_FEATURES(FEATURE_SUMMARY_PAGE),
+        /**
+         * The tree view page.
+         */
         TREE_VIEW(TREE_VIEW_PAGE);
 
         private final String pageName;
@@ -115,14 +136,28 @@ public class Settings {
             this.pageName = pageName;
         }
 
+        /**
+         * Get the name of the page.
+         *
+         * @return The page name.
+         */
         @SuppressWarnings("unused")
         public String getPageName() {
             return pageName;
         }
     }
 
+    /**
+     * Where to display custom parameters.
+     */
     public enum CustomParamDisplayMode {
+        /**
+         * Display on all scenario pages.
+         */
         SCENARIO_PAGES,
+        /**
+         * Display on all pages.
+         */
         ALL_PAGES
     }
 }

@@ -51,6 +51,13 @@ public class StackedBarChartBuilder {
         this.chartConfiguration = chartConfiguration;
     }
 
+    /**
+     * Add values of a specific status to the chart.
+     *
+     * @param values The list of values.
+     * @param status The {@link Status} enum that these values belong to.
+     * @return The {@link StackedBarChartBuilder}.
+     */
     public StackedBarChartBuilder addValues(final List<Float> values, final Status status) {
         String color = chartConfiguration.getColorRgbaStringByStatus(status);
         Dataset dataset = new Dataset();

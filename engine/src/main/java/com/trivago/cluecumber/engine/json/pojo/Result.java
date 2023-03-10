@@ -19,6 +19,9 @@ import com.google.gson.annotations.SerializedName;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
+/**
+ * This represents a result of a step or scenario.
+ */
 public class Result {
 
     private long duration = 0;
@@ -27,42 +30,93 @@ public class Result {
     @SerializedName("error_message")
     private String errorMessage = "";
 
+    /**
+     * Get the duration of this result.
+     *
+     * @return The duration in nanoseconds.
+     */
     public long getDuration() {
         return duration;
     }
 
+    /**
+     * Set the duration of this result.
+     *
+     * @param duration The duration in nanoseconds.
+     */
     public void setDuration(final long duration) {
         this.duration = duration;
     }
 
+    /**
+     * Get the status.
+     *
+     * @return The status string.
+     */
     public String getStatus() {
         return status;
     }
 
+    /**
+     * Set the status.
+     *
+     * @param status The status string.
+     */
     public void setStatus(final String status) {
         this.status = status;
     }
 
+    /**
+     * Check if there is an error message.
+     *
+     * @return true if an error message exists.
+     */
     public boolean hasErrorMessage() {
         return errorMessage != null && !errorMessage.trim().isEmpty();
     }
 
+
+    /**
+     * Get the error message.
+     *
+     * @return The error message.
+     */
     public String getErrorMessage() {
         return errorMessage;
     }
 
+    /**
+     * Set the error message.
+     *
+     * @param errorMessage The error message.
+     */
     public void setErrorMessage(final String errorMessage) {
         this.errorMessage = errorMessage;
     }
 
+    /**
+     * Get the duration in milliseconds.
+     *
+     * @return The converted duration.
+     */
     public long getDurationInMilliseconds() {
         return RenderingUtils.convertNanosecondsToMilliseconds(duration);
     }
 
+    /**
+     * Get the human readable duration string.
+     *
+     * @return The duration string.
+     */
     public String returnDurationString() {
         return RenderingUtils.convertNanosecondsToTimeString(duration);
     }
 
+    /**
+     * Get the error message with URLs turned into clickable HTML links.
+     *
+     * @return The converted error message.
+     */
     public String returnErrorMessageWithClickableLinks() {
         return RenderingUtils.turnUrlsIntoLinks(RenderingUtils.escapeHTML(errorMessage));
     }

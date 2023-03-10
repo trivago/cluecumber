@@ -18,13 +18,26 @@ package com.trivago.cluecumber.engine.json.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Table row.
+ */
 public class Row {
     private List<String> cells = new ArrayList<>();
 
+    /**
+     * Get the individual table cells in this row.
+     *
+     * @return The string value from every cell.
+     */
     public List<String> getCells() {
         return cells;
     }
 
+    /**
+     * Set the individual table cells in this row.
+     *
+     * @param cells The list of string values, each one representing a cell.
+     */
     public void setCells(final List<String> cells) {
         this.cells = cells;
     }

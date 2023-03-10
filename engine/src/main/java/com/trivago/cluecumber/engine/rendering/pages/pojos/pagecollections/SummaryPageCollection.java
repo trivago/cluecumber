@@ -20,6 +20,9 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.ResultCount;
 
 import java.util.Collection;
 
+/**
+ * The base page for pages containing scenario result summaries.
+ */
 class SummaryPageCollection extends PageCollection {
     SummaryPageCollection(final String pageTitle) {
         super(pageTitle);
