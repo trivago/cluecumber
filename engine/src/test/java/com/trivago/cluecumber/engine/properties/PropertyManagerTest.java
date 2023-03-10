@@ -1,6 +1,6 @@
 package com.trivago.cluecumber.engine.properties;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.engine.exceptions.properties.WrongOrMissingPropertyException;
@@ -80,14 +80,14 @@ public class PropertyManagerTest {
 
     @Test
     public void customParametersDisplayModeTest() {
-        propertyManager.setCustomParametersDisplayMode(PluginSettings.CustomParamDisplayMode.ALL_PAGES.name());
-        assertEquals(propertyManager.getCustomParametersDisplayMode(), PluginSettings.CustomParamDisplayMode.ALL_PAGES);
+        propertyManager.setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.ALL_PAGES.name());
+        assertEquals(propertyManager.getCustomParametersDisplayMode(), Settings.CustomParamDisplayMode.ALL_PAGES);
     }
 
     @Test
     public void customParametersDisplayModeUnknownTest() {
         propertyManager.setCustomParametersDisplayMode("SomethingElse");
-        assertEquals(propertyManager.getCustomParametersDisplayMode(), PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES);
+        assertEquals(propertyManager.getCustomParametersDisplayMode(), Settings.CustomParamDisplayMode.SCENARIO_PAGES);
     }
 
     @Test

@@ -79,35 +79,35 @@ public class AllStepsPageCollectionTest {
     @Test
     public void getMinimumTimeFromStepTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        Step step = allStepsPageCollection.getSteps().iterator().next();
         assertEquals(allStepsPageCollection.getMinimumTimeFromStep(step), "0m 00s 000ms");
     }
 
     @Test
     public void getMinimumTimeScenarioIndexFromStepTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        Step step = allStepsPageCollection.getSteps().iterator().next();
         assertEquals(allStepsPageCollection.getMaximumTimeScenarioIndexFromStep(step), 0);
     }
 
     @Test
     public void getMaximumTimeFromStepTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        Step step = allStepsPageCollection.getSteps().iterator().next();
         assertEquals(allStepsPageCollection.getMaximumTimeFromStep(step), "0m 00s 000ms");
     }
 
     @Test
     public void getMaximumTimeScenarioIndexFromStepTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        Step step = allStepsPageCollection.getSteps().iterator().next();
         assertEquals(allStepsPageCollection.getMinimumTimeScenarioIndexFromStep(step), 0);
     }
 
     @Test
     public void getAverageTimeFromStepTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        Step step  = allStepsPageCollection.getSteps().iterator().next();
+        Step step = allStepsPageCollection.getSteps().iterator().next();
         assertEquals(allStepsPageCollection.getAverageTimeFromStep(step), "0m 00s 000ms");
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.pojos;
 
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
@@ -23,52 +22,96 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class holds feature, scenario or step indeces and associated times.
+ */
 public class Times {
-    private final List<FeatureTime> times = new ArrayList<>();
+    private final List<IndexTime> times = new ArrayList<>();
 
-    public void addTime(final long nanoseconds, final int featureIndex) {
-        times.add(new FeatureTime(nanoseconds, featureIndex));
+    /**
+     * Add a time and an index to the list of times.
+     *
+     * @param nanoseconds The nanoseconds.
+     * @param index       The feature, scenario or step index.
+     */
+    public void addTime(final long nanoseconds, final int index) {
+        times.add(new IndexTime(nanoseconds, index));
     }
 
-    private FeatureTime getMinimumFeatureTime() {
-        Optional<FeatureTime> featureTime = times.stream().min(Comparator.comparingLong(ft -> ft.time));
-        return featureTime.orElseGet(() -> new FeatureTime(0, -1));
+    /**
+     * Get the minimum time of the list.
+     *
+     * @return The {@link IndexTime} instance with the minimum time.
+     */
+    private IndexTime getMinimumTime() {
+        Optional<IndexTime> time = times.stream().min(Comparator.comparingLong(t -> t.time));
+        return time.orElseGet(() -> new IndexTime(0, -1));
     }
 
-    private FeatureTime getMaximumFeatureTime() {
-        Optional<FeatureTime> featureTime = times.stream().max(Comparator.comparingLong(ft -> ft.time));
-        return featureTime.orElseGet(() -> new FeatureTime(0, -1));
+    /**
+     * Get the maximum time of the list.
+     *
+     * @return The {@link IndexTime} instance with the maximum time.
+     */
+    private IndexTime getMaximumTime() {
+        Optional<IndexTime> time = times.stream().max(Comparator.comparingLong(t -> t.time));
+        return time.orElseGet(() -> new IndexTime(0, -1));
     }
 
+    /**
+     * Get the human-readable time string for the minimum time.
+     *
+     * @return The time string.
+     */
     public String getMinimumTimeString() {
-        return RenderingUtils.convertNanosecondsToTimeString(getMinimumFeatureTime().time);
+        return RenderingUtils.convertNanosecondsToTimeString(getMinimumTime().time);
     }
 
-    public int getMinimumTimeScenarioIndex() {
-        return getMinimumFeatureTime().scenarioIndex;
+    /**
+     * Get the index for the minimum time.
+     *
+     * @return The feature, scenario or step index.
+     */
+    public int getMinimumTimeIndex() {
+        return getMinimumTime().index;
     }
 
+    /**
+     * Get the human-readable time string for the maximum time.
+     *
+     * @return The time string.
+     */
     public String getMaximumTimeString() {
-        return RenderingUtils.convertNanosecondsToTimeString(getMaximumFeatureTime().time);
+        return RenderingUtils.convertNanosecondsToTimeString(getMaximumTime().time);
     }
 
-    public int getMaximumTimeScenarioIndex() {
-        return getMaximumFeatureTime().scenarioIndex;
+    /**
+     * Get the index for the maximum time.
+     *
+     * @return The feature, scenario or step index.
+     */
+    public int getMaximumTimeIndex() {
+        return getMaximumTime().index;
     }
 
+    /**
+     * Get the average time of all recorded times.
+     *
+     * @return The time string.
+     */
     public String getAverageTimeString() {
         return RenderingUtils.convertNanosecondsToTimeString(
                 (long) times.stream().mapToLong(v -> v.time).average().orElse(0)
         );
     }
 
-    static class FeatureTime {
+    static class IndexTime {
         private final long time;
-        private final int scenarioIndex;
+        private final int index;
 
-        FeatureTime(final long time, final int scenarioIndex) {
+        IndexTime(final long time, final int index) {
             this.time = time;
-            this.scenarioIndex = scenarioIndex;
+            this.index = index;
         }
     }
 }

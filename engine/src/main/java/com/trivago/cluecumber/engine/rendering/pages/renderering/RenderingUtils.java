@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.CluecumberEngine;
@@ -27,6 +26,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
+
+/**
+ * Generic utilities for page rendering.
+ */
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
     private static final Pattern URL_PATTERN = Pattern.compile("(file.*)|((ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?)");
@@ -116,6 +119,12 @@ public class RenderingUtils {
         }
     }
 
+    /**
+     * Convert a time zone date time to a human-readable year, month and day string.
+     *
+     * @param startDateTime The {@link ZonedDateTime} instance.
+     * @return The string representation.
+     */
     public static String convertZonedDateTimeToDateString(final ZonedDateTime startDateTime) {
         try {
             return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
@@ -125,6 +134,12 @@ public class RenderingUtils {
         return "";
     }
 
+    /**
+     * Convert a time zone date time to a human-readable hour, minute and second string.
+     *
+     * @param startDateTime The {@link ZonedDateTime} instance.
+     * @return The string representation.
+     */
     public static String convertZonedDateTimeToTimeString(final ZonedDateTime startDateTime) {
         try {
             return startDateTime.withZoneSameInstant(ZoneId.systemDefault()).
@@ -134,6 +149,12 @@ public class RenderingUtils {
         return "";
     }
 
+    /**
+     * Check if a string is a URL.
+     *
+     * @param value The string to check.
+     * @return true if it is a URL.
+     */
     public static boolean isUrl(String value) {
         try {
             new URL(value);
@@ -143,6 +164,12 @@ public class RenderingUtils {
         }
     }
 
+    /**
+     * Check if a string is a relative URL.
+     *
+     * @param value The string to check.
+     * @return true if it is a relative URL.
+     */
     public static boolean isRelativeUrl(final String value) {
         return value.startsWith("./") || value.startsWith("../") || value.startsWith("#");
     }

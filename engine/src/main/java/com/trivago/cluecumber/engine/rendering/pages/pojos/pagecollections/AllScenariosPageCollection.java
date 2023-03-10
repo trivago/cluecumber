@@ -13,7 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/*
+ * Copyright 2023 trivago N.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.engine.constants.Status;
@@ -35,22 +49,40 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("unused")
+/**
+ * Page collection for the scenario overview page.
+ */
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
 
+    /**
+     * Constructor.
+     *
+     * @param pageTitle The page title.
+     */
     public AllScenariosPageCollection(final String pageTitle) {
         super(pageTitle);
     }
 
+    /**
+     * Get all reports.
+     *
+     * @return The list of {@link Report} instances.
+     */
     public List<Report> getReports() {
         return reports;
     }
 
-    public List<Element> getElementsByFeatureIndex(final int featureIndex){
+    /**
+     * Get scenarios by feature index.
+     *
+     * @param featureIndex The feature index.
+     * @return The list of related {@link Element} instances.
+     */
+    public List<Element> getElementsByFeatureIndex(final int featureIndex) {
         return getReports().stream()
                 .filter(report -> report.getFeatureIndex() == featureIndex)
                 .flatMap(report -> report.getElements().stream())
@@ -58,10 +90,20 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
                 .collect(Collectors.toList());
     }
 
+
+    /**
+     * Empty report list.
+     */
     public void clearReports() {
         reports = new ArrayList<>();
     }
 
+
+    /**
+     * Add reports to the existing report list.
+     *
+     * @param reportList An array of {@link Report} instances to add.
+     */
     public void addReports(final Report[] reportList) {
         if (reportList == null) {
             return;
@@ -69,38 +111,80 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         addReports(Arrays.asList(reportList));
     }
 
+    /**
+     * Add reports to this page collection.
+     *
+     * @param reportList The {@link Report} list.
+     */
     private void addReports(final List<Report> reportList) {
         this.reports.addAll(reportList);
     }
 
+
+    /**
+     * Return the total scenario count.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfScenarios() {
         return reports.stream().map(Report::getElements).
                 mapToInt(elements -> (int) elements.stream().filter(Element::isScenario).count()).sum();
     }
 
+    /**
+     * Check if there are failed scenarios.
+     *
+     * @return true if there are failed scenarios.
+     */
     public boolean hasFailedScenarios() {
         return getTotalNumberOfFailedScenarios() > 0;
     }
 
+    /**
+     * Check if there are passed scenarios.
+     *
+     * @return true if there are passed scenarios.
+     */
     public boolean hasPassedScenarios() {
         return getTotalNumberOfPassedScenarios() > 0;
     }
 
+    /**
+     * Check if there are skipped scenarios.
+     *
+     * @return true if there are skipped scenarios.
+     */
     public boolean hasSkippedScenarios() {
         return getTotalNumberOfSkippedScenarios() > 0;
     }
 
+    /**
+     * Return the number of passed scenarios.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfPassedScenarios() {
         return getNumberOfScenariosWithStatus(Status.PASSED);
     }
 
+    /**
+     * Return the number of failed scenarios.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfFailedScenarios() {
         return getNumberOfScenariosWithStatus(Status.FAILED);
     }
 
+    /**
+     * Return the number of skipped scenarios.
+     *
+     * @return The scenario count.
+     */
     public int getTotalNumberOfSkippedScenarios() {
         return getNumberOfScenariosWithStatus(Status.SKIPPED);
     }
+
 
     private int getNumberOfScenariosWithStatus(final Status status) {
         return reports.stream().mapToInt(
@@ -113,6 +197,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return reports.stream().mapToLong(Report::getTotalDuration).sum();
     }
 
+    /**
+     * Return a human-readable time string of the total duration.
+     *
+     * @return The time string.
+     */
     public String getTotalDurationString() {
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
@@ -156,6 +245,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return latestEndDateTime;
     }
 
+    /**
+     * Return the start date and time string of the earliest scenario that was started in the test run.
+     *
+     * @return The time string.
+     */
     public String returnStartDateTimeString() {
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         if (earliestStartDateTime != null) {
@@ -165,6 +259,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return "";
     }
 
+    /**
+     * Return the human-readable time and date string of the latest scenario end.
+     *
+     * @return The time string.
+     */
     public String returnEndDateTimeString() {
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
         if (latestEndDateTime != null) {
@@ -174,32 +273,67 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return "";
     }
 
+    /**
+     * Get the current tag filter to filter scenario by a specific tag.
+     *
+     * @return The {@link Tag} to filter by.
+     */
     public Tag getTagFilter() {
         return tagFilter;
     }
 
+    /**
+     * Set the current tag filter to filter scenario by a specific tag.
+     *
+     * @param tagFilter The {@link Tag} to filter by.
+     */
     public void setTagFilter(final Tag tagFilter) {
         this.tagFilter = tagFilter;
     }
 
+    /**
+     * Return the feature by which scenarios are filtered.
+     *
+     * @return The {@link Feature} to filter by.
+     */
     public Feature getFeatureFilter() {
         return featureFilter;
     }
 
+    /**
+     * Set the feature by which scenarios should be filtered.
+     *
+     * @param featureFilter The {@link Feature} to filter by.
+     */
     public void setFeatureFilter(final Feature featureFilter) {
         this.featureFilter = featureFilter;
     }
 
+    /**
+     * Return the step by which scenarios are filtered.
+     *
+     * @return The {@link Step} to filter by.
+     */
     public Step getStepFilter() {
         return stepFilter;
     }
 
+    /**
+     * Set the step by which scenarios should be filtered.
+     *
+     * @param stepFilter The {@link Step} to filter by.
+     */
     public void setStepFilter(final Step stepFilter) {
         this.stepFilter = stepFilter;
     }
 
+    /**
+     * Function to clone the {@link AllScenariosPageCollection} including all included data.
+     *
+     * @return The clone of the {@link AllScenariosPageCollection}
+     */
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public AllScenariosPageCollection clone() throws CloneNotSupportedException {
         final AllScenariosPageCollection clone = (AllScenariosPageCollection) super.clone();
         clone.setFeatureFilter(null);
         clone.setStepFilter(null);
@@ -213,6 +347,12 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return clone;
     }
 
+    /**
+     * Method to accept a {@link PageVisitor}.
+     *
+     * @param visitor The {@link PageVisitor} instance.
+     * @throws CluecumberException thrown on any error.
+     */
     @Override
     public void accept(final PageVisitor visitor) throws CluecumberException {
         visitor.visit(this);

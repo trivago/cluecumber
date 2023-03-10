@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,43 +13,85 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
+/**
+ * Chart axis.
+ */
 public class Axis {
     private Ticks ticks;
     private boolean stacked;
     private ScaleLabel scaleLabel;
     private float stepSize;
 
+    /**
+     * Get the ticks on this chart axis.
+     *
+     * @return The ticks of the axis.
+     */
     public Ticks getTicks() {
         return ticks;
     }
 
+    /**
+     * Set the ticks on this chart axis.
+     *
+     * @param ticks The ticks of the axis.
+     */
     public void setTicks(final Ticks ticks) {
         this.ticks = ticks;
     }
 
+    /**
+     * Determine if this axis is stacked.
+     *
+     * @return true if this axis is stacked.
+     */
     public boolean isStacked() {
         return stacked;
     }
 
+    /**
+     * Set if this axis is stacked.
+     *
+     * @param stacked true means the axis is stacked.
+     */
     public void setStacked(final boolean stacked) {
         this.stacked = stacked;
     }
 
+    /**
+     * Get the scale label for this axis.
+     *
+     * @return The label.
+     */
     public ScaleLabel getScaleLabel() {
         return scaleLabel;
     }
 
+    /**
+     * Set the scale label for this axis.
+     *
+     * @param scaleLabel The label.
+     */
     public void setScaleLabel(final ScaleLabel scaleLabel) {
         this.scaleLabel = scaleLabel;
     }
 
+    /**
+     * Get the step size for this axis.
+     *
+     * @return The step size.
+     */
     public float getStepSize() {
         return stepSize;
     }
 
+    /**
+     * Set the step size for this axis.
+     *
+     * @param stepSize The step size.
+     */
     public void setStepSize(final float stepSize) {
         this.stepSize = stepSize;
     }

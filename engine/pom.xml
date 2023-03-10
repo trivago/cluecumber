@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -8,11 +8,11 @@
     <parent>
         <artifactId>cluecumber-parent</artifactId>
         <groupId>com.trivago.rta</groupId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
     </parent>
 
     <artifactId>cluecumber-engine</artifactId>
-    <version>3.1.0</version>
+    <version>3.2.0</version>
     <packaging>jar</packaging>
 
     <name>Cluecumber Engine</name>
@@ -146,6 +146,13 @@
                 </executions>
                 <configuration>
                     <failOnWarnings>false</failOnWarnings>
+                    <sourcepath>${basedir}/src/main/java</sourcepath>
+                    <additionalJOptions>
+                        <additionalJOption>-Xmaxerrs</additionalJOption>
+                        <additionalJOption>65536</additionalJOption>
+                        <additionalJOption>-Xmaxwarns</additionalJOption>
+                        <additionalJOption>65536</additionalJOption>
+                    </additionalJOptions>
                 </configuration>
             </plugin>
         </plugins>

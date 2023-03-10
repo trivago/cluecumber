@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.json.processors;
 
 import com.google.gson.Gson;
@@ -33,6 +32,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 
+/**
+ * This enriches the scenarios with feature information and adds a feature index to every feature.
+ */
 @Singleton
 public class ElementJsonPostProcessor implements PostProcessor<Element> {
 
@@ -42,6 +44,13 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
 
     private int attachmentIndex = 1;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param propertyManager The {@link PropertyManager} instance.
+     * @param fileIO          The {@link FileIO} instance.
+     * @param logger          The {@link CluecumberLogger} instance.
+     */
     @Inject
     public ElementJsonPostProcessor(
             final PropertyManager propertyManager,
@@ -53,6 +62,13 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
         this.logger = logger;
     }
 
+    /**
+     * This processes attachments and adds the toggle to fail on pending or undefined steps to each scenario.
+     *
+     * @param element     The current scenario.
+     * @param jsonElement The current JSON being processed (not used).
+     * @param gson        The {@link Gson} instance for JSON processing.
+     */
     @Override
     public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
         element.setFailOnPendingOrUndefined(propertyManager.isFailScenariosOnPendingOrUndefinedSteps());
@@ -111,6 +127,13 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
         return filename;
     }
 
+    /**
+     * Unused method.
+     *
+     * @param jsonElement The current JSON element
+     * @param element     The current scenario.
+     * @param gson        The {@link Gson} instance for JSON processing.
+     */
     @Override
     public void postSerialize(final JsonElement jsonElement, final Element element, final Gson gson) {
         // not used

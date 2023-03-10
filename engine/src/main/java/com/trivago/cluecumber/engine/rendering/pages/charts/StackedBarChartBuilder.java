@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.charts;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
@@ -31,19 +30,34 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The builder class for stacked bar charts.
+ */
 public class StackedBarChartBuilder {
     private final ChartConfiguration chartConfiguration;
-    private List<String> labels;
     private final List<Dataset> datasets = new ArrayList<>();
+    private List<String> labels;
     private String xAxisLabel;
     private String yAxisLabel;
     private float yAxisStepSize = 1f;
     private boolean stacked = true;
 
+    /**
+     * The builder for this chart.
+     *
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     */
     public StackedBarChartBuilder(final ChartConfiguration chartConfiguration) {
         this.chartConfiguration = chartConfiguration;
     }
 
+    /**
+     * Add values of a specific status to the chart.
+     *
+     * @param values The list of values.
+     * @param status The {@link Status} enum that these values belong to.
+     * @return The {@link StackedBarChartBuilder}.
+     */
     public StackedBarChartBuilder addValues(final List<Float> values, final Status status) {
         String color = chartConfiguration.getColorRgbaStringByStatus(status);
         Dataset dataset = new Dataset();
@@ -55,31 +69,66 @@ public class StackedBarChartBuilder {
         return this;
     }
 
+    /**
+     * Add labels to this chart.
+     *
+     * @param labels The list of string labels.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setLabels(final List<String> labels) {
         this.labels = labels;
         return this;
     }
 
+    /**
+     * Set the label for the x axis.
+     *
+     * @param xAxisLabel The label to use.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setxAxisLabel(final String xAxisLabel) {
         this.xAxisLabel = xAxisLabel;
         return this;
     }
 
+    /**
+     * Set the label for the y axis.
+     *
+     * @param yAxisLabel The label to use.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setyAxisLabel(final String yAxisLabel) {
         this.yAxisLabel = yAxisLabel;
         return this;
     }
 
+    /**
+     * Set the label for the y axis.
+     *
+     * @param yAxisStepSize The step size for this axis.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setyAxisStepSize(final float yAxisStepSize) {
         this.yAxisStepSize = yAxisStepSize;
         return this;
     }
 
+    /**
+     * Set if this chart should be stacked.
+     *
+     * @param stacked true means stacked.
+     * @return The {@link StackedBarChartBuilder} instance.
+     */
     public StackedBarChartBuilder setStacked(final boolean stacked) {
         this.stacked = stacked;
         return this;
     }
 
+    /**
+     * Builds the final chart.
+     *
+     * @return The {@link Chart} instance.
+     */
     public Chart build() {
         Chart chart = new Chart();
         chart.setType(ChartConfiguration.Type.bar);

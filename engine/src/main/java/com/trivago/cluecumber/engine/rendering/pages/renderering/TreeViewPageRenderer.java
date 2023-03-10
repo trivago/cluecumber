@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
+import com.trivago.cluecumber.engine.constants.ChartConfiguration;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
@@ -35,11 +36,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the feature and scenario tree view page.
+ */
 @Singleton
 public class TreeViewPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param propertyManager The {@link PropertyManager} instance.
+     */
     @Inject
     public TreeViewPageRenderer(
             final PropertyManager propertyManager
@@ -47,6 +56,15 @@ public class TreeViewPageRenderer extends PageRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered site content.
+     *
+     * @param allFeaturesPageCollection  The {@link AllFeaturesPageCollection} instance.
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The Freemarker {@link Template} instance.
+     * @return The page content as string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContent(
             final AllFeaturesPageCollection allFeaturesPageCollection,
             final AllScenariosPageCollection allScenariosPageCollection,

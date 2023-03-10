@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,36 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
 import java.util.List;
 
+/**
+ * The chart data to be displayed.
+ */
 public class Data {
     private List<String> labels;
     private List<Dataset> datasets;
 
+    /**
+     * Get the labels for the data sets.
+     *
+     * @return The list of labels.
+     */
     public List<String> getLabels() {
         return labels;
     }
 
+    /**
+     * Set the labels for the data sets.
+     *
+     * @param labels The list of labels.
+     */
     public void setLabels(final List<String> labels) {
         this.labels = labels;
     }
 
+    /**
+     * Get the data sets.
+     *
+     * @return The list of {@link Dataset} instances.
+     */
     public List<Dataset> getDatasets() {
         return datasets;
     }
 
+    /**
+     * Set the data sets.
+     *
+     * @param datasets The list of {@link Dataset} instances.
+     */
     public void setDatasets(final List<Dataset> datasets) {
         this.datasets = datasets;
-    }
-
-    @Override
-    public String toString() {
-        return "Data{" +
-                "labels=" + labels +
-                ", datasets=" + datasets +
-                '}';
     }
 }

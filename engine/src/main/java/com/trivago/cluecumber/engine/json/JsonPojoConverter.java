@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.google.gson.stream.JsonReader;
 import com.trivago.cluecumber.engine.constants.MimeType;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Element;
@@ -29,18 +27,21 @@ import io.gsonfire.GsonFireBuilder;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * The converter to turn JSON into a report array including pre- and post-processing.
+ */
 @Singleton
 public class JsonPojoConverter {
 
     private final Gson gsonParserWithProcessors;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param reportJsonPostProcessor  The {@link ReportJsonPostProcessor} instance.
+     * @param elementJsonPostProcessor The {@link ElementJsonPostProcessor} instance.
+     */
     @Inject
     public JsonPojoConverter(
             final ReportJsonPostProcessor reportJsonPostProcessor,
@@ -53,19 +54,13 @@ public class JsonPojoConverter {
         gsonParserWithProcessors = builder.createGson();
     }
 
-    public List<Report> readJsonStream(InputStream in) throws CluecumberException, IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-        List<Report> reports = new ArrayList<Report>();
-        reader.beginArray();
-        while (reader.hasNext()) {
-            Report report = gsonParserWithProcessors.fromJson(reader, Report.class);
-            reports.add(report);
-        }
-        reader.endArray();
-        reader.close();
-        return reports;
-    }
-
+    /**
+     * Turn Cucumber JSON into a report array.
+     *
+     * @param json The JSON data.
+     * @return The {@link Report} array.
+     * @throws CluecumberException Thrown on all errors.
+     */
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberException {
         Report[] reports;
         try {

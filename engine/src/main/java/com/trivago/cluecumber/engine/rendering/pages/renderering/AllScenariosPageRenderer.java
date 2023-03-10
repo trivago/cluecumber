@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
@@ -35,23 +34,41 @@ import javax.inject.Singleton;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the scenario overview page.
+ */
 @Singleton
 public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
     private final PropertyManager propertyManager;
     private final ChartConfiguration chartConfiguration;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     AllScenariosPageRenderer(
-            final PropertyManager propertyManager,
             final ChartJsonConverter chartJsonConverter,
-            final ChartConfiguration chartConfiguration
+            final ChartConfiguration chartConfiguration,
+            final PropertyManager propertyManager
     ) {
         super(chartJsonConverter);
-        this.propertyManager = propertyManager;
         this.chartConfiguration = chartConfiguration;
+        this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The {@link Template} instance.
+     * @return The HTML content as a string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContent(
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberException {
@@ -59,6 +76,15 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         return processedContent(template, getAllScenariosPageCollectionClone(allScenariosPageCollection), propertyManager.getNavigationLinks());
     }
 
+    /**
+     * Get the rendered HTML content after applying a tag filter.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The {@link Template} instance.
+     * @param tag                        The {@link Tag} instance to filter by.
+     * @return The HTML content as a string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContentByTagFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Template template,
@@ -76,6 +102,15 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
+    /**
+     * Get the rendered HTML content after applying a step filter.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The {@link Template} instance.
+     * @param step                       The {@link Step} instance to filter by.
+     * @return The HTML content as a string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContentByStepFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Template template,
@@ -93,6 +128,15 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
+    /**
+     * Get the rendered HTML content after applying a feature filter.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The {@link Template} instance.
+     * @param feature                    The {@link Feature} instance to filter by.
+     * @return The HTML content as a string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContentByFeatureFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
             final Template template,

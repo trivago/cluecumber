@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
@@ -30,6 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * The base class for page rendering.
+ */
 public class PageRenderer {
 
     /**
@@ -43,7 +46,7 @@ public class PageRenderer {
     String processedContent(final Template template, final Object pageCollection, final List<Link> navigation)
             throws CluecumberException {
 
-        if (pageCollection instanceof PageCollection){
+        if (pageCollection instanceof PageCollection) {
             ((PageCollection) pageCollection).setNavigationLinks(navigation);
         }
 
@@ -56,6 +59,12 @@ public class PageRenderer {
         return stringWriter.toString();
     }
 
+    /**
+     * Add converted custom parameters to the page collection.
+     *
+     * @param pageCollection     The {@link PageCollection} instance.
+     * @param customParameterMap The map of custom parameter key value pairs.
+     */
     protected void addCustomParametersToReportDetails(final PageCollection pageCollection,
                                                       final Map<String, String> customParameterMap) {
 

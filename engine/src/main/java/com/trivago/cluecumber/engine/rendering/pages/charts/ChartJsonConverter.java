@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.charts;
 
 import com.google.gson.Gson;
@@ -23,16 +22,28 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * Helper class to convert charts to JSON data.
+ */
 @Singleton
 public class ChartJsonConverter {
 
     private final Gson gson;
 
+    /**
+     * Default constructor.
+     */
     @Inject
     public ChartJsonConverter() {
         gson = new GsonBuilder().setPrettyPrinting().create();
     }
 
+    /**
+     * Creates a JSON representation of the {@link Chart} instance.
+     *
+     * @param chart The {@link Chart} instance.
+     * @return The JSON string.
+     */
     public String convertChartToJson(final Chart chart) {
         return gson.toJson(chart);
     }

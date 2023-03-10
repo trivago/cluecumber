@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.filesystem;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
@@ -35,11 +34,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Manages access to the file system.
+ */
 @Singleton
 public class FileSystemManager {
 
     private final CluecumberLogger logger;
 
+    /**
+     * Constructor for dependency exception.
+     *
+     * @param logger The {@link CluecumberLogger} instance.
+     */
     @Inject
     public FileSystemManager(final CluecumberLogger logger) {
         this.logger = logger;
@@ -70,6 +77,7 @@ public class FileSystemManager {
      * Creates a directory if it does not exists.
      *
      * @param dirName Name of directory.
+     * @throws PathCreationException Thrown if the path cannot be created.
      */
     public void createDirectory(final String dirName) throws PathCreationException {
         File directory = new File(dirName);

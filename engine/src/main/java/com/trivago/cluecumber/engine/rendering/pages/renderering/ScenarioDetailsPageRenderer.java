@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Element;
@@ -37,11 +36,21 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The renderer for the scenario details page.
+ */
 @Singleton
 public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public ScenarioDetailsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
@@ -52,6 +61,14 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param scenarioDetailsPageCollection The {@link ScenarioDetailsPageCollection} instance.
+     * @param template                      The {@link Template} instance.
+     * @return The HTML string.
+     * @throws CluecumberException Thrown on any errors.
+     */
     public String getRenderedContent(
             final ScenarioDetailsPageCollection scenarioDetailsPageCollection,
             final Template template) throws CluecumberException {
@@ -63,7 +80,7 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
 
         addChartJsonToReportDetails(scenarioDetailsPageCollection);
 
-        if (propertyManager.getCustomParametersDisplayMode() == PluginSettings.CustomParamDisplayMode.ALL_PAGES) {
+        if (propertyManager.getCustomParametersDisplayMode() == Settings.CustomParamDisplayMode.ALL_PAGES) {
             addCustomParametersToReportDetails(scenarioDetailsPageCollection, propertyManager.getCustomParameters());
         }
 

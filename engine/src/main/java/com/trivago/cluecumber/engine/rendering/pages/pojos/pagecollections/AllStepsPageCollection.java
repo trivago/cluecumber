@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.engine.json.pojo.Report;
@@ -26,10 +25,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Page collection for the step overview page.
+ */
 public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
     private final Map<Step, ResultCount> stepResultCounts = new HashMap<>();
     private final Map<Step, Times> stepTimes = new HashMap<>();
 
+    /**
+     * Constructor.
+     *
+     * @param reports   The list of {@link Report} instances.
+     * @param pageTitle The page title.
+     */
     public AllStepsPageCollection(List<Report> reports, final String pageTitle) {
         super(pageTitle);
         calculateStepResultCounts(reports);
@@ -44,30 +52,70 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         return stepResultCounts;
     }
 
+    /**
+     * Get all steps.
+     *
+     * @return The {@link Step} set.
+     */
     public Set<Step> getSteps() {
         return stepResultCounts.keySet();
     }
 
+    /**
+     * Get the number of all steps.
+     *
+     * @return The count.
+     */
     public int getTotalNumberOfSteps() {
         return stepResultCounts.size();
     }
 
+    /**
+     * Get the minimum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The minimum time as string.
+     */
     public String getMinimumTimeFromStep(final Step step) {
         return stepTimes.get(step).getMinimumTimeString();
     }
 
+    /**
+     * Get the scenario index from the minimum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The scenario index.
+     */
     public int getMinimumTimeScenarioIndexFromStep(final Step step) {
-        return stepTimes.get(step).getMinimumTimeScenarioIndex();
+        return stepTimes.get(step).getMinimumTimeIndex();
     }
 
+    /**
+     * Get the maximum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The minimum time as string.
+     */
     public String getMaximumTimeFromStep(final Step step) {
         return stepTimes.get(step).getMaximumTimeString();
     }
 
+    /**
+     * Get the scenario index from the maximum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The scenario index.
+     */
     public int getMaximumTimeScenarioIndexFromStep(final Step step) {
-        return stepTimes.get(step).getMaximumTimeScenarioIndex();
+        return stepTimes.get(step).getMaximumTimeIndex();
     }
 
+    /**
+     * Get the average time of all step executions of a specific step.
+     *
+     * @param step The {@link Step}.
+     * @return The average time as string.
+     */
     public String getAverageTimeFromStep(final Step step) {
         return stepTimes.get(step).getAverageTimeString();
     }

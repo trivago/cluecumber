@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
@@ -36,12 +35,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the feature overview page.
+ */
 @Singleton
 public class AllFeaturesPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public AllFeaturesPageRenderer(
             final ChartJsonConverter chartJsonConverter,
@@ -53,13 +62,21 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Return the rendered page content.
+     *
+     * @param allFeaturesPageCollection The {@link AllFeaturesPageCollection} instance.
+     * @param template                  The Freemarker template.
+     * @return The rendered page content as a string.
+     * @throws CluecumberException Thrown in case of any error.
+     */
     public String getRenderedContent(
             final AllFeaturesPageCollection allFeaturesPageCollection, final Template template)
             throws CluecumberException {
 
         addChartJsonToReportDetails(allFeaturesPageCollection);
 
-        if (propertyManager.getCustomParametersDisplayMode() == PluginSettings.CustomParamDisplayMode.ALL_PAGES) {
+        if (propertyManager.getCustomParametersDisplayMode() == Settings.CustomParamDisplayMode.ALL_PAGES) {
             addCustomParametersToReportDetails(allFeaturesPageCollection, propertyManager.getCustomParameters());
         }
 
@@ -73,12 +90,12 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Feature, ResultCount> entry : allFeaturesPageCollection.getFeatureResultCounts().entrySet()) {
-            ResultCount value = entry.getValue();
-            passed.add((float) value.getPassed());
-            failed.add((float) value.getFailed());
-            skipped.add((float) value.getSkipped());
-            if (value.getTotal() > maximumNumberOfRuns) {
-                maximumNumberOfRuns = value.getTotal();
+            ResultCount featureResultCount = entry.getValue();
+            passed.add((float) featureResultCount.getPassed());
+            failed.add((float) featureResultCount.getFailed());
+            skipped.add((float) featureResultCount.getSkipped());
+            if (featureResultCount.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = featureResultCount.getTotal();
             }
         }
 

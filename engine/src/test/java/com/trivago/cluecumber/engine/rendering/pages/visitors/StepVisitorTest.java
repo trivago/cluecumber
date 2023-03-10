@@ -17,7 +17,7 @@ public class StepVisitorTest extends VisitorTest {
     private AllStepsPageRenderer allStepsPageRenderer;
 
     @BeforeEach
-    public void setUp()  {
+    public void setUp() {
         super.setUp();
         allStepsPageRenderer = mock(AllStepsPageRenderer.class);
         stepVisitor = new StepVisitor(

@@ -33,7 +33,7 @@ public class AllScenariosPageRendererTest {
         ChartJsonConverter chartJsonConverter = mock(ChartJsonConverter.class);
         propertyManager = mock(PropertyManager.class);
         ChartConfiguration chartConfiguration = new ChartConfiguration(propertyManager);
-        allScenariosPageRenderer = new AllScenariosPageRenderer(propertyManager, chartJsonConverter, chartConfiguration);
+        allScenariosPageRenderer = new AllScenariosPageRenderer(chartJsonConverter, chartConfiguration, propertyManager);
     }
 
     @Test
@@ -101,7 +101,7 @@ public class AllScenariosPageRendererTest {
         report.setFeatureIndex(12);
         Report[] reportList = new Report[]{report};
         allScenariosPageCollection.addReports(reportList);
-        Feature feature = new Feature("feature", "description\non some line", "uri",12);
+        Feature feature = new Feature("feature", "description\non some line", "uri", 12);
         allScenariosPageRenderer.getRenderedContentByFeatureFilter(allScenariosPageCollection, template, feature);
     }
 }

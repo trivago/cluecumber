@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
@@ -24,12 +23,27 @@ import freemarker.template.Template;
 import javax.inject.Inject;
 import java.util.List;
 
+/**
+ * The renderer for the index page that redirects to the chosen start page.
+ */
 public class StartPageRenderer extends PageRenderer {
 
+    /**
+     * Default constructor.
+     */
     @Inject
     public StartPageRenderer() {
     }
 
+    /**
+     * Return the reneder HTML content of the start page.
+     *
+     * @param template            The {@link Template} instance.
+     * @param startPageCollection The {@link StartPageCollection} instance.
+     * @param navigation          The list of navigation {@link Link} instances.
+     * @return The rendered HTML string.
+     * @throws CluecumberException Thrown on any errors.
+     */
     public String getRenderedContent(final Template template, final StartPageCollection startPageCollection, final List<Link> navigation)
             throws CluecumberException {
         return processedContent(template, startPageCollection, navigation);

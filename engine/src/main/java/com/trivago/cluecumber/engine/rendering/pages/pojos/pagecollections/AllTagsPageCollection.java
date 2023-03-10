@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.engine.json.pojo.Report;
@@ -25,9 +24,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Page collection for the tag overview page.
+ */
 public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
     private final Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
 
+    /**
+     * Constructor.
+     *
+     * @param reports   The {@link Report} list.
+     * @param pageTitle The page title.
+     */
     public AllTagsPageCollection(List<Report> reports, final String pageTitle) {
         super(pageTitle);
         calculateTagResultCounts(reports);
@@ -42,10 +50,20 @@ public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
         return tagResultCounts;
     }
 
+    /**
+     * Get all tags.
+     *
+     * @return The {@link Tag} set.
+     */
     public Set<Tag> getTags() {
         return tagResultCounts.keySet();
     }
 
+    /**
+     * Get the number of tags.
+     *
+     * @return The count.
+     */
     public int getTotalNumberOfTags() {
         return tagResultCounts.size();
     }

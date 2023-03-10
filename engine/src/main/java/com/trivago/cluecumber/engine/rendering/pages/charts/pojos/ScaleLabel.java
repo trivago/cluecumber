@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
+/**
+ * The
+ */
 public class ScaleLabel {
     private boolean display;
     private String labelString;
 
+    /**
+     * Whether the label should be displayed.
+     * @return true if it should be displayed.
+     */
     public boolean isDisplay() {
         return display;
     }
 
+    /**
+     * Set if this label should be displayed.
+     * @param display true if it should be displayed.
+     */
     public void setDisplay(final boolean display) {
         this.display = display;
     }
 
+    /**
+     * Get the label.
+     * @return The label string.
+     */
     public String getLabelString() {
         return labelString;
     }
 
+    /**
+     * Set the label.
+     * @param labelString The label string.
+     */
     public void setLabelString(final String labelString) {
         this.labelString = labelString;
     }

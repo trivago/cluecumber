@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,19 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.json.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Table row.
+ */
 public class Row {
     private List<String> cells = new ArrayList<>();
 
+    /**
+     * Get the individual table cells in this row.
+     *
+     * @return The string value from every cell.
+     */
     public List<String> getCells() {
         return cells;
     }
 
+    /**
+     * Set the individual table cells in this row.
+     *
+     * @param cells The list of string values, each one representing a cell.
+     */
     public void setCells(final List<String> cells) {
         this.cells = cells;
     }

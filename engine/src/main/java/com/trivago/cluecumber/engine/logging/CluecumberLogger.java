@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.logging;
 
 import org.tinylog.Logger;
@@ -22,11 +21,17 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Arrays;
 
+/**
+ * Cluecumber base logger.
+ */
 @Singleton
 public class CluecumberLogger {
 
     private CluecumberLogLevel currentLogLevel;
 
+    /**
+     * The default constructor.
+     */
     @Inject
     public CluecumberLogger() {
     }
@@ -50,6 +55,12 @@ public class CluecumberLogger {
         }
     }
 
+
+    /**
+     * Output a separator line in the logs.
+     *
+     * @param cluecumberLogLevels The {@link CluecumberLogLevel} setting.
+     */
     public void logInfoSeparator(final CluecumberLogLevel... cluecumberLogLevels) {
         info("------------------------------------------------------------------------", cluecumberLogLevels);
     }
@@ -103,11 +114,34 @@ public class CluecumberLogger {
         }
     }
 
+
+    /**
+     * Enum for the Logger log levels.
+     */
     private enum LogLevel {
         INFO, WARN
     }
 
+
+    /**
+     * Enum for the Cluecumber log levels.
+     */
     public enum CluecumberLogLevel {
-        DEFAULT, COMPACT, MINIMAL, OFF
+        /**
+         * Default log level.
+         */
+        DEFAULT,
+        /**
+         * Log level for compact logs.
+         */
+        COMPACT,
+        /**
+         * Log level for minimal logs.
+         */
+        MINIMAL,
+        /**
+         * No logss.
+         */
+        OFF
     }
 }

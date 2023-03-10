@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
+import com.trivago.cluecumber.engine.constants.ChartConfiguration;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -27,11 +28,19 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
 
+/**
+ * The renderer for the custom CSS styles.
+ */
 @Singleton
 public class CustomCssRenderer {
 
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param propertyManager The {@link PropertyManager} instance.
+     */
     @Inject
     public CustomCssRenderer(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
@@ -40,7 +49,7 @@ public class CustomCssRenderer {
     /**
      * Return the completely rendered custom css content.
      *
-     * @param template           The Freemarker template.
+     * @param template The Freemarker template.
      * @return The fully rendered content.
      * @throws CluecumberException In case of a rendering error.
      */
@@ -61,6 +70,9 @@ public class CustomCssRenderer {
         return stringWriter.toString();
     }
 
+    /**
+     * Class for custom status colors.
+     */
     @SuppressWarnings("unused")
     public static class CustomStatusColors {
 
@@ -74,14 +86,26 @@ public class CustomCssRenderer {
             this.skippedColor = skippedColor;
         }
 
+        /**
+         * Get the passed color.
+         * @return The hex color string.
+         */
         public String getPassedColor() {
             return passedColor;
         }
 
+        /**
+         * Get the failed color.
+         * @return The hex color string.
+         */
         public String getFailedColor() {
             return failedColor;
         }
 
+        /**
+         * Get the skipped color.
+         * @return The hex color string.
+         */
         public String getSkippedColor() {
             return skippedColor;
         }

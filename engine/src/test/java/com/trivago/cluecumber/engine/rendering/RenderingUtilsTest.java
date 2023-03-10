@@ -27,13 +27,6 @@ public class RenderingUtilsTest {
     }
 
     @Test
-    public void getPluginVersionTest() {
-        // TODO: make work
-        String version = RenderingUtils.getPluginVersion();
-        //assertNotNull(version);
-    }
-
-    @Test
     public void escapeHTMLTest() {
         String escapedHTML = RenderingUtils.escapeHTML("<body>This is a test öäüÖÄÜß</body>");
         assertEquals(escapedHTML, "&#60;body&#62;This is a test &#246;&#228;&#252;&#214;&#196;&#220;&#223;&#60;/body&#62;");

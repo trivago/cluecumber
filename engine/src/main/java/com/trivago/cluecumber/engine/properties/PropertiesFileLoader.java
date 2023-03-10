@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.properties;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
@@ -26,16 +25,31 @@ import java.io.StringReader;
 import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * Loads a properties file.
+ */
 @Singleton
 public class PropertiesFileLoader {
 
     private final FileIO fileIO;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO The {@link FileIO} instance.
+     */
     @Inject
     public PropertiesFileLoader(final FileIO fileIO) {
         this.fileIO = fileIO;
     }
 
+    /**
+     * Loads a property file and returns it as a {@link LinkedHashMap}.
+     *
+     * @param propertiesFilePath The path to the properties file.
+     * @return A {@link LinkedHashMap} of property keys and values.
+     * @throws CluecumberException Thrown on any error.
+     */
     LinkedHashMap<String, String> loadPropertiesMap(final String propertiesFilePath) throws CluecumberException {
         LinkedHashMap<String, String> propertiesMap;
         String content = fileIO.readContentFromFile(propertiesFilePath);

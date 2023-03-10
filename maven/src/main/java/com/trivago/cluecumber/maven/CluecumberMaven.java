@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.maven;
 
 import com.trivago.cluecumber.core.CluecumberCore;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import org.apache.maven.plugin.AbstractMojo;
@@ -160,7 +159,7 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setCustomCssFile(customCss)
                     .setCustomNavigationLinks(customNavigationLinks)
                     .setCustomParameters(customParameters)
-                    .setCustomParametersDisplayMode(PluginSettings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase()))
+                    .setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase()))
                     .setCustomParametersFile(customParametersFile)
                     .setCustomStatusColorFailed(customStatusColorFailed)
                     .setCustomStatusColorPassed(customStatusColorPassed)
@@ -168,7 +167,7 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setExpandBeforeAfterHooks(expandBeforeAfterHooks)
                     .setExpandDocStrings(expandDocStrings)
                     .setExpandStepHooks(expandStepHooks)
-                    .setStartPage(PluginSettings.StartPage.valueOf(startPage.toUpperCase()))
+                    .setStartPage(Settings.StartPage.valueOf(startPage.toUpperCase()))
                     .setCustomPageTitle(customPageTitle)
                     .setCustomStatusColorSkipped(customStatusColorSkipped)
                     .setCustomParametersFile(customParametersFile)

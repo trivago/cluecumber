@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,45 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.templates;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
+import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * This class manages the Freemarker templates.
+ */
 @Singleton
 public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
 
-    public enum Template {
-        TREE_VIEW("tree-view"),
-        ALL_FEATURES("feature-summary"),
-        ALL_SCENARIOS("scenario-summary"),
-        SCENARIO_SEQUENCE("scenario-sequence"),
-        ALL_STEPS("step-summary"),
-        ALL_TAGS("tag-summary"),
-        SCENARIO_DETAILS("scenario-detail"),
-        CUSTOM_CSS("custom-css"),
-        START_PAGE("index");
-
-        private final String fileName;
-
-        Template(final String fileName) {
-            this.fileName = fileName;
-        }
-
-        public String getFileName() {
-            return fileName;
-        }
-    }
-
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param templateConfiguration The {@link TemplateConfiguration} instance.
+     */
     @Inject
     public TemplateEngine(final TemplateConfiguration templateConfiguration) {
         this.templateConfiguration = templateConfiguration;
-        templateConfiguration.init(PluginSettings.BASE_TEMPLATE_PATH);
+        templateConfiguration.init(Settings.BASE_TEMPLATE_PATH);
     }
 
     /**
@@ -63,5 +49,62 @@ public class TemplateEngine {
      */
     public freemarker.template.Template getTemplate(final Template template) throws CluecumberException {
         return templateConfiguration.getTemplate(template.fileName);
+    }
+
+    /**
+     * The enum that defines the different Freemarker template names.
+     */
+    public enum Template {
+        /**
+         * Tree view template.
+         */
+        TREE_VIEW("tree-view"),
+        /**
+         * Feature overview template.
+         */
+        ALL_FEATURES("feature-summary"),
+        /**
+         * Scenario overview template.
+         */
+        ALL_SCENARIOS("scenario-summary"),
+        /**
+         * Scenario sequence template.
+         */
+        SCENARIO_SEQUENCE("scenario-sequence"),
+        /**
+         * Step overview template.
+         */
+        ALL_STEPS("step-summary"),
+        /**
+         * Tag overview template.
+         */
+        ALL_TAGS("tag-summary"),
+        /**
+         * Scenario detail template.
+         */
+        SCENARIO_DETAILS("scenario-detail"),
+        /**
+         * Template for a custom CSS file.
+         */
+        CUSTOM_CSS("custom-css"),
+        /**
+         * Start page template.
+         */
+        START_PAGE("index");
+
+        private final String fileName;
+
+        Template(final String fileName) {
+            this.fileName = fileName;
+        }
+
+        /**
+         * Get the file name of the Freemarker template.
+         *
+         * @return The template file name.
+         */
+        public String getFileName() {
+            return fileName;
+        }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,28 +13,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.json.pojo;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The match of the {@link ResultMatch}.
+ */
 public class Match {
     private String location = "";
     private List<Argument> arguments = new ArrayList<>();
 
+    /**
+     * Get the class and method where this step is defined.
+     *
+     * @return The location string.
+     */
     public String getLocation() {
         return location;
     }
 
+    /**
+     * Set the class and method where this step is defined.
+     *
+     * @param location The location string.
+     */
     public void setLocation(final String location) {
         this.location = location;
     }
 
+    /**
+     * Get the list of arguments of the step method.
+     *
+     * @return The {@link Argument} list.
+     */
     public List<Argument> getArguments() {
         return arguments;
     }
 
+    /**
+     * Set the list of arguments of the step method.
+     *
+     * @param arguments The {@link Argument} list.
+     */
     public void setArguments(final List<Argument> arguments) {
         this.arguments = arguments;
     }

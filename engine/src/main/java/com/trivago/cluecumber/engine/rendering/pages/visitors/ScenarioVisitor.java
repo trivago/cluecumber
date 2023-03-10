@@ -1,6 +1,21 @@
+/*
+ * Copyright 2023 trivago N.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.json.pojo.Element;
@@ -19,6 +34,9 @@ import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEn
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.SCENARIO_DETAILS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.SCENARIO_SEQUENCE;
 
+/**
+ * The visitor for scenario related pages.
+ */
 @Singleton
 public class ScenarioVisitor implements PageVisitor {
 
@@ -28,6 +46,15 @@ public class ScenarioVisitor implements PageVisitor {
     private final AllScenariosPageRenderer allScenariosPageRenderer;
     private final ScenarioDetailsPageRenderer scenarioDetailsPageRenderer;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO                      The {@link FileIO} instance.
+     * @param templateEngine              The Freemarker template engine.
+     * @param propertyManager             The {@link PropertyManager} instance.
+     * @param allScenariosPageRenderer    The renderer for the scenario pages.
+     * @param scenarioDetailsPageRenderer The renderer for scenario detail pages.
+     */
     @Inject
     public ScenarioVisitor(
             final FileIO fileIO,
@@ -43,6 +70,12 @@ public class ScenarioVisitor implements PageVisitor {
         this.scenarioDetailsPageRenderer = scenarioDetailsPageRenderer;
     }
 
+    /**
+     * The main method that is called on this visitor.
+     *
+     * @param allScenariosPageCollection The scenarios page collection.
+     * @throws CluecumberException Thrown on all errors.
+     */
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         // All scenarios page
@@ -51,8 +84,8 @@ public class ScenarioVisitor implements PageVisitor {
                         allScenariosPageCollection,
                         templateEngine.getTemplate(ALL_SCENARIOS)
                 ),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.SCENARIO_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.SCENARIO_SUMMARY_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
         // Scenario sequence page
         fileIO.writeContentToFile(
@@ -60,8 +93,8 @@ public class ScenarioVisitor implements PageVisitor {
                         allScenariosPageCollection,
                         templateEngine.getTemplate(SCENARIO_SEQUENCE)
                 ),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.SCENARIO_SEQUENCE_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.SCENARIO_SEQUENCE_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
         // Scenario detail pages
         ScenarioDetailsPageCollection scenarioDetailsPageCollection;
@@ -74,8 +107,8 @@ public class ScenarioVisitor implements PageVisitor {
                                 templateEngine.getTemplate(SCENARIO_DETAILS)
                         ),
                         propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                                PluginSettings.PAGES_DIRECTORY + PluginSettings.SCENARIO_DETAIL_PAGE_FRAGMENT +
-                                element.getScenarioIndex() + PluginSettings.HTML_FILE_EXTENSION);
+                                Settings.PAGES_DIRECTORY + Settings.SCENARIO_DETAIL_PAGE_FRAGMENT +
+                                element.getScenarioIndex() + Settings.HTML_FILE_EXTENSION);
             }
         }
     }

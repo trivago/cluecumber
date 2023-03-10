@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
@@ -21,15 +20,30 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 
 import javax.inject.Inject;
 
+
+/**
+ * The renderer for pages with charts.
+ */
 public class PageWithChartRenderer extends PageRenderer {
 
     private final ChartJsonConverter chartJsonConverter;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     */
     @Inject
     public PageWithChartRenderer(final ChartJsonConverter chartJsonConverter) {
         this.chartJsonConverter = chartJsonConverter;
     }
 
+    /**
+     * Convert a chart object to a JSON string representation.
+     *
+     * @param chart The {@link Chart} instance.
+     * @return The JSON string.
+     */
     String convertChartToJson(final Chart chart) {
         return chartJsonConverter.convertChartToJson(chart);
     }

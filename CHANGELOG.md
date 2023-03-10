@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.2.0] - 2023-03-10
+
+### Changed
+* Updated dependencies
+* Small visual tweaks
+* Code clean-up
+* Full JavaDoc coverage
+
+### Added
+* Full javadoc coverage
+
 ## [3.1.0] - 2023-01-17
 
 ### Added
@@ -711,6 +722,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.0
 [3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.1.0
 [3.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.2
 [3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.1

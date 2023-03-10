@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.engine.constants.Status;
@@ -26,10 +25,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Page collection for the feature overview page.
+ */
 public class AllFeaturesPageCollection extends SummaryPageCollection {
     private Map<Feature, ResultCount> resultCounts;
     private int totalNumberOfScenarios;
 
+    /**
+     * Constructor.
+     *
+     * @param reports   The list of {@link Report} instances.
+     * @param pageTitle The page title.
+     */
     public AllFeaturesPageCollection(final List<Report> reports, final String pageTitle) {
         super(pageTitle);
         calculateFeatureResultCounts(reports);
@@ -44,22 +52,48 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
         return resultCounts;
     }
 
+
+    /**
+     * Returns all features.
+     *
+     * @return All Features.
+     */
     public Set<Feature> getFeatures() {
         return resultCounts.keySet();
     }
 
+    /**
+     * Get the feature count.
+     *
+     * @return The number of features.
+     */
     public int getTotalNumberOfFeatures() {
         return resultCounts.size();
     }
 
+    /**
+     * Get the passed feature count.
+     *
+     * @return The number of passed features.
+     */
     public int getTotalNumberOfPassedFeatures() {
         return getNumberOfResultsWithStatus(resultCounts.values(), Status.PASSED);
     }
 
+    /**
+     * Get the failed feature count.
+     *
+     * @return The number of failed features.
+     */
     public int getTotalNumberOfFailedFeatures() {
         return getNumberOfResultsWithStatus(resultCounts.values(), Status.FAILED);
     }
 
+    /**
+     * Get the skipped feature count.
+     *
+     * @return The number of skipped features.
+     */
     public int getTotalNumberOfSkippedFeatures() {
         return getNumberOfResultsWithStatus(resultCounts.values(), Status.SKIPPED);
     }
@@ -82,6 +116,12 @@ public class AllFeaturesPageCollection extends SummaryPageCollection {
         });
     }
 
+
+    /**
+     * Get the scenario count.
+     *
+     * @return The number of scenarios.
+     */
     @SuppressWarnings("unused")
     public int getTotalNumberOfScenarios() {
         return totalNumberOfScenarios;

@@ -1,7 +1,22 @@
+/*
+ * Copyright 2023 trivago N.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Step;
@@ -19,11 +34,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * The renderer for the steps overview page.
+ */
 public class AllStepsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public AllStepsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
@@ -35,13 +60,21 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param allStepsPageCollection The {@link AllStepsPageCollection} instance.
+     * @param template               The {@link Template} instance.
+     * @return The rendered HTML string.
+     * @throws CluecumberException Thrown on all errors.
+     */
     public String getRenderedContent(
             final AllStepsPageCollection allStepsPageCollection, final Template template)
             throws CluecumberException {
 
         addChartJsonToReportDetails(allStepsPageCollection);
 
-        if (propertyManager.getCustomParametersDisplayMode() == PluginSettings.CustomParamDisplayMode.ALL_PAGES) {
+        if (propertyManager.getCustomParametersDisplayMode() == Settings.CustomParamDisplayMode.ALL_PAGES) {
             addCustomParametersToReportDetails(allStepsPageCollection, propertyManager.getCustomParameters());
         }
 
@@ -56,12 +89,12 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Step, ResultCount> entry : allTagsPageCollection.getStepResultCounts().entrySet()) {
-            ResultCount value = entry.getValue();
-            passed.add((float) value.getPassed());
-            failed.add((float) value.getFailed());
-            skipped.add((float) value.getSkipped());
-            if (value.getTotal() > maximumNumberOfRuns) {
-                maximumNumberOfRuns = value.getTotal();
+            ResultCount stepResultCount = entry.getValue();
+            passed.add((float) stepResultCount.getPassed());
+            failed.add((float) stepResultCount.getFailed());
+            skipped.add((float) stepResultCount.getSkipped());
+            if (stepResultCount.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = stepResultCount.getTotal();
             }
         }
 

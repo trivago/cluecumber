@@ -1,5 +1,5 @@
 <#--
-Copyright 2019 trivago N.V.
+Copyright 2023 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -187,7 +187,7 @@ limitations under the License.
 <#macro output step>
     <#if step.hasOutputs()>
         <div class="row w-100 p-3 m-0 scenarioOutput">
-            <div class="w-100 text-left small p-2">${step.returnEscapedOutputs()?join("<br><br>")}</div>
+            <div class="w-100 text-left small p-2">${step.output?join("<br><br>")}</div>
         </div>
     </#if>
 </#macro>

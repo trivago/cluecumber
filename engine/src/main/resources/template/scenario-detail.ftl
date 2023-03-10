@@ -1,5 +1,5 @@
 <#--
-Copyright 2019 trivago N.V.
+Copyright 2023 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </#if>
             <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
             <li class="list-group-item"><#list element.tags as tag>
-                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>,
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>
                 </#list>
             </li>
         </@page.card>

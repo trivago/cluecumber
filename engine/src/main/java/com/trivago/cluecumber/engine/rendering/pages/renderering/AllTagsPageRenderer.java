@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 trivago N.V.
+ * Copyright 2023 trivago N.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.constants.ChartConfiguration;
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Tag;
@@ -35,12 +34,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The renderer for the tags overview page.
+ */
 @Singleton
 public class AllTagsPageRenderer extends PageWithChartRenderer {
 
     private final ChartConfiguration chartConfiguration;
     private final PropertyManager propertyManager;
 
+    /**
+     * Constructor for dependency injection.
+     *
+     * @param chartJsonConverter The {@link ChartJsonConverter} instance.
+     * @param chartConfiguration The {@link ChartConfiguration} instance.
+     * @param propertyManager    The {@link PropertyManager} instance.
+     */
     @Inject
     public AllTagsPageRenderer(
             final ChartJsonConverter chartJsonConverter,
@@ -52,13 +61,21 @@ public class AllTagsPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param allTagsPageCollection The {@link AllTagsPageCollection} instance.
+     * @param template              THe {@link Template} instance.
+     * @return The HTML string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContent(
             final AllTagsPageCollection allTagsPageCollection, final Template template)
             throws CluecumberException {
 
         addChartJsonToReportDetails(allTagsPageCollection);
 
-        if (propertyManager.getCustomParametersDisplayMode() == PluginSettings.CustomParamDisplayMode.ALL_PAGES) {
+        if (propertyManager.getCustomParametersDisplayMode() == Settings.CustomParamDisplayMode.ALL_PAGES) {
             addCustomParametersToReportDetails(allTagsPageCollection, propertyManager.getCustomParameters());
         }
 
@@ -73,12 +90,12 @@ public class AllTagsPageRenderer extends PageWithChartRenderer {
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Tag, ResultCount> entry : allTagsPageCollection.getTagResultCounts().entrySet()) {
-            ResultCount value = entry.getValue();
-            passed.add((float) value.getPassed());
-            failed.add((float) value.getFailed());
-            skipped.add((float) value.getSkipped());
-            if (value.getTotal() > maximumNumberOfRuns) {
-                maximumNumberOfRuns = value.getTotal();
+            ResultCount tagResultCount = entry.getValue();
+            passed.add((float) tagResultCount.getPassed());
+            failed.add((float) tagResultCount.getFailed());
+            skipped.add((float) tagResultCount.getSkipped());
+            if (tagResultCount.getTotal() > maximumNumberOfRuns) {
+                maximumNumberOfRuns = tagResultCount.getTotal();
             }
         }
 

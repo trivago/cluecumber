@@ -1,6 +1,21 @@
+/*
+ * Copyright 2023 trivago N.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.constants.PluginSettings;
+import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
@@ -19,6 +34,9 @@ import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEn
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.TREE_VIEW;
 
+/**
+ * The visitor for feature related pages.
+ */
 @Singleton
 public class FeatureVisitor implements PageVisitor {
 
@@ -29,6 +47,16 @@ public class FeatureVisitor implements PageVisitor {
     private final AllScenariosPageRenderer allScenariosPageRenderer;
     private final TreeViewPageRenderer treeViewPageRenderer;
 
+    /**
+     * The constructor for dependency injection.
+     *
+     * @param fileIO                   The {@link FileIO} instance.
+     * @param templateEngine           The Freemarker template engine.
+     * @param propertyManager          The {@link PropertyManager} instance.
+     * @param allFeaturesPageRenderer  The renderer for the feature pages.
+     * @param allScenariosPageRenderer The renderer for the scenario pages.
+     * @param treeViewPageRenderer     The renderer for the feature/scenario tree view.
+     */
     @Inject
     public FeatureVisitor(
             final FileIO fileIO,
@@ -46,6 +74,12 @@ public class FeatureVisitor implements PageVisitor {
         this.treeViewPageRenderer = treeViewPageRenderer;
     }
 
+    /**
+     * The main method that is called on this visitor.
+     *
+     * @param allScenariosPageCollection The scenarios page collection.
+     * @throws CluecumberException Thrown on all errors.
+     */
     @Override
     public void visit(final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         AllFeaturesPageCollection allFeaturesPageCollection =
@@ -55,8 +89,8 @@ public class FeatureVisitor implements PageVisitor {
         fileIO.writeContentToFile(
                 allFeaturesPageRenderer.getRenderedContent(allFeaturesPageCollection,
                         templateEngine.getTemplate(ALL_FEATURES)),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.FEATURE_SUMMARY_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.FEATURE_SUMMARY_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenarios by feature pages
         for (Feature feature : allFeaturesPageCollection.getFeatures()) {
@@ -67,8 +101,8 @@ public class FeatureVisitor implements PageVisitor {
                             feature
                     ),
                     propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            PluginSettings.PAGES_DIRECTORY + PluginSettings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
-                            feature.getIndex() + PluginSettings.HTML_FILE_EXTENSION);
+                            Settings.PAGES_DIRECTORY + Settings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
+                            feature.getIndex() + Settings.HTML_FILE_EXTENSION);
         }
 
         // Tree view page
@@ -77,7 +111,7 @@ public class FeatureVisitor implements PageVisitor {
                         allFeaturesPageCollection,
                         allScenariosPageCollection,
                         templateEngine.getTemplate(TREE_VIEW)),
-                propertyManager.getGeneratedHtmlReportDirectory() + "/" + PluginSettings.PAGES_DIRECTORY + "/" +
-                        PluginSettings.TREE_VIEW_PAGE_PATH + PluginSettings.HTML_FILE_EXTENSION);
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
+                        Settings.TREE_VIEW_PAGE + Settings.HTML_FILE_EXTENSION);
     }
 }
