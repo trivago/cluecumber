@@ -70,6 +70,9 @@ public class CustomCssRenderer {
         return stringWriter.toString();
     }
 
+    /**
+     * Class for custom status colors.
+     */
     @SuppressWarnings("unused")
     public static class CustomStatusColors {
 
@@ -83,14 +86,26 @@ public class CustomCssRenderer {
             this.skippedColor = skippedColor;
         }
 
+        /**
+         * Get the passed color.
+         * @return The hex color string.
+         */
         public String getPassedColor() {
             return passedColor;
         }
 
+        /**
+         * Get the failed color.
+         * @return The hex color string.
+         */
         public String getFailedColor() {
             return failedColor;
         }
 
+        /**
+         * Get the skipped color.
+         * @return The hex color string.
+         */
         public String getSkippedColor() {
             return skippedColor;
         }

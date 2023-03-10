@@ -34,6 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Manages access to the file system.
+ */
 @Singleton
 public class FileSystemManager {
 

@@ -54,10 +54,20 @@ public class CustomParameter {
         return value != null ? value.trim() : "";
     }
 
+    /**
+     * Check if the value is a URL.
+     *
+     * @return true if it is a URL.
+     */
     public boolean isUrl() {
         return RenderingUtils.isUrl(getValue());
     }
 
+    /**
+     * Check if the value is a relative URL.
+     *
+     * @return true if it is a relative URL.
+     */
     public boolean isRelativeUrl() {
         return RenderingUtils.isRelativeUrl(getValue());
     }

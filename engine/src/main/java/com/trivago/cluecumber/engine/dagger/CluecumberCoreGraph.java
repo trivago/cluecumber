@@ -20,6 +20,9 @@ import dagger.Component;
 
 import javax.inject.Singleton;
 
+/**
+ * Main Dagger class.
+ */
 @Component
 @Singleton
 public interface CluecumberCoreGraph {

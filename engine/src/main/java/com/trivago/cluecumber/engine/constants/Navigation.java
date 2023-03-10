@@ -21,7 +21,13 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.LinkT
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Report navigation.
+ */
 public class Navigation {
+    /**
+     * The list of internal report navigation links.
+     */
     public static final List<Link> internalLinks = Arrays.asList(
             new Link("scenario_summary", "pages/scenario-summary.html", LinkType.INTERNAL),
             new Link("scenario_sequence", "pages/scenario-sequence.html", LinkType.INTERNAL),

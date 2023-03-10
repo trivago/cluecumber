@@ -44,6 +44,12 @@ public class ChartConfiguration {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the RGBA color string by status.
+     *
+     * @param status The status to get the color for.
+     * @return The RGBA string.
+     */
     public String getColorRgbaStringByStatus(final Status status) {
         switch (status) {
             case FAILED:
@@ -55,6 +61,11 @@ public class ChartConfiguration {
         }
     }
 
+    /**
+     * Get the RGBA color string for passed.
+     *
+     * @return The RGBA color.
+     */
     public String getPassedColorRgbaString() {
         if (passedColorRgbaString == null) {
             passedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorPassed());
@@ -62,6 +73,11 @@ public class ChartConfiguration {
         return passedColorRgbaString;
     }
 
+    /**
+     * Get the RGBA color string for failed.
+     *
+     * @return The RGBA color.
+     */
     public String getFailedColorRgbaString() {
         if (failedColorRgbaString == null) {
             failedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorFailed());
@@ -69,6 +85,11 @@ public class ChartConfiguration {
         return failedColorRgbaString;
     }
 
+    /**
+     * Get the RGBA color string for skipped.
+     *
+     * @return The RGBA color.
+     */
     public String getSkippedColorRgbaString() {
         if (skippedColorRgbaString == null) {
             skippedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorSkipped());
@@ -91,5 +112,18 @@ public class ChartConfiguration {
         return String.format("rgba(%d, %d, %d, 1.000)", rgbEntries[0], rgbEntries[1], rgbEntries[2]);
     }
 
-    public enum Type {bar, pie}
+    /**
+     * The type of chart.
+     */
+    public enum Type {
+        /**
+         * Bar chart
+         */
+        bar,
+
+        /**
+         * Pie chart.
+         */
+        pie
+    }
 }

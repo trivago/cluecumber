@@ -18,6 +18,9 @@ package com.trivago.cluecumber.engine.json.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The match of the {@link ResultMatch}.
+ */
 public class Match {
     private String location = "";
     private List<Argument> arguments = new ArrayList<>();

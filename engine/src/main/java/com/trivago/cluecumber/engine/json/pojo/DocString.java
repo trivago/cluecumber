@@ -24,22 +24,47 @@ public class DocString {
     private int line;
     private String value = "";
 
+    /**
+     * Get the line number.
+     *
+     * @return The line number.
+     */
     public int getLine() {
         return line;
     }
 
+    /**
+     * Set the line number.
+     *
+     * @param line The line number.
+     */
     public void setLine(final int line) {
         this.line = line;
     }
 
+    /**
+     * Get the value.
+     *
+     * @return The value.
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Set the value.
+     *
+     * @param value The value.
+     */
     public void setValue(final String value) {
         this.value = value;
     }
 
+    /**
+     * Get this doc string with clickable HTML links.
+     *
+     * @return The converted doc string.
+     */
     public String returnWithClickableLinks() {
         return RenderingUtils.turnUrlsIntoLinks(RenderingUtils.escapeHTML(value));
     }

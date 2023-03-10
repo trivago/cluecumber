@@ -27,34 +27,74 @@ public class Dataset {
     private String label;
     private String stack;
 
+    /**
+     * Get the values of this dataset.
+     *
+     * @return The value list.
+     */
     public List<Float> getData() {
         return data;
     }
 
+    /**
+     * Set the values of this dataset.
+     *
+     * @param data The value list.
+     */
     public void setData(final List<Float> data) {
         this.data = data;
     }
 
+    /**
+     * Get the background colors for each data point.
+     *
+     * @return The list of color strings.
+     */
     public List<String> getBackgroundColor() {
         return backgroundColor;
     }
 
+    /**
+     * Set the background colors for each data point.
+     *
+     * @param backgroundColor The list of color strings.
+     */
     public void setBackgroundColor(final List<String> backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
+    /**
+     * Get the label of this dataset.
+     *
+     * @return The label.
+     */
     public String getLabel() {
         return label;
     }
 
+    /**
+     * Set the label of this dataset.
+     *
+     * @param label The label.
+     */
     public void setLabel(final String label) {
         this.label = label;
     }
 
+    /**
+     * Get the current stack.
+     *
+     * @return The stack string.
+     */
     public String getStack() {
         return stack;
     }
 
+    /**
+     * Set the current stack.
+     *
+     * @param stack The stack string.
+     */
     public void setStack(final String stack) {
         this.stack = stack;
     }

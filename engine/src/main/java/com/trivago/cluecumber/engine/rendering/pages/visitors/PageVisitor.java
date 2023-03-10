@@ -26,6 +26,7 @@ public interface PageVisitor {
      * Base method for all visitable classes.
      *
      * @param pageCollection The {@link AllScenariosPageCollection} instance.
+     * @throws CluecumberException Thrown on any error.
      */
     void visit(final AllScenariosPageCollection pageCollection) throws CluecumberException;
 }

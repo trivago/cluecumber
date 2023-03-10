@@ -21,6 +21,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Arrays;
 
+/**
+ * Cluecumber base logger.
+ */
 @Singleton
 public class CluecumberLogger {
 
@@ -124,6 +127,21 @@ public class CluecumberLogger {
      * Enum for the Cluecumber log levels.
      */
     public enum CluecumberLogLevel {
-        DEFAULT, COMPACT, MINIMAL, OFF
+        /**
+         * Default log level.
+         */
+        DEFAULT,
+        /**
+         * Log level for compact logs.
+         */
+        COMPACT,
+        /**
+         * Log level for minimal logs.
+         */
+        MINIMAL,
+        /**
+         * No logss.
+         */
+        OFF
     }
 }

@@ -23,6 +23,9 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This represents a scenarios.
+ */
 @SuppressWarnings("unused")
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();

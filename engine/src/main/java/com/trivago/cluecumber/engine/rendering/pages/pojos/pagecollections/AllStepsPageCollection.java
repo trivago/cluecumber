@@ -52,30 +52,70 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         return stepResultCounts;
     }
 
+    /**
+     * Get all steps.
+     *
+     * @return The {@link Step} set.
+     */
     public Set<Step> getSteps() {
         return stepResultCounts.keySet();
     }
 
+    /**
+     * Get the number of all steps.
+     *
+     * @return The count.
+     */
     public int getTotalNumberOfSteps() {
         return stepResultCounts.size();
     }
 
+    /**
+     * Get the minimum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The minimum time as string.
+     */
     public String getMinimumTimeFromStep(final Step step) {
         return stepTimes.get(step).getMinimumTimeString();
     }
 
+    /**
+     * Get the scenario index from the minimum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The scenario index.
+     */
     public int getMinimumTimeScenarioIndexFromStep(final Step step) {
         return stepTimes.get(step).getMinimumTimeIndex();
     }
 
+    /**
+     * Get the maximum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The minimum time as string.
+     */
     public String getMaximumTimeFromStep(final Step step) {
         return stepTimes.get(step).getMaximumTimeString();
     }
 
+    /**
+     * Get the scenario index from the maximum step time.
+     *
+     * @param step The {@link Step}.
+     * @return The scenario index.
+     */
     public int getMaximumTimeScenarioIndexFromStep(final Step step) {
         return stepTimes.get(step).getMaximumTimeIndex();
     }
 
+    /**
+     * Get the average time of all step executions of a specific step.
+     *
+     * @param step The {@link Step}.
+     * @return The average time as string.
+     */
     public String getAverageTimeFromStep(final Step step) {
         return stepTimes.get(step).getAverageTimeString();
     }

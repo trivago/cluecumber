@@ -60,6 +60,14 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param allStepsPageCollection The {@link AllStepsPageCollection} instance.
+     * @param template               The {@link Template} instance.
+     * @return The rendered HTML string.
+     * @throws CluecumberException Thrown on all errors.
+     */
     public String getRenderedContent(
             final AllStepsPageCollection allStepsPageCollection, final Template template)
             throws CluecumberException {

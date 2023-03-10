@@ -24,9 +24,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Page collection for the tag overview page.
+ */
 public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
     private final Map<Tag, ResultCount> tagResultCounts = new HashMap<>();
 
+    /**
+     * Constructor.
+     *
+     * @param reports   The {@link Report} list.
+     * @param pageTitle The page title.
+     */
     public AllTagsPageCollection(List<Report> reports, final String pageTitle) {
         super(pageTitle);
         calculateTagResultCounts(reports);
@@ -41,10 +50,20 @@ public class AllTagsPageCollection extends ScenarioSummaryPageCollection {
         return tagResultCounts;
     }
 
+    /**
+     * Get all tags.
+     *
+     * @return The {@link Tag} set.
+     */
     public Set<Tag> getTags() {
         return tagResultCounts.keySet();
     }
 
+    /**
+     * Get the number of tags.
+     *
+     * @return The count.
+     */
     public int getTotalNumberOfTags() {
         return tagResultCounts.size();
     }

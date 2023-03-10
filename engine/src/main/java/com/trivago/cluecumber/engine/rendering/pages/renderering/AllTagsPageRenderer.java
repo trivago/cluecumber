@@ -61,6 +61,14 @@ public class AllTagsPageRenderer extends PageWithChartRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered HTML content.
+     *
+     * @param allTagsPageCollection The {@link AllTagsPageCollection} instance.
+     * @param template              THe {@link Template} instance.
+     * @return The HTML string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContent(
             final AllTagsPageCollection allTagsPageCollection, final Template template)
             throws CluecumberException {

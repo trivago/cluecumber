@@ -26,26 +26,56 @@ public class Options {
     private Legend legend;
     private List<String> events;
 
+    /**
+     * Get the scales.
+     *
+     * @return The {@link Scales} instance.
+     */
     public Scales getScales() {
         return scales;
     }
 
+    /**
+     * Set the scales.
+     *
+     * @param scales The {@link Scales} instance.
+     */
     public void setScales(final Scales scales) {
         this.scales = scales;
     }
 
+    /**
+     * Get the legend.
+     *
+     * @return The {@link Legend} instance.
+     */
     public Legend getLegend() {
         return legend;
     }
 
+    /**
+     * Set the legend.
+     *
+     * @param legend The {@link Legend} instance.
+     */
     public void setLegend(final Legend legend) {
         this.legend = legend;
     }
 
+    /**
+     * Get the supported javascript events.
+     *
+     * @return The list of strings representing events.
+     */
     public List<String> getEvents() {
         return events;
     }
 
+    /**
+     * Set the supported javascript events.
+     *
+     * @param events The list of strings representing events.
+     */
     public void setEvents(final List<String> events) {
         this.events = events;
     }
