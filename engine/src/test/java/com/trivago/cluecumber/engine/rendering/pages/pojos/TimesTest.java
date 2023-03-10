@@ -24,7 +24,7 @@ public class TimesTest {
 
     @Test
     public void getMinimumTimeScenarioIndexTest() {
-        assertEquals(times.getMinimumTimeScenarioIndex(), 1);
+        assertEquals(times.getMinimumTimeIndex(), 1);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TimesTest {
 
     @Test
     public void getMaximumTimeScenarioIndexTest() {
-        assertEquals(times.getMaximumTimeScenarioIndex(), 2);
+        assertEquals(times.getMaximumTimeIndex(), 2);
     }
 
     @Test

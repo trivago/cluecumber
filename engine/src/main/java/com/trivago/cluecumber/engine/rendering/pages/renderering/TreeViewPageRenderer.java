@@ -56,6 +56,15 @@ public class TreeViewPageRenderer extends PageRenderer {
         this.propertyManager = propertyManager;
     }
 
+    /**
+     * Get the rendered site content.
+     *
+     * @param allFeaturesPageCollection  The {@link AllFeaturesPageCollection} instance.
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The Freemarker {@link Template} instance.
+     * @return The page content as string.
+     * @throws CluecumberException Thrown on any error.
+     */
     public String getRenderedContent(
             final AllFeaturesPageCollection allFeaturesPageCollection,
             final AllScenariosPageCollection allScenariosPageCollection,

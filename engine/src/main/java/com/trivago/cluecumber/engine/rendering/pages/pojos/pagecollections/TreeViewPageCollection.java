@@ -21,22 +21,46 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Page collection for the tree view page.
+ */
 public class TreeViewPageCollection extends PageCollection {
     private final Map<Feature, List<Element>> elements;
 
+    /**
+     * Constructor.
+     *
+     * @param elements  The map of features and associated scenarios.
+     * @param pageTitle The title of the tree view page.
+     */
     public TreeViewPageCollection(final Map<Feature, List<Element>> elements, final String pageTitle) {
         super(pageTitle);
         this.elements = elements;
     }
 
+    /**
+     * Get the list of features and their scenarios.
+     *
+     * @return The map of features and associated scenarios.
+     */
     public Map<Feature, List<Element>> getElements() {
         return elements;
     }
 
+    /**
+     * Retrieve the total number of features.
+     *
+     * @return The count.
+     */
     public int getNumberOfFeatures() {
         return elements.size();
     }
 
+    /**
+     * Retrieve the total number of scenarios.
+     *
+     * @return The count.
+     */
     public int getNumberOfScenarios() {
         return elements.values().stream().mapToInt(List::size).sum();
     }

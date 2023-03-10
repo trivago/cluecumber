@@ -52,6 +52,11 @@ public class VisitorDirectory {
         visitors.add(stepVisitor);
     }
 
+    /**
+     * Retrieve the registered visitors.
+     *
+     * @return The list of {@link PageVisitor} instances.
+     */
     public List<PageVisitor> getVisitors() {
         return visitors;
     }

@@ -22,6 +22,9 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * This class manages the Freemarker templates.
+ */
 @Singleton
 public class TemplateEngine {
     private final TemplateConfiguration templateConfiguration;
@@ -48,15 +51,45 @@ public class TemplateEngine {
         return templateConfiguration.getTemplate(template.fileName);
     }
 
+    /**
+     * The enum that defines the different Freemarker template names.
+     */
     public enum Template {
+        /**
+         * Tree view template.
+         */
         TREE_VIEW("tree-view"),
+        /**
+         * Feature overview template.
+         */
         ALL_FEATURES("feature-summary"),
+        /**
+         * Scenario overview template.
+         */
         ALL_SCENARIOS("scenario-summary"),
+        /**
+         * Scenario sequence template.
+         */
         SCENARIO_SEQUENCE("scenario-sequence"),
+        /**
+         * Step overview template.
+         */
         ALL_STEPS("step-summary"),
+        /**
+         * Tag overview template.
+         */
         ALL_TAGS("tag-summary"),
+        /**
+         * Scenario detail template.
+         */
         SCENARIO_DETAILS("scenario-detail"),
+        /**
+         * Template for a custom CSS file.
+         */
         CUSTOM_CSS("custom-css"),
+        /**
+         * Start page template.
+         */
         START_PAGE("index");
 
         private final String fileName;
@@ -65,6 +98,11 @@ public class TemplateEngine {
             this.fileName = fileName;
         }
 
+        /**
+         * Get the file name of the Freemarker template.
+         *
+         * @return The template file name.
+         */
         public String getFileName() {
             return fileName;
         }

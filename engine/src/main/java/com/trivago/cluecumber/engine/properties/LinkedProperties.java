@@ -28,6 +28,9 @@ public class LinkedProperties extends Properties {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * This is the sorted hash map of properties.
+     */
     private final Map<Object, Object> linkMap = new LinkedHashMap<>();
 
     /**

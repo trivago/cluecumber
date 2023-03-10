@@ -24,6 +24,9 @@ import freemarker.template.TemplateExceptionHandler;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * The base configuration for the Freemarker template engine.
+ */
 @Singleton
 public class TemplateConfiguration {
     private Configuration cfg;
@@ -35,6 +38,11 @@ public class TemplateConfiguration {
     public TemplateConfiguration() {
     }
 
+    /**
+     * Initialize Freemarker.
+     *
+     * @param basePath The base path for the templates.
+     */
     public void init(final String basePath) {
         cfg = new Configuration(Configuration.VERSION_2_3_31);
         cfg.setClassForTemplateLoading(this.getClass(), basePath);
@@ -44,6 +52,13 @@ public class TemplateConfiguration {
         cfg.setLogTemplateExceptions(false);
     }
 
+    /**
+     * Retrieve a template by template name.
+     *
+     * @param templateName The template name without file extension.
+     * @return The {@link Template} instance.
+     * @throws CluecumberException Thrown on missing or wrong templates.s
+     */
     public Template getTemplate(final String templateName) throws CluecumberException {
         Template template;
         try {

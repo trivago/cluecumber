@@ -56,7 +56,7 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
     }
 
     public int getMinimumTimeScenarioIndexFromStep(final Step step) {
-        return stepTimes.get(step).getMinimumTimeScenarioIndex();
+        return stepTimes.get(step).getMinimumTimeIndex();
     }
 
     public String getMaximumTimeFromStep(final Step step) {
@@ -64,7 +64,7 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
     }
 
     public int getMaximumTimeScenarioIndexFromStep(final Step step) {
-        return stepTimes.get(step).getMaximumTimeScenarioIndex();
+        return stepTimes.get(step).getMaximumTimeIndex();
     }
 
     public String getAverageTimeFromStep(final Step step) {

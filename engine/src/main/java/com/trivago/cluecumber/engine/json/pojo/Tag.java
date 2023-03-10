@@ -22,22 +22,46 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+/**
+ * This represents a Cucumber tag.
+ */
 public class Tag {
     private String name;
 
+    /**
+     * Get the tag name.
+     *
+     * @return The name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set the tag name.
+     *
+     * @param name The tag name.
+     */
     public void setName(final String name) {
         this.name = name;
     }
 
+    /**
+     * Turns the tag into a name that can be used within a URL.
+     *
+     * @return The sanitized tag name.
+     */
     public String getUrlFriendlyName() {
         String escapedTag = RenderingUtils.escapeHTML(getName()).replace("@", "");
         return URLEncoder.encode(escapedTag, StandardCharsets.UTF_8).replace("%", "");
     }
 
+    /**
+     * Tag comparison function.
+     *
+     * @param o The tag to compare to.
+     * @return true if the names match.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -46,6 +70,11 @@ public class Tag {
         return Objects.equals(name, tag.name);
     }
 
+    /**
+     * Default hash code function that hashes the tag name.
+     *
+     * @return the hash code.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(name);
