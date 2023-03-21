@@ -17,7 +17,6 @@ package com.trivago.cluecumber.engine.json.pojo;
 
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;

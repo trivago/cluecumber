@@ -17,7 +17,6 @@ package com.trivago.cluecumber.engine.rendering.pages.templates;
 
 import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
-import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
