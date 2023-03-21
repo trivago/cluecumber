@@ -15,10 +15,8 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
-import com.trivago.cluecumber.engine.constants.ChartConfiguration;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
-import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 

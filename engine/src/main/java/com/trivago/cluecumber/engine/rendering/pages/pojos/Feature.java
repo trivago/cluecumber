@@ -15,7 +15,6 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos;
 
-import java.util.List;
 import java.util.Objects;
 
 /**

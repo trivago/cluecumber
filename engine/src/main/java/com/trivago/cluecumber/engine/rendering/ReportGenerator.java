@@ -21,7 +21,6 @@ import com.trivago.cluecumber.engine.exceptions.filesystem.PathCreationException
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.filesystem.FileSystemManager;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
-import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.StartPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.CustomCssRenderer;

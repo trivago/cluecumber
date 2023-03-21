@@ -15,8 +15,6 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.visitors;
 
-import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;

@@ -27,7 +27,6 @@ import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.ReportGenerator;
-import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
@@ -216,7 +215,7 @@ public final class CluecumberEngine {
      * @param expandDocStrings If true, doc strings will be expanded.
      */
     public void setExpandDocStrings(final boolean expandDocStrings) {
-        propertyManager.setExpandStepHooks(expandDocStrings);
+        propertyManager.setExpandDocStrings(expandDocStrings);
     }
 
     /**

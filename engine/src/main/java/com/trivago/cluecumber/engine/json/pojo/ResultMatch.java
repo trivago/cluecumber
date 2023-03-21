@@ -16,7 +16,6 @@
 package com.trivago.cluecumber.engine.json.pojo;
 
 import com.trivago.cluecumber.engine.constants.Status;
-import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
 import java.util.ArrayList;
 import java.util.List;
