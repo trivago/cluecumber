@@ -182,13 +182,13 @@ You can decide how to display the custom parameters in the report using the `cus
 
 The following display modes are available for displaying the custom parameters:
 
-* `PluginSettings.CustomParamDisplayMode.SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (_default_)
-* `PluginSettings.CustomParamDisplayMode.ALL_PAGES`: Display on all the pages in the report.
+* `Settings.CustomParamDisplayMode.SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (_default_)
+* `Settings.CustomParamDisplayMode.ALL_PAGES`: Display on all the pages in the report.
 
 ```java
 new CluecumberCore.Builder()
         .setCustomParameters(parameters)
-        .setCustomParametersDisplayMode(PluginSettings.CustomParamDisplayMode.ALL_PAGES)
+        .setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.ALL_PAGES)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
@@ -261,18 +261,18 @@ The default start page of the reports (if not overwritten by the `startPage` pro
 
 ```java
 new CluecumberCore.Builder()
-        .setStartPage(PluginSettings.StartPage.ALL_SCENARIOS)
+        .setStartPage(Settings.StartPage.ALL_SCENARIOS)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
 This can be customized with one of the following values:
 
-* `PluginSettings.StartPage.ALL_SCENARIOS` (scenario overview page, default)
-* `PluginSettings.StartPage.SCENARIO_SEQUENCE` (scenario sequence page)
-* `PluginSettings.StartPage.ALL_TAGS` (tag overview page)
-* `PluginSettings.StartPage.ALL_STEPS` (step overview page)
-* `PluginSettings.StartPage.ALL_FEATURES` (feature overview page)
-* `PluginSettings.StartPage.TREE_VIEW` (tree view of features and scenarios)
+* `Settings.StartPage.ALL_SCENARIOS` (scenario overview page, default)
+* `Settings.StartPage.SCENARIO_SEQUENCE` (scenario sequence page)
+* `Settings.StartPage.ALL_TAGS` (tag overview page)
+* `Settings.StartPage.ALL_STEPS` (step overview page)
+* `Settings.StartPage.ALL_FEATURES` (feature overview page)
+* `Settings.StartPage.TREE_VIEW` (tree view of features and scenarios)
 
 ## Defining a custom report title
 
