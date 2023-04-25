@@ -43,7 +43,7 @@ _Clear and concise JVM reporting for the Cucumber BDD JSON format_
 <dependency>
   <groupId>com.trivago.rta</groupId>
   <artifactId>cluecumber-core</artifactId>
-  <version>3.1.0</version>
+  <version>3.2.1</version>
 </dependency>
 ```
 
