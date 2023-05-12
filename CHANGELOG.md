@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.2.2] - 2023-05-12
+
+### Fixed
+* Pie chart always showing results from all features [#311]
+
+### Changed
+* Updated dependencies
+
 ## [3.2.1] - 2023-03-21
 
 ### Fixed
@@ -729,6 +737,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.2.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.2
 [3.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.1
 [3.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.0
 [3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.1.0

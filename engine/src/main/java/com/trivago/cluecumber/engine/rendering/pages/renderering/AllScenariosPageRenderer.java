@@ -73,7 +73,9 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final AllScenariosPageCollection allScenariosPageCollection, final Template template)
             throws CluecumberException {
 
-        return processedContent(template, getAllScenariosPageCollectionClone(allScenariosPageCollection), propertyManager.getNavigationLinks());
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
     /**
@@ -99,6 +101,8 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                     .collect(Collectors.toList());
             report.setElements(elements);
         });
+
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
@@ -125,6 +129,8 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                     .collect(Collectors.toList());
             report.setElements(elements);
         });
+
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
@@ -150,6 +156,8 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
                 .toArray(Report[]::new);
         allScenariosPageCollectionClone.clearReports();
         allScenariosPageCollectionClone.addReports(reportArray);
+
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
@@ -166,11 +174,10 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
         AllScenariosPageCollection clone;
         try {
-            clone = (AllScenariosPageCollection) allScenariosPageCollection.clone();
+            clone = allScenariosPageCollection.clone();
         } catch (CloneNotSupportedException e) {
             throw new CluecumberException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
         }
-        addChartJsonToReportDetails(clone);
         addCustomParametersToReportDetails(clone, propertyManager.getCustomParameters());
         return clone;
     }
