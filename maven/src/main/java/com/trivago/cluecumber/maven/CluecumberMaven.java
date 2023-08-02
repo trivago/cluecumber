@@ -147,11 +147,19 @@ public final class CluecumberMaven extends AbstractMojo {
      * Optional log level to control what information is logged in the console.
      * Allowed values: default, compact, minimal, off
      */
-    @Parameter(property = "parallel.logLevel", defaultValue = "default")
+    @Parameter(property = "reporting.logLevel", defaultValue = "default")
     String logLevel;
+
+    @Parameter(property = "reporting.skip", defaultValue = "false")
+    private boolean skip;
 
     @Override
     public void execute() throws MojoExecutionException {
+        if (skip) {
+            System.out.println("Report generation was skipped deliberately.");
+            return;
+        }
+
         try {
             new CluecumberCore.Builder()
                     .setCustomStatusColorSkipped(customStatusColorSkipped)

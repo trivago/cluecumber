@@ -87,7 +87,7 @@
                     <!--<logLevel>off</logLevel>-->
 
                     <!-- Optionally skip the whole report generation -->
-                    <!--<skip>true</skip>-->
+                    <!-- <skip>true</skip> -->
 
                     <!-- Optional custom navigation links that are shown in the main top navigation (if they have a value) -->
                     <customNavigationLinks>
