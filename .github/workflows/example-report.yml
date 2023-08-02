@@ -21,8 +21,8 @@ jobs:
       - name: Deploy example report
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.ftpServer }}
-          username: ${{ secrets.ftpUser }}
-          password: ${{ secrets.ftpPass }}
+          server: ${{ secrets.FTPSERVER }}
+          username: ${{ secrets.FTPUSER }}
+          password: ${{ secrets.FTPPASS }}
           local-dir: ./examples/maven-example/target/cluecumber-report
           server-dir: ./blablabla
