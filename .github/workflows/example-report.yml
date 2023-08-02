@@ -18,3 +18,11 @@ jobs:
       - name: Run example project
         working-directory: ./examples/maven-example
         run: mvn clean verify
+      - name: Deploy example report
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.ftpServer }}
+          username: ${{ secrets.ftpUser }}
+          password: ${{ secrets.ftpPass }}
+          local-dir: ./examples/maven-example/target/cluecumber-report
+          server-dir: ./blablabla
