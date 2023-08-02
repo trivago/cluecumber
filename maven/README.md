@@ -223,7 +223,7 @@ these are replaces with spaces for the link name:
 
 ## Skip Report Generation
 
-The `skip` property is used to skip the report generation. The default value is `false`
+The `skip` property is used to skip the report generation completely. The default value is `false`
 
 ```xml
 <configuration>
