@@ -210,7 +210,6 @@ this is possible via the `customNavigationLinks` property.
 <configuration>
     <customNavigationLinks>
         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
-        <Twitter>https://twitter.com/BischoffDev</Twitter>
     </customNavigationLinks>
     ...
 </configuration>
