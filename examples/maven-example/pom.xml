@@ -92,7 +92,6 @@
                     <!-- Optional custom navigation links that are shown in the main top navigation (if they have a value) -->
                     <customNavigationLinks>
                         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
-                        <Twitter>https://twitter.com/BischoffDev</Twitter>
                         <Empty_Link></Empty_Link>
                     </customNavigationLinks>
                 </configuration>
