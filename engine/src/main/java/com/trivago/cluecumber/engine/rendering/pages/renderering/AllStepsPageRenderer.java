@@ -30,6 +30,7 @@ import freemarker.template.Template;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -86,9 +87,15 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         List<Float> passed = new ArrayList<>();
         List<Float> failed = new ArrayList<>();
         List<Float> skipped = new ArrayList<>();
+        Map<String, String> urlLookup = new HashMap<>();
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Step, ResultCount> entry : allTagsPageCollection.getStepResultCounts().entrySet()) {
+            urlLookup.put(
+                    entry.getKey().returnNameWithArgumentPlaceholders(),
+                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                            Settings.PAGES_DIRECTORY + Settings.STEP_SCENARIO_PAGE_FRAGMENT +
+                            entry.getKey().getUrlFriendlyName() + Settings.HTML_FILE_EXTENSION);
             ResultCount stepResultCount = entry.getValue();
             passed.add((float) stepResultCount.getPassed());
             failed.add((float) stepResultCount.getFailed());
@@ -117,5 +124,6 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
 
 
         allTagsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
+        allTagsPageCollection.getReportDetails().setChartUrlLookup(urlLookup);
     }
 }

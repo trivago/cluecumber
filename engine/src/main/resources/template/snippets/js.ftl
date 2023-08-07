@@ -48,51 +48,68 @@ limitations under the License.
 
             // Chart
             <#if (reportDetails.chartJson?has_content)>
-            var canvas = document.getElementById('chart-area');
-            var ctx = canvas.getContext("2d");
-            var chart = new Chart(ctx, ${reportDetails.chartJson});
+                var canvas = document.getElementById('chart-area');
+                var ctx = canvas.getContext("2d");
+                var chart = new Chart(ctx, ${reportDetails.chartJson});
 
-            var original;
-            if (chart.config.type === "pie") {
-                original = Chart.defaults.pie.legend.onClick;
-            } else {
-                original = Chart.defaults.global.legend.onClick;
-            }
-
-            chart.options.onClick = function (evt, elements) {
-                if (chart.config.type !== "pie") return;
-                chartArea = elements[0];
-                if (chartArea === undefined) return;
-                chartArea.hidden = !chartArea.hidden;
-                chart.update();
-                toggleVisibilityByStatus(chartArea._model.label, !chartArea.hidden)
-            };
-
-            chart.options.legend.onClick = function (evt, label) {
-                original.call(this, evt, label);
-                toggleVisibilityByStatus(label.text, label.hidden);
-            };
-
-            function toggleVisibilityByStatus(statusText, show) {
-                var card = $("#card_" + statusText);
-                if (card !== undefined) {
-                    if (show) {
-                        card.show();
-                    } else {
-                        card.hide();
-                    }
+                var original;
+                if (chart.config.type === "pie") {
+                    original = Chart.defaults.pie.legend.onClick;
+                    chart.options.onClick = function (evt, elements) {
+                        chartArea = elements[0];
+                        if (chartArea === undefined) return;
+                        chartArea.hidden = !chartArea.hidden;
+                        chart.update();
+                        toggleVisibilityByStatus(chartArea._model.label, !chartArea.hidden)
+                    };
+                } else if (chart.config.type === "bar") {
+                    <#if (reportDetails.chartUrlLookup?has_content)>
+                        console.log("LOOKUP: " + ${reportDetails.chartUrlLookup?size})
+                        const chartUrls = {
+                            <#list reportDetails.chartUrlLookup as stepName, urlFriendlyStepName>
+                            "${stepName?js_string}": "${urlFriendlyStepName}",
+                            </#list>
+                        };
+                        canvas.onclick = function (evt) {
+                            const activePoints = chart.getElementsAtEvent(evt);
+                            if (activePoints.length <= 0) return;
+                            const clickedElementindex = activePoints[0]["_index"];
+                            const label = chart.data.labels[clickedElementindex];
+                            if (label == null) return;
+                            urlSnippet = chartUrls[label];
+                            //const url = document.evaluate("//a[text()='" + label + "']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                            console.log(urlSnippet);
+                            if (urlSnippet == null) return;
+                            window.location.href = urlSnippet;
+                        }
+                    </#if>
+                    original = Chart.defaults.global.legend.onClick;
                 }
 
-                var row = $(".table-row-" + statusText);
-                if (row !== undefined) {
-                    if (show) {
-                        row.show();
-                    } else {
-                        row.hide();
+                chart.options.legend.onClick = function (evt, label) {
+                    original.call(this, evt, label);
+                    toggleVisibilityByStatus(label.text, label.hidden);
+                };
+
+                function toggleVisibilityByStatus(statusText, show) {
+                    var card = $("#card_" + statusText);
+                    if (card !== undefined) {
+                        if (show) {
+                            card.show();
+                        } else {
+                            card.hide();
+                        }
+                    }
+
+                    var row = $(".table-row-" + statusText);
+                    if (row !== undefined) {
+                        if (show) {
+                            row.show();
+                        } else {
+                            row.hide();
+                        }
                     }
                 }
-            }
-
             </#if>
 
             if (${expandBeforeAfterHooks?c}) {
