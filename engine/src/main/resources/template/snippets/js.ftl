@@ -75,7 +75,9 @@ limitations under the License.
                             const clickedElementindex = activePoints[0]["_index"];
                             const label = chart.data.labels[clickedElementindex];
                             if (label == null) return;
-                            window.location.href = chartUrls[label];
+                            urlSnippet = chartUrls[label];
+                            if (urlSnippet == null) return;
+                            window.location.href = urlSnippet;
                         }
                     </#if>
                     original = Chart.defaults.global.legend.onClick;
