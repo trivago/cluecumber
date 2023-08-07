@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.3.0] - UNRELEASED
+## [3.3.0] - 2023-08-07
 
+### Fixed
+* Scenarios having skipped steps after a passed step are now considered skipped (used to be passed) (#314) 
+* `skip` parameter in Cluecumber Maven was not recognized anymore (#316)
 
+### Added
+* Charts in "All Tags", "All Features" and "All Steps" can now be clicked and redirect to the according detail page
 
 ## [3.2.2] - 2023-05-12
 
