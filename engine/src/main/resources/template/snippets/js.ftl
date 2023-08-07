@@ -64,7 +64,6 @@ limitations under the License.
                     };
                 } else if (chart.config.type === "bar") {
                     <#if (reportDetails.chartUrlLookup?has_content)>
-                        console.log("LOOKUP: " + ${reportDetails.chartUrlLookup?size})
                         const chartUrls = {
                             <#list reportDetails.chartUrlLookup as stepName, urlFriendlyStepName>
                             "${stepName?js_string}": "${urlFriendlyStepName}",
@@ -76,11 +75,7 @@ limitations under the License.
                             const clickedElementindex = activePoints[0]["_index"];
                             const label = chart.data.labels[clickedElementindex];
                             if (label == null) return;
-                            urlSnippet = chartUrls[label];
-                            //const url = document.evaluate("//a[text()='" + label + "']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                            console.log(urlSnippet);
-                            if (urlSnippet == null) return;
-                            window.location.href = urlSnippet;
+                            window.location.href = chartUrls[label];
                         }
                     </#if>
                     original = Chart.defaults.global.legend.onClick;
