@@ -44,7 +44,7 @@ public class ElementTest {
     }
 
     @Test
-    public void passedStatusOnPassedAndSkippedStepsTest() {
+    public void skippedStatusOnPassedAndSkippedStepsTest() {
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
         Result result = new Result();
@@ -60,7 +60,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.PASSED);
+        assertEquals(status, Status.SKIPPED);
     }
 
     @Test

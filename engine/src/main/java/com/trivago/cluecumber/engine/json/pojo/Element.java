@@ -413,7 +413,7 @@ public class Element {
             if (failOnPendingOrUndefined) {
                 return Status.FAILED;
             }
-            return Status.PASSED;
+            return Status.SKIPPED;
         }
 
         // If all steps are skipped return skipped (or failed if failOnPendingOrUndefined is true).
