@@ -6,13 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cluecumber-core</artifactId>
-    <version>3.2.2</version>
+    <version>3.3.0</version>
     <packaging>jar</packaging>
 
     <parent>
         <artifactId>cluecumber-parent</artifactId>
         <groupId>com.trivago.rta</groupId>
-        <version>3.2.2</version>
+        <version>3.3.0</version>
     </parent>
 
     <name>Cluecumber Core</name>

@@ -210,7 +210,6 @@ this is possible via the `customNavigationLinks` property.
 <configuration>
     <customNavigationLinks>
         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
-        <Twitter>https://twitter.com/BischoffDev</Twitter>
     </customNavigationLinks>
     ...
 </configuration>
@@ -223,7 +222,7 @@ these are replaces with spaces for the link name:
 
 ## Skip Report Generation
 
-The `skip` property is used to skip the report generation. The default value is `false`
+The `skip` property is used to skip the report generation completely. The default value is `false`
 
 ```xml
 <configuration>

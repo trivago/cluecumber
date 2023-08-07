@@ -31,6 +31,7 @@ import freemarker.template.Template;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -87,9 +88,15 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
         List<Float> passed = new ArrayList<>();
         List<Float> failed = new ArrayList<>();
         List<Float> skipped = new ArrayList<>();
+        Map<String, String> urlLookup = new HashMap<>();
 
         int maximumNumberOfRuns = 0;
         for (Map.Entry<Feature, ResultCount> entry : allFeaturesPageCollection.getFeatureResultCounts().entrySet()) {
+            urlLookup.put(
+                    entry.getKey().getName(),
+                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                            Settings.PAGES_DIRECTORY + Settings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
+                            entry.getKey().getIndex() + Settings.HTML_FILE_EXTENSION);
             ResultCount featureResultCount = entry.getValue();
             passed.add((float) featureResultCount.getPassed());
             failed.add((float) featureResultCount.getFailed());
@@ -117,6 +124,7 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
                         .build();
 
         allFeaturesPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
+        allFeaturesPageCollection.getReportDetails().setChartUrlLookup(urlLookup);
     }
 }
 

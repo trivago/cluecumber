@@ -1,0 +1,145 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2023-08-02T13:45:04.883Z",
+        "before": [
+          {
+            "result": {
+              "duration": 5752270400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "somelocation.beforeCucumberScenario()"
+            }
+          }
+        ],
+        "line": 5,
+        "name": "Step ahead and backward by pressing \">\" and \"<\"",
+        "description": "",
+        "id": "someid-\">\"-and-\"<\"",
+        "after": [
+          {
+            "result": {
+              "duration": 851622500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "somelocation.afterCucumberScenario(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 7109716400,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "I navigate to today",
+            "match": {
+              "location": "somelocation.loginAndNavigateTo(java.lang.String,java.lang.String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "error_message": "Some skipped message",
+              "duration": 244045200,
+              "status": "skipped"
+            },
+            "line": 7,
+            "name": "I step ahead by pressing >",
+            "match": {
+              "arguments": [
+                {
+                  "val": ">",
+                  "offset": 25
+                }
+              ],
+              "location": "somelocation.stepAhead(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 8,
+            "name": "the date should be updated",
+            "match": {
+              "location": "somelocation.validate(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 9,
+            "name": "I step back by pressing <",
+            "match": {
+              "location": "somelocation.stepBack(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 10,
+            "name": "the date should be updated",
+            "match": {
+              "location": "somelocation.validate(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 11,
+            "name": "I step back again by pressing <",
+            "match": {
+              "arguments": [
+                {
+                  "val": "<",
+                  "offset": 25
+                }
+              ],
+              "location": "somelocation.stepOneDayAheadByPressing(java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "status": "skipped"
+            },
+            "line": 12,
+            "name": "the date should be updated",
+            "match": {
+              "location": "somelocation.validate(java.lang.String)"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@tag1"
+          },
+          {
+            "name": "@tag2"
+          }
+        ]
+      }
+    ],
+    "name": "Calendar scenarios",
+    "description": "",
+    "id": "calendar-scenarios",
+    "keyword": "Feature",
+    "uri": "classpath:Calendar.feature"
+  }
+]

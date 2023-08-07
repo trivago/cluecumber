@@ -21,6 +21,8 @@ import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Information about the report generation date and Cluecumber version.
@@ -28,7 +30,7 @@ import java.util.Date;
 public class ReportDetails {
     private final String date;
     private String chartJson;
-
+    private Map<String, String> chartUrlLookup = new HashMap<>();
 
     /**
      * Constructor setting the generation date.
@@ -74,5 +76,13 @@ public class ReportDetails {
     public String getGeneratorName() {
         return String.format("%s version %s",
                 Settings.NAME, RenderingUtils.getPluginVersion());
+    }
+
+    public Map<String, String> getChartUrlLookup() {
+        return chartUrlLookup;
+    }
+
+    public void setChartUrlLookup(Map<String, String> chartUrlLookup) {
+        this.chartUrlLookup = chartUrlLookup;
     }
 }

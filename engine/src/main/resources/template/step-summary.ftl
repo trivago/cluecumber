@@ -100,4 +100,11 @@ preheadlineLink="">
             </table>
         </@page.card>
     </div>
+<#--    <script>-->
+<#--        const chartUrls = {-->
+<#--            <#list stepResultCounts as step, stepResultCount>-->
+<#--                "${step.name?js_string}": "${step.getUrlFriendlyName()}",-->
+<#--            </#list>-->
+<#--        };-->
+<#--    </script>-->
 </@page.page>
