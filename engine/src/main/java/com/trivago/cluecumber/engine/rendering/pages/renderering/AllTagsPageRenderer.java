@@ -94,8 +94,7 @@ public class AllTagsPageRenderer extends PageWithChartRenderer {
         for (Map.Entry<Tag, ResultCount> entry : allTagsPageCollection.getTagResultCounts().entrySet()) {
             urlLookup.put(
                     entry.getKey().getName(),
-                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            Settings.PAGES_DIRECTORY + Settings.TAG_SCENARIO_PAGE_FRAGMENT +
+                    Settings.PAGES_DIRECTORY + Settings.TAG_SCENARIO_PAGE_FRAGMENT +
                             entry.getKey().getUrlFriendlyName() + Settings.HTML_FILE_EXTENSION);
             ResultCount tagResultCount = entry.getValue();
             passed.add((float) tagResultCount.getPassed());

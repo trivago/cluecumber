@@ -407,7 +407,7 @@ public class Element {
             }
         }
 
-        // If at least one step passed and the other steps are skipped, return passed (or failed if failOnPendingOrUndefined is true).
+        // If at least one step passed and the other steps are skipped, return skipped (or failed if failOnPendingOrUndefined is true).
         if (getTotalNumberOfPassedSteps() >= 0 &&
                 (getTotalNumberOfSkippedSteps() + getTotalNumberOfPassedSteps()) == getTotalNumberOfSteps()) {
             if (failOnPendingOrUndefined) {

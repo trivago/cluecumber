@@ -93,8 +93,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         for (Map.Entry<Step, ResultCount> entry : allTagsPageCollection.getStepResultCounts().entrySet()) {
             urlLookup.put(
                     entry.getKey().returnNameWithArgumentPlaceholders(),
-                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            Settings.PAGES_DIRECTORY + Settings.STEP_SCENARIO_PAGE_FRAGMENT +
+                    Settings.PAGES_DIRECTORY + Settings.STEP_SCENARIO_PAGE_FRAGMENT +
                             entry.getKey().getUrlFriendlyName() + Settings.HTML_FILE_EXTENSION);
             ResultCount stepResultCount = entry.getValue();
             passed.add((float) stepResultCount.getPassed());

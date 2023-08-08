@@ -94,8 +94,7 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
         for (Map.Entry<Feature, ResultCount> entry : allFeaturesPageCollection.getFeatureResultCounts().entrySet()) {
             urlLookup.put(
                     entry.getKey().getName(),
-                    propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                            Settings.PAGES_DIRECTORY + Settings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
+                    Settings.PAGES_DIRECTORY + Settings.FEATURE_SCENARIOS_PAGE_FRAGMENT +
                             entry.getKey().getIndex() + Settings.HTML_FILE_EXTENSION);
             ResultCount featureResultCount = entry.getValue();
             passed.add((float) featureResultCount.getPassed());
