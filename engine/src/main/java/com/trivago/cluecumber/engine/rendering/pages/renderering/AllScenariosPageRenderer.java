@@ -122,13 +122,13 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setStepFilter(step);
-        allScenariosPageCollectionClone.getReports().forEach(report -> {
+        for (Report report : allScenariosPageCollectionClone.getReports()) {
             List<Element> elements = report.getElements()
                     .stream()
-                    .filter(element -> element.getSteps().contains(step))
+                    .filter(element -> element.getSteps().contains(step) || element.getBackgroundSteps().contains(step))
                     .collect(Collectors.toList());
             report.setElements(elements);
-        });
+        }
 
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
