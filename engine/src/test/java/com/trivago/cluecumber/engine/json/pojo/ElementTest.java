@@ -144,8 +144,7 @@ public class ElementTest {
         steps.add(step);
         element.setSteps(steps);
 
-        Status status = element.getStatus();
-        assertEquals(Status.FAILED, status);
+        assertEquals(Status.FAILED, element.getStatus());
     }
 
     @Test

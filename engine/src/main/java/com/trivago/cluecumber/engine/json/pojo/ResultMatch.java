@@ -201,19 +201,8 @@ public class ResultMatch {
      * @return The basic {@link Status} enum.
      */
     public Status getConsolidatedStatus() {
-        switch (getStatus()) {
-            case PASSED:
-                return Status.PASSED;
-            case SKIPPED:
-            case PENDING:
-            case AMBIGUOUS:
-            case UNDEFINED:
-                return Status.SKIPPED;
-            case FAILED:
-            default:
-                return Status.FAILED;
-        }
-    }
+        return getStatus().basicStatus();
+   }
 
     /**
      * Get the string of the basic status.

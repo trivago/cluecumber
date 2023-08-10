@@ -49,10 +49,9 @@ limitations under the License.
             // Chart
             <#if (reportDetails.chartJson?has_content)>
                 var canvas = document.getElementById('chart-area');
-                var ctx = canvas.getContext("2d");
-                var chart = new Chart(ctx, ${reportDetails.chartJson});
-
-                var original;
+                const ctx = canvas.getContext("2d");
+                const chart = new Chart(ctx, ${reportDetails.chartJson});
+                let original;
                 if (chart.config.type === "pie") {
                     original = Chart.defaults.pie.legend.onClick;
                     chart.options.onClick = function (evt, elements) {
@@ -89,7 +88,7 @@ limitations under the License.
                 };
 
                 function toggleVisibilityByStatus(statusText, show) {
-                    var card = $("#card_" + statusText);
+                    const card = $("#card_" + statusText);
                     if (card !== undefined) {
                         if (show) {
                             card.show();
@@ -98,7 +97,7 @@ limitations under the License.
                         }
                     }
 
-                    var row = $(".table-row-" + statusText);
+                    const row = $(".table-row-" + statusText);
                     if (row !== undefined) {
                         if (show) {
                             row.show();

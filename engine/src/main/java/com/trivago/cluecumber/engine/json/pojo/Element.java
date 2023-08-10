@@ -22,6 +22,8 @@ import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This represents a scenarios.
@@ -358,81 +360,13 @@ public class Element {
      * @return The overall status.
      */
     public Status getStatus() {
-<<<<<<< Updated upstream
-        int totalSteps = steps.size();
-
-        if (totalSteps == 0) {
-            return Status.SKIPPED;
-        }
-
-        // If any hooks fail, report the scenario as failed
-        for (ResultMatch beforeHook : before) {
-            if (beforeHook.isFailed()) {
-                return Status.FAILED;
-            }
-        }
-        for (ResultMatch afterHook : after) {
-            if (afterHook.isFailed()) {
-                return Status.FAILED;
-            }
-        }
-
-        // If all steps have the same status, return this as the scenario status.
-        for (Status status : Status.BASIC_STATES) {
-            int stepsWithCertainStatusCount = 0;
-            for (Step step : steps) {
-                if (step.getConsolidatedStatus() == status) {
-                    stepsWithCertainStatusCount++;
-                }
-
-                // If any step hooks fail, report scenario as failed.
-                for (ResultMatch beforeStepHook : step.getBefore()) {
-                    if (beforeStepHook.isFailed()) {
-                        return Status.FAILED;
-                    }
-                }
-                for (ResultMatch afterStepHook : step.getAfter()) {
-                    if (afterStepHook.isFailed()) {
-                        return Status.FAILED;
-                    }
-                }
-            }
-
-            if (totalSteps == stepsWithCertainStatusCount) {
-                if (status == Status.SKIPPED) {
-                    if (failOnPendingOrUndefined) {
-                        return Status.FAILED;
-                    }
-                }
-                return status;
-            }
-        }
-
-        // If at least one step passed and the other steps are skipped, return skipped (or failed if failOnPendingOrUndefined is true).
-        if (getTotalNumberOfPassedSteps() >= 0 &&
-                (getTotalNumberOfSkippedSteps() + getTotalNumberOfPassedSteps()) == getTotalNumberOfSteps()) {
-            if (failOnPendingOrUndefined) {
-                return Status.FAILED;
-            }
-            return Status.SKIPPED;
-        }
-
-        // If all steps are skipped return skipped (or failed if failOnPendingOrUndefined is true).
-        if (getTotalNumberOfSkippedSteps() == totalSteps) {
-            if (failOnPendingOrUndefined) {
-                return Status.FAILED;
-            }
-            return Status.SKIPPED;
-        }
-
-        return Status.FAILED;
-=======
         Set<Status> allStates = before.stream().map(ResultMatch::getStatus).collect(Collectors.toSet());
         backgroundSteps.stream().map(ResultMatch::getStatus).forEach(allStates::add);
+        steps.forEach(step -> step.getBefore().forEach(result -> allStates.add(result.getStatus())));
         steps.stream().map(ResultMatch::getStatus).forEach(allStates::add);
-        steps.forEach(step -> step.getBefore().forEach(s -> allStates.add(s.getStatus())));
-        steps.forEach(step -> step.getAfter().forEach(s -> allStates.add(s.getStatus())));
+        steps.forEach(step -> step.getAfter().forEach(result -> allStates.add(result.getStatus())));
         after.stream().map(ResultMatch::getStatus).forEach(allStates::add);
+
         if (allStates.isEmpty()) {
             return Status.SKIPPED;
         }
@@ -440,8 +374,8 @@ public class Element {
                 && allStates.iterator().next().basicStatus() == Status.SKIPPED) {
             return Status.FAILED;
         }
+
         return Status.getHighestBasicState(allStates);
->>>>>>> Stashed changes
     }
 
     /**
@@ -551,7 +485,7 @@ public class Element {
      * @return The number of steps.
      */
     public int getTotalNumberOfSteps() {
-        return getSteps().size();
+        return getAllStepsIncludingBackgroundSteps().size();
     }
 
     /**
@@ -588,7 +522,7 @@ public class Element {
      * @return The number of step.
      */
     private int getNumberOfStepsWithStatus(final Status status) {
-        return (int) getSteps().stream().filter(step -> step.getConsolidatedStatus() == status).count();
+        return (int) getAllStepsIncludingBackgroundSteps().stream().filter(step -> step.getConsolidatedStatus() == status).count();
     }
 
     /**
@@ -619,7 +553,7 @@ public class Element {
      * @return true if there are before or after hooks.
      */
     public boolean hasHooks() {
-        return getBefore().size() > 0 || getAfter().size() > 0;
+        return !getBefore().isEmpty() || !getAfter().isEmpty();
     }
 
     /**
@@ -657,18 +591,18 @@ public class Element {
      */
     public boolean hasStepHooks() {
         for (Step step : backgroundSteps) {
-            if (step.getBefore().size() > 0) {
+            if (!step.getBefore().isEmpty()) {
                 return true;
             }
-            if (step.getAfter().size() > 0) {
+            if (!step.getAfter().isEmpty()) {
                 return true;
             }
         }
         for (Step step : steps) {
-            if (step.getBefore().size() > 0) {
+            if (!step.getBefore().isEmpty()) {
                 return true;
             }
-            if (step.getAfter().size() > 0) {
+            if (!step.getAfter().isEmpty()) {
                 return true;
             }
         }
@@ -702,8 +636,7 @@ public class Element {
      */
     public List<ResultMatch> getAllResultMatches() {
         List<ResultMatch> resultMatches = new ArrayList<>(getBefore());
-        resultMatches.addAll(getBackgroundSteps());
-        resultMatches.addAll(getSteps());
+        resultMatches.addAll(getAllStepsIncludingBackgroundSteps());
         resultMatches.addAll(getAfter());
         return resultMatches;
     }
@@ -769,5 +702,11 @@ public class Element {
      */
     public void setFeatureUri(String featureUri) {
         this.featureUri = featureUri;
+    }
+
+    public List<Step> getAllStepsIncludingBackgroundSteps() {
+        List<Step> combinedSteps = new ArrayList<>(backgroundSteps);
+        combinedSteps.addAll(steps);
+        return combinedSteps;
     }
 }

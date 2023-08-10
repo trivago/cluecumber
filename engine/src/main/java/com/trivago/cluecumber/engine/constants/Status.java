@@ -32,6 +32,7 @@ package com.trivago.cluecumber.engine.constants;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Enum to manage all states for steps and scenarios.
@@ -65,7 +66,7 @@ public enum Status {
     /**
      * The three basic states: passed, failed and skipped.
      */
-    public static final List<Status> BASIC_STATES = Arrays.asList(Status.PASSED, Status.FAILED, Status.SKIPPED);
+    public static final List<Status> BASIC_STATES = Arrays.asList(Status.FAILED, Status.SKIPPED, Status.PASSED);
 
     private final String status;
 
@@ -79,8 +80,35 @@ public enum Status {
      * @param status The status string.
      * @return The matching {@link Status} enum.
      */
-    public static Status fromString(String status) {
+    public static Status fromString(final String status) {
         return valueOf(status.toUpperCase());
+    }
+
+    public Status basicStatus() {
+        switch (this) {
+            case PASSED:
+                return Status.PASSED;
+            case FAILED:
+                return Status.FAILED;
+            default:
+                return Status.SKIPPED;
+        }
+    }
+
+    /**
+     * Return the highest status from the given list of states.
+     *
+     * @return The status string.
+     */
+    public static Status getHighestBasicState(Set<Status> allStates) {
+        for (Status basicState : BASIC_STATES) {
+            for (Status allState : allStates) {
+                if (allState.basicStatus() == basicState) {
+                    return basicState;
+                }
+            }
+        }
+        return FAILED;
     }
 
     /**
