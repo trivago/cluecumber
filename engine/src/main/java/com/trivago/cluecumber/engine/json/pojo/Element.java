@@ -358,6 +358,7 @@ public class Element {
      * @return The overall status.
      */
     public Status getStatus() {
+<<<<<<< Updated upstream
         int totalSteps = steps.size();
 
         if (totalSteps == 0) {
@@ -425,6 +426,22 @@ public class Element {
         }
 
         return Status.FAILED;
+=======
+        Set<Status> allStates = before.stream().map(ResultMatch::getStatus).collect(Collectors.toSet());
+        backgroundSteps.stream().map(ResultMatch::getStatus).forEach(allStates::add);
+        steps.stream().map(ResultMatch::getStatus).forEach(allStates::add);
+        steps.forEach(step -> step.getBefore().forEach(s -> allStates.add(s.getStatus())));
+        steps.forEach(step -> step.getAfter().forEach(s -> allStates.add(s.getStatus())));
+        after.stream().map(ResultMatch::getStatus).forEach(allStates::add);
+        if (allStates.isEmpty()) {
+            return Status.SKIPPED;
+        }
+        if (failOnPendingOrUndefined && allStates.size() == 1
+                && allStates.iterator().next().basicStatus() == Status.SKIPPED) {
+            return Status.FAILED;
+        }
+        return Status.getHighestBasicState(allStates);
+>>>>>>> Stashed changes
     }
 
     /**

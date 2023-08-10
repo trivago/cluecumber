@@ -24,7 +24,7 @@ public class ElementTest {
     @Test
     public void getSkippedStatusInEmptyElementsTest() {
         Status status = element.getStatus();
-        assertEquals(status, Status.SKIPPED);
+        assertEquals(Status.SKIPPED, status);
         assertTrue(element.isSkipped());
     }
 
@@ -145,7 +145,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.FAILED);
+        assertEquals(Status.FAILED, status);
     }
 
     @Test
