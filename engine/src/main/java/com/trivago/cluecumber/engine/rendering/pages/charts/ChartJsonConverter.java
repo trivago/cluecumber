@@ -17,6 +17,7 @@ package com.trivago.cluecumber.engine.rendering.pages.charts;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 
 import javax.inject.Inject;

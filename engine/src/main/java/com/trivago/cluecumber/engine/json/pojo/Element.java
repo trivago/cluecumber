@@ -699,7 +699,7 @@ public class Element {
         this.featureUri = featureUri;
     }
 
-    private List<Step> getAllStepsIncludingBackgroundSteps() {
+    public List<Step> getAllStepsIncludingBackgroundSteps() {
         List<Step> combinedSteps = new ArrayList<>(backgroundSteps);
         combinedSteps.addAll(steps);
         return combinedSteps;
