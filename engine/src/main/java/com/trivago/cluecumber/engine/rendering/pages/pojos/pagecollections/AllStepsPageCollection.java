@@ -20,10 +20,7 @@ import com.trivago.cluecumber.engine.json.pojo.Step;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.ResultCount;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Times;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Page collection for the step overview page.
@@ -129,7 +126,11 @@ public class AllStepsPageCollection extends ScenarioSummaryPageCollection {
         if (reports == null) return;
         reports.forEach(report -> report.getElements().forEach(element -> {
             int scenarioIndex = element.getScenarioIndex();
-            element.getSteps().forEach(step -> {
+
+            List<Step> steps = new ArrayList<>(element.getBackgroundSteps());
+            steps.addAll(element.getSteps());
+
+            steps.forEach(step -> {
                 ResultCount stepResultCount = stepResultCounts.getOrDefault(step, new ResultCount());
                 updateResultCount(stepResultCount, step.getStatus());
                 stepResultCounts.put(step, stepResultCount);

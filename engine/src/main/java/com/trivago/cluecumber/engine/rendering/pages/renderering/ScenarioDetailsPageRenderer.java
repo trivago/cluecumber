@@ -20,7 +20,6 @@ import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.json.pojo.Element;
-import com.trivago.cluecumber.engine.json.pojo.ResultMatch;
 import com.trivago.cluecumber.engine.json.pojo.Step;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
@@ -91,9 +90,7 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
 
         Element element = scenarioDetailsPageCollection.getElement();
         List<String> labels = new ArrayList<>();
-        element.getBefore().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
-        element.getSteps().stream().map(Step::getName).forEach(labels::add);
-        element.getAfter().stream().map(ResultMatch::getGlueMethodName).forEach(labels::add);
+        element.getAllStepsIncludingBackgroundSteps().stream().map(Step::getName).forEach(labels::add);
 
         final List<Float> passedValues = getValuesByStatus(element, Status.PASSED);
         final List<Float> failedValues = getValuesByStatus(element, Status.FAILED);
@@ -139,9 +136,13 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
 
     private List<Float> getValuesByStatus(final Element element, final Status status) {
         List<Float> values = new ArrayList<>();
-        element.getAllResultMatches().forEach(resultMatch -> {
+        element.getAllStepsIncludingBackgroundSteps().forEach(resultMatch -> {
             if (resultMatch.getConsolidatedStatus() == status) {
-                values.add(resultMatch.getResult().getDurationInMilliseconds() / 1000f);
+                float time = resultMatch.getResult().getDurationInMilliseconds() / 1000f;
+                if (time == 0) {
+                    time = 0.1f;
+                }
+                values.add(time);
             } else {
                 values.add(0f);
             }

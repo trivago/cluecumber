@@ -82,7 +82,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         return processedContent(template, allStepsPageCollection, propertyManager.getNavigationLinks());
     }
 
-    private void addChartJsonToReportDetails(final AllStepsPageCollection allTagsPageCollection) {
+    private void addChartJsonToReportDetails(final AllStepsPageCollection allStepsPageCollection) {
 
         List<Float> passed = new ArrayList<>();
         List<Float> failed = new ArrayList<>();
@@ -90,7 +90,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         Map<String, String> urlLookup = new HashMap<>();
 
         int maximumNumberOfRuns = 0;
-        for (Map.Entry<Step, ResultCount> entry : allTagsPageCollection.getStepResultCounts().entrySet()) {
+        for (Map.Entry<Step, ResultCount> entry : allStepsPageCollection.getStepResultCounts().entrySet()) {
             urlLookup.put(
                     entry.getKey().returnNameWithArgumentPlaceholders(),
                     Settings.PAGES_DIRECTORY + Settings.STEP_SCENARIO_PAGE_FRAGMENT +
@@ -104,7 +104,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
             }
         }
 
-        List<String> keys = allTagsPageCollection.getStepResultCounts()
+        List<String> keys = allStepsPageCollection.getStepResultCounts()
                 .keySet()
                 .stream()
                 .map(Step::returnNameWithArgumentPlaceholders)
@@ -113,7 +113,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
         Chart chart =
                 new StackedBarChartBuilder(chartConfiguration)
                         .setLabels(keys)
-                        .setxAxisLabel(allTagsPageCollection.getTotalNumberOfSteps() + " Steps")
+                        .setxAxisLabel(allStepsPageCollection.getTotalNumberOfSteps() + " Steps")
                         .setyAxisStepSize(maximumNumberOfRuns)
                         .setyAxisLabel("Number of Usages")
                         .addValues(passed, Status.PASSED)
@@ -122,7 +122,7 @@ public class AllStepsPageRenderer extends PageWithChartRenderer {
                         .build();
 
 
-        allTagsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
-        allTagsPageCollection.getReportDetails().setChartUrlLookup(urlLookup);
+        allStepsPageCollection.getReportDetails().setChartJson(convertChartToJson(chart));
+        allStepsPageCollection.getReportDetails().setChartUrlLookup(urlLookup);
     }
 }
