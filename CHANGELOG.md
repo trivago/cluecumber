@@ -9,13 +9,14 @@ Back to [Readme](README.md).
 
 ## [3.4.0] - 2023-08-10
 
-### Changed
-* Skipped scenarios are now determined to the official Cucumber guidelines 
-* Charts show small bars for steps with a time of 0 instead of none at all
-
 ### Fixed
 * Background steps were not considered in the overall scenario outcome [#319]
 * Background steps were not shown in the bar charts
+
+### Changed
+* Skipped scenarios are now determined to the official Cucumber guidelines 
+* Charts show small bars for steps with a time of 0 instead of none at all
+* Before and after hooks are not shown in the step charts anymore
 
 ## [3.3.1] - 2023-08-08
 
