@@ -50,6 +50,9 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>
                 </#list>
             </li>
+            <#if element.isRerun>
+                <li class="list-group-item">Note: <strong>this is a RERUN</strong></li>
+            </#if>
         </@page.card>
         <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">

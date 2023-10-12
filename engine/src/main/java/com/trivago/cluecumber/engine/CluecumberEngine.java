@@ -24,6 +24,7 @@ import com.trivago.cluecumber.engine.filesystem.FileSystemManager;
 import com.trivago.cluecumber.engine.json.JsonPojoConverter;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
+import com.trivago.cluecumber.engine.json.processors.ElementRerunPreProcessor;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.ReportGenerator;
@@ -50,6 +51,7 @@ public final class CluecumberEngine {
     private final FileIO fileIO;
     private final JsonPojoConverter jsonPojoConverter;
     private final ElementIndexPreProcessor elementIndexPreProcessor;
+    private final ElementRerunPreProcessor elementRerunPreProcessor;
     private final ReportGenerator reportGenerator;
 
     /**
@@ -77,6 +79,7 @@ public final class CluecumberEngine {
             final FileIO fileIO,
             final JsonPojoConverter jsonPojoConverter,
             final ElementIndexPreProcessor elementIndexPreProcessor,
+            final ElementRerunPreProcessor elementRerunPreProcessor,
             final ReportGenerator reportGenerator
     ) {
         this.propertyManager = propertyManager;
@@ -85,6 +88,7 @@ public final class CluecumberEngine {
         this.jsonPojoConverter = jsonPojoConverter;
         this.logger = logger;
         this.elementIndexPreProcessor = elementIndexPreProcessor;
+        this.elementRerunPreProcessor = elementRerunPreProcessor;
         this.reportGenerator = reportGenerator;
     }
 
@@ -128,6 +132,7 @@ public final class CluecumberEngine {
                 logger.warn("Could not parse JSON in file '" + jsonFilePath + "': " + e.getMessage());
             }
         }
+        elementRerunPreProcessor.addRerunInformationToScenarios(allScenariosPageCollection.getReports());
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(

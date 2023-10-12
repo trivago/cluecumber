@@ -5,6 +5,7 @@ import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.filesystem.FileSystemManager;
 import com.trivago.cluecumber.engine.json.JsonPojoConverter;
 import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
+import com.trivago.cluecumber.engine.json.processors.ElementRerunPreProcessor;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.ReportGenerator;
@@ -37,6 +38,7 @@ public class CluecumberEngineTest {
         fileIO = Mockito.mock(FileIO.class);
         jsonPojoConverter = Mockito.mock(JsonPojoConverter.class);
         ElementIndexPreProcessor elementIndexPostProcessor = Mockito.mock(ElementIndexPreProcessor.class);
+        ElementRerunPreProcessor elementRerunPreProcessor = Mockito.mock(ElementRerunPreProcessor.class);
         ReportGenerator reportGenerator = Mockito.mock(ReportGenerator.class);
 
         cluecumberEngine = new CluecumberEngine(
@@ -46,6 +48,7 @@ public class CluecumberEngineTest {
                 fileIO,
                 jsonPojoConverter,
                 elementIndexPostProcessor,
+                elementRerunPreProcessor,
                 reportGenerator
         );
     }

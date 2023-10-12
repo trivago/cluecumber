@@ -150,6 +150,12 @@ public final class CluecumberMaven extends AbstractMojo {
     @Parameter(property = "reporting.logLevel", defaultValue = "default")
     String logLevel;
 
+    /**
+     * Optional information about tests that are executed as rerun (default: false)
+     */
+    @Parameter(property = "reporting.showRerunIndication", defaultValue = "false")
+    private boolean showRerunIndication;
+
     @Parameter(property = "reporting.skip", defaultValue = "false")
     private boolean skip;
 

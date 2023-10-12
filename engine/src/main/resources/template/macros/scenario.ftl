@@ -114,6 +114,18 @@ limitations under the License.
                                             <#if allRequested>
                                                 <td class="text-center"><@common.status status=element.status.statusString/></td>
                                             </#if>
+                                                <td class="text-center">
+                                                    <#if element.getIsRerun()>
+                                                        <span data-toggle="tooltip" title="This is a scenario rerun">
+                                                            R
+                                                        </span>
+                                                    </#if>
+                                                    <#if element.getHasTriggeredRerun()>
+                                                        <span data-toggle="tooltip" title="This scenario was rerun later">
+                                                            T
+                                                        </span>
+                                                    </#if>
+                                                </td>
                                         </tr>
                                     </#if>
                                 </#list>

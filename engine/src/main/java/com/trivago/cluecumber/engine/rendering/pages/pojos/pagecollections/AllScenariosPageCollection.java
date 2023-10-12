@@ -159,6 +159,15 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
+     * Check if there are rerun scenarios.
+     *
+     * @return true if there are rerun scenarios.
+     */
+    public boolean hasRerunScenarios() {
+        return getTotalNumberOfRerunScenarios() > 0;
+    }
+
+    /**
      * Return the number of passed scenarios.
      *
      * @return The scenario count.
@@ -185,6 +194,17 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return getNumberOfScenariosWithStatus(Status.SKIPPED);
     }
 
+    /**
+     * Return the number of rerun scenarios.
+     *
+     * @return The scenario count.
+     */
+    public int getTotalNumberOfRerunScenarios() {
+        return reports.stream().mapToInt(
+                report -> (int) report.getElements().stream().filter(
+                        element -> element.getIsRerun()
+                ).count()).sum();
+    }
 
     private int getNumberOfScenariosWithStatus(final Status status) {
         return reports.stream().mapToInt(

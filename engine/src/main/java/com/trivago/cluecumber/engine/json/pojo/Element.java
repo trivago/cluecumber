@@ -32,6 +32,8 @@ import java.util.stream.Collectors;
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
+    private boolean isRerun = false;
+    private boolean hasTriggeredRerun = false;
     private String featureName = "";
     private String featureUri = "";
     private String name = "";
@@ -693,6 +695,38 @@ public class Element {
      */
     public String getFeatureUri() {
         return featureUri;
+    }
+
+    /**
+     * Check if this scenario is a rerun.
+     *
+     * @return true if this scenario is a rerun.
+     */
+    public boolean getIsRerun() {
+        return isRerun;
+    }
+
+    /**
+     * Set to true if this scenario is a rerun.
+     */
+    public void setIsRerun(final boolean isRerun) {
+        this.isRerun = isRerun;
+    }
+
+    /**
+     * Check if this scenario triggered a rerun after its execution and it's not the final run.
+     *
+     * @return true if this scenario triggered a rerun after its execution and it's not the final run.
+     */
+    public boolean getHasTriggeredRerun() {
+        return hasTriggeredRerun;
+    }
+
+    /**
+     * Set to true if this scenario triggered a rerun after its execution and it's not the final run.
+     */
+    public void setHasTriggeredRerun(final boolean hasTriggeredRerun) {
+        this.hasTriggeredRerun = hasTriggeredRerun;
     }
 
     /**

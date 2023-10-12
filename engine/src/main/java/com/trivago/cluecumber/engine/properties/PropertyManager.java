@@ -57,6 +57,7 @@ public class PropertyManager {
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
+    private boolean showRerunIndication = true;
     private String customCssFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
@@ -319,6 +320,25 @@ public class PropertyManager {
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
+    }
+
+
+    /**
+     * This determines whether the rerun indication should be shown.
+     *
+     * @return true means it should be shown.
+     */
+    public boolean isShowRerunIndication() {
+        return showRerunIndication;
+    }
+
+    /**
+     * Set whether the rerun indication should be shown.
+     *
+     * @param showRerunIndication true means it should be shown.
+     */
+    public void setShowRerunIndication(final boolean showRerunIndication) {
+        this.showRerunIndication = showRerunIndication;
     }
 
     /**
