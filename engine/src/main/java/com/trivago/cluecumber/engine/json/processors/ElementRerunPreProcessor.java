@@ -70,6 +70,9 @@ public class ElementRerunPreProcessor {
             // set flags based on start time
             for (Map<String, List<Element>> uriGroup : groupedElements.values()) {
                 System.out.println("Found a group with " + uriGroup.size() + " elements");
+                if (uriGroup.size() < 2) {
+                    continue;
+                }
                 for (List<Element> nameGroup : uriGroup.values()) {
                     nameGroup.sort(Comparator.comparing(Element::getStartDateTime).reversed());
                     boolean first = true;
