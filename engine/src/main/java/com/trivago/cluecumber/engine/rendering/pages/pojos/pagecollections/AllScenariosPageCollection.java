@@ -202,7 +202,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     public int getTotalNumberOfRerunScenarios() {
         return reports.stream().mapToInt(
                 report -> (int) report.getElements().stream().filter(
-                        element -> element.getIsRerun()
+                        element -> element.getHasTriggeredRerun()
                 ).count()).sum();
     }
 

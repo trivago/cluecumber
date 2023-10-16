@@ -66,19 +66,19 @@ public class ReportJsonPostProcessorTest {
 
         assertEquals(report.getElements().size(), 2);
         assertEquals(report.getElements().get(1).getTags().size(), 1);
-//        reportJsonPostProcessor.postDeserialize(report, null, null);
-//        assertEquals(report.getElements().size(), 1);
-//        Element firstElement = report.getElements().get(0);
-//        assertEquals(firstElement.getTags().size(), 2);
-//        List<Step> firstElementSteps = firstElement.getSteps();
-//        assertEquals(firstElementSteps.size(), 2);
-//        assertEquals(firstElementSteps.get(0).getName(), "element step 1");
-//        assertEquals(firstElementSteps.get(1).getName(), "element step 2");
-//
-//        List<Step> firstElementBackgroundSteps = firstElement.getBackgroundSteps();
-//        assertEquals(firstElementBackgroundSteps.size(), 2);
-//        assertEquals(firstElementBackgroundSteps.get(0).getName(), "background step 1");
-//        assertEquals(firstElementBackgroundSteps.get(1).getName(), "background step 2");
+        reportJsonPostProcessor.postDeserialize(report, null, null);
+        assertEquals(report.getElements().size(), 1);
+        Element firstElement = report.getElements().get(0);
+        assertEquals(firstElement.getTags().size(), 2);
+        List<Step> firstElementSteps = firstElement.getSteps();
+        assertEquals(firstElementSteps.size(), 2);
+        assertEquals(firstElementSteps.get(0).getName(), "element step 1");
+        assertEquals(firstElementSteps.get(1).getName(), "element step 2");
+
+        List<Step> firstElementBackgroundSteps = firstElement.getBackgroundSteps();
+        assertEquals(firstElementBackgroundSteps.size(), 2);
+        assertEquals(firstElementBackgroundSteps.get(0).getName(), "background step 1");
+        assertEquals(firstElementBackgroundSteps.get(1).getName(), "background step 2");
     }
 
     @Test
