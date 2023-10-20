@@ -76,7 +76,7 @@ limitations under the License.
                                 <#if allRequested>
                                     <th class="text-left">Status</th>
                                 </#if>
-                                <#if isShowNotLastRunToggle()>
+                                <#if isShowOnlyLastRuns()>
                                     <th class="text-center">Last run</th>
                                 </#if>
                             </tr>
@@ -91,7 +91,7 @@ limitations under the License.
 
                                 <#list report.elements as element>
                                     <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                        <tr class="<#if isShowNotLastRunToggle() && element.getIsNotLastOfMultipleScenarioRuns()>notLastRun collapse </#if>table-row-${element.status.statusString}">
+                                        <tr class="<#if isShowOnlyLastRuns() && element.getIsNotLastOfMultipleScenarioRuns()>notLastRun collapse </#if>table-row-${element.status.statusString}">
                                             <#if allRequested>
                                                 <td class="text-right">${element.scenarioIndex}</td>
                                             </#if>
@@ -118,12 +118,12 @@ limitations under the License.
                                                 <td class="text-center"><@common.status status=element.status.statusString/></td>
                                             </#if>
                                                 <td class="text-center">
-                                                    <#if isShowNotLastRunToggle() && element.getIsLastOfMultipleScenarioRuns()>
+                                                    <#if isShowOnlyLastRuns() && element.getIsLastOfMultipleScenarioRuns()>
                                                         <span data-toggle="tooltip" title="This is the last started run">
                                                             L
                                                         </span>
                                                     </#if>
-                                                    <#if isShowNotLastRunToggle() && element.getIsNotLastOfMultipleScenarioRuns()>
+                                                    <#if isShowOnlyLastRuns() && element.getIsNotLastOfMultipleScenarioRuns()>
                                                         <span data-toggle="tooltip" title="There are other runs of the same scenario that started later">
                                                             X
                                                         </span>

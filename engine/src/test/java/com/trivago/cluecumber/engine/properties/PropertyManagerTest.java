@@ -151,6 +151,19 @@ public class PropertyManagerTest {
     }
 
     @Test
+    public void expandPreviousRunsTest() {
+        propertyManager.setExpandPreviousRuns(true);
+        assertTrue(propertyManager.isExpandPreviousRuns());
+    }
+
+    @Test
+    public void showOnlyLastRunsTest() {
+        assertFalse(propertyManager.isShowOnlyLastRuns());
+        propertyManager.setShowOnlyLastRuns(true);
+        assertTrue(propertyManager.isShowOnlyLastRuns());
+    }
+
+    @Test
     public void customCssTest() throws MissingFileException {
         String customCss = "MyCss";
         when(fileIO.isExistingFile(customCss)).thenReturn(true);

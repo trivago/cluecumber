@@ -75,8 +75,8 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
 
-        allScenariosPageCollectionClone.setShowNotLastRunToggle(propertyManager.isShowNotLastRunToggle());
-        allScenariosPageCollectionClone.setExpandNotLastRunElements(propertyManager.isExpandNotLastRunElements());
+        allScenariosPageCollectionClone.setShowOnlyLastRuns(propertyManager.isShowOnlyLastRuns());
+        allScenariosPageCollectionClone.setExpandPreviousRuns(propertyManager.isExpandPreviousRuns());
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }

@@ -57,8 +57,8 @@ public class PropertyManager {
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
-    private boolean showNotLastRunToggle = false;
-    private boolean expandNotLastRunElements = true;
+    private boolean showOnlyLastRuns = false;
+    private boolean expandPreviousRuns = true;
     private String customCssFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
@@ -328,17 +328,17 @@ public class PropertyManager {
      *
      * @return true means it should be shown.
      */
-    public boolean isShowNotLastRunToggle() {
-        return showNotLastRunToggle;
+    public boolean isShowOnlyLastRuns() {
+        return showOnlyLastRuns;
     }
 
     /**
      * Set whether the not last run toggle and related indications should be show.
      *
-     * @param showNotLastRunToggle true means it should be shown.
+     * @param showOnlyLastRuns true means it should be shown.
      */
-    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
-        this.showNotLastRunToggle = showNotLastRunToggle;
+    public void setShowOnlyLastRuns(final boolean showOnlyLastRuns) {
+        this.showOnlyLastRuns = showOnlyLastRuns;
     }
 
     /**
@@ -346,17 +346,17 @@ public class PropertyManager {
      *
      * @return true means it should be shown.
      */
-    public boolean isExpandNotLastRunElements() {
-        return expandNotLastRunElements;
+    public boolean isExpandPreviousRuns() {
+        return expandPreviousRuns;
     }
 
     /**
      * Set whether the not last run elements should be expanded and shown.
      *
-     * @param expandNotLastRunElements true means elements should be expanded.
+     * @param expandPreviousRuns true means elements should be expanded.
      */
-    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
-        this.expandNotLastRunElements = expandNotLastRunElements;
+    public void setExpandPreviousRuns(final boolean expandPreviousRuns) {
+        this.expandPreviousRuns = expandPreviousRuns;
     }
 
     /**

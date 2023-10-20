@@ -54,8 +54,8 @@ import java.util.stream.Collectors;
  */
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
-    private boolean showNotLastRunToggle;
-    private boolean expandNotLastRunElements;
+    private boolean showOnlyLastRuns;
+    private boolean expandPreviousRuns;
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
@@ -165,7 +165,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return true if there are scenarios run multiple times.
      */
-    public boolean hasNotFirstRunScenarios() {
+    public boolean hasNotLastRunScenarios() {
         return getTotalNumberOfNotLastScenariosRuns() > 0;
     }
 
@@ -354,17 +354,17 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return true means it should be shown.
      */
-    public boolean isShowNotLastRunToggle() {
-        return showNotLastRunToggle;
+    public boolean isShowOnlyLastRuns() {
+        return showOnlyLastRuns;
     }
 
     /**
      * Set whether the not last run toggle and related indications should be show.
      *
-     * @param showNotLastRunToggle true means it should be shown.
+     * @param showOnlyLastRuns true means it should be shown.
      */
-    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
-        this.showNotLastRunToggle = showNotLastRunToggle;
+    public void setShowOnlyLastRuns(final boolean showOnlyLastRuns) {
+        this.showOnlyLastRuns = showOnlyLastRuns;
     }
 
     /**
@@ -372,17 +372,17 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return true means it should be shown.
      */
-    public boolean isExpandNotLastRunElements() {
-        return expandNotLastRunElements;
+    public boolean isExpandPreviousRuns() {
+        return expandPreviousRuns;
     }
 
     /**
      * Set whether the not last run elements should be expanded and shown.
      *
-     * @param expandNotLastRunElements true means elements should be expanded.
+     * @param expandPreviousRuns true means elements should be expanded.
      */
-    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
-        this.expandNotLastRunElements = expandNotLastRunElements;
+    public void setExpandPreviousRuns(final boolean expandPreviousRuns) {
+        this.expandPreviousRuns = expandPreviousRuns;
     }
 
     /**

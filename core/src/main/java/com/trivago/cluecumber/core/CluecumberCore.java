@@ -45,8 +45,8 @@ public class CluecumberCore {
         cluecumberEngine.setExpandBeforeAfterHooks(builder.expandBeforeAfterHooks);
         cluecumberEngine.setExpandDocStrings(builder.expandDocStrings);
         cluecumberEngine.setExpandStepHooks(builder.expandStepHooks);
-        cluecumberEngine.setShowNotLastRunToggle(builder.showNotLastRunToggle);
-        cluecumberEngine.setExpandNotLastRunElements(builder.expandNotLastRunElements);
+        cluecumberEngine.setShowOnlyLastRuns(builder.showOnlyLastRuns);
+        cluecumberEngine.setExpandPreviousRuns(builder.expandPreviousRuns);
         cluecumberEngine.setFailScenariosOnPendingOrUndefinedSteps(builder.failScenariosOnPendingOrUndefinedSteps);
         cluecumberEngine.setLogLevel(builder.logLevel);
         cluecumberEngine.setStartPage(builder.startPage);
@@ -80,8 +80,8 @@ public class CluecumberCore {
         private boolean expandBeforeAfterHooks;
         private boolean expandDocStrings;
         private boolean expandStepHooks;
-        private boolean showNotLastRunToggle;
-        private boolean expandNotLastRunElements;
+        private boolean showOnlyLastRuns;
+        private boolean expandPreviousRuns;
         private String logLevel;
         private String startPage;
         private boolean failScenariosOnPendingOrUndefinedSteps;
@@ -233,22 +233,22 @@ public class CluecumberCore {
         /**
          * Whether to show the toggle to show elements that are not last run.
          *
-         * @param showNotLastRunToggle If true, the toggle to show elements that are not last run will be shown.
+         * @param showOnlyLastRuns If true, the toggle to show elements that are not last run will be shown.
          * @return The {@link Builder}.
          */
-        public Builder setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
-            this.showNotLastRunToggle = showNotLastRunToggle;
+        public Builder setShowOnlyLastRuns(final boolean showOnlyLastRuns) {
+            this.showOnlyLastRuns = showOnlyLastRuns;
             return this;
         }
 
         /**
          * Whether to expand elements that are not last run.
          *
-         * @param expandNotLastRunElements If true, elements that are not last run will be expanded.
+         * @param expandPreviousRuns If true, elements that are not last run will be expanded.
          * @return The {@link Builder}.
          */
-        public Builder setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
-            this.expandNotLastRunElements = expandNotLastRunElements;
+        public Builder setExpandPreviousRuns(final boolean expandPreviousRuns) {
+            this.expandPreviousRuns = expandPreviousRuns;
             return this;
         }
 

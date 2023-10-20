@@ -743,10 +743,10 @@ public class Element {
 
     /**
      * Set to true if this scenario was run multiple times and it's not the last run.
-     * @param notLastOfMultipleScenarioRuns true if this scenario was run multiple times and it's not the last run.
+     * @param isNotLastOfMultipleScenarioRuns true if this scenario was run multiple times and it's not the last run.
      */
-    public void setNotLastOfMultipleScenarioRuns(final boolean notLastOfMultipleScenarioRuns) {
-        this.isNotLastOfMultipleScenarioRuns = notLastOfMultipleScenarioRuns;
+    public void setIsNotLastOfMultipleScenarioRuns(final boolean isNotLastOfMultipleScenarioRuns) {
+        this.isNotLastOfMultipleScenarioRuns = isNotLastOfMultipleScenarioRuns;
     }
 
     /**

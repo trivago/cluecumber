@@ -72,7 +72,7 @@ public class ElementMultipleRunsPreProcessor {
                         element.setIsLastOfMultipleScenarioRuns(true);
                         first = false;
                     } else {
-                        element.setNotLastOfMultipleScenarioRuns(true);
+                        element.setIsNotLastOfMultipleScenarioRuns(true);
                     }
                 }
             }

@@ -236,19 +236,19 @@ public final class CluecumberEngine {
     /**
      * Whether to show the toggle to show not last run elements.
      *
-     * @param showNotLastRunToggle If true, the toggle to show not last run elements will be shown.
+     * @param showOnlyLastRuns If true, the toggle to show not last run elements will be shown.
      */
-    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
-        propertyManager.setShowNotLastRunToggle(showNotLastRunToggle);
+    public void setShowOnlyLastRuns(final boolean showOnlyLastRuns) {
+        propertyManager.setShowOnlyLastRuns(showOnlyLastRuns);
     }
 
     /**
      * Whether to expand not last run elements or not.
      *
-     * @param expandNotLastRunElements If true, not last run elements will be expanded.
+     * @param expandPreviousRuns If true, not last run elements will be expanded.
      */
-    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
-        propertyManager.setExpandNotLastRunElements(expandNotLastRunElements);
+    public void setExpandPreviousRuns(final boolean expandPreviousRuns) {
+        propertyManager.setExpandPreviousRuns(expandPreviousRuns);
     }
 
     /**

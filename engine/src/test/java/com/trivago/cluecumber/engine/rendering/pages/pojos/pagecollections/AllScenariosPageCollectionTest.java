@@ -168,6 +168,21 @@ public class AllScenariosPageCollectionTest {
     }
 
     @Test
+    public void hasNotLastRunScenariosTest() {
+        assertFalse(allScenariosPageCollection.hasNotLastRunScenarios());
+        Report[] reportList = new Report[1];
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+        Element element = new Element();
+        element.setIsNotLastOfMultipleScenarioRuns(true);
+        elements.add(element);
+        report.setElements(elements);
+        reportList[0] = report;
+        allScenariosPageCollection.addReports(reportList);
+        assertTrue(allScenariosPageCollection.hasNotLastRunScenarios());
+    }
+
+    @Test
     public void hasCustomParametersTest() {
         assertFalse(allScenariosPageCollection.hasCustomParameters());
         List<CustomParameter> customParameters = new ArrayList<>();

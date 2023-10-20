@@ -103,14 +103,14 @@ public final class CluecumberMaven extends AbstractMojo {
     /**
      * Custom flag that determines if the toggle to show scenarios that are not the last run and other indications about it should be shown (default: false).
      */
-    @Parameter(property = "reporting.showNotLastRunToggle", defaultValue = "false")
-    private boolean showNotLastRunToggle;
+    @Parameter(property = "reporting.showOnlyLastRuns", defaultValue = "false")
+    private boolean showOnlyLastRuns;
 
     /**
      * Custom flag that determines if scenarios that are not the last run should be expanded and shown (default: true).
      */
-    @Parameter(property = "reporting.expandNotLastRunElements", defaultValue = "true")
-    private boolean expandNotLastRunElements;
+    @Parameter(property = "reporting.expandPreviousRuns", defaultValue = "true")
+    private boolean expandPreviousRuns;
 
     /**
      * Custom flag that determines if doc string sections of scenario detail pages should be expanded (default: false).
@@ -187,8 +187,8 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setExpandBeforeAfterHooks(expandBeforeAfterHooks)
                     .setExpandDocStrings(expandDocStrings)
                     .setExpandStepHooks(expandStepHooks)
-                    .setShowNotLastRunToggle(showNotLastRunToggle)
-                    .setExpandNotLastRunElements(expandNotLastRunElements)
+                    .setShowOnlyLastRuns(showOnlyLastRuns)
+                    .setExpandPreviousRuns(expandPreviousRuns)
                     .setStartPage(Settings.StartPage.valueOf(startPage.toUpperCase()))
                     .setCustomPageTitle(customPageTitle)
                     .setCustomStatusColorSkipped(customStatusColorSkipped)
