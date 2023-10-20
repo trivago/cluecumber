@@ -57,7 +57,8 @@ public class PropertyManager {
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
-    private boolean showRerunIndication = true;
+    private boolean showNotLastRunToggle = false;
+    private boolean expandNotLastRunElements = true;
     private String customCssFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
@@ -322,23 +323,40 @@ public class PropertyManager {
         this.expandAttachments = expandAttachments;
     }
 
-
     /**
-     * This determines whether the rerun indication should be shown.
+     * This determines whether the not last run toggle and related indications should be shown.
      *
      * @return true means it should be shown.
      */
-    public boolean isShowRerunIndication() {
-        return showRerunIndication;
+    public boolean isShowNotLastRunToggle() {
+        return showNotLastRunToggle;
     }
 
     /**
-     * Set whether the rerun indication should be shown.
+     * Set whether the not last run toggle and related indications should be show.
      *
-     * @param showRerunIndication true means it should be shown.
+     * @param showNotLastRunToggle true means it should be shown.
      */
-    public void setShowRerunIndication(final boolean showRerunIndication) {
-        this.showRerunIndication = showRerunIndication;
+    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
+        this.showNotLastRunToggle = showNotLastRunToggle;
+    }
+
+    /**
+     * This determines whether the not last run elements should be expanded and shown.
+     *
+     * @return true means it should be shown.
+     */
+    public boolean isExpandNotLastRunElements() {
+        return expandNotLastRunElements;
+    }
+
+    /**
+     * Set whether the not last run elements should be expanded and shown.
+     *
+     * @param expandNotLastRunElements true means elements should be expanded.
+     */
+    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
+        this.expandNotLastRunElements = expandNotLastRunElements;
     }
 
     /**

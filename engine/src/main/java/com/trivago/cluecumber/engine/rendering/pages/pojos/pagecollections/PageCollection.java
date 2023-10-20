@@ -31,6 +31,8 @@ public class PageCollection implements Cloneable {
     private boolean expandStepHooks;
     private boolean expandDocStrings;
     private boolean expandAttachments;
+    private boolean showNotLastRunToggle;
+    private boolean expandNotLastRunElements;
     private List<CustomParameter> customParameters;
     private CustomParamDisplayMode displayMode;
     private List<Link> links;
@@ -124,6 +126,42 @@ public class PageCollection implements Cloneable {
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
+    }
+
+    /**
+     * This determines whether the not last run toggle and related indications should be shown.
+     *
+     * @return true means it should be shown.
+     */
+    public boolean isShowNotLastRunToggle() {
+        return showNotLastRunToggle;
+    }
+
+    /**
+     * Set whether the not last run toggle and related indications should be show.
+     *
+     * @param showNotLastRunToggle true means it should be shown.
+     */
+    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
+        this.showNotLastRunToggle = showNotLastRunToggle;
+    }
+
+    /**
+     * This determines whether the not last run elements should be expanded and shown.
+     *
+     * @return true means it should be shown.
+     */
+    public boolean isExpandNotLastRunElements() {
+        return expandNotLastRunElements;
+    }
+
+    /**
+     * Set whether the not last run elements should be expanded and shown.
+     *
+     * @param expandNotLastRunElements true means elements should be expanded.
+     */
+    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
+        this.expandNotLastRunElements = expandNotLastRunElements;
     }
 
     /**

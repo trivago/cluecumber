@@ -24,7 +24,7 @@ import com.trivago.cluecumber.engine.filesystem.FileSystemManager;
 import com.trivago.cluecumber.engine.json.JsonPojoConverter;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
-import com.trivago.cluecumber.engine.json.processors.ElementRerunPreProcessor;
+import com.trivago.cluecumber.engine.json.processors.ElementMultipleRunsPreProcessor;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.ReportGenerator;
@@ -51,7 +51,7 @@ public final class CluecumberEngine {
     private final FileIO fileIO;
     private final JsonPojoConverter jsonPojoConverter;
     private final ElementIndexPreProcessor elementIndexPreProcessor;
-    private final ElementRerunPreProcessor elementRerunPreProcessor;
+    private final ElementMultipleRunsPreProcessor elementMultipleRunsPreProcessor;
     private final ReportGenerator reportGenerator;
 
     /**
@@ -64,6 +64,7 @@ public final class CluecumberEngine {
      * Constructor for dependency injection.
      *
      * @param elementIndexPreProcessor The {@link ElementIndexPreProcessor} instance.
+     * @param elementMultipleRunsPreProcessor The {@link ElementMultipleRunsPreProcessor} instance.
      * @param fileIO                   The {@link FileIO} instance.
      * @param fileSystemManager        The {@link FileSystemManager} instance.
      * @param jsonPojoConverter        The {@link JsonPojoConverter} instance.
@@ -79,7 +80,7 @@ public final class CluecumberEngine {
             final FileIO fileIO,
             final JsonPojoConverter jsonPojoConverter,
             final ElementIndexPreProcessor elementIndexPreProcessor,
-            final ElementRerunPreProcessor elementRerunPreProcessor,
+            final ElementMultipleRunsPreProcessor elementMultipleRunsPreProcessor,
             final ReportGenerator reportGenerator
     ) {
         this.propertyManager = propertyManager;
@@ -88,7 +89,7 @@ public final class CluecumberEngine {
         this.jsonPojoConverter = jsonPojoConverter;
         this.logger = logger;
         this.elementIndexPreProcessor = elementIndexPreProcessor;
-        this.elementRerunPreProcessor = elementRerunPreProcessor;
+        this.elementMultipleRunsPreProcessor = elementMultipleRunsPreProcessor;
         this.reportGenerator = reportGenerator;
     }
 
@@ -132,8 +133,8 @@ public final class CluecumberEngine {
                 logger.warn("Could not parse JSON in file '" + jsonFilePath + "': " + e.getMessage());
             }
         }
-        elementRerunPreProcessor.addRerunInformationToScenarios(allScenariosPageCollection.getReports());
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
+        elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
@@ -230,6 +231,24 @@ public final class CluecumberEngine {
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         propertyManager.setExpandAttachments(expandAttachments);
+    }
+
+    /**
+     * Whether to show the toggle to show not last run elements.
+     *
+     * @param showNotLastRunToggle If true, the toggle to show not last run elements will be shown.
+     */
+    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
+        propertyManager.setShowNotLastRunToggle(showNotLastRunToggle);
+    }
+
+    /**
+     * Whether to expand not last run elements or not.
+     *
+     * @param expandNotLastRunElements If true, not last run elements will be expanded.
+     */
+    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
+        propertyManager.setExpandNotLastRunElements(expandNotLastRunElements);
     }
 
     /**

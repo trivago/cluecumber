@@ -32,8 +32,8 @@ import java.util.stream.Collectors;
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
-    private boolean isRerun = false;
-    private boolean hasTriggeredRerun = false;
+    private boolean isLastOfMultipleScenarioRuns = false;
+    private boolean isNotLastOfMultipleScenarioRuns = false;
     private String featureName = "";
     private String featureUri = "";
     private String name = "";
@@ -698,35 +698,55 @@ public class Element {
     }
 
     /**
-     * Check if this scenario is a rerun.
+     * Get the scenario's id.
      *
-     * @return true if this scenario is a rerun.
+     * @return The string id.
      */
-    public boolean getIsRerun() {
-        return isRerun;
+    public String getId() {
+        return id;
     }
 
     /**
-     * Set to true if this scenario is a rerun.
-     */
-    public void setIsRerun(final boolean isRerun) {
-        this.isRerun = isRerun;
-    }
-
-    /**
-     * Check if this scenario triggered a rerun after its execution and it's not the final run.
+     * Set the scenario's id.
      *
-     * @return true if this scenario triggered a rerun after its execution and it's not the final run.
+     * @param id The string id.
      */
-    public boolean getHasTriggeredRerun() {
-        return hasTriggeredRerun;
+    public void setId(final String id) {
+        this.id = id;
     }
 
     /**
-     * Set to true if this scenario triggered a rerun after its execution and it's not the final run.
+     * Check if this scenario is the last of multiple runs.
+     *
+     * @return true if this scenario is the last of multiple runs.
      */
-    public void setHasTriggeredRerun(final boolean hasTriggeredRerun) {
-        this.hasTriggeredRerun = hasTriggeredRerun;
+    public boolean getIsLastOfMultipleScenarioRuns() {
+        return isLastOfMultipleScenarioRuns;
+    }
+
+    /**
+     * Set to true if this scenario is the last of multiple runs.
+     * @param isLastOfMultipleScenarioRuns true if this scenario is the last of multiple runs.
+     */
+    public void setIsLastOfMultipleScenarioRuns(final boolean isLastOfMultipleScenarioRuns) {
+        this.isLastOfMultipleScenarioRuns = isLastOfMultipleScenarioRuns;
+    }
+
+    /**
+     * Check if this scenario was run multiple times and it's not the last run.
+     *
+     * @return true if this scenario was run multiple times and it's not the last run.
+     */
+    public boolean getIsNotLastOfMultipleScenarioRuns() {
+        return isNotLastOfMultipleScenarioRuns;
+    }
+
+    /**
+     * Set to true if this scenario was run multiple times and it's not the last run.
+     * @param notLastOfMultipleScenarioRuns true if this scenario was run multiple times and it's not the last run.
+     */
+    public void setNotLastOfMultipleScenarioRuns(final boolean notLastOfMultipleScenarioRuns) {
+        this.isNotLastOfMultipleScenarioRuns = notLastOfMultipleScenarioRuns;
     }
 
     /**

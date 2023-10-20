@@ -54,6 +54,8 @@ import java.util.stream.Collectors;
  */
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
+    private boolean showNotLastRunToggle;
+    private boolean expandNotLastRunElements;
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
@@ -159,12 +161,12 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
-     * Check if there are rerun scenarios.
+     * Check if there are scenarios run multiple times.
      *
-     * @return true if there are rerun scenarios.
+     * @return true if there are scenarios run multiple times.
      */
-    public boolean hasRerunScenarios() {
-        return getTotalNumberOfRerunScenarios() > 0;
+    public boolean hasNotFirstRunScenarios() {
+        return getTotalNumberOfNotLastScenariosRuns() > 0;
     }
 
     /**
@@ -195,14 +197,14 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
-     * Return the number of rerun scenarios.
+     * Return the number of scenarios runs that were not the last.
      *
      * @return The scenario count.
      */
-    public int getTotalNumberOfRerunScenarios() {
+    public int getTotalNumberOfNotLastScenariosRuns() {
         return reports.stream().mapToInt(
                 report -> (int) report.getElements().stream().filter(
-                        element -> element.getHasTriggeredRerun()
+                        element -> element.getIsNotLastOfMultipleScenarioRuns()
                 ).count()).sum();
     }
 
@@ -345,6 +347,42 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      */
     public void setStepFilter(final Step stepFilter) {
         this.stepFilter = stepFilter;
+    }
+
+    /**
+     * This determines whether the not last run toggle and related indications should be shown.
+     *
+     * @return true means it should be shown.
+     */
+    public boolean isShowNotLastRunToggle() {
+        return showNotLastRunToggle;
+    }
+
+    /**
+     * Set whether the not last run toggle and related indications should be show.
+     *
+     * @param showNotLastRunToggle true means it should be shown.
+     */
+    public void setShowNotLastRunToggle(final boolean showNotLastRunToggle) {
+        this.showNotLastRunToggle = showNotLastRunToggle;
+    }
+
+    /**
+     * This determines whether the not last run elements should be expanded and shown.
+     *
+     * @return true means it should be shown.
+     */
+    public boolean isExpandNotLastRunElements() {
+        return expandNotLastRunElements;
+    }
+
+    /**
+     * Set whether the not last run elements should be expanded and shown.
+     *
+     * @param expandNotLastRunElements true means elements should be expanded.
+     */
+    public void setExpandNotLastRunElements(final boolean expandNotLastRunElements) {
+        this.expandNotLastRunElements = expandNotLastRunElements;
     }
 
     /**

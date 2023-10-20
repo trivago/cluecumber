@@ -101,6 +101,18 @@ public final class CluecumberMaven extends AbstractMojo {
     private boolean expandStepHooks;
 
     /**
+     * Custom flag that determines if the toggle to show scenarios that are not the last run and other indications about it should be shown (default: false).
+     */
+    @Parameter(property = "reporting.showNotLastRunToggle", defaultValue = "false")
+    private boolean showNotLastRunToggle;
+
+    /**
+     * Custom flag that determines if scenarios that are not the last run should be expanded and shown (default: true).
+     */
+    @Parameter(property = "reporting.expandNotLastRunElements", defaultValue = "true")
+    private boolean expandNotLastRunElements;
+
+    /**
      * Custom flag that determines if doc string sections of scenario detail pages should be expanded (default: false).
      */
     @Parameter(property = "reporting.expandDocStrings", defaultValue = "false")
@@ -150,12 +162,6 @@ public final class CluecumberMaven extends AbstractMojo {
     @Parameter(property = "reporting.logLevel", defaultValue = "default")
     String logLevel;
 
-    /**
-     * Optional information about tests that are executed as rerun (default: false)
-     */
-    @Parameter(property = "reporting.showRerunIndication", defaultValue = "false")
-    private boolean showRerunIndication;
-
     @Parameter(property = "reporting.skip", defaultValue = "false")
     private boolean skip;
 
@@ -181,6 +187,8 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setExpandBeforeAfterHooks(expandBeforeAfterHooks)
                     .setExpandDocStrings(expandDocStrings)
                     .setExpandStepHooks(expandStepHooks)
+                    .setShowNotLastRunToggle(showNotLastRunToggle)
+                    .setExpandNotLastRunElements(expandNotLastRunElements)
                     .setStartPage(Settings.StartPage.valueOf(startPage.toUpperCase()))
                     .setCustomPageTitle(customPageTitle)
                     .setCustomStatusColorSkipped(customStatusColorSkipped)

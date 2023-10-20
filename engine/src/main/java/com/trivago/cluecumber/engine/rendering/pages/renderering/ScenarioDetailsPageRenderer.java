@@ -76,6 +76,8 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         scenarioDetailsPageCollection.setExpandStepHooks(propertyManager.isExpandStepHooks());
         scenarioDetailsPageCollection.setExpandDocStrings(propertyManager.isExpandDocStrings());
         scenarioDetailsPageCollection.setExpandAttachments(propertyManager.isExpandAttachments());
+        scenarioDetailsPageCollection.setExpandNotLastRunElements(propertyManager.isExpandNotLastRunElements());
+        scenarioDetailsPageCollection.setShowNotLastRunToggle(propertyManager.isShowNotLastRunToggle());
 
         addChartJsonToReportDetails(scenarioDetailsPageCollection);
 
