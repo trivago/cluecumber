@@ -47,13 +47,12 @@ public class ElementMultipleRunsPreProcessor {
      */
     public void addMultipleRunsInformationToScenarios(final List<Report> reports) {
 
-        // Get all elements
         List<Element> elements = new ArrayList<>();
         for (Report report : reports) {
             elements.addAll(report.getElements());
         }
 
-        // Group elements by URI and name, to ensure that scenario outlines are properly handled
+        // Group elements by id (that should combine feature and scenario names) and line, to also ensure that scenario outlines are properly handled
         Map<String, Map<Integer, List<Element>>> groupedElements = elements.stream()
                 .collect(Collectors.groupingBy(
                         Element::getId,
@@ -63,14 +62,12 @@ public class ElementMultipleRunsPreProcessor {
         // set flags based on start time
         for (Map<Integer, List<Element>> idGroup : groupedElements.values()) {
             for (List<Element> lineGroup : idGroup.values()) {
-                System.out.println("Iterating through elements of a group with " + lineGroup.size() + " elements");
                 if (lineGroup.size() < 2) {
                     continue;
                 }
                 lineGroup.sort(Comparator.comparing(Element::getStartDateTime).reversed());
                 boolean first = true;
                 for (Element element : lineGroup) {
-                    System.out.println("Element " + element.getName() + " has start time " + element.getStartDateTime());
                     if (first) {
                         element.setIsLastOfMultipleScenarioRuns(true);
                         first = false;
