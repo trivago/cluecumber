@@ -128,7 +128,7 @@ preheadlineLink=preheadlineLink>
                             skipped</a> <@common.status status="skipped"/>
                     </#if>
                 </li>
-                <#if isShowOnlyLastRuns() && hasNotFirstRunScenarios()>
+                <#if isShowOnlyLastRuns() && hasNotLastRunScenarios()>
                     <li class="list-group-item" data-cluecumber-item="scenario-summary">
                         Of which:
                         <br>
@@ -136,7 +136,7 @@ preheadlineLink=preheadlineLink>
                     </li>
                 </#if>
             </ul>
-            <#if isShowOnlyLastRuns() && hasNotFirstRunScenarios()>
+            <#if isShowOnlyLastRuns() && hasNotLastRunScenarios()>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
                         data-target=".notLastRun">not last runs
