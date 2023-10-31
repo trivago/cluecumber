@@ -22,9 +22,14 @@ limitations under the License.
     <#assign passedRequested = status == "passed">
     <#assign allRequested = status == "all">
 
+    <#if isShowOnlyLastRuns()>
+      <#assign failuresCondition = (failedRequested && hasFailedScenariosNotPassedOnLastRun())>
+    <#else>
+      <#assign failuresCondition = (failedRequested && hasFailedScenarios())>
+    </#if>
     <#if
     (skippedRequested && hasSkippedScenarios()) ||
-    (failedRequested && hasFailedScenarios()) ||
+    failuresCondition ||
     (passedRequested && hasPassedScenarios()) ||
     allRequested
     >
@@ -76,62 +81,57 @@ limitations under the License.
                                 <#if allRequested>
                                     <th class="text-left">Status</th>
                                 </#if>
-                                <#if isShowOnlyLastRuns()>
-                                    <th class="text-center">Last run</th>
-                                </#if>
                             </tr>
                             </thead>
                             <tbody>
-                            <#list reports as report>
-                                <#assign tooltipText = "">
-                                <#if report.description?has_content>
-                                    <#assign tooltipText = "${report.description} | ">
-                                </#if>
-                                <#assign tooltipText = "${tooltipText}${report.uri}">
-
-                                <#list report.elements as element>
-                                    <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                        <tr class="<#if isShowOnlyLastRuns() && element.getIsNotLastOfMultipleScenarioRuns()>notLastRun collapse </#if>table-row-${element.status.statusString}">
-                                            <#if allRequested>
-                                                <td class="text-right">${element.scenarioIndex}</td>
-                                            </#if>
-                                            <td class="text-left">
-                                                <span data-toggle="tooltip" title="${tooltipText}">
-                                                    <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
-                                                </span>
-                                            </td>
-                                            <td class="text-left">
-                                                <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
-                                                   style="word-break: break-all">${element.name?html}</a>
-                                                <#if element.firstExceptionClass != "">
-                                                    <p class="firstException text-left small text-gray" style="word-break: break-word">${element.firstExceptionClass}</p>
-                                                </#if>
-                                            </td>
-                                            <td class="text-center small" data-order="${element.startTimestamp}">
-                                                ${element.startDateString}<br>${element.startTimeString}
-                                            </td>
-                                            <td class="text-right small"
-                                                data-order="${element.totalDuration}">
-                                                <span class="nobr">${element.returnTotalDurationString()}</span>
-                                            </td>
-                                            <#if allRequested>
-                                                <td class="text-center"><@common.status status=element.status.statusString/></td>
-                                            </#if>
-                                                <td class="text-center">
-                                                    <#if isShowOnlyLastRuns() && element.getIsLastOfMultipleScenarioRuns()>
-                                                        <span data-toggle="tooltip" title="This is the last started run">
-                                                            L
-                                                        </span>
-                                                    </#if>
-                                                    <#if isShowOnlyLastRuns() && element.getIsNotLastOfMultipleScenarioRuns()>
-                                                        <span data-toggle="tooltip" title="There are other runs of the same scenario that started later">
-                                                            X
-                                                        </span>
-                                                    </#if>
-                                                </td>
-                                        </tr>
+                                <#list reports as report>
+                                    <#assign tooltipText = "">
+                                    <#if report.description?has_content>
+                                        <#assign tooltipText = "${report.description} | ">
                                     </#if>
-                                </#list>
+                                    <#assign tooltipText = "${tooltipText}${report.uri}">
+
+                                    <#list report.elements as element>
+                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
+                                            <#assign isLastOfMultipleScenarioRuns = element.getIsLastOfMultipleScenarioRuns()>
+                                            <#assign isNotLastOfMultipleScenarioRuns = element.getIsNotLastOfMultipleScenarioRuns()>
+                                            <#if !isShowOnlyLastRuns() || (isShowOnlyLastRuns() && !isNotLastOfMultipleScenarioRuns)>
+                                                <tr class="table-row-${element.status.statusString}">
+                                                    <#if allRequested>
+                                                        <td class="text-right">${element.scenarioIndex}</td>
+                                                    </#if>
+                                                    <td class="text-left">
+                                                        <span data-toggle="tooltip" title="${tooltipText}">
+                                                            <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html" style="word-break: break-all">${element.name?html}</a>
+                                                        <#if element.firstExceptionClass != "">
+                                                            <p class="firstException text-left small text-gray" style="word-break: break-word">${element.firstExceptionClass}</p>
+                                                        </#if>
+                                                        <#list element.getChildrenElements() as childElement>
+                                                        <div class="notLastRun collapse">
+                                                                /-- <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html" style="word-break: break-all">Previous run - started at: ${childElement.startDateString} - ${childElement.startTimeString} <@common.status status=childElement.status.statusString/></a>
+                                                                <#if childElement.firstExceptionClass != "">
+                                                                    <p class="firstException text-left small text-gray" style="word-break: break-word">${childElement.firstExceptionClass}</p>
+                                                                </#if>
+                                                        </div>
+                                                    </#list>
+                                                    </td>
+                                                    <td class="text-center small" data-order="${element.startTimestamp}">
+                                                        ${element.startDateString}<br>${element.startTimeString}
+                                                    </td>
+                                                    <td class="text-right small" data-order="${element.totalDuration}">
+                                                        <span class="nobr">${element.returnTotalDurationString()}</span>
+                                                    </td>
+                                                    <#if allRequested>
+                                                        <td class="text-center"><@common.status status=element.status.statusString/></td>
+                                                    </#if>
+                                                </tr>
+                                            </#if>
+                                        </#if>
+                                    </#list>
                             </#list>
                             </tbody>
                         </table>

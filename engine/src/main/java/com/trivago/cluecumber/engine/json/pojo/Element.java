@@ -47,6 +47,7 @@ public class Element {
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
     private String startTimestamp = "";
+    private List<Element> childrenElements = new ArrayList<>();;
 
     private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
@@ -747,6 +748,14 @@ public class Element {
      */
     public void setIsNotLastOfMultipleScenarioRuns(final boolean isNotLastOfMultipleScenarioRuns) {
         this.isNotLastOfMultipleScenarioRuns = isNotLastOfMultipleScenarioRuns;
+    }
+
+    public List<Element> getChildrenElements() {
+        return childrenElements;
+    }
+
+    public void setChildrenElements(final List<Element> childrenElements) {
+        this.childrenElements = childrenElements;
     }
 
     /**

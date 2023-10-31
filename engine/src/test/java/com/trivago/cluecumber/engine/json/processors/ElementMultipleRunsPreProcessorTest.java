@@ -61,5 +61,8 @@ public void setup() {
         assertEquals(e.get(0).getIsLastOfMultipleScenarioRuns(), false);
         assertEquals(e.get(1).getIsLastOfMultipleScenarioRuns(), false);
         assertEquals(e.get(2).getIsLastOfMultipleScenarioRuns(), true);
+        assertEquals(e.get(0).getChildrenElements().size(), 0);
+        assertEquals(e.get(1).getChildrenElements().size(), 0);
+        assertEquals(e.get(2).getChildrenElements().size(), 1);
     }
 }

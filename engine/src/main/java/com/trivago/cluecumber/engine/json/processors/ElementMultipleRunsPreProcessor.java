@@ -59,24 +59,24 @@ public class ElementMultipleRunsPreProcessor {
                         Collectors.groupingBy(Element::getLine)
                 ));
 
-        // set flags based on start time
+        // set flags based on start time and add children element to last run element
         for (Map<Integer, List<Element>> idGroup : groupedElements.values()) {
             for (List<Element> lineGroup : idGroup.values()) {
                 if (lineGroup.size() < 2) {
                     continue;
                 }
                 lineGroup.sort(Comparator.comparing(Element::getStartDateTime).reversed());
-                boolean first = true;
-                for (Element element : lineGroup) {
-                    if (first) {
-                        element.setIsLastOfMultipleScenarioRuns(true);
-                        first = false;
-                    } else {
-                        element.setIsNotLastOfMultipleScenarioRuns(true);
-                    }
+
+                Element lastRunElement = lineGroup.get(0);
+                lastRunElement.setIsLastOfMultipleScenarioRuns(true);
+
+                List<Element> childrenElements = new ArrayList<>(lineGroup.subList(1, lineGroup.size()));
+                for (Element element : childrenElements) {
+                    element.setIsNotLastOfMultipleScenarioRuns(true);
                 }
+
+                lastRunElement.setChildrenElements(childrenElements);
             }
         }
-
     }
 }

@@ -134,7 +134,9 @@ public final class CluecumberEngine {
             }
         }
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
-        elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
+        if (propertyManager.isShowOnlyLastRuns()) {
+            elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
+        }
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +

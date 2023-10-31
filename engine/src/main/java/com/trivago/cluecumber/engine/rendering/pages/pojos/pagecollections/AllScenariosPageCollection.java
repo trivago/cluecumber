@@ -143,6 +143,15 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
+     * Check if there are failed scenarios.
+     *
+     * @return true if there are failed scenarios.
+     */
+    public boolean hasFailedScenariosNotPassedOnLastRun() {
+        return getTotalNumberOfFailedScenarioWithoutLaterRuns() > 0;
+    }
+
+    /**
      * Check if there are passed scenarios.
      *
      * @return true if there are passed scenarios.
@@ -185,6 +194,18 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      */
     public int getTotalNumberOfFailedScenarios() {
         return getNumberOfScenariosWithStatus(Status.FAILED);
+    }
+
+    /**
+     * Return the number of scenarios runs that failed and were either single runs or the last of multiple runs.
+     *
+     * @return The scenario count.
+     */
+    public int getTotalNumberOfFailedScenarioWithoutLaterRuns() {
+        return reports.stream().mapToInt(
+                report -> (int) report.getElements().stream().filter(
+                        element -> element.getStatus().equals(Status.FAILED) && !element.getIsNotLastOfMultipleScenarioRuns()
+                ).count()).sum();
     }
 
     /**
