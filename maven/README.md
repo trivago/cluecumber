@@ -260,6 +260,18 @@ page to expand those sections on demand.
 </configuration>
 ```
 
+## Auto-expand Previous Runs
+
+The `expandPreviousRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
+(on all scenarios page only, if `showOnlyLastRuns` mode active).
+
+```xml
+<configuration>
+    <expandPreviousRuns>true|false</expandPreviousRuns>
+    ...
+</configuration>
+```
+
 ## Auto-expand Attachments
 
 By default, attachments are collapsed and can be toggled individually. If the `expandAttachments` options is set
@@ -371,6 +383,21 @@ The result of this customization is:
 | Before | After |
 |---|---|
 | ![Chart Before](../documentation/img/chart_before.png) | ![Chart After](../documentation/img/chart_after.png) |
+
+## Enabling a compact view of multiple runs of the same scenarios
+
+It is possible to group multiple runs of the same scenario, especially useful for cases like reruns.
+Enabling the feature will list the "children" elements (previous runs) on the "All scenarios" page
+as nested elements of the last run of that specific scenario. 
+The grouping is based on scenario `id` + scenario `line`
+A button allows to expand/collapse, the default state can be set via `expandPreviousRuns`. 
+
+```xml
+<configuration>
+  <showOnlyLastRuns>true</showOnlyLastRuns>
+    ...
+</configuration>    
+```
 
 # Running the reporting goal directly via command line
 

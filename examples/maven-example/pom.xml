@@ -80,6 +80,10 @@
                     <expandDocStrings>true</expandDocStrings>
                     <expandAttachments>true</expandAttachments>
 
+                    <!-- Optional mode to show only last runs and expand or collapse previous runs by default -->
+                    <!-- <showOnlyLastRuns>true</showOnlyLastRuns> -->
+                    <!-- <expandPreviousRuns>false</expandPreviousRuns> -->
+
                     <!-- optional: Cluecumber log level -->
                     <!--<logLevel>default</logLevel>-->
                     <!--<logLevel>compact</logLevel>-->

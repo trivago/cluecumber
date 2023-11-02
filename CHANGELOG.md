@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.5.0] - 2023-11-02
+
+### Added
+* `showOnlyLastRuns` mode for a compact view when there are multiple runs of the same scenario [#245]
+* `expandPreviousRuns` to set default state of expanded or collapsed of the previous runs of the same scenario
+
 ## [3.4.0] - 2023-08-10
 
 ### Fixed
@@ -762,6 +768,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.0
 [3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.4.0
 [3.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.1
 [3.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.0
