@@ -54,6 +54,8 @@ import java.util.stream.Collectors;
  */
 public class AllScenariosPageCollection extends PageCollection implements Visitable {
     private List<Report> reports = new ArrayList<>();
+    private boolean groupPreviousScenarioRuns;
+    private boolean expandPreviousScenarioRuns;
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
@@ -141,6 +143,15 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
+     * Check if there are failed scenarios.
+     *
+     * @return true if there are failed scenarios.
+     */
+    public boolean hasFailedScenariosNotPassedOnLastRun() {
+        return getTotalNumberOfFailedScenarioWithoutLaterRuns() > 0;
+    }
+
+    /**
      * Check if there are passed scenarios.
      *
      * @return true if there are passed scenarios.
@@ -156,6 +167,15 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      */
     public boolean hasSkippedScenarios() {
         return getTotalNumberOfSkippedScenarios() > 0;
+    }
+
+    /**
+     * Check if there are scenarios run multiple times.
+     *
+     * @return true if there are scenarios run multiple times.
+     */
+    public boolean hasNotLastRunScenarios() {
+        return getTotalNumberOfNotLastScenariosRuns() > 0;
     }
 
     /**
@@ -177,6 +197,18 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
+     * Return the number of scenarios runs that failed and were either single runs or the last of multiple runs.
+     *
+     * @return The scenario count.
+     */
+    public int getTotalNumberOfFailedScenarioWithoutLaterRuns() {
+        return reports.stream().mapToInt(
+                report -> (int) report.getElements().stream().filter(
+                        element -> element.getStatus().equals(Status.FAILED) && !element.getIsNotLastOfMultipleScenarioRuns()
+                ).count()).sum();
+    }
+
+    /**
      * Return the number of skipped scenarios.
      *
      * @return The scenario count.
@@ -185,6 +217,17 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         return getNumberOfScenariosWithStatus(Status.SKIPPED);
     }
 
+    /**
+     * Return the number of scenarios runs that were not the last.
+     *
+     * @return The scenario count.
+     */
+    public int getTotalNumberOfNotLastScenariosRuns() {
+        return reports.stream().mapToInt(
+                report -> (int) report.getElements().stream().filter(
+                        element -> element.getIsNotLastOfMultipleScenarioRuns()
+                ).count()).sum();
+    }
 
     private int getNumberOfScenariosWithStatus(final Status status) {
         return reports.stream().mapToInt(
@@ -325,6 +368,42 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      */
     public void setStepFilter(final Step stepFilter) {
         this.stepFilter = stepFilter;
+    }
+
+    /**
+     * This determines whether the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
+     *
+     * @return true means scenarios should be grouped and toggle should be shown.
+     */
+    public boolean isGroupPreviousScenarioRuns() {
+        return groupPreviousScenarioRuns;
+    }
+
+    /**
+     * Set whether the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
+     *
+     * @param groupPreviousScenarioRuns true means scenarios should be grouped and toggle should be shown.
+     */
+    public void setGroupPreviousScenarioRuns(final boolean groupPreviousScenarioRuns) {
+        this.groupPreviousScenarioRuns = groupPreviousScenarioRuns;
+    }
+
+    /**
+     * This determines whether the not last run elements should be expanded and shown.
+     *
+     * @return true means it should be expanded.
+     */
+    public boolean isExpandPreviousScenarioRuns() {
+        return expandPreviousScenarioRuns;
+    }
+
+    /**
+     * Set whether the not last run elements should be expanded and shown.
+     *
+     * @param expandPreviousScenarioRuns true means elements should be expanded.
+     */
+    public void setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
+        this.expandPreviousScenarioRuns = expandPreviousScenarioRuns;
     }
 
     /**

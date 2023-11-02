@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.4.0</version>
+    <version>3.5.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -79,6 +79,10 @@
                     <expandStepHooks>true</expandStepHooks>
                     <expandDocStrings>true</expandDocStrings>
                     <expandAttachments>true</expandAttachments>
+
+                    <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
+                    <!-- <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns> -->
+                    <!-- <expandPreviousScenarioRuns>false</expandPreviousScenarioRuns> -->
 
                     <!-- optional: Cluecumber log level -->
                     <!--<logLevel>default</logLevel>-->

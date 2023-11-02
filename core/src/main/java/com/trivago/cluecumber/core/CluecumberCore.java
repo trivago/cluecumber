@@ -45,6 +45,8 @@ public class CluecumberCore {
         cluecumberEngine.setExpandBeforeAfterHooks(builder.expandBeforeAfterHooks);
         cluecumberEngine.setExpandDocStrings(builder.expandDocStrings);
         cluecumberEngine.setExpandStepHooks(builder.expandStepHooks);
+        cluecumberEngine.setGroupPreviousScenarioRuns(builder.groupPreviousScenarioRuns);
+        cluecumberEngine.setExpandPreviousScenarioRuns(builder.expandPreviousScenarioRuns);
         cluecumberEngine.setFailScenariosOnPendingOrUndefinedSteps(builder.failScenariosOnPendingOrUndefinedSteps);
         cluecumberEngine.setLogLevel(builder.logLevel);
         cluecumberEngine.setStartPage(builder.startPage);
@@ -78,6 +80,8 @@ public class CluecumberCore {
         private boolean expandBeforeAfterHooks;
         private boolean expandDocStrings;
         private boolean expandStepHooks;
+        private boolean groupPreviousScenarioRuns;
+        private boolean expandPreviousScenarioRuns;
         private String logLevel;
         private String startPage;
         private boolean failScenariosOnPendingOrUndefinedSteps;
@@ -223,6 +227,28 @@ public class CluecumberCore {
          */
         public Builder setExpandStepHooks(final boolean expandStepHooks) {
             this.expandStepHooks = expandStepHooks;
+            return this;
+        }
+
+        /**
+         * Whether to show the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
+         *
+         * @param groupPreviousScenarioRuns If true, the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
+         * @return The {@link Builder}.
+         */
+        public Builder setGroupPreviousScenarioRuns(final boolean groupPreviousScenarioRuns) {
+            this.groupPreviousScenarioRuns = groupPreviousScenarioRuns;
+            return this;
+        }
+
+        /**
+         * Whether to expand elements that are not last run.
+         *
+         * @param expandPreviousScenarioRuns If true, elements that are not last run will be expanded.
+         * @return The {@link Builder}.
+         */
+        public Builder setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
+            this.expandPreviousScenarioRuns = expandPreviousScenarioRuns;
             return this;
         }
 

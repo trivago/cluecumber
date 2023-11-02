@@ -74,6 +74,9 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+
+        allScenariosPageCollectionClone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
+        allScenariosPageCollectionClone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }

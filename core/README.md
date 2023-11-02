@@ -42,7 +42,7 @@ _Clear and concise JVM reporting for the Cucumber BDD JSON format_
 <dependency>
   <groupId>com.trivago.rta</groupId>
   <artifactId>cluecumber-core</artifactId>
-  <version>3.4.0</version>
+  <version>3.5.0</version>
 </dependency>
 ```
 
@@ -241,6 +241,18 @@ new CluecumberCore.Builder()
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
+## Auto-expand Previous Scenario Runs
+
+The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
+(on all scenarios page only, if `groupPreviousScenarioRuns` mode active).
+
+```java
+new CluecumberCore.Builder()
+        .setGroupPreviousScenarioRuns(true)
+        .setExpandPreviousScenarioRuns(true)
+        .build().generateReports(jsonDirectory, reportDirectory);
+```
+
 ## Auto-expand Attachments
 
 By default, attachments are collapsed and can be toggled individually. If the `expandAttachments` options is set
@@ -348,6 +360,20 @@ The result of this customization is:
 |---|---|
 | ![Chart Before](../documentation/img/chart_before.png) | ![Chart After](../documentation/img/chart_after.png) |
 
+## Enabling a compact view of multiple runs of the same scenarios
+
+It is possible to group multiple runs of the same scenario, especially useful for cases like reruns.
+Enabling the feature will list the "children" elements (previous runs) on the "All scenarios" page
+as nested elements of the last run of that specific scenario.
+The grouping is based on scenario `id` + scenario `line`
+A button allows to expand/collapse, the default state can be set via `expandPreviousScenarioRuns`.
+
+```java
+new CluecumberCore.Builder()
+        .setGroupPreviousScenarioRuns(true)
+        .setExpandPreviousScenarioRuns(false)
+        .build().generateReports(jsonDirectory, reportDirectory);
+```
 
 # Appendix
 

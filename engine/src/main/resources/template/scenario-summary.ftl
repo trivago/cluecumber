@@ -128,7 +128,20 @@ preheadlineLink=preheadlineLink>
                             skipped</a> <@common.status status="skipped"/>
                     </#if>
                 </li>
+                <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
+                    <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                        Of which:
+                        <br>
+                        ${totalNumberOfNotLastScenariosRuns} ${common.pluralizeFn("Scenario", totalNumberOfNotLastScenariosRuns)} were not first runs
+                    </li>
+                </#if>
             </ul>
+            <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
+                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
+                        aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
+                        data-target=".notLastRun">not last runs
+                </button>
+            </#if>
         </@page.card>
     </div>
 

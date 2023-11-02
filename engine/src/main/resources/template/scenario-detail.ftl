@@ -50,6 +50,12 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>
                 </#list>
             </li>
+            <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
+                <li class="list-group-item">Note: <strong>this is the last started run</strong></li>
+            </#if>
+            <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
+                <li class="list-group-item">Note: <strong>there are other runs of the same scenario that started later</strong></li>
+            </#if>
         </@page.card>
         <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">

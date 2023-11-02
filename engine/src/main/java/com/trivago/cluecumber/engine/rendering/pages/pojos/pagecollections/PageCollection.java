@@ -31,6 +31,8 @@ public class PageCollection implements Cloneable {
     private boolean expandStepHooks;
     private boolean expandDocStrings;
     private boolean expandAttachments;
+    private boolean groupPreviousScenarioRuns;
+    private boolean expandPreviousScenarioRuns;
     private List<CustomParameter> customParameters;
     private CustomParamDisplayMode displayMode;
     private List<Link> links;
@@ -124,6 +126,42 @@ public class PageCollection implements Cloneable {
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
+    }
+
+    /**
+     * This determines whether the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
+     *
+     * @return true means scenarios should be grouped and toggle should be shown.
+     */
+    public boolean isGroupPreviousScenarioRuns() {
+        return groupPreviousScenarioRuns;
+    }
+
+    /**
+     * Set whether the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
+     *
+     * @param groupPreviousScenarioRuns true means scenarios should be grouped and toggle should be shown.
+     */
+    public void setGroupPreviousScenarioRuns(final boolean groupPreviousScenarioRuns) {
+        this.groupPreviousScenarioRuns = groupPreviousScenarioRuns;
+    }
+
+    /**
+     * This determines whether the not last run elements should be expanded and shown.
+     *
+     * @return true means it should be expanded.
+     */
+    public boolean isExpandPreviousScenarioRuns() {
+        return expandPreviousScenarioRuns;
+    }
+
+    /**
+     * Set whether the not last run elements should be expanded and shown.
+     *
+     * @param expandPreviousScenarioRuns true means elements should be expanded.
+     */
+    public void setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
+        this.expandPreviousScenarioRuns = expandPreviousScenarioRuns;
     }
 
     /**
