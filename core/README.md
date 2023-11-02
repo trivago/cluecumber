@@ -241,15 +241,15 @@ new CluecumberCore.Builder()
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
-## Auto-expand Previous Runs
+## Auto-expand Previous Scenario Runs
 
-The `expandPreviousRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
-(on all scenarios page only, if `showOnlyLastRuns` mode active).
+The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
+(on all scenarios page only, if `groupPreviousScenarioRuns` mode active).
 
 ```java
 new CluecumberCore.Builder()
-        .setShowOnlyLastRuns(true)
-        .setExpandPreviousRuns(true)
+        .setGroupPreviousScenarioRuns(true)
+        .setExpandPreviousScenarioRuns(true)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
@@ -366,12 +366,12 @@ It is possible to group multiple runs of the same scenario, especially useful fo
 Enabling the feature will list the "children" elements (previous runs) on the "All scenarios" page
 as nested elements of the last run of that specific scenario.
 The grouping is based on scenario `id` + scenario `line`
-A button allows to expand/collapse, the default state can be set via `expandPreviousRuns`.
+A button allows to expand/collapse, the default state can be set via `expandPreviousScenarioRuns`.
 
 ```java
 new CluecumberCore.Builder()
-        .setShowOnlyLastRuns(true)
-        .setExpandPreviousRuns(false)
+        .setGroupPreviousScenarioRuns(true)
+        .setExpandPreviousScenarioRuns(false)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 

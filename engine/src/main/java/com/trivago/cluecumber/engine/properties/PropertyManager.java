@@ -57,8 +57,8 @@ public class PropertyManager {
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
-    private boolean showOnlyLastRuns = false;
-    private boolean expandPreviousRuns = true;
+    private boolean groupPreviousScenarioRuns = false;
+    private boolean expandPreviousScenarioRuns = true;
     private String customCssFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
@@ -324,39 +324,39 @@ public class PropertyManager {
     }
 
     /**
-     * This determines whether the not last run toggle and related indications should be shown.
+     * This determines whether the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
      *
-     * @return true means it should be shown.
+     * @return true means scenarios should be grouped and toggle should be shown.
      */
-    public boolean isShowOnlyLastRuns() {
-        return showOnlyLastRuns;
+    public boolean isGroupPreviousScenarioRuns() {
+        return groupPreviousScenarioRuns;
     }
 
     /**
-     * Set whether the not last run toggle and related indications should be show.
+     * Set whether the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
      *
-     * @param showOnlyLastRuns true means it should be shown.
+     * @param groupPreviousScenarioRuns true means scenarios should be grouped and toggle should be shown.
      */
-    public void setShowOnlyLastRuns(final boolean showOnlyLastRuns) {
-        this.showOnlyLastRuns = showOnlyLastRuns;
+    public void setGroupPreviousScenarioRuns(final boolean groupPreviousScenarioRuns) {
+        this.groupPreviousScenarioRuns = groupPreviousScenarioRuns;
     }
 
     /**
      * This determines whether the not last run elements should be expanded and shown.
      *
-     * @return true means it should be shown.
+     * @return true means it should be expanded.
      */
-    public boolean isExpandPreviousRuns() {
-        return expandPreviousRuns;
+    public boolean isExpandPreviousScenarioRuns() {
+        return expandPreviousScenarioRuns;
     }
 
     /**
      * Set whether the not last run elements should be expanded and shown.
      *
-     * @param expandPreviousRuns true means elements should be expanded.
+     * @param expandPreviousScenarioRuns true means elements should be expanded.
      */
-    public void setExpandPreviousRuns(final boolean expandPreviousRuns) {
-        this.expandPreviousRuns = expandPreviousRuns;
+    public void setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
+        this.expandPreviousScenarioRuns = expandPreviousScenarioRuns;
     }
 
     /**

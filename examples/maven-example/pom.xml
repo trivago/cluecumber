@@ -80,9 +80,9 @@
                     <expandDocStrings>true</expandDocStrings>
                     <expandAttachments>true</expandAttachments>
 
-                    <!-- Optional mode to show only last runs and expand or collapse previous runs by default -->
-                    <!-- <showOnlyLastRuns>true</showOnlyLastRuns> -->
-                    <!-- <expandPreviousRuns>false</expandPreviousRuns> -->
+                    <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
+                    <!-- <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns> -->
+                    <!-- <expandPreviousScenarioRuns>false</expandPreviousScenarioRuns> -->
 
                     <!-- optional: Cluecumber log level -->
                     <!--<logLevel>default</logLevel>-->

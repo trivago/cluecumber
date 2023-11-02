@@ -22,7 +22,7 @@ limitations under the License.
     <#assign passedRequested = status == "passed">
     <#assign allRequested = status == "all">
 
-    <#if isShowOnlyLastRuns()>
+    <#if isGroupPreviousScenarioRuns()>
       <#assign failuresCondition = (failedRequested && hasFailedScenariosNotPassedOnLastRun())>
     <#else>
       <#assign failuresCondition = (failedRequested && hasFailedScenarios())>
@@ -95,7 +95,7 @@ limitations under the License.
                                         <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
                                             <#assign isLastOfMultipleScenarioRuns = element.getIsLastOfMultipleScenarioRuns()>
                                             <#assign isNotLastOfMultipleScenarioRuns = element.getIsNotLastOfMultipleScenarioRuns()>
-                                            <#if !isShowOnlyLastRuns() || (isShowOnlyLastRuns() && !isNotLastOfMultipleScenarioRuns) || allRequested>
+                                            <#if !isGroupPreviousScenarioRuns() || (isGroupPreviousScenarioRuns() && !isNotLastOfMultipleScenarioRuns) || allRequested>
                                                 <tr class="table-row-${element.status.statusString}">
                                                     <#if allRequested>
                                                         <td class="text-right">${element.scenarioIndex}</td>
@@ -110,7 +110,7 @@ limitations under the License.
                                                         <#if element.firstExceptionClass != "">
                                                             <p class="firstException text-left small text-gray" style="word-break: break-word">${element.firstExceptionClass}</p>
                                                         </#if>
-                                                        <#if isShowOnlyLastRuns() && isLastOfMultipleScenarioRuns && !allRequested>
+                                                        <#if isGroupPreviousScenarioRuns() && isLastOfMultipleScenarioRuns && !allRequested>
                                                             <#list element.getChildrenElements() as childElement>
                                                                 <div class="notLastRun collapse">
                                                                         /-- <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html" style="word-break: break-all">Previous run - started at: ${childElement.startDateString} - ${childElement.startTimeString} <@common.status status=childElement.status.statusString/></a>

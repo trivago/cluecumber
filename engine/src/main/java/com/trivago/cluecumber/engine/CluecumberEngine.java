@@ -134,7 +134,7 @@ public final class CluecumberEngine {
             }
         }
         elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
-        if (propertyManager.isShowOnlyLastRuns()) {
+        if (propertyManager.isGroupPreviousScenarioRuns()) {
             elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
         }
         reportGenerator.generateReport(allScenariosPageCollection);
@@ -236,21 +236,21 @@ public final class CluecumberEngine {
     }
 
     /**
-     * Whether to show the toggle to show not last run elements.
+     * Whether to show the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
      *
-     * @param showOnlyLastRuns If true, the toggle to show not last run elements will be shown.
+     * @param groupPreviousScenarioRuns If true, the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
      */
-    public void setShowOnlyLastRuns(final boolean showOnlyLastRuns) {
-        propertyManager.setShowOnlyLastRuns(showOnlyLastRuns);
+    public void setGroupPreviousScenarioRuns(final boolean groupPreviousScenarioRuns) {
+        propertyManager.setGroupPreviousScenarioRuns(groupPreviousScenarioRuns);
     }
 
     /**
      * Whether to expand not last run elements or not.
      *
-     * @param expandPreviousRuns If true, not last run elements will be expanded.
+     * @param expandPreviousScenarioRuns If true, not last run elements will be expanded.
      */
-    public void setExpandPreviousRuns(final boolean expandPreviousRuns) {
-        propertyManager.setExpandPreviousRuns(expandPreviousRuns);
+    public void setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
+        propertyManager.setExpandPreviousScenarioRuns(expandPreviousScenarioRuns);
     }
 
     /**

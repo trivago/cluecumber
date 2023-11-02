@@ -151,16 +151,16 @@ public class PropertyManagerTest {
     }
 
     @Test
-    public void expandPreviousRunsTest() {
-        propertyManager.setExpandPreviousRuns(true);
-        assertTrue(propertyManager.isExpandPreviousRuns());
+    public void expandPreviousScenarioRunsTest() {
+        propertyManager.setExpandPreviousScenarioRuns(true);
+        assertTrue(propertyManager.isExpandPreviousScenarioRuns());
     }
 
     @Test
-    public void showOnlyLastRunsTest() {
-        assertFalse(propertyManager.isShowOnlyLastRuns());
-        propertyManager.setShowOnlyLastRuns(true);
-        assertTrue(propertyManager.isShowOnlyLastRuns());
+    public void groupPreviousScenarioRunsTest() {
+        assertFalse(propertyManager.isGroupPreviousScenarioRuns());
+        propertyManager.setGroupPreviousScenarioRuns(true);
+        assertTrue(propertyManager.isGroupPreviousScenarioRuns());
     }
 
     @Test

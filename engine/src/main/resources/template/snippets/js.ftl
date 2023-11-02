@@ -117,7 +117,7 @@ limitations under the License.
             if (${expandDocStrings?c}) {
                 $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
             }
-            if (${expandPreviousRuns?c}) {
+            if (${expandPreviousScenarioRuns?c}) {
                 $(".btn-outline-secondary[data-cluecumber-item='show-not-last-runs-button']").click();
             }
         }

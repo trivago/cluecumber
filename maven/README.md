@@ -262,12 +262,12 @@ page to expand those sections on demand.
 
 ## Auto-expand Previous Runs
 
-The `expandPreviousRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
-(on all scenarios page only, if `showOnlyLastRuns` mode active).
+The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
+(on all scenarios page only, if `groupPreviousScenarioRuns` mode active).
 
 ```xml
 <configuration>
-    <expandPreviousRuns>true|false</expandPreviousRuns>
+    <expandPreviousScenarioRuns>true|false</expandPreviousScenarioRuns>
     ...
 </configuration>
 ```
@@ -390,11 +390,11 @@ It is possible to group multiple runs of the same scenario, especially useful fo
 Enabling the feature will list the "children" elements (previous runs) on the "All scenarios" page
 as nested elements of the last run of that specific scenario. 
 The grouping is based on scenario `id` + scenario `line`
-A button allows to expand/collapse, the default state can be set via `expandPreviousRuns`. 
+A button allows to expand/collapse, the default state can be set via `expandPreviousScenarioRuns`. 
 
 ```xml
 <configuration>
-  <showOnlyLastRuns>true</showOnlyLastRuns>
+  <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
     ...
 </configuration>    
 ```
