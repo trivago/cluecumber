@@ -1,0 +1,171 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2023-10-06T09:25:45.606Z",
+        "before": [
+          {
+            "result": {
+              "duration": 997700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "src.test.java.stepDefinitions.CucumberHooks.before(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 18,
+        "name": "GET /users/{username} | existing user | xxxx |",
+        "description": "",
+        "id": "orion-user---backend-services;get-/users/{username}-|-<userstatus>ing-user-|-<contexttype>-|;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 5998300,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "an user that \"exist\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"exist\"",
+                  "offset": 13
+                }
+              ],
+              "location": "src.test.java.stepDefinitions.Controllers.anUserThat(java.lang.String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 492173500,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "the user prepares the configuration of service \"/users/%s\" with method \"GET\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"/users/%s\"",
+                  "offset": 47
+                },
+                {
+                  "val": "\"GET\"",
+                  "offset": 71
+                }
+              ],
+              "location": "src.test.java.stepDefinitions.Controllers.theUserPreparesTheConfigurationOfServiceWithMethodUsing(java.lang.String,java.lang.String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 5658700,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "adding the following headers",
+            "match": {
+              "location": "src.test.java.stepDefinitions.Controllers.addingTheFollowingHeaders(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "test01",
+                  "testauto"
+                ]
+              },
+              {
+                "cells": [
+                  "tes02",
+                  "xxxx"
+                ]
+              },
+              {
+                "cells": [
+                  "Content-Type",
+                  "application/json"
+                ]
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "embeddings": [
+              {
+                "data": "PHA+PGI+U0VSVklDRSBOQU1FIDo8L2I+IFRFU1QgPC9wPiA=",
+                "mime_type": "text/html",
+                "name": "SERVICE INVOCATIONS"
+              }
+            ],
+            "result": {
+              "duration": 999000,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "the user invokes the service",
+            "match": {
+              "location": "src.test.java.stepDefinitions.Controllers.theUserInvokesTheService()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "the user checks that the response status code should be \"200\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"200\"",
+                  "offset": 56
+                }
+              ],
+              "location": "src.test.java.stepDefinitions.Controllers.theUserChecksThatTheResponseStatusCodeShouldBe(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "checks that the response json respect the last version of the schema",
+            "match": {
+              "location": "src.test.java.stepDefinitions.Controllers.checksThatTheResponseJsonRespectTheLastVersionOfTheSchema()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@orion_user"
+          },
+          {
+            "name": "@get_user"
+          }
+        ]
+      }
+    ],
+    "name": "Orion User - Backend services",
+    "description": "",
+    "id": "orion-user---backend-services",
+    "keyword": "Feature",
+    "uri": "file:API/src/test/resources/features/orion_user.feature",
+    "tags": [
+      {
+        "name": "@orion_user",
+        "type": "Tag",
+        "location": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    ]
+  }
+]

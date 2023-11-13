@@ -78,10 +78,20 @@ public class ReportDetails {
                 Settings.NAME, RenderingUtils.getPluginVersion());
     }
 
+    /**
+     * Get the chart URL lookup for linking bars to their respective pages.
+     *
+     * @return The mapping of  names to urls.
+     */
     public Map<String, String> getChartUrlLookup() {
         return chartUrlLookup;
     }
 
+    /**
+     * Set the chart URL lookup for linking bars to their respective pages.
+     *
+     * @param chartUrlLookup The mapping of names to urls.
+     */
     public void setChartUrlLookup(Map<String, String> chartUrlLookup) {
         this.chartUrlLookup = chartUrlLookup;
     }

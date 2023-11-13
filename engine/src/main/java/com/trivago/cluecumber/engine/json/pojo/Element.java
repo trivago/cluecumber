@@ -750,10 +750,18 @@ public class Element {
         this.isNotLastOfMultipleScenarioRuns = isNotLastOfMultipleScenarioRuns;
     }
 
+    /**
+     * Get the children elements of this scenario.
+     * @return The children elements.
+     */
     public List<Element> getChildrenElements() {
         return childrenElements;
     }
 
+    /**
+     * Set the children elements of this scenario.
+     * @param childrenElements The children elements.
+     */
     public void setChildrenElements(final List<Element> childrenElements) {
         this.childrenElements = childrenElements;
     }
@@ -767,6 +775,10 @@ public class Element {
         this.featureUri = featureUri;
     }
 
+    /**
+     * Get all steps including background steps.
+     * @return The list of steps.
+     */
     public List<Step> getAllStepsIncludingBackgroundSteps() {
         List<Step> combinedSteps = new ArrayList<>(backgroundSteps);
         combinedSteps.addAll(steps);

@@ -498,6 +498,8 @@ public class PropertyManager {
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
         logger.info("- start page                       : " + startPage, DEFAULT);
         logger.info("- custom parameters display mode   : " + customParametersDisplayMode, DEFAULT);
+        logger.info("- group previous scenario runs     : " + groupPreviousScenarioRuns, DEFAULT);
+        logger.info("- expand previous scenario runs    : " + expandPreviousScenarioRuns, DEFAULT);
 
         if (!customNavigationLinks.isEmpty()) {
             customNavigationLinks.entrySet().stream().map(entry -> "- custom navigation link           : " +

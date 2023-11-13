@@ -84,6 +84,11 @@ public enum Status {
         return valueOf(status.toUpperCase());
     }
 
+    /**
+     * Get a status enum from a status string.
+     *
+     * @return The matching {@link Status} enum.
+     */
     public Status basicStatus() {
         switch (this) {
             case PASSED:
@@ -97,18 +102,13 @@ public enum Status {
 
     /**
      * Return the highest status from the given list of states.
-     *
+     * @param allStates The list of states.
      * @return The status string.
      */
     public static Status getHighestBasicState(Set<Status> allStates) {
-        for (Status basicState : BASIC_STATES) {
-            for (Status allState : allStates) {
-                if (allState.basicStatus() == basicState) {
-                    return basicState;
-                }
-            }
-        }
-        return FAILED;
+        return BASIC_STATES.stream().filter(
+                basicState -> allStates.stream().anyMatch(allState -> allState.basicStatus() == basicState)
+        ).findFirst().orElse(FAILED);
     }
 
     /**
