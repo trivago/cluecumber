@@ -84,6 +84,11 @@ public enum Status {
         return valueOf(status.toUpperCase());
     }
 
+    /**
+     * Get a status enum from a status string.
+     *
+     * @return The matching {@link Status} enum.
+     */
     public Status basicStatus() {
         switch (this) {
             case PASSED:
