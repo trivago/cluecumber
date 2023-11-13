@@ -23,9 +23,9 @@ limitations under the License.
     <#assign allRequested = status == "all">
 
     <#if isGroupPreviousScenarioRuns()>
-      <#assign failuresCondition = (failedRequested && hasFailedScenariosNotPassedOnLastRun())>
+        <#assign failuresCondition = (failedRequested && hasFailedScenariosNotPassedOnLastRun())>
     <#else>
-      <#assign failuresCondition = (failedRequested && hasFailedScenarios())>
+        <#assign failuresCondition = (failedRequested && hasFailedScenarios())>
     </#if>
     <#if
     (skippedRequested && hasSkippedScenarios()) ||
@@ -84,57 +84,64 @@ limitations under the License.
                             </tr>
                             </thead>
                             <tbody>
-                                <#list reports as report>
-                                    <#assign tooltipText = "">
-                                    <#if report.description?has_content>
-                                        <#assign tooltipText = "${report.description} | ">
-                                    </#if>
-                                    <#assign tooltipText = "${tooltipText}${report.uri}">
+                            <#list reports as report>
+                                <#assign tooltipText = "">
+                                <#if report.description?has_content>
+                                    <#assign tooltipText = "${report.description} | ">
+                                </#if>
+                                <#assign tooltipText = "${tooltipText}${report.uri}">
 
-                                    <#list report.elements as element>
-                                        <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                            <#assign isLastOfMultipleScenarioRuns = element.getIsLastOfMultipleScenarioRuns()>
-                                            <#assign isNotLastOfMultipleScenarioRuns = element.getIsNotLastOfMultipleScenarioRuns()>
-                                            <#if !isGroupPreviousScenarioRuns() || (isGroupPreviousScenarioRuns() && !isNotLastOfMultipleScenarioRuns) || allRequested>
-                                                <tr class="table-row-${element.status.statusString}">
-                                                    <#if allRequested>
-                                                        <td class="text-right">${element.scenarioIndex}</td>
-                                                    </#if>
-                                                    <td class="text-left">
+                                <#list report.elements as element>
+                                    <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
+                                        <#assign isLastOfMultipleScenarioRuns = element.getIsLastOfMultipleScenarioRuns()>
+                                        <#assign isNotLastOfMultipleScenarioRuns = element.getIsNotLastOfMultipleScenarioRuns()>
+                                        <#if !isGroupPreviousScenarioRuns() || (isGroupPreviousScenarioRuns() && !isNotLastOfMultipleScenarioRuns) || allRequested>
+                                            <tr class="table-row-${element.status.statusString}">
+                                                <#if allRequested>
+                                                    <td class="text-right">${element.scenarioIndex}</td>
+                                                </#if>
+                                                <td class="text-left">
                                                         <span data-toggle="tooltip" title="${tooltipText}">
                                                             <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
                                                         </span>
-                                                    </td>
-                                                    <td class="text-left">
-                                                        <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html" style="word-break: break-all">${element.name?html}</a>
-                                                        <#if element.firstExceptionClass != "">
-                                                            <p class="firstException text-left small text-gray" style="word-break: break-word">${element.firstExceptionClass}</p>
-                                                        </#if>
-                                                        <#if isGroupPreviousScenarioRuns() && isLastOfMultipleScenarioRuns && !allRequested>
-                                                            <#list element.getChildrenElements() as childElement>
-                                                                <div class="notLastRun collapse">
-                                                                        /-- <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html" style="word-break: break-all">Previous run - started at: ${childElement.startDateString} - ${childElement.startTimeString} <@common.status status=childElement.status.statusString/></a>
-                                                                        <#if childElement.firstExceptionClass != "">
-                                                                            <p class="firstException text-left small text-gray" style="word-break: break-word">${childElement.firstExceptionClass}</p>
-                                                                        </#if>
-                                                                </div>
-                                                            </#list>
-                                                        </#if>
-                                                    </td>
-                                                    <td class="text-center small" data-order="${element.startTimestamp}">
-                                                        ${element.startDateString}<br>${element.startTimeString}
-                                                    </td>
-                                                    <td class="text-right small" data-order="${element.totalDuration}">
-                                                        <span class="nobr">${element.returnTotalDurationString()}</span>
-                                                    </td>
-                                                    <#if allRequested>
-                                                        <td class="text-center"><@common.status status=element.status.statusString/></td>
+                                                </td>
+                                                <td class="text-left">
+                                                    <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
+                                                       style="word-break: break-all">${element.name?html}</a>
+                                                    <#if element.firstExceptionClass != "">
+                                                        <p class="firstException text-left small text-gray"
+                                                           style="word-break: break-word">${element.firstExceptionClass}</p>
                                                     </#if>
-                                                </tr>
-                                            </#if>
+                                                    <#if isGroupPreviousScenarioRuns() && isLastOfMultipleScenarioRuns && !allRequested>
+                                                        <#list element.getChildrenElements() as childElement>
+                                                            <div class="notLastRun collapse">
+                                                                └──
+                                                                <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html"
+                                                                   style="word-break: break-all">Previous run - started
+                                                                    at: ${childElement.startDateString}
+                                                                    - ${childElement.startTimeString} <@common.status status=childElement.status.statusString/></a>
+                                                                <#if childElement.firstExceptionClass != "">
+                                                                    <p class="firstException text-left small text-gray"
+                                                                       style="word-break: break-word">${childElement.firstExceptionClass}</p>
+                                                                </#if>
+                                                            </div>
+                                                        </#list>
+                                                    </#if>
+                                                </td>
+                                                <td class="text-center small" data-order="${element.startTimestamp}">
+                                                    ${element.startDateString}<br>${element.startTimeString}
+                                                </td>
+                                                <td class="text-right small" data-order="${element.totalDuration}">
+                                                    <span class="nobr">${element.returnTotalDurationString()}</span>
+                                                </td>
+                                                <#if allRequested>
+                                                    <td class="text-center"><@common.status status=element.status.statusString/></td>
+                                                </#if>
+                                            </tr>
                                         </#if>
-                                    </#list>
+                                    </#if>
                                 </#list>
+                            </#list>
                             </tbody>
                         </table>
                     </div>
@@ -159,7 +166,8 @@ limitations under the License.
                     </#if>
                 </div>
                 <div class="w-100 text-left m-auto">
-                    <div class="w-100 text-left m-auto collapse ${expandAttachments?then("show", "")}" id="expandable${attachmentID}">
+                    <div class="w-100 text-left m-auto collapse ${expandAttachments?then("show", "")}"
+                         id="expandable${attachmentID}">
                         <#if attachment.image>
                             <a class="grouped_elements" rel="images" href="attachments/${attachment.filename}">
                                 <img src="attachments/${attachment.filename}" class="embedded-image"
