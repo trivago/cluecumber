@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.5.1] - 2023-11-13
+
+### Changed
+* Improved display of scenario groups
+* Updated dependencies
+* Added missing Javadoc
+
+### Fixed
+* Grouping scenarios crashed Cluecumber when no start time existed
+
 ## [3.5.0] - 2023-11-02
 
 ### Added
@@ -768,6 +778,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.1
 [3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.0
 [3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.4.0
 [3.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.1
