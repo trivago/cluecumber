@@ -401,6 +401,8 @@ A button allows to expand/collapse, the default state can be set via `expandPrev
 </configuration>    
 ```
 
+![grouped_scenarios.png](..%2Fdocumentation%2Fimg%2Fgrouped_scenarios.png)
+
 # Running the reporting goal directly via command line
 
 In some cases it may be desirable to run the reporting as a completely separate step, e.g. in CI pipelines.

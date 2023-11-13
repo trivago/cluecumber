@@ -377,6 +377,8 @@ new CluecumberCore.Builder()
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
+![grouped_scenarios.png](..%2Fdocumentation%2Fimg%2Fgrouped_scenarios.png)
+
 # Appendix
 
 ## Building
