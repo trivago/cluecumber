@@ -139,7 +139,7 @@ preheadlineLink=preheadlineLink>
             <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
                 <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
-                        data-target=".notLastRun">not last runs
+                        data-target=".notLastRun">previous runs
                 </button>
             </#if>
         </@page.card>

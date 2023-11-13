@@ -51,10 +51,14 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </#list>
             </li>
             <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
-                <li class="list-group-item">Note: <strong>this is the last started run</strong></li>
+                <div class="alert alert-info" role="alert">
+                    This is the last run of this scenario.
+                </div>
             </#if>
             <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
-                <li class="list-group-item">Note: <strong>there are other runs of the same scenario that started later</strong></li>
+                <div class="alert alert-info" role="alert">
+                    There are later runs of the same scenario.
+                </div>
             </#if>
         </@page.card>
         <@page.card width="3" title="Step Summary" subtitle="" classes="">
