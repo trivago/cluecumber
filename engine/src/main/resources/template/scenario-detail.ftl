@@ -199,8 +199,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                                 class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
                                 <#if (step.docString.value)?? >
-                                    <button type="button" class="btn btn-light" data-toggle="collapse" aria-expanded="true"
-                                       data-target="#step_${step.index}">DocString</button>
+                                    <button type="button" class="btn-clipboard" data-toggle="collapse" aria-expanded="true"
+                                       data-target="#step_${step.index}_docstring">DocString</button>
                                 </#if>
                             </div>
                             <div class="col-2 text-left small">
@@ -226,7 +226,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <#if (step.docString.value)?? >
-                                <div class="scenarioDocstring collapse" id="step_${step.index}">
+                                <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
                                     <div class="row w-100 p-3 m-0">
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>

@@ -63,7 +63,6 @@ public class ElementIndexPreProcessor {
                 element.setScenarioIndex(scenarioIndex);
                 int stepIndex = 0;
                 for (Step step : element.getSteps()) {
-                    System.out.println("Step name: " + step.getKeyword());
                     int count = 0;
                     step.setIndex(stepIndex);
                     for (int i = 0; i < step.getKeyword().length(); i++) {
@@ -73,12 +72,9 @@ public class ElementIndexPreProcessor {
                             break;
                         }
                     }
-                    System.out.println("Count: " + count);
                     if (count > 0) {
                         step.setCollapseLevel(count);
-                        System.out.println("Collapse level: " + step.getCollapseLevel());
                         step.setKeyword(step.getKeyword().substring(count).trim());
-                        System.out.println("New name: " + step.getName());
                     }
                     stepIndex++;
                 }
