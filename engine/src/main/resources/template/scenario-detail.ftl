@@ -47,7 +47,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </#if>
             <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
             <li class="list-group-item"><#list element.tags as tag>
-                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html"
+                       class="btn btn-outline-secondary">${tag.name}</a><#sep>
                 </#list>
             </li>
             <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
@@ -183,10 +184,13 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <@page.card width="12" title="Steps" subtitle="" classes="">
                 <li class="list-group-item">
                     <#list element.steps as step>
+                        <#assign stepPadding = step.collapseLevel * 3>
 
                         <@scenario.stepHooks step.before />
 
-                        <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
+                        <div class="row row_${step.consolidatedStatusString}
+                            table-row-${step.consolidatedStatusString}"
+                             style="padding-left: ${stepPadding}em;">
                             <div class="col-9 text-left">
                                 <span class="text-left">${step?counter}.</span>
                                 <#assign stepName=step.returnNameWithArguments()>
@@ -194,6 +198,10 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
                                                 class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
+                                <#if (step.docString.value)?? >
+                                    <button type="button" class="btn btn-light" data-toggle="collapse" aria-expanded="true"
+                                       data-target="#step_${step.index}">DocString</button>
+                                </#if>
                             </div>
                             <div class="col-2 text-left small">
                                 ${step.result.returnDurationString()}
@@ -218,7 +226,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <#if (step.docString.value)?? >
-                                <div class="scenarioDocstring collapse">
+                                <div class="scenarioDocstring collapse" id="step_${step.index}">
                                     <div class="row w-100 p-3 m-0">
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>

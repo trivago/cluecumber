@@ -36,6 +36,8 @@ public class Step extends ResultMatch {
     private List<ResultMatch> after = new ArrayList<>();
     @SerializedName("doc_string")
     private DocString docString;
+    private int collapseLevel = 0;
+    private int index = 0;
 
     /**
      * Check if there are before or after step hooks with content.
@@ -277,5 +279,31 @@ public class Step extends ResultMatch {
     @Override
     public int hashCode() {
         return Objects.hash(getGlueMethodName());
+    }
+
+    /**
+     * Get the collapse level of the step.
+     *
+     * @return The collapse level of the step.
+     */
+    public int getCollapseLevel() {
+        return collapseLevel;
+    }
+
+    /**
+     * Set the collapse level of the step.
+     *
+     * @param collapseLevel The collapse level of the step.
+     */
+    public void setCollapseLevel(int collapseLevel) {
+        this.collapseLevel = collapseLevel;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

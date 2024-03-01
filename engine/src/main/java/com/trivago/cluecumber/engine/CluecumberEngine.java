@@ -133,7 +133,7 @@ public final class CluecumberEngine {
                 logger.warn("Could not parse JSON in file '" + jsonFilePath + "': " + e.getMessage());
             }
         }
-        elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
+        elementIndexPreProcessor.process(allScenariosPageCollection.getReports());
         if (propertyManager.isGroupPreviousScenarioRuns()) {
             elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
         }

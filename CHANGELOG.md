@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.6.0] - UNRELEASED
+
+### Added
+
+* Support for multiple nested elements (e.g. in Karate scenarios with feature files in feature files)
+
+### Changed
+
+* DocStrings can be toggled individually
+* Attachments can be toggled individually
+
 ## [3.5.1] - 2023-11-13
 
 ### Changed
@@ -778,6 +789,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.6.0
 [3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.1
 [3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.0
 [3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.4.0
