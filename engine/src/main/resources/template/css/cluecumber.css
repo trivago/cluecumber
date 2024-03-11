@@ -241,14 +241,6 @@ button.btn {
     color: #676767;
 }
 
-button.btn.collapsed:before {
-    content: 'Show ';
-}
-
-button.btn:before {
-    content: 'Hide ';
-}
-
 div.collapse {
     width: 100%;
 }

@@ -75,10 +75,10 @@
                     <!-- <customCss>custom/custom.css</customCss> -->
 
                     <!-- Optional properties to expand scenario hooks, step hooks, doc strings and attachments when scenario details are shown (default: false) -->
-                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
-                    <expandStepHooks>true</expandStepHooks>
-                    <expandDocStrings>true</expandDocStrings>
-                    <expandAttachments>true</expandAttachments>
+                    <expandBeforeAfterHooks>false</expandBeforeAfterHooks>
+                    <expandStepHooks>false</expandStepHooks>
+                    <expandDocStrings>false</expandDocStrings>
+                    <expandAttachments>false</expandAttachments>
 
                     <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
                      <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>

@@ -88,10 +88,18 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </button>
             </#if>
             <#if element.hasDocStrings()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="doc-strings-button"
-                        data-target=".scenarioDocstring">DocStrings with content
-                </button>
+                <p>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="doc-strings-button"
+                            onclick="expandAll()"
+                            data-target=".scenarioDocstring">Open DocStrings
+                    </button>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="doc-strings-button"
+                            onclick="collapseAll()"
+                            data-target=".scenarioDocstring">Close DocStrings
+                    </button>
+                </p>
             </#if>
         </@page.card>
     </div>
@@ -186,6 +194,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
                     <#assign oldCollapseLevel = 0>
                     <#assign lastLevelChange = 0>
+                    <#assign openDivs = 0>
 
                     <#list element.steps as step>
                         <@scenario.stepHooks step.before />
@@ -195,7 +204,12 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
                         <#if (sectionChange > 0) >
                             <#list 1..sectionChange as n>
-                                <div style="margin-left: 2em;" id="section_${step?counter}">
+                                <#assign openDivs = openDivs + 1>
+                                <div style="margin-left: 2em;" id="section_${step?counter}" class="collapse">
+                            </#list>
+                        <#elseif (sectionChange < 0) >
+                            <#list sectionChange..-1 as n>
+                                </div>
                             </#list>
                         </#if>
 
@@ -206,18 +220,18 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip" title="${step.glueMethodName}">
                                     <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
-                                                class="keyword">${step.keyword}</span> ${stepName} (section: ${sectionChange})</a>
+                                                class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
-                                <#if (step.collapseLevel > 0)>
+                                <#if (step.hasSubSections)>
                                     <button type="button" class="btn-clipboard" data-toggle="collapse"
-                                            aria-expanded="true"
-                                            data-target="#step_${step.index}_docstring">More
+                                            aria-expanded="false"
+                                            data-target="#section_${step?counter + 1}">Sub steps
                                     </button>
                                 </#if>
                                 <#if (step.docString.value)?? >
                                     <button type="button" class="btn-clipboard" data-toggle="collapse"
-                                            aria-expanded="true"
-                                            data-target="#step_${step.index}_docstring">DocString
+                                            aria-expanded="false" class="docstringExpansionButton"
+                                            data-target="#step_${step.index}_docstring">DocStrings
                                     </button>
                                 </#if>
                             </div>
@@ -257,11 +271,6 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <@scenario.attachments step=step/>
                         </div>
                         <@scenario.stepHooks step.after />
-                        <#if (sectionChange < 0) >
-                            <#list sectionChange..1 as n>
-                                </div>
-                            </#list>
-                        </#if>
                     </#list>
                 </li>
             </@page.card>
@@ -295,4 +304,15 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </div>
         </#if>
     </ul>
+
+    <script>
+        // JavaScript functions to expand or collapse all sections
+        function expandAll() {
+            $('.scenarioDocstring').collapse('show');
+        }
+
+        function collapseAll() {
+            $('.scenarioDocstring').collapse('hide');
+        }
+    </script>
 </@page.page>

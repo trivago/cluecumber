@@ -120,7 +120,7 @@ limitations under the License.
                 $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
             }
             if (${expandDocStrings?c}) {
-                $(".btn-outline-secondary[data-cluecumber-item='doc-strings-button']").click();
+                $(".scenarioDocstring").collapse("show");
             }
             if (${expandPreviousScenarioRuns?c}) {
                 $(".btn-outline-secondary[data-cluecumber-item='show-not-last-runs-button']").click();
