@@ -48,7 +48,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
             <li class="list-group-item"><#list element.tags as tag>
                     <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html"
-                       class="btn btn-outline-secondary">${tag.name}</a><#sep>
+                       class="btn btn-outline-secondary" style="word-break: break-all;">${tag.name}</a><#sep>
                 </#list>
             </li>
             <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
@@ -183,24 +183,42 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <#if (element.steps?size > 0)>
             <@page.card width="12" title="Steps" subtitle="" classes="">
                 <li class="list-group-item">
-                    <#list element.steps as step>
-                        <#assign stepPadding = step.collapseLevel * 3>
 
+                    <#assign oldCollapseLevel = 0>
+                    <#assign lastLevelChange = 0>
+
+                    <#list element.steps as step>
                         <@scenario.stepHooks step.before />
 
-                        <div class="row row_${step.consolidatedStatusString}
-                            table-row-${step.consolidatedStatusString}"
-                             style="padding-left: ${stepPadding}em;">
+                        <#assign sectionChange = step.collapseLevel - oldCollapseLevel>
+                        <#assign oldCollapseLevel = step.collapseLevel>
+
+                        <#if (sectionChange > 0) >
+                            <#list 1..sectionChange as n>
+                                <div style="margin-left: 2em;" id="section_${step?counter}">
+                            </#list>
+                        </#if>
+
+                        <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
+
                             <div class="col-9 text-left">
                                 <span class="text-left">${step?counter}.</span>
                                 <#assign stepName=step.returnNameWithArguments()>
                                 <span data-toggle="tooltip" title="${step.glueMethodName}">
                                     <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
-                                                class="keyword">${step.keyword}</span> ${stepName}</a>
+                                                class="keyword">${step.keyword}</span> ${stepName} (section: ${sectionChange})</a>
                                 </span>
+                                <#if (step.collapseLevel > 0)>
+                                    <button type="button" class="btn-clipboard" data-toggle="collapse"
+                                            aria-expanded="true"
+                                            data-target="#step_${step.index}_docstring">More
+                                    </button>
+                                </#if>
                                 <#if (step.docString.value)?? >
-                                    <button type="button" class="btn-clipboard" data-toggle="collapse" aria-expanded="true"
-                                       data-target="#step_${step.index}_docstring">DocString</button>
+                                    <button type="button" class="btn-clipboard" data-toggle="collapse"
+                                            aria-expanded="true"
+                                            data-target="#step_${step.index}_docstring">DocString
+                                    </button>
                                 </#if>
                             </div>
                             <div class="col-2 text-left small">
@@ -239,6 +257,11 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <@scenario.attachments step=step/>
                         </div>
                         <@scenario.stepHooks step.after />
+                        <#if (sectionChange < 0) >
+                            <#list sectionChange..1 as n>
+                                </div>
+                            </#list>
+                        </#if>
                     </#list>
                 </li>
             </@page.card>

@@ -38,6 +38,7 @@ public class Step extends ResultMatch {
     private DocString docString;
     private int collapseLevel = 0;
     private int index = 0;
+    private boolean hasSubSections = false;
 
     /**
      * Check if there are before or after step hooks with content.
@@ -299,11 +300,29 @@ public class Step extends ResultMatch {
         this.collapseLevel = collapseLevel;
     }
 
+    /**
+     * Get the internal index of the step.
+     *
+     * @return The index of the step.
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * Set the internal index of the step.
+     *
+     * @param index The index of the step.
+     */
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public boolean getHasSubSections() {
+        return hasSubSections;
+    }
+
+    public void setHasSubSections(boolean hasSubSections) {
+        this.hasSubSections = hasSubSections;
     }
 }

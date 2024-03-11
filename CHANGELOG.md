@@ -9,6 +9,10 @@ Back to [Readme](README.md).
 
 ## [3.6.0] - UNRELEASED
 
+### Fixed
+
+* Long tag names broke the layout
+
 ### Added
 
 * Support for multiple nested elements (e.g. in Karate scenarios with feature files in feature files)
@@ -17,6 +21,7 @@ Back to [Readme](README.md).
 
 * DocStrings can be toggled individually
 * Attachments can be toggled individually
+* Tweaked data table header layout
 
 ## [3.5.1] - 2023-11-13
 

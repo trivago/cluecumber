@@ -303,3 +303,7 @@ p.firstException {
 tr.even td, tr.odd td {
     border-bottom: #ebebeb 1px solid;
 }
+
+.dataTables_length {
+    text-align: left;
+}

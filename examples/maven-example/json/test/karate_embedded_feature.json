@@ -120,7 +120,7 @@
         ],
         "tags": [
           {
-            "name": "@embeddedFeature",
+            "name": "@thisIsAReallyLongTagThatShouldBeWrapped",
             "line": 1
           }
         ]
@@ -133,7 +133,7 @@
     "uri": "feature\/KarateEmbedded.feature",
     "tags": [
       {
-        "name": "@embeddedFeature",
+        "name": "@thisIsAReallyLongTagThatShouldBeWrapped",
         "line": 1
       }
     ]
