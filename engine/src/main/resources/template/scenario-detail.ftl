@@ -48,7 +48,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
             <li class="list-group-item"><#list element.tags as tag>
                     <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html"
-                       class="btn btn-outline-secondary" style="word-break: break-all;">${tag.name}</a><#sep>
+                       class="btn btn-link" style="word-break: break-all;">${tag.name}</a><#sep>
                 </#list>
             </li>
             <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
@@ -76,12 +76,15 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </li>
             </ul>
             <#if element.hasHooks() && element.hasHooksWithContent()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="before-after-hooks-button"
-                        data-target=".scenarioHook">Scenario Hooks with content
-                </button>
+                <p>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="before-after-hooks-button"
+                            onclick="expandAll('.scenarioHook')">Open Hooks</button>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="before-after-hooks-button"
+                            onclick="collapseAll('.scenarioHook')">Close Hooks</button>
+                </p>
             </#if>
-
             <#if element.hasSubSections()>
                 <p>
                     <button class="btn-clipboard" type="button"

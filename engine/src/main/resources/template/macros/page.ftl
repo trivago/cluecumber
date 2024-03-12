@@ -71,7 +71,7 @@ limitations under the License.
 
 <#macro card width title subtitle classes>
     <div class="col-sm-${width} ${classes} h-auto" data-cluecumber-item="card">
-        <div class="card h-100">
+        <div class="card shadow h-100">
             <#if title != "">
                 <div class="card-header">${title}</div>
             </#if>

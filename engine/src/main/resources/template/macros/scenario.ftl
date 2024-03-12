@@ -36,7 +36,7 @@ limitations under the License.
         <a class="anchor" id="anchor-${status}"></a>
         <div class="row" id="card_${status}" data-cluecumber-item="scenario-summary-table">
             <div class=" col-sm-12">
-                <div class="card">
+                <div class="card shadow">
 
                     <#switch status>
                         <#case "skipped">
