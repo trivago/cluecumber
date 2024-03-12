@@ -82,23 +82,23 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </button>
             </#if>
             <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="step-hooks-button"
-                        data-target=".stepHook">Step Hooks with content
-                </button>
+                <p>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="step-hooks-button"
+                            onclick="expandAll('.stepHook')">Open Step Hooks</button>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="step-hooks-button"
+                            onclick="collapseAll('.stepHook')">Close Step Hooks</button>
+                </p>
             </#if>
             <#if element.hasDocStrings()>
                 <p>
                     <button class="btn-clipboard" type="button"
                             data-cluecumber-item="doc-strings-button"
-                            onclick="expandAll()"
-                            data-target=".scenarioDocstring">Open DocStrings
-                    </button>
+                            onclick="expandAll('.scenarioDocstring')">Open DocStrings</button>
                     <button class="btn-clipboard" type="button"
                             data-cluecumber-item="doc-strings-button"
-                            onclick="collapseAll()"
-                            data-target=".scenarioDocstring">Close DocStrings
-                    </button>
+                            onclick="collapseAll('.scenarioDocstring')">Close DocStrings</button>
                 </p>
             </#if>
         </@page.card>
@@ -306,13 +306,12 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
     </ul>
 
     <script>
-        // JavaScript functions to expand or collapse all sections
-        function expandAll() {
-            $('.scenarioDocstring').collapse('show');
+        function expandAll(className) {
+            $(className).collapse('show');
         }
 
-        function collapseAll() {
-            $('.scenarioDocstring').collapse('hide');
+        function collapseAll(className) {
+            $(className).collapse('hide');
         }
     </script>
 </@page.page>

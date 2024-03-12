@@ -32,8 +32,8 @@
         <maven.version>3.11.0</maven.version>
         <maven.gpg.plugin.version>3.1.0</maven.gpg.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.13</nexus.staging.maven.plugin.version>
-        <junit-jupiter.version>5.9.3</junit-jupiter.version>
-        <mockito-core.version>5.3.1</mockito-core.version>
+        <junit-jupiter.version>5.10.2</junit-jupiter.version>
+        <mockito-core.version>5.11.0</mockito-core.version>
         <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
