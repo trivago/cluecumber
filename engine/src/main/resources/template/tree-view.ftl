@@ -46,7 +46,8 @@ preheadlineLink="">
                         <#list scenarios as scenario>
                             <li style="list-style-type: decimal;"><a
                                         href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
-                                        style="word-break: break-all">${scenario.name?html}</a></li>
+                                        style="word-break: break-all">${scenario.name?html}${scenario.isNotLastOfMultipleScenarioRuns?string(' [Rerun]', '')}</a>
+                            </li>
                         </#list>
                     </ol>
                     <hr>

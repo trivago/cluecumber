@@ -612,6 +612,11 @@ public class Element {
         return false;
     }
 
+    /**
+     * Check if this scenario contains sub-sections.
+     *
+     * @return true if there are sub-sections.
+     */
     public boolean hasSubSections() {
         for (Step step : backgroundSteps) {
             if (step.hasSubSections()) {

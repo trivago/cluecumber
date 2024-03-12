@@ -16,12 +16,15 @@ Back to [Readme](README.md).
 ### Added
 
 * Support for multiple nested elements (e.g. in Karate scenarios with feature files in feature files)
+* Reruns are marked in tree view
 
 ### Changed
 
 * DocStrings can be toggled individually
 * Attachments can be toggled individually
 * Tweaked data table header layout
+* Tweaked look of all item cards
+* Updated dependencies
 
 ## [3.5.1] - 2023-11-13
 
