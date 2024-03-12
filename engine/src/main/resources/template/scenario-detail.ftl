@@ -237,13 +237,13 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 <#if (step.hasSubSections())>
                                     <button type="button" class="btn-clipboard" data-toggle="collapse"
                                             aria-expanded="false"
-                                            data-target="#section_${step?counter + 1}">Sub steps
+                                            data-target="#section_${step?counter + 1}">Sub Section
                                     </button>
                                 </#if>
                                 <#if (step.docString.value)?? >
                                     <button type="button" class="btn-clipboard" data-toggle="collapse"
                                             aria-expanded="false" class="docstringExpansionButton"
-                                            data-target="#step_${step.index}_docstring">DocStrings
+                                            data-target="#step_${step.index}_docstring">DocString
                                     </button>
                                 </#if>
                             </div>
