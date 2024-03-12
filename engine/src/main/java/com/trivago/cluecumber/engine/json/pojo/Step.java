@@ -59,6 +59,10 @@ public class Step extends ResultMatch {
         return false;
     }
 
+    public boolean hasHooks() {
+        return !before.isEmpty() || !after.isEmpty();
+    }
+
     /**
      * Get the before hooks.
      *
@@ -318,7 +322,7 @@ public class Step extends ResultMatch {
         this.index = index;
     }
 
-    public boolean getHasSubSections() {
+    public boolean hasSubSections() {
         return hasSubSections;
     }
 

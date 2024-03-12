@@ -81,6 +81,17 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                         data-target=".scenarioHook">Scenario Hooks with content
                 </button>
             </#if>
+
+            <#if element.hasSubSections()>
+                <p>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="sub-sections-button"
+                            onclick="expandAll('.scenarioSubSection')">Open Sub Sections</button>
+                    <button class="btn-clipboard" type="button"
+                            data-cluecumber-item="sub-sections-button"
+                            onclick="collapseAll('.scenarioSubSection')">Close Sub Sections</button>
+                </p>
+            </#if>
             <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
                 <p>
                     <button class="btn-clipboard" type="button"
@@ -205,7 +216,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                         <#if (sectionChange > 0) >
                             <#list 1..sectionChange as n>
                                 <#assign openDivs = openDivs + 1>
-                                <div style="margin-left: 2em;" id="section_${step?counter}" class="collapse">
+                                <div style="margin-left: 2em;" id="section_${step?counter}"
+                                    class="scenarioSubSection collapse">
                             </#list>
                         <#elseif (sectionChange < 0) >
                             <#list sectionChange..-1 as n>
@@ -222,7 +234,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
                                                 class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
-                                <#if (step.hasSubSections)>
+                                <#if (step.hasSubSections())>
                                     <button type="button" class="btn-clipboard" data-toggle="collapse"
                                             aria-expanded="false"
                                             data-target="#section_${step?counter + 1}">Sub steps

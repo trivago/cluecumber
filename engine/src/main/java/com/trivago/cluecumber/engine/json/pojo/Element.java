@@ -612,6 +612,20 @@ public class Element {
         return false;
     }
 
+    public boolean hasSubSections() {
+        for (Step step : backgroundSteps) {
+            if (step.hasSubSections()) {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasSubSections()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Check if any step hooks have content.
      *
