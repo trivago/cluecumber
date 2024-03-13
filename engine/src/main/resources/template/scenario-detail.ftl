@@ -38,30 +38,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <@page.card width="6" title="Step Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="3" title="Scenario Info" subtitle="" classes="">
-            <#if element.startTimestamp?has_content>
-                <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
-            </#if>
-            <#if element.startTimestamp?has_content>
-                <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
-            </#if>
-            <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
-            <li class="list-group-item"><#list element.tags as tag>
-                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html"
-                       class="btn btn-link" style="word-break: break-all;">${tag.name}</a><#sep>
-                </#list>
-            </li>
-            <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
-                <div class="alert alert-info" role="alert">
-                    This is the last run of this scenario.
-                </div>
-            </#if>
-            <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
-                <div class="alert alert-info" role="alert">
-                    There are later runs of the same scenario.
-                </div>
-            </#if>
-        </@page.card>
+
         <@page.card width="3" title="Step Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -75,6 +52,27 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     ${element.totalNumberOfSkippedSteps} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
+        </@page.card>
+
+        <@page.card width="3" title="Scenario Info" subtitle="" classes="">
+            <#if element.startTimestamp?has_content>
+                <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
+            </#if>
+            <#if element.startTimestamp?has_content>
+                <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
+            </#if>
+            <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
+            <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
+                <div class="alert alert-info" role="alert">
+                    This is the last run of this scenario.
+                </div>
+            </#if>
+            <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
+                <div class="alert alert-info" role="alert">
+                    There are later runs of the same scenario.
+                </div>
+            </#if>
+
             <#if element.hasHooks() && element.hasHooksWithContent()>
                 <hr>
                 <button class="btn-clipboard" type="button"
@@ -123,6 +121,18 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
     </div>
 
     <ul class="list-group list-group-flush">
+
+        <#if (element.tags?size > 0)>
+            <@page.card width="12" title="Tags" subtitle="" classes="tags">
+                <li class="list-group-item">
+                    <#list element.tags as tag>
+                        <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html"
+                           class="btn btn-link" style="word-break: break-all;">${tag.name}</a><#sep>
+                    </#list>
+                </li>
+            </@page.card>
+        </#if>
+
         <#if (element.before?size > 0 && element.anyBeforeHookHasContent())>
             <@page.card width="12" title="Before Hooks" subtitle="" classes="scenarioHook collapse">
                 <li class="list-group-item">
