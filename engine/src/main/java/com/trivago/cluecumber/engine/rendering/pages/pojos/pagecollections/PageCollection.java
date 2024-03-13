@@ -31,6 +31,7 @@ public class PageCollection implements Cloneable {
     private boolean expandStepHooks;
     private boolean expandDocStrings;
     private boolean expandAttachments;
+    private boolean expandOutputs;
     private boolean groupPreviousScenarioRuns;
     private boolean expandPreviousScenarioRuns;
     private List<CustomParameter> customParameters;
@@ -120,12 +121,30 @@ public class PageCollection implements Cloneable {
     }
 
     /**
+     * Check if step outputs should be expanded.
+     *
+     * @return true if they should be expanded.
+     */
+    public boolean isExpandOutputs() {
+        return expandOutputs;
+    }
+
+    /**
      * Set if attachments should be expanded.
      *
      * @param expandAttachments true if they should be expanded.
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
+    }
+
+    /**
+     * Set if step outputs should be expanded.
+     *
+     * @param expandOutputs true if they should be expanded.
+     */
+    public void setExpandOutputs(final boolean expandOutputs) {
+        this.expandOutputs = expandOutputs;
     }
 
     /**
@@ -184,6 +203,7 @@ public class PageCollection implements Cloneable {
 
     /**
      * Set custom parameters.
+     *
      * @param customParameters The {@link CustomParameter} list.
      */
     public void setCustomParameters(final List<CustomParameter> customParameters) {
@@ -192,6 +212,7 @@ public class PageCollection implements Cloneable {
 
     /**
      * Check if there are custom parameters.
+     *
      * @return true if there are custom parameters.
      */
     public boolean hasCustomParameters() {
@@ -200,6 +221,7 @@ public class PageCollection implements Cloneable {
 
     /**
      * Get the display mode for custom parameters.
+     *
      * @return The {@link CustomParamDisplayMode} enum.
      */
     public CustomParamDisplayMode getDisplayMode() {
@@ -208,6 +230,7 @@ public class PageCollection implements Cloneable {
 
     /**
      * Set the display mode for custom parameters.
+     *
      * @param displayMode The {@link CustomParamDisplayMode} enum.
      */
     public void setDisplayMode(CustomParamDisplayMode displayMode) {
@@ -216,6 +239,7 @@ public class PageCollection implements Cloneable {
 
     /**
      * Get custom navigation links.
+     *
      * @return The {@link Link} list.
      */
     public List<Link> getNavigationLinks() {
@@ -224,6 +248,7 @@ public class PageCollection implements Cloneable {
 
     /**
      * Set custom navigation links.
+     *
      * @param links The {@link Link} list.
      */
     public void setNavigationLinks(List<Link> links) {
@@ -239,8 +264,7 @@ public class PageCollection implements Cloneable {
     @Override
     public PageCollection clone() throws CloneNotSupportedException {
         try {
-            PageCollection clone = (PageCollection) super.clone();
-            return clone;
+            return (PageCollection) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }

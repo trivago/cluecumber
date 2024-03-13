@@ -236,6 +236,15 @@ public final class CluecumberEngine {
     }
 
     /**
+     * Whether to expand step outputs or not.
+     *
+     * @param expandOutputs If true, outputs will be expanded.
+     */
+    public void setExpandOutputs(final boolean expandOutputs) {
+        propertyManager.setExpandOutputs(expandOutputs);
+    }
+
+    /**
      * Whether to show the scenarios run multiple times should be grouped and the show not last run toggle should be shown.
      *
      * @param groupPreviousScenarioRuns If true, the scenarios run multiple times should be grouped and the show not last run toggle should be shown.

@@ -57,8 +57,9 @@ public class PropertyManager {
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
+    private boolean expandOutputs = false;
     private boolean groupPreviousScenarioRuns = false;
-    private boolean expandPreviousScenarioRuns = true;
+    private boolean expandPreviousScenarioRuns = false;
     private String customCssFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
@@ -198,7 +199,7 @@ public class PropertyManager {
             this.customParametersDisplayMode = Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
         } catch (IllegalArgumentException e) {
             logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode +
-                    "'. Must be one of " + Arrays.toString(Settings.CustomParamDisplayMode.values()));
+                        "'. Must be one of " + Arrays.toString(Settings.CustomParamDisplayMode.values()));
             this.customParametersDisplayMode = Settings.CustomParamDisplayMode.SCENARIO_PAGES;
         }
     }
@@ -315,12 +316,30 @@ public class PropertyManager {
     }
 
     /**
+     * This determines whether step outputs should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
+    public boolean isExpandOutputs() {
+        return expandOutputs;
+    }
+
+    /**
      * Set whether attachments should be expanded by default.
      *
      * @param expandAttachments true means they should be expanded.
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
+    }
+
+    /**
+     * Set whether step outputs should be expanded by default.
+     *
+     * @param expandOutputs true means they should be expanded.
+     */
+    public void setExpandOutputs(final boolean expandOutputs) {
+        this.expandOutputs = expandOutputs;
     }
 
     /**
@@ -485,7 +504,7 @@ public class PropertyManager {
                 logger.logInfoSeparator();
             }
             customParameters.entrySet().stream().map(entry -> "- custom parameter                 : " +
-                    entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+                                                              entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
         }
 
         logger.logInfoSeparator(DEFAULT);
@@ -503,7 +522,7 @@ public class PropertyManager {
 
         if (!customNavigationLinks.isEmpty()) {
             customNavigationLinks.entrySet().stream().map(entry -> "- custom navigation link           : " +
-                    entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+                                                                   entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
         }
 
 
@@ -512,7 +531,7 @@ public class PropertyManager {
         }
 
         logger.info("- colors (passed, failed, skipped) : " +
-                customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped, DEFAULT);
+                    customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped, DEFAULT);
 
         logger.logInfoSeparator(DEFAULT);
     }

@@ -211,8 +211,18 @@ limitations under the License.
 
 <#macro output step>
     <#if step.hasOutputs()>
-        <div class="row w-100 p-3 m-0 scenarioOutput">
-            <div class="w-100 text-left small p-2">${step.output?join("<br><br>")}</div>
+        <div class="row w-100 p-3 m-0 scenarioAttachment">
+            <div class="w-100 p-1 m-0 border-bottom small text-left">
+                <a class="btn-link" data-toggle="collapse" href="#expandableOutput${step.index!0}" role="button"
+                   aria-expanded="false" aria-controls="expandableOutput${step.index!0}">Toggle</a> |
+                Step Output
+            </div>
+            <div class="w-100 text-left m-auto">
+                <div class="w-100 text-left-sm m-auto collapse ${expandOutputs?then("show", "")}"
+                     id="expandableOutput${step.index!0}">
+                    <pre class="embedding-content small embedded-txt">${step.output?join("<br>")}</pre>
+                </div>
+            </div>
         </div>
     </#if>
 </#macro>

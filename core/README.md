@@ -229,8 +229,8 @@ new CluecumberCore.Builder()
 
 ## Auto-expand Certain Report Sections
 
-The `expandBeforeAfterHooks`, `expandStepHooks` and `expandDocStrings` options can be set to `true` to expand or
-collapse before/after hooks, step hooks or docstrings respectively on scenario detail pages.
+The `expandBeforeAfterHooks`, `expandStepHooks`, `expandDocStrings` and `expandOutputs` options can be set to `true` to expand or
+collapse before/after hooks, step hooks, docstrings and step outputs respectively on scenario detail pages.
 
 If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail
 page to expand those sections on demand.
@@ -240,6 +240,7 @@ new CluecumberCore.Builder()
         .setExpandBeforeAfterHooks(true)
         .setExpandStepHooks(true)
         .setExpandDocStrings(true)
+        .setExpandOutputs(true)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 

@@ -59,6 +59,11 @@ public class Step extends ResultMatch {
         return false;
     }
 
+    /**
+     * Check if the step has hooks.
+     *
+     * @return true if the step has hooks.
+     */
     public boolean hasHooks() {
         return !before.isEmpty() || !after.isEmpty();
     }
@@ -322,10 +327,20 @@ public class Step extends ResultMatch {
         this.index = index;
     }
 
+    /**
+     * Check if the step has sub sections.
+     *
+     * @return true if the step has sub sections.
+     */
     public boolean hasSubSections() {
         return hasSubSections;
     }
 
+    /**
+     * Set if the step has sub sections.
+     *
+     * @param hasSubSections true if the step has sub sections.
+     */
     public void setHasSubSections(boolean hasSubSections) {
         this.hasSubSections = hasSubSections;
     }

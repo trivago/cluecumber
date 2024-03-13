@@ -95,6 +95,9 @@ a {
 
 .navbar, .card {
     margin: 0 0 .5rem 0;
+}
+
+.card {
     border: 1px solid darkgray;
 }
 
