@@ -41,6 +41,7 @@ public class CluecumberCore {
         cluecumberEngine.setCustomStatusColorFailed(builder.customStatusColorFailed);
         cluecumberEngine.setCustomStatusColorPassed(builder.customStatusColorPassed);
         cluecumberEngine.setCustomStatusColorSkipped(builder.customStatusColorSkipped);
+        cluecumberEngine.setExpandSubSections(builder.expandSubSections);
         cluecumberEngine.setExpandAttachments(builder.expandAttachments);
         cluecumberEngine.setExpandBeforeAfterHooks(builder.expandBeforeAfterHooks);
         cluecumberEngine.setExpandDocStrings(builder.expandDocStrings);
@@ -77,6 +78,7 @@ public class CluecumberCore {
         private String customStatusColorFailed;
         private String customStatusColorPassed;
         private String customStatusColorSkipped;
+        private boolean expandSubSections;
         private boolean expandAttachments;
         private boolean expandBeforeAfterHooks;
         private boolean expandDocStrings;
@@ -185,6 +187,17 @@ public class CluecumberCore {
          */
         public Builder setCustomStatusColorSkipped(final String customStatusColorSkipped) {
             this.customStatusColorSkipped = customStatusColorSkipped;
+            return this;
+        }
+
+        /**
+         * Whether to expand sub sections or not.
+         *
+         * @param expandSubSections If true, sub sections will be expanded.
+         * @return The {@link Builder}.
+         */
+        public Builder setExpandSubSections(final boolean expandSubSections) {
+            this.expandSubSections = expandSubSections;
             return this;
         }
 

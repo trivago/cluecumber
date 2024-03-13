@@ -76,44 +76,48 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </li>
             </ul>
             <#if element.hasHooks() && element.hasHooksWithContent()>
-                <p>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="before-after-hooks-button"
-                            onclick="expandAll('.scenarioHook')">Open Hooks</button>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="before-after-hooks-button"
-                            onclick="collapseAll('.scenarioHook')">Close Hooks</button>
-                </p>
+                <hr>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="before-after-hooks-button"
+                        onclick="expandAll('.scenarioHook')">Open Hooks
+                </button>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="before-after-hooks-button"
+                        onclick="collapseAll('.scenarioHook')">Close Hooks
+                </button>
             </#if>
             <#if element.hasSubSections()>
-                <p>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="sub-sections-button"
-                            onclick="expandAll('.scenarioSubSection')">Open Sub Sections</button>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="sub-sections-button"
-                            onclick="collapseAll('.scenarioSubSection')">Close Sub Sections</button>
-                </p>
+                <hr>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="sub-sections-button"
+                        onclick="expandAll('.scenarioSubSection')">Open Sub Sections
+                </button>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="sub-sections-button"
+                        onclick="collapseAll('.scenarioSubSection')">Close Sub Sections
+                </button>
             </#if>
             <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
-                <p>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="step-hooks-button"
-                            onclick="expandAll('.stepHook')">Open Step Hooks</button>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="step-hooks-button"
-                            onclick="collapseAll('.stepHook')">Close Step Hooks</button>
-                </p>
+                <hr>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="step-hooks-button"
+                        onclick="expandAll('.stepHook')">Open Step Hooks
+                </button>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="step-hooks-button"
+                        onclick="collapseAll('.stepHook')">Close Step Hooks
+                </button>
             </#if>
             <#if element.hasDocStrings()>
-                <p>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="doc-strings-button"
-                            onclick="expandAll('.scenarioDocstring')">Open DocStrings</button>
-                    <button class="btn-clipboard" type="button"
-                            data-cluecumber-item="doc-strings-button"
-                            onclick="collapseAll('.scenarioDocstring')">Close DocStrings</button>
-                </p>
+                <hr>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="doc-strings-button"
+                        onclick="expandAll('.scenarioDocstring')">Open DocStrings
+                </button>
+                <button class="btn-clipboard" type="button"
+                        data-cluecumber-item="doc-strings-button"
+                        onclick="collapseAll('.scenarioDocstring')">Close DocStrings
+                </button>
             </#if>
         </@page.card>
     </div>
@@ -150,7 +154,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 <li class="list-group-item">
                     <#list element.backgroundSteps as step>
 
-                        <@scenario.stepHooks step.before />
+                        <@scenario.stepHooks step.index step.before />
 
                         <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
                             <div class="col-9 text-left">
@@ -196,7 +200,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <@scenario.output step=step/>
                             <@scenario.attachments step=step/>
                         </div>
-                        <@scenario.stepHooks step.after />
+                        <@scenario.stepHooks step.index step.after />
                     </#list>
                 </li>
             </@page.card>
@@ -211,7 +215,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     <#assign openDivs = 0>
 
                     <#list element.steps as step>
-                        <@scenario.stepHooks step.before />
+                        <@scenario.stepHooks step.index step.before />
 
                         <#assign sectionChange = step.collapseLevel - oldCollapseLevel>
                         <#assign oldCollapseLevel = step.collapseLevel>
@@ -220,7 +224,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <#list 1..sectionChange as n>
                                 <#assign openDivs = openDivs + 1>
                                 <div style="margin-left: 2em;" id="section_${step?counter}"
-                                    class="scenarioSubSection collapse">
+                                class="scenarioSubSection collapse">
                             </#list>
                         <#elseif (sectionChange < 0) >
                             <#list sectionChange..-1 as n>
@@ -238,15 +242,24 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                                 class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
                                 <#if (step.hasSubSections())>
-                                    <button type="button" class="btn-clipboard" data-toggle="collapse"
+                                    <button type="button" class="btn-clipboard sectionExpansionButton"
+                                            data-toggle="collapse"
                                             aria-expanded="false"
                                             data-target="#section_${step?counter + 1}">Sub Section
                                     </button>
                                 </#if>
                                 <#if (step.docString.value)?? >
-                                    <button type="button" class="btn-clipboard" data-toggle="collapse"
-                                            aria-expanded="false" class="docstringExpansionButton"
+                                    <button type="button" class="btn-clipboard docstringExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
                                             data-target="#step_${step.index}_docstring">DocString
+                                    </button>
+                                </#if>
+                                <#if (step.hasHooksWithContent()) >
+                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_stepHooks">Step Hooks
                                     </button>
                                 </#if>
                             </div>
@@ -285,7 +298,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <@scenario.output step=step/>
                             <@scenario.attachments step=step/>
                         </div>
-                        <@scenario.stepHooks step.after />
+                        <@scenario.stepHooks step.index step.after />
                     </#list>
                 </li>
             </@page.card>

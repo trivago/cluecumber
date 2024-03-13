@@ -74,18 +74,19 @@
                     <!-- Optional custom CSS for custom styling -->
                     <!-- <customCss>custom/custom.css</customCss> -->
 
-                    <!-- Optional properties to expand scenario hooks, step hooks, doc strings and attachments when scenario details are shown (default: false) -->
+                    <!-- Optional properties to expand scenario hooks, step hooks, doc strings, attachments and step outputs when scenario details are shown (default: false) -->
                     <expandBeforeAfterHooks>false</expandBeforeAfterHooks>
                     <expandStepHooks>false</expandStepHooks>
                     <expandDocStrings>false</expandDocStrings>
                     <expandAttachments>false</expandAttachments>
+                    <expandOutputs>false</expandOutputs>
 
                     <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
                      <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
                      <expandPreviousScenarioRuns>false</expandPreviousScenarioRuns>
 
-                    <!-- optional: Cluecumber log level -->
-                    <!--<logLevel>default</logLevel>-->
+                    <!-- optional: Cluecumber log level (default: default) -->
+                    <logLevel>default</logLevel>
                     <!--<logLevel>compact</logLevel>-->
                     <!--<logLevel>minimal</logLevel>-->
                     <!--<logLevel>off</logLevel>-->
@@ -96,7 +97,6 @@
                     <!-- Optional custom navigation links that are shown in the main top navigation (if they have a value) -->
                     <customNavigationLinks>
                         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
-                        <Empty_Link></Empty_Link>
                     </customNavigationLinks>
                 </configuration>
             </plugin>

@@ -63,14 +63,14 @@ public final class CluecumberEngine {
     /**
      * Constructor for dependency injection.
      *
-     * @param elementIndexPreProcessor The {@link ElementIndexPreProcessor} instance.
+     * @param elementIndexPreProcessor        The {@link ElementIndexPreProcessor} instance.
      * @param elementMultipleRunsPreProcessor The {@link ElementMultipleRunsPreProcessor} instance.
-     * @param fileIO                   The {@link FileIO} instance.
-     * @param fileSystemManager        The {@link FileSystemManager} instance.
-     * @param jsonPojoConverter        The {@link JsonPojoConverter} instance.
-     * @param logger                   The {@link CluecumberLogger} instance.
-     * @param propertyManager          The {@link PropertyManager} instance.
-     * @param reportGenerator          The {@link ReportGenerator} instance.
+     * @param fileIO                          The {@link FileIO} instance.
+     * @param fileSystemManager               The {@link FileSystemManager} instance.
+     * @param jsonPojoConverter               The {@link JsonPojoConverter} instance.
+     * @param logger                          The {@link CluecumberLogger} instance.
+     * @param propertyManager                 The {@link PropertyManager} instance.
+     * @param reportGenerator                 The {@link ReportGenerator} instance.
      */
     @Inject
     public CluecumberEngine(
@@ -140,7 +140,7 @@ public final class CluecumberEngine {
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
+                Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
                 DEFAULT,
                 COMPACT,
                 MINIMAL
@@ -197,6 +197,15 @@ public final class CluecumberEngine {
      */
     public void setFailScenariosOnPendingOrUndefinedSteps(final boolean failScenariosOnPendingOrUndefinedSteps) {
         propertyManager.setFailScenariosOnPendingOrUndefinedSteps(failScenariosOnPendingOrUndefinedSteps);
+    }
+
+    /**
+     * Set if sub sections should be expanded by default.
+     *
+     * @param expandSubSections If true, sub sections will be expanded by default.
+     */
+    public void setExpandSubSections(final boolean expandSubSections) {
+        propertyManager.setExpandSubSections(expandSubSections);
     }
 
     /**

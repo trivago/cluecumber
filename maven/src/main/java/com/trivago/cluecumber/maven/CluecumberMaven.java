@@ -89,6 +89,18 @@ public final class CluecumberMaven extends AbstractMojo {
     private String customCss = "";
 
     /**
+     * Custom flag that determines if step output sections of scenario detail pages should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandOutputs", defaultValue = "false")
+    private boolean expandOutputs;
+
+    /**
+     * Custom flag that determines if sub section of scenarios should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandSubSections", defaultValue = "false")
+    private boolean expandSubSections;
+
+    /**
      * Custom flag that determines if before and after hook sections of scenario detail pages should be expanded (default: false).
      */
     @Parameter(property = "reporting.expandBeforeAfterHooks", defaultValue = "false")
@@ -183,6 +195,8 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setCustomParametersFile(customParametersFile)
                     .setCustomStatusColorFailed(customStatusColorFailed)
                     .setCustomStatusColorPassed(customStatusColorPassed)
+                    .setExpandSubSections(expandSubSections)
+                    .setExpandOutputs(expandOutputs)
                     .setExpandAttachments(expandAttachments)
                     .setExpandBeforeAfterHooks(expandBeforeAfterHooks)
                     .setExpandDocStrings(expandDocStrings)

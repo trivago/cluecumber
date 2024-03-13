@@ -227,13 +227,12 @@ limitations under the License.
     </#if>
 </#macro>
 
-<#macro stepHooks hooks>
+<#macro stepHooks stepIndex hooks>
     <#list hooks as hook>
         <#if hook.hasContent()>
-            <div class="stepHook collapse">
+            <div class="stepHook collapse" id="step_${stepIndex}_stepHooks">
                 <div class="row row_${hook.consolidatedStatusString} table-row-${hook.consolidatedStatusString}">
-                    <div class="col-1"></div>
-                    <div class="col-8 text-left">
+                    <div class="col-9 text-left">
                         <i>${hook.glueMethodName}</i>
                     </div>
                     <div class="col-2 text-left small">

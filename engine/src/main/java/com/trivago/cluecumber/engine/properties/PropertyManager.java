@@ -53,6 +53,7 @@ public class PropertyManager {
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private boolean failScenariosOnPendingOrUndefinedSteps = false;
+    private boolean expandSubSections = false;
     private boolean expandBeforeAfterHooks = false;
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
@@ -250,6 +251,24 @@ public class PropertyManager {
      */
     public void setFailScenariosOnPendingOrUndefinedSteps(final boolean failScenariosOnPendingOrUndefinedSteps) {
         this.failScenariosOnPendingOrUndefinedSteps = failScenariosOnPendingOrUndefinedSteps;
+    }
+
+    /**
+     * This determines whether sub sections should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
+    public boolean isExpandSubSections() {
+        return expandSubSections;
+    }
+
+    /**
+     * Set whether sub sections should be expanded by default.
+     *
+     * @param expandSubSections true means they should be expanded.
+     */
+    public void setExpandSubSections(final boolean expandSubSections) {
+        this.expandSubSections = expandSubSections;
     }
 
     /**
@@ -510,9 +529,11 @@ public class PropertyManager {
         logger.logInfoSeparator(DEFAULT);
 
         logger.info("- fail pending/undefined scenarios : " + failScenariosOnPendingOrUndefinedSteps, DEFAULT);
+        logger.info("- expand sub sections              : " + expandSubSections, DEFAULT);
         logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks, DEFAULT);
         logger.info("- expand step hooks                : " + expandStepHooks, DEFAULT);
         logger.info("- expand doc strings               : " + expandDocStrings, DEFAULT);
+        logger.info("- expand step outputs              : " + expandOutputs, DEFAULT);
         logger.info("- expand attachments               : " + expandAttachments, DEFAULT);
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
         logger.info("- start page                       : " + startPage, DEFAULT);
@@ -521,8 +542,10 @@ public class PropertyManager {
         logger.info("- expand previous scenario runs    : " + expandPreviousScenarioRuns, DEFAULT);
 
         if (!customNavigationLinks.isEmpty()) {
-            customNavigationLinks.entrySet().stream().map(entry -> "- custom navigation link           : " +
-                                                                   entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+            customNavigationLinks.entrySet().stream().map(
+                    entry -> "- custom navigation link           : " +
+                             entry.getKey() + " -> " + entry.getValue()).forEach(
+                    logString -> logger.info(logString, DEFAULT));
         }
 
 
