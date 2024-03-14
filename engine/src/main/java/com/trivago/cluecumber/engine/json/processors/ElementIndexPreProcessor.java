@@ -63,6 +63,27 @@ public class ElementIndexPreProcessor {
                 element.setScenarioIndex(scenarioIndex);
                 int stepIndex = 0;
                 Step oldStep = null;
+                for (Step step : element.getBackgroundSteps()) {
+                    int count = 0;
+                    step.setIndex(stepIndex);
+                    for (int i = 0; i < step.getKeyword().length(); i++) {
+                        if (step.getKeyword().charAt(i) == '>') {
+                            count++;
+                        } else {
+                            break;
+                        }
+                    }
+                    if (count > 0) {
+                        step.setCollapseLevel(count);
+                        step.setKeyword(step.getKeyword().substring(count).trim());
+                    }
+                    if (oldStep != null && oldStep.getCollapseLevel() < step.getCollapseLevel()) {
+                        oldStep.setHasSubSections(true);
+                    }
+                    oldStep = step;
+                    stepIndex++;
+                }
+                oldStep = null;
                 for (Step step : element.getSteps()) {
                     int count = 0;
                     step.setIndex(stepIndex);

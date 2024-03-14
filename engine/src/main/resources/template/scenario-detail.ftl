@@ -150,7 +150,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <@common.status status=before.consolidatedStatusString/>
                                 </div>
                                 <@scenario.errorMessage step=before/>
-                                <@scenario.output step=before/>
+                                <@scenario.output step=before sectionId='before'/>
                                 <@scenario.attachments step=before/>
                             </div>
                         </#if>
@@ -162,69 +162,12 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <#if (element.backgroundSteps?size > 0)>
             <@page.card width="12" title="Background Steps" subtitle="" classes="">
                 <li class="list-group-item">
-                    <#list element.backgroundSteps as step>
-
-                        <@scenario.stepHooks step.index step.before />
-
-                        <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
-                            <div class="col-9 text-left">
-                                <span class="text-left">${step?counter}.</span>
-                                <#assign stepName=step.returnNameWithArguments()>
-                                <span data-toggle="tooltip" title="${step.glueMethodName}">
-                                    <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
-                                                class="keyword">${step.keyword}</span> ${stepName}</a>
-                                </span>
-                            </div>
-                            <div class="col-2 text-left small">
-                                ${step.result.returnDurationString()}
-                            </div>
-                            <div class="col-1 text-right">
-                                <@common.status status=step.consolidatedStatusString/>
-                            </div>
-
-                            <#if (step.rows?size > 0) >
-                                <div class="row w-100 p-3 m-0 scenarioDataTable">
-                                    <div class="w-100 text-left border border-dark table-responsive">
-                                        <table class="table table-hover small table-striped text-left pb-0">
-                                            <#list step.rows as row>
-                                                <tr>
-                                                    <#list row.cells as cell>
-                                                        <td>${cell}</td>
-                                                    </#list>
-                                                </tr>
-                                            </#list>
-                                        </table>
-                                    </div>
-                                </div>
-                            </#if>
-                            <#if (step.docString.value)?? >
-                                <div class="scenarioDocstring collapse">
-                                    <div class="row w-100 p-3 m-0">
-                                        <div class="w-100 text-left border">
-                                            <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
-                                        </div>
-                                    </div>
-                                </div>
-                            </#if>
-                            <@scenario.errorMessage step=step/>
-                            <@scenario.output step=step/>
-                            <@scenario.attachments step=step/>
-                        </div>
-                        <@scenario.stepHooks step.index step.after />
-                    </#list>
-                </li>
-            </@page.card>
-        </#if>
-
-        <#if (element.steps?size > 0)>
-            <@page.card width="12" title="Steps" subtitle="" classes="">
-                <li class="list-group-item">
 
                     <#assign oldCollapseLevel = 0>
                     <#assign lastLevelChange = 0>
                     <#assign openDivs = 0>
 
-                    <#list element.steps as step>
+                    <#list element.backgroundSteps as step>
                         <@scenario.stepHooks step.index step.before />
 
                         <#assign sectionChange = step.collapseLevel - oldCollapseLevel>
@@ -234,7 +177,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <#list 1..sectionChange as n>
                                 <#assign openDivs = openDivs + 1>
                                 <div style="margin-left: 2em;" id="section_${step?counter}"
-                                class="scenarioSubSection collapse">
+                                class="scenarioSubSection collapse ${expandSubSections?then("show", "")}">
                             </#list>
                         <#elseif (sectionChange < 0) >
                             <#list sectionChange..-1 as n>
@@ -305,7 +248,105 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <@scenario.errorMessage step=step/>
-                            <@scenario.output step=step/>
+                            <@scenario.output step=step sectionId='background'/>
+                            <@scenario.attachments step=step/>
+                        </div>
+                        <@scenario.stepHooks step.index step.after />
+                    </#list>
+                </li>
+            </@page.card>
+        </#if>
+
+        <#if (element.steps?size > 0)>
+            <@page.card width="12" title="Steps" subtitle="" classes="">
+                <li class="list-group-item">
+
+                    <#assign oldCollapseLevel = 0>
+                    <#assign lastLevelChange = 0>
+                    <#assign openDivs = 0>
+
+                    <#list element.steps as step>
+                        <@scenario.stepHooks step.index step.before />
+
+                        <#assign sectionChange = step.collapseLevel - oldCollapseLevel>
+                        <#assign oldCollapseLevel = step.collapseLevel>
+
+                        <#if (sectionChange > 0) >
+                            <#list 1..sectionChange as n>
+                                <#assign openDivs = openDivs + 1>
+                                <div style="margin-left: 2em;" id="section_${step?counter}"
+                                class="scenarioSubSection collapse ${expandSubSections?then("show", "")}">
+                            </#list>
+                        <#elseif (sectionChange < 0) >
+                            <#list sectionChange..-1 as n>
+                                </div>
+                            </#list>
+                        </#if>
+
+                        <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
+
+                            <div class="col-9 text-left">
+                                <span class="text-left">${step?counter}.</span>
+                                <#assign stepName=step.returnNameWithArguments()>
+                                <span data-toggle="tooltip" title="${step.glueMethodName}">
+                                    <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
+                                                class="keyword">${step.keyword}</span> ${stepName}</a>
+                                </span>
+                                <#if (step.hasSubSections())>
+                                    <button type="button" class="btn-clipboard sectionExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#section_${step?counter + 1}">Sub Section
+                                    </button>
+                                </#if>
+                                <#if (step.docString.value)?? >
+                                    <button type="button" class="btn-clipboard docstringExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_docstring">DocString
+                                    </button>
+                                </#if>
+                                <#if (step.hasHooksWithContent()) >
+                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_stepHooks">Step Hooks
+                                    </button>
+                                </#if>
+                            </div>
+                            <div class="col-2 text-left small">
+                                ${step.result.returnDurationString()}
+                            </div>
+                            <div class="col-1 text-right">
+                                <@common.status status=step.consolidatedStatusString/>
+                            </div>
+
+                            <#if (step.rows?size > 0) >
+                                <div class="row w-100 p-3 m-0 scenarioDataTable">
+                                    <div class="w-100 text-left border border-dark table-responsive">
+                                        <table class="table table-hover small table-striped text-left pb-0">
+                                            <#list step.rows as row>
+                                                <tr>
+                                                    <#list row.cells as cell>
+                                                        <td>${cell}</td>
+                                                    </#list>
+                                                </tr>
+                                            </#list>
+                                        </table>
+                                    </div>
+                                </div>
+                            </#if>
+                            <#if (step.docString.value)?? >
+                                <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
+                                    <div class="row w-100 p-3 m-0">
+                                        <div class="w-100 text-left border">
+                                            <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </#if>
+                            <@scenario.errorMessage step=step/>
+                            <@scenario.output step=step sectionId='main'/>
                             <@scenario.attachments step=step/>
                         </div>
                         <@scenario.stepHooks step.index step.after />
@@ -332,7 +373,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                         <@common.status status=after.consolidatedStatusString/>
                                     </div>
                                     <@scenario.errorMessage step=after/>
-                                    <@scenario.output step=after/>
+                                    <@scenario.output step=after sectionId='after'/>
                                     <@scenario.attachments step=after/>
                                 </div>
                             </#if>

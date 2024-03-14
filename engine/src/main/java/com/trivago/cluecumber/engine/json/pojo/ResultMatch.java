@@ -119,7 +119,7 @@ public class ResultMatch {
      * @return true if outputs exist.
      */
     public boolean hasOutputs() {
-        return output.size() > 0;
+        return !output.isEmpty();
     }
 
     /**

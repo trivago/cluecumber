@@ -47,9 +47,6 @@ limitations under the License.
                 <#if headline != "">
                     <h3>${headline}</h3>
                 </#if>
-                <#if subheadline != "">
-                    <h5>${subheadline}</h5>
-                </#if>
                 <#if preheadline != "">
                     <b>
                         <span data-toggle="tooltip" title="${subsubheadline}">
@@ -60,6 +57,9 @@ limitations under the License.
                         </#if>
                         </span>
                     </b>
+                </#if>
+                <#if subheadline != "">
+                    <p>${subheadline}</p>
                 </#if>
             </div>
             <#nested>

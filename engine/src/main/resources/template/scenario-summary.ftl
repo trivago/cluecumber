@@ -116,7 +116,6 @@ preheadlineLink=preheadlineLink>
                 <hr>
                 (${totalNumberOfNotLastScenariosRuns} ${common.pluralizeFn("Scenario", totalNumberOfNotLastScenariosRuns)}
                 were previous runs)
-                <hr>
                 <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
                         data-target=".notLastRun">Toggle Previous Test Runs

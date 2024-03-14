@@ -12,12 +12,12 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Long tag names broke the layout
+* Reruns should not be displayed in the tree view
 
 ### Added
 
 * Support for multiple sub sections (e.g. in Karate scenarios with feature files in feature files)
 * Attachments, outputs and docStrings are now collapsible individually
-* Reruns are marked in tree view
 * Step outputs are now toggleable
 * New configuration options for toggling step output (`expandStepOutput`)
 * New configuration options for toggling sub sections (`expandSubSections`)
