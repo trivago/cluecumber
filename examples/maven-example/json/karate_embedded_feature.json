@@ -1,0 +1,141 @@
+[
+  {
+    "line": 2,
+    "elements": [
+      {
+        "start_timestamp": "2024-03-01T09:23:08.487Z",
+        "line": 92,
+        "name": "Karate embedded feature",
+        "description": "",
+        "id": "karate-embedded",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "name": "@setup",
+            "result": {
+              "duration": 0,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": "*",
+            "line": 92
+          },
+          {
+            "name": "feature\/Embedded.feature",
+            "result": {
+              "duration": 0,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": "",
+            "line": 92
+          },
+          {
+            "name": "def determineSourceData =",
+            "result": {
+              "duration": 4748845,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": "> *",
+            "line": 6,
+            "doc_string": {
+              "content_type": "",
+              "value": "function someFunction(){\n}\n \n",
+              "line": 6
+            }
+          },
+          {
+            "name": "def myVariable = someValue",
+            "result": {
+              "duration": 195367371,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": "> *",
+            "line": 18
+          },
+          {
+            "name": "feature\/EmbeddedInEmbedded.feature",
+            "result": {
+              "duration": 0,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": ">",
+            "line": 18
+          },
+          {
+            "name": "def someOtherThing =",
+            "result": {
+              "duration": 4515430,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": ">> *",
+            "line": 12,
+            "doc_string": {
+              "content_type": "",
+              "value": "function(s) {\n    return blablabla }",
+              "line": 12
+            }
+          },
+          {
+            "name": "def backToTheOriginalFeature =",
+            "result": {
+              "duration": 2980118,
+              "status": "passed"
+            },
+            "match": {
+              "location": "karate",
+              "arguments": []
+            },
+            "keyword": "*",
+            "line": 22,
+            "doc_string": {
+              "content_type": "",
+              "value": "{ someContent }\n \n",
+              "line": 22
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@thisIsAReallyLongTagThatShouldBeWrapped",
+            "line": 1
+          }
+        ]
+      }
+    ],
+    "name": "feature\/KarateEmbedded.feature",
+    "description": "Features in features",
+    "id": "embedded-features",
+    "keyword": "Feature",
+    "uri": "feature\/KarateEmbedded.feature",
+    "tags": [
+      {
+        "name": "@thisIsAReallyLongTagThatShouldBeWrapped",
+        "line": 1
+      }
+    ]
+  }
+]

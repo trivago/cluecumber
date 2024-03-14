@@ -48,7 +48,7 @@ public class ElementIndexPreProcessorTest {
         assertEquals(e.get(1).getScenarioIndex(), 0);
         assertEquals(e.get(2).getScenarioIndex(), 0);
 
-        elementIndexPreProcessor.addScenarioIndices(reports);
+        elementIndexPreProcessor.process(reports);
 
         assertEquals(e.get(0).getScenarioIndex(), 1);
         assertEquals(e.get(1).getScenarioIndex(), 2);
@@ -87,7 +87,7 @@ public class ElementIndexPreProcessorTest {
         assertEquals(e.get(1).getScenarioIndex(), 0);
         assertEquals(e.get(2).getScenarioIndex(), 0);
 
-        elementIndexPreProcessor.addScenarioIndices(reports);
+        elementIndexPreProcessor.process(reports);
 
         assertEquals(e.get(0).getScenarioIndex(), 2);
         assertEquals(e.get(1).getScenarioIndex(), 1);

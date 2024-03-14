@@ -7,98 +7,140 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.6.0] - 2024-03-14
+
+### Fixed
+
+* Long tag names broke the layout
+* Reruns should not be displayed in the tree view
+
+### Added
+
+* Support for multiple sub sections (e.g. in Karate scenarios with feature files in feature files)
+* Attachments, outputs and docStrings are now collapsible individually
+* Step outputs are now toggleable
+* New configuration options for toggling step output (`expandStepOutput`)
+* New configuration options for toggling sub sections (`expandSubSections`)
+
+### Changed
+
+* Tweaked data table header layout
+* Tweaked look of all item cards
+* Re-arranged summary and timing information
+* Updated dependencies
+
 ## [3.5.1] - 2023-11-13
 
 ### Changed
+
 * Improved display of scenario groups
 * Updated dependencies
 * Added missing Javadoc
 
 ### Fixed
+
 * Grouping scenarios crashed Cluecumber when no start time existed
 
 ## [3.5.0] - 2023-11-02
 
 ### Added
+
 * `groupPreviousScenarioRuns` mode for a compact view when there are multiple runs of the same scenario [#245]
 * `expandPreviousScenarioRuns` to set default state of expanded or collapsed of the previous runs of the same scenario
 
 ## [3.4.0] - 2023-08-10
 
 ### Fixed
+
 * Background steps were not considered in the overall scenario outcome [#319]
 * Background steps were not shown in the bar charts
 
 ### Changed
-* Skipped scenarios are now determined to the official Cucumber guidelines 
+
+* Skipped scenarios are now determined to the official Cucumber guidelines
 * Charts show small bars for steps with a time of 0 instead of none at all
 * Before and after hooks are not shown in the step charts anymore
 
 ## [3.3.1] - 2023-08-08
 
 ### Fixed
+
 * Wrong relative links from bar charts to detail pages
 
 ## [3.3.0] - 2023-08-07
 
 ### Fixed
-* Scenarios having skipped steps after a passed step are now considered skipped (used to be passed) (#314) 
+
+* Scenarios having skipped steps after a passed step are now considered skipped (used to be passed) (#314)
 * `skip` parameter in Cluecumber Maven was not recognized anymore (#316)
 
 ### Added
+
 * Charts in "All Tags", "All Features" and "All Steps" can now be clicked and redirect to the according detail page
 
 ## [3.2.2] - 2023-05-12
 
 ### Fixed
+
 * Pie chart always showing results from all features [#311]
 
 ### Changed
+
 * Updated dependencies
 
 ## [3.2.1] - 2023-03-21
 
 ### Fixed
+
 * `expandDocStrings` option did not have an effect [#308]
 
 ### Changed
+
 * Code clean-up
 
 ## [3.2.0] - 2023-03-10
 
 ### Changed
+
 * Updated dependencies
 * Small visual tweaks
 * Code clean-up
 
 ### Added
+
 * Full javadoc coverage
 
 ## [3.1.0] - 2023-01-17
 
 ### Added
+
 * Added new test overview tree view page
 
 ### Fixed
+
 * Aligned counts and use of plurals in headlines
 * Fixed misaligned numbers in tag, step and feature overview page tables
 * Various small design adjustments and fixes
 
 ### Changed
+
 * Clearer custom parameters box
 * Tags are now displayed as buttons
 
 ## [3.0.2] - 2022-12-22
 
 ### Fixed
+
 * Exception message for non-given step was not shown in overview (#302)
 
 ## [3.0.1] - 2022-12-15
 
 ### Fixed
+
 * Exception messages for skipped scenarios were not displayed (#299)
 
 ### Changed
+
 * Separators between scenarios on the overview page
 * Changed alignment to top for tables
 * Changed error message display to dark red
@@ -107,51 +149,61 @@ Back to [Readme](README.md).
 
 This marks a new chapter in Cluecumber development.
 
-From now on it will be possible to develop separate versions with different invocations and for different platforms since 
+From now on it will be possible to develop separate versions with different invocations and for different platforms
+since
 the core component is now the reporting engine that is the base for other forms of Cluecumber.
 
 ### Changed
+
 * Separated functionality of Cluecumber Maven into three components:
-  * Cluecumber Engine (_reporting engine_)
-  * Cluecumber Core (_JVM code version_)
-  * Cluecumber Maven (_Maven version_)
+    * Cluecumber Engine (_reporting engine_)
+    * Cluecumber Core (_JVM code version_)
+    * Cluecumber Maven (_Maven version_)
 * Overhauled documentation
 
 ### Added
+
 * New example projects for Cluecumber Core and Cluecumber Maven.
 
 ## [2.9.4] - 2022-10-19
 
 ### Changed
+
 * Using new JQuery because of appsec vulnerability (#294)
 
 ## [2.9.3] - 2022-09-29
 
 ### Added
+
 * Custom parameter values starting with `./`, `../` or `#` are now interpreted as relative URLs
 * Custom navigation links without values are now hidden
 
 ## [2.9.2] - 2022-09-27
 
 ### Fixed
+
 * #293 - unescaped html in exception messages
 
 ## [2.9.1] - 2022-09-26
 
 ### Added
+
 * Display error messages on scenario overview pages
 
 ## [2.9.0] - 2022-09-24
 
 ### Added
+
 * Ability to add custom external links to the navigation bar via `customNavigationLinks` property
 * #281 - enable Cluecumber to be invoked without a POM project
 * Display error classes on scenario overview pages
 
 ### Fixed
+
 * #278 - Chart bars of steps with low times did not render at all
 
 ### Changed
+
 * Dependency updates
 * Design adjustments
 * Reworked navigation for future improvements
@@ -160,38 +212,47 @@ the core component is now the reporting engine that is the base for other forms 
 ## [2.8.0] - 2022-01-18
 
 ### Added
-* New `customParametersDisplayMode` option to display custom parameters on scenario pages or all pages (#273, base implementation contributed by zutshiy)
+
+* New `customParametersDisplayMode` option to display custom parameters on scenario pages or all pages (#273, base
+  implementation contributed by zutshiy)
 * New `expandAttachments` option to expand or collapse attachments by default
 * Attachments are collapsed by default and can be expanded (#279, base implementation contributed by beirtipol)
 
 ## [2.7.1] - 2021-11-05
 
 ### Changed
+
 * Updated dependencies
 
 ## [2.7.0] - 2021-05-11
 
 ### Added
+
 * More css classes for report customization (#270, contributed by GregJohnStewart)
 
 ### Changed
+
 * Updated dependencies
 
 ## [2.6.1] - 2020-11-27
 
 ### Fixed
+
 * After hooks with content were not displayed anymore
 
 ## [2.6.0] - 2020-11-27
 
 ### Fixed
+
 * Fixed HTML encoding for attachments (#263)
 
 ### Added
+
 * Background steps are now displayed in a separate section of the report
 
 ### Changed
-* Only hooks with outputs are considered and displayed in the scenario detail pages (#211) 
+
+* Only hooks with outputs are considered and displayed in the scenario detail pages (#211)
 * Various design cleanups
 
 ## [2.5.0] - 2020-05-11
@@ -225,7 +286,8 @@ the core component is now the reporting engine that is the base for other forms 
 
 ### Fixed
 
-* Unknown steps are now reported as skipped by default (unless `failScenariosOnPendingOrUndefinedSteps` is set to true) (#236)
+* Unknown steps are now reported as skipped by default (unless `failScenariosOnPendingOrUndefinedSteps` is set to
+  true) (#236)
 
 ## [2.3.3] - 2020-01-27
 
@@ -316,7 +378,8 @@ the core component is now the reporting engine that is the base for other forms 
 
 ### Added
 
-* Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed by gazler22)
+* Ability to set custom parameters via a properties file through the `customParametersFile` property (#167, contributed
+  by gazler22)
 
 ### Fixed
 
@@ -372,7 +435,8 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Additional parallel run time on `All Scenarios` and `Scenario Sequence` pages
 * Support of Cucumber 4.3.0's new scenario start timestamps
-* Start time and date, end time and date and duration is displayed on each scenario in `All Scenarios`, `Scenario Sequence` and `Scenario Detail` pages (Cucumber >= 4.3.0)
+* Start time and date, end time and date and duration is displayed on each scenario
+  in `All Scenarios`, `Scenario Sequence` and `Scenario Detail` pages (Cucumber >= 4.3.0)
 
 ### Changed
 
@@ -385,7 +449,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Minimum and maximum step times on `All Steps` page links to the enclosing scenario (#152)
 * New `failScenariosOnPendingOrUndefinedSteps` configuration property for marking scenarios as failed when they contain
-steps with status `pending` or `undefined` (default value is `false`) (#74)
+  steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 ### Changed
 
@@ -406,7 +470,7 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 ### Changed
 
-* Usage of symbols instead of text in tables for `passed`, `failed` and `skipped` 
+* Usage of symbols instead of text in tables for `passed`, `failed` and `skipped`
 
 ## [1.7.3] - 2019-03-05
 
@@ -436,7 +500,9 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 * Feature name link is now shown on scenario detail pages (#125)
 * three new options to expand or collapse hooks and docstrings on scenario detail pages (default: false) (#117)
+
 ```xml
+
 <configuration>
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
@@ -444,7 +510,8 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 </configuration>
 ```
 
-* Added data attributes for common elements (`data-cluecumber-item`) to simplify custom css configurations (related to #129)
+* Added data attributes for common elements (`data-cluecumber-item`) to simplify custom css configurations (related to
+  #129)
 
 ### Fixed
 
@@ -525,7 +592,8 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 ### Added
 
-* Option to hide/show step hooks on the "Scenario Details" page (only present if the scenario has step hooks in at least one step)
+* Option to hide/show step hooks on the "Scenario Details" page (only present if the scenario has step hooks in at least
+  one step)
 
 ## [1.4.1] - 2018-10-09
 
@@ -547,8 +615,10 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 ### Added
 
-* Scenario Sequence page that shows the order of scenario executions and their states without deviding them into separate `passed`, `failed` and `skipped` sections 
-* Option to show/hide docstrings on the "Scenario Details" page (only present if the scenario has docstrings in at least one step)
+* Scenario Sequence page that shows the order of scenario executions and their states without deviding them into
+  separate `passed`, `failed` and `skipped` sections
+* Option to show/hide docstrings on the "Scenario Details" page (only present if the scenario has docstrings in at least
+  one step)
 
 ### Fixed
 
@@ -582,7 +652,8 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 ### Fixed
 
 * Support for parameter highlighting in [Karate](https://github.com/intuit/karate/) tests
-* Hiding skipped steps from the scenario detail chart now also hides steps that are _considered_ skipped but have a status other than `skipped`
+* Hiding skipped steps from the scenario detail chart now also hides steps that are _considered_ skipped but have a
+  status other than `skipped`
 
 ### Added
 
@@ -778,78 +849,154 @@ steps with status `pending` or `undefined` (default value is `false`) (#74)
 
 Initial project version on GitHub and Maven Central.
 
+[3.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.6.0
+
 [3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.1
+
 [3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.0
+
 [3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.4.0
+
 [3.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.1
+
 [3.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.0
+
 [3.2.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.2
+
 [3.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.1
+
 [3.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.0
+
 [3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.1.0
+
 [3.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.2
+
 [3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.1
+
 [3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.0
+
 [2.9.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4
+
 [2.9.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.3
+
 [2.9.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.2
+
 [2.9.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.1
+
 [2.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.0
+
 [2.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.8.0
+
 [2.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.1
+
 [2.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.0
+
 [2.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1
+
 [2.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.0
+
 [2.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.5.0
+
 [2.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.4.0
+
 [2.3.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.4
+
 [2.3.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.3
+
 [2.3.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2
+
 [2.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.1
+
 [2.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.0
+
 [2.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0
+
 [2.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.1
+
 [2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
+
 [2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
+
 [2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
+
 [1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
+
 [1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
+
 [1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1
+
 [1.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.0
+
 [1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
+
 [1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1
+
 [1.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0
+
 [1.7.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3
+
 [1.7.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.2
+
 [1.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1
+
 [1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0
+
 [1.6.5]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.5
+
 [1.6.4]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.4
+
 [1.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.3
+
 [1.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.2
+
 [1.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.1
+
 [1.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.0
+
 [1.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0
+
 [1.4.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.2
+
 [1.4.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1
+
 [1.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0
+
 [1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
+
 [1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
+
 [1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
+
 [1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
+
 [1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
+
 [1.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0
+
 [0.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0
+
 [0.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.7.1
+
 [0.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.6.0
+
 [0.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.5.0
+
 [0.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.3.0
+
 [0.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0
+
 [0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
+
 [0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0
+
 [0.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.7
+
 [0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6
+
 [0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
+
 [0.0.4]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4
+
 [0.0.3]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.3
+
 [0.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.2

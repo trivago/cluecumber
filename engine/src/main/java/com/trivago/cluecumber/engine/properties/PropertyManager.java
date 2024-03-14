@@ -53,12 +53,14 @@ public class PropertyManager {
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private boolean failScenariosOnPendingOrUndefinedSteps = false;
+    private boolean expandSubSections = false;
     private boolean expandBeforeAfterHooks = false;
     private boolean expandStepHooks = false;
     private boolean expandDocStrings = false;
     private boolean expandAttachments = true;
+    private boolean expandOutputs = false;
     private boolean groupPreviousScenarioRuns = false;
-    private boolean expandPreviousScenarioRuns = true;
+    private boolean expandPreviousScenarioRuns = false;
     private String customCssFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
@@ -198,7 +200,7 @@ public class PropertyManager {
             this.customParametersDisplayMode = Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
         } catch (IllegalArgumentException e) {
             logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode +
-                    "'. Must be one of " + Arrays.toString(Settings.CustomParamDisplayMode.values()));
+                        "'. Must be one of " + Arrays.toString(Settings.CustomParamDisplayMode.values()));
             this.customParametersDisplayMode = Settings.CustomParamDisplayMode.SCENARIO_PAGES;
         }
     }
@@ -249,6 +251,24 @@ public class PropertyManager {
      */
     public void setFailScenariosOnPendingOrUndefinedSteps(final boolean failScenariosOnPendingOrUndefinedSteps) {
         this.failScenariosOnPendingOrUndefinedSteps = failScenariosOnPendingOrUndefinedSteps;
+    }
+
+    /**
+     * This determines whether sub sections should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
+    public boolean isExpandSubSections() {
+        return expandSubSections;
+    }
+
+    /**
+     * Set whether sub sections should be expanded by default.
+     *
+     * @param expandSubSections true means they should be expanded.
+     */
+    public void setExpandSubSections(final boolean expandSubSections) {
+        this.expandSubSections = expandSubSections;
     }
 
     /**
@@ -315,12 +335,30 @@ public class PropertyManager {
     }
 
     /**
+     * This determines whether step outputs should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
+    public boolean isExpandOutputs() {
+        return expandOutputs;
+    }
+
+    /**
      * Set whether attachments should be expanded by default.
      *
      * @param expandAttachments true means they should be expanded.
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         this.expandAttachments = expandAttachments;
+    }
+
+    /**
+     * Set whether step outputs should be expanded by default.
+     *
+     * @param expandOutputs true means they should be expanded.
+     */
+    public void setExpandOutputs(final boolean expandOutputs) {
+        this.expandOutputs = expandOutputs;
     }
 
     /**
@@ -485,15 +523,17 @@ public class PropertyManager {
                 logger.logInfoSeparator();
             }
             customParameters.entrySet().stream().map(entry -> "- custom parameter                 : " +
-                    entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+                                                              entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
         }
 
         logger.logInfoSeparator(DEFAULT);
 
         logger.info("- fail pending/undefined scenarios : " + failScenariosOnPendingOrUndefinedSteps, DEFAULT);
+        logger.info("- expand sub sections              : " + expandSubSections, DEFAULT);
         logger.info("- expand before/after hooks        : " + expandBeforeAfterHooks, DEFAULT);
         logger.info("- expand step hooks                : " + expandStepHooks, DEFAULT);
         logger.info("- expand doc strings               : " + expandDocStrings, DEFAULT);
+        logger.info("- expand step outputs              : " + expandOutputs, DEFAULT);
         logger.info("- expand attachments               : " + expandAttachments, DEFAULT);
         logger.info("- page title                       : " + customPageTitle, DEFAULT);
         logger.info("- start page                       : " + startPage, DEFAULT);
@@ -502,8 +542,10 @@ public class PropertyManager {
         logger.info("- expand previous scenario runs    : " + expandPreviousScenarioRuns, DEFAULT);
 
         if (!customNavigationLinks.isEmpty()) {
-            customNavigationLinks.entrySet().stream().map(entry -> "- custom navigation link           : " +
-                    entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+            customNavigationLinks.entrySet().stream().map(
+                    entry -> "- custom navigation link           : " +
+                             entry.getKey() + " -> " + entry.getValue()).forEach(
+                    logString -> logger.info(logString, DEFAULT));
         }
 
 
@@ -512,7 +554,7 @@ public class PropertyManager {
         }
 
         logger.info("- colors (passed, failed, skipped) : " +
-                customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped, DEFAULT);
+                    customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped, DEFAULT);
 
         logger.logInfoSeparator(DEFAULT);
     }

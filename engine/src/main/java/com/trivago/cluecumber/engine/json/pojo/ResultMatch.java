@@ -92,7 +92,7 @@ public class ResultMatch {
      * @return true if attachments exist.
      */
     public boolean hasEmbeddings() {
-        return embeddings.size() > 0;
+        return !embeddings.isEmpty();
     }
 
     /**
@@ -119,7 +119,7 @@ public class ResultMatch {
      * @return true if outputs exist.
      */
     public boolean hasOutputs() {
-        return output.size() > 0;
+        return !output.isEmpty();
     }
 
     /**

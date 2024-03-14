@@ -47,7 +47,8 @@ public class Element {
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
     private String startTimestamp = "";
-    private List<Element> childrenElements = new ArrayList<>();;
+    private List<Element> childrenElements = new ArrayList<>();
+    ;
 
     private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
@@ -374,7 +375,7 @@ public class Element {
             return Status.SKIPPED;
         }
         if (failOnPendingOrUndefined && allStates.size() == 1
-                && allStates.iterator().next().basicStatus() == Status.SKIPPED) {
+            && allStates.iterator().next().basicStatus() == Status.SKIPPED) {
             return Status.FAILED;
         }
 
@@ -588,6 +589,54 @@ public class Element {
     }
 
     /**
+     * Check if this scenario contains outputs.
+     *
+     * @return true if there are outputs.
+     */
+    public boolean hasOutputs() {
+        for (Step step : backgroundSteps) {
+            if (step.hasOutputs()) {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasOutputs()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if this scenario contains attachments.
+     *
+     * @return true if there are attachments.
+     */
+    public boolean hasAttachments() {
+        for (ResultMatch resultMatch : before) {
+            if (!resultMatch.getEmbeddings().isEmpty()) {
+                return true;
+            }
+        }
+        for (Step step : backgroundSteps) {
+            if (step.hasEmbeddings()) {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasEmbeddings()) {
+                return true;
+            }
+        }
+        for (ResultMatch resultMatch : after) {
+            if (!resultMatch.getEmbeddings().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Check if this scenario contains hooks.
      *
      * @return true if there are hooks.
@@ -606,6 +655,25 @@ public class Element {
                 return true;
             }
             if (!step.getAfter().isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if this scenario contains sub-sections.
+     *
+     * @return true if there are sub-sections.
+     */
+    public boolean hasSubSections() {
+        for (Step step : backgroundSteps) {
+            if (step.hasSubSections()) {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasSubSections()) {
                 return true;
             }
         }
@@ -727,6 +795,7 @@ public class Element {
 
     /**
      * Set to true if this scenario is the last of multiple runs.
+     *
      * @param isLastOfMultipleScenarioRuns true if this scenario is the last of multiple runs.
      */
     public void setIsLastOfMultipleScenarioRuns(final boolean isLastOfMultipleScenarioRuns) {
@@ -744,6 +813,7 @@ public class Element {
 
     /**
      * Set to true if this scenario was run multiple times and it's not the last run.
+     *
      * @param isNotLastOfMultipleScenarioRuns true if this scenario was run multiple times and it's not the last run.
      */
     public void setIsNotLastOfMultipleScenarioRuns(final boolean isNotLastOfMultipleScenarioRuns) {
@@ -752,6 +822,7 @@ public class Element {
 
     /**
      * Get the children elements of this scenario.
+     *
      * @return The children elements.
      */
     public List<Element> getChildrenElements() {
@@ -760,6 +831,7 @@ public class Element {
 
     /**
      * Set the children elements of this scenario.
+     *
      * @param childrenElements The children elements.
      */
     public void setChildrenElements(final List<Element> childrenElements) {
@@ -777,6 +849,7 @@ public class Element {
 
     /**
      * Get all steps including background steps.
+     *
      * @return The list of steps.
      */
     public List<Step> getAllStepsIncludingBackgroundSteps() {

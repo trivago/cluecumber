@@ -95,15 +95,10 @@ a {
 
 .navbar, .card {
     margin: 0 0 .5rem 0;
+}
+
+.card {
     border: 1px solid darkgray;
-}
-
-.scenarioAttachment > div, .scenarioOutput > div {
-    border: 1px solid rgb(149, 189, 197);
-}
-
-.scenarioOutput {
-    white-space: pre-line;
 }
 
 pre {
@@ -112,7 +107,7 @@ pre {
 }
 
 .row {
-    padding: 1rem;
+    padding: .85rem;
 }
 
 .list-group {
@@ -235,12 +230,10 @@ button.btn {
     box-shadow: none;
 }
 
-button.btn.collapsed:before {
-    content: 'Show ';
-}
-
-button.btn:before {
-    content: 'Hide ';
+.btn-clipboard {
+    border: none;
+    font-size: small;
+    color: #676767;
 }
 
 div.collapse {
@@ -257,7 +250,7 @@ i {
 }
 
 .customParameters .card-header {
-    background-color: lightgray;
+    background-color: darkgray;
     color: black;
 }
 
@@ -296,4 +289,8 @@ p.firstException {
 
 tr.even td, tr.odd td {
     border-bottom: #ebebeb 1px solid;
+}
+
+.dataTables_length {
+    text-align: left;
 }

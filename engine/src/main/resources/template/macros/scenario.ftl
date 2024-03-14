@@ -36,7 +36,7 @@ limitations under the License.
         <a class="anchor" id="anchor-${status}"></a>
         <div class="row" id="card_${status}" data-cluecumber-item="scenario-summary-table">
             <div class=" col-sm-12">
-                <div class="card">
+                <div class="card shadow">
 
                     <#switch status>
                         <#case "skipped">
@@ -209,21 +209,30 @@ limitations under the License.
     </#if>
 </#macro>
 
-<#macro output step>
+<#macro output step sectionId>
     <#if step.hasOutputs()>
-        <div class="row w-100 p-3 m-0 scenarioOutput">
-            <div class="w-100 text-left small p-2">${step.output?join("<br><br>")}</div>
+        <div class="row w-100 p-3 m-0 scenarioOutputs">
+            <div class="w-100 p-1 m-0 border-bottom small text-left">
+                <a class="btn-link" data-toggle="collapse" href="#expandableOutput${step.index!0}_${sectionId}" role="button"
+                   aria-expanded="false" aria-controls="expandableOutput${step.index!0}_${sectionId}">Toggle</a> |
+                Step Output
+            </div>
+            <div class="w-100 text-left m-auto">
+                <div class="w-100 text-left-sm m-auto collapse ${expandOutputs?then("show", "")}"
+                     id="expandableOutput${step.index!0}_${sectionId}">
+                    <pre class="embedding-content small embedded-txt">${step.output?join("<br>")}</pre>
+                </div>
+            </div>
         </div>
     </#if>
 </#macro>
 
-<#macro stepHooks hooks>
+<#macro stepHooks stepIndex hooks>
     <#list hooks as hook>
         <#if hook.hasContent()>
-            <div class="stepHook collapse">
+            <div class="stepHook collapse ${expandStepHooks?then("show", "")}" id="step_${stepIndex}_stepHooks">
                 <div class="row row_${hook.consolidatedStatusString} table-row-${hook.consolidatedStatusString}">
-                    <div class="col-1"></div>
-                    <div class="col-8 text-left">
+                    <div class="col-9 text-left">
                         <i>${hook.glueMethodName}</i>
                     </div>
                     <div class="col-2 text-left small">
@@ -233,7 +242,7 @@ limitations under the License.
                         <@common.status status=hook.consolidatedStatusString/>
                     </div>
                     <@scenario.errorMessage step=hook/>
-                    <@scenario.output step=hook/>
+                    <@scenario.output step=hook sectionId='hook'/>
                     <@scenario.attachments step=hook/>
                 </div>
             </div>

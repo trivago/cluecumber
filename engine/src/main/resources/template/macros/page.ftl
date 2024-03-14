@@ -44,21 +44,22 @@ limitations under the License.
     <main role="main" class="container">
         <div class="cluecumber-template">
             <div class="col-sm-12 h-auto text-center">
+                <#if headline != "">
+                    <h3>${headline}</h3>
+                </#if>
                 <#if preheadline != "">
-                    <h5 class="font-italic">
+                    <b>
+                        <span data-toggle="tooltip" title="${subsubheadline}">
                         <#if preheadlineLink != "">
                             <a href="${preheadlineLink}">${preheadline}</a>
                         <#else>
                             ${preheadline}
                         </#if>
-                        <span class="small"><#if subsubheadline != "">${subsubheadline}</#if></span>
-                    </h5>
-                </#if>
-                <#if headline != "">
-                    <h3>${headline}</h3>
+                        </span>
+                    </b>
                 </#if>
                 <#if subheadline != "">
-                    <h5>${subheadline}</h5>
+                    <p>${subheadline}</p>
                 </#if>
             </div>
             <#nested>
@@ -71,7 +72,7 @@ limitations under the License.
 
 <#macro card width title subtitle classes>
     <div class="col-sm-${width} ${classes} h-auto" data-cluecumber-item="card">
-        <div class="card h-100">
+        <div class="card shadow h-100">
             <#if title != "">
                 <div class="card-header">${title}</div>
             </#if>

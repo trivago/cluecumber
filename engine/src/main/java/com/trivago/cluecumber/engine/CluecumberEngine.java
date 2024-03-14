@@ -63,14 +63,14 @@ public final class CluecumberEngine {
     /**
      * Constructor for dependency injection.
      *
-     * @param elementIndexPreProcessor The {@link ElementIndexPreProcessor} instance.
+     * @param elementIndexPreProcessor        The {@link ElementIndexPreProcessor} instance.
      * @param elementMultipleRunsPreProcessor The {@link ElementMultipleRunsPreProcessor} instance.
-     * @param fileIO                   The {@link FileIO} instance.
-     * @param fileSystemManager        The {@link FileSystemManager} instance.
-     * @param jsonPojoConverter        The {@link JsonPojoConverter} instance.
-     * @param logger                   The {@link CluecumberLogger} instance.
-     * @param propertyManager          The {@link PropertyManager} instance.
-     * @param reportGenerator          The {@link ReportGenerator} instance.
+     * @param fileIO                          The {@link FileIO} instance.
+     * @param fileSystemManager               The {@link FileSystemManager} instance.
+     * @param jsonPojoConverter               The {@link JsonPojoConverter} instance.
+     * @param logger                          The {@link CluecumberLogger} instance.
+     * @param propertyManager                 The {@link PropertyManager} instance.
+     * @param reportGenerator                 The {@link ReportGenerator} instance.
      */
     @Inject
     public CluecumberEngine(
@@ -133,14 +133,14 @@ public final class CluecumberEngine {
                 logger.warn("Could not parse JSON in file '" + jsonFilePath + "': " + e.getMessage());
             }
         }
-        elementIndexPreProcessor.addScenarioIndices(allScenariosPageCollection.getReports());
+        elementIndexPreProcessor.process(allScenariosPageCollection.getReports());
         if (propertyManager.isGroupPreviousScenarioRuns()) {
             elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
         }
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
                 "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                        Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
+                Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
                 DEFAULT,
                 COMPACT,
                 MINIMAL
@@ -200,6 +200,15 @@ public final class CluecumberEngine {
     }
 
     /**
+     * Set if sub sections should be expanded by default.
+     *
+     * @param expandSubSections If true, sub sections will be expanded by default.
+     */
+    public void setExpandSubSections(final boolean expandSubSections) {
+        propertyManager.setExpandSubSections(expandSubSections);
+    }
+
+    /**
      * Whether to expand before and after hooks or not.
      *
      * @param expandBeforeAfterHooks If true, before and after hooks will be expanded.
@@ -233,6 +242,15 @@ public final class CluecumberEngine {
      */
     public void setExpandAttachments(final boolean expandAttachments) {
         propertyManager.setExpandAttachments(expandAttachments);
+    }
+
+    /**
+     * Whether to expand step outputs or not.
+     *
+     * @param expandOutputs If true, outputs will be expanded.
+     */
+    public void setExpandOutputs(final boolean expandOutputs) {
+        propertyManager.setExpandOutputs(expandOutputs);
     }
 
     /**

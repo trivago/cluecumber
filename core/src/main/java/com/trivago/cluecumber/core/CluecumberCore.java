@@ -41,9 +41,11 @@ public class CluecumberCore {
         cluecumberEngine.setCustomStatusColorFailed(builder.customStatusColorFailed);
         cluecumberEngine.setCustomStatusColorPassed(builder.customStatusColorPassed);
         cluecumberEngine.setCustomStatusColorSkipped(builder.customStatusColorSkipped);
+        cluecumberEngine.setExpandSubSections(builder.expandSubSections);
         cluecumberEngine.setExpandAttachments(builder.expandAttachments);
         cluecumberEngine.setExpandBeforeAfterHooks(builder.expandBeforeAfterHooks);
         cluecumberEngine.setExpandDocStrings(builder.expandDocStrings);
+        cluecumberEngine.setExpandOutputs(builder.expandOutputs);
         cluecumberEngine.setExpandStepHooks(builder.expandStepHooks);
         cluecumberEngine.setGroupPreviousScenarioRuns(builder.groupPreviousScenarioRuns);
         cluecumberEngine.setExpandPreviousScenarioRuns(builder.expandPreviousScenarioRuns);
@@ -76,6 +78,7 @@ public class CluecumberCore {
         private String customStatusColorFailed;
         private String customStatusColorPassed;
         private String customStatusColorSkipped;
+        private boolean expandSubSections;
         private boolean expandAttachments;
         private boolean expandBeforeAfterHooks;
         private boolean expandDocStrings;
@@ -85,6 +88,7 @@ public class CluecumberCore {
         private String logLevel;
         private String startPage;
         private boolean failScenariosOnPendingOrUndefinedSteps;
+        private boolean expandOutputs;
 
         /**
          * Finalize the {@link CluecumberCore} builder.
@@ -187,6 +191,17 @@ public class CluecumberCore {
         }
 
         /**
+         * Whether to expand sub sections or not.
+         *
+         * @param expandSubSections If true, sub sections will be expanded.
+         * @return The {@link Builder}.
+         */
+        public Builder setExpandSubSections(final boolean expandSubSections) {
+            this.expandSubSections = expandSubSections;
+            return this;
+        }
+
+        /**
          * Whether to expand attachments or not.
          *
          * @param expandAttachments If true, attachments will be expanded.
@@ -194,6 +209,17 @@ public class CluecumberCore {
          */
         public Builder setExpandAttachments(final boolean expandAttachments) {
             this.expandAttachments = expandAttachments;
+            return this;
+        }
+
+        /**
+         * Whether to expand stepoutputs or not.
+         *
+         * @param expandOutputs If true, outputs will be expanded.
+         * @return The {@link Builder}.
+         */
+        public Builder setExpandOutputs(final boolean expandOutputs) {
+            this.expandOutputs = expandOutputs;
             return this;
         }
 

@@ -38,30 +38,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <@page.card width="6" title="Step Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="3" title="Scenario Info" subtitle="" classes="">
-            <#if element.startTimestamp?has_content>
-                <li class="list-group-item">Started on:<br>${element.startDateString} ${element.startTimeString}</li>
-            </#if>
-            <#if element.startTimestamp?has_content>
-                <li class="list-group-item">Ended on:<br>${element.endDateString} ${element.endTimeString}</li>
-            </#if>
-            <li class="list-group-item">Test Runtime:<br>${element.returnTotalDurationString()}</li>
-            <li class="list-group-item"><#list element.tags as tag>
-                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html" class="btn btn-outline-secondary">${tag.name}</a><#sep>
-                </#list>
-            </li>
-            <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
-                <div class="alert alert-info" role="alert">
-                    This is the last run of this scenario.
-                </div>
-            </#if>
-            <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
-                <div class="alert alert-info" role="alert">
-                    There are later runs of the same scenario.
-                </div>
-            </#if>
-        </@page.card>
-        <@page.card width="3" title="Step Summary" subtitle="" classes="">
+
+        <@page.card width="3" title="Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     ${element.totalNumberOfSteps} ${common.pluralizeFn("Step", element.totalNumberOfSteps)}
@@ -74,22 +52,81 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                     ${element.totalNumberOfSkippedSteps} skipped <@common.status status="skipped"/>
                 </li>
             </ul>
+            <#if (element.tags?size > 0)>
+                <hr>
+                <#list element.tags as tag>
+                    <a href="pages/tag-scenarios/tag_${tag.getUrlFriendlyName()}.html"
+                       class="btn btn-link" style="word-break: break-all;">${tag.name}</a>
+                </#list>
+            </#if>
+        </@page.card>
+
+        <@page.card width="3" title="Scenario Info" subtitle="" classes="">
+            <#if element.startTimestamp?has_content>
+                <li class="list-group-item"><span
+                            class="small">Start:</span> ${element.startDateString} ${element.startTimeString}</li>
+            </#if>
+            <#if element.startTimestamp?has_content>
+                <li class="list-group-item"><span
+                            class="small">End:</span> ${element.endDateString} ${element.endTimeString}</li>
+            </#if>
+            <li class="list-group-item"><span class="small">Total:</span> ${element.returnTotalDurationString()}</li>
+            <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
+                <hr>
+                <div class="alert alert-info" role="alert">
+                    This is the last run of this scenario.
+                </div>
+            </#if>
+            <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
+                <hr>
+                <div class="alert alert-info" role="alert">
+                    There are later runs of the same scenario.
+                </div>
+            </#if>
+
+            <#if (element.hasHooks() && element.hasHooksWithContent()) || element.hasSubSections() || (element.hasStepHooks() && element.hasStepHooksWithContent()) || element.hasDocStrings()>
+                <hr>
+            </#if>
+
+            <#if element.hasSubSections()>
+                <button class="btn w-75 m-2" type="button"
+                        data-cluecumber-item="sub-sections-button"
+                        onclick="toggleCollapsableSection('.scenarioSubSection', ${expandSubSections?c})">Toggle Sub
+                    Sections
+                </button>
+            </#if>
             <#if element.hasHooks() && element.hasHooksWithContent()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="before-after-hooks-button"
-                        data-target=".scenarioHook">Scenario Hooks with content
+                <button class="btn w-75 m-2" type="button"
+                        data-cluecumber-item="before-after-hooks-button"
+                        onclick="toggleCollapsableSection('.scenarioHook', ${expandBeforeAfterHooks?c})">Toggle Scenario
+                    Hooks
                 </button>
             </#if>
             <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="step-hooks-button"
-                        data-target=".stepHook">Step Hooks with content
+                <button class="btn w-75 m-2" type="button"
+                        data-cluecumber-item="step-hooks-button"
+                        onclick="toggleCollapsableSection('.stepHook', ${expandStepHooks?c})">Toggle Step Hooks
                 </button>
             </#if>
             <#if element.hasDocStrings()>
-                <button class="btn btn-outline-secondary btn-block collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="doc-strings-button"
-                        data-target=".scenarioDocstring">DocStrings with content
+                <button class="btn w-75 m-2" type="button"
+                        data-cluecumber-item="doc-strings-button"
+                        onclick="toggleCollapsableSection('.scenarioDocstring', ${expandDocStrings?c})">Toggle Step
+                    DocStrings
+                </button>
+            </#if>
+            <#if element.hasAttachments()>
+                <button class="btn w-75 m-2" type="button"
+                        data-cluecumber-item="attachments-button"
+                        onclick="toggleCollapsableAttachments('scenarioAttachment', ${expandAttachments?c})">Toggle Step
+                    Attachments
+                </button>
+            </#if>
+            <#if element.hasOutputs()>
+                <button class="btn w-75 m-2" type="button"
+                        data-cluecumber-item="outputs-button"
+                        onclick="toggleCollapsableAttachments('scenarioOutputs', ${expandOutputs?c})">Toggle Step
+                    Outputs
                 </button>
             </#if>
         </@page.card>
@@ -113,7 +150,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <@common.status status=before.consolidatedStatusString/>
                                 </div>
                                 <@scenario.errorMessage step=before/>
-                                <@scenario.output step=before/>
+                                <@scenario.output step=before sectionId='before'/>
                                 <@scenario.attachments step=before/>
                             </div>
                         </#if>
@@ -125,11 +162,31 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <#if (element.backgroundSteps?size > 0)>
             <@page.card width="12" title="Background Steps" subtitle="" classes="">
                 <li class="list-group-item">
-                    <#list element.backgroundSteps as step>
 
-                        <@scenario.stepHooks step.before />
+                    <#assign oldCollapseLevel = 0>
+                    <#assign lastLevelChange = 0>
+                    <#assign openDivs = 0>
+
+                    <#list element.backgroundSteps as step>
+                        <@scenario.stepHooks step.index step.before />
+
+                        <#assign sectionChange = step.collapseLevel - oldCollapseLevel>
+                        <#assign oldCollapseLevel = step.collapseLevel>
+
+                        <#if (sectionChange > 0) >
+                            <#list 1..sectionChange as n>
+                                <#assign openDivs = openDivs + 1>
+                                <div style="margin-left: 2em;" id="section_${step?counter}"
+                                class="scenarioSubSection collapse ${expandSubSections?then("show", "")}">
+                            </#list>
+                        <#elseif (sectionChange < 0) >
+                            <#list sectionChange..-1 as n>
+                                </div>
+                            </#list>
+                        </#if>
 
                         <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
+
                             <div class="col-9 text-left">
                                 <span class="text-left">${step?counter}.</span>
                                 <#assign stepName=step.returnNameWithArguments()>
@@ -137,6 +194,27 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
                                                 class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
+                                <#if (step.hasSubSections())>
+                                    <button type="button" class="btn-clipboard sectionExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#section_${step?counter + 1}">Sub Section
+                                    </button>
+                                </#if>
+                                <#if (step.docString.value)?? >
+                                    <button type="button" class="btn-clipboard docstringExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_docstring">DocString
+                                    </button>
+                                </#if>
+                                <#if (step.hasHooksWithContent()) >
+                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_stepHooks">Step Hooks
+                                    </button>
+                                </#if>
                             </div>
                             <div class="col-2 text-left small">
                                 ${step.result.returnDurationString()}
@@ -161,7 +239,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <#if (step.docString.value)?? >
-                                <div class="scenarioDocstring collapse">
+                                <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
                                     <div class="row w-100 p-3 m-0">
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
@@ -170,10 +248,10 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <@scenario.errorMessage step=step/>
-                            <@scenario.output step=step/>
+                            <@scenario.output step=step sectionId='background'/>
                             <@scenario.attachments step=step/>
                         </div>
-                        <@scenario.stepHooks step.after />
+                        <@scenario.stepHooks step.index step.after />
                     </#list>
                 </li>
             </@page.card>
@@ -182,11 +260,31 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         <#if (element.steps?size > 0)>
             <@page.card width="12" title="Steps" subtitle="" classes="">
                 <li class="list-group-item">
-                    <#list element.steps as step>
 
-                        <@scenario.stepHooks step.before />
+                    <#assign oldCollapseLevel = 0>
+                    <#assign lastLevelChange = 0>
+                    <#assign openDivs = 0>
+
+                    <#list element.steps as step>
+                        <@scenario.stepHooks step.index step.before />
+
+                        <#assign sectionChange = step.collapseLevel - oldCollapseLevel>
+                        <#assign oldCollapseLevel = step.collapseLevel>
+
+                        <#if (sectionChange > 0) >
+                            <#list 1..sectionChange as n>
+                                <#assign openDivs = openDivs + 1>
+                                <div style="margin-left: 2em;" id="section_${step?counter}"
+                                class="scenarioSubSection collapse ${expandSubSections?then("show", "")}">
+                            </#list>
+                        <#elseif (sectionChange < 0) >
+                            <#list sectionChange..-1 as n>
+                                </div>
+                            </#list>
+                        </#if>
 
                         <div class="row row_${step.consolidatedStatusString} table-row-${step.consolidatedStatusString}">
+
                             <div class="col-9 text-left">
                                 <span class="text-left">${step?counter}.</span>
                                 <#assign stepName=step.returnNameWithArguments()>
@@ -194,6 +292,27 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <a href="pages/step-scenarios/step_${step.getUrlFriendlyName()}.html"><span
                                                 class="keyword">${step.keyword}</span> ${stepName}</a>
                                 </span>
+                                <#if (step.hasSubSections())>
+                                    <button type="button" class="btn-clipboard sectionExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#section_${step?counter + 1}">Sub Section
+                                    </button>
+                                </#if>
+                                <#if (step.docString.value)?? >
+                                    <button type="button" class="btn-clipboard docstringExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_docstring">DocString
+                                    </button>
+                                </#if>
+                                <#if (step.hasHooksWithContent()) >
+                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_${step.index}_stepHooks">Step Hooks
+                                    </button>
+                                </#if>
                             </div>
                             <div class="col-2 text-left small">
                                 ${step.result.returnDurationString()}
@@ -218,7 +337,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <#if (step.docString.value)?? >
-                                <div class="scenarioDocstring collapse">
+                                <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
                                     <div class="row w-100 p-3 m-0">
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
@@ -227,10 +346,10 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                 </div>
                             </#if>
                             <@scenario.errorMessage step=step/>
-                            <@scenario.output step=step/>
+                            <@scenario.output step=step sectionId='main'/>
                             <@scenario.attachments step=step/>
                         </div>
-                        <@scenario.stepHooks step.after />
+                        <@scenario.stepHooks step.index step.after />
                     </#list>
                 </li>
             </@page.card>
@@ -254,7 +373,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                         <@common.status status=after.consolidatedStatusString/>
                                     </div>
                                     <@scenario.errorMessage step=after/>
-                                    <@scenario.output step=after/>
+                                    <@scenario.output step=after sectionId='after'/>
                                     <@scenario.attachments step=after/>
                                 </div>
                             </#if>
@@ -264,4 +383,38 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </div>
         </#if>
     </ul>
+
+    <script>
+        let classState = {};
+
+        function toggleCollapsableSection(className, defaultValue) {
+            if (classState[className] === undefined) {
+                classState[className] = defaultValue;
+            }
+            classState[className] = !classState[className];
+            if (classState[className]) {
+                $(className).collapse('show');
+            } else {
+                $(className).collapse('hide');
+            }
+        }
+
+        function toggleCollapsableAttachments(className, defaultValue) {
+            if (classState[className] === undefined) {
+                classState[className] = defaultValue;
+            }
+            classState[className] = !classState[className];
+            let rootElements = document.getElementsByClassName(className);
+            for (const rootElement of rootElements) {
+                let collapsableElements = rootElement.getElementsByClassName('collapse');
+                for (const collapsableElement of collapsableElements) {
+                    if (classState[className]) {
+                        collapsableElement.classList.add('show');
+                    } else {
+                        collapsableElement.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </@page.page>

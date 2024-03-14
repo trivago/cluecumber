@@ -36,6 +36,9 @@ public class Step extends ResultMatch {
     private List<ResultMatch> after = new ArrayList<>();
     @SerializedName("doc_string")
     private DocString docString;
+    private int collapseLevel = 0;
+    private int index = 0;
+    private boolean hasSubSections = false;
 
     /**
      * Check if there are before or after step hooks with content.
@@ -54,6 +57,15 @@ public class Step extends ResultMatch {
             }
         }
         return false;
+    }
+
+    /**
+     * Check if the step has hooks.
+     *
+     * @return true if the step has hooks.
+     */
+    public boolean hasHooks() {
+        return !before.isEmpty() || !after.isEmpty();
     }
 
     /**
@@ -277,5 +289,59 @@ public class Step extends ResultMatch {
     @Override
     public int hashCode() {
         return Objects.hash(getGlueMethodName());
+    }
+
+    /**
+     * Get the collapse level of the step.
+     *
+     * @return The collapse level of the step.
+     */
+    public int getCollapseLevel() {
+        return collapseLevel;
+    }
+
+    /**
+     * Set the collapse level of the step.
+     *
+     * @param collapseLevel The collapse level of the step.
+     */
+    public void setCollapseLevel(int collapseLevel) {
+        this.collapseLevel = collapseLevel;
+    }
+
+    /**
+     * Get the internal index of the step.
+     *
+     * @return The index of the step.
+     */
+    public int getIndex() {
+        return index;
+    }
+
+    /**
+     * Set the internal index of the step.
+     *
+     * @param index The index of the step.
+     */
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    /**
+     * Check if the step has sub sections.
+     *
+     * @return true if the step has sub sections.
+     */
+    public boolean hasSubSections() {
+        return hasSubSections;
+    }
+
+    /**
+     * Set if the step has sub sections.
+     *
+     * @param hasSubSections true if the step has sub sections.
+     */
+    public void setHasSubSections(boolean hasSubSections) {
+        this.hasSubSections = hasSubSections;
     }
 }

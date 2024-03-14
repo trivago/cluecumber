@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ElementMultipleRunsPreProcessorTest {
     private ElementMultipleRunsPreProcessor elementMultipleRunsPreProcessor;
@@ -55,12 +57,12 @@ public void setup() {
 
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
-        assertEquals(e.get(0).getIsNotLastOfMultipleScenarioRuns(), true);
-        assertEquals(e.get(1).getIsNotLastOfMultipleScenarioRuns(), false);
-        assertEquals(e.get(2).getIsNotLastOfMultipleScenarioRuns(), false);
-        assertEquals(e.get(0).getIsLastOfMultipleScenarioRuns(), false);
-        assertEquals(e.get(1).getIsLastOfMultipleScenarioRuns(), false);
-        assertEquals(e.get(2).getIsLastOfMultipleScenarioRuns(), true);
+        assertTrue(e.get(0).getIsNotLastOfMultipleScenarioRuns());
+        assertFalse(e.get(1).getIsNotLastOfMultipleScenarioRuns());
+        assertFalse(e.get(2).getIsNotLastOfMultipleScenarioRuns());
+        assertFalse(e.get(0).getIsLastOfMultipleScenarioRuns());
+        assertFalse(e.get(1).getIsLastOfMultipleScenarioRuns());
+        assertTrue(e.get(2).getIsLastOfMultipleScenarioRuns());
         assertEquals(e.get(0).getChildrenElements().size(), 0);
         assertEquals(e.get(1).getChildrenElements().size(), 0);
         assertEquals(e.get(2).getChildrenElements().size(), 1);
