@@ -77,6 +77,7 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         scenarioDetailsPageCollection.setExpandDocStrings(propertyManager.isExpandDocStrings());
         scenarioDetailsPageCollection.setExpandAttachments(propertyManager.isExpandAttachments());
         scenarioDetailsPageCollection.setExpandOutputs(propertyManager.isExpandOutputs());
+        scenarioDetailsPageCollection.setExpandSubSections(propertyManager.isExpandSubSections());
         scenarioDetailsPageCollection.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         scenarioDetailsPageCollection.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
 

@@ -32,6 +32,7 @@ public class PageCollection implements Cloneable {
     private boolean expandDocStrings;
     private boolean expandAttachments;
     private boolean expandOutputs;
+    private boolean expandSubSections;
     private boolean groupPreviousScenarioRuns;
     private boolean expandPreviousScenarioRuns;
     private List<CustomParameter> customParameters;
@@ -145,6 +146,24 @@ public class PageCollection implements Cloneable {
      */
     public void setExpandOutputs(final boolean expandOutputs) {
         this.expandOutputs = expandOutputs;
+    }
+
+    /**
+     * Set if sub sections should be expanded.
+     *
+     * @param expandSubSections true if they should be expanded.
+     */
+    public void setExpandSubSections(final boolean expandSubSections) {
+        this.expandSubSections = expandSubSections;
+    }
+
+    /**
+     * Check if sub sections should be expanded.
+     *
+     * @return true if they should be expanded.
+     */
+    public boolean isExpandSubSections() {
+        return expandSubSections;
     }
 
     /**

@@ -44,21 +44,22 @@ limitations under the License.
     <main role="main" class="container">
         <div class="cluecumber-template">
             <div class="col-sm-12 h-auto text-center">
-                <#if preheadline != "">
-                    <h5 class="font-italic">
-                        <#if preheadlineLink != "">
-                            <a href="${preheadlineLink}">${preheadline}</a>
-                        <#else>
-                            ${preheadline}
-                        </#if>
-                        <span class="small"><#if subsubheadline != "">${subsubheadline}</#if></span>
-                    </h5>
-                </#if>
                 <#if headline != "">
                     <h3>${headline}</h3>
                 </#if>
                 <#if subheadline != "">
                     <h5>${subheadline}</h5>
+                </#if>
+                <#if preheadline != "">
+                    <b>
+                        <span data-toggle="tooltip" title="${subsubheadline}">
+                        <#if preheadlineLink != "">
+                            <a href="${preheadlineLink}">${preheadline}</a>
+                        <#else>
+                            ${preheadline}
+                        </#if>
+                        </span>
+                    </b>
                 </#if>
             </div>
             <#nested>

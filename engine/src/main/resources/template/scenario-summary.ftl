@@ -85,24 +85,7 @@ preheadlineLink=preheadlineLink>
         <@page.card width="6" title="Scenario Results" subtitle="" classes="">
             <@page.graph />
         </@page.card>
-        <@page.card width="3" title="Test Suite Time" subtitle="" classes="">
-            <ul class="list-group list-group-flush">
-                <#assign startDateTimeString = returnStartDateTimeString()>
-                <#if startDateTimeString?has_content>
-                    <li class="list-group-item" data-cluecumber-item="total-start">
-                        Started on:<br>${startDateTimeString}</li>
-                </#if>
-                <#assign endDateTimeString = returnEndDateTimeString()>
-                <#if endDateTimeString?has_content>
-                    <li class="list-group-item" data-cluecumber-item="total-end">
-                        Ended on:<br>${endDateTimeString}</li>
-                </#if>
-                <li class="list-group-item" data-cluecumber-item="total-runtime">
-                    Test Runtime:<br>${totalDurationString}
-                </li>
-            </ul>
-        </@page.card>
-        <@page.card width="3" title="Test Suite Summary" subtitle="" classes="">
+        <@page.card width="3" title="Scenario Summary" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
                     ${totalNumberOfScenarios} ${common.pluralizeFn("Scenario", totalNumberOfScenarios)}
@@ -128,20 +111,34 @@ preheadlineLink=preheadlineLink>
                             skipped</a> <@common.status status="skipped"/>
                     </#if>
                 </li>
-                <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
-                    <li class="list-group-item" data-cluecumber-item="scenario-summary">
-                        Of which:
-                        <br>
-                        ${totalNumberOfNotLastScenariosRuns} ${common.pluralizeFn("Scenario", totalNumberOfNotLastScenariosRuns)} were not first runs
-                    </li>
-                </#if>
             </ul>
             <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
-                <button class="btn-clipboard collapsed" type="button" data-toggle="collapse"
+                <hr>
+                (${totalNumberOfNotLastScenariosRuns} ${common.pluralizeFn("Scenario", totalNumberOfNotLastScenariosRuns)}
+                were previous runs)
+                <hr>
+                <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
-                        data-target=".notLastRun">Toggle previous test runs
+                        data-target=".notLastRun">Toggle Previous Test Runs
                 </button>
             </#if>
+        </@page.card>
+        <@page.card width="3" title="Test Suite Info" subtitle="" classes="">
+            <ul class="list-group list-group-flush">
+                <#assign startDateTimeString = returnStartDateTimeString()>
+                <#if startDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-start">
+                        <span class="small">Start</span> ${startDateTimeString}</li>
+                </#if>
+                <#assign endDateTimeString = returnEndDateTimeString()>
+                <#if endDateTimeString?has_content>
+                    <li class="list-group-item" data-cluecumber-item="total-end">
+                        <span class="small">End</span> ${endDateTimeString}</li>
+                </#if>
+                <li class="list-group-item" data-cluecumber-item="total-runtime">
+                    <span class="small">Total:</span> ${totalDurationString}
+                </li>
+            </ul>
         </@page.card>
     </div>
 

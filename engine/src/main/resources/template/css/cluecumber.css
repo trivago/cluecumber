@@ -101,21 +101,13 @@ a {
     border: 1px solid darkgray;
 }
 
-.scenarioAttachment > div, .scenarioOutput > div {
-    border: 1px solid rgb(149, 189, 197);
-}
-
-.scenarioOutput {
-    white-space: pre-line;
-}
-
 pre {
     margin: 0;
     white-space: pre-wrap;
 }
 
 .row {
-    padding: 1rem;
+    padding: .85rem;
 }
 
 .list-group {

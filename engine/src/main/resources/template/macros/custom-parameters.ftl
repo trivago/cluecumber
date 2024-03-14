@@ -18,7 +18,7 @@ limitations under the License.
 
 <#macro card customParams>
     <div class="row" id="custom-parameters">
-        <@page.card width="12" title="Test Suite Information" subtitle="" classes="customParameters">
+        <@page.card width="12" title="" subtitle="" classes="customParameters">
             <table class="table table-fit">
                 <tbody>
                 <#list customParams as customParameter>

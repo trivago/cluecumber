@@ -15,17 +15,18 @@ Back to [Readme](README.md).
 
 ### Added
 
-* Support for multiple nested elements (e.g. in Karate scenarios with feature files in feature files)
+* Support for multiple sub sections (e.g. in Karate scenarios with feature files in feature files)
+* Attachments, outputs and docStrings are now collapsible individually
 * Reruns are marked in tree view
-* Step output is now toggleable
+* Step outputs are now toggleable
 * New configuration options for toggling step output (`expandStepOutput`)
+* New configuration options for toggling sub sections (`expandSubSections`)
 
 ### Changed
 
-* DocStrings can be toggled individually
-* Attachments can be toggled individually
 * Tweaked data table header layout
 * Tweaked look of all item cards
+* Re-arranged summary and timing information
 * Updated dependencies
 
 ## [3.5.1] - 2023-11-13

@@ -588,6 +588,44 @@ public class Element {
     }
 
     /**
+     * Check if this scenario contains outputs.
+     *
+     * @return true if there are outputs.
+     */
+    public boolean hasOutputs() {
+        for (Step step : backgroundSteps) {
+            if (step.hasOutputs()) {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasOutputs()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if this scenario contains attachments.
+     *
+     * @return true if there are attachments.
+     */
+    public boolean hasAttachments() {
+        for (Step step : backgroundSteps) {
+            if (step.hasEmbeddings()) {
+                return true;
+            }
+        }
+        for (Step step : steps) {
+            if (step.hasEmbeddings()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Check if this scenario contains hooks.
      *
      * @return true if there are hooks.

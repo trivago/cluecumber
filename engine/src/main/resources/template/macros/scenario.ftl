@@ -211,7 +211,7 @@ limitations under the License.
 
 <#macro output step>
     <#if step.hasOutputs()>
-        <div class="row w-100 p-3 m-0 scenarioAttachment">
+        <div class="row w-100 p-3 m-0 scenarioOutputs">
             <div class="w-100 p-1 m-0 border-bottom small text-left">
                 <a class="btn-link" data-toggle="collapse" href="#expandableOutput${step.index!0}" role="button"
                    aria-expanded="false" aria-controls="expandableOutput${step.index!0}">Toggle</a> |
