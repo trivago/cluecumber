@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.6.1] - UNRELEASED
+
+### Fixed
+
+* expandBeforeAfterHooks setting is ignored [#333]
+
 ## [3.6.0] - 2024-03-14
 
 ### Fixed

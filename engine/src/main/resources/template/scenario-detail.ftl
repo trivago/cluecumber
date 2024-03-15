@@ -96,9 +96,10 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </button>
             </#if>
             <#if element.hasHooks() && element.hasHooksWithContent()>
+                expandBeforeAfterHooks: ${expandBeforeAfterHooks?c}
                 <button class="btn w-75 m-2" type="button"
                         data-cluecumber-item="before-after-hooks-button"
-                        onclick="toggleCollapsableSection('.scenarioHook', ${expandBeforeAfterHooks?c})">Toggle Scenario
+                        onclick="toggleHooks('scenarioHook', ${expandBeforeAfterHooks?c})">Toggle Scenario
                     Hooks
                 </button>
             </#if>
@@ -134,29 +135,31 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
     <ul class="list-group list-group-flush">
         <#if (element.before?size > 0 && element.anyBeforeHookHasContent())>
-            <@page.card width="12" title="Before Hooks" subtitle="" classes="scenarioHook collapse">
-                <li class="list-group-item">
-                    <#list element.before as before>
-                        <#if before.hasContent() || before.isFailed()>
-                            <div class="row row_${before.consolidatedStatusString} table-row-${before.consolidatedStatusString}">
-                                <div class="col-9 text-left">
-                                    <span class="text-left">${before?counter}.</span>
-                                    <i>${before.glueMethodName}</i>
+            <div class="scenarioHook collapse ${expandBeforeAfterHooks?then("show", "")}">
+                <@page.card width="12" title="Before Hooks" subtitle="" classes="">
+                    <li class="list-group-item">
+                        <#list element.before as before>
+                            <#if before.hasContent() || before.isFailed()>
+                                <div class="row row_${before.consolidatedStatusString} table-row-${before.consolidatedStatusString}">
+                                    <div class="col-9 text-left">
+                                        <span class="text-left">${before?counter}.</span>
+                                        <i>${before.glueMethodName}</i>
+                                    </div>
+                                    <div class="col-2 text-left small">
+                                        ${before.result.returnDurationString()}
+                                    </div>
+                                    <div class="col-1 text-right">
+                                        <@common.status status=before.consolidatedStatusString/>
+                                    </div>
+                                    <@scenario.errorMessage step=before/>
+                                    <@scenario.output step=before sectionId='before'/>
+                                    <@scenario.attachments step=before/>
                                 </div>
-                                <div class="col-2 text-left small">
-                                    ${before.result.returnDurationString()}
-                                </div>
-                                <div class="col-1 text-right">
-                                    <@common.status status=before.consolidatedStatusString/>
-                                </div>
-                                <@scenario.errorMessage step=before/>
-                                <@scenario.output step=before sectionId='before'/>
-                                <@scenario.attachments step=before/>
-                            </div>
-                        </#if>
-                    </#list>
-                </li>
-            </@page.card>
+                            </#if>
+                        </#list>
+                    </li>
+                </@page.card>
+            </div>
         </#if>
 
         <#if (element.backgroundSteps?size > 0)>
@@ -356,7 +359,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         </#if>
 
         <#if (element.after?size > 0 && element.anyAfterHookHasContent())>
-            <div class="scenarioHook collapse">
+            <div class="scenarioHook collapse ${expandBeforeAfterHooks?then("show", "")}">
                 <@page.card width="12" title="After Hooks" subtitle="" classes="">
                     <li class="list-group-item">
                         <#list element.after as after>
@@ -386,6 +389,25 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
     <script>
         let classState = {};
+
+        function getState(className) {
+            return classState[className];
+        }
+
+        function toggleHooks(className, defaultValue) {
+            if (classState[className] === undefined) {
+                classState[className] = defaultValue;
+            }
+            classState[className] = !classState[className];
+            let rootElements = document.getElementsByClassName(className);
+            for (const rootElement of rootElements) {
+                if (classState[className]) {
+                    rootElement.classList.add('show');
+                } else {
+                    rootElement.classList.remove('show');
+                }
+            }
+        }
 
         function toggleCollapsableSection(className, defaultValue) {
             if (classState[className] === undefined) {
