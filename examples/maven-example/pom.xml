@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.6.0</version>
+    <version>3.6.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -76,7 +76,7 @@
 
                     <!-- Optional properties to expand scenario hooks, step hooks, doc strings, attachments and step outputs when scenario details are shown (default: false) -->
                     <expandSubSections>false</expandSubSections>
-                    <expandBeforeAfterHooks>false</expandBeforeAfterHooks>
+                    <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
                     <expandStepHooks>false</expandStepHooks>
                     <expandDocStrings>false</expandDocStrings>
                     <expandAttachments>false</expandAttachments>

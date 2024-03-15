@@ -15,22 +15,45 @@
  */
 package com.trivago.cluecumber.engine.json.pojo;
 
+/**
+ * The Argument class represents a Cucumber step argument.
+ */
 public class Argument {
     private String val;
     private int offset;
 
+    /**
+     * Gets the value of the argument.
+     *
+     * @return A string representing the value of the argument.
+     */
     public String getVal() {
         return val;
     }
 
+    /**
+     * Sets the value of the argument.
+     *
+     * @param val A string representing the value to be set.
+     */
     public void setVal(final String val) {
         this.val = val;
     }
 
+    /**
+     * Gets the offset of the argument.
+     *
+     * @return An integer representing the offset of the argument.
+     */
     public int getOffset() {
         return offset;
     }
 
+    /**
+     * Sets the offset of the argument.
+     *
+     * @param offset An integer representing the offset to be set.
+     */
     public void setOffset(final int offset) {
         this.offset = offset;
     }

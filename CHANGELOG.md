@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.6.1] - 2024-03-15
+
+### Fixed
+
+* expandBeforeAfterHooks setting is ignored [#333]
+* Html attachments could have a height of 0 on first load
+
+### Changed
+* Toggle buttons for all steps, hooks, attachments, outputs and sub sections have now specific "Hide" and "Show" labels
+
 ## [3.6.0] - 2024-03-14
 
 ### Fixed
@@ -849,6 +859,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 Initial project version on GitHub and Maven Central.
 
+[3.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.1
 [3.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.0
 
 [3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.1
