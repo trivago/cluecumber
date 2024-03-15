@@ -19,7 +19,7 @@ jobs:
         working-directory: ./examples/maven-example
         run: mvn clean verify
       - name: Deploy example report
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTPSERVER }}
           username: ${{ secrets.FTPUSER }}
