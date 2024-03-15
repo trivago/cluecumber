@@ -849,31 +849,31 @@ the core component is now the reporting engine that is the base for other forms 
 
 Initial project version on GitHub and Maven Central.
 
-[3.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.6.0
+[3.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.0
 
-[3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.1
+[3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.1
 
-[3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.5.0
+[3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.0
 
-[3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.4.0
+[3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.4.0
 
-[3.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.1
+[3.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.3.1
 
-[3.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.3.0
+[3.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.3.0
 
-[3.2.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.2
+[3.2.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.2
 
-[3.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.1
+[3.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.1
 
-[3.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.2.0
+[3.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.0
 
-[3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.1.0
+[3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.1.0
 
-[3.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.2
+[3.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.2
 
-[3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.1
+[3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.1
 
-[3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/3.0.0
+[3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.0
 
 [2.9.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4
 
