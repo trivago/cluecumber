@@ -25,4 +25,4 @@ jobs:
           username: ${{ secrets.FTPUSER }}
           password: ${{ secrets.FTPPASS }}
           local-dir: ./examples/maven-example/target/cluecumber-report/
-          server-dir: ./httpdocs/softwaretester-cluecumber/
+          server-dir: ./httpdocs/softwaretester/cluecumber/
