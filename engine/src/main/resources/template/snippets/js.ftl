@@ -129,6 +129,11 @@ limitations under the License.
     );
 
     function resizeIframe(iframe) {
-        iframe.style.height = (iframe.contentWindow.document.body.scrollHeight + 25) + 'px';
+        setInterval(function() {
+            try {
+                iframe.height = iframe.contentWindow.document.body.scrollHeight + 25 + "px";
+            } catch (e) {
+            }
+        }, 500);
     }
 </script>

@@ -80,7 +80,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
                 <hr>
                 <div class="alert alert-info" role="alert">
-                    There are later runs of the same scenario.
+                    There are later runs of this scenario.
                 </div>
             </#if>
 
@@ -89,44 +89,37 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             </#if>
 
             <#if element.hasSubSections()>
-                <button class="btn w-75 m-2" type="button"
-                        data-cluecumber-item="sub-sections-button"
-                        onclick="toggleCollapsableSection('.scenarioSubSection', ${expandSubSections?c})">Toggle Sub
+                <button class="btn w-75 m-2" type="button" id="sub-sections-button"
+                        data-cluecumber-item="sub-sections-button">${expandSubSections?then('Hide', 'Show')} Sub
                     Sections
                 </button>
             </#if>
             <#if element.hasHooks() && element.hasHooksWithContent()>
-                expandBeforeAfterHooks: ${expandBeforeAfterHooks?c}
-                <button class="btn w-75 m-2" type="button"
-                        data-cluecumber-item="before-after-hooks-button"
-                        onclick="toggleHooks('scenarioHook', ${expandBeforeAfterHooks?c})">Toggle Scenario
+                <button class="btn w-75 m-2" type="button" id="before-after-hooks-button"
+                        data-cluecumber-item="before-after-hooks-button">${expandBeforeAfterHooks?then('Hide', 'Show')}
                     Hooks
                 </button>
             </#if>
             <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
-                <button class="btn w-75 m-2" type="button"
-                        data-cluecumber-item="step-hooks-button"
-                        onclick="toggleCollapsableSection('.stepHook', ${expandStepHooks?c})">Toggle Step Hooks
+                <button class="btn w-75 m-2" type="button" id="step-hooks-button"
+                        data-cluecumber-item="step-hooks-button">${expandStepHooks?then('Hide', 'Show')} Step Hooks
                 </button>
             </#if>
             <#if element.hasDocStrings()>
-                <button class="btn w-75 m-2" type="button"
-                        data-cluecumber-item="doc-strings-button"
-                        onclick="toggleCollapsableSection('.scenarioDocstring', ${expandDocStrings?c})">Toggle Step
+                <button class="btn w-75 m-2" type="button" id="doc-strings-button"
+                        data-cluecumber-item="doc-strings-button">${expandDocStrings?then('Hide', 'Show')}
                     DocStrings
                 </button>
             </#if>
             <#if element.hasAttachments()>
-                <button class="btn w-75 m-2" type="button"
-                        data-cluecumber-item="attachments-button"
-                        onclick="toggleCollapsableAttachments('scenarioAttachment', ${expandAttachments?c})">Toggle Step
+                <button class="btn w-75 m-2" type="button" id="attachments-button"
+                        data-cluecumber-item="attachments-button">${expandAttachments?then('Hide', 'Show')}
                     Attachments
                 </button>
             </#if>
             <#if element.hasOutputs()>
-                <button class="btn w-75 m-2" type="button"
-                        data-cluecumber-item="outputs-button"
-                        onclick="toggleCollapsableAttachments('scenarioOutputs', ${expandOutputs?c})">Toggle Step
+                <button class="btn w-75 m-2" type="button" id="outputs-button"
+                        data-cluecumber-item="outputs-button">${expandOutputs?then('Hide', 'Show')} Step
                     Outputs
                 </button>
             </#if>
@@ -390,10 +383,6 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
     <script>
         let classState = {};
 
-        function getState(className) {
-            return classState[className];
-        }
-
         function toggleHooks(className, defaultValue) {
             if (classState[className] === undefined) {
                 classState[className] = defaultValue;
@@ -438,5 +427,45 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 }
             }
         }
+
+        <#if element.hasSubSections()>
+        document.getElementById('sub-sections-button').addEventListener('click', function (event) {
+            toggleCollapsableSection('.scenarioSubSection', ${expandSubSections?c});
+            event.target.textContent = classState['.scenarioSubSection'] ? 'Hide Sub Sections' : 'Show Sub Sections';
+        });
+        </#if>
+
+        <#if element.hasHooks() && element.hasHooksWithContent()>
+        document.getElementById('before-after-hooks-button').addEventListener('click', function (event) {
+            toggleHooks('scenarioHook', ${expandBeforeAfterHooks?c});
+            event.target.textContent = classState['scenarioHook'] ? 'Hide Hooks' : 'Show Hooks';
+        });
+        </#if>
+
+        <#if element.hasDocStrings()>
+        document.getElementById('doc-strings-button').addEventListener('click', function (event) {
+            toggleCollapsableSection('.scenarioDocstring', ${expandDocStrings?c});
+            event.target.textContent = classState['.scenarioDocstring'] ? 'Hide DocStrings' : 'Show DocStrings';
+        });
+        </#if>
+        <#if element.hasAttachments()>
+        document.getElementById('attachments-button').addEventListener('click', function (event) {
+            toggleCollapsableAttachments('scenarioAttachment', ${expandAttachments?c});
+            event.target.textContent = classState['scenarioAttachment'] ? 'Hide Attachments' : 'Show Attachments';
+        });
+        </#if>
+        <#if element.hasOutputs()>
+        document.getElementById('outputs-button').addEventListener('click', function (event) {
+            toggleCollapsableAttachments('scenarioOutputs', ${expandOutputs?c});
+            event.target.textContent = classState['scenarioOutputs'] ? 'Hide Step Outputs' : 'Show Step Outputs';
+        });
+        </#if>
+
+        <#if element.hasStepHooks() && element.hasStepHooksWithContent()>
+        document.getElementById('step-hooks-button').addEventListener('click', function (event) {
+            toggleCollapsableSection('.stepHook', ${expandStepHooks?c});
+            event.target.textContent = classState['.stepHook'] ? 'Hide Step Hooks' : 'Show Step Hooks';
+        });
+        </#if>
     </script>
 </@page.page>
