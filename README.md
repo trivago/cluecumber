@@ -17,7 +17,7 @@ Cluecumber comes in two flavors:
 
 ![Cluecumber animation](documentation/img/cluecumber.gif)
 
-A fully generated example report can be [viewed here](http://cluecumber.softwaretester.blog/)!
+A fully generated example report can be [viewed here](https://softwaretester.blog/cluecumber)!
 
 ## Generated pages
 
