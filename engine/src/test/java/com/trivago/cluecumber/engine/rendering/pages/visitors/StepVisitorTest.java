@@ -37,6 +37,6 @@ public class StepVisitorTest extends VisitorTest {
         verify(fileIo, times(1))
                 .writeContentToFile("MyRenderedSteps", "dummyPath/pages/step-summary.html");
         verify(fileIo, times(1))
-                .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/step-scenarios/step_31.html");
+                .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/step-scenarios/step_732281846.html");
     }
 }

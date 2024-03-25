@@ -278,7 +278,8 @@ public class Step extends ResultMatch {
             return false;
         }
         Step step = (Step) o;
-        return Objects.equals(getGlueMethodName(), step.getGlueMethodName());
+
+        return Objects.equals(getUniqueName(), step.getUniqueName());
     }
 
     /**
@@ -288,7 +289,7 @@ public class Step extends ResultMatch {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getGlueMethodName());
+        return Objects.hash(getUniqueName());
     }
 
     /**
@@ -343,5 +344,9 @@ public class Step extends ResultMatch {
      */
     public void setHasSubSections(boolean hasSubSections) {
         this.hasSubSections = hasSubSections;
+    }
+
+    public String getUniqueName() {
+        return getGlueMethodName() + "_" + returnNameWithArgumentPlaceholders();
     }
 }

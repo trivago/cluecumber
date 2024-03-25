@@ -30,7 +30,7 @@ public class AllStepsPageCollectionTest {
     public void getStepStatsTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
         Map<Step, ResultCount> stepStats = allStepsPageCollection.getStepResultCounts();
-        assertEquals(stepStats.size(), 2);
+        assertEquals(stepStats.size(), 3);
 
         Step step1 = new Step();
         step1.setName("step1");
@@ -49,16 +49,16 @@ public class AllStepsPageCollectionTest {
         match2.setLocation("location2");
         step2.setMatch(match2);
         ResultCount step2Stats = stepStats.get(step2);
-        assertEquals(step2Stats.getTotal(), 2);
+        assertEquals(step2Stats.getTotal(), 1);
         assertEquals(step2Stats.getPassed(), 1);
         assertEquals(step2Stats.getFailed(), 0);
-        assertEquals(step2Stats.getSkipped(), 1);
+        assertEquals(step2Stats.getSkipped(), 0);
     }
 
     @Test
     public void getStepResultsTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        assertEquals(allStepsPageCollection.getTotalNumberOfSteps(), 2);
+        assertEquals(allStepsPageCollection.getTotalNumberOfSteps(), 3);
         assertEquals(allStepsPageCollection.getTotalNumberOfFailed(), 1);
         assertEquals(allStepsPageCollection.getTotalNumberOfPassed(), 1);
         assertEquals(allStepsPageCollection.getTotalNumberOfSkipped(), 1);
@@ -73,7 +73,7 @@ public class AllStepsPageCollectionTest {
     @Test
     public void getTotalNumberOfStepsTest() {
         allStepsPageCollection = new AllStepsPageCollection(getTestReports(), "");
-        assertEquals(allStepsPageCollection.getTotalNumberOfSteps(), 2);
+        assertEquals(allStepsPageCollection.getTotalNumberOfSteps(), 3);
     }
 
     @Test
