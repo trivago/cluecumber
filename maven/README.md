@@ -1,5 +1,5 @@
 [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Maven Central](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-maven.svg)](https://repo1.maven.org/maven2/com/trivago/rta/cluecumber-maven/)
+[![Maven Central](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-parent.svg)](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-maven&smo=true)
 [![Example Report](https://img.shields.io/badge/Example-Report-blue.svg)](https://softwaretester.blog/cluecumber)
 <img src="../documentation/img/cucumber-compatible-black-64.png" alt="Cluecumber compatible" width="200" />
 
