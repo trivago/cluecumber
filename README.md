@@ -43,7 +43,7 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 ## Building
 
 Cluecumber requires Java >= 11 and Maven >= 3.3.9.
-It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core+a%3Acluecumber-maven&smo=true).
 
 ## Star History
 
