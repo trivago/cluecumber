@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.6.2] - 2024-03-25
+
+### Fixed
+
+* Sub sections can break the layout (#337)
+* Separate Karate steps were shown as one in the step summary (#331)
+
+### Changed
+
+* More pleasant layout of scenario times and previous test runs
+
 ## [3.6.1] - 2024-03-15
 
 ### Fixed
@@ -15,6 +26,7 @@ Back to [Readme](README.md).
 * Html attachments could have a height of 0 on first load
 
 ### Changed
+
 * Toggle buttons for all steps, hooks, attachments, outputs and sub sections have now specific "Hide" and "Show" labels
 
 ## [3.6.0] - 2024-03-14
@@ -858,6 +870,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.2ss
 
 [3.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.1
 

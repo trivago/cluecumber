@@ -62,15 +62,15 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
         </@page.card>
 
         <@page.card width="3" title="Scenario Info" subtitle="" classes="">
-            <#if element.startTimestamp?has_content>
-                <li class="list-group-item"><span
-                            class="small">Start:</span> ${element.startDateString} ${element.startTimeString}</li>
-            </#if>
-            <#if element.startTimestamp?has_content>
-                <li class="list-group-item"><span
-                            class="small">End:</span> ${element.endDateString} ${element.endTimeString}</li>
-            </#if>
-            <li class="list-group-item"><span class="small">Total:</span> ${element.returnTotalDurationString()}</li>
+            <li class="list-group-item">
+                <#if element.startTimestamp?has_content>
+                    <b>Start</b><br>${element.startDateString} ${element.startTimeString}<br>
+                </#if>
+                <#if element.startTimestamp?has_content>
+                    <b>End</b><br>${element.endDateString} ${element.endTimeString}<br>
+                </#if>
+                <b>Total</b><br>${element.returnTotalDurationString()}
+            </li>
             <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
                 <hr>
                 <div class="alert alert-info" role="alert">
@@ -172,7 +172,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                         <#if (sectionChange > 0) >
                             <#list 1..sectionChange as n>
                                 <#assign openDivs = openDivs + 1>
-                                <div style="margin-left: 2em;" id="section_${step?counter}"
+                                <div style="padding-left: 2em;" id="section_${step?counter}"
                                 class="scenarioSubSection collapse ${expandSubSections?then("show", "")}">
                             </#list>
                         <#elseif (sectionChange < 0) >
@@ -270,7 +270,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                         <#if (sectionChange > 0) >
                             <#list 1..sectionChange as n>
                                 <#assign openDivs = openDivs + 1>
-                                <div style="margin-left: 2em;" id="section_${step?counter}"
+                                <div style="padding-left: 2em;" id="section_${step?counter}"
                                 class="scenarioSubSection collapse ${expandSubSections?then("show", "")}">
                             </#list>
                         <#elseif (sectionChange < 0) >

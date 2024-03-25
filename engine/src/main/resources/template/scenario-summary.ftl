@@ -114,28 +114,24 @@ preheadlineLink=preheadlineLink>
             </ul>
             <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
                 <hr>
-                (${totalNumberOfNotLastScenariosRuns} ${common.pluralizeFn("Scenario", totalNumberOfNotLastScenariosRuns)}
-                were previous runs)
                 <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
-                        data-target=".notLastRun">Toggle Previous Test Runs
+                        data-target=".notLastRun">Toggle ${totalNumberOfNotLastScenariosRuns} Previous Test Runs
                 </button>
             </#if>
         </@page.card>
         <@page.card width="3" title="Test Suite Info" subtitle="" classes="">
             <ul class="list-group list-group-flush">
                 <#assign startDateTimeString = returnStartDateTimeString()>
-                <#if startDateTimeString?has_content>
-                    <li class="list-group-item" data-cluecumber-item="total-start">
-                        <span class="small">Start</span> ${startDateTimeString}</li>
-                </#if>
-                <#assign endDateTimeString = returnEndDateTimeString()>
-                <#if endDateTimeString?has_content>
-                    <li class="list-group-item" data-cluecumber-item="total-end">
-                        <span class="small">End</span> ${endDateTimeString}</li>
-                </#if>
-                <li class="list-group-item" data-cluecumber-item="total-runtime">
-                    <span class="small">Total:</span> ${totalDurationString}
+                <li class="list-group-item" data-cluecumber-item="total-start">
+                    <#if startDateTimeString?has_content>
+                        <b>Start</b><br>${startDateTimeString}<br>
+                    </#if>
+                    <#assign endDateTimeString = returnEndDateTimeString()>
+                    <#if endDateTimeString?has_content>
+                        <b>End</b><br>${endDateTimeString}<br>
+                    </#if>
+                    <b>Total</b><br>${totalDurationString}
                 </li>
             </ul>
         </@page.card>
