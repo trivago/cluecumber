@@ -87,6 +87,9 @@ public class StepTest {
         argument.setVal("argument");
         arguments.add(argument);
         when(step.getArguments()).thenReturn(arguments);
+        Match match = mock(Match.class);
+        when(match.getLocation()).thenReturn("location");
+        when(step.getMatch()).thenReturn(match);
         step.setResult(result);
         assertEquals(step.returnNameWithArgumentPlaceholders(), "This is a name with an {} inside.");
     }

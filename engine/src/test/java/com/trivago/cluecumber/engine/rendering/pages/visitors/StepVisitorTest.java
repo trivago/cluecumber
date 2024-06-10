@@ -36,7 +36,5 @@ public class StepVisitorTest extends VisitorTest {
         stepVisitor.visit(getAllScenarioPageCollection());
         verify(fileIo, times(1))
                 .writeContentToFile("MyRenderedSteps", "dummyPath/pages/step-summary.html");
-        verify(fileIo, times(1))
-                .writeContentToFile("MyRenderedScenarios", "dummyPath/pages/step-scenarios/step_732281846.html");
     }
 }

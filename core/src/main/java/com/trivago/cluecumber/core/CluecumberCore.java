@@ -30,6 +30,11 @@ public class CluecumberCore {
 
     private final CluecumberEngine cluecumberEngine;
 
+    /**
+     * The constructor for the Cluecumber core.
+     * @param builder The builder instance.
+     * @throws CluecumberException Thrown in case of any error.
+     */
     private CluecumberCore(Builder builder) throws CluecumberException {
         cluecumberEngine = DaggerCluecumberCoreGraph.create().getCluecumberEngine();
         cluecumberEngine.setCustomCssFile(builder.customCssFile);

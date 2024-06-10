@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.6.3] - 2024-06-10
+
+### Changed
+
+* Cached slow method results to speed up report generation (#343), contributed by @simonstratmann
+
 ## [3.6.2] - 2024-03-25
 
 ### Fixed
@@ -871,7 +877,9 @@ the core component is now the reporting engine that is the base for other forms 
 
 Initial project version on GitHub and Maven Central.
 
-[3.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.2ss
+[3.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.3
+
+[3.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.2
 
 [3.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.1
 

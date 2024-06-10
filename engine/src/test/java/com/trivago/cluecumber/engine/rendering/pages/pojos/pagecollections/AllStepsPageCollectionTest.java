@@ -155,7 +155,7 @@ public class AllStepsPageCollectionTest {
         result.setStatus(Status.SKIPPED.getStatusString());
         step.setResult(result);
         match = new Match();
-        match.setLocation("location2");
+        match.setLocation("location3");
         step.setMatch(match);
         steps.add(step);
         element.setSteps(steps);
