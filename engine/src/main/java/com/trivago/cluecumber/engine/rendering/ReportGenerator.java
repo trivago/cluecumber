@@ -152,7 +152,7 @@ public class ReportGenerator {
      * Copy custom favicon to the specified target directory.
      */
     private void copyCustomFavicon(final String reportDirectory) throws CluecumberException {
-        String customFavicon = propertyManager.getCustomFavicon();
+        String customFavicon = propertyManager.getCustomFaviconFile();
         if (customFavicon != null && !customFavicon.isEmpty()) {
             fileSystemManager.copyResource(customFavicon, reportDirectory + "/img/favicon.ico");
         } else {
@@ -166,6 +166,9 @@ public class ReportGenerator {
      * @throws CluecumberException The {@link CluecumberException}.
      */
     private void copyStaticReportAssets(final String reportDirectory) throws CluecumberException {
+        // Copy image resources
+        fileSystemManager.createDirectory(reportDirectory + "/img");
+
         // Copy CSS resources
         fileSystemManager.createDirectory(reportDirectory + "/css");
         copyFileFromJarToReportDirectory("/css/bootstrap.min.css");

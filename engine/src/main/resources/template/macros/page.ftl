@@ -35,7 +35,7 @@ limitations under the License.
     <base href="${base}">
     <head title="${title}">
         <title>${title}</title>
-        <link rel="icon" href="img/favicon.ico" type="image/png" />
+        <link rel="icon" href="img/favicon.png" type="image/png" />
         <#include "../snippets/common_headers.ftl">
         <#include "../snippets/css.ftl">
         <#include "../snippets/js.ftl">
