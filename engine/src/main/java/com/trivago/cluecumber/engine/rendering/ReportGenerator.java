@@ -92,10 +92,11 @@ public class ReportGenerator {
         createDirectories(reportDirectory);
         copyStaticReportAssets(reportDirectory);
         copyCustomCss(reportDirectory);
+        copyCustomFavicon(reportDirectory);
 
         boolean redirectToFirstScenarioPage =
                 propertyManager.getStartPage() == Settings.StartPage.ALL_SCENARIOS &&
-                        allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
+                allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
 
         generateStartPage(redirectToFirstScenarioPage);
         for (PageVisitor visitor : visitors) {
@@ -149,11 +150,26 @@ public class ReportGenerator {
     }
 
     /**
+     * Copy custom favicon to the specified target directory.
+     */
+    private void copyCustomFavicon(final String reportDirectory) throws CluecumberException {
+        String customFavicon = propertyManager.getCustomFaviconFile();
+        if (customFavicon != null && !customFavicon.isEmpty()) {
+            fileSystemManager.copyResource(customFavicon, reportDirectory + "/img/favicon.png");
+        } else {
+            copyFileFromJarToReportDirectory("/img/favicon.png");
+        }
+    }
+
+    /**
      * Copy all needed static report assets to the specified target directory.
      *
      * @throws CluecumberException The {@link CluecumberException}.
      */
     private void copyStaticReportAssets(final String reportDirectory) throws CluecumberException {
+        // Copy image resources
+        fileSystemManager.createDirectory(reportDirectory + "/img");
+
         // Copy CSS resources
         fileSystemManager.createDirectory(reportDirectory + "/css");
         copyFileFromJarToReportDirectory("/css/bootstrap.min.css");

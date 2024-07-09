@@ -62,6 +62,7 @@ public class PropertyManager {
     private boolean groupPreviousScenarioRuns = false;
     private boolean expandPreviousScenarioRuns = false;
     private String customCssFile;
+    private String customFaviconFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
             Settings.CustomParamDisplayMode.ALL_PAGES;
@@ -128,7 +129,8 @@ public class PropertyManager {
      * @param generatedHtmlReportDirectory The path.
      * @throws WrongOrMissingPropertyException Thrown on any error.
      */
-    public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory) throws WrongOrMissingPropertyException {
+    public void setGeneratedHtmlReportDirectory(final String generatedHtmlReportDirectory)
+            throws WrongOrMissingPropertyException {
         if (!isSet(generatedHtmlReportDirectory)) {
             throw new WrongOrMissingPropertyException("generatedHtmlReportDirectory");
         }
@@ -197,7 +199,8 @@ public class PropertyManager {
      */
     public void setCustomParametersDisplayMode(String customParametersDisplayMode) {
         try {
-            this.customParametersDisplayMode = Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
+            this.customParametersDisplayMode =
+                    Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase());
         } catch (IllegalArgumentException e) {
             logger.warn("Unknown setting for custom parameter page(s): '" + customParametersDisplayMode +
                         "'. Must be one of " + Arrays.toString(Settings.CustomParamDisplayMode.values()));
@@ -423,6 +426,31 @@ public class PropertyManager {
     }
 
     /**
+     * Get the custom favicon file path.
+     *
+     * @return The path.
+     */
+    public String getCustomFaviconFile() {
+        return customFaviconFile;
+    }
+
+    /**
+     * Set the custom favicon file path.
+     *
+     * @param customFaviconFile The path.
+     * @throws MissingFileException Thrown if the file is not found.
+     */
+    public void setCustomFaviconFile(final String customFaviconFile) throws MissingFileException {
+        this.customFaviconFile = customFaviconFile;
+        if (!isSet(customFaviconFile)) {
+            return;
+        }
+        if (!fileIO.isExistingFile(customFaviconFile)) {
+            throw new MissingFileException(customFaviconFile + " (customFaviconFile)");
+        }
+    }
+
+    /**
      * Get the custom hex color for passed elements.
      *
      * @return The hex color string.
@@ -523,7 +551,9 @@ public class PropertyManager {
                 logger.logInfoSeparator();
             }
             customParameters.entrySet().stream().map(entry -> "- custom parameter                 : " +
-                                                              entry.getKey() + " -> " + entry.getValue()).forEach(logString -> logger.info(logString, DEFAULT));
+                                                              entry.getKey() + " -> " +
+                                                              entry.getValue()).forEach(
+                    logString -> logger.info(logString, DEFAULT));
         }
 
         logger.logInfoSeparator(DEFAULT);
@@ -548,22 +578,37 @@ public class PropertyManager {
                     logString -> logger.info(logString, DEFAULT));
         }
 
-
         if (isSet(customCssFile)) {
             logger.info("- custom CSS file                  : " + customCssFile, DEFAULT);
+        }
+        if (isSet(customFaviconFile)) {
+            logger.info("- custom favicon file              : " + customFaviconFile, DEFAULT);
         }
 
         logger.info("- colors (passed, failed, skipped) : " +
                     customStatusColorPassed + ", " + customStatusColorFailed + ", " + customStatusColorSkipped, DEFAULT);
-
         logger.logInfoSeparator(DEFAULT);
     }
 
+    /**
+     * Check if a string is set.
+     *
+     * @param string The string to check.
+     * @return true if the string is set.
+     */
     private boolean isSet(final String string) {
         return string != null && !string.trim().isEmpty();
     }
 
-    private void checkHexColorValidity(String color, String colorPropertyName) throws WrongOrMissingPropertyException {
+    /**
+     * Check if a hex color is valid.
+     *
+     * @param color             The color string.
+     * @param colorPropertyName The name of the color property.
+     * @throws WrongOrMissingPropertyException Thrown if the color is invalid.
+     */
+    private void checkHexColorValidity(String color, String colorPropertyName)
+            throws WrongOrMissingPropertyException {
         if (!Pattern.compile(COLOR_PATTERN).matcher(color).matches()) {
             throw new WrongOrMissingPropertyException(colorPropertyName);
         }
@@ -587,7 +632,8 @@ public class PropertyManager {
         try {
             this.startPage = Settings.StartPage.valueOf(startPage.toUpperCase());
         } catch (IllegalArgumentException e) {
-            logger.warn("Unknown start page '" + startPage + "'. Must be one of " + Arrays.toString(Settings.StartPage.values()));
+            logger.warn("Unknown start page '" + startPage + "'. Must be one of " +
+                        Arrays.toString(Settings.StartPage.values()));
             this.startPage = Settings.StartPage.ALL_SCENARIOS;
         }
     }

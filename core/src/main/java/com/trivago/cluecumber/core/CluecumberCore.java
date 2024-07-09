@@ -32,12 +32,14 @@ public class CluecumberCore {
 
     /**
      * The constructor for the Cluecumber core.
+     *
      * @param builder The builder instance.
      * @throws CluecumberException Thrown in case of any error.
      */
     private CluecumberCore(Builder builder) throws CluecumberException {
         cluecumberEngine = DaggerCluecumberCoreGraph.create().getCluecumberEngine();
         cluecumberEngine.setCustomCssFile(builder.customCssFile);
+        cluecumberEngine.setCustomFavicon(builder.customFavicon);
         cluecumberEngine.setCustomNavigationLinks(builder.customNavigationLinks);
         cluecumberEngine.setCustomPageTitle(builder.customPageTitle);
         cluecumberEngine.setCustomParameters(builder.customParameters);
@@ -75,6 +77,7 @@ public class CluecumberCore {
      */
     public static class Builder {
         private String customCssFile;
+        private String customFavicon;
         private LinkedHashMap<String, String> customNavigationLinks;
         private String customPageTitle;
         private LinkedHashMap<String, String> customParameters;
@@ -113,6 +116,17 @@ public class CluecumberCore {
          */
         public Builder setCustomCssFile(final String customCssFile) {
             this.customCssFile = customCssFile;
+            return this;
+        }
+
+        /**
+         * Custom favicon to display in the browser tab.
+         *
+         * @param customFavicon The path to a favicon png file.
+         * @return The {@link Builder}.
+         */
+        public Builder setCustomFaviconFile(final String customFavicon) {
+            this.customFavicon = customFavicon;
             return this;
         }
 

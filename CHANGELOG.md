@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.7.0] - 2024-07-09
+
+### Added
+
+* Custom favicon definition through property (#340)
+
 ## [3.6.3] - 2024-06-10
 
 ### Changed
@@ -876,6 +882,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.7.0
 
 [3.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.3
 

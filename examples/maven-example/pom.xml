@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.6.3</version>
+    <version>3.7.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -73,6 +73,9 @@
 
                     <!-- Optional custom CSS for custom styling -->
                     <!-- <customCss>custom/custom.css</customCss> -->
+
+                    <!-- Optional custom favicon (needs to be a png) -->
+                    <!-- <customFavicon>custom/favicon.png</customFavicon> -->
 
                     <!-- Optional properties to expand scenario hooks, step hooks, doc strings, attachments and step outputs when scenario details are shown (default: false) -->
                     <expandSubSections>false</expandSubSections>

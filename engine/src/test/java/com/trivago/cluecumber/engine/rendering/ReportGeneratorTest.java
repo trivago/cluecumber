@@ -92,7 +92,7 @@ public class ReportGeneratorTest {
 
         reportGenerator.generateReport(allScenariosPageCollection);
 
-        verify(fileSystemManager, times(8)).createDirectory(anyString());
-        verify(fileSystemManager, times(17)).copyResourceFromJar(anyString(), anyString());
+        verify(fileSystemManager, times(9)).createDirectory(anyString());
+        verify(fileSystemManager, times(18)).copyResourceFromJar(anyString(), anyString());
     }
 }

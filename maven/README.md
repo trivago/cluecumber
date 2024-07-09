@@ -6,6 +6,7 @@
 <img alt="Cluecumber Maven logo" src="../documentation/img/cluecumber_maven.png" width="250"/>
 
 # Cluecumber Maven
+
 _Clear and concise Maven reporting for the Cucumber BDD JSON format_
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -32,6 +33,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
   - [Defining the report start page](#defining-the-report-start-page)
   - [Defining a custom report title](#defining-a-custom-report-title)
   - [Defining a custom CSS file](#defining-a-custom-css-file)
+  - [Defining a custom favicon](#defining-a-custom-favicon)
   - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
   - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
 - [Running the reporting goal directly via command line](#running-the-reporting-goal-directly-via-command-line)
@@ -46,6 +48,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
 # Maven POM settings
 
 ```xml
+
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-maven</artifactId>
@@ -73,7 +76,7 @@ your Cucumber runner configuration:
 
 ```java
 @CucumberOptions(
-    plugin = {"json:target/cucumber-report/cucumber.json"}
+        plugin = {"json:target/cucumber-report/cucumber.json"}
 )
 ```
 
@@ -91,6 +94,7 @@ __Note:__ Typically, both properties point to directories inside the Maven ```ta
 This specifies the source folder of the Cucumber JSON result files.
 
 ```xml
+
 <configuration>
     <sourceJsonReportDirectory>c:/example/json-files</sourceJsonReportDirectory>
     ...
@@ -102,6 +106,7 @@ This specifies the source folder of the Cucumber JSON result files.
 This points to the root directory of the generated Cluecumber HTML report.
 
 ```xml
+
 <configuration>
     <generatedHtmlReportDirectory>c:/example/my-report</generatedHtmlReportDirectory>
     ...
@@ -121,6 +126,7 @@ By default, Cluecumber logs all information including
 This can be configured by passing the `logLevel` property:
 
 ```xml
+
 <logLevel>default|compact|minimal|off</logLevel>
 ```
 
@@ -140,6 +146,7 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 If a parameter name starts with an underscore (`_`), only the value is displayed.
 
 ```xml
+
 <configuration>
     <customParameters>
         <Custom_Parameter>This is a test</Custom_Parameter>
@@ -162,6 +169,7 @@ You can also set custom parameters by specifying the path to a `.properties` fil
 like this:
 
 ```xml
+
 <configuration>
     <customParametersFile>path/to/your/customParameters.properties</customParametersFile>
     ...
@@ -194,6 +202,7 @@ The following display modes are available for displaying the custom parameters:
 * `ALL_PAGES`: Display on all the pages in the report.
 
 ```xml
+
 <configuration>
     <customParametersDisplayMode>ALL_PAGES</customParametersDisplayMode>
     ...
@@ -208,6 +217,7 @@ If you have other pages or files you want to make accessible from the central na
 this is possible via the `customNavigationLinks` property.
 
 ```xml
+
 <configuration>
     <customNavigationLinks>
         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
@@ -226,6 +236,7 @@ these are replaces with spaces for the link name:
 The `skip` property is used to skip the report generation completely. The default value is `false`
 
 ```xml
+
 <configuration>
     <skip>true</skip>
     ...
@@ -239,6 +250,7 @@ as `failed` when they contain `pending` or `skipped` steps.
 The default setting is `false`, meaning that those scenarios will be marked as `skipped`.
 
 ```xml
+
 <configuration>
     <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>
     ...
@@ -247,13 +259,17 @@ The default setting is `false`, meaning that those scenarios will be marked as `
 
 ## Auto-expand Certain Report Sections
 
-The `expandBeforeAfterHooks`, `expandStepHooks`, `expandDocStrings`, `expandOutputs` and `expandSubSections` options can be set to `true` to expand or
-collapse before/after hooks, step hooks, docstrings, step outputs and sub sections respectively on scenario detail pages.
+The `expandBeforeAfterHooks`, `expandStepHooks`, `expandDocStrings`, `expandOutputs` and `expandSubSections` options can
+be set to `true` to expand or
+collapse before/after hooks, step hooks, docstrings, step outputs and sub sections respectively on scenario detail
+pages.
 
-If they are not set, they default to `false`. This means that the report user has to use the buttons on a scenario detail
+If they are not set, they default to `false`. This means that the report user has to use the buttons on a scenario
+detail
 page to expand those sections on demand.
 
 ```xml
+
 <configuration>
     <expandBeforeAfterHooks>true|false</expandBeforeAfterHooks>
     <expandStepHooks>true|false</expandStepHooks>
@@ -266,10 +282,12 @@ page to expand those sections on demand.
 
 ## Auto-expand Previous Runs
 
-The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
+The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the
+same scenario
 (on all scenarios page only, if `groupPreviousScenarioRuns` mode active).
 
 ```xml
+
 <configuration>
     <expandPreviousScenarioRuns>true|false</expandPreviousScenarioRuns>
     ...
@@ -282,6 +300,7 @@ By default, attachments are collapsed and can be toggled individually. If the `e
 to `true`, they are automatically expanded.
 
 ```xml
+
 <configuration>
     <expandAttachments>true|false</expandAttachments>
     ...
@@ -295,6 +314,7 @@ to `true`, they are automatically expanded.
 The default start page of the reports (if not overwritten by the `startPage` property) is the scenario overview page.
 
 ```xml
+
 <configuration>
     <startPage>ALL_SCENARIOS</startPage>
     ...
@@ -318,6 +338,7 @@ e.g. `Cluecumber Report - All Tags`.
 By setting the property `customPageTitle`, this can be changed:
 
 ```xml
+
 <configuration>
     <customPageTitle>My Report</customPageTitle>
     ...
@@ -349,6 +370,7 @@ h3, h4, h5 {
 To use this files, specify it like so in your pom file or as a system property:
 
 ```xml
+
 <configuration>
     <customCss>custom/custom.css</customCss>
     ...
@@ -368,12 +390,28 @@ Likewise, if you want to hide elements from the report, you can also add this to
 }
 ```
 
+## Defining a custom favicon
+
+The favicon is displayed in the browser tab and can be customized by setting the `customFavicon` property. This must be
+a png file of size 16x16 or 32x32 pixels
+
+![Custom Favicon](../documentation/img/custom_favicon.png)
+
+```xml
+
+<configuration>
+    <customCss>custom/favicon.png</customCss>
+    ...
+</configuration>
+```
+
 ## Defining custom passed, skipped and failed colors
 
 It is possible to set these properties to change the color scheme for passed, failed and skipped steps and scenarios
 including the displayed diagrams. The values have to be valid hex colors:
 
 ```xml
+
 <configuration>
     <customStatusColorPassed>#017FAF</customStatusColorPassed>
     <customStatusColorFailed>#C94A38</customStatusColorFailed>
@@ -384,21 +422,22 @@ including the displayed diagrams. The values have to be valid hex colors:
 
 The result of this customization is:
 
-| Before | After |
-|---|---|
+| Before                                                 | After                                                |
+|--------------------------------------------------------|------------------------------------------------------|
 | ![Chart Before](../documentation/img/chart_before.png) | ![Chart After](../documentation/img/chart_after.png) |
 
 ## Enabling a compact view of multiple runs of the same scenarios
 
 It is possible to group multiple runs of the same scenario, especially useful for cases like reruns.
 Enabling the feature will list the "children" elements (previous runs) on the "All scenarios" page
-as nested elements of the last run of that specific scenario. 
+as nested elements of the last run of that specific scenario.
 The grouping is based on scenario `id` + scenario `line`
-A button allows to expand/collapse, the default state can be set via `expandPreviousScenarioRuns`. 
+A button allows to expand/collapse, the default state can be set via `expandPreviousScenarioRuns`.
 
 ```xml
+
 <configuration>
-  <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
+    <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
     ...
 </configuration>    
 ```
@@ -419,6 +458,7 @@ the `configuration` block must be outside of your `executions` block. Otherwise,
 specified execution and is ignored when you run `mvn cluecumber-report:reporting` from the command line:
 
 ```xml
+
 <executions>
     <execution>
         <id>report</id>
@@ -432,7 +472,7 @@ specified execution and is ignored when you run `mvn cluecumber-report:reporting
     </execution>
 </executions>
 <configuration>
-    <!-- This configuration block applies to all executions including command line invocation -->
+<!-- This configuration block applies to all executions including command line invocation -->
 </configuration>
 ```
 
@@ -453,6 +493,7 @@ If you want to set a [custom parameter](#customparameters), you can do it like t
 Set an empty property in your pom file's properties block:
 
 ```xml
+
 <properties>
     <someProperty/>
 </properties>
@@ -461,6 +502,7 @@ Set an empty property in your pom file's properties block:
 Also define it in the Cluecumber section in your POM:
 
 ```xml
+
 <customParameters>
     <My_Parameter_Name>${someProperty}</Base_Url>
 </customParameters>
