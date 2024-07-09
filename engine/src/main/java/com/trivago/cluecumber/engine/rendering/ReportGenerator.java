@@ -92,6 +92,7 @@ public class ReportGenerator {
         createDirectories(reportDirectory);
         copyStaticReportAssets(reportDirectory);
         copyCustomCss(reportDirectory);
+        copyCustomFavicon(reportDirectory);
 
         boolean redirectToFirstScenarioPage =
                 propertyManager.getStartPage() == Settings.StartPage.ALL_SCENARIOS &&
@@ -153,10 +154,12 @@ public class ReportGenerator {
      */
     private void copyCustomFavicon(final String reportDirectory) throws CluecumberException {
         String customFavicon = propertyManager.getCustomFaviconFile();
+        System.out.println("customFavicon: " + customFavicon);
         if (customFavicon != null && !customFavicon.isEmpty()) {
             fileSystemManager.copyResource(customFavicon, reportDirectory + "/img/favicon.ico");
         } else {
-            copyFileFromJarToReportDirectory("/img/favicon.ico");
+            System.out.println("copying default favicon");
+            copyFileFromJarToReportDirectory("/img/favicon.png");
         }
     }
 
