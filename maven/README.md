@@ -400,7 +400,7 @@ a png file of size 16x16 or 32x32 pixels
 ```xml
 
 <configuration>
-    <customCss>custom/favicon.png</customCss>
+    <customFavicon>custom/favicon.png</customFavicon>
     ...
 </configuration>
 ```
