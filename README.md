@@ -15,6 +15,11 @@ Cluecumber comes in two flavors:
 * [__Cluecumber Core__](core) -  generates reports from Java code
 * [__Cluecumber Maven__](maven) - generates reports from Maven
 
+The look can be adjusted by setting
+* optional custom CSS
+* optional custom favicon
+* Custom parameters
+
 ![Cluecumber animation](documentation/img/cluecumber.gif)
 
 A fully generated example report can be [viewed here](https://softwaretester.blog/cluecumber)!

@@ -96,7 +96,7 @@ public class ReportGenerator {
 
         boolean redirectToFirstScenarioPage =
                 propertyManager.getStartPage() == Settings.StartPage.ALL_SCENARIOS &&
-                        allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
+                allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
 
         generateStartPage(redirectToFirstScenarioPage);
         for (PageVisitor visitor : visitors) {
@@ -154,11 +154,9 @@ public class ReportGenerator {
      */
     private void copyCustomFavicon(final String reportDirectory) throws CluecumberException {
         String customFavicon = propertyManager.getCustomFaviconFile();
-        System.out.println("customFavicon: " + customFavicon);
         if (customFavicon != null && !customFavicon.isEmpty()) {
-            fileSystemManager.copyResource(customFavicon, reportDirectory + "/img/favicon.ico");
+            fileSystemManager.copyResource(customFavicon, reportDirectory + "/img/favicon.png");
         } else {
-            System.out.println("copying default favicon");
             copyFileFromJarToReportDirectory("/img/favicon.png");
         }
     }

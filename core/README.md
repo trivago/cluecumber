@@ -30,6 +30,7 @@ _Clear and concise JVM reporting for the Cucumber BDD JSON format_
   - [Defining the report start page](#defining-the-report-start-page)
   - [Defining a custom report title](#defining-a-custom-report-title)
   - [Defining a custom CSS file](#defining-a-custom-css-file)
+  - [Defining a custom favicon](#defining-a-custom-favicon)
   - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
   - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
 - [Appendix](#appendix)
@@ -343,6 +344,20 @@ Likewise, if you want to hide elements from the report, you can also add this to
 .some_element {
     display: none;
 }
+```
+
+
+## Defining a custom favicon
+
+The favicon is displayed in the browser tab and can be customized by setting the `customFavicon` property. This must be
+a png file of size 16x16 or 32x32 pixels
+
+![Custom Favicon](../documentation/img/custom_favicon.png)
+
+```java
+new CluecumberCore.Builder()
+        .setCustomFavicon("custom/favicon.png")
+        .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
 ## Defining custom passed, skipped and failed colors

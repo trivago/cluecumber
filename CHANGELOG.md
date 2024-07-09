@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.7.0] - UNRELEASED
+## [3.7.0] - 2024-07-09
 
 ### Added
 
-* Custom favicon
+* Custom favicon definition through property (#340)
 
 ## [3.6.3] - 2024-06-10
 

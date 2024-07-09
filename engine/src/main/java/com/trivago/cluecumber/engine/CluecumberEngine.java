@@ -284,6 +284,13 @@ public final class CluecumberEngine {
         propertyManager.setCustomCssFile(customCss);
     }
 
+    public void setCustomFavicon(final String customFavicon) throws MissingFileException {
+        if (customFavicon == null) {
+            return;
+        }
+        propertyManager.setCustomFaviconFile(customFavicon);
+    }
+
     /**
      * Set a custom color for passed scenarios.
      *
