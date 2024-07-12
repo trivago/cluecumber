@@ -1,0 +1,51 @@
+[
+  {
+    "line": 4,
+    "elements": [
+      {
+        "start_timestamp": "2024-07-12T12:34:37.393Z",
+        "line": 6,
+        "name": "Pending step",
+        "description": "",
+        "id": "my-feature-with-tags-and-tagged-examples;pending-step",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "error_message": "io.cucumber.java.PendingException: TODO: implement me\n\tat steps.ExampleSteps.search_for_client(ExampleSteps.java:95)\n\tat ✽.I try to execute a pending step(file:///Users/bbischoff/Development/trivago/cucable-plugin/example-project/target/parallel/features/MyTest10_scenario007_run001_IT.feature:7)\n",
+              "duration": 2713000,
+              "status": "pending"
+            },
+            "line": 7,
+            "name": "I try to execute a pending step",
+            "match": {
+              "location": "steps.ExampleSteps.search_for_client()"
+            },
+            "keyword": "When "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@us1"
+          }
+        ]
+      }
+    ],
+    "name": "My feature with tags and tagged examples",
+    "description": "",
+    "id": "my-feature-with-tags-and-tagged-examples",
+    "keyword": "Feature",
+    "uri": "file:target/parallel/features/MyTest10_scenario007_run001_IT.feature",
+    "tags": [
+      {
+        "name": "@us1",
+        "type": "Tag",
+        "location": {
+          "line": 3,
+          "column": 1
+        }
+      }
+    ]
+  }
+]
