@@ -202,8 +202,25 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.SKIPPED);
+        assertEquals(Status.SKIPPED, status);
         assertTrue(element.isSkipped());
+    }
+
+    @Test
+    public void getUndefinedStatusWithFailureOnUndefinedSetTest() {
+        List<Step> steps = new ArrayList<>();
+        Step step = new Step();
+        Result result = new Result();
+        result.setStatus("undefined");
+        step.setResult(result);
+        steps.add(step);
+        element.setSteps(steps);
+        element.setFailOnPendingOrUndefined(true);
+
+        Status status = element.getStatus();
+        assertEquals(Status.FAILED, status);
+        assertFalse(element.isSkipped());
+        assertTrue(element.isFailed());
     }
 
     @Test

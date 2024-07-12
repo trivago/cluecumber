@@ -17,7 +17,7 @@ jobs:
           cache: maven
       - name: Run example project
         working-directory: ./examples/maven-example
-        run: mvn clean verify
+        run: ../../mvnw clean verify
       - name: Deploy example report
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

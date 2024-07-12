@@ -374,8 +374,8 @@ public class Element {
         if (allStates.isEmpty()) {
             return Status.SKIPPED;
         }
-        if (failOnPendingOrUndefined && allStates.size() == 1
-            && allStates.iterator().next().basicStatus() == Status.SKIPPED) {
+
+        if (failOnPendingOrUndefined && (allStates.contains(Status.PENDING) || allStates.contains(Status.UNDEFINED))) {
             return Status.FAILED;
         }
 

@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.7.0</version>
+    <version>3.7.1</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -69,7 +69,7 @@
                     <!--<customParametersFile>custom/custom.properties</customParametersFile>-->
 
                     <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
-                    <!--<failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps>-->
+                    <!-- <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps> -->
 
                     <!-- Optional custom CSS for custom styling -->
                     <!-- <customCss>custom/custom.css</customCss> -->
