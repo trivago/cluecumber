@@ -8,11 +8,12 @@
     <parent>
         <artifactId>cluecumber-parent</artifactId>
         <groupId>com.trivago.rta</groupId>
-        <version>3.7.1</version>
+        <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>cluecumber-engine</artifactId>
-    <version>3.7.1</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>Cluecumber Engine</name>
