@@ -35,6 +35,6 @@ public class Navigation {
             new Link("step_summary", "pages/step-summary.html", LinkType.INTERNAL),
             new Link("feature_summary", "pages/feature-summary.html", LinkType.INTERNAL),
             new Link("tree_view", "pages/tree-view.html", LinkType.INTERNAL),
-            new Link("rerun_scenarios", "pages/rerun_scenarios.html", LinkType.INTERNAL)
+            new Link("rerun_scenarios", "pages/rerun-scenarios.html", LinkType.INTERNAL)
     );
 }
