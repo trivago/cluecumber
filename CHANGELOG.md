@@ -13,6 +13,10 @@ Back to [Readme](README.md).
 
 * Build and test process uses Maven 4 wrapper
 
+### Fixed
+
+* Aligned hover colors of overview and detail pages
+
 ## [3.7.1] - 2024-07-12
 
 ### Fixed

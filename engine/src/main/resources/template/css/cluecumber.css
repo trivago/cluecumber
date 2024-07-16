@@ -115,7 +115,7 @@ pre {
 }
 
 .list-group-item .row:hover {
-    background-color: lightgray;
+    background-color: rgba(0, 0, 0, .075);
 }
 
 .list-group-flush .list-group-item:last-child {
