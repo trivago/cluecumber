@@ -56,6 +56,15 @@ limitations under the License.
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
+<#elseif (reruns??)>
+    <#assign base = "./..">
+    <#assign headline = "Rerun Scenarios">
+    <#assign pageName = "Rerun Scenarios">
+    <#assign highlight = "rerun_scenarios">
+    <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#else>
     <#assign base = "./..">
     <#assign headline = "All Scenarios">

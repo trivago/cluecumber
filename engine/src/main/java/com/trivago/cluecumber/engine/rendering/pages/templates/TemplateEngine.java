@@ -71,6 +71,10 @@ public class TemplateEngine {
          */
         SCENARIO_SEQUENCE("scenario-sequence"),
         /**
+         * Rerun scenarios template.
+         */
+        RERUN_SCENARIOS("rerun-scenarios"),
+        /**
          * Step overview template.
          */
         ALL_STEPS("step-summary"),

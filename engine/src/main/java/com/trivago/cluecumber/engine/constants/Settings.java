@@ -100,6 +100,11 @@ public class Settings {
      * The name of the tree view page.
      */
     public static final String TREE_VIEW_PAGE = "tree-view";
+    /**
+     * The name of the tree view page.
+     */
+    public static final String RERUN_SCENARIOS_PAGE = "rerun-scenarios";
+
 
     /**
      * Defines all possible start pages.
@@ -128,7 +133,11 @@ public class Settings {
         /**
          * The tree view page.
          */
-        TREE_VIEW(TREE_VIEW_PAGE);
+        TREE_VIEW(TREE_VIEW_PAGE),
+        /**
+         * The rerun scenarios page.
+         */
+        RERUN_SCENARIOS(RERUN_SCENARIOS_PAGE);
 
         private final String pageName;
 

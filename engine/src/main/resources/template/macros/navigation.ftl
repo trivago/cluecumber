@@ -48,6 +48,9 @@ limitations under the License.
                             <#case "tree_view">
                                 <#assign linkName="Tree View">
                                 <#break>
+                            <#case "rerun_scenarios">
+                                <#assign linkName="Reruns">
+                                <#break>
                         </#switch>
                         <a class="nav-link ${highlightClass}" href="${link.target}">${linkName}</a>
                     <#elseif link.type == "EXTERNAL">

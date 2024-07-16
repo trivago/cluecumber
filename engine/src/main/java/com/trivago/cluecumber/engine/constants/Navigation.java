@@ -34,6 +34,7 @@ public class Navigation {
             new Link("tag_summary", "pages/tag-summary.html", LinkType.INTERNAL),
             new Link("step_summary", "pages/step-summary.html", LinkType.INTERNAL),
             new Link("feature_summary", "pages/feature-summary.html", LinkType.INTERNAL),
-            new Link("tree_view", "pages/tree-view.html", LinkType.INTERNAL)
+            new Link("tree_view", "pages/tree-view.html", LinkType.INTERNAL),
+            new Link("rerun_scenarios", "pages/rerun_scenarios.html", LinkType.INTERNAL)
     );
 }

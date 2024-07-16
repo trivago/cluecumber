@@ -164,6 +164,10 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
 
+    public String getRendererContentByReruns() {
+        return "";
+    }
+
     private void addChartJsonToReportDetails(final AllScenariosPageCollection allScenariosPageCollection) {
         allScenariosPageCollection.getReportDetails()
                 .setChartJson(convertChartToJson(new PieChartBuilder(chartConfiguration)
