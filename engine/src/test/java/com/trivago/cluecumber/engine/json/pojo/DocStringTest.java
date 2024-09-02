@@ -26,9 +26,15 @@ public class DocStringTest {
     }
 
     @Test
+    public void returnWithClickableLinksFalseAlarmTest() {
+        docString.setValue("This should be a profile link with some profile stuff.");
+        assertEquals(docString.returnWithClickableLinks(), "This should be a profile link with some profile stuff.");
+    }
+
+    @Test
     public void returnWithClickableLocalLinksTest() {
-        docString.setValue("The shared location is file:\\MACHINE\\Folder\\Some Folder");
-        assertEquals(docString.returnWithClickableLinks(), "The shared location is <a href='file:\\MACHINE\\Folder\\Some Folder' target='_blank'>file:\\MACHINE\\Folder\\Some Folder</a>");
+        docString.setValue("The shared location is <a href='file:\\MACHINE\\Folder\\Some Folder' target='_blank'>file:\\MACHINE\\Folder\\Some Folder</a>");
+        assertEquals(docString.returnWithClickableLinks(), "The shared location is &#60;a href='file:\\MACHINE\\Folder\\Some Folder' target='_blank'&#62;file:\\MACHINE\\Folder\\Some Folder&#60;/a&#62;");
     }
 
     @Test

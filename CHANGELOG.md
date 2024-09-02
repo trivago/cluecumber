@@ -9,8 +9,19 @@ Back to [Readme](README.md).
 
 ## [3.8.0] - UNRELEASED
 
+### Fixed
+
+* Better detection of embedded URLs in attachments, docstrings and outputs
+
+### Added
+
+* Logged report location now includes `file://` prefix
+
 ### Changed
 
+* Updated JUnit Jupiter to `5.11.0`
+* Updated Mockito to `5.13.0`
+* Updated Dagger to `5.52`
 * Build and test process uses Maven 4 wrapper
 
 ### Fixed
