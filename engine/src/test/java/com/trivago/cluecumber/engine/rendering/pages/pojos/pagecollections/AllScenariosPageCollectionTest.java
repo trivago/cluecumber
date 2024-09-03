@@ -174,7 +174,7 @@ public class AllScenariosPageCollectionTest {
         Report report = new Report();
         List<Element> elements = new ArrayList<>();
         Element element = new Element();
-        element.setIsNotLastOfMultipleScenarioRuns(true);
+        element.isMultiRunChild(true);
         elements.add(element);
         report.setElements(elements);
         reportList[0] = report;

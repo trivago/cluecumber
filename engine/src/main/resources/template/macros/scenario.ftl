@@ -93,9 +93,7 @@ limitations under the License.
 
                                 <#list report.elements as element>
                                     <#if (skippedRequested && element.skipped) || (failedRequested && element.failed) || (passedRequested && element.passed) || allRequested>
-                                        <#assign isLastOfMultipleScenarioRuns = element.getIsLastOfMultipleScenarioRuns()>
-                                        <#assign isNotLastOfMultipleScenarioRuns = element.getIsNotLastOfMultipleScenarioRuns()>
-                                        <#if !isGroupPreviousScenarioRuns() || (isGroupPreviousScenarioRuns() && !isNotLastOfMultipleScenarioRuns) || allRequested>
+                                        <#if !isGroupPreviousScenarioRuns() || (isGroupPreviousScenarioRuns() && !element.isMultiRunChild()) || allRequested>
                                             <tr class="table-row-${element.status.statusString}">
                                                 <#if allRequested>
                                                     <td class="text-right">${element.scenarioIndex}</td>
@@ -112,8 +110,8 @@ limitations under the License.
                                                         <p class="firstException text-left small text-gray"
                                                            style="word-break: break-word">${element.firstExceptionClass}</p>
                                                     </#if>
-                                                    <#if isGroupPreviousScenarioRuns() && isLastOfMultipleScenarioRuns && !allRequested>
-                                                        <#list element.getChildrenElements() as childElement>
+                                                    <#if isGroupPreviousScenarioRuns() && element.isMultiRunParent() && !allRequested>
+                                                        <#list element.getMultiRunChildren() as childElement>
                                                             <div class="notLastRun collapse">
                                                                 └──
                                                                 <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html"

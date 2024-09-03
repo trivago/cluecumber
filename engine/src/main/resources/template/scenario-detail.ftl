@@ -71,13 +71,13 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </#if>
                 <b>Total</b><br>${element.returnTotalDurationString()}
             </li>
-            <#if groupPreviousScenarioRuns && element.getIsLastOfMultipleScenarioRuns()>
+            <#if groupPreviousScenarioRuns && element.multiRunParent>
                 <hr>
                 <div class="alert alert-info" role="alert">
                     This is the last run of this scenario.
                 </div>
             </#if>
-            <#if groupPreviousScenarioRuns && element.getIsNotLastOfMultipleScenarioRuns()>
+            <#if groupPreviousScenarioRuns && element.multiRunChild>
                 <hr>
                 <div class="alert alert-info" role="alert">
                     There are later runs of this scenario.

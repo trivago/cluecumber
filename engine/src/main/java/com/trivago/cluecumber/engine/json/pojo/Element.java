@@ -32,8 +32,8 @@ import java.util.stream.Collectors;
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
-    private boolean isLastOfMultipleScenarioRuns = false;
-    private boolean isNotLastOfMultipleScenarioRuns = false;
+    private boolean isMultiRunParent = false;
+    private boolean isMultiRunChild = false;
     private String featureName = "";
     private String featureUri = "";
     private String name = "";
@@ -47,7 +47,7 @@ public class Element {
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
     private String startTimestamp = "";
-    private List<Element> childrenElements = new ArrayList<>();
+    private List<Element> multiRunChildren = new ArrayList<>();
     ;
 
     private transient int featureIndex = 0;
@@ -789,17 +789,17 @@ public class Element {
      *
      * @return true if this scenario is the last of multiple runs.
      */
-    public boolean getIsLastOfMultipleScenarioRuns() {
-        return isLastOfMultipleScenarioRuns;
+    public boolean isMultiRunParent() {
+        return isMultiRunParent;
     }
 
     /**
      * Set to true if this scenario is the last of multiple runs.
      *
-     * @param isLastOfMultipleScenarioRuns true if this scenario is the last of multiple runs.
+     * @param isMultiRunParent true if this scenario is the last of multiple runs.
      */
-    public void setIsLastOfMultipleScenarioRuns(final boolean isLastOfMultipleScenarioRuns) {
-        this.isLastOfMultipleScenarioRuns = isLastOfMultipleScenarioRuns;
+    public void setMultiRunParent(final boolean isMultiRunParent) {
+        this.isMultiRunParent = isMultiRunParent;
     }
 
     /**
@@ -807,17 +807,17 @@ public class Element {
      *
      * @return true if this scenario was run multiple times and it's not the last run.
      */
-    public boolean getIsNotLastOfMultipleScenarioRuns() {
-        return isNotLastOfMultipleScenarioRuns;
+    public boolean isMultiRunChild() {
+        return isMultiRunChild;
     }
 
     /**
      * Set to true if this scenario was run multiple times and it's not the last run.
      *
-     * @param isNotLastOfMultipleScenarioRuns true if this scenario was run multiple times and it's not the last run.
+     * @param isMultiRunChild true if this scenario was run multiple times and it's not the last run.
      */
-    public void setIsNotLastOfMultipleScenarioRuns(final boolean isNotLastOfMultipleScenarioRuns) {
-        this.isNotLastOfMultipleScenarioRuns = isNotLastOfMultipleScenarioRuns;
+    public void isMultiRunChild(final boolean isMultiRunChild) {
+        this.isMultiRunChild = isMultiRunChild;
     }
 
     /**
@@ -825,17 +825,25 @@ public class Element {
      *
      * @return The children elements.
      */
-    public List<Element> getChildrenElements() {
-        return childrenElements;
+    public List<Element> getMultiRunChildren() {
+        return multiRunChildren;
     }
 
     /**
      * Set the children elements of this scenario.
      *
-     * @param childrenElements The children elements.
+     * @param multiRunChildren The children elements.
      */
-    public void setChildrenElements(final List<Element> childrenElements) {
-        this.childrenElements = childrenElements;
+    public void setMultiRunChildren(final List<Element> multiRunChildren) {
+        this.multiRunChildren = multiRunChildren;
+    }
+
+    /**
+     * Check if this scenario is part of a multi-run.
+     * @return true if this scenario is part of a multi-run.
+     */
+    public boolean isPartOfMultiRun() {
+        return isMultiRunParent || isMultiRunChild;
     }
 
     /**

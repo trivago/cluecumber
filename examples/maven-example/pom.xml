@@ -87,7 +87,7 @@
 
                     <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
                     <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
-                    <expandPreviousScenarioRuns>false</expandPreviousScenarioRuns>
+                    <expandPreviousScenarioRuns>true</expandPreviousScenarioRuns>
 
                     <!-- optional: Cluecumber log level (default: default) -->
                     <logLevel>default</logLevel>

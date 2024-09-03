@@ -57,14 +57,14 @@ public void setup() {
 
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
-        assertTrue(e.get(0).getIsNotLastOfMultipleScenarioRuns());
-        assertFalse(e.get(1).getIsNotLastOfMultipleScenarioRuns());
-        assertFalse(e.get(2).getIsNotLastOfMultipleScenarioRuns());
-        assertFalse(e.get(0).getIsLastOfMultipleScenarioRuns());
-        assertFalse(e.get(1).getIsLastOfMultipleScenarioRuns());
-        assertTrue(e.get(2).getIsLastOfMultipleScenarioRuns());
-        assertEquals(e.get(0).getChildrenElements().size(), 0);
-        assertEquals(e.get(1).getChildrenElements().size(), 0);
-        assertEquals(e.get(2).getChildrenElements().size(), 1);
+        assertTrue(e.get(0).isMultiRunChild());
+        assertFalse(e.get(1).isMultiRunChild());
+        assertFalse(e.get(2).isMultiRunChild());
+        assertFalse(e.get(0).isMultiRunParent());
+        assertFalse(e.get(1).isMultiRunParent());
+        assertTrue(e.get(2).isMultiRunParent());
+        assertEquals(e.get(0).getMultiRunChildren().size(), 0);
+        assertEquals(e.get(1).getMultiRunChildren().size(), 0);
+        assertEquals(e.get(2).getMultiRunChildren().size(), 1);
     }
 }
