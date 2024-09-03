@@ -76,10 +76,10 @@ limitations under the License.
                                 </#if>
                                 <th class="text-left">Feature</th>
                                 <th class="text-left">Scenario</th>
-                                <th>Started</th>
-                                <th>Duration</th>
+                                <th class="text-center">Started</th>
+                                <th class="text-center">Duration</th>
                                 <#if allRequested>
-                                    <th class="text-left">Status</th>
+                                    <th class="text-center">Status</th>
                                 </#if>
                             </tr>
                             </thead>
@@ -131,7 +131,7 @@ limitations under the License.
                                                 <td class="text-center small" data-order="${element.startTimestamp}">
                                                     ${element.startDateString}<br>${element.startTimeString}
                                                 </td>
-                                                <td class="text-right small" data-order="${element.totalDuration}">
+                                                <td class="text-center small" data-order="${element.totalDuration}">
                                                     <span class="nobr">${element.returnTotalDurationString()}</span>
                                                 </td>
                                                 <#if allRequested>

@@ -12,6 +12,7 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Better detection of embedded URLs in attachments, docstrings and outputs
+* Fixed table alignment for duration column
 
 ### Added
 

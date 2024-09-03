@@ -225,7 +225,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     public int getTotalNumberOfNotLastScenariosRuns() {
         return reports.stream().mapToInt(
                 report -> (int) report.getElements().stream().filter(
-                        element -> element.getIsNotLastOfMultipleScenarioRuns()
+                        Element::getIsNotLastOfMultipleScenarioRuns
                 ).count()).sum();
     }
 
