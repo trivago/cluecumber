@@ -125,7 +125,7 @@ preheadlineLink=preheadlineLink>
                 <hr>
                 <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
-                        data-target=".notLastRun">Toggle ${totalNumberOfMultiRunChildren} Previous Test Runs
+                        data-target=".multiRunChildren">Toggle ${totalNumberOfMultiRunChildren} Previous Test Runs
                 </button>
             </#if>
         </@page.card>

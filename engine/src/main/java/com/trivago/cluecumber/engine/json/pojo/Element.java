@@ -41,15 +41,13 @@ public class Element {
     private String id = "";
     private List<ResultMatch> after = new ArrayList<>();
     private String type = "";
-    private String keyword = "";
+    private final String keyword = "";
     private List<Step> backgroundSteps = new ArrayList<>();
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
     private String startTimestamp = "";
     private List<Element> multiRunChildren = new ArrayList<>();
-    ;
-
     private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
     private transient boolean failOnPendingOrUndefined = false;
@@ -535,11 +533,10 @@ public class Element {
      * @return the duration in nanoseconds.
      */
     public long getTotalDuration() {
-        long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
-        totalDurationNanoseconds += backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum();
-        totalDurationNanoseconds += steps.stream().mapToLong(Step::getTotalDuration).sum();
-        totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
-        return totalDurationNanoseconds;
+        return before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum() +
+               backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
+               steps.stream().mapToLong(Step::getTotalDuration).sum() +
+               after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
     }
 
     /**
@@ -662,9 +659,9 @@ public class Element {
     }
 
     /**
-     * Check if this scenario contains sub-sections.
+     * Check if this scenario contains subsections.
      *
-     * @return true if there are sub-sections.
+     * @return true if there are subsections.
      */
     public boolean hasSubSections() {
         for (Step step : backgroundSteps) {
@@ -812,7 +809,7 @@ public class Element {
     }
 
     /**
-     * Set to true if this scenario was run multiple times and it's not the last run.
+     * Set to true if this scenario was run multiple times, but it's not the last run.
      *
      * @param isMultiRunChild true if this scenario was run multiple times and it's not the last run.
      */
@@ -840,6 +837,7 @@ public class Element {
 
     /**
      * Check if this scenario is part of a multi-run.
+     *
      * @return true if this scenario is part of a multi-run.
      */
     public boolean isPartOfMultiRun() {

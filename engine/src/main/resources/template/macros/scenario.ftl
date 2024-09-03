@@ -112,7 +112,7 @@ limitations under the License.
                                                     </#if>
                                                     <#if isGroupPreviousScenarioRuns() && element.isMultiRunParent() && !allRequested>
                                                         <#list element.getMultiRunChildren() as childElement>
-                                                            <div class="notLastRun collapse">
+                                                            <div class="multiRunChildren collapse">
                                                                 └──
                                                                 <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html"
                                                                    style="word-break: break-all">Previous run - started
