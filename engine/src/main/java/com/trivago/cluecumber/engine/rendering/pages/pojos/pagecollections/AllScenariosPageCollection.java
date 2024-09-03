@@ -135,7 +135,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         } else {
             return reports.stream().map(Report::getElements).
                     mapToInt(elements -> (int) elements.stream().filter(Element::isScenario).filter(
-                            element -> element.isMultiRunChild()
+                            Element::isMultiRunChild
                     ).count()).sum();
         }
     }
@@ -181,8 +181,8 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return true if there are scenarios run multiple times.
      */
-    public boolean hasNotLastRunScenarios() {
-        return getTotalNumberOfNotLastScenariosRuns() > 0;
+    public boolean hasMultiRunChildren() {
+        return getTotalNumberOfMultiRunChildren() > 0;
     }
 
     /**
@@ -229,7 +229,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return The scenario count.
      */
-    public int getTotalNumberOfNotLastScenariosRuns() {
+    public int getTotalNumberOfMultiRunChildren() {
         return reports.stream().mapToInt(
                 report -> (int) report.getElements().stream().filter(
                         Element::isMultiRunChild

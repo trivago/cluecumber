@@ -121,11 +121,11 @@ preheadlineLink=preheadlineLink>
                     </#if>
                 </li>
             </ul>
-            <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
+            <#if isGroupPreviousScenarioRuns() && hasMultiRunChildren() && !(scenarioSequence??)>
                 <hr>
                 <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
-                        data-target=".notLastRun">Toggle ${totalNumberOfNotLastScenariosRuns} Previous Test Runs
+                        data-target=".notLastRun">Toggle ${totalNumberOfMultiRunChildren} Previous Test Runs
                 </button>
             </#if>
         </@page.card>

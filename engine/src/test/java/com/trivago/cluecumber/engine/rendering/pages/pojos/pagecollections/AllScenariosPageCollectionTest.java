@@ -168,8 +168,8 @@ public class AllScenariosPageCollectionTest {
     }
 
     @Test
-    public void hasNotLastRunScenariosTest() {
-        assertFalse(allScenariosPageCollection.hasNotLastRunScenarios());
+    public void hasMultiRunChildrenTest() {
+        assertFalse(allScenariosPageCollection.hasMultiRunChildren());
         Report[] reportList = new Report[1];
         Report report = new Report();
         List<Element> elements = new ArrayList<>();
@@ -179,7 +179,7 @@ public class AllScenariosPageCollectionTest {
         report.setElements(elements);
         reportList[0] = report;
         allScenariosPageCollection.addReports(reportList);
-        assertTrue(allScenariosPageCollection.hasNotLastRunScenarios());
+        assertTrue(allScenariosPageCollection.hasMultiRunChildren());
     }
 
     @Test
