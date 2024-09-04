@@ -4,6 +4,7 @@ import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.pojo.Result;
 import com.trivago.cluecumber.engine.json.pojo.Step;
+import com.trivago.cluecumber.engine.json.processors.ElementMultipleRunsPreProcessor;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.CustomParameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -169,16 +170,32 @@ public class AllScenariosPageCollectionTest {
 
     @Test
     public void hasMultiRunChildrenTest() {
-        assertFalse(allScenariosPageCollection.hasMultiRunChildren());
-        Report[] reportList = new Report[1];
+        List<Report> reports = new ArrayList<>();
         Report report = new Report();
         List<Element> elements = new ArrayList<>();
+
         Element element = new Element();
-        element.isMultiRunChild(true);
+        element.setName("Scenario 1");
+        element.setType("scenario");
+        element.setId("feature1-scenario1");
+        element.setLine(3);
+        element.setStartTimestamp("2019-04-11T08:00:21.123Z");
         elements.add(element);
+
+        element = new Element();
+        element.setName("Scenario 1");
+        element.setType("scenario");
+        element.setId("feature1-scenario1");
+        element.setLine(3);
+        element.setStartTimestamp("2019-04-11T08:00:25.829Z");
+        elements.add(element);
+
         report.setElements(elements);
-        reportList[0] = report;
-        allScenariosPageCollection.addReports(reportList);
+        reports.add(report);
+
+        new ElementMultipleRunsPreProcessor().addMultipleRunsInformationToScenarios(reports);
+        assertFalse(allScenariosPageCollection.hasMultiRunChildren());
+        allScenariosPageCollection.addReports(reports.toArray(new Report[0]));
         assertTrue(allScenariosPageCollection.hasMultiRunChildren());
     }
 

@@ -294,3 +294,7 @@ tr.even td, tr.odd td {
 .dataTables_length {
     text-align: left;
 }
+
+.multiRunChildren {
+    margin-top: 1rem;
+}

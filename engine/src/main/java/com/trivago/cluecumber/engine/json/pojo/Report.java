@@ -27,7 +27,6 @@ public class Report implements Cloneable {
     private String name = "";
     private String description = "";
     private String id = "";
-    private String keyword = "";
     private String uri = "";
     private List<Tag> tags = new ArrayList<>();
 

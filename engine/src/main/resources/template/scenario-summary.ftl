@@ -121,7 +121,8 @@ preheadlineLink=preheadlineLink>
                     </#if>
                 </li>
             </ul>
-            <#if isGroupPreviousScenarioRuns() && hasMultiRunChildren() && !(scenarioSequence??)>
+
+            <#if hasMultiRunChildren() && !(scenarioSequence??)>
                 <hr>
                 <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
                         aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"

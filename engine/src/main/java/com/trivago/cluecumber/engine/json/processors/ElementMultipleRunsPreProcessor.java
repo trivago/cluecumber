@@ -76,5 +76,10 @@ public class ElementMultipleRunsPreProcessor {
             }
             lastRunElement.setMultiRunChildren(group);
         }));
+
+        // Remove elements marked as isMultiRunChild from each report
+        for (Report report : reports) {
+            report.getElements().removeIf(Element::isMultiRunChild);
+        }
     }
 }
