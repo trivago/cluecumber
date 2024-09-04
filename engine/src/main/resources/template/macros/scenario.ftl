@@ -98,20 +98,29 @@ limitations under the License.
                                                 <td class="text-right">${element.scenarioIndex}</td>
                                             </#if>
                                             <td class="text-left">
-                                                        <span data-toggle="tooltip" title="${tooltipText}">
-                                                            <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
-                                                        </span>
+                                                <span data-toggle="tooltip" title="${tooltipText}">
+                                                    <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
+                                                </span>
                                             </td>
                                             <td class="text-left">
                                                 <a href="pages/scenario-detail/scenario_${element.scenarioIndex?c}.html"
                                                    style="word-break: break-all">${element.name?html}</a>
+
+                                                <#if element.isMultiRunParent()>
+                                                    <button type="button" class="btn-clipboard multiRunExpansionButton"
+                                                            data-toggle="collapse"
+                                                            aria-expanded="false"
+                                                            data-target="#multiRun_${element.scenarioIndex}">Previous Runs
+                                                    </button>
+                                                </#if>
+
                                                 <#if element.firstExceptionClass != "">
                                                     <p class="firstException text-left small text-gray"
                                                        style="word-break: break-word">${element.firstExceptionClass}</p>
                                                 </#if>
 
                                                 <#if element.isMultiRunParent()>
-                                                    <div class="multiRunChildren collapse">
+                                                    <div id="multiRun_${element.scenarioIndex}" class="multiRunChildren collapse">
                                                         <ol reversed>
                                                             <#list element.getMultiRunChildren() as childElement>
                                                                 <li>
