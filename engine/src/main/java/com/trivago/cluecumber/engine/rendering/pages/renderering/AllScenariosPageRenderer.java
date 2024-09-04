@@ -165,6 +165,10 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
     }
 
     public String getRendererContentByReruns() {
+        System.out.println("THIS NEEDS TO BE CALLED");
+        // TODO: Implement this method
+        // TODO: Set chart data for reruns
+        // Generate the content for the reruns page
         return "";
     }
 
