@@ -129,7 +129,7 @@ limitations under the License.
     );
 
     function resizeIframe(iframe) {
-        setInterval(function() {
+        setInterval(function () {
             try {
                 iframe.height = iframe.contentWindow.document.body.scrollHeight + 25 + "px";
             } catch (e) {

@@ -74,7 +74,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <#if groupPreviousScenarioRuns && element.multiRunParent>
                 <hr>
                 <div class="alert alert-info" role="alert">
-                    This is the last run of this scenario.
+                    This is the final run of this scenario.
                 </div>
             </#if>
             <#if groupPreviousScenarioRuns && element.multiRunChild>
