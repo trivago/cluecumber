@@ -30,11 +30,11 @@ public class Navigation {
      */
     public static final List<Link> internalLinks = Arrays.asList(
             new Link("scenario_summary", "pages/scenario-summary.html", LinkType.INTERNAL),
+            new Link("rerun_scenarios", "pages/rerun-scenarios.html", LinkType.INTERNAL),
             new Link("scenario_sequence", "pages/scenario-sequence.html", LinkType.INTERNAL),
             new Link("tag_summary", "pages/tag-summary.html", LinkType.INTERNAL),
             new Link("step_summary", "pages/step-summary.html", LinkType.INTERNAL),
             new Link("feature_summary", "pages/feature-summary.html", LinkType.INTERNAL),
-            new Link("tree_view", "pages/tree-view.html", LinkType.INTERNAL),
-            new Link("rerun_scenarios", "pages/rerun-scenarios.html", LinkType.INTERNAL)
+            new Link("tree_view", "pages/tree-view.html", LinkType.INTERNAL)
     );
 }

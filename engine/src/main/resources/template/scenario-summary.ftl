@@ -122,10 +122,10 @@ preheadlineLink=preheadlineLink>
                 </li>
             </ul>
 
-            <#if hasMultiRunChildren() && !(scenarioSequence??)>
+            <#if hasMultiRunChildren()>
                 <hr>
                 <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
+                        aria-expanded="true" data-cluecumber-item="multi-run-button"
                         data-target=".multiRunChildren">Toggle ${totalNumberOfMultiRunChildren} Previous Test Runs
                 </button>
             </#if>

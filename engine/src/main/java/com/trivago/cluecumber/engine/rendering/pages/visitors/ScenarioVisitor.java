@@ -99,7 +99,7 @@ public class ScenarioVisitor implements PageVisitor {
 
         // Scenario reruns  page
         fileIO.writeContentToFile(
-                allScenariosPageRenderer.getRenderedContent(
+                allScenariosPageRenderer.getRendererContentByReruns(
                         allScenariosPageCollection,
                         templateEngine.getTemplate(RERUN_SCENARIOS)
                 ),

@@ -129,15 +129,8 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      * @return The scenario count.
      */
     public int getTotalNumberOfScenarios() {
-        if (!groupPreviousScenarioRuns) {
-            return reports.stream().map(Report::getElements).
-                    mapToInt(elements -> (int) elements.stream().filter(Element::isScenario).count()).sum();
-        } else {
-            return reports.stream().map(Report::getElements).
-                    mapToInt(elements -> (int) elements.stream().filter(Element::isScenario).filter(
-                            Element::isMultiRunChild
-                    ).count()).sum();
-        }
+        return reports.stream().map(Report::getElements).
+                mapToInt(elements -> (int) elements.stream().filter(Element::isScenario).count()).sum();
     }
 
     /**

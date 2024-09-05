@@ -229,11 +229,12 @@ public class PropertyManager {
      */
     public List<Link> getNavigationLinks() {
         List<Link> links = new LinkedList<>(Navigation.internalLinks);
-
         customNavigationLinks.forEach((key, value) -> {
             String linkName = key.replace("_", " ");
             links.add(new Link(linkName, value, LinkType.EXTERNAL));
         });
+
+        links.removeIf(link -> !groupPreviousScenarioRuns && link.getName().equals("rerun_scenarios"));
 
         return links;
     }

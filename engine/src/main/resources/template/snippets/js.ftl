@@ -123,7 +123,7 @@ limitations under the License.
                 $(".scenarioDocstring").collapse("show");
             }
             if (${expandPreviousScenarioRuns?c}) {
-                $("[data-cluecumber-item='show-not-last-runs-button']").click();
+                $("[data-cluecumber-item='multi-run-button']").click();
             }
         }
     );

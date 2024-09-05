@@ -33,6 +33,9 @@ limitations under the License.
                             <#case "scenario_summary">
                                 <#assign linkName="All Scenarios">
                                 <#break>
+                            <#case "rerun_scenarios">
+                                <#assign linkName="Rerun Scenarios">
+                                <#break>
                             <#case "scenario_sequence">
                                 <#assign linkName="Scenario Sequence">
                                 <#break>
@@ -47,9 +50,6 @@ limitations under the License.
                                 <#break>
                             <#case "tree_view">
                                 <#assign linkName="Tree View">
-                                <#break>
-                            <#case "rerun_scenarios">
-                                <#assign linkName="Reruns">
                                 <#break>
                         </#switch>
                         <a class="nav-link ${highlightClass}" href="${link.target}">${linkName}</a>
