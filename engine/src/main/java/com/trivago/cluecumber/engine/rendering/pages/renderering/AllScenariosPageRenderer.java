@@ -74,8 +74,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
-        allScenariosPageCollectionClone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
-        allScenariosPageCollectionClone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
@@ -90,8 +88,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
     public String getRendererContentByReruns(final AllScenariosPageCollection allScenariosPageCollection,
                                              final Template template) throws CluecumberException {
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
-        allScenariosPageCollectionClone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
-        allScenariosPageCollectionClone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
 
         for (Report report : allScenariosPageCollectionClone.getReports()) {
             List<Element> elements = report.getElements()
@@ -121,8 +117,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
         allScenariosPageCollectionClone.setTagFilter(tag);
-        allScenariosPageCollectionClone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
-        allScenariosPageCollectionClone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
 
         allScenariosPageCollectionClone.getReports().forEach(report -> {
             List<Element> elements = report.getElements()
@@ -151,8 +145,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final Step step) throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
-        allScenariosPageCollectionClone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
-        allScenariosPageCollectionClone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         allScenariosPageCollectionClone.setStepFilter(step);
         for (Report report : allScenariosPageCollectionClone.getReports()) {
             List<Element> elements = report.getElements()
@@ -181,8 +173,6 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final Feature feature) throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
-        allScenariosPageCollectionClone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
-        allScenariosPageCollectionClone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         allScenariosPageCollectionClone.setFeatureFilter(feature);
         Report[] reportArray = allScenariosPageCollectionClone.getReports()
                 .stream()
@@ -213,6 +203,8 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             throw new CluecumberException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
         }
         addCustomParametersToReportDetails(clone, propertyManager.getCustomParameters());
+        clone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
+        clone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         return clone;
     }
 }
