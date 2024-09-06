@@ -7,16 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.8.0] - UNRELEASED
+## [3.8.0] - 2024-09-06
 
 ### Fixed
 
 * Better detection of embedded URLs in attachments, docstrings and outputs
 * Fixed table alignment for duration column
+* All graphs and totals now show the correct numbers based on the current rerun settings
+* Aligned hover colors of overview and detail pages
 
 ### Added
 
 * Logged report location now includes `file://` prefix
+* Added `Rerun Scenarios` page in case of `groupPreviousScenarioRuns` mode
+* Added a dedicated `Reruns` button to each scenario with previous runs
 
 ### Changed
 
@@ -24,10 +28,6 @@ Back to [Readme](README.md).
 * Updated Mockito to `5.13.0`
 * Updated Dagger to `5.52`
 * Build and test process uses Maven 4 wrapper
-
-### Fixed
-
-* Aligned hover colors of overview and detail pages
 
 ## [3.7.1] - 2024-07-12
 

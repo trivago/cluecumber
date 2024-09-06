@@ -61,6 +61,14 @@ public class Settings {
      */
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/" + SCENARIO_DETAIL_PAGE_PATH + "/scenario_";
     /**
+     * The folder of the scenario rerun pages.
+     */
+    public final static String SCENARIO_RERUN_PAGE_PATH = "scenario-detail";
+    /**
+     * The first part of the name of scenario rerun pages.
+     */
+    public static final String SCENARIO_RERUN_PAGE_FRAGMENT = "/" + SCENARIO_RERUN_PAGE_PATH + "/scenario_";
+    /**
      * The name of the tag summary page.
      */
     public final static String TAG_SUMMARY_PAGE = "tag-summary";

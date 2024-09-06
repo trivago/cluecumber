@@ -45,9 +45,9 @@
         <maven-artifact.version>3.9.6</maven-artifact.version>
         <maven-model.version>3.9.6</maven-model.version>
         <maven-plugin-annotations.version>3.10.1</maven-plugin-annotations.version>
-        <maven-plugin-api.version>4.0.0-beta-3</maven-plugin-api.version>
+        <maven-plugin-api.version>3.9.9</maven-plugin-api.version>
         <javax.inject.version>1</javax.inject.version>
-        <maven-compiler-plugin.version>4.0.0-beta-1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-plugin-plugin.version>3.10.2</maven-plugin-plugin.version>
         <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
     </properties>

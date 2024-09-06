@@ -29,6 +29,7 @@ import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.List;
 
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.ALL_SCENARIOS;
 import static com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine.Template.RERUN_SCENARIOS;
@@ -86,7 +87,7 @@ public class ScenarioVisitor implements PageVisitor {
                         templateEngine.getTemplate(ALL_SCENARIOS)
                 ),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
-                        Settings.SCENARIO_SUMMARY_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
+                Settings.SCENARIO_SUMMARY_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
         // Scenario sequence page
         fileIO.writeContentToFile(
@@ -95,7 +96,7 @@ public class ScenarioVisitor implements PageVisitor {
                         templateEngine.getTemplate(SCENARIO_SEQUENCE)
                 ),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
-                        Settings.SCENARIO_SEQUENCE_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
+                Settings.SCENARIO_SEQUENCE_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
         // Scenario reruns  page
         fileIO.writeContentToFile(
@@ -104,22 +105,30 @@ public class ScenarioVisitor implements PageVisitor {
                         templateEngine.getTemplate(RERUN_SCENARIOS)
                 ),
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
-                        Settings.RERUN_SCENARIOS_PAGE + Settings.HTML_FILE_EXTENSION);
+                Settings.RERUN_SCENARIOS_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenario detail pages
         ScenarioDetailsPageCollection scenarioDetailsPageCollection;
         for (Report report : allScenariosPageCollection.getReports()) {
             for (Element element : report.getElements()) {
-                scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element, propertyManager.getCustomPageTitle());
-                fileIO.writeContentToFile(
-                        scenarioDetailsPageRenderer.getRenderedContent(
-                                scenarioDetailsPageCollection,
-                                templateEngine.getTemplate(SCENARIO_DETAILS)
-                        ),
-                        propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                                Settings.PAGES_DIRECTORY + Settings.SCENARIO_DETAIL_PAGE_FRAGMENT +
-                                element.getScenarioIndex() + Settings.HTML_FILE_EXTENSION);
+                writeScenarioDetails(element);
+                // Scenario rerun detail pages
+                for (Element child : element.getMultiRunChildren()) {
+                    writeScenarioDetails(child);
+                }
             }
         }
+    }
+
+    private void writeScenarioDetails(final Element element) throws CluecumberException {
+        ScenarioDetailsPageCollection scenarioDetailsPageCollection = new ScenarioDetailsPageCollection(element, propertyManager.getCustomPageTitle());
+        fileIO.writeContentToFile(
+                scenarioDetailsPageRenderer.getRenderedContent(
+                        scenarioDetailsPageCollection,
+                        templateEngine.getTemplate(SCENARIO_DETAILS)
+                ),
+                propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                Settings.PAGES_DIRECTORY + Settings.SCENARIO_DETAIL_PAGE_FRAGMENT +
+                element.getScenarioIndex() + Settings.HTML_FILE_EXTENSION);
     }
 }

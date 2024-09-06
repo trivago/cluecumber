@@ -29,6 +29,7 @@ A fully generated example report can be [viewed here](https://softwaretester.blo
 Cluecumber generates the following report pages:
 
 * __All Scenarios__: all scenarios grouped by their status `passed`, `failed` or `skipped`.
+* __Rerun Scenarios__: all scenarios that had previous runs if the respective option is turned on.
 * __Scenario Sequence__: all scenarios in running order including their individual status information
 * __Scenario Details__: all steps, hooks, stack traces and attachments of a single scenario
 * __All Features__: an overview of all features
@@ -47,7 +48,7 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 
 ## Building
 
-Cluecumber requires Java >= 11 and Maven >= 3.3.9.
+Cluecumber requires Java >= 11 and Maven >= 3.6.3.
 It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core+a%3Acluecumber-maven&smo=true).
 
 ## Star History

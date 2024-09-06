@@ -71,20 +71,25 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 </#if>
                 <b>Total</b><br>${element.returnTotalDurationString()}
             </li>
+            <#assign numberOfChildren = element.getMultiRunChildren()?size>
             <#if groupPreviousScenarioRuns && element.multiRunParent>
                 <hr>
                 <div class="alert alert-info" role="alert">
-                    This is the final run of this scenario.
+                    This is the final scenario run after ${numberOfChildren}
+                    previous ${common.pluralizeFn("run", numberOfChildren)}.
                 </div>
             </#if>
             <#if groupPreviousScenarioRuns && element.multiRunChild>
                 <hr>
                 <div class="alert alert-info" role="alert">
-                    There are later runs of this scenario.
+                    There are more runs of this scenario.
                 </div>
             </#if>
 
-            <#if (element.hasHooks() && element.hasHooksWithContent()) || element.hasSubSections() || (element.hasStepHooks() && element.hasStepHooksWithContent()) || element.hasDocStrings()>
+            <#if (element.hasHooks() && element.hasHooksWithContent()) ||
+            element.hasSubSections() ||
+            (element.hasStepHooks() && element.hasStepHooksWithContent()) ||
+            element.hasDocStrings()>
                 <hr>
             </#if>
 
