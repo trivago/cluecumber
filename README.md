@@ -48,7 +48,7 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 
 ## Building
 
-Cluecumber requires Java >= 11 and Maven >= 3.6.3.
+Cluecumber requires Java >= 17 and Maven >= 3.6.3.
 It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core+a%3Acluecumber-maven&smo=true).
 
 ## Star History
