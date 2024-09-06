@@ -28,6 +28,7 @@ Back to [Readme](README.md).
 * Updated Mockito to `5.13.0`
 * Updated Dagger to `5.52`
 * Build and test process uses Maven 4 wrapper
+* Aligned all dependency versions to non alpha/beta versions
 
 ## [3.7.1] - 2024-07-12
 
