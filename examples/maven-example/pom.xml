@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.7.1</version>
+    <version>3.8.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -37,7 +37,7 @@
                 </executions>
                 <configuration>
                     <!-- The only two mandatory properties -->
-                    <sourceJsonReportDirectory>${cucumber.report.json.location}</sourceJsonReportDirectory>
+                    <sourceJsonReportDirectory>${cucumber.report.json.location}/rerun</sourceJsonReportDirectory>
                     <generatedHtmlReportDirectory>${generated.report.location}</generatedHtmlReportDirectory>
 
                     <!-- Optional custom parameters that are shown on the start page (if they have a value) -->
@@ -63,7 +63,7 @@
                     <!-- <customStatusColorSkipped>#F48F00</customStatusColorSkipped> -->
 
                     <!-- Optional start page: ALL_SCENARIOS (default), SCENARIO_SEQUENCE, ALL_TAGS, ALL_STEPS, ALL_FEATURES -->
-                     <startPage>ALL_SCENARIOS</startPage>
+                    <startPage>ALL_SCENARIOS</startPage>
 
                     <!-- Optional custom parameters file -->
                     <!--<customParametersFile>custom/custom.properties</customParametersFile>-->
@@ -86,8 +86,8 @@
                     <expandOutputs>false</expandOutputs>
 
                     <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
-                     <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
-                     <expandPreviousScenarioRuns>false</expandPreviousScenarioRuns>
+                    <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
+                    <expandPreviousScenarioRuns>false</expandPreviousScenarioRuns>
 
                     <!-- optional: Cluecumber log level (default: default) -->
                     <logLevel>default</logLevel>

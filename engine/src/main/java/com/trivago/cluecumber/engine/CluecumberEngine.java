@@ -139,7 +139,7 @@ public final class CluecumberEngine {
         }
         reportGenerator.generateReport(allScenariosPageCollection);
         logger.info(
-                "=> Cluecumber Report: " + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
+                "=> Cluecumber Report: file:///" + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
                 Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
                 DEFAULT,
                 COMPACT,

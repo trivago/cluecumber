@@ -174,8 +174,8 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return true if there are scenarios run multiple times.
      */
-    public boolean hasNotLastRunScenarios() {
-        return getTotalNumberOfNotLastScenariosRuns() > 0;
+    public boolean hasMultiRunChildren() {
+        return getTotalNumberOfMultiRunChildren() > 0;
     }
 
     /**
@@ -204,7 +204,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     public int getTotalNumberOfFailedScenarioWithoutLaterRuns() {
         return reports.stream().mapToInt(
                 report -> (int) report.getElements().stream().filter(
-                        element -> element.getStatus().equals(Status.FAILED) && !element.getIsNotLastOfMultipleScenarioRuns()
+                        element -> element.getStatus().equals(Status.FAILED) && !element.isMultiRunChild()
                 ).count()).sum();
     }
 
@@ -222,11 +222,14 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      *
      * @return The scenario count.
      */
-    public int getTotalNumberOfNotLastScenariosRuns() {
-        return reports.stream().mapToInt(
-                report -> (int) report.getElements().stream().filter(
-                        element -> element.getIsNotLastOfMultipleScenarioRuns()
-                ).count()).sum();
+    public int getTotalNumberOfMultiRunChildren() {
+        int sum = 0;
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                sum += element.getMultiRunChildren().size();
+            }
+        }
+        return sum;
     }
 
     private int getNumberOfScenariosWithStatus(final Status status) {
@@ -266,7 +269,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
             for (Element element : report.getElements()) {
                 ZonedDateTime currentStartDateTime = element.getStartDateTime();
                 if (currentStartDateTime != null &&
-                        (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime))) {
+                    (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime))) {
                     earliestStartDateTime = currentStartDateTime;
                 }
             }
@@ -280,7 +283,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
             for (Element element : report.getElements()) {
                 ZonedDateTime currentEndDateTime = element.getEndDateTime();
                 if (currentEndDateTime != null &&
-                        (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime))) {
+                    (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime))) {
                     latestEndDateTime = currentEndDateTime;
                 }
             }
@@ -297,7 +300,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         if (earliestStartDateTime != null) {
             return RenderingUtils.convertZonedDateTimeToDateString(earliestStartDateTime) + " " +
-                    RenderingUtils.convertZonedDateTimeToTimeString(earliestStartDateTime);
+                   RenderingUtils.convertZonedDateTimeToTimeString(earliestStartDateTime);
         }
         return "";
     }
@@ -311,7 +314,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
         if (latestEndDateTime != null) {
             return RenderingUtils.convertZonedDateTimeToDateString(latestEndDateTime) + " " +
-                    RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
+                   RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
         }
         return "";
     }

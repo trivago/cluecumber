@@ -64,47 +64,36 @@ public class ElementIndexPreProcessor {
                 int stepIndex = 0;
                 Step oldStep = null;
                 for (Step step : element.getBackgroundSteps()) {
-                    int count = 0;
-                    step.setIndex(stepIndex);
-                    for (int i = 0; i < step.getKeyword().length(); i++) {
-                        if (step.getKeyword().charAt(i) == '>') {
-                            count++;
-                        } else {
-                            break;
-                        }
-                    }
-                    if (count > 0) {
-                        step.setCollapseLevel(count);
-                        step.setKeyword(step.getKeyword().substring(count).trim());
-                    }
-                    if (oldStep != null && oldStep.getCollapseLevel() < step.getCollapseLevel()) {
-                        oldStep.setHasSubSections(true);
-                    }
+                    processStep(step, stepIndex, oldStep);
                     oldStep = step;
                     stepIndex++;
                 }
                 oldStep = null;
                 for (Step step : element.getSteps()) {
-                    int count = 0;
-                    step.setIndex(stepIndex);
-                    for (int i = 0; i < step.getKeyword().length(); i++) {
-                        if (step.getKeyword().charAt(i) == '>') {
-                            count++;
-                        } else {
-                            break;
-                        }
-                    }
-                    if (count > 0) {
-                        step.setCollapseLevel(count);
-                        step.setKeyword(step.getKeyword().substring(count).trim());
-                    }
-                    if (oldStep != null && oldStep.getCollapseLevel() < step.getCollapseLevel()) {
-                        oldStep.setHasSubSections(true);
-                    }
+                    processStep(step, stepIndex, oldStep);
                     oldStep = step;
                     stepIndex++;
                 }
             }
+        }
+    }
+
+    private void processStep(Step step, int stepIndex, Step oldStep) {
+        int count = 0;
+        step.setIndex(stepIndex);
+        for (int i = 0; i < step.getKeyword().length(); i++) {
+            if (step.getKeyword().charAt(i) == '>') {
+                count++;
+            } else {
+                break;
+            }
+        }
+        if (count > 0) {
+            step.setCollapseLevel(count);
+            step.setKeyword(step.getKeyword().substring(count).trim());
+        }
+        if (oldStep != null && oldStep.getCollapseLevel() < step.getCollapseLevel()) {
+            oldStep.setHasSubSections(true);
         }
     }
 }

@@ -33,6 +33,9 @@ limitations under the License.
                             <#case "scenario_summary">
                                 <#assign linkName="All Scenarios">
                                 <#break>
+                            <#case "rerun_scenarios">
+                                <#assign linkName="Rerun Scenarios">
+                                <#break>
                             <#case "scenario_sequence">
                                 <#assign linkName="Scenario Sequence">
                                 <#break>

@@ -44,7 +44,7 @@ preheadlineLink="">
                     </li>
                     <ol type="1">
                         <#list scenarios as scenario>
-                            <#if ((!scenario.getIsLastOfMultipleScenarioRuns() && !scenario.getIsNotLastOfMultipleScenarioRuns()) || scenario.getIsLastOfMultipleScenarioRuns()) >
+                            <#if ((!scenario.isMultiRunParent() && !scenario.isMultiRunChild()) || scenario.isMultiRunParent()) >
                                 <li style="list-style-type: decimal;"><a
                                             href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
                                             style="word-break: break-all">${scenario.name?html}</a>

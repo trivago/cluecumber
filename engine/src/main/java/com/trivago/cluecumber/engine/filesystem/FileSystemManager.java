@@ -33,6 +33,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Manages access to the file system.
@@ -60,13 +61,11 @@ public class FileSystemManager {
      */
     public List<Path> getJsonFilePaths(final String sourcePath) {
         List<Path> jsonFilePaths = new ArrayList<>();
-        try {
-            jsonFilePaths =
-                    Files.walk(Paths.get(sourcePath))
-                            .filter(Files::isRegularFile)
-                            .filter(p -> p.toString().toLowerCase().endsWith(".json"))
-                            .collect(Collectors.toList());
-
+        try (Stream<Path> paths = Files.walk(Paths.get(sourcePath))) {
+            jsonFilePaths = paths
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.toString().toLowerCase().endsWith(".json"))
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             logger.warn("Unable to traverse JSON files in " + sourcePath);
         }

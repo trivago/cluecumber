@@ -56,6 +56,15 @@ limitations under the License.
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
+<#elseif (reruns??)>
+    <#assign base = "./..">
+    <#assign headline = "Rerun Scenarios">
+    <#assign pageName = "Rerun Scenarios">
+    <#assign highlight = "rerun_scenarios">
+    <#assign subheadline = "">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
 <#else>
     <#assign base = "./..">
     <#assign headline = "All Scenarios">
@@ -112,11 +121,12 @@ preheadlineLink=preheadlineLink>
                     </#if>
                 </li>
             </ul>
-            <#if isGroupPreviousScenarioRuns() && hasNotLastRunScenarios() && !(scenarioSequence??)>
+
+            <#if hasMultiRunChildren()>
                 <hr>
-                <button class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="show-not-last-runs-button"
-                        data-target=".notLastRun">Toggle ${totalNumberOfNotLastScenariosRuns} Previous Test Runs
+                <button id="multiRunButton" class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
+                        aria-expanded="true" data-cluecumber-item="multi-run-button"
+                        data-target=".multiRunChildren">Toggle ${totalNumberOfMultiRunChildren} Previous Runs
                 </button>
             </#if>
         </@page.card>
@@ -144,4 +154,27 @@ preheadlineLink=preheadlineLink>
         <@scenario.table status="skipped" numberOfScenarios=totalNumberOfSkippedScenarios />
         <@scenario.table status="passed" numberOfScenarios=totalNumberOfPassedScenarios />
     </#if>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.getElementById('multiRunButton');
+            const target = document.querySelector(button.getAttribute('data-target'));
+
+            button.addEventListener('click', function() {
+                if (target.classList.contains('show')) {
+                    button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+                } else {
+                    button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+                }
+            });
+
+            target.addEventListener('shown.bs.collapse', function() {
+                button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+            });
+
+            target.addEventListener('hidden.bs.collapse', function() {
+                button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+            });
+        });
+    </script>
 </@page.page>

@@ -32,7 +32,8 @@ import java.util.stream.IntStream;
  */
 public class RenderingUtils {
     private static final int MICROSECOND_FACTOR = 1000000;
-    private static final Pattern URL_PATTERN = Pattern.compile("(file.*)|((ftp|http|https)://(\\w+:?\\w*@)?(\\S+)(:[0-9]+)?(/|/([\\w#!:.?+=&%@\\-/]))?)");
+    private static final Pattern URL_PATTERN = Pattern.compile(
+            "\\b((ftp|https?|file)://\\S+)|\\b(file:\\\\\\\\S+)");
 
     /**
      * Convert nanoseconds to a human-readable time string.

@@ -26,6 +26,7 @@ public void setup() {
         Report report = new Report();
         List<Element> elements = new ArrayList<>();
 
+        // First run of scenario 1
         Element element = new Element();
         element.setName("Scenario 1");
         element.setType("scenario");
@@ -34,6 +35,7 @@ public void setup() {
         element.setStartTimestamp("2019-04-11T08:00:21.123Z");
         elements.add(element);
 
+        // Scenario 2 without reruns
         element = new Element();
         element.setName("Scenario 2");
         element.setType("scenario");
@@ -42,6 +44,7 @@ public void setup() {
         element.setStartTimestamp("2019-04-11T08:00:21.123Z");
         elements.add(element);
 
+        // Last run of scenario 1
         element = new Element();
         element.setName("Scenario 1");
         element.setType("scenario");
@@ -56,15 +59,16 @@ public void setup() {
         List<Element> e = reports.get(0).getElements();
 
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
+        assertEquals(2, e.size());
 
-        assertTrue(e.get(0).getIsNotLastOfMultipleScenarioRuns());
-        assertFalse(e.get(1).getIsNotLastOfMultipleScenarioRuns());
-        assertFalse(e.get(2).getIsNotLastOfMultipleScenarioRuns());
-        assertFalse(e.get(0).getIsLastOfMultipleScenarioRuns());
-        assertFalse(e.get(1).getIsLastOfMultipleScenarioRuns());
-        assertTrue(e.get(2).getIsLastOfMultipleScenarioRuns());
-        assertEquals(e.get(0).getChildrenElements().size(), 0);
-        assertEquals(e.get(1).getChildrenElements().size(), 0);
-        assertEquals(e.get(2).getChildrenElements().size(), 1);
+        assertFalse(e.get(0).isPartOfMultiRun());
+        assertFalse(e.get(0).isMultiRunParent());
+        assertFalse(e.get(0).isMultiRunChild());
+        assertEquals(e.get(0).getMultiRunChildren().size(), 0);
+
+        assertTrue(e.get(1).isPartOfMultiRun());
+        assertTrue(e.get(1).isMultiRunParent());
+        assertFalse(e.get(1).isMultiRunChild());
+        assertEquals(e.get(1).getMultiRunChildren().size(), 1);
     }
 }

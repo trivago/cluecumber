@@ -1,0 +1,60 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2024-09-03T09:00:23.668Z",
+        "line": 6,
+        "name": "Single Scenario",
+        "description": "",
+        "id": "shopping",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 467889821,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "I search for book \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 19
+                }
+              ],
+              "location": "MySteps.I_search(String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 1691629452,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "the results include \"Something\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "Something",
+                  "offset": 21
+                }
+              ],
+              "location": "MySteps.search_results_include(String)"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "Vendor Shopping Cart",
+    "description": "I\u0027d like to be able to search for my favourite book",
+    "id": "vendor-shopping-cart",
+    "keyword": "Feature",
+    "uri": "classpath:org/ShoppingCart.feature",
+    "tags": []
+  }
+]

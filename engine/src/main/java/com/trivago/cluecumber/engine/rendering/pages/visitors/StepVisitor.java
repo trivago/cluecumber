@@ -90,7 +90,6 @@ public class StepVisitor implements PageVisitor {
                         Settings.STEP_SUMMARY_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenarios by step pages
-
         for (Step step : allStepsPageCollection.getSteps()) {
             fileIO.writeContentToFile(
                     allScenariosPageRenderer.getRenderedContentByStepFilter(

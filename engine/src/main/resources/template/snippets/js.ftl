@@ -123,13 +123,13 @@ limitations under the License.
                 $(".scenarioDocstring").collapse("show");
             }
             if (${expandPreviousScenarioRuns?c}) {
-                $(".btn-outline-secondary[data-cluecumber-item='show-not-last-runs-button']").click();
+                $("[data-cluecumber-item='multi-run-button']").click();
             }
         }
     );
 
     function resizeIframe(iframe) {
-        setInterval(function() {
+        setInterval(function () {
             try {
                 iframe.height = iframe.contentWindow.document.body.scrollHeight + 25 + "px";
             } catch (e) {

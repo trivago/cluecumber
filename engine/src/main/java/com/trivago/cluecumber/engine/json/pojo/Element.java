@@ -32,8 +32,8 @@ import java.util.stream.Collectors;
 public class Element {
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
-    private boolean isLastOfMultipleScenarioRuns = false;
-    private boolean isNotLastOfMultipleScenarioRuns = false;
+    private boolean isMultiRunParent = false;
+    private boolean isMultiRunChild = false;
     private String featureName = "";
     private String featureUri = "";
     private String name = "";
@@ -41,15 +41,13 @@ public class Element {
     private String id = "";
     private List<ResultMatch> after = new ArrayList<>();
     private String type = "";
-    private String keyword = "";
+    private final String keyword = "";
     private List<Step> backgroundSteps = new ArrayList<>();
     private List<Step> steps = new ArrayList<>();
     private List<Tag> tags = new ArrayList<>();
     @SerializedName("start_timestamp")
     private String startTimestamp = "";
-    private List<Element> childrenElements = new ArrayList<>();
-    ;
-
+    private List<Element> multiRunChildren = new ArrayList<>();
     private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
     private transient boolean failOnPendingOrUndefined = false;
@@ -535,11 +533,10 @@ public class Element {
      * @return the duration in nanoseconds.
      */
     public long getTotalDuration() {
-        long totalDurationNanoseconds = before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum();
-        totalDurationNanoseconds += backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum();
-        totalDurationNanoseconds += steps.stream().mapToLong(Step::getTotalDuration).sum();
-        totalDurationNanoseconds += after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
-        return totalDurationNanoseconds;
+        return before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum() +
+               backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
+               steps.stream().mapToLong(Step::getTotalDuration).sum() +
+               after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
     }
 
     /**
@@ -662,9 +659,9 @@ public class Element {
     }
 
     /**
-     * Check if this scenario contains sub-sections.
+     * Check if this scenario contains subsections.
      *
-     * @return true if there are sub-sections.
+     * @return true if there are subsections.
      */
     public boolean hasSubSections() {
         for (Step step : backgroundSteps) {
@@ -789,17 +786,17 @@ public class Element {
      *
      * @return true if this scenario is the last of multiple runs.
      */
-    public boolean getIsLastOfMultipleScenarioRuns() {
-        return isLastOfMultipleScenarioRuns;
+    public boolean isMultiRunParent() {
+        return isMultiRunParent;
     }
 
     /**
      * Set to true if this scenario is the last of multiple runs.
      *
-     * @param isLastOfMultipleScenarioRuns true if this scenario is the last of multiple runs.
+     * @param isMultiRunParent true if this scenario is the last of multiple runs.
      */
-    public void setIsLastOfMultipleScenarioRuns(final boolean isLastOfMultipleScenarioRuns) {
-        this.isLastOfMultipleScenarioRuns = isLastOfMultipleScenarioRuns;
+    public void setMultiRunParent(final boolean isMultiRunParent) {
+        this.isMultiRunParent = isMultiRunParent;
     }
 
     /**
@@ -807,17 +804,17 @@ public class Element {
      *
      * @return true if this scenario was run multiple times and it's not the last run.
      */
-    public boolean getIsNotLastOfMultipleScenarioRuns() {
-        return isNotLastOfMultipleScenarioRuns;
+    public boolean isMultiRunChild() {
+        return isMultiRunChild;
     }
 
     /**
-     * Set to true if this scenario was run multiple times and it's not the last run.
+     * Set to true if this scenario was run multiple times, but it's not the last run.
      *
-     * @param isNotLastOfMultipleScenarioRuns true if this scenario was run multiple times and it's not the last run.
+     * @param isMultiRunChild true if this scenario was run multiple times and it's not the last run.
      */
-    public void setIsNotLastOfMultipleScenarioRuns(final boolean isNotLastOfMultipleScenarioRuns) {
-        this.isNotLastOfMultipleScenarioRuns = isNotLastOfMultipleScenarioRuns;
+    public void isMultiRunChild(final boolean isMultiRunChild) {
+        this.isMultiRunChild = isMultiRunChild;
     }
 
     /**
@@ -825,17 +822,26 @@ public class Element {
      *
      * @return The children elements.
      */
-    public List<Element> getChildrenElements() {
-        return childrenElements;
+    public List<Element> getMultiRunChildren() {
+        return multiRunChildren;
     }
 
     /**
      * Set the children elements of this scenario.
      *
-     * @param childrenElements The children elements.
+     * @param multiRunChildren The children elements.
      */
-    public void setChildrenElements(final List<Element> childrenElements) {
-        this.childrenElements = childrenElements;
+    public void setMultiRunChildren(final List<Element> multiRunChildren) {
+        this.multiRunChildren = multiRunChildren;
+    }
+
+    /**
+     * Check if this scenario is part of a multi-run.
+     *
+     * @return true if this scenario is part of a multi-run.
+     */
+    public boolean isPartOfMultiRun() {
+        return isMultiRunParent || isMultiRunChild;
     }
 
     /**

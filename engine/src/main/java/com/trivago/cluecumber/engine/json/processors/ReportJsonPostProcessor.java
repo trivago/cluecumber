@@ -71,7 +71,7 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
             element.setFeatureUri(featureUri);
             element.setFeatureName(featureName);
             element.setFeatureIndex(featureIndex);
-            if (reportTags.size() > 0) {
+            if (!reportTags.isEmpty()) {
                 List<Tag> mergedTags = Stream.concat(element.getTags().stream(), reportTags.stream())
                         .distinct()
                         .collect(Collectors.toList());

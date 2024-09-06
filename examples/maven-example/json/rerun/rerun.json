@@ -1,0 +1,154 @@
+[
+  {
+    "description": "This is a rerun feature",
+    "elements": [
+      {
+        "start_timestamp": "2024-09-03T09:23:51.166Z",
+        "description": "",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "This is an interesting scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "SomeClass.java:-2"
+            },
+            "name": "this is the first step",
+            "result": {
+              "duration": 18244280571,
+              "status": "passed"
+            }
+          },
+          {
+            "keyword": "And ",
+            "line": 4,
+            "match": {
+              "location": "SomeClass.java:-2"
+            },
+            "name": "this is the second step",
+            "result": {
+              "duration": 6155261782,
+              "error_message": "This is the error message of step 2",
+              "status": "failed"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@rerun"
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Rerun",
+    "uri": "features/rerun/rerun.feature"
+  },
+  {
+    "description": "This is a rerun feature",
+    "elements": [
+      {
+        "start_timestamp": "2024-09-03T09:25:45.606Z",
+        "description": "",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "This is an interesting scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "SomeClass.java:-2"
+            },
+            "name": "this is the first step",
+            "result": {
+              "duration": 13244280571,
+              "status": "passed"
+            }
+          },
+          {
+            "keyword": "And ",
+            "line": 4,
+            "match": {
+              "location": "SomeClass.java:-2"
+            },
+            "name": "this is the second step",
+            "result": {
+              "duration": 5255261782,
+              "error_message": "This is the error message of step 2",
+              "status": "failed"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@rerun"
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Rerun",
+    "uri": "features/rerun/rerun.feature"
+  },
+  {
+    "description": "This is a rerun feature",
+    "elements": [
+      {
+        "start_timestamp": "2024-09-03T09:26:13.625Z",
+        "description": "",
+        "id": ";",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "This is an interesting scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 3,
+            "match": {
+              "location": "SomeClass.java:-2"
+            },
+            "name": "this is the first step",
+            "result": {
+              "duration": 12244280571,
+              "status": "passed"
+            }
+          },
+          {
+            "keyword": "And ",
+            "line": 4,
+            "match": {
+              "location": "SomeClass.java:-2"
+            },
+            "name": "this is the second step",
+            "result": {
+              "duration": 25155261782,
+              "status": "passed"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@rerun"
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Rerun",
+    "uri": "features/rerun/rerun.feature"
+  }
+]

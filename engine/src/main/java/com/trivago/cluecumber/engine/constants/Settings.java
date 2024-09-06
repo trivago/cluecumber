@@ -61,6 +61,14 @@ public class Settings {
      */
     public static final String SCENARIO_DETAIL_PAGE_FRAGMENT = "/" + SCENARIO_DETAIL_PAGE_PATH + "/scenario_";
     /**
+     * The folder of the scenario rerun pages.
+     */
+    public final static String SCENARIO_RERUN_PAGE_PATH = "scenario-detail";
+    /**
+     * The first part of the name of scenario rerun pages.
+     */
+    public static final String SCENARIO_RERUN_PAGE_FRAGMENT = "/" + SCENARIO_RERUN_PAGE_PATH + "/scenario_";
+    /**
      * The name of the tag summary page.
      */
     public final static String TAG_SUMMARY_PAGE = "tag-summary";
@@ -100,6 +108,11 @@ public class Settings {
      * The name of the tree view page.
      */
     public static final String TREE_VIEW_PAGE = "tree-view";
+    /**
+     * The name of the tree view page.
+     */
+    public static final String RERUN_SCENARIOS_PAGE = "rerun-scenarios";
+
 
     /**
      * Defines all possible start pages.
@@ -128,7 +141,11 @@ public class Settings {
         /**
          * The tree view page.
          */
-        TREE_VIEW(TREE_VIEW_PAGE);
+        TREE_VIEW(TREE_VIEW_PAGE),
+        /**
+         * The rerun scenarios page.
+         */
+        RERUN_SCENARIOS(RERUN_SCENARIOS_PAGE);
 
         private final String pageName;
 
