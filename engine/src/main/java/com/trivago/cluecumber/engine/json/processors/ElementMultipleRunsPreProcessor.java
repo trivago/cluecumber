@@ -22,9 +22,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * This class preprocesses {@link Element} JSON to add additional information to it and extract attachments.
@@ -46,38 +46,31 @@ public class ElementMultipleRunsPreProcessor {
      * @param reports The list of reports to cycle  through.
      */
     public void addMultipleRunsInformationToScenarios(final List<Report> reports) {
+        Map<String, List<Element>> elementsByUniqueId = new HashMap<>();
 
-        List<Element> elements = new ArrayList<>();
+        // Group elements by unique ID
         for (Report report : reports) {
-            elements.addAll(report.getElements());
+            for (Element element : report.getElements()) {
+                String combinedId = element.getId() + element.getLine();
+                elementsByUniqueId.computeIfAbsent(combinedId, k -> new ArrayList<>()).add(element);
+            }
         }
 
-        // Group elements by id (that should combine feature and scenario names) and line, to also ensure that scenario outlines are properly handled
-        Map<String, Map<Integer, List<Element>>> groupedElements = elements.stream()
-                .collect(Collectors.groupingBy(
-                        Element::getId,
-                        Collectors.groupingBy(Element::getLine)
-                ));
+        // Process each group of elements
+        for (List<Element> group : elementsByUniqueId.values()) {
+            if (group.size() < 2) continue;
 
-        // set flags based on start time and add children element to last run element
-        groupedElements.values().forEach(idGroup -> idGroup.values().forEach(group -> {
-            if (group.size() < 2) {
-                return;
-            }
-            group.sort(Comparator.comparing(
-                    Element::getStartDateTime, Comparator.nullsLast(Comparator.naturalOrder())).reversed());
-            Element lastRunElement = group.get(0);
-            lastRunElement.setMultiRunChildren(group);
-            lastRunElement.setMultiRunParent(true);
-            // remove first of line group as it is the last run element
-            group.remove(0);
-            for (Element element : group) {
-                element.isMultiRunChild(true);
-            }
-            lastRunElement.setMultiRunChildren(group);
-        }));
+            group.sort(Comparator.comparing(Element::getStartDateTime, Comparator.nullsLast(Comparator.naturalOrder()))
+                    .reversed());
 
-        // Remove elements marked as isMultiRunChild from each report
+            // Remove first entry since it is the parent and add all children to it
+            Element parentElement = group.remove(0);
+            parentElement.setMultiRunParent(true);
+            group.forEach(element -> element.isMultiRunChild(true));
+            parentElement.setMultiRunChildren(group);
+        }
+
+        // Remove children from reports so they are not displayed or counted in charts and statistics
         for (Report report : reports) {
             report.getElements().removeIf(Element::isMultiRunChild);
         }
