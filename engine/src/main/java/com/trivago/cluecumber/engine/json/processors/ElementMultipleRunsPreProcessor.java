@@ -17,6 +17,7 @@ package com.trivago.cluecumber.engine.json.processors;
 
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
+import com.trivago.cluecumber.engine.json.pojo.Tag;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -25,6 +26,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * This class preprocesses {@link Element} JSON to add additional information to it and extract attachments.
@@ -51,6 +53,16 @@ public class ElementMultipleRunsPreProcessor {
         // Group elements by unique ID
         for (Report report : reports) {
             for (Element element : report.getElements()) {
+                System.out.println("---------------------");
+                System.out.println("element.getFeatureIndex(): " + element.getFeatureIndex());
+                System.out.println("element.getDescription(): " + element.getDescription());
+                System.out.println("element.getLine(): " + element.getLine());
+                System.out.println("element.getFeatureName(): " + element.getFeatureName());
+                System.out.println("element.getName(): " + element.getName());
+                System.out.println("element.getId(): " + element.getId());
+                System.out.println("element.getTags(): " + element.getTags().stream().map(Tag::getName).collect(Collectors.joining(", ")));
+                System.out.println("element.getTotalNumberOfSteps(): " + element.getTotalNumberOfSteps());
+
                 String combinedId = element.getId() + element.getLine();
                 elementsByUniqueId.computeIfAbsent(combinedId, k -> new ArrayList<>()).add(element);
             }

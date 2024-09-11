@@ -5,6 +5,7 @@ import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.pojo.Row;
 import com.trivago.cluecumber.engine.json.pojo.Step;
+import com.trivago.cluecumber.engine.json.pojo.Tag;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -199,6 +200,85 @@ public class ElementMultipleRunsPreProcessorTest {
         row.setCells(List.of("def"));
         step.setRows(rows);
         element = createNewElement(List.of(step));
+        elements.add(element);
+
+        report.setElements(elements);
+        reports.add(report);
+
+        elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
+
+        List<Element> newElements = reports.get(0).getElements();
+        assertEquals(newElements.size(), 2);
+    }
+
+    @Test
+    public void addMultipleRunsInformationToSameScenariosWithDifferentTags() {
+        List<Report> reports = new ArrayList<>();
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+
+        Step step = new Step();
+        Element element = createNewElement(List.of(step));
+        Tag tag = new Tag();
+        tag.setName("tag1");
+        element.setTags(List.of(tag));
+        elements.add(element);
+
+        step = new Step();
+        element = createNewElement(List.of(step));
+        tag = new Tag();
+        tag.setName("tag2");
+        element.setTags(List.of(tag));
+        elements.add(element);
+
+        report.setElements(elements);
+        reports.add(report);
+
+        elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
+
+        List<Element> newElements = reports.get(0).getElements();
+        assertEquals(newElements.size(), 2);
+    }
+
+    @Test
+    public void addMultipleRunsInformationToSameScenariosWithDifferentDescription() {
+        List<Report> reports = new ArrayList<>();
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+
+        Step step = new Step();
+        Element element = createNewElement(List.of(step));
+        element.setDescription("description1");
+        elements.add(element);
+
+        step = new Step();
+        element = createNewElement(List.of(step));
+        element.setDescription("description2");
+        elements.add(element);
+
+        report.setElements(elements);
+        reports.add(report);
+
+        elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
+
+        List<Element> newElements = reports.get(0).getElements();
+        assertEquals(newElements.size(), 2);
+    }
+
+    @Test
+    public void addMultipleRunsInformationToSameScenariosWithDifferentFeatureNames() {
+        List<Report> reports = new ArrayList<>();
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+
+        Step step = new Step();
+        Element element = createNewElement(List.of(step));
+        element.setFeatureName("feature1");
+        elements.add(element);
+
+        step = new Step();
+        element = createNewElement(List.of(step));
+        element.setFeatureName("feature2");
         elements.add(element);
 
         report.setElements(elements);
