@@ -15,8 +15,11 @@
  */
 package com.trivago.cluecumber.engine.json.processors;
 
+import com.trivago.cluecumber.engine.json.pojo.Argument;
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
+import com.trivago.cluecumber.engine.json.pojo.Row;
+import com.trivago.cluecumber.engine.json.pojo.Step;
 import com.trivago.cluecumber.engine.json.pojo.Tag;
 
 import javax.inject.Inject;
@@ -53,17 +56,7 @@ public class ElementMultipleRunsPreProcessor {
         // Group elements by unique ID
         for (Report report : reports) {
             for (Element element : report.getElements()) {
-                System.out.println("---------------------");
-                System.out.println("element.getFeatureIndex(): " + element.getFeatureIndex());
-                System.out.println("element.getDescription(): " + element.getDescription());
-                System.out.println("element.getLine(): " + element.getLine());
-                System.out.println("element.getFeatureName(): " + element.getFeatureName());
-                System.out.println("element.getName(): " + element.getName());
-                System.out.println("element.getId(): " + element.getId());
-                System.out.println("element.getTags(): " + element.getTags().stream().map(Tag::getName).collect(Collectors.joining(", ")));
-                System.out.println("element.getTotalNumberOfSteps(): " + element.getTotalNumberOfSteps());
-
-                String combinedId = element.getId() + element.getLine();
+                String combinedId = generateCombinedId(element);
                 elementsByUniqueId.computeIfAbsent(combinedId, k -> new ArrayList<>()).add(element);
             }
         }
@@ -72,19 +65,57 @@ public class ElementMultipleRunsPreProcessor {
         for (List<Element> group : elementsByUniqueId.values()) {
             if (group.size() < 2) continue;
 
-            group.sort(Comparator.comparing(Element::getStartDateTime, Comparator.nullsLast(Comparator.naturalOrder()))
-                    .reversed());
-
-            // Remove first entry since it is the parent and add all children to it
+            group.sort(Comparator.comparing(Element::getStartDateTime, Comparator.nullsLast(Comparator.naturalOrder())).reversed());
             Element parentElement = group.remove(0);
             parentElement.setMultiRunParent(true);
             group.forEach(element -> element.isMultiRunChild(true));
             parentElement.setMultiRunChildren(group);
         }
 
-        // Remove children from reports so they are not displayed or counted in charts and statistics
+        // Remove child elements from reports
         for (Report report : reports) {
             report.getElements().removeIf(Element::isMultiRunChild);
         }
+    }
+
+    private String generateCombinedId(Element element) {
+        List<String> argumentValues = new ArrayList<>();
+        List<String> docStrings = new ArrayList<>();
+        List<List<String>> outputs = new ArrayList<>();
+        List<String> rows = new ArrayList<>();
+
+        for (Step step : element.getSteps()) {
+            step.getMatch().getArguments().stream()
+                    .map(argument -> argument.getOffset() + ": " + argument.getVal())
+                    .forEach(argumentValues::add);
+
+            if (step.getDocString() != null) {
+                docStrings.add(step.getDocString().getLine() + ": " + step.getDocString().getValue());
+            }
+
+            if (step.getOutput() != null) {
+                outputs.add(step.getOutput());
+            }
+
+            if (step.getRows() != null) {
+                step.getRows().forEach(row -> rows.add(String.join(", ", row.getCells())));
+            }
+        }
+
+        return String.valueOf((element.getFeatureIndex() +
+                               element.getDescription() +
+                               element.getLine() +
+                               element.getFeatureName() +
+                               element.getName() +
+                               element.getId() +
+                               element.getTags().stream().map(Tag::getName).collect(Collectors.joining(",")) +
+                               element.getTotalNumberOfSteps() +
+                               element.getSteps().stream().map(Step::getKeyword).collect(Collectors.joining(", ")) +
+                               element.getSteps().stream().map(Step::getName).collect(Collectors.joining(", ")) +
+                               String.join(", ", docStrings) +
+                               String.join(", ", argumentValues) +
+                               String.join(", ", rows) +
+                               outputs.stream().map(output -> String.join(", ", output)).collect(Collectors.joining(", ")))
+                .hashCode());
     }
 }

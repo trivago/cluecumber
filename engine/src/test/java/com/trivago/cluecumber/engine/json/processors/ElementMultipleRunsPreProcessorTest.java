@@ -1,7 +1,9 @@
 package com.trivago.cluecumber.engine.json.processors;
 
+import com.trivago.cluecumber.engine.json.pojo.Argument;
 import com.trivago.cluecumber.engine.json.pojo.DocString;
 import com.trivago.cluecumber.engine.json.pojo.Element;
+import com.trivago.cluecumber.engine.json.pojo.Match;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.pojo.Row;
 import com.trivago.cluecumber.engine.json.pojo.Step;
@@ -98,11 +100,45 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     @Test
     public void addMultipleRunsInformationToSameScenariosWithDifferentParameterValues() {
+        List<Report> reports = new ArrayList<>();
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+
+        Step step = new Step();
+        Argument argument = new Argument();
+        argument.setOffset(1);
+        argument.setVal("abc");
+        Match match = new Match();
+        match.setArguments(List.of(argument));
+        step.setMatch(match);
+        Element element = createNewElement(List.of(step));
+        elements.add(element);
+
+        step = new Step();
+        argument = new Argument();
+        argument.setOffset(1);
+        argument.setVal("def");
+        match = new Match();
+        match.setArguments(List.of(argument));
+        step.setMatch(match);        element = createNewElement(List.of(step));
+        elements.add(element);
+
+        report.setElements(elements);
+        reports.add(report);
+
+        elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
+
+        List<Element> newElements = reports.get(0).getElements();
+        assertEquals(2, newElements.size());
+    }
+
+    @Test
+    public void addMultipleRunsInformationToSameScenariosWithDifferentNames() {
         List<Report> reports = new ArrayList<>();
         Report report = new Report();
         List<Element> elements = new ArrayList<>();
@@ -123,7 +159,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     @Test
@@ -152,7 +188,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     @Test
@@ -177,7 +213,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     @Test
@@ -189,7 +225,8 @@ public class ElementMultipleRunsPreProcessorTest {
         Step step = new Step();
         List<Row> rows = new ArrayList<>();
         Row row = new Row();
-        row.setCells(List.of("abc"));
+        row.setCells(List.of("aaa", "bbb"));
+        rows.add(row);
         step.setRows(rows);
         Element element = createNewElement(List.of(step));
         elements.add(element);
@@ -197,7 +234,8 @@ public class ElementMultipleRunsPreProcessorTest {
         step = new Step();
         rows = new ArrayList<>();
         row = new Row();
-        row.setCells(List.of("def"));
+        row.setCells(List.of("aaa", "ddd"));
+        rows.add(row);
         step.setRows(rows);
         element = createNewElement(List.of(step));
         elements.add(element);
@@ -207,8 +245,8 @@ public class ElementMultipleRunsPreProcessorTest {
 
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
-        List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        List<Element> newElements = reports.get(0). getElements();
+        assertEquals(2, newElements.size());
     }
 
     @Test
@@ -237,7 +275,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     @Test
@@ -262,7 +300,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     @Test
@@ -287,7 +325,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(newElements.size(), 2);
+        assertEquals(2, newElements.size());
     }
 
     private Element createNewElement(final List<Step> steps) {
