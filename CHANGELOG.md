@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.8.1] - 2024-09-12
+
+### Changed
+
+* Much safer detection of multi-run scenarios when using `groupPreviousScenarioRuns`
+
 ## [3.8.0] - 2024-09-06
 
 ### Fixed
