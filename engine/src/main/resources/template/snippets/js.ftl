@@ -125,8 +125,38 @@ limitations under the License.
             if (${expandPreviousScenarioRuns?c}) {
                 $("[data-cluecumber-item='multi-run-button']").click();
             }
+            // Check and apply dark mode if it was previously set
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                enableDarkMode();
+            }
+
+            // Bind the toggleDarkMode function to the button click
+            $('#dark-mode-toggle').on('click', toggleDarkMode);
         }
     );
+
+    function toggleDarkMode() {
+        const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+        if (darkModeEnabled) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    }
+
+    function enableDarkMode() {
+        $('#dark-mode-styles').prop('disabled', false);
+        $('body').addClass('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+        $('#dark-mode-toggle').text('Toggle Light Mode'); // Optional: update button text
+    }
+
+    function disableDarkMode() {
+        $('#dark-mode-styles').prop('disabled', true);
+        $('body').removeClass('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+        $('#dark-mode-toggle').text('Toggle Dark Mode'); // Optional: update button text
+    }
 
     function resizeIframe(iframe) {
         setInterval(function () {
