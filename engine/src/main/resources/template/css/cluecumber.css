@@ -298,3 +298,13 @@ tr.even td, tr.odd td {
 .multiRunChildren {
     margin-top: 1rem;
 }
+
+html.dark-mode {
+    filter: invert(100%) hue-rotate(180deg);
+}
+
+html.dark-mode img,
+html.dark-mode video {
+    filter: invert(100%) hue-rotate(180deg);
+}
+

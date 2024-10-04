@@ -174,7 +174,6 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(reportDirectory + "/css");
         copyFileFromJarToReportDirectory("/css/bootstrap.min.css");
         copyFileFromJarToReportDirectory("/css/cluecumber.css");
-        copyFileFromJarToReportDirectory("/css/cluecumber-dark-mode.css");
         copyFileFromJarToReportDirectory("/css/datatables.min.css");
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
         copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
