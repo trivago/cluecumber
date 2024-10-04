@@ -308,3 +308,6 @@ html.dark-mode video {
     filter: invert(100%) hue-rotate(180deg);
 }
 
+#dark-mode-toggle {
+    margin-right: 10px;
+}
