@@ -125,14 +125,13 @@ limitations under the License.
             if (${expandPreviousScenarioRuns?c}) {
                 $("[data-cluecumber-item='multi-run-button']").click();
             }
-            // Check and apply dark mode if it was previously set
+
             const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
             if (isDarkMode) {
                 document.documentElement.classList.add('dark-mode');
             }
             updateToggleButton(isDarkMode);
 
-            // Attach event listener to the toggle button
             document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
         }
     );
