@@ -61,6 +61,7 @@ limitations under the License.
                 </li>
             </#list>
             </ul>
+            <button id="dark-mode-toggle" class="btn btn-secondary btn-sm">Toggle Dark Mode</button>
             <span class="text-light">${reportDetails.date}</span>
         </div>
     </nav>
