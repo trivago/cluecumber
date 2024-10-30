@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.8.2] - 2024-10-30
+
+### Added
+
+* Dark mode
+
 ## [3.8.1] - 2024-09-12
 
 ### Changed
