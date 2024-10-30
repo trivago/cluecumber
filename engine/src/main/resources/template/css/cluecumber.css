@@ -304,7 +304,13 @@ html.dark-mode {
 }
 
 html.dark-mode img,
-html.dark-mode video {
+html.dark-mode video,
+html.dark-mode .color-passed,
+html.dark-mode .color-failed,
+html.dark-mode .color-skipped,
+html.dark-mode .border-color-passed,
+html.dark-mode .border-color-failed,
+html.dark-mode .border-color-skipped{
     filter: invert(100%) hue-rotate(180deg);
 }
 
