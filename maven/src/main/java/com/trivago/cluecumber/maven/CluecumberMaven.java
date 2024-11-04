@@ -29,7 +29,7 @@ import java.util.LinkedHashMap;
 /**
  * The main plugin class.
  */
-@Mojo(name = "reporting", requiresProject = false)
+@Mojo(name = "reporting", requiresProject = false, threadSafe = true)
 public final class CluecumberMaven extends AbstractMojo {
 
     /**

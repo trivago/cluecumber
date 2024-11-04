@@ -6,7 +6,7 @@ build:
 .Phony: build
 
 test:
-	./mvnw clean verify -U -ntp -f examples/maven-example/pom.xml
+	./mvnw clean verify -U -ntp -f examples/maven-example/pom.xml -threads 1.0C
 	open examples/maven-example/target/cluecumber-report/index.html
 .Phony: test
 
