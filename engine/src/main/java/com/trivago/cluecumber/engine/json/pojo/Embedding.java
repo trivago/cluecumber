@@ -37,6 +37,13 @@ public class Embedding {
     private transient String filename = "";
 
     /**
+     * Default constructor.
+     */
+    public Embedding() {
+        // Default constructor
+    }
+
+    /**
      * Get the raw attachment data.
      *
      * @return The data as string.

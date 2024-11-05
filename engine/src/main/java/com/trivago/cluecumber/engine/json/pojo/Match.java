@@ -22,8 +22,16 @@ import java.util.List;
  * The match of the {@link ResultMatch}.
  */
 public class Match {
+
     private String location = "";
     private List<Argument> arguments = new ArrayList<>();
+
+    /**
+     * Default constructor.
+     */
+    public Match() {
+        // Default constructor
+    }
 
     /**
      * Get the class and method where this step is defined.

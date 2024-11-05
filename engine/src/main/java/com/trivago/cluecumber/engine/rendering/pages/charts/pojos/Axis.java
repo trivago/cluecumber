@@ -18,11 +18,19 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 /**
  * Chart axis.
  */
+@SuppressWarnings("unused")
 public class Axis {
     private Ticks ticks;
     private boolean stacked;
     private ScaleLabel scaleLabel;
     private float stepSize;
+
+    /**
+     * Default constructor.
+     */
+    public Axis() {
+        // Default constructor
+    }
 
     /**
      * Get the ticks on this chart axis.

@@ -29,6 +29,13 @@ public class Dataset {
     private String stack;
 
     /**
+     * Default constructor.
+     */
+    public Dataset() {
+        // Default constructor
+    }
+
+    /**
      * Get the values of this dataset.
      *
      * @return The value list.

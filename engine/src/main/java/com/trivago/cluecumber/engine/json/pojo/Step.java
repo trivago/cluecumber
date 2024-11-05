@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
  * A Cucumber step.
  */
 public class Step extends ResultMatch {
+
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
     private String name = "";
@@ -43,6 +44,13 @@ public class Step extends ResultMatch {
     private boolean hasSubSections = false;
 
     private static final Map<String, String> stepMatchToNameWithArgumentPlaceholders = new HashMap<>();
+
+    /**
+     * Default constructor.
+     */
+    public Step() {
+        // Default constructor
+    }
 
     /**
      * Check if there are before or after step hooks with content.
@@ -344,7 +352,7 @@ public class Step extends ResultMatch {
     }
 
     /**
-     * Set if the step has sub sections.
+     * Set if the step has subsections.
      *
      * @param hasSubSections true if the step has sub sections.
      */
@@ -352,6 +360,11 @@ public class Step extends ResultMatch {
         this.hasSubSections = hasSubSections;
     }
 
+    /**
+     * Get the unique name of the step.
+     *
+     * @return The unique name.
+     */
     public String getUniqueName() {
         return getGlueMethodName() + "_" + returnNameWithArgumentPlaceholders();
     }

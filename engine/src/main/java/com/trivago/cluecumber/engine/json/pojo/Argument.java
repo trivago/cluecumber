@@ -23,6 +23,13 @@ public class Argument {
     private int offset;
 
     /**
+     * Default constructor.
+     */
+    public Argument() {
+        // Default constructor
+    }
+
+    /**
      * Gets the value of the argument.
      *
      * @return A string representing the value of the argument.

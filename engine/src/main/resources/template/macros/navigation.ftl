@@ -22,47 +22,50 @@ limitations under the License.
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            <#list navigationLinks as link>
-                <li class="nav-item">
-                    <#assign highlightClass="">
-                    <#if link.name == highlight>
-                        <#assign highlightClass="text-white">
-                    </#if>
-                    <#if link.type == "INTERNAL">
-                        <#switch link.name>
-                            <#case "scenario_summary">
-                                <#assign linkName="All Scenarios">
-                                <#break>
-                            <#case "rerun_scenarios">
-                                <#assign linkName="Rerun Scenarios">
-                                <#break>
-                            <#case "scenario_sequence">
-                                <#assign linkName="Scenario Sequence">
-                                <#break>
-                            <#case "tag_summary">
-                                <#assign linkName="All Tags">
-                                <#break>
-                            <#case "step_summary">
-                                <#assign linkName="All Steps">
-                                <#break>
-                            <#case "feature_summary">
-                                <#assign linkName="All Features">
-                                <#break>
-                            <#case "tree_view">
-                                <#assign linkName="Tree View">
-                                <#break>
-                        </#switch>
-                        <a class="nav-link ${highlightClass}" href="${link.target}">${linkName}</a>
-                    <#elseif link.type == "EXTERNAL">
-                        <#if link.target??>
-                            <a class="nav-link customLink" href="${link.target}" target="_blank">${link.name}</a>
+                <#list navigationLinks as link>
+                    <li class="nav-item">
+                        <#assign highlightClass="">
+                        <#if link.name == highlight>
+                            <#assign highlightClass="text-white">
                         </#if>
-                    </#if>
-                </li>
-            </#list>
+                        <#if link.type == "INTERNAL">
+                            <#switch link.name>
+                                <#case "scenario_summary">
+                                    <#assign linkName="All Scenarios">
+                                    <#break>
+                                <#case "rerun_scenarios">
+                                    <#assign linkName="Rerun Scenarios">
+                                    <#break>
+                                <#case "scenario_sequence">
+                                    <#assign linkName="Scenario Sequence">
+                                    <#break>
+                                <#case "tag_summary">
+                                    <#assign linkName="All Tags">
+                                    <#break>
+                                <#case "step_summary">
+                                    <#assign linkName="All Steps">
+                                    <#break>
+                                <#case "feature_summary">
+                                    <#assign linkName="All Features">
+                                    <#break>
+                                <#case "tree_view">
+                                    <#assign linkName="Tree View">
+                                    <#break>
+                            </#switch>
+                            <a class="nav-link ${highlightClass}" href="${link.target}">${linkName}</a>
+                        <#elseif link.type == "EXTERNAL">
+                            <#if link.target??>
+                                <a class="nav-link customLink" href="${link.target}" target="_blank">${link.name}</a>
+                            </#if>
+                        </#if>
+                    </li>
+                </#list>
             </ul>
-            <button id="dark-mode-toggle" class="btn btn-secondary btn-sm">Toggle Dark Mode</button>
+            <button id="dark-light-mode-switch" class="btn btn-secondary btn-sm">Dark Mode</button>
             <span class="text-light">${reportDetails.date}</span>
         </div>
     </nav>
+    <script>
+        updateDarkLightModeButton(isDarkMode);
+    </script>
 </#macro>

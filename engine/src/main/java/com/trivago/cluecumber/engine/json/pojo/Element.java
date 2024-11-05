@@ -53,6 +53,13 @@ public class Element {
     private transient boolean failOnPendingOrUndefined = false;
 
     /**
+     * Default constructor.
+     */
+    public Element() {
+        // Default constructor
+    }
+
+    /**
      * Get the list of tags of this scenario.
      *
      * @return The tag list.

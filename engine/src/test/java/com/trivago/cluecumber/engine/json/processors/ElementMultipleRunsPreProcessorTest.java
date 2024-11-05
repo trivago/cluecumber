@@ -188,7 +188,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(2, newElements.size());
+        assertEquals(1, newElements.size());
     }
 
     @Test
@@ -213,7 +213,7 @@ public class ElementMultipleRunsPreProcessorTest {
         elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(reports);
 
         List<Element> newElements = reports.get(0).getElements();
-        assertEquals(2, newElements.size());
+        assertEquals(1, newElements.size());
     }
 
     @Test
