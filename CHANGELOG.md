@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.8.3] - UNRELEASED
+## [3.9.0] - 2024-11-05
 
 ### Fixed
 
@@ -940,7 +940,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 Initial project version on GitHub and Maven Central.
 
-[3.8.3]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.3
+[3.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.9.0
 
 [3.8.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.2
 
