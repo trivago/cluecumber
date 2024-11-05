@@ -66,7 +66,7 @@
                     <startPage>ALL_SCENARIOS</startPage>
 
                     <!-- Optional custom parameters file -->
-                    <customParametersFile>custom/custom12345.properties</customParametersFile>
+                    <!--<customParametersFile>custom/custom.properties</customParametersFile>-->
 
                     <!-- Optional: mark scenarios as failed that contain pending or undefined steps (default: false) -->
                     <!-- <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps> -->

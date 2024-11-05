@@ -15,10 +15,8 @@
  */
 package com.trivago.cluecumber.engine.json.processors;
 
-import com.trivago.cluecumber.engine.json.pojo.Argument;
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
-import com.trivago.cluecumber.engine.json.pojo.Row;
 import com.trivago.cluecumber.engine.json.pojo.Step;
 import com.trivago.cluecumber.engine.json.pojo.Tag;
 
@@ -80,8 +78,6 @@ public class ElementMultipleRunsPreProcessor {
 
     private String generateCombinedId(Element element) {
         List<String> argumentValues = new ArrayList<>();
-        List<String> docStrings = new ArrayList<>();
-        List<List<String>> outputs = new ArrayList<>();
         List<String> rows = new ArrayList<>();
 
         for (Step step : element.getSteps()) {
@@ -89,33 +85,23 @@ public class ElementMultipleRunsPreProcessor {
                     .map(argument -> argument.getOffset() + ": " + argument.getVal())
                     .forEach(argumentValues::add);
 
-            if (step.getDocString() != null) {
-                docStrings.add(step.getDocString().getLine() + ": " + step.getDocString().getValue());
-            }
-
-            if (step.getOutput() != null) {
-                outputs.add(step.getOutput());
-            }
-
             if (step.getRows() != null) {
                 step.getRows().forEach(row -> rows.add(String.join(", ", row.getCells())));
             }
         }
 
-        return String.valueOf((element.getFeatureIndex() +
-                               element.getDescription() +
-                               element.getLine() +
-                               element.getFeatureName() +
-                               element.getName() +
-                               element.getId() +
-                               element.getTags().stream().map(Tag::getName).collect(Collectors.joining(",")) +
-                               element.getTotalNumberOfSteps() +
-                               element.getSteps().stream().map(Step::getKeyword).collect(Collectors.joining(", ")) +
-                               element.getSteps().stream().map(Step::getName).collect(Collectors.joining(", ")) +
-                               String.join(", ", docStrings) +
-                               String.join(", ", argumentValues) +
-                               String.join(", ", rows) +
-                               outputs.stream().map(output -> String.join(", ", output)).collect(Collectors.joining(", ")))
-                .hashCode());
+        return element.getFeatureIndex() +
+               element.getDescription() +
+               element.getLine() +
+               element.getFeatureName() +
+               element.getName() +
+               element.getId() +
+               element.getTags().stream().map(Tag::getName).collect(Collectors.joining(",")) +
+               element.getTotalNumberOfSteps() +
+               element.getSteps().stream().map(Step::getKeyword).collect(Collectors.joining(", ")) +
+               element.getSteps().stream().map(Step::getName).collect(Collectors.joining(", ")) +
+               String.join(", ", argumentValues) +
+               String.join(", ", rows)
+                       .hashCode();
     }
 }
