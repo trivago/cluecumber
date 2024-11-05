@@ -20,9 +20,18 @@ import java.util.List;
 /**
  * The axes of the chart.
  */
+@SuppressWarnings("unused")
 public class Scales {
+
     private List<Axis> xAxes;
     private List<Axis> yAxes;
+
+    /**
+     * Default constructor.
+     */
+    public Scales() {
+        // Default constructor
+    }
 
     /**
      * Get the x axes.

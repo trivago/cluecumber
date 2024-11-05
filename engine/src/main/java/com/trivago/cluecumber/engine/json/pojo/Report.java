@@ -33,6 +33,13 @@ public class Report implements Cloneable {
     private transient int featureIndex = -1;
 
     /**
+     * Default constructor.
+     */
+    public Report() {
+        // Default constructor
+    }
+
+    /**
      * Get the line number where this feature starts.
      *
      * @return The line number.

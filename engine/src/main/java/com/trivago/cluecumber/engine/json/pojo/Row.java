@@ -22,7 +22,15 @@ import java.util.List;
  * Table row.
  */
 public class Row {
+
     private List<String> cells = new ArrayList<>();
+
+    /**
+     * Default constructor.
+     */
+    public Row() {
+        // Default constructor
+    }
 
     /**
      * Get the individual table cells in this row.

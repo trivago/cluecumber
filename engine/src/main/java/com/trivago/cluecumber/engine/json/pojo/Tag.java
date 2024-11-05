@@ -25,7 +25,15 @@ import java.util.Objects;
  * This represents a Cucumber tag.
  */
 public class Tag {
+
     private String name;
+
+    /**
+     * Default constructor.
+     */
+    public Tag() {
+        // Default constructor
+    }
 
     /**
      * Get the tag name.

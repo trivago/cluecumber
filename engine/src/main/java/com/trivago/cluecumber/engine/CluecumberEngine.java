@@ -166,7 +166,11 @@ public final class CluecumberEngine {
      * @throws CluecumberException Thrown on any error.
      */
     public void setCustomParametersFile(final String customParametersFile) throws CluecumberException {
-        propertyManager.setCustomParametersFile(customParametersFile);
+        try {
+            propertyManager.setCustomParametersFile(customParametersFile);
+        } catch (MissingFileException e) {
+            logger.warn("Could not read custom parameters file: " + e.getMessage());
+        }
     }
 
     /**
@@ -284,6 +288,12 @@ public final class CluecumberEngine {
         propertyManager.setCustomCssFile(customCss);
     }
 
+    /**
+     * Custom favicon file to use for the report.
+     *
+     * @param customFavicon The path to a favicon file.
+     * @throws MissingFileException Thrown if the specified file does not exist.
+     */
     public void setCustomFavicon(final String customFavicon) throws MissingFileException {
         if (customFavicon == null) {
             return;

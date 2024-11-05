@@ -26,7 +26,15 @@ import java.util.Optional;
  * This class holds feature, scenario or step indeces and associated times.
  */
 public class Times {
+
     private final List<IndexTime> times = new ArrayList<>();
+
+    /**
+     * Default constructor.
+     */
+    public Times() {
+        // Default constructor
+    }
 
     /**
      * Add a time and an index to the list of times.

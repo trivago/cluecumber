@@ -9,15 +9,19 @@ Back to [Readme](README.md).
 
 ## [3.8.3] - UNRELEASED
 
-### Changed
-
-* Allow report generation even if <customParametersFile> defined file does not exist (#357)
-* Updated JUnit Jupiter and Mockito
-
 ### Fixed
 
 * Plugin doesn't support parallel compilation (#358)
 * Merging of reports with same test scenario doesn't work when output is different (#359)
+* Dark mode flickering on navigation
+* Wrong dark mode toggle caption when starting with dark mode active
+* Fixed all Javadoc warnings
+
+### Changed
+
+* Shortened dark/light mode button caption
+* Allow report generation even if `<customParametersFile>` defined file does not exist (#357)
+* Updated JUnit Jupiter, Mockito, JavaDoc and GPG plugins
 
 ## [3.8.2] - 2024-10-30
 

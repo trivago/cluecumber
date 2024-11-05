@@ -20,9 +20,17 @@ import java.util.List;
 /**
  * The chart data to be displayed.
  */
+@SuppressWarnings("unused")
 public class Data {
     private List<String> labels;
     private List<Dataset> datasets;
+
+    /**
+     * Default constructor.
+     */
+    public Data() {
+        // Default constructor
+    }
 
     /**
      * Get the labels for the data sets.

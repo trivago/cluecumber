@@ -36,7 +36,7 @@ public class CluecumberCore {
      * @param builder The builder instance.
      * @throws CluecumberException Thrown in case of any error.
      */
-    private CluecumberCore(Builder builder) throws CluecumberException {
+    private CluecumberCore(final Builder builder) throws CluecumberException {
         cluecumberEngine = DaggerCluecumberCoreGraph.create().getCluecumberEngine();
         cluecumberEngine.setCustomCssFile(builder.customCssFile);
         cluecumberEngine.setCustomFavicon(builder.customFavicon);
@@ -73,7 +73,7 @@ public class CluecumberCore {
     }
 
     /**
-     * The builder class for a new {@link CluecumberCore} instance.
+     * The builder class for the {@link CluecumberCore}.
      */
     public static class Builder {
         private String customCssFile;
@@ -97,6 +97,13 @@ public class CluecumberCore {
         private String startPage;
         private boolean failScenariosOnPendingOrUndefinedSteps;
         private boolean expandOutputs;
+
+        /**
+         * Default constructor for the Builder class.
+         */
+        public Builder() {
+            // Default constructor
+        }
 
         /**
          * Finalize the {@link CluecumberCore} builder.
@@ -141,7 +148,6 @@ public class CluecumberCore {
             return this;
         }
 
-
         /**
          * Custom parameters to display at the top of the test report.
          *
@@ -152,7 +158,6 @@ public class CluecumberCore {
             this.customParameters = customParameters;
             return this;
         }
-
 
         /**
          * Where to display custom parameters.

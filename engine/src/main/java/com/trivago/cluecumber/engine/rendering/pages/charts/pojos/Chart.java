@@ -27,6 +27,13 @@ public class Chart {
     private ChartConfiguration.Type type;
 
     /**
+     * Default constructor.
+     */
+    public Chart() {
+        // Default constructor
+    }
+
+    /**
      * Get the chart data.
      *
      * @return The {@link Data} instance.
@@ -68,6 +75,7 @@ public class Chart {
      *
      * @return The {@link Options} instance.
      */
+    @SuppressWarnings("unused")
     public Options getOptions() {
         return options;
     }

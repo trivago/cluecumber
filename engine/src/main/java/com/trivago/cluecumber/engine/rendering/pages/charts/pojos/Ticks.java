@@ -19,9 +19,17 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
  * Class to define the ticks on chart axes.
  */
 public class Ticks {
+
     private int min;
     private float stepSize;
     private boolean display = true;
+
+    /**
+     * Default constructor.
+     */
+    public Ticks() {
+        // Default constructor
+    }
 
     /**
      * Get the minimum tick.

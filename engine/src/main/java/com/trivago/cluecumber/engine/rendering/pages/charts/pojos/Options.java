@@ -22,9 +22,17 @@ import java.util.List;
  * Chart options.
  */
 public class Options {
+
     private Scales scales;
     private Legend legend;
     private List<String> events;
+
+    /**
+     * Default constructor.
+     */
+    public Options() {
+        // Default constructor
+    }
 
     /**
      * Get the scales.

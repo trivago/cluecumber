@@ -36,6 +36,13 @@ import java.util.Map;
 public class PageRenderer {
 
     /**
+     * Default constructor.
+     */
+    public PageRenderer() {
+        // Default constructor
+    }
+
+    /**
      * Return the completely rendered template content using a page collection.
      *
      * @param template       The Freemarker template.

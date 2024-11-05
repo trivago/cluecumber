@@ -26,6 +26,13 @@ import java.util.List;
  */
 public class Navigation {
     /**
+     * Default constructor.
+     */
+    public Navigation() {
+        // Default constructor
+    }
+
+    /**
      * The list of internal report navigation links.
      */
     public static final List<Link> internalLinks = Arrays.asList(

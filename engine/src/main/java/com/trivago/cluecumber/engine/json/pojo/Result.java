@@ -31,6 +31,13 @@ public class Result {
     private String errorMessage = "";
 
     /**
+     * Default constructor.
+     */
+    public Result() {
+        // Default constructor
+    }
+
+    /**
      * Get the duration of this result.
      *
      * @return The duration in nanoseconds.
@@ -104,7 +111,7 @@ public class Result {
     }
 
     /**
-     * Get the human readable duration string.
+     * Get the human-readable duration string.
      *
      * @return The duration string.
      */

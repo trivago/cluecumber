@@ -21,6 +21,13 @@ package com.trivago.cluecumber.engine.constants;
 public class Settings {
 
     /**
+     * Default constructor.
+     */
+    public Settings() {
+        // Default constructor
+    }
+
+    /**
      * The name of the Cluecumber plugin.
      */
     public final static String NAME = "Cluecumber Report";

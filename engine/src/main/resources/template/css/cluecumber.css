@@ -314,6 +314,6 @@ html.dark-mode .border-color-skipped{
     filter: invert(100%) hue-rotate(180deg);
 }
 
-#dark-mode-toggle {
+#dark-light-mode-switch {
     margin-right: 10px;
 }

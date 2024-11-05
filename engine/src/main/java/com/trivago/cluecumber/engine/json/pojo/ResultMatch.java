@@ -31,6 +31,13 @@ public class ResultMatch {
     private List<Embedding> embeddings = new ArrayList<>();
 
     /**
+     * Default constructor.
+     */
+    public ResultMatch() {
+        // Default constructor
+    }
+
+    /**
      * Get the result.
      *
      * @return The {@link Result} instance.

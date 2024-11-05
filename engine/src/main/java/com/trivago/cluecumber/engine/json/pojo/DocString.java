@@ -25,6 +25,13 @@ public class DocString {
     private String value = "";
 
     /**
+     * Default constructor.
+     */
+    public DocString() {
+        // Default constructor
+    }
+
+    /**
      * Get the line number.
      *
      * @return The line number.

@@ -34,6 +34,13 @@ public class LinkedProperties extends Properties {
     private final Map<Object, Object> linkMap = new LinkedHashMap<>();
 
     /**
+     * Default constructor.
+     */
+    public LinkedProperties() {
+        // Default constructor
+    }
+
+    /**
      * Add a property.
      *
      * @param key   key with which the specified value is to be associated.

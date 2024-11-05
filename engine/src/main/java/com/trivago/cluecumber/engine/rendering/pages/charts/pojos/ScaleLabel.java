@@ -19,8 +19,16 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
  * The
  */
 public class ScaleLabel {
+
     private boolean display;
     private String labelString;
+
+    /**
+     * Default constructor.
+     */
+    public ScaleLabel() {
+        // Default constructor
+    }
 
     /**
      * Whether the label should be displayed.

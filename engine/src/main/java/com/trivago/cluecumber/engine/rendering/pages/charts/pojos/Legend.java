@@ -20,6 +20,13 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
  */
 public class Legend {
     /**
+     * Default constructor.
+     */
+    public Legend() {
+        // Default constructor
+    }
+
+    /**
      * Return if the legend should be displayed.
      *
      * @return true since legends should always be shown.

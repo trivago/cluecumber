@@ -126,27 +126,26 @@ limitations under the License.
                 $("[data-cluecumber-item='multi-run-button']").click();
             }
 
-            const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
-            if (isDarkMode) {
-                document.documentElement.classList.add('dark-mode');
-            }
-            updateToggleButton(isDarkMode);
-
-            document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+            document.getElementById('dark-light-mode-switch').addEventListener('click', darkLightModeSwitch);
         }
     );
 
-    function toggleDarkMode() {
+    function darkLightModeSwitch() {
         document.documentElement.classList.toggle('dark-mode');
         const isDarkMode = document.documentElement.classList.contains('dark-mode');
         localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-        updateToggleButton(isDarkMode);
+        updateDarkLightModeButton(isDarkMode);
     }
 
-    function updateToggleButton(isDarkMode) {
-        const button = document.getElementById('dark-mode-toggle');
-        button.textContent = isDarkMode ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+    function updateDarkLightModeButton(isDarkMode) {
+        const button = document.getElementById('dark-light-mode-switch');
+        console.log("BUTTON: " + button);
+        console.log("isDarkMode: " + isDarkMode);
+        console.log("button.textContent: " + button.textContent);
+        button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
     }
+
+    console.log("The button is " + document.getElementById('dark-light-mode-switch'))
 
     function resizeIframe(iframe) {
         setInterval(function () {
