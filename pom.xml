@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <revision>3.9.0</revision>
+        <revision>3.10.0</revision>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.release>11</maven.compiler.release>

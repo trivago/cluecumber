@@ -33,7 +33,7 @@
         <freemarker.version>2.3.33</freemarker.version>
         <gson-fire.version>1.9.0</gson-fire.version>
         <gson.version>2.11.0</gson.version>
-        <dagger.version>2.52</dagger.version>
+        <dagger.version>2.53</dagger.version>
         <property-aggregator.version>1.5.0</property-aggregator.version>
         <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
         <openpojo.version>0.9.1</openpojo.version>
