@@ -139,13 +139,8 @@ limitations under the License.
 
     function updateDarkLightModeButton(isDarkMode) {
         const button = document.getElementById('dark-light-mode-switch');
-        console.log("BUTTON: " + button);
-        console.log("isDarkMode: " + isDarkMode);
-        console.log("button.textContent: " + button.textContent);
         button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
     }
-
-    console.log("The button is " + document.getElementById('dark-light-mode-switch'))
 
     function resizeIframe(iframe) {
         setInterval(function () {

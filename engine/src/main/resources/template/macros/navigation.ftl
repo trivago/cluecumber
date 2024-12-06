@@ -61,7 +61,7 @@ limitations under the License.
                     </li>
                 </#list>
             </ul>
-            <button id="dark-light-mode-switch" class="btn btn-secondary btn-sm">Dark Mode</button>
+            <button id="dark-light-mode-switch" class="btn btn-secondary btn-sm text-sm-center">Dark Mode</button>
             <span class="text-light">${reportDetails.date}</span>
         </div>
     </nav>
