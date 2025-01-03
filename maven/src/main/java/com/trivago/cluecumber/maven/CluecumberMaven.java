@@ -29,6 +29,7 @@ import java.util.LinkedHashMap;
 /**
  * The main plugin class.
  */
+@SuppressWarnings({"FieldMayBeFinal", "FieldCanBeLocal"})
 @Mojo(name = "reporting", requiresProject = false, threadSafe = true)
 public final class CluecumberMaven extends AbstractMojo {
 

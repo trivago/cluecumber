@@ -23,15 +23,14 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * This stores the colors and type of a report chart.
+ * This stores the colors and type of report chart.
  */
 @Singleton
 public class ChartConfiguration {
 
-    private final PropertyManager propertyManager;
-    private String passedColorRgbaString;
-    private String failedColorRgbaString;
-    private String skippedColorRgbaString;
+    private final String passedColorRgbaString;
+    private final String failedColorRgbaString;
+    private final String skippedColorRgbaString;
 
     /**
      * Constructor for dependency injection.
@@ -39,8 +38,11 @@ public class ChartConfiguration {
      * @param propertyManager The {@link PropertyManager} instance.
      */
     @Inject
-    public ChartConfiguration(final PropertyManager propertyManager) {
-        this.propertyManager = propertyManager;
+    public ChartConfiguration(
+            final PropertyManager propertyManager) {
+        this.failedColorRgbaString =  getRgbaColorStringFromHex(propertyManager.getCustomStatusColorFailed());
+        this.passedColorRgbaString =  getRgbaColorStringFromHex(propertyManager.getCustomStatusColorPassed());
+        this.skippedColorRgbaString =  getRgbaColorStringFromHex(propertyManager.getCustomStatusColorSkipped());
     }
 
     /**
@@ -66,9 +68,6 @@ public class ChartConfiguration {
      * @return The RGBA color.
      */
     public String getPassedColorRgbaString() {
-        if (passedColorRgbaString == null) {
-            passedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorPassed());
-        }
         return passedColorRgbaString;
     }
 
@@ -78,9 +77,6 @@ public class ChartConfiguration {
      * @return The RGBA color.
      */
     public String getFailedColorRgbaString() {
-        if (failedColorRgbaString == null) {
-            failedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorFailed());
-        }
         return failedColorRgbaString;
     }
 
@@ -90,9 +86,6 @@ public class ChartConfiguration {
      * @return The RGBA color.
      */
     public String getSkippedColorRgbaString() {
-        if (skippedColorRgbaString == null) {
-            skippedColorRgbaString = getRgbaColorStringFromHex(propertyManager.getCustomStatusColorSkipped());
-        }
         return skippedColorRgbaString;
     }
 

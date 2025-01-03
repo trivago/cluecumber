@@ -21,6 +21,7 @@ Back to [Readme](README.md).
 ### Changed
 
 * Google Dagger updated to `2.53`
+* Javadoc updated to `3.11.2`
 
 ## [3.9.0] - 2024-11-05
 

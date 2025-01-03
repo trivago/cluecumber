@@ -22,6 +22,7 @@ limitations under the License.
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <#--noinspection FtlReferencesInspection-->
                 <#list navigationLinks as link>
                     <li class="nav-item">
                         <#assign highlightClass="">
@@ -62,6 +63,7 @@ limitations under the License.
                 </#list>
             </ul>
             <button id="dark-light-mode-switch" class="btn btn-secondary btn-sm text-sm-center">Dark Mode</button>
+            <#--noinspection FtlReferencesInspection-->
             <span class="text-light">${reportDetails.date}</span>
         </div>
     </nav>

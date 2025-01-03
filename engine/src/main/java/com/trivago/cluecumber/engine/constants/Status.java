@@ -103,11 +103,22 @@ public enum Status {
     /**
      * Return the highest status from the given list of states.
      * @param allStates The list of states.
-     * @return The status string.
+     * @return The highest status.
      */
     public static Status getHighestBasicState(Set<Status> allStates) {
         return BASIC_STATES.stream().filter(
                 basicState -> allStates.stream().anyMatch(allState -> allState.basicStatus() == basicState)
+        ).findFirst().orElse(FAILED);
+    }
+
+    /**
+     * Get the highest state from all states.
+     * @param allStates The list of states.
+     * @return The highest status.
+     */
+    public static Status getHighestState(Set<Status> allStates) {
+        return Arrays.stream(values()).filter(
+                state -> allStates.stream().anyMatch(allState -> allState == state)
         ).findFirst().orElse(FAILED);
     }
 

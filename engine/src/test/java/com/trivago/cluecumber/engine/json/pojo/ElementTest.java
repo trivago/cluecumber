@@ -39,7 +39,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.PASSED);
+        assertEquals(Status.PASSED, status);
         assertTrue(element.isPassed());
     }
 
@@ -60,7 +60,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.SKIPPED);
+        assertEquals(Status.SKIPPED, status);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.FAILED);
+        assertEquals(Status.FAILED, status);
     }
 
     @Test
@@ -103,6 +103,7 @@ public class ElementTest {
 
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
+        step.setName("Test step");
         Result result = new Result();
         result.setStatus("passed");
         step.setResult(result);
@@ -115,8 +116,7 @@ public class ElementTest {
         steps.add(step);
         element.setSteps(steps);
 
-        Status status = element.getStatus();
-        assertEquals(status, Status.FAILED);
+        assertEquals(Status.FAILED, element.getStatus());
     }
 
     @Test
@@ -173,7 +173,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.FAILED);
+        assertEquals(Status.FAILED, status);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class ElementTest {
         element.setSteps(steps);
 
         Status status = element.getStatus();
-        assertEquals(status, Status.FAILED);
+        assertEquals(Status.FAILED, status);
         assertTrue(element.isFailed());
     }
 
@@ -210,6 +210,7 @@ public class ElementTest {
     public void getUndefinedStatusWithFailureOnUndefinedSetTest() {
         List<Step> steps = new ArrayList<>();
         Step step = new Step();
+        step.setName("Test step");
         Result result = new Result();
         result.setStatus("undefined");
         step.setResult(result);
@@ -256,8 +257,8 @@ public class ElementTest {
         afterSteps.add(after);
         element.setAfter(afterSteps);
 
-        assertEquals(element.getTotalDuration(), 10117667785L);
-        assertEquals(element.returnTotalDurationString(), "0m 10s 117ms");
+        assertEquals(10117667785L, element.getTotalDuration());
+        assertEquals("0m 10s 117ms", element.returnTotalDurationString());
     }
 
     @Test
@@ -292,10 +293,10 @@ public class ElementTest {
 
         element.setSteps(steps);
 
-        assertEquals(element.getTotalNumberOfSteps(), 6);
-        assertEquals(element.getTotalNumberOfPassedSteps(), 3);
-        assertEquals(element.getTotalNumberOfFailedSteps(), 1);
-        assertEquals(element.getTotalNumberOfSkippedSteps(), 2);
+        assertEquals(6, element.getTotalNumberOfSteps());
+        assertEquals(3, element.getTotalNumberOfPassedSteps());
+        assertEquals(1, element.getTotalNumberOfFailedSteps());
+        assertEquals(2, element.getTotalNumberOfSkippedSteps());
     }
 
     @Test
@@ -367,7 +368,7 @@ public class ElementTest {
     @Test
     public void getStartDateTimeTest() {
         element.setStartTimestamp("2019-04-11T08:00:23.668Z");
-        assertEquals(element.getStartDateTime().format(DateTimeFormatter.ISO_DATE_TIME), "2019-04-11T08:00:23.668Z");
+        assertEquals("2019-04-11T08:00:23.668Z", element.getStartDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
     }
 
     @Test
@@ -380,7 +381,7 @@ public class ElementTest {
         before.setResult(beforeResult);
         beforeSteps.add(before);
         element.setBefore(beforeSteps);
-        assertEquals(element.getEndDateTime().format(DateTimeFormatter.ISO_DATE_TIME), "2019-04-11T10:47:03.668Z");
+        assertEquals("2019-04-11T10:47:03.668Z", element.getEndDateTime().format(DateTimeFormatter.ISO_DATE_TIME));
     }
 
     @Test
@@ -398,7 +399,7 @@ public class ElementTest {
     @Test
     public void getStartDateStringTest() {
         element.setStartTimestamp("2019-04-11T08:00:23.668Z");
-        assertEquals(element.getStartDateString(), "2019-04-11");
+        assertEquals("2019-04-11", element.getStartDateString());
     }
 
     @Test
@@ -417,7 +418,7 @@ public class ElementTest {
         before.setResult(beforeResult);
         beforeSteps.add(before);
         element.setBefore(beforeSteps);
-        assertEquals(element.getEndDateString(), "2019-04-11");
+        assertEquals("2019-04-11", element.getEndDateString());
     }
 
     @Test
