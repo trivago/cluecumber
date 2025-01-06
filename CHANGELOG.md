@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.10.0] - 2025-01-06
+
+### Added
+
+* Step and scenario results are now cached to speed up report generation
+
+### Fixed
+
+* Unnecessary console logs for dark mode feature (#363)
+* Step was reported as passed when a step hook failed (#364)
+* Include Hooks in All Steps report to track failures related to Hooks (#364)
+* Fixed absolute path to the finished report in the console log
+
+### Changed
+
+* Strict adherence to the official cucumber guidelines for scenario states
+* Google Dagger updated to `2.54`
+* Freemarker updated to `2.3.33`
+* Javadoc updated to `3.11.2`
+* JUnit Jupiter updated to `5.11.4`
+* Mockito updated to `5.15.2`
+
 ## [3.9.0] - 2024-11-05
 
 ### Fixed
@@ -939,6 +961,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.10.0
 
 [3.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.9.0
 

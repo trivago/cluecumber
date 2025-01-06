@@ -215,9 +215,9 @@ public class CluecumberCore {
         }
 
         /**
-         * Whether to expand sub sections or not.
+         * Whether to expand subsections or not.
          *
-         * @param expandSubSections If true, sub sections will be expanded.
+         * @param expandSubSections If true, subsections will be expanded.
          * @return The {@link Builder}.
          */
         public Builder setExpandSubSections(final boolean expandSubSections) {
@@ -237,7 +237,7 @@ public class CluecumberCore {
         }
 
         /**
-         * Whether to expand stepoutputs or not.
+         * Whether to expand step outputs or not.
          *
          * @param expandOutputs If true, outputs will be expanded.
          * @return The {@link Builder}.
@@ -325,7 +325,7 @@ public class CluecumberCore {
         }
 
         /**
-         * Set a custom page tite for the report.
+         * Set a custom page title for the report.
          *
          * @param customPageTitle The custom page title.
          * @return The {@link Builder}.

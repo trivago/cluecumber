@@ -51,6 +51,7 @@ public class Element {
     private transient int featureIndex = 0;
     private transient int scenarioIndex = 0;
     private transient boolean failOnPendingOrUndefined = false;
+    private Status status;
 
     /**
      * Default constructor.
@@ -369,22 +370,25 @@ public class Element {
      * @return The overall status.
      */
     public Status getStatus() {
+        if (status != null) {
+            return status;
+        }
+
         Set<Status> allStates = before.stream().map(ResultMatch::getStatus).collect(Collectors.toSet());
-        backgroundSteps.stream().map(ResultMatch::getStatus).forEach(allStates::add);
-        steps.forEach(step -> step.getBefore().forEach(result -> allStates.add(result.getStatus())));
-        steps.stream().map(ResultMatch::getStatus).forEach(allStates::add);
-        steps.forEach(step -> step.getAfter().forEach(result -> allStates.add(result.getStatus())));
+        backgroundSteps.stream().map(Step::getStatus).forEach(allStates::add);
+        steps.stream().map(Step::getStatus).forEach(allStates::add);
         after.stream().map(ResultMatch::getStatus).forEach(allStates::add);
 
         if (allStates.isEmpty()) {
-            return Status.SKIPPED;
+            status = Status.SKIPPED;
+        } else if (failOnPendingOrUndefined && (allStates.contains(Status.PENDING) ||
+                allStates.contains(Status.UNDEFINED))) {
+            status = Status.FAILED;
+        } else {
+            status = Status.getHighestBasicState(allStates);
         }
 
-        if (failOnPendingOrUndefined && (allStates.contains(Status.PENDING) || allStates.contains(Status.UNDEFINED))) {
-            return Status.FAILED;
-        }
-
-        return Status.getHighestBasicState(allStates);
+        return status;
     }
 
     /**
@@ -541,9 +545,9 @@ public class Element {
      */
     public long getTotalDuration() {
         return before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum() +
-               backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
-               steps.stream().mapToLong(Step::getTotalDuration).sum() +
-               after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
+                backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
+                steps.stream().mapToLong(Step::getTotalDuration).sum() +
+                after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
     }
 
     /**
