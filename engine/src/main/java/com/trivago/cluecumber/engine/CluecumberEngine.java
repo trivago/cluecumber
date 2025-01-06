@@ -32,6 +32,7 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllSc
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
 import javax.inject.Inject;
+import java.io.File;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -138,9 +139,11 @@ public final class CluecumberEngine {
             elementMultipleRunsPreProcessor.addMultipleRunsInformationToScenarios(allScenariosPageCollection.getReports());
         }
         reportGenerator.generateReport(allScenariosPageCollection);
+        String absoluteReportPath = new File(
+                propertyManager.getGeneratedHtmlReportDirectory(),
+                Settings.START_PAGE + Settings.HTML_FILE_EXTENSION).getAbsolutePath();
         logger.info(
-                "=> Cluecumber Report: file:///" + propertyManager.getGeneratedHtmlReportDirectory() + "/" +
-                Settings.START_PAGE + Settings.HTML_FILE_EXTENSION,
+                "=> Cluecumber Report: file:///" + absoluteReportPath,
                 DEFAULT,
                 COMPACT,
                 MINIMAL

@@ -7,21 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.10.0] - UNRELEASED
+## [3.10.0] - 2025-01-06
 
 ### Added
 
-* Failed Test Case Statistics based on Failure Reason (#362)
+* Step and scenario results are now cached to speed up report generation
 
 ### Fixed
 
 * Unnecessary console logs for dark mode feature (#363)
+* Step was reported as passed when a step hook failed (#364)
 * Include Hooks in All Steps report to track failures related to Hooks (#364)
+* Fixed absolute path to the finished report in the console log
 
 ### Changed
 
-* Google Dagger updated to `2.53`
+* Strict adherence to the official cucumber guidelines for scenario states
+* Google Dagger updated to `2.54`
+* Freemarker updated to `2.3.33`
 * Javadoc updated to `3.11.2`
+* JUnit Jupiter updated to `5.11.4`
+* Mockito updated to `5.15.2`
 
 ## [3.9.0] - 2024-11-05
 

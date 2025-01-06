@@ -16,13 +16,10 @@
 package com.trivago.cluecumber.engine.json.pojo;
 
 import com.google.gson.annotations.SerializedName;
+import com.trivago.cluecumber.engine.constants.Status;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.RenderingUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -44,12 +41,35 @@ public class Step extends ResultMatch {
     private boolean hasSubSections = false;
 
     private static final Map<String, String> stepMatchToNameWithArgumentPlaceholders = new HashMap<>();
+    private Status status;
 
     /**
      * Default constructor.
      */
     public Step() {
         // Default constructor
+    }
+
+    /**
+     * Overwritten getStatus method so that hook statuses are considered as well
+     *
+     * @return The highest status of the step and its hooks.
+     */
+    public Status getStatus() {
+        if (status != null) {
+            return status;
+        }
+
+        Set<Status> allStatuses = new HashSet<>();
+        allStatuses.add(super.getStatus());
+        before.stream()
+                .map(beforeStep -> Status.fromString(beforeStep.getResult().getStatus()))
+                .forEach(allStatuses::add);
+        after.stream()
+                .map(afterStep -> Status.fromString(afterStep.getResult().getStatus()))
+                .forEach(allStatuses::add);
+        status = Status.getHighestState(allStatuses);
+        return status;
     }
 
     /**
