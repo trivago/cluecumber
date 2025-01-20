@@ -22,6 +22,7 @@ import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 /**
  * The main Cluecumber core class that passes properties to the Cluecumber engine.
@@ -48,6 +49,9 @@ public class CluecumberCore {
         cluecumberEngine.setCustomStatusColorFailed(builder.customStatusColorFailed);
         cluecumberEngine.setCustomStatusColorPassed(builder.customStatusColorPassed);
         cluecumberEngine.setCustomStatusColorSkipped(builder.customStatusColorSkipped);
+        cluecumberEngine.setGroupFeaturesByPath(builder.groupFeaturesByPath);
+        cluecumberEngine.setRemovableBasePaths(builder.removableBasePaths);
+        cluecumberEngine.setDirectoryNameFormatter(builder.directoryNameFormatter);
         cluecumberEngine.setExpandSubSections(builder.expandSubSections);
         cluecumberEngine.setExpandAttachments(builder.expandAttachments);
         cluecumberEngine.setExpandBeforeAfterHooks(builder.expandBeforeAfterHooks);
@@ -86,6 +90,9 @@ public class CluecumberCore {
         private String customStatusColorFailed;
         private String customStatusColorPassed;
         private String customStatusColorSkipped;
+        private Set<String> removableBasePaths;
+        private String directoryNameFormatter;
+        private boolean groupFeaturesByPath;
         private boolean expandSubSections;
         private boolean expandAttachments;
         private boolean expandBeforeAfterHooks;
@@ -211,6 +218,39 @@ public class CluecumberCore {
          */
         public Builder setCustomStatusColorSkipped(final String customStatusColorSkipped) {
             this.customStatusColorSkipped = customStatusColorSkipped;
+            return this;
+        }
+
+        /**
+         * Whether to group features by path in the tree view.
+         *
+         * @param groupFeaturesByPath If true, the tree view will group features by their directory paths.
+         * @return The {@link Builder}.
+         */
+        public Builder setGroupFeaturesByPath(final boolean groupFeaturesByPath) {
+            this.groupFeaturesByPath = groupFeaturesByPath;
+            return this;
+        }
+
+        /**
+         * Set the base paths to be removed from feature file URIs before grouping.
+         *
+         * @param removableBasePaths A set of strings representing the base paths.
+         * @return The {@link Builder}.
+         */
+        public Builder setRemovableBasePaths(final Set<String> removableBasePaths) {
+            this.removableBasePaths = removableBasePaths;
+            return this;
+        }
+
+        /**
+         * Set the directory name formatter for customizing directory names.
+         *
+         * @param directoryNameFormatter The fully qualified class name of the formatter implementation.
+         * @return The {@link Builder}.
+         */
+        public Builder setDirectoryNameFormatter(final String directoryNameFormatter) {
+            this.directoryNameFormatter = directoryNameFormatter;
             return this;
         }
 

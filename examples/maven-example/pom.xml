@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.10.0</version>
+    <version>3.11.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -94,6 +94,16 @@
                     <!--<logLevel>compact</logLevel>-->
                     <!--<logLevel>minimal</logLevel>-->
                     <!--<logLevel>off</logLevel>-->
+
+                    <!-- optional grouping of features by their path in the tree view with options to prettify the paths -->
+                    <groupFeaturesByPath>false</groupFeaturesByPath>
+                    <removableBasePaths>
+                        <removableBasePath>feature</removableBasePath>
+                        <removableBasePath>features</removableBasePath>
+                    </removableBasePaths>
+                    <directoryNameFormatter>
+                        com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$KebabCase
+                    </directoryNameFormatter>
 
                     <!-- Optionally skip the whole report generation -->
                     <!-- <skip>true</skip> -->

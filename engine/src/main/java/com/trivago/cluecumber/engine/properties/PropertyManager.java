@@ -24,15 +24,15 @@ import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.Link;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.LinkType;
+import com.trivago.cluecumber.engine.rendering.pages.renderering.BasePaths;
+import com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.nio.file.Path;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.DEFAULT;
@@ -52,6 +52,9 @@ public class PropertyManager {
     private final Map<String, String> customNavigationLinks = new LinkedHashMap<>();
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
+    private DirectoryNameFormatter directoryNameFormatter = new DirectoryNameFormatter.Standard();
+    private BasePaths basePaths = new BasePaths(Set.of());
+    private boolean groupFeaturesByPath = false;
     private boolean failScenariosOnPendingOrUndefinedSteps = false;
     private boolean expandSubSections = false;
     private boolean expandBeforeAfterHooks = false;
@@ -135,6 +138,101 @@ public class PropertyManager {
             throw new WrongOrMissingPropertyException("generatedHtmlReportDirectory");
         }
         this.generatedHtmlReportDirectory = generatedHtmlReportDirectory;
+    }
+
+    /**
+     * Gets the {@link BasePaths} instance containing the set of paths which will be removed from feature file URIs before grouping.
+     *
+     * @return The {@link BasePaths} instance.
+     */
+    public BasePaths getRemovableBasePaths() {
+        return basePaths;
+    }
+
+    /**
+     * Sets the paths which will be removed from feature file URIs when used in grouping.
+     *
+     * @param removableBasePaths A set of strings representing the base paths.
+     * @throws WrongOrMissingPropertyException If the paths are invalid.
+     */
+    public void setRemovableBasePaths(Set<String> removableBasePaths) throws WrongOrMissingPropertyException {
+        if (removableBasePaths == null) {
+            return;
+        }
+        try {
+            Set<Path> paths = removableBasePaths.stream()
+                    .map(Path::of)
+                    .collect(Collectors.toSet());
+            this.basePaths = new BasePaths(paths);
+        } catch (Exception e) {
+            logger.warn("Invalid base path(s) provided: " + removableBasePaths);
+            throw new WrongOrMissingPropertyException("basePaths");
+        }
+    }
+
+    /**
+     * Get the currently configured directory name formatter.
+     *
+     * @return The {@link DirectoryNameFormatter} instance.
+     */
+    public DirectoryNameFormatter getDirectoryNameFormatter() {
+        return directoryNameFormatter;
+    }
+
+    /**
+     * Set the directory name formatter based on the class name of a formatter implementation.
+     *
+     * <p>The provided class name must refer to a class that exists, is accessible, and implements the
+     * {@link DirectoryNameFormatter} interface.
+     *
+     * <p>Examples of valid values:
+     * <ul>
+     *     <li>{@code com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$CamelCase}</li>
+     *     <li>{@code com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$SnakeCase}</li>
+     *     <li>{@code com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$KebabCase}</li>
+     * </ul>
+     *
+     * @param formatterClassName The fully qualified class name of the formatter implementation.
+     * @throws WrongOrMissingPropertyException Thrown if the class name is invalid or missing.
+     */
+    public void setDirectoryNameFormatter(String formatterClassName) throws WrongOrMissingPropertyException {
+        if (!isSet(formatterClassName)) {
+            return;
+        }
+        try {
+            Class<?> clazz = Class.forName(formatterClassName);
+            if (!DirectoryNameFormatter.class.isAssignableFrom(clazz)) {
+                logger.warn("The class '" + formatterClassName + "' does not implement DirectoryNameFormatter");
+                throw new WrongOrMissingPropertyException("directoryNameFormatter");
+            }
+            directoryNameFormatter = (DirectoryNameFormatter) clazz.getDeclaredConstructor().newInstance();
+        } catch (ClassNotFoundException e) {
+            logger.warn("The class '" + formatterClassName + "' was not found");
+            throw new WrongOrMissingPropertyException("directoryNameFormatter");
+        } catch (Exception e) {
+            logger.warn("An error occurred while setting directoryNameFormatter to '" + formatterClassName + "': " + e.getMessage());
+            throw new WrongOrMissingPropertyException("directoryNameFormatter");
+        }
+    }
+
+    /**
+     * This determines whether the tree view page of feature files will group the features by their URI path.
+     *
+     * @return {@code true} if the tree view should use paths to group, {@code false} otherwise.
+     */
+    public boolean isGroupFeaturesByPath() {
+        return groupFeaturesByPath;
+    }
+
+    /**
+     * Sets whether the tree view page of feature files will group the features by their URI path.
+     *
+     * <p>Setting this to <code>false</code> (the default) keeps the original behavior.
+     *
+     * @param groupFeaturesByPath {@code true} to enable grouping by path in the tree view, {@code false} to disable it.
+     */
+    public void setGroupFeaturesByPath(final boolean groupFeaturesByPath) {
+        this.groupFeaturesByPath = groupFeaturesByPath;
     }
 
     /**
@@ -571,6 +669,9 @@ public class PropertyManager {
         logger.info("- custom parameters display mode   : " + customParametersDisplayMode, DEFAULT);
         logger.info("- group previous scenario runs     : " + groupPreviousScenarioRuns, DEFAULT);
         logger.info("- expand previous scenario runs    : " + expandPreviousScenarioRuns, DEFAULT);
+        logger.info("- group features by path           : " + groupFeaturesByPath, DEFAULT);
+        logger.info("- directory name formatter         : " + directoryNameFormatter.getClass().getName(), DEFAULT);
+        logger.info("- removable base paths             : " + basePaths.getBasePaths().stream().map(Path::toString).collect(Collectors.joining(", ")), DEFAULT);
 
         if (!customNavigationLinks.isEmpty()) {
             customNavigationLinks.entrySet().stream().map(

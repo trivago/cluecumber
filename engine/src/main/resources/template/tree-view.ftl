@@ -30,31 +30,40 @@ preheadlineLink="">
 
     <div class="row" id="tree-view">
         <@page.card width="12" title="${numberOfFeatures} ${common.pluralizeFn('Feature', numberOfFeatures)} with ${numberOfScenarios} ${common.pluralizeFn('Scenario', numberOfScenarios)}" subtitle="" classes="">
-            <ul>
-                <#list elements as feature, scenarios>
-                    <#assign tooltipText = "">
-                    <#if feature.description?has_content>
-                        <#assign tooltipText = "${feature.description} | ">
-                    </#if>
-                    <#assign tooltipText = "${tooltipText}${feature.uri}">
-                    <li>
-                        <span data-toggle="tooltip" title="${tooltipText}">
-                            <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>
-                        </span>
-                    </li>
-                    <ol type="1">
-                        <#list scenarios as scenario>
-                            <#if ((!scenario.isMultiRunParent() && !scenario.isMultiRunChild()) || scenario.isMultiRunParent()) >
-                                <li style="list-style-type: decimal;"><a
-                                            href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
-                                            style="word-break: break-all">${scenario.name?html}</a>
-                                </li>
-                            </#if>
-                        </#list>
-                    </ol>
-                    <hr>
-                </#list>
-            </ul>
+            <#list featuresByPath as path, features>
+                <#if featuresByPath?size &gt; 1 && path != "/">
+                    <h4>${pathFormatter.formatPath(path)}</h4>
+                </#if>
+                <ul>
+                    <#list features as featureWithScenarios>
+                        <#assign feature = featureWithScenarios.feature>
+                        <#assign scenarios = featureWithScenarios.scenarios>
+                        <#assign tooltipText = "">
+                        <#if feature.description?has_content>
+                            <#assign tooltipText = "${feature.description} | ">
+                        </#if>
+                        <#assign tooltipText = "${tooltipText}${feature.uri}">
+                        <li>
+                            <span data-toggle="tooltip" title="${tooltipText}">
+                                <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>
+                            </span>
+                        </li>
+                        <ol type="1">
+                            <#list scenarios as scenario>
+                                <#if ((!scenario.isMultiRunParent() && !scenario.isMultiRunChild()) || scenario.isMultiRunParent()) >
+                                    <li style="list-style-type: decimal;"><a
+                                                href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
+                                                style="word-break: break-all">${scenario.name?html}</a>
+                                    </li>
+                                </#if>
+                            </#list>
+                        </ol>
+                        <#if featureWithScenarios?has_next>
+                            <hr>
+                        </#if>
+                    </#list>
+                </ul>
+            </#list>
         </@page.card>
     </div>
 </@page.page>
