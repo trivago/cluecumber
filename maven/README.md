@@ -15,34 +15,34 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
 - [Maven POM settings](#maven-pom-settings)
 - [Prerequisites](#prerequisites)
 - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
-    - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
-    - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
+  - [sourceJsonReportDirectory](#sourcejsonreportdirectory)
+  - [generatedHtmlReportDirectory](#generatedhtmlreportdirectory)
 - [Optional Configuration Parameters](#optional-configuration-parameters)
-    - [Plugin Logging](#plugin-logging)
-    - [Add Custom Information to the Report](#add-custom-information-to-the-report)
-        - [Add Custom Information Using Properties](#add-custom-information-using-properties)
-        - [Add Custom Information Using a File](#add-custom-information-using-a-file)
-        - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
-    - [Add custom navigation links](#add-custom-navigation-links)
-    - [Skip Report Generation](#skip-report-generation)
-    - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
-    - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
-    - [Auto-expand Previous Runs](#auto-expand-previous-runs)
-    - [Auto-expand Attachments](#auto-expand-attachments)
+  - [Plugin Logging](#plugin-logging)
+  - [Add Custom Information to the Report](#add-custom-information-to-the-report)
+    - [Add Custom Information Using Properties](#add-custom-information-using-properties)
+    - [Add Custom Information Using a File](#add-custom-information-using-a-file)
+    - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
+  - [Add custom navigation links](#add-custom-navigation-links)
+  - [Skip Report Generation](#skip-report-generation)
+  - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
+  - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
+  - [Auto-expand Previous Runs](#auto-expand-previous-runs)
+  - [Auto-expand Attachments](#auto-expand-attachments)
 - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
-    - [Defining the report start page](#defining-the-report-start-page)
-    - [Defining a custom report title](#defining-a-custom-report-title)
-    - [Defining a custom CSS file](#defining-a-custom-css-file)
-    - [Defining a custom logo](#defining-a-custom-logo)-
-    - [Defining a custom favicon](#defining-a-custom-favicon)
-    - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
-    - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
+  - [Defining the report start page](#defining-the-report-start-page)
+  - [Defining a custom report title](#defining-a-custom-report-title)
+  - [Defining a custom CSS file](#defining-a-custom-css-file)
+  - [Defining a custom logo](#defining-a-custom-logo)- 
+  - [Defining a custom favicon](#defining-a-custom-favicon)
+  - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
+  - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
 - [Running the reporting goal directly via command line](#running-the-reporting-goal-directly-via-command-line)
-    - [Passing built-in properties via command line](#passing-built-in-properties-via-command-line)
-    - [Passing custom parameters via command line](#passing-custom-parameters-via-command-line)
+  - [Passing built-in properties via command line](#passing-built-in-properties-via-command-line)
+  - [Passing custom parameters via command line](#passing-custom-parameters-via-command-line)
 - [Appendix](#appendix)
-    - [Building](#building)
-    - [License](#license)
+  - [Building](#building)
+  - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -393,14 +393,12 @@ Likewise, if you want to hide elements from the report, you can also add this to
 
 ## Defining a custom logo
 
-The logo is displayed on every page in the top right corner and can be customized by setting the `customLogo` property.
-This must be
+The logo is displayed on every page in the top right corner and can be customized by setting the `customLogo` property. This must be
 a png file. It is automatically set to a maximum width of 300px and/or height of 100px if its size exceeds these values.
 
-![Custom Logo](../documentation/img/custom_logo.png)
+![Custom Logo](../documentation/img/custom_logo.jpg)
 
 ```xml
-
 <configuration>
     <customLogo>custom/logo.png</customLogo>
     ...
@@ -415,7 +413,6 @@ a png file of size 16x16 or 32x32 pixels
 ![Custom Favicon](../documentation/img/custom_favicon.png)
 
 ```xml
-
 <configuration>
     <customFavicon>custom/favicon.png</customFavicon>
     ...
