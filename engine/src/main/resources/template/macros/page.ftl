@@ -52,7 +52,8 @@ limitations under the License.
         <div class="cluecumber-template">
             <div class="col-sm-12 h-auto text-left clearfix">
                 <#if headline != "">
-                    <img src="../../img/cluecumber.png" alt="Cluecumber" class="img-fluid" style="max-width: 300px; max-height: 100px; float: right;"/>
+                    <img src="img/logo.png" alt="Logo" class="img-fluid" style="max-width: 300px; max-height: 100px; float: right;"/>
+                    <div id="logo-container"></div>
                     <h3 style="vertical-align: bottom; float: left;">
                         <span style="vertical-align: bottom; display: inline-block;">${headline}</span>
                     </h3>
