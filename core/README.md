@@ -1,11 +1,12 @@
 [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/com.trivago.rta/cluecumber-parent.svg)](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core&smo=true)
 [![Example Report](https://img.shields.io/badge/Example-Report-blue.svg)](https://softwaretester.blog/cluecumber)
- <img src="../documentation/img/cucumber-compatible-black-64.png" alt="Cluecumber compatible" width="200" />
+<img src="../documentation/img/cucumber-compatible-black-64.png" alt="Cluecumber compatible" width="200" />
 
 <img alt="cluecumber logo" src="../documentation/img/cluecumber_core.png" width="250"/>
 
 # Cluecumber Core
+
 _Clear and concise JVM reporting for the Cucumber BDD JSON format_
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -16,36 +17,38 @@ _Clear and concise JVM reporting for the Cucumber BDD JSON format_
 - [Mandatory Configuration Parameters](#mandatory-configuration-parameters)
 - [Karate example](#karate-example)
 - [Optional Configuration Parameters](#optional-configuration-parameters)
-  - [Logging](#logging)
-  - [Add Custom Information to the Report](#add-custom-information-to-the-report)
-    - [Add Custom Information](#add-custom-information)
-    - [Add Custom Information Using a File](#add-custom-information-using-a-file)
-    - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
-  - [Add custom navigation links](#add-custom-navigation-links)
-  - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
-  - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
-  - [Auto-expand Previous Scenario Runs](#auto-expand-previous-scenario-runs)
-  - [Auto-expand Attachments](#auto-expand-attachments)
+    - [Logging](#logging)
+    - [Add Custom Information to the Report](#add-custom-information-to-the-report)
+        - [Add Custom Information](#add-custom-information)
+        - [Add Custom Information Using a File](#add-custom-information-using-a-file)
+        - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
+    - [Add custom navigation links](#add-custom-navigation-links)
+    - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
+    - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
+    - [Auto-expand Previous Scenario Runs](#auto-expand-previous-scenario-runs)
+    - [Auto-expand Attachments](#auto-expand-attachments)
 - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
-  - [Defining the report start page](#defining-the-report-start-page)
-  - [Defining a custom report title](#defining-a-custom-report-title)
-  - [Defining a custom CSS file](#defining-a-custom-css-file)
-  - [Defining a custom favicon](#defining-a-custom-favicon)
-  - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
-  - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
+    - [Defining the report start page](#defining-the-report-start-page)
+    - [Defining a custom report title](#defining-a-custom-report-title)
+    - [Defining a custom CSS file](#defining-a-custom-css-file)
+    - [Defining a custom logo](#defining-a-custom-logo)
+    - [Defining a custom favicon](#defining-a-custom-favicon)
+    - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
+    - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
 - [Appendix](#appendix)
-  - [Building](#building)
-  - [License](#license)
+    - [Building](#building)
+    - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Maven dependency
 
 ```xml
+
 <dependency>
-  <groupId>com.trivago.rta</groupId>
-  <artifactId>cluecumber-core</artifactId>
-  <version>3.5.1</version>
+    <groupId>com.trivago.rta</groupId>
+    <artifactId>cluecumber-core</artifactId>
+    <version>3.11.0</version>
 </dependency>
 ```
 
@@ -58,7 +61,7 @@ your Cucumber runner configuration:
 
 ```java
 @CucumberOptions(
-    plugin = {"json:target/cucumber-report/cucumber.json"}
+        plugin = {"json:target/cucumber-report/cucumber.json"}
 )
 ```
 
@@ -72,8 +75,14 @@ There are two mandatory parameters that have to be passed to the `generateReport
 String jsonDirectory = "examples/core-example/json";
 String reportDirectory = "examples/core-example/target/cluecumber_report";
 
-new CluecumberCore.Builder()
-        .build().generateReports(jsonDirectory, reportDirectory);
+new CluecumberCore.
+
+Builder()
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 * `jsonDirectory` specifies the source folder of the Cucumber JSON result files.
@@ -86,27 +95,29 @@ __Note:__ Typically, both properties point to directories inside the Maven ```ta
 For use in Karate, just place the Cluecumber code in between the test runner code and the final assertion as seen below:
 
 ```java
+
 @Test
 void testParallel() throws CluecumberException {
-  final int threads = 10;
+    final int threads = 10;
 
-  Results results= Runner.path("classpath:karate/features")
-      .outputCucumberJson(true)
-      .outputHtmlReport(false)
-      .parallel(threads);
+    Results results = Runner.path("classpath:karate/features")
+            .outputCucumberJson(true)
+            .outputHtmlReport(false)
+            .parallel(threads);
 
-  new CluecumberCore.Builder()
-      .setCustomPageTitle("My cool report")
-      .build()
-      .generateReports(
-          "target/karate-reports",
-          "target/cluecumber");
+    new CluecumberCore.Builder()
+            .setCustomPageTitle("My cool report")
+            .build()
+            .generateReports(
+                    "target/karate-reports",
+                    "target/cluecumber");
 
-  assertEquals(0, results.getFailCount(), results.getErrorMessages());
+    assertEquals(0, results.getFailCount(), results.getErrorMessages());
 }
 ```
 
-This will generate a test report regardless of any failure of tests since the overall test run failure state is determined afterwards.
+This will generate a test report regardless of any failure of tests since the overall test run failure state is
+determined afterwards.
 
 # Optional Configuration Parameters
 
@@ -122,12 +133,19 @@ This can be configured by passing the `logLevel` property:
 
 ```java
 new CluecumberCore.Builder()
-        .setLogLevel(CluecumberLogger.CluecumberLogLevel.MINIMAL)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setLogLevel(CluecumberLogger.CluecumberLogLevel.MINIMAL)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 * `CluecumberLogger.CluecumberLogLevel.DEFAULT` will log all the mentioned information
-* `CluecumberLogger.CluecumberLogLevel.COMPACT` will only log the source and target directories, plugin name and version and the generated report location
+* `CluecumberLogger.CluecumberLogLevel.COMPACT` will only log the source and target directories, plugin name and version
+  and the generated report location
 * `CluecumberLogger.CluecumberLogLevel.MINIMAL` will only log the generated report location
 * `CluecumberLogger.CluecumberLogLevel.OFF` will prevent any logging
 
@@ -143,8 +161,14 @@ If a parameter name starts with an underscore (`_`), only the value is displayed
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomParameters(parameters)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setCustomParameters(parameters)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 The property definitions above are shown in the report like this:
@@ -158,8 +182,14 @@ like this:
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomParametersFile("c:/myProperties.properties")
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setCustomParametersFile("c:/myProperties.properties")
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 This file needs to have a format like this:
@@ -184,14 +214,23 @@ You can decide how to display the custom parameters in the report using the `cus
 
 The following display modes are available for displaying the custom parameters:
 
-* `Settings.CustomParamDisplayMode.SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (_default_)
+* `Settings.CustomParamDisplayMode.SCENARIO_PAGES`: Displays only on the scenario and scenario sequence pages. (
+  _default_)
 * `Settings.CustomParamDisplayMode.ALL_PAGES`: Display on all the pages in the report.
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomParameters(parameters)
-        .setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.ALL_PAGES)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setCustomParameters(parameters)
+        .
+
+setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.ALL_PAGES)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 The default value for this property is `SCENARIO_PAGES`.
@@ -203,12 +242,24 @@ this is possible via the `customNavigationLinks` property.
 
 ```java
 LinkedHashMap<String, String> links = new LinkedHashMap<>();
-links.put("Test Blog", "https://www.softwaretester.blog");
-links.put("Twitter", "https://twitter.com/BischoffDev");
+links.
 
-new CluecumberCore.Builder()
-        .setCustomNavigationLinks(links)
-        .build().generateReports(jsonDirectory, reportDirectory);
+put("Test Blog","https://www.softwaretester.blog");
+links.
+
+put("Twitter","https://twitter.com/BischoffDev");
+
+new CluecumberCore.
+
+Builder()
+        .
+
+setCustomNavigationLinks(links)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 These links will be added to the right of the navigation bar. If there are underscores ("_") in the property key,
@@ -224,38 +275,69 @@ The default setting is `false`, meaning that those scenarios will be marked as `
 
 ```java
 new CluecumberCore.Builder()
-        .setFailScenariosOnPendingOrUndefinedSteps(true)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setFailScenariosOnPendingOrUndefinedSteps(true)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 ## Auto-expand Certain Report Sections
 
-The `expandBeforeAfterHooks`, `expandStepHooks`, `expandDocStrings`, `expandOutputs` and `expandSubSections` options can be set to `true` to expand or
-collapse before/after hooks, step hooks, docstrings, step outputs and sub sections respectively on scenario detail pages.
+The `expandBeforeAfterHooks`, `expandStepHooks`, `expandDocStrings`, `expandOutputs` and `expandSubSections` options can
+be set to `true` to expand or
+collapse before/after hooks, step hooks, docstrings, step outputs and sub sections respectively on scenario detail
+pages.
 
 If they are not set, they default to false. This means that the report user has to use the buttons on a scenario detail
 page to expand those sections on demand.
 
 ```java
 new CluecumberCore.Builder()
-        .setExpandBeforeAfterHooks(true)
-        .setExpandStepHooks(true)
-        .setExpandDocStrings(true)
-        .setExpandOutputs(true)
-        .expandSubSections(true)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setExpandBeforeAfterHooks(true)
+        .
+
+setExpandStepHooks(true)
+        .
+
+setExpandDocStrings(true)
+        .
+
+setExpandOutputs(true)
+        .
+
+expandSubSections(true)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 ## Auto-expand Previous Scenario Runs
 
-The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the same scenario
+The `expandPreviousScenarioRuns` option can be set to `true` to expand or collapse previous runs children element of the
+same scenario
 (on all scenarios page only, if `groupPreviousScenarioRuns` mode active).
 
 ```java
 new CluecumberCore.Builder()
-        .setGroupPreviousScenarioRuns(true)
-        .setExpandPreviousScenarioRuns(true)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setGroupPreviousScenarioRuns(true)
+        .
+
+setExpandPreviousScenarioRuns(true)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 ## Auto-expand Attachments
@@ -265,8 +347,14 @@ to `true`, they are automatically expanded.
 
 ```java
 new CluecumberCore.Builder()
-        .setExpandAttachments(true)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setExpandAttachments(true)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 # Optional Configuration Parameters for Changing the Report Appearance
@@ -277,8 +365,14 @@ The default start page of the reports (if not overwritten by the `startPage` pro
 
 ```java
 new CluecumberCore.Builder()
-        .setStartPage(Settings.StartPage.ALL_SCENARIOS)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setStartPage(Settings.StartPage.ALL_SCENARIOS)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 This can be customized with one of the following values:
@@ -299,8 +393,14 @@ By setting the property `customPageTitle`, this can be changed:
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomPageTitle("My Report")
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setCustomPageTitle("My Report")
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 This would lead to a report title like this:
@@ -329,8 +429,14 @@ To use this files, specify it like so in your pom file or as a system property:
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomCssFile("custom/custom.css")
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setCustomCssFile("custom/custom.css")
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 When generating the report, this file is automatically included as ```cluecumber_custom.css``` and applied on top of all
@@ -346,6 +452,25 @@ Likewise, if you want to hide elements from the report, you can also add this to
 }
 ```
 
+## Defining a custom logo
+
+The logo is displayed on every page in the top right corner and can be customized by setting the `customLogo` property.
+This must be
+a png file. It is automatically set to a maximum width of 300px and/or height of 100px if its size exceeds these values.
+
+![Custom Logo](../documentation/img/custom_logo.png)
+
+```java
+new CluecumberCore.Builder()
+        .
+
+setCustomLogo("custom/logo.png")
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
+```
 
 ## Defining a custom favicon
 
@@ -356,8 +481,14 @@ a png file of size 16x16 or 32x32 pixels
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomFavicon("custom/favicon.png")
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setCustomFavicon("custom/favicon.png")
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 ## Defining custom passed, skipped and failed colors
@@ -367,16 +498,26 @@ including the displayed diagrams. The values have to be valid hex colors:
 
 ```java
 new CluecumberCore.Builder()
-        .setCustomStatusColorPassed("#017FAF")
-        .setCustomStatusColorFailed("#C94A38")
-        .setCustomStatusColorSkipped("#F48F00")
-        .build().generateReports(jsonDirectory, reportDirectory)
+        .
+
+setCustomStatusColorPassed("#017FAF")
+        .
+
+setCustomStatusColorFailed("#C94A38")
+        .
+
+setCustomStatusColorSkipped("#F48F00")
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory)
 ```
 
 The result of this customization is:
 
-| Before | After |
-|---|---|
+| Before                                                 | After                                                |
+|--------------------------------------------------------|------------------------------------------------------|
 | ![Chart Before](../documentation/img/chart_before.png) | ![Chart After](../documentation/img/chart_after.png) |
 
 ## Enabling a compact view of multiple runs of the same scenarios
@@ -389,9 +530,17 @@ A button allows to expand/collapse, the default state can be set via `expandPrev
 
 ```java
 new CluecumberCore.Builder()
-        .setGroupPreviousScenarioRuns(true)
-        .setExpandPreviousScenarioRuns(false)
-        .build().generateReports(jsonDirectory, reportDirectory);
+        .
+
+setGroupPreviousScenarioRuns(true)
+        .
+
+setExpandPreviousScenarioRuns(false)
+        .
+
+build().
+
+generateReports(jsonDirectory, reportDirectory);
 ```
 
 ![grouped_scenarios.png](..%2Fdocumentation%2Fimg%2Fgrouped_scenarios.png)
@@ -401,7 +550,8 @@ new CluecumberCore.Builder()
 ## Building
 
 Cluecumber requires Java >= 11.
-It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22)
+It is available
+in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22)
 .
 
 ## License

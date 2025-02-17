@@ -12,6 +12,7 @@ Back to [Readme](README.md).
 ### Added
 
 * "Copy to clipboard" button for step outputs, docstrings, text attachments and exception messages (#371)
+* Custom logo capability (#367)
 
 ### Changed
 

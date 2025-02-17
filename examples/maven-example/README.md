@@ -4,8 +4,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Cluecumber Maven Example](#cluecumber-maven-example)
-  - [Configuration options](#configuration-options)
-  - [Run the project](#run-the-project)
+    - [Configuration options](#configuration-options)
+    - [Run the project](#run-the-project)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -24,8 +24,10 @@ You can add different options as explained in the [Cluecumber Maven Readme](../.
 
 To run the project you need to have at least Java 11 and Maven 3.3.9 installed on your system.
 
-Just run the Maven command ```mvn clean verify``` to see the report generation of Cluecumber in action.
+Just run the Maven command `mvn clean verify` to see the report generation of Cluecumber in action.
+This can also be run via `make test` from Cluecumber's root directory.
 
-The example Cucumber JSON files are located in the project's `json` directory. These are based on the https://github.com/aslakhellesoy/cucumber-json-formatter project.
+The example Cucumber JSON files are located in the project's `json` directory. These are based on
+the https://github.com/aslakhellesoy/cucumber-json-formatter project.
 The report is generated inside the `target/cluecumber-report` directory.
 
