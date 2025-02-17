@@ -6,7 +6,7 @@
 <img alt="Cluecumber logo" src="documentation/img/cluecumber.png" width="250"/>
 
 # Cluecumber
-_Clear and concise JVM and Maven reporting for the Cucumber BDD JSON format_
+_Clear and concise JVM and Maven reporting for the Cucumber BDD and Karate JSON result format._
 
 This project creates aggregated test reports from Cucumber compatible JSON files that are generated
 by [Cucumber BDD](https://github.com/cucumber), [Karate](https://github.com/intuit/karate) and other frameworks.
