@@ -50,12 +50,15 @@ limitations under the License.
     <@navigation.build highlight=highlight />
     <main role="main" class="container">
         <div class="cluecumber-template">
-            <div class="col-sm-12 h-auto text-center">
+            <div class="col-sm-12 h-auto text-left clearfix">
                 <#if headline != "">
-                    <h3>${headline}</h3>
+                    <img src="../../img/cluecumber.png" alt="Cluecumber" class="img-fluid" style="max-width: 300px; max-height: 100px; float: right;"/>
+                    <h3 style="vertical-align: bottom; float: left;">
+                        <span style="vertical-align: bottom; display: inline-block;">${headline}</span>
+                    </h3>
                 </#if>
                 <#if preheadline != "">
-                    <b>
+                    <b style="float: left; clear: left;">
                         <span data-toggle="tooltip" title="${subsubheadline}">
                         <#if preheadlineLink != "">
                             <a href="${preheadlineLink}">${preheadline}</a>
@@ -66,7 +69,7 @@ limitations under the License.
                     </b>
                 </#if>
                 <#if subheadline != "">
-                    <p>${subheadline}</p>
+                    <p style="float: left; clear: left;">${subheadline}</p>
                 </#if>
             </div>
             <#nested>

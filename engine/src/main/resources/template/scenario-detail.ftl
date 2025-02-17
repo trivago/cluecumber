@@ -343,6 +343,9 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <#if (step.docString.value)?? >
                                 <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
                                     <div class="row w-100 p-3 m-0">
+                                        <button onclick="copyText('step_${step.index}_docstring')" type="button" class="btn-clipboard">
+                                            Copy to clipboard
+                                        </button>
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
                                         </div>
