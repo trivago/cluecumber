@@ -27,7 +27,6 @@ import freemarker.template.Template;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -86,20 +85,21 @@ public class TreeViewPageRenderer extends PageRenderer {
         }
 
 
-        printTree(rootTreeNode, 1);
+        printTree(rootTreeNode, 0);
 
         return processedContent(
                 template,
-                new TreeViewPageCollection(scenariosPerFeatures, allFeaturesPageCollection.getPageTitle()),
+                new TreeViewPageCollection(rootTreeNode, scenariosPerFeatures, allFeaturesPageCollection.getPageTitle()),
                 propertyManager.getNavigationLinks()
         );
     }
 
-    private void printTree(TreeNode node, int level) {
+    private void printTree(final TreeNode node, final int level) {
         for (int i = 0; i < level; i++) {
             System.out.print("  ");
         }
-        System.out.println(node.getName());
+        System.out.println("Node: " + node.getName() + " isFeature: " + node.isFeatureFile());
+
         for (TreeNode child : node.getChildren().values()) {
             printTree(child, level + 1);
         }
@@ -109,35 +109,14 @@ public class TreeViewPageRenderer extends PageRenderer {
         String[] parts = path.split("/");
         TreeNode current = rootTreeNode;
 
-        for (int i = 0; i < parts.length; i++) {
-            String part = parts[i];
+        for (String part : parts) {
+            if (part.isEmpty()) {
+                continue;
+            }
             boolean isFeatureFile = part.endsWith(".feature");
 
             current.getChildren().putIfAbsent(part, new TreeNode(part, isFeatureFile));
             current = current.getChildren().get(part);
-        }
-    }
-
-    static class TreeNode {
-        private final String name;
-        private final boolean isFeatureFile;
-        private final Map<String, TreeNode> children = new HashMap<>();
-
-        public TreeNode(String name, boolean isFeatureFile) {
-            this.name = name;
-            this.isFeatureFile = isFeatureFile;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public boolean isFeatureFile() {
-            return isFeatureFile;
-        }
-
-        public Map<String, TreeNode> getChildren() {
-            return children;
         }
     }
 }

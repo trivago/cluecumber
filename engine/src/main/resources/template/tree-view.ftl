@@ -30,6 +30,35 @@ preheadlineLink="">
 
     <div class="row" id="tree-view">
         <@page.card width="12" title="${numberOfFeatures} ${common.pluralizeFn('Feature', numberOfFeatures)} with ${numberOfScenarios} ${common.pluralizeFn('Scenario', numberOfScenarios)}" subtitle="" classes="">
+            <#macro renderTree node>
+                <#if node.children?has_content>
+                    <ol>
+                        <#list node.children?values as child>
+                            <li>
+                                <#if child.featureFile>
+                                    <#assign tooltipText = "">
+<#--                                    <#if feature.description?has_content>-->
+<#--                                        <#assign tooltipText = "${feature.description} | ">-->
+<#--                                    </#if>-->
+<#--                                    <#assign tooltipText = "${tooltipText}${feature.uri}">-->
+                                    <span data-toggle="tooltip" title="${tooltipText}">
+                                        <a href="#" class="feature-file">${child.name}</a>
+<#--                                        <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>-->
+                                    </span>
+                                <#else>
+                                    <span class="folder">${child.name}</span>
+                                </#if>
+                                <@renderTree node=child/>
+                            </li>
+                        </#list>
+                    </ol>
+                </#if>
+            </#macro>
+            <div class="tree-view">
+                <@renderTree node=rootTreeNode/>
+            </div>
+
+
             <ul>
                 <#list elements as feature, scenarios>
                     <#assign tooltipText = "">

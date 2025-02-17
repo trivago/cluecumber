@@ -17,6 +17,7 @@ package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
+import com.trivago.cluecumber.engine.rendering.pages.renderering.TreeNode;
 
 import java.util.List;
 import java.util.Map;
@@ -26,16 +27,21 @@ import java.util.Map;
  */
 public class TreeViewPageCollection extends PageCollection {
     private final Map<Feature, List<Element>> elements;
+    private final TreeNode rootTreeNode;
 
     /**
      * Constructor.
      *
-     * @param elements  The map of features and associated scenarios.
-     * @param pageTitle The title of the tree view page.
+     * @param rootTreeNode The root node of the tree view.
+     * @param elements     The map of features and associated scenarios.
+     * @param pageTitle    The title of the tree view page.
      */
-    public TreeViewPageCollection(final Map<Feature, List<Element>> elements, final String pageTitle) {
+    public TreeViewPageCollection(final TreeNode rootTreeNode,
+                                  final Map<Feature, List<Element>> elements,
+                                  final String pageTitle) {
         super(pageTitle);
         this.elements = elements;
+        this.rootTreeNode = rootTreeNode;
     }
 
     /**
@@ -63,6 +69,10 @@ public class TreeViewPageCollection extends PageCollection {
      */
     public int getNumberOfScenarios() {
         return elements.values().stream().mapToInt(List::size).sum();
+    }
+
+    public TreeNode getRootTreeNode() {
+        return rootTreeNode;
     }
 }
 

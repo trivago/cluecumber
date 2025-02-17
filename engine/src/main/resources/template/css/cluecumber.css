@@ -85,11 +85,8 @@ a {
 }
 
 #tree-view li {
-    list-style-type: none;
+    list-style-type: square;
     text-align: left;
-}
-
-#tree-view ul li {
     margin-bottom: .4rem;
 }
 
