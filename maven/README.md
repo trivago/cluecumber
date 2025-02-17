@@ -33,7 +33,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
   - [Defining the report start page](#defining-the-report-start-page)
   - [Defining a custom report title](#defining-a-custom-report-title)
   - [Defining a custom CSS file](#defining-a-custom-css-file)
-  - [Defining a custom logo](#defining-a-custom-logo)- 
+  - [Defining a custom logo](#defining-a-custom-logo) 
   - [Defining a custom favicon](#defining-a-custom-favicon)
   - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
   - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
