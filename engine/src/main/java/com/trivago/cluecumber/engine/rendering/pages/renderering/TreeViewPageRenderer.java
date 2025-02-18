@@ -49,9 +49,7 @@ public class TreeViewPageRenderer extends PageRenderer {
      * @param propertyManager The {@link PropertyManager} instance.
      */
     @Inject
-    public TreeViewPageRenderer(
-            final PropertyManager propertyManager
-    ) {
+    public TreeViewPageRenderer(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
     }
 
