@@ -36,6 +36,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.DEFAULT;
@@ -195,6 +196,35 @@ public final class CluecumberEngine {
      */
     public void setCustomNavigationLinks(final LinkedHashMap<String, String> customNavigationLinks) {
         propertyManager.setCustomNavigationLinks(customNavigationLinks);
+    }
+
+    /**
+     * Set whether the report should group feature files by their path in the tree view.
+     *
+     * @param groupFeaturesByPath true to enable path-based tree view, false otherwise.
+     */
+    public void setGroupFeaturesByPath(final boolean groupFeaturesByPath) {
+        propertyManager.setGroupFeaturesByPath(groupFeaturesByPath);
+    }
+
+    /**
+     * Set the base paths to be removed from feature file URIs when used in grouping.
+     *
+     * @param removableBasePaths A set of strings representing the base paths.
+     * @throws WrongOrMissingPropertyException If the paths are invalid.
+     */
+    public void setRemovableBasePaths(final Set<String> removableBasePaths) throws WrongOrMissingPropertyException {
+        propertyManager.setRemovableBasePaths(removableBasePaths);
+    }
+
+    /**
+     * Set the directory name formatter.
+     *
+     * @param formatterClassName The fully qualified class name of the formatter implementation.
+     * @throws WrongOrMissingPropertyException Thrown if the class is invalid or missing.
+     */
+    public void setDirectoryNameFormatter(final String formatterClassName) throws WrongOrMissingPropertyException {
+        propertyManager.setDirectoryNameFormatter(formatterClassName);
     }
 
     /**

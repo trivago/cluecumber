@@ -25,6 +25,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 /**
  * The main plugin class.
@@ -94,6 +95,24 @@ public final class CluecumberMaven extends AbstractMojo {
      */
     @Parameter(property = "reporting.customFavicon")
     private String customFavicon = "";
+
+    /**
+     * The base paths to be removed from feature file URIs before grouping.
+     */
+    @Parameter(property = "reporting.removableBasePaths")
+    private Set<String> removableBasePaths;
+
+    /**
+     * The fully qualified class name of the directory name formatter implementation (default: com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$Standard).
+     */
+    @Parameter(property = "reporting.directoryNameFormatter", defaultValue = "com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$Standard")
+    private String directoryNameFormatter;
+
+    /**
+     * Whether to use a path-based tree view for grouping features (default: false).
+     */
+    @Parameter(property = "reporting.groupFeaturesByPath", defaultValue = "false")
+    private boolean groupFeaturesByPath;
 
     /**
      * Custom flag that determines if step output sections of scenario detail pages should be expanded (default: false).
@@ -203,6 +222,9 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setCustomParametersFile(customParametersFile)
                     .setCustomStatusColorFailed(customStatusColorFailed)
                     .setCustomStatusColorPassed(customStatusColorPassed)
+                    .setRemovableBasePaths(removableBasePaths)
+                    .setDirectoryNameFormatter(directoryNameFormatter)
+                    .setGroupFeaturesByPath(groupFeaturesByPath)
                     .setExpandSubSections(expandSubSections)
                     .setExpandOutputs(expandOutputs)
                     .setExpandAttachments(expandAttachments)

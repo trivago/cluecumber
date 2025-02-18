@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.11.0] - Work In Progress
+
+### Added
+
+* Optional grouping of features by their path in tree view
+
+
 ## [3.10.0] - 2025-01-06
 
 ### Added

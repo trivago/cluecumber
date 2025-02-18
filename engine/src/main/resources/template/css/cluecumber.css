@@ -80,13 +80,31 @@ a {
     text-align: center;
 }
 
-#tree-view li {
-    list-style-type: none;
-    text-align: left;
-}
+#tree-view {
+    h4 {
+        text-align: left;
+        background-color: #ddd;
+        padding: 0 0 0 0.5rem;
+        line-height: 2.5rem;
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
 
-#tree-view ul li {
-    margin-bottom: .4rem;
+    h4:not(:first-child) {
+        margin-top: 2rem;
+    }
+
+    li {
+        list-style-type: none;
+        text-align: left;
+    }
+
+    ul {
+        padding-inline-start: 0;
+
+        li {
+            margin-bottom: .4rem;
+        }
+    }
 }
 
 .embedding-content {

@@ -6,6 +6,7 @@ import com.trivago.cluecumber.engine.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.engine.exceptions.properties.WrongOrMissingPropertyException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
+import com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +66,7 @@ public class PropertyManagerTest {
         verify(logger, times(2)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
                 eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
-        verify(logger, times(13)).info(anyString(),
+        verify(logger, times(16)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 
@@ -212,6 +213,50 @@ public class PropertyManagerTest {
     }
 
     @Test
+    public void usePathTreeViewDefaultValueTest() {
+        assertFalse(propertyManager.isGroupFeaturesByPath());
+    }
+
+    @Test
+    public void setGroupFeaturesByPathToTrueTest() {
+        propertyManager.setGroupFeaturesByPath(true);
+        assertTrue(propertyManager.isGroupFeaturesByPath());
+    }
+
+    @Test
+    public void setGroupFeaturesByPathToFalseTest() {
+        propertyManager.setGroupFeaturesByPath(true);
+        propertyManager.setGroupFeaturesByPath(false);
+        assertFalse(propertyManager.isGroupFeaturesByPath());
+    }
+
+    @Test
+    public void directoryNameFormatterDefaultValueTest() {
+        assertTrue(propertyManager.getDirectoryNameFormatter() instanceof DirectoryNameFormatter.Standard);
+    }
+
+    @Test
+    public void setValidDirectoryNameFormatterTest() throws WrongOrMissingPropertyException {
+        propertyManager.setDirectoryNameFormatter(
+                "com.trivago.cluecumber.engine.rendering.pages.renderering.DirectoryNameFormatter$CamelCase");
+        assertTrue(propertyManager.getDirectoryNameFormatter() instanceof DirectoryNameFormatter.CamelCase);
+    }
+
+    @Test
+    public void setInvalidDirectoryNameFormatterClassNameTest() {
+        assertThrows(WrongOrMissingPropertyException.class, () -> {
+            propertyManager.setDirectoryNameFormatter("com.example.InvalidFormatter");
+        });
+    }
+
+    @Test
+    public void setNonImplementingClassDirectoryNameFormatterTest() {
+        assertThrows(WrongOrMissingPropertyException.class, () -> {
+            propertyManager.setDirectoryNameFormatter("java.lang.String");
+        });
+    }
+
+    @Test
     public void logFullPropertiesTest() throws MissingFileException {
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key1", "value1");
@@ -225,7 +270,7 @@ public class PropertyManagerTest {
         verify(logger, times(2)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT),
                 eq(CluecumberLogger.CluecumberLogLevel.COMPACT));
-        verify(logger, times(16)).info(anyString(),
+        verify(logger, times(19)).info(anyString(),
                 eq(CluecumberLogger.CluecumberLogLevel.DEFAULT));
     }
 }
