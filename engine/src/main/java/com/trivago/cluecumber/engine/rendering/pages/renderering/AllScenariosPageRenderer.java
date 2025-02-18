@@ -80,8 +80,9 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
     /**
      * Get the rendered HTML content for the reruns page.
+     *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template The {@link Template} instance.
+     * @param template                   The {@link Template} instance.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
@@ -129,6 +130,36 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
     }
+
+    /**
+     * Get the rendered HTML content after applying an exception filter.
+     *
+     * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
+     * @param template                   The {@link Template} instance.
+     * @param exceptionClass             The exception class to filter by.
+     * @return The HTML content as a string.
+     * @throws CluecumberException Thrown on any error.
+     */
+    public String getRenderedContentByExceptionFilter(
+            final AllScenariosPageCollection allScenariosPageCollection,
+            final Template template,
+            final String exceptionClass) throws CluecumberException {
+
+        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        allScenariosPageCollectionClone.setExceptionFilter(exceptionClass);
+
+        allScenariosPageCollectionClone.getReports().forEach(report -> {
+            List<Element> elements = report.getElements()
+                    .stream()
+                    .filter(element -> element.getFirstExceptionClass().equals(exceptionClass))
+                    .collect(Collectors.toList());
+            report.setElements(elements);
+        });
+
+        addChartJsonToReportDetails(allScenariosPageCollectionClone);
+        return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
+    }
+
 
     /**
      * Get the rendered HTML content after applying a step filter.

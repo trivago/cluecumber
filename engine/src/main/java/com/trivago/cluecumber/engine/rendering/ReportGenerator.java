@@ -127,6 +127,7 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(pagesDirectory + Settings.SCENARIO_DETAIL_PAGE_PATH);
         fileSystemManager.createDirectory(pagesDirectory + Settings.FEATURE_SCENARIOS_PAGE_PATH);
         fileSystemManager.createDirectory(pagesDirectory + Settings.TAG_SCENARIO_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + Settings.EXCEPTION_SCENARIO_PAGE_PATH);
         fileSystemManager.createDirectory(pagesDirectory + Settings.STEP_SCENARIO_PAGE_PATH);
     }
 

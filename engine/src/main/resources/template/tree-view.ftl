@@ -47,21 +47,21 @@ preheadlineLink="">
                                         </span>
 
                                         <#if scenarios??>
-                                            <ol type="1">
+                                            <ul>
                                                 <#list scenarios as scenario>
                                                     <#if ((!scenario.isMultiRunParent() && !scenario.isMultiRunChild()) || scenario.isMultiRunParent()) >
-                                                        <li style="list-style-type: decimal;">
+                                                        <li style="list-style-type: square;">
                                                             <a href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
                                                                style="word-break: break-all">${scenario.name?html}</a>
                                                         </li>
                                                     </#if>
                                                 </#list>
-                                            </ol>
+                                            </ul>
                                         </#if>
                                         <hr>
                                     </#list>
                                 <#else>
-                                    <span class="folder">${child.name}</span>
+                                    <em>${child.name}/</em>
                                 </#if>
                                 <@renderTree node=child/>
                             </li>

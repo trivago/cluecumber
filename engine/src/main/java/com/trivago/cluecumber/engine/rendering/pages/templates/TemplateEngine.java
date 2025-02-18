@@ -83,6 +83,10 @@ public class TemplateEngine {
          */
         ALL_TAGS("tag-summary"),
         /**
+         * Exception overview template.
+         */
+        ALL_EXCEPTIONS("exception-summary"),
+        /**
          * Scenario detail template.
          */
         SCENARIO_DETAILS("scenario-detail"),

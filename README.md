@@ -34,10 +34,12 @@ Cluecumber generates the following report pages:
 * __Scenario Details__: all steps, hooks, stack traces and attachments of a single scenario
 * __All Features__: an overview of all features
 * __All Tags__: all used tags in scenarios, features and example tables including their individual status information
+* __All Exceptions__: all exception types that occurred in the test suite
 * __All Steps__: all steps in use including their individual status information
 * __Scenarios by Tag__: all scenarios including a specific tag
 * __Scenarios by Feature__: all scenarios belonging to a specific feature
 * __Scenario by Step__: all scenarios that include a specific step
+* __Scenario by Exception__: all scenarios that failed with a specific exception type
 * __Tree View__: all features and scenarios in a tree for an easy overview of the test suite
 
 ## Changelog

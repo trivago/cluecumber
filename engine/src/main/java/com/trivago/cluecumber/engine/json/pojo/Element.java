@@ -392,18 +392,26 @@ public class Element {
     }
 
     /**
-     * Determine the first exception class in the stack trace to display on the scenario overview page.
+     * Get the first exception class in the stack trace to display
      *
      * @return The exception class string.
      */
     public String getFirstExceptionClass() {
+        return getFirstExceptionSummary().split(":")[0].split(" ")[0].trim();
+    }
+
+    /**
+     * Determine the first exception summary in the stack trace to display on the scenario overview page.
+     *
+     * @return The exception class string.
+     */
+    public String getFirstExceptionSummary() {
         String firstException = getFirstException();
         String exceptionClass = firstException.split("\n")[0].trim();
 
         if (exceptionClass.isEmpty()) {
             exceptionClass = "";
         }
-
         return exceptionClass;
     }
 

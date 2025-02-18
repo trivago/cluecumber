@@ -110,9 +110,9 @@ limitations under the License.
                                                     </button>
                                                 </#if>
 
-                                                <#if element.firstExceptionClass != "">
+                                                <#if element.firstExceptionSummary != "">
                                                     <p class="firstException text-left small text-gray"
-                                                       style="word-break: break-word">${element.firstExceptionClass}</p>
+                                                       style="word-break: break-word">${element.firstExceptionSummary}</p>
                                                 </#if>
 
                                                 <#if element.isMultiRunParent()>
@@ -127,9 +127,9 @@ limitations under the License.
                                                                         , ${childElement.startTimeString}
                                                                         <@common.status status=childElement.status.statusString/>
                                                                     </a>
-                                                                    <#if childElement.firstExceptionClass != "">
+                                                                    <#if childElement.firstExceptionSummary != "">
                                                                         <p class="firstException text-left small text-gray"
-                                                                           style="word-break: break-word">${childElement.firstExceptionClass}</p>
+                                                                           style="word-break: break-word">${childElement.firstExceptionSummary}</p>
                                                                     </#if>
                                                                 </li>
                                                             </#list>

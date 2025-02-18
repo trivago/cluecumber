@@ -44,7 +44,7 @@ public class TemplateConfiguration {
      * @param basePath The base path for the templates.
      */
     public void init(final String basePath) {
-        cfg = new Configuration(Configuration.VERSION_2_3_31);
+        cfg = new Configuration(Configuration.VERSION_2_3_34);
         cfg.setClassForTemplateLoading(this.getClass(), basePath);
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
