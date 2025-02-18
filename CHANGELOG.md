@@ -23,6 +23,10 @@ Back to [Readme](README.md).
 * Updated dagger to `2.55`
 * Updated gson to `2.12.1`
 
+### Fixed
+
+* Correct pluralization for zero elements everywhere
+
 ## [3.10.0] - 2025-01-06
 
 ### Added

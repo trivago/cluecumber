@@ -15,64 +15,42 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.engine.json.pojo.Element;
-import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.TreeNode;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Page collection for the tree view page.
  */
 public class TreeViewPageCollection extends PageCollection {
-    private final Map<Feature, List<Element>> elements;
     private final TreeNode rootTreeNode;
+    private final int numberOfFeatures;
+    private final int numberOfScenarios;
 
     /**
      * Constructor.
      *
      * @param rootTreeNode The root node of the tree view.
-     * @param elements     The map of features and associated scenarios.
      * @param pageTitle    The title of the tree view page.
      */
     public TreeViewPageCollection(final TreeNode rootTreeNode,
-                                  final Map<Feature, List<Element>> elements,
-                                  final String pageTitle) {
+                                  final String pageTitle,
+                                  final int numberOfFeatures,
+                                  final int numberOfScenarios) {
         super(pageTitle);
-        this.elements = elements;
         this.rootTreeNode = rootTreeNode;
-    }
-
-    /**
-     * Get the list of features and their scenarios.
-     *
-     * @return The map of features and associated scenarios.
-     */
-    public Map<Feature, List<Element>> getElements() {
-        return elements;
-    }
-
-    /**
-     * Retrieve the total number of features.
-     *
-     * @return The count.
-     */
-    public int getNumberOfFeatures() {
-        return elements.size();
-    }
-
-    /**
-     * Retrieve the total number of scenarios.
-     *
-     * @return The count.
-     */
-    public int getNumberOfScenarios() {
-        return elements.values().stream().mapToInt(List::size).sum();
+        this.numberOfFeatures = numberOfFeatures;
+        this.numberOfScenarios = numberOfScenarios;
     }
 
     public TreeNode getRootTreeNode() {
         return rootTreeNode;
+    }
+
+    public int getNumberOfFeatures(){
+        return numberOfFeatures;
+    }
+
+    public int getNumberOfScenarios(){
+        return numberOfScenarios;
     }
 }
 

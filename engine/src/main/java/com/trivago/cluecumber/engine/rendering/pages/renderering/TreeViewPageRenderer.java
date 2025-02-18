@@ -70,53 +70,48 @@ public class TreeViewPageRenderer extends PageRenderer {
             final Template template)
             throws CluecumberException {
 
-        Map<Feature, List<Element>> scenariosPerFeatures = new LinkedHashMap<>();
         Set<Feature> features = allFeaturesPageCollection.getFeatures()
                 .stream().sorted(Comparator.comparing(Feature::getName))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
 
-        rootTreeNode = new TreeNode("root", false);
-
+        rootTreeNode = new TreeNode("root", null);
+        int numberOfFeatures = features.size();
+        int numberOfScenarios = 0;
         for (Feature feature : features) {
+            Map<Feature, List<Element>> scenariosPerFeatures = new LinkedHashMap<>();
             String uri = feature.getUri();
-            addPath(uri);
-
-            scenariosPerFeatures.put(feature, allScenariosPageCollection.getElementsByFeatureIndex(feature.getIndex()));
+            List<Element> scenarios = allScenariosPageCollection.getElementsByFeatureIndex(feature.getIndex());
+            numberOfScenarios += scenarios.size();
+            scenariosPerFeatures.put(feature, scenarios);
+            addPath(uri, scenariosPerFeatures);
         }
-
-
-        printTree(rootTreeNode, 0);
 
         return processedContent(
                 template,
-                new TreeViewPageCollection(rootTreeNode, scenariosPerFeatures, allFeaturesPageCollection.getPageTitle()),
+                new TreeViewPageCollection(
+                        rootTreeNode,
+                        allFeaturesPageCollection.getPageTitle(),
+                        numberOfFeatures,
+                        numberOfScenarios
+                ),
                 propertyManager.getNavigationLinks()
         );
     }
 
-    private void printTree(final TreeNode node, final int level) {
-        for (int i = 0; i < level; i++) {
-            System.out.print("  ");
-        }
-        System.out.println("Node: " + node.getName() + " isFeature: " + node.isFeatureFile());
-
-        for (TreeNode child : node.getChildren().values()) {
-            printTree(child, level + 1);
-        }
-    }
-
-    public void addPath(String path) {
+    public void addPath(final String path, final Map<Feature, List<Element>> features) {
         String[] parts = path.split("/");
         TreeNode current = rootTreeNode;
 
         for (String part : parts) {
-            if (part.isEmpty()) {
-                continue;
+            if (!part.isEmpty()) {
+                Map<Feature, List<Element>> tmpFeatures;
+                if (part.endsWith(".feature")) {
+                    tmpFeatures = features;
+                } else {
+                    tmpFeatures = null;
+                }
+                current = current.getChildren().computeIfAbsent(part, k -> new TreeNode(part, tmpFeatures));
             }
-            boolean isFeatureFile = part.endsWith(".feature");
-
-            current.getChildren().putIfAbsent(part, new TreeNode(part, isFeatureFile));
-            current = current.getChildren().get(part);
         }
     }
 }

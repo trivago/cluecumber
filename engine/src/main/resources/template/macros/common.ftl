@@ -27,7 +27,9 @@ limitations under the License.
 </#macro>
 
 <#function pluralizeFn word unitCount>
-    <#if unitCount gt 1>
+    <#if unitCount == 0>
+        <#return "${word}s" />
+    <#elseif unitCount gt 1>
         <#return "${word}s" />
     <#else>
         <#return "${word}" />
