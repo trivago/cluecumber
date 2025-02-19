@@ -93,6 +93,7 @@ public class ReportGenerator {
         copyStaticReportAssets(reportDirectory);
         copyCustomCss(reportDirectory);
         copyCustomFavicon(reportDirectory);
+        copyCustomLogo(reportDirectory);
 
         boolean redirectToFirstScenarioPage =
                 propertyManager.getStartPage() == Settings.StartPage.ALL_SCENARIOS &&
@@ -126,6 +127,7 @@ public class ReportGenerator {
         fileSystemManager.createDirectory(pagesDirectory + Settings.SCENARIO_DETAIL_PAGE_PATH);
         fileSystemManager.createDirectory(pagesDirectory + Settings.FEATURE_SCENARIOS_PAGE_PATH);
         fileSystemManager.createDirectory(pagesDirectory + Settings.TAG_SCENARIO_PAGE_PATH);
+        fileSystemManager.createDirectory(pagesDirectory + Settings.EXCEPTION_SCENARIO_PAGE_PATH);
         fileSystemManager.createDirectory(pagesDirectory + Settings.STEP_SCENARIO_PAGE_PATH);
     }
 
@@ -158,6 +160,18 @@ public class ReportGenerator {
             fileSystemManager.copyResource(customFavicon, reportDirectory + "/img/favicon.png");
         } else {
             copyFileFromJarToReportDirectory("/img/favicon.png");
+        }
+    }
+
+    /**
+     * Copy custom logo to the specified target directory.
+     */
+    private void copyCustomLogo(final String reportDirectory) throws CluecumberException {
+        String customLogo = propertyManager.getCustomLogoFile();
+        if (customLogo != null && !customLogo.isEmpty()) {
+            fileSystemManager.copyResource(customLogo, reportDirectory + "/img/logo.png");
+        } else {
+            copyFileFromJarToReportDirectory("/img/logo.png");
         }
     }
 

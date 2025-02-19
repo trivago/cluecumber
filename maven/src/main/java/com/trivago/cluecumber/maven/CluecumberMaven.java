@@ -96,6 +96,12 @@ public final class CluecumberMaven extends AbstractMojo {
     private String customFavicon = "";
 
     /**
+     * Custom logo that is used for the generated report.
+     */
+    @Parameter(property = "reporting.customLogo")
+    private String customLogo = "";
+
+    /**
      * Custom flag that determines if step output sections of scenario detail pages should be expanded (default: false).
      */
     @Parameter(property = "reporting.expandOutputs", defaultValue = "false")
@@ -197,6 +203,7 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setLogLevel(CluecumberLogger.CluecumberLogLevel.valueOf(logLevel.toUpperCase()))
                     .setCustomCssFile(customCss)
                     .setCustomFaviconFile(customFavicon)
+                    .setCustomLogoFile(customLogo)
                     .setCustomNavigationLinks(customNavigationLinks)
                     .setCustomParameters(customParameters)
                     .setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase()))

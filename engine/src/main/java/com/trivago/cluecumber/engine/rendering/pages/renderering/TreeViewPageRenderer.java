@@ -41,6 +41,7 @@ import java.util.stream.Collectors;
 public class TreeViewPageRenderer extends PageRenderer {
 
     private final PropertyManager propertyManager;
+    private TreeNode rootTreeNode;
 
     /**
      * Constructor for dependency injection.
@@ -48,9 +49,7 @@ public class TreeViewPageRenderer extends PageRenderer {
      * @param propertyManager The {@link PropertyManager} instance.
      */
     @Inject
-    public TreeViewPageRenderer(
-            final PropertyManager propertyManager
-    ) {
+    public TreeViewPageRenderer(final PropertyManager propertyManager) {
         this.propertyManager = propertyManager;
     }
 
@@ -69,19 +68,48 @@ public class TreeViewPageRenderer extends PageRenderer {
             final Template template)
             throws CluecumberException {
 
-        Map<Feature, List<Element>> scenariosPerFeatures = new LinkedHashMap<>();
         Set<Feature> features = allFeaturesPageCollection.getFeatures()
                 .stream().sorted(Comparator.comparing(Feature::getName))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
+
+        rootTreeNode = new TreeNode("root", null);
+        int numberOfFeatures = features.size();
+        int numberOfScenarios = 0;
         for (Feature feature : features) {
-            scenariosPerFeatures.put(feature, allScenariosPageCollection.getElementsByFeatureIndex(feature.getIndex()));
+            Map<Feature, List<Element>> scenariosPerFeatures = new LinkedHashMap<>();
+            String uri = feature.getUri();
+            List<Element> scenarios = allScenariosPageCollection.getElementsByFeatureIndex(feature.getIndex());
+            numberOfScenarios += scenarios.size();
+            scenariosPerFeatures.put(feature, scenarios);
+            addPath(uri, scenariosPerFeatures);
         }
 
         return processedContent(
                 template,
-                new TreeViewPageCollection(scenariosPerFeatures, allFeaturesPageCollection.getPageTitle()),
+                new TreeViewPageCollection(
+                        rootTreeNode,
+                        allFeaturesPageCollection.getPageTitle(),
+                        numberOfFeatures,
+                        numberOfScenarios
+                ),
                 propertyManager.getNavigationLinks()
         );
     }
 
+    public void addPath(final String path, final Map<Feature, List<Element>> features) {
+        String[] parts = path.split("/");
+        TreeNode current = rootTreeNode;
+
+        for (String part : parts) {
+            if (!part.isEmpty()) {
+                Map<Feature, List<Element>> tmpFeatures;
+                if (part.endsWith(".feature")) {
+                    tmpFeatures = features;
+                } else {
+                    tmpFeatures = null;
+                }
+                current = current.getChildren().computeIfAbsent(part, k -> new TreeNode(part, tmpFeatures));
+            }
+        }
+    }
 }

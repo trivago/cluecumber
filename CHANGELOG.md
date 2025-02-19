@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.11.0] - 2025-02-19
+
+### Added
+
+* "Copy to clipboard" button for step outputs, docstrings, text attachments and exception messages (#371)
+* Custom logo capability (#367)
+* New failures page that shows scenarios based on their exception (#362) 
+* Tree view now takes the directory structure into account (#366)
+
+### Changed
+
+* Updated junit to `5.12.0-RC2`
+* Updated javadoc to `3.11.2`
+* Updated dagger to `2.55`
+* Updated gson to `2.12.1`
+
+### Fixed
+
+* Correct pluralization for zero elements everywhere
+
 ## [3.10.0] - 2025-01-06
 
 ### Added
@@ -961,6 +981,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.0
 
 [3.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.10.0
 

@@ -305,6 +305,19 @@ public final class CluecumberEngine {
     }
 
     /**
+     * Custom logo image file to use for the report.
+     *
+     * @param customLogo The path to a logo file.
+     * @throws MissingFileException Thrown if the specified file does not exist.
+     */
+    public void setCustomLogo(final String customLogo) throws MissingFileException {
+        if (customLogo == null) {
+            return;
+        }
+        propertyManager.setCustomLogoFile(customLogo);
+    }
+
+    /**
      * Set a custom color for passed scenarios.
      *
      * @param customStatusColorPassed A color in hex format.

@@ -40,6 +40,7 @@ public class CluecumberCore {
         cluecumberEngine = DaggerCluecumberCoreGraph.create().getCluecumberEngine();
         cluecumberEngine.setCustomCssFile(builder.customCssFile);
         cluecumberEngine.setCustomFavicon(builder.customFavicon);
+        cluecumberEngine.setCustomLogo(builder.customLogo);
         cluecumberEngine.setCustomNavigationLinks(builder.customNavigationLinks);
         cluecumberEngine.setCustomPageTitle(builder.customPageTitle);
         cluecumberEngine.setCustomParameters(builder.customParameters);
@@ -78,6 +79,7 @@ public class CluecumberCore {
     public static class Builder {
         private String customCssFile;
         private String customFavicon;
+        private String customLogo;
         private LinkedHashMap<String, String> customNavigationLinks;
         private String customPageTitle;
         private LinkedHashMap<String, String> customParameters;
@@ -134,6 +136,17 @@ public class CluecumberCore {
          */
         public Builder setCustomFaviconFile(final String customFavicon) {
             this.customFavicon = customFavicon;
+            return this;
+        }
+
+        /**
+         * Custom logo to display in the page headers.
+         *
+         * @param customLogo The path to a logo png file.
+         * @return The {@link Builder}.
+         */
+        public Builder setCustomLogoFile(final String customLogo) {
+            this.customLogo = customLogo;
             return this;
         }
 

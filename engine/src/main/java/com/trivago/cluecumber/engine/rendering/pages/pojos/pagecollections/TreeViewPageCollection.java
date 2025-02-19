@@ -15,54 +15,42 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections;
 
-import com.trivago.cluecumber.engine.json.pojo.Element;
-import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
-
-import java.util.List;
-import java.util.Map;
+import com.trivago.cluecumber.engine.rendering.pages.renderering.TreeNode;
 
 /**
  * Page collection for the tree view page.
  */
 public class TreeViewPageCollection extends PageCollection {
-    private final Map<Feature, List<Element>> elements;
+    private final TreeNode rootTreeNode;
+    private final int numberOfFeatures;
+    private final int numberOfScenarios;
 
     /**
      * Constructor.
      *
-     * @param elements  The map of features and associated scenarios.
-     * @param pageTitle The title of the tree view page.
+     * @param rootTreeNode The root node of the tree view.
+     * @param pageTitle    The title of the tree view page.
      */
-    public TreeViewPageCollection(final Map<Feature, List<Element>> elements, final String pageTitle) {
+    public TreeViewPageCollection(final TreeNode rootTreeNode,
+                                  final String pageTitle,
+                                  final int numberOfFeatures,
+                                  final int numberOfScenarios) {
         super(pageTitle);
-        this.elements = elements;
+        this.rootTreeNode = rootTreeNode;
+        this.numberOfFeatures = numberOfFeatures;
+        this.numberOfScenarios = numberOfScenarios;
     }
 
-    /**
-     * Get the list of features and their scenarios.
-     *
-     * @return The map of features and associated scenarios.
-     */
-    public Map<Feature, List<Element>> getElements() {
-        return elements;
+    public TreeNode getRootTreeNode() {
+        return rootTreeNode;
     }
 
-    /**
-     * Retrieve the total number of features.
-     *
-     * @return The count.
-     */
-    public int getNumberOfFeatures() {
-        return elements.size();
+    public int getNumberOfFeatures(){
+        return numberOfFeatures;
     }
 
-    /**
-     * Retrieve the total number of scenarios.
-     *
-     * @return The count.
-     */
-    public int getNumberOfScenarios() {
-        return elements.values().stream().mapToInt(List::size).sum();
+    public int getNumberOfScenarios(){
+        return numberOfScenarios;
     }
 }
 

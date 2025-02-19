@@ -59,6 +59,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     private Tag tagFilter;
     private Feature featureFilter;
     private Step stepFilter;
+    private String exceptionFilter;
 
     /**
      * Constructor.
@@ -269,7 +270,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
             for (Element element : report.getElements()) {
                 ZonedDateTime currentStartDateTime = element.getStartDateTime();
                 if (currentStartDateTime != null &&
-                    (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime))) {
+                        (earliestStartDateTime == null || currentStartDateTime.isBefore(earliestStartDateTime))) {
                     earliestStartDateTime = currentStartDateTime;
                 }
             }
@@ -283,7 +284,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
             for (Element element : report.getElements()) {
                 ZonedDateTime currentEndDateTime = element.getEndDateTime();
                 if (currentEndDateTime != null &&
-                    (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime))) {
+                        (latestEndDateTime == null || currentEndDateTime.isAfter(latestEndDateTime))) {
                     latestEndDateTime = currentEndDateTime;
                 }
             }
@@ -300,7 +301,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         ZonedDateTime earliestStartDateTime = getEarliestStartDateTime();
         if (earliestStartDateTime != null) {
             return RenderingUtils.convertZonedDateTimeToDateString(earliestStartDateTime) + " " +
-                   RenderingUtils.convertZonedDateTimeToTimeString(earliestStartDateTime);
+                    RenderingUtils.convertZonedDateTimeToTimeString(earliestStartDateTime);
         }
         return "";
     }
@@ -314,7 +315,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         ZonedDateTime latestEndDateTime = getLatestEndDateTime();
         if (latestEndDateTime != null) {
             return RenderingUtils.convertZonedDateTimeToDateString(latestEndDateTime) + " " +
-                   RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
+                    RenderingUtils.convertZonedDateTimeToTimeString(latestEndDateTime);
         }
         return "";
     }
@@ -335,6 +336,24 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
      */
     public void setTagFilter(final Tag tagFilter) {
         this.tagFilter = tagFilter;
+    }
+
+    /**
+     * Get the current exception filter to filter scenarios by exception message.
+     *
+     * @return The exception filter.
+     */
+    public String getExceptionFilter() {
+        return exceptionFilter;
+    }
+
+    /**
+     * Set the current exception filter to filter scenarios by exception message.
+     *
+     * @param exceptionFilter The exception filter.
+     */
+    public void setExceptionFilter(final String exceptionFilter) {
+        this.exceptionFilter = exceptionFilter;
     }
 
     /**
@@ -420,6 +439,7 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         clone.setFeatureFilter(null);
         clone.setStepFilter(null);
         clone.setTagFilter(null);
+        clone.setExceptionFilter(null);
         clone.clearReports();
         List<Report> clonedReports = new ArrayList<>();
         for (Report r : getReports()) {

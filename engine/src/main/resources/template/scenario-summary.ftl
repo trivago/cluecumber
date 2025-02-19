@@ -22,10 +22,19 @@ limitations under the License.
 
 <#if (tagFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios tagged with '${tagFilter.name}'">
+    <#assign headline = "Scenarios tagged with">
     <#assign pageName = "Tagged Scenarios">
     <#assign highlight = "tag_summary">
-    <#assign subheadline = "">
+    <#assign subheadline = "${tagFilter.name}">
+    <#assign subsubheadline = "">
+    <#assign preheadline = "">
+    <#assign preheadlineLink = "">
+<#elseif (exceptionFilter??)>
+    <#assign base = "./../..">
+    <#assign headline = "Scenarios with Exception">
+    <#assign pageName = "Scenarios with Exception">
+    <#assign highlight = "exception_summary">
+    <#assign subheadline = "${exceptionFilter}">
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">
@@ -40,10 +49,10 @@ limitations under the License.
     <#assign preheadlineLink="pages/feature-scenarios/feature_${featureFilter.index?c}.html">
 <#elseif (stepFilter??)>
     <#assign base = "./../..">
-    <#assign headline = "Scenarios using Step '${stepFilter.returnNameWithArgumentPlaceholders()}'">
+    <#assign headline = "Scenarios using Step">
     <#assign pageName = "Scenarios with Step">
     <#assign highlight = "step_summary">
-    <#assign subheadline = "">
+    <#assign subheadline = "${stepFilter.returnNameWithArgumentPlaceholders()}">
     <#assign subsubheadline = "">
     <#assign preheadline = "">
     <#assign preheadlineLink = "">

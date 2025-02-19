@@ -30,31 +30,48 @@ preheadlineLink="">
 
     <div class="row" id="tree-view">
         <@page.card width="12" title="${numberOfFeatures} ${common.pluralizeFn('Feature', numberOfFeatures)} with ${numberOfScenarios} ${common.pluralizeFn('Scenario', numberOfScenarios)}" subtitle="" classes="">
-            <ul>
-                <#list elements as feature, scenarios>
-                    <#assign tooltipText = "">
-                    <#if feature.description?has_content>
-                        <#assign tooltipText = "${feature.description} | ">
-                    </#if>
-                    <#assign tooltipText = "${tooltipText}${feature.uri}">
-                    <li>
-                        <span data-toggle="tooltip" title="${tooltipText}">
-                            <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>
-                        </span>
-                    </li>
-                    <ol type="1">
-                        <#list scenarios as scenario>
-                            <#if ((!scenario.isMultiRunParent() && !scenario.isMultiRunChild()) || scenario.isMultiRunParent()) >
-                                <li style="list-style-type: decimal;"><a
-                                            href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
-                                            style="word-break: break-all">${scenario.name?html}</a>
-                                </li>
-                            </#if>
+            <#macro renderTree node>
+                <#if node.children?has_content>
+                    <ol>
+                        <#list node.children?values as child>
+                            <li>
+                                <#if child.features??>
+                                    <#list child.features as feature, scenarios>
+                                        <#assign tooltipText = "${feature.uri}">
+                                        <#if feature.description?has_content>
+                                            <#assign tooltipText = "${tooltipText} | ${feature.description}">
+                                        </#if>
+
+                                        <span data-toggle="tooltip" title="${tooltipText}">
+                                            <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>
+                                        </span>
+
+                                        <#if scenarios??>
+                                            <ul>
+                                                <#list scenarios as scenario>
+                                                    <#if ((!scenario.isMultiRunParent() && !scenario.isMultiRunChild()) || scenario.isMultiRunParent()) >
+                                                        <li style="list-style-type: square;">
+                                                            <a href="pages/scenario-detail/scenario_${scenario.scenarioIndex?c}.html"
+                                                               style="word-break: break-all">${scenario.name?html}</a>
+                                                        </li>
+                                                    </#if>
+                                                </#list>
+                                            </ul>
+                                        </#if>
+                                        <hr>
+                                    </#list>
+                                <#else>
+                                    <em>${child.name}/</em>
+                                </#if>
+                                <@renderTree node=child/>
+                            </li>
                         </#list>
                     </ol>
-                    <hr>
-                </#list>
-            </ul>
+                </#if>
+            </#macro>
+            <div class="tree-view">
+                <@renderTree node=rootTreeNode/>
+            </div>
         </@page.card>
     </div>
 </@page.page>

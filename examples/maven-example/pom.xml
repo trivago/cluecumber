@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.10.0</version>
+    <version>3.11.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -72,10 +72,13 @@
                     <!-- <failScenariosOnPendingOrUndefinedSteps>true</failScenariosOnPendingOrUndefinedSteps> -->
 
                     <!-- Optional custom CSS for custom styling -->
-                    <!-- <customCss>custom/custom.css</customCss> -->
+                    <!-- <customCss>${project.basedir}/custom/custom.css</customCss> -->
 
                     <!-- Optional custom favicon (needs to be a png) -->
-                    <!-- <customFavicon>custom/favicon.png</customFavicon> -->
+                    <customFavicon>${project.basedir}/custom/favicon.png</customFavicon>
+
+                    <!-- Optional custom logo (needs to be an image) -->
+                    <customLogo>${project.basedir}/custom/logo.png</customLogo>
 
                     <!-- Optional properties to expand scenario hooks, step hooks, doc strings, attachments and step outputs when scenario details are shown (default: false) -->
                     <expandSubSections>false</expandSubSections>

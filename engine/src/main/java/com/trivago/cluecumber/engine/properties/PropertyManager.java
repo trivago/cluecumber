@@ -63,6 +63,7 @@ public class PropertyManager {
     private boolean expandPreviousScenarioRuns = false;
     private String customCssFile;
     private String customFaviconFile;
+    private String customLogoFile;
     private String customParametersFile;
     private Settings.CustomParamDisplayMode customParametersDisplayMode =
             Settings.CustomParamDisplayMode.ALL_PAGES;
@@ -452,6 +453,32 @@ public class PropertyManager {
     }
 
     /**
+     * Get the custom logo file path.
+     *
+     * @return The path.
+     */
+    public String getCustomLogoFile() {
+        return customLogoFile;
+    }
+
+    /**
+     * Set the custom logo file path.
+     *
+     * @param customLogoFile The path.
+     * @throws MissingFileException Thrown if the file is not found.
+     */
+    public void setCustomLogoFile(final String customLogoFile) throws MissingFileException {
+        System.out.println("CUSTOM LOGO: " + customLogoFile);
+        this.customLogoFile = customLogoFile;
+        if (!isSet(customLogoFile)) {
+            return;
+        }
+        if (!fileIO.isExistingFile(customLogoFile)) {
+            throw new MissingFileException(customLogoFile + " (customLogoFile)");
+        }
+    }
+
+    /**
      * Get the custom hex color for passed elements.
      *
      * @return The hex color string.
@@ -584,6 +611,9 @@ public class PropertyManager {
         }
         if (isSet(customFaviconFile)) {
             logger.info("- custom favicon file              : " + customFaviconFile, DEFAULT);
+        }
+        if (isSet(customLogoFile)) {
+            logger.info("- custom logo file                 : " + customLogoFile, DEFAULT);
         }
 
         logger.info("- colors (passed, failed, skipped) : " +

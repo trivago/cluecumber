@@ -31,22 +31,25 @@ public class VisitorDirectory {
     /**
      * Constructor for dependency injection.
      *
-     * @param featureVisitor  The {@link FeatureVisitor} instance.
-     * @param scenarioVisitor The {@link ScenarioVisitor} instance.
-     * @param stepVisitor     The {@link StepVisitor} instance.
-     * @param tagVisitor      The {@link TagVisitor} instance.
+     * @param scenarioVisitor  The {@link ScenarioVisitor} instance.
+     * @param featureVisitor   The {@link FeatureVisitor} instance.
+     * @param tagVisitor       The {@link TagVisitor} instance.
+     * @param exceptionVisitor The {@link ExceptionVisitor} instance.
+     * @param stepVisitor      The {@link StepVisitor} instance.
      */
     @Inject
     public VisitorDirectory(
             final ScenarioVisitor scenarioVisitor,
             final FeatureVisitor featureVisitor,
             final TagVisitor tagVisitor,
+            final ExceptionVisitor exceptionVisitor,
             final StepVisitor stepVisitor
     ) {
         visitors = new ArrayList<>();
         visitors.add(scenarioVisitor);
         visitors.add(featureVisitor);
         visitors.add(tagVisitor);
+        visitors.add(exceptionVisitor);
         visitors.add(stepVisitor);
     }
 

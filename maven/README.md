@@ -33,6 +33,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
   - [Defining the report start page](#defining-the-report-start-page)
   - [Defining a custom report title](#defining-a-custom-report-title)
   - [Defining a custom CSS file](#defining-a-custom-css-file)
+  - [Defining a custom logo](#defining-a-custom-logo) 
   - [Defining a custom favicon](#defining-a-custom-favicon)
   - [Defining custom passed, skipped and failed colors](#defining-custom-passed-skipped-and-failed-colors)
   - [Enabling a compact view of multiple runs of the same scenarios](#enabling-a-compact-view-of-multiple-runs-of-the-same-scenarios)
@@ -52,7 +53,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-maven</artifactId>
-    <version>3.1.0</version>
+    <version>3.11.0</version>
     <executions>
         <execution>
             <id>report</id>
@@ -390,6 +391,20 @@ Likewise, if you want to hide elements from the report, you can also add this to
 }
 ```
 
+## Defining a custom logo
+
+The logo is displayed on every page in the top right corner and can be customized by setting the `customLogo` property. This must be
+a png file. It is automatically set to a maximum width of 300px and/or height of 100px if its size exceeds these values.
+
+![Custom Logo](../documentation/img/custom_logo.jpg)
+
+```xml
+<configuration>
+    <customLogo>custom/logo.png</customLogo>
+    ...
+</configuration>
+```
+
 ## Defining a custom favicon
 
 The favicon is displayed in the browser tab and can be customized by setting the `customFavicon` property. This must be
@@ -398,7 +413,6 @@ a png file of size 16x16 or 32x32 pixels
 ![Custom Favicon](../documentation/img/custom_favicon.png)
 
 ```xml
-
 <configuration>
     <customFavicon>custom/favicon.png</customFavicon>
     ...

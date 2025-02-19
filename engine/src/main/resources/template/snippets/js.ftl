@@ -150,4 +150,15 @@ limitations under the License.
             }
         }, 500);
     }
+
+    function copyText(elementId) {
+        let text = document.getElementById(elementId).innerText;
+        if (text.startsWith("Copy to clipboard")) {
+            text = text.substring(18);
+        }
+        navigator.clipboard.writeText(text)
+            .catch((error) => {
+                console.error('Failed to copy text from ' + elementId + ':', error);
+            });
+    }
 </script>

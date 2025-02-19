@@ -24,6 +24,10 @@ html {
     max-width: 2000px;
 }
 
+h3 {
+    margin-top: 0;
+}
+
 h2, h3, h4, h5 {
     overflow-wrap: break-word;
     white-space: pre-line;
@@ -81,11 +85,8 @@ a {
 }
 
 #tree-view li {
-    list-style-type: none;
+    list-style-type: disclosure-open;
     text-align: left;
-}
-
-#tree-view ul li {
     margin-bottom: .4rem;
 }
 

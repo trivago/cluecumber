@@ -110,9 +110,9 @@ limitations under the License.
                                                     </button>
                                                 </#if>
 
-                                                <#if element.firstExceptionClass != "">
+                                                <#if element.firstExceptionSummary != "">
                                                     <p class="firstException text-left small text-gray"
-                                                       style="word-break: break-word">${element.firstExceptionClass}</p>
+                                                       style="word-break: break-word">${element.firstExceptionSummary}</p>
                                                 </#if>
 
                                                 <#if element.isMultiRunParent()>
@@ -123,12 +123,13 @@ limitations under the License.
                                                                 <li>
                                                                     <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html"
                                                                        style="word-break: break-all">Previous run from
-                                                                        ${childElement.startDateString}, ${childElement.startTimeString}
+                                                                        ${childElement.startDateString}
+                                                                        , ${childElement.startTimeString}
                                                                         <@common.status status=childElement.status.statusString/>
                                                                     </a>
-                                                                    <#if childElement.firstExceptionClass != "">
+                                                                    <#if childElement.firstExceptionSummary != "">
                                                                         <p class="firstException text-left small text-gray"
-                                                                           style="word-break: break-word">${childElement.firstExceptionClass}</p>
+                                                                           style="word-break: break-word">${childElement.firstExceptionSummary}</p>
                                                                     </#if>
                                                                 </li>
                                                             </#list>
@@ -163,6 +164,7 @@ limitations under the License.
         <#list step.embeddings as attachment>
             <div class="row w-100 p-3 m-0 scenarioAttachment">
                 <#assign attachmentID = attachment.hashCode()?string["0"]>
+                <#assign isTextAttachment = attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
                 <div class="w-100 p-1 m-0 border-bottom small text-left">
                     <a class="btn-link" data-toggle="collapse" href="#expandable${attachmentID}" role="button"
                        aria-expanded="false" aria-controls="expandable${attachmentID}">Toggle</a> |
@@ -170,6 +172,11 @@ limitations under the License.
                         ${attachment.name} (${attachment.mimeType} attachment)
                     <#else>
                         ${attachment.mimeType} attachment
+                    </#if>
+                    <#if isTextAttachment>
+                        <button onclick="copyText('expandable${attachmentID}')" type="button" class="btn-clipboard">
+                            Copy to clipboard
+                        </button>
                     </#if>
                 </div>
                 <div class="w-100 text-left m-auto">
@@ -185,7 +192,7 @@ limitations under the License.
                             <iframe src="attachments/${attachment.filename}"
                                     srcdoc="${attachment.decodedData}" width="100%" height="1"
                                     onload="resizeIframe(this);" class="embedded-html"></iframe>
-                        <#elseif attachment.mimeType == "TXT" || attachment.mimeType == "XML" || attachment.mimeType == "JSON" || attachment.mimeType == "APPLICATION_XML">
+                        <#elseif isTextAttachment>
                             <pre class="embedding-content small embedded-txt">${attachment.decodedData}</pre>
                         <#elseif attachment.mimeType == "MP4">
                             <#if attachment.externalContent>
@@ -209,7 +216,10 @@ limitations under the License.
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
         <div class="row w-100 p-3 m-0 scenarioErrorMessage">
-            <div class="w-100 text-left border border-danger">
+            <button onclick="copyText('${step.index!0}_errorMessage')" type="button" class="btn-clipboard">
+                Copy to clipboard
+            </button>
+            <div class="w-100 text-left border border-danger" id="${step.index!0}_errorMessage">
                 <pre class="text-danger small p-2">${step.result.returnErrorMessageWithClickableLinks()}</pre>
             </div>
         </div>
@@ -228,6 +238,9 @@ limitations under the License.
             <div class="w-100 text-left m-auto">
                 <div class="w-100 text-left-sm m-auto collapse ${expandOutputs?then("show", "")}"
                      id="expandableOutput${step.index!0}_${sectionId}">
+                    <button onclick="copyText('expandableOutput${step.index!0}_${sectionId}')" type="button" class="btn-clipboard">
+                        Copy to clipboard
+                    </button>
                     <pre class="embedding-content small embedded-txt">${step.output?join("<br>")}</pre>
                 </div>
             </div>

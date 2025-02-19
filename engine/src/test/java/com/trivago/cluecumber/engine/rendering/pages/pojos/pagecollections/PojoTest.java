@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 public class PojoTest {
-    private static final int EXPECTED_CLASS_COUNT = 12;
+    private static final int EXPECTED_CLASS_COUNT = 13;
     private static final String POJO_PACKAGE = "com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections";
 
     @BeforeAll

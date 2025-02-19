@@ -49,6 +49,9 @@ limitations under the License.
                                 <#case "feature_summary">
                                     <#assign linkName="All Features">
                                     <#break>
+                                <#case "exception_summary">
+                                    <#assign linkName="All Exceptions">
+                                    <#break>
                                 <#case "tree_view">
                                     <#assign linkName="Tree View">
                                     <#break>

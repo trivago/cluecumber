@@ -14,17 +14,19 @@ public class VisitorDirectoryTest {
         ScenarioVisitor scenarioVisitor = mock(ScenarioVisitor.class);
         FeatureVisitor featureVisitor = mock(FeatureVisitor.class);
         TagVisitor tagVisitor = mock(TagVisitor.class);
+        ExceptionVisitor exceptionVisitor = mock(ExceptionVisitor.class);
         StepVisitor stepVisitor = mock(StepVisitor.class);
         visitorDirectory = new VisitorDirectory(
                 scenarioVisitor,
                 featureVisitor,
                 tagVisitor,
+                exceptionVisitor,
                 stepVisitor
         );
     }
 
     @Test
     public void getVisitorDirectoryTest() {
-        assertEquals(visitorDirectory.getVisitors().size(), 4);
+        assertEquals(visitorDirectory.getVisitors().size(), 5);
     }
 }

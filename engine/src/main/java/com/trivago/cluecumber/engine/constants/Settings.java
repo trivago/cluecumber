@@ -80,6 +80,18 @@ public class Settings {
      */
     public static final String TAG_SCENARIO_PAGE_FRAGMENT = "/" + TAG_SCENARIO_PAGE_PATH + "/tag_";
     /**
+     * The name of the exception summary page.
+     */
+    public final static String EXCEPTION_SUMMARY_PAGE = "exception-summary";
+    /**
+     * The folder of the scenarios by exception pages.
+     */
+    public static final String EXCEPTION_SCENARIO_PAGE_PATH = "exception-scenarios";
+    /**
+     * The first part of the name of scenario by exception pages.
+     */
+    public static final String EXCEPTION_SCENARIO_PAGE_FRAGMENT = "/" + EXCEPTION_SCENARIO_PAGE_PATH + "/exception_";
+    /**
      * The name of the step summary page.
      */
     public final static String STEP_SUMMARY_PAGE = "step-summary";
@@ -129,6 +141,10 @@ public class Settings {
          * The tag overview page.
          */
         ALL_TAGS(TAG_SUMMARY_PAGE),
+        /**
+         * The tag overview page.
+         */
+        ALL_EXCEPTIONS(EXCEPTION_SUMMARY_PAGE),
         /**
          * The step overview page.
          */
