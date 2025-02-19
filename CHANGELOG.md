@@ -7,17 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.11.0] - UNRELEASED
+## [3.11.0] - 2025-02-19
 
 ### Added
 
 * "Copy to clipboard" button for step outputs, docstrings, text attachments and exception messages (#371)
 * Custom logo capability (#367)
 * New failures page that shows scenarios based on their exception (#362) 
+* Tree view now takes the directory structure into account (#366)
 
 ### Changed
 
-* Tree view now takes the directory structure into account (#366)
 * Updated junit to `5.12.0-RC2`
 * Updated javadoc to `3.11.2`
 * Updated dagger to `2.55`
