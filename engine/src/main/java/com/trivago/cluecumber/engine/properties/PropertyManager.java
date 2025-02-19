@@ -468,7 +468,6 @@ public class PropertyManager {
      * @throws MissingFileException Thrown if the file is not found.
      */
     public void setCustomLogoFile(final String customLogoFile) throws MissingFileException {
-        System.out.println("CUSTOM LOGO: " + customLogoFile);
         this.customLogoFile = customLogoFile;
         if (!isSet(customLogoFile)) {
             return;
