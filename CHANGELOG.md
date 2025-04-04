@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.12.0] - UNRELEASED
+
+### CHANGED
+
+* Updated JUnit to `5.13.0-M2`
+* Updated Mockito to `5.16.1`
+* Updated Dagger to `2.56.1`
+* Downgraded Maven wrapper to stable version `3.9.9` for release process
+
 ## [3.11.0] - 2025-02-19
 
 ### Added
