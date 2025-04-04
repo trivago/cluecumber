@@ -12,7 +12,6 @@ Back to [Readme](README.md).
 ### CHANGED
 
 * Updated JUnit to `5.13.0-M2`
-* Updated Mockito to `5.13.0-M2`
 * Updated Mockito to `5.16.1`
 * Updated Dagger to `2.56.1`
 * Downgraded Maven wrapper to stable version `3.9.9` for release process
