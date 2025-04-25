@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.12.0] - UNRELEASED
+## [3.11.1] - 2025-04-25
+
+### Fixed
+
+* Freemarker configuration is now dynamically using the current version (#376)
 
 ### CHANGED
 
+* Updated Maven compiler to `3.14.0`
 * Updated JUnit to `5.13.0-M2`
 * Updated Mockito to `5.16.1`
 * Updated Dagger to `2.56.1`
