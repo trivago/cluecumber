@@ -996,6 +996,8 @@ the core component is now the reporting engine that is the base for other forms 
 
 Initial project version on GitHub and Maven Central.
 
+[3.11.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.1
+
 [3.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.0
 
 [3.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.10.0
