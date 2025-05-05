@@ -5,6 +5,7 @@
       {
         "line": 3,
         "name": "This is the background scenario",
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "",
         "type": "background",
         "keyword": "Background",
@@ -64,6 +65,7 @@
       {
         "line": 8,
         "name": "To print doc_string below each and every steps.",
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "",
         "id": "doc-string-feature;to-print-doc-string-below-each-and-every-steps.",
         "type": "scenario",

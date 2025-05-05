@@ -3,6 +3,7 @@
     "line": 2,
     "elements": [
       {
+        "start_timestamp": "2025-05-05T14:14:34.000Z",
         "before": [
           {
             "result": {
@@ -16,6 +17,7 @@
         ],
         "line": 477,
         "name": "Attachment test",
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "",
         "id": "dummy-stp-sanity-feature;login-test",
         "after": [
@@ -119,6 +121,7 @@
       }
     ],
     "name": "Attachments",
+    "start_timestamp": "2025-05-05T14:41:48.000Z",
     "description": "",
     "id": "Scenario containing attachments",
     "keyword": "Feature",

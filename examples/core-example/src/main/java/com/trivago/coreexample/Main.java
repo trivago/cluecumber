@@ -10,6 +10,7 @@ public class Main {
 
         new CluecumberCore.Builder()
                 .setCustomPageTitle("My cool report")
+                .setGroupPreviousScenarioRuns(true)
                 .build().generateReports(jsonDirectory, reportDirectory);
     }
 }

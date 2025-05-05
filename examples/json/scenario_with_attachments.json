@@ -3,6 +3,7 @@
     "description": "This is an attachment test",
     "elements": [
       {
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "Attachment in every step",
         "id": ";",
         "keyword": "Scenario",

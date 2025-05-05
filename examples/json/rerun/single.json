@@ -3,7 +3,7 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2024-09-03T09:00:23.668Z",
+        "start_timestamp": "2025-05-05T14:12:34.000Z",
         "line": 6,
         "name": "Single Scenario",
         "description": "",
@@ -13,7 +13,7 @@
         "steps": [
           {
             "result": {
-              "duration": 467889821,
+              "duration": 12000000000,
               "status": "passed"
             },
             "line": 7,
@@ -31,7 +31,7 @@
           },
           {
             "result": {
-              "duration": 1691629452,
+              "duration": 35000000000,
               "status": "passed"
             },
             "line": 8,

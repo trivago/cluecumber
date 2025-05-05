@@ -3,6 +3,7 @@
     "description": "This is a feature description 1",
     "elements": [
       {
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "",
         "id": ";",
         "keyword": "Scenario",
@@ -52,6 +53,7 @@
         "type": "scenario"
       },
       {
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "",
         "id": ";",
         "keyword": "Scenario",

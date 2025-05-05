@@ -3,6 +3,7 @@
     "description": "This is a feature description 2\nand this is the next line of description",
     "elements": [
       {
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "hook is failing\nwhy?",
         "id": ";",
         "keyword": "Scenario",

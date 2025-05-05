@@ -3,7 +3,7 @@
     "description": "This is a rerun feature",
     "elements": [
       {
-        "start_timestamp": "2024-09-03T09:23:51.166Z",
+        "start_timestamp": "2025-05-05T14:05:22.000Z",
         "description": "",
         "id": ";",
         "keyword": "Scenario",
@@ -18,7 +18,7 @@
             },
             "name": "this is the first step",
             "result": {
-              "duration": 18244280571,
+              "duration": 17000000000,
               "status": "passed"
             }
           },
@@ -30,7 +30,7 @@
             },
             "name": "this is the second step",
             "result": {
-              "duration": 6155261782,
+              "duration": 31000000000,
               "error_message": "This is the error message of step 2",
               "status": "failed"
             }
@@ -54,7 +54,7 @@
     "description": "This is a rerun feature",
     "elements": [
       {
-        "start_timestamp": "2024-09-03T09:25:45.606Z",
+        "start_timestamp": "2025-05-05T14:23:15.000Z",
         "description": "",
         "id": ";",
         "keyword": "Scenario",
@@ -69,7 +69,7 @@
             },
             "name": "this is the first step",
             "result": {
-              "duration": 13244280571,
+              "duration": 8000000000,
               "status": "passed"
             }
           },
@@ -81,7 +81,7 @@
             },
             "name": "this is the second step",
             "result": {
-              "duration": 5255261782,
+              "duration": 42000000000,
               "error_message": "This is the error message of step 2",
               "status": "failed"
             }
@@ -105,7 +105,7 @@
     "description": "This is a rerun feature",
     "elements": [
       {
-        "start_timestamp": "2024-09-03T09:26:13.625Z",
+        "start_timestamp": "2025-05-05T14:41:48.000Z",
         "description": "",
         "id": ";",
         "keyword": "Scenario",
@@ -120,7 +120,7 @@
             },
             "name": "this is the first step",
             "result": {
-              "duration": 12244280571,
+              "duration": 23000000000,
               "status": "passed"
             }
           },
@@ -132,7 +132,7 @@
             },
             "name": "this is the second step",
             "result": {
-              "duration": 25155261782,
+              "duration": 6000000000,
               "status": "passed"
             }
           }
