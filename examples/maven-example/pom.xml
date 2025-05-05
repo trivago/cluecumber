@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <cucumber.report.json.location>${project.basedir}/json</cucumber.report.json.location>
+        <cucumber.report.json.location>${project.basedir}/../json</cucumber.report.json.location>
         <generated.report.location>${project.build.directory}/cluecumber-report</generated.report.location>
     </properties>
 

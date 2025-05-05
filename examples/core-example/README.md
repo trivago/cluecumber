@@ -25,7 +25,7 @@ To run the project you need to have at least Java 11 and Maven 3.3.9 installed o
 
 Just execute the `Main` class to see the report generation of Cluecumber in action.
 
-The example Cucumber JSON files are located in the project's `json` directory. These are based on the https://github.com/aslakhellesoy/cucumber-json-formatter project.
+The example Cucumber JSON files are located in the `../json` directory. These are based on the https://github.com/aslakhellesoy/cucumber-json-formatter project.
 The report is generated inside the `target/cluecumber-report` directory.
 
 __Note:__ The report directory is not automatically wiped when regenerating the report.
