@@ -36,7 +36,6 @@
         <dagger.version>2.56.1</dagger.version>
         <property-aggregator.version>1.5.0</property-aggregator.version>
         <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
-        <openpojo.version>0.9.1</openpojo.version>
     </properties>
 
     <dependencies>
@@ -78,12 +77,6 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.openpojo</groupId>
-            <artifactId>openpojo</artifactId>
-            <version>${openpojo.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

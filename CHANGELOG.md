@@ -26,6 +26,10 @@ Back to [Readme](README.md).
 * Updated Maven Install Plugin to `3.1.4`
 * Updated Maven Flatten Plugin to `1.7.0`
 
+### Removed
+
+* OpenPojo dependency and tests
+
 ## [3.11.1] - 2025-04-25
 
 ### Fixed
