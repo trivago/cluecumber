@@ -28,8 +28,10 @@ public class TreeViewPageCollection extends PageCollection {
     /**
      * Constructor.
      *
-     * @param rootTreeNode The root node of the tree view.
-     * @param pageTitle    The title of the tree view page.
+     * @param rootTreeNode      The root node of the tree view.
+     * @param pageTitle         The title of the tree view page.
+     * @param numberOfFeatures  The total number of features in the tree view.
+     * @param numberOfScenarios The total number of scenarios in the tree view.
      */
     public TreeViewPageCollection(final TreeNode rootTreeNode,
                                   final String pageTitle,
@@ -41,15 +43,30 @@ public class TreeViewPageCollection extends PageCollection {
         this.numberOfScenarios = numberOfScenarios;
     }
 
+    /**
+     * Gets the root tree node of the tree view.
+     *
+     * @return The root TreeNode.
+     */
     public TreeNode getRootTreeNode() {
         return rootTreeNode;
     }
 
-    public int getNumberOfFeatures(){
+    /**
+     * Gets the number of features in the tree view.
+     *
+     * @return The number of features.
+     */
+    public int getNumberOfFeatures() {
         return numberOfFeatures;
     }
 
-    public int getNumberOfScenarios(){
+    /**
+     * Gets the number of scenarios in the tree view.
+     *
+     * @return The number of scenarios.
+     */
+    public int getNumberOfScenarios() {
         return numberOfScenarios;
     }
 }

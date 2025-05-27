@@ -167,6 +167,7 @@ preheadlineLink=preheadlineLink>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const button = document.getElementById('multiRunButton');
+            if (!button) return;
             const target = document.querySelector(button.getAttribute('data-target'));
 
             button.addEventListener('click', function() {

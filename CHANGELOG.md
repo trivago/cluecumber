@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.11.2] - 2025-05-27
+
+### Fixed
+
+* "Uncaught TypeError: button is null" on missing multi-run button in the scenario overview (#379)
+* Freemarker warning after last configuration version change (#378)
+
+### Added
+
+* Missing Javadoc comments
+
+### Changed
+
+* Updated Dagger to `2.56.2`
+* Updated GSON to `2.13.1`
+* Updated Mockito to `5.18.0`
+* Updated Maven Install Plugin to `3.1.4`
+* Updated Maven Flatten Plugin to `1.7.0`
+
+### Removed
+
+* OpenPojo dependency and tests
+
 ## [3.11.1] - 2025-04-25
 
 ### Fixed
@@ -995,6 +1018,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.11.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.2
 
 [3.11.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.1
 
