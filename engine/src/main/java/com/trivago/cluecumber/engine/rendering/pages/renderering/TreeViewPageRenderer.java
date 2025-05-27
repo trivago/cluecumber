@@ -96,6 +96,12 @@ public class TreeViewPageRenderer extends PageRenderer {
         );
     }
 
+    /**
+     * Adds a path to the tree structure.
+     *
+     * @param path     The path to add, e.g., "path/to/feature.feature".
+     * @param features A map of features and their elements to associate with the last node in the path.
+     */
     public void addPath(final String path, final Map<Feature, List<Element>> features) {
         String[] parts = path.split("/");
         TreeNode current = rootTreeNode;
