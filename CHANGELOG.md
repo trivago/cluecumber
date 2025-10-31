@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.12.0] - UNRELEASED
+
+### Changed
+
+* Updated JUnit Jupiter to `6.0.0`
+* Updated Mockito to `5.20.0`
+* Updated GSON to `2.13.2`
+* Updated Dagger to `2.57.2`
+* Updated Maven Compiler plugin to `3.14.1`
+* Updated Maven Enforcer plugin to `3.6.2`
+* Updated Maven GPG Plugin to `3.2.8`
+* Updated Maven Javadoc plugin to `3.12.0`
+* Updated Maven Surefire plugin to `3.5.4`
+* Updated Maven Flatten plugin to `1.7.3`
+
 ## [3.11.2] - 2025-05-27
 
 ### Fixed
