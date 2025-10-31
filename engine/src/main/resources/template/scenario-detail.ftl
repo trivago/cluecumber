@@ -76,7 +76,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                 <hr>
                 <div class="alert alert-secondary" role="alert">
                     Final of ${numberOfChildren + 1} ${common.pluralizeFn("run", numberOfChildren + 1)}, previous:
-                    <ol style="list-style: none; padding: 0;" reversed>
+                    <ol style="list-style: none; padding: 0; margin: 0;" reversed>
                         <#list element.getMultiRunChildren() as childElement>
                             <li>
                                 <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html"

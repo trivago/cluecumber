@@ -9,6 +9,10 @@ Back to [Readme](README.md).
 
 ## [3.12.0] - UNRELEASED
 
+### Added
+
+* Rerun scenarios are now linked to jump from a rerun child directly to the parent and from a parent to all children (#381).
+
 ### Changed
 
 * Updated JUnit Jupiter to `6.0.0`
@@ -65,7 +69,7 @@ Back to [Readme](README.md).
 
 * "Copy to clipboard" button for step outputs, docstrings, text attachments and exception messages (#371)
 * Custom logo capability (#367)
-* New failures page that shows scenarios based on their exception (#362) 
+* New failures page that shows scenarios based on their exception (#362)
 * Tree view now takes the directory structure into account (#366)
 
 ### Changed
