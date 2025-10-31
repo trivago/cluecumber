@@ -74,15 +74,32 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
             <#assign numberOfChildren = element.getMultiRunChildren()?size>
             <#if groupPreviousScenarioRuns && element.multiRunParent>
                 <hr>
-                <div class="alert alert-info" role="alert">
-                    This is the final scenario run after ${numberOfChildren}
-                    previous ${common.pluralizeFn("run", numberOfChildren)}.
+                <div class="alert alert-secondary" role="alert">
+                    Final of ${numberOfChildren + 1} ${common.pluralizeFn("run", numberOfChildren + 1)}, previous:
+                    <ol style="list-style: none; padding: 0;" reversed>
+                        <#list element.getMultiRunChildren() as childElement>
+                            <li>
+                                <a href="pages/scenario-detail/scenario_${childElement.scenarioIndex?c}.html"
+                                   style="word-break: break-all">
+                                    ${childElement.startDateString}, ${childElement.startTimeString}
+                                    <@common.status status=childElement.status.statusString/>
+                                </a>
+                            </li>
+                        </#list>
+                    </ol>
                 </div>
             </#if>
             <#if groupPreviousScenarioRuns && element.multiRunChild>
                 <hr>
-                <div class="alert alert-info" role="alert">
-                    There are more runs of this scenario.
+                <div class="alert alert-secondary" role="alert">
+                    This is part
+                    of ${element.getMultiRunParent().getMultiRunChildren()?size + 1}
+                    ${common.pluralizeFn("run", element.getMultiRunParent().getMultiRunChildren()?size + 1)}.
+                    <br>Latest: <a
+                            href="pages/scenario-detail/scenario_${element.getMultiRunParent().scenarioIndex?c}.html">
+                        ${element.getMultiRunParent().startDateString}, ${element.getMultiRunParent().startTimeString}
+                        <@common.status status=element.getMultiRunParent().status.statusString/>
+                    </a>
                 </div>
             </#if>
 
@@ -242,7 +259,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <#if (step.docString.value)?? >
                                 <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
                                     <div class="row w-100 p-3 m-0">
-                                        <button onclick="copyText('step_${step.index}_docstring')" type="button" class="btn-clipboard">
+                                        <button onclick="copyText('step_${step.index}_docstring')" type="button"
+                                                class="btn-clipboard">
                                             Copy to clipboard
                                         </button>
                                         <div class="w-100 text-left border">
@@ -343,7 +361,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                             <#if (step.docString.value)?? >
                                 <div class="scenarioDocstring collapse" id="step_${step.index}_docstring">
                                     <div class="row w-100 p-3 m-0">
-                                        <button onclick="copyText('step_${step.index}_docstring')" type="button" class="btn-clipboard">
+                                        <button onclick="copyText('step_${step.index}_docstring')" type="button"
+                                                class="btn-clipboard">
                                             Copy to clipboard
                                         </button>
                                         <div class="w-100 text-left border">

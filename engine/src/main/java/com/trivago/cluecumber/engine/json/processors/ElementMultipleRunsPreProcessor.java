@@ -65,8 +65,11 @@ public class ElementMultipleRunsPreProcessor {
 
             group.sort(Comparator.comparing(Element::getStartDateTime, Comparator.nullsLast(Comparator.naturalOrder())).reversed());
             Element parentElement = group.remove(0);
-            parentElement.setMultiRunParent(true);
-            group.forEach(element -> element.isMultiRunChild(true));
+            parentElement.isMultiRunParent(true);
+            group.forEach(element -> {
+                element.isMultiRunChild(true);
+                element.setMultiRunParent(parentElement);
+            });
             parentElement.setMultiRunChildren(group);
         }
 
