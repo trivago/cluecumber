@@ -13,7 +13,13 @@ Back to [Readme](README.md).
 
 * Rerun scenarios are now linked to jump from a rerun child directly to the parent and from a parent to all children (#381).
 
+### Fixed
+
+* Feature description did not preserve line breaks (#384)
+
 ### Changed
+
+* Fixed feature name column on overview page 
 
 * Updated JUnit Jupiter to `6.0.0`
 * Updated Mockito to `5.20.0`

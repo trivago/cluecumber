@@ -33,7 +33,7 @@
       }
     ],
     "name": "My feature with tags and tagged examples",
-    "description": "",
+    "description": "This is a long description\nThis is the second line\n- one\n- two\n- three",
     "id": "my-feature-with-tags-and-tagged-examples",
     "keyword": "Feature",
     "uri": "file:target/parallel/features/MyTest10_scenario007_run001_IT.feature",

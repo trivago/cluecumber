@@ -67,7 +67,7 @@ limitations under the License.
                                 <#if allRequested>
                                     <th class="text-left">#</th>
                                 </#if>
-                                <th class="text-left">Feature</th>
+                                <th class="text-left" style="width: 20%;">Feature</th>
                                 <th class="text-left">Scenario</th>
                                 <th class="text-center">Started</th>
                                 <th class="text-center">Duration</th>
