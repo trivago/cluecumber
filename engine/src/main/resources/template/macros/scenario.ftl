@@ -110,11 +110,29 @@ limitations under the License.
                                                     </button>
                                                 </#if>
 
-                                                <#if element.firstExceptionSummary != "">
-                                                    <p class="firstException text-left small text-gray"
-                                                       style="word-break: break-word">${element.firstExceptionSummary}</p>
+                                                <#if element.firstException?has_content>
+                                                    <div class="firstExceptionContainer">
+                                                        <p class="firstException text-left small text-gray"
+                                                           style="word-break: break-word">
+                                                            ${element.firstExceptionSummary}
+                                                            <a class="btn-link" data-toggle="collapse"
+                                                               href="#exc_${element.scenarioIndex}" role="button"
+                                                               aria-expanded="false"
+                                                               aria-controls="exc_${element.scenarioIndex}">More</a>
+                                                        </p>
+                                                        <div class="collapse mt-2" id="exc_${element.scenarioIndex}">
+                                                            <button onclick="copyText('exc_pre_${element.scenarioIndex}')"
+                                                                    type="button" class="btn-clipboard">
+                                                                Copy to clipboard
+                                                            </button>
+                                                            <div class="w-100 text-left border border-danger"
+                                                                 id="exc_pre_${element.scenarioIndex}">
+                                                                <pre class="text-danger small p-2"
+                                                                     style="white-space: pre-wrap; word-break: break-word">${element.firstException}</pre>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </#if>
-
                                                 <#if element.isMultiRunParent()>
                                                     <div id="multiRun_${element.scenarioIndex}"
                                                          class="multiRunChildren collapse">
@@ -238,7 +256,8 @@ limitations under the License.
             <div class="w-100 text-left m-auto">
                 <div class="w-100 text-left-sm m-auto collapse ${expandOutputs?then("show", "")}"
                      id="expandableOutput${step.index!0}_${sectionId}">
-                    <button onclick="copyText('expandableOutput${step.index!0}_${sectionId}')" type="button" class="btn-clipboard">
+                    <button onclick="copyText('expandableOutput${step.index!0}_${sectionId}')" type="button"
+                            class="btn-clipboard">
                         Copy to clipboard
                     </button>
                     <pre class="embedding-content small embedded-txt">${step.output?join("<br>")}</pre>
