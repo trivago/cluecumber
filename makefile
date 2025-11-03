@@ -19,6 +19,9 @@ show-versions: ## Show most recent dependency versions
 	./mvnw versions:display-plugin-updates -U -ntp
 .Phony: show-versions
 
+deploy: ## Deploy the plugin
+	./mvnw clean deploy -B -Prelease -no-transfer-progress
+
 set-maven-version: ## Change the version of the Maven wrapper
 	@if test -z "$(MAVEN_VERSION)"; then echo "No MAVEN_VERSION set!"; exit 1; fi
 	mvn wrapper:wrapper -Dmaven=${MAVEN_VERSION}

@@ -7,21 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.12.0] - UNRELEASED
+## [3.12.0] - 2025-11-03
 
 ### Added
 
-* Rerun scenarios are now linked to jump from a rerun child directly to the parent and from a parent to all children (#381).
+* Rerun scenarios are now linked to jump from a rerun child directly to the parent and from a parent to all children (
+  #381).
+* Exceptions can now be completely shown from the start page (#385)
 
 ### Fixed
 
 * Feature description did not preserve line breaks (#384)
+* Fixed feature name column width on overview page
 
 ### Changed
 
-* Fixed feature name column on overview page 
-
-* Updated JUnit Jupiter to `6.0.0`
+* Updated JUnit Jupiter to `6.0.1`
 * Updated Mockito to `5.20.0`
 * Updated GSON to `2.13.2`
 * Updated Dagger to `2.57.2`
@@ -1043,6 +1044,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.12.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.12.0
 
 [3.11.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.2
 
