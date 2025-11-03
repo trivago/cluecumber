@@ -43,7 +43,7 @@ body {
     margin-bottom: 60px;
 }
 
-a {
+a, .btn-link {
     color: #06284d;
 }
 

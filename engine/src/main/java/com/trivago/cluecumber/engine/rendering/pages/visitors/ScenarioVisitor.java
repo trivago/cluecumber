@@ -26,6 +26,7 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.Scena
 import com.trivago.cluecumber.engine.rendering.pages.renderering.AllScenariosPageRenderer;
 import com.trivago.cluecumber.engine.rendering.pages.renderering.ScenarioDetailsPageRenderer;
 import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateEngine;
+import org.tinylog.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -98,7 +99,7 @@ public class ScenarioVisitor implements PageVisitor {
                 propertyManager.getGeneratedHtmlReportDirectory() + "/" + Settings.PAGES_DIRECTORY + "/" +
                 Settings.SCENARIO_SEQUENCE_PAGE_PATH + Settings.HTML_FILE_EXTENSION);
 
-        // Scenario reruns  page
+        // Scenario reruns page
         fileIO.writeContentToFile(
                 allScenariosPageRenderer.getRendererContentByReruns(
                         allScenariosPageCollection,
@@ -108,7 +109,6 @@ public class ScenarioVisitor implements PageVisitor {
                 Settings.RERUN_SCENARIOS_PAGE + Settings.HTML_FILE_EXTENSION);
 
         // Scenario detail pages
-        ScenarioDetailsPageCollection scenarioDetailsPageCollection;
         for (Report report : allScenariosPageCollection.getReports()) {
             for (Element element : report.getElements()) {
                 writeScenarioDetails(element);

@@ -52,6 +52,7 @@ public class Element {
     private transient int scenarioIndex = 0;
     private transient boolean failOnPendingOrUndefined = false;
     private Status status;
+    private Element multiRunParent;
 
     /**
      * Default constructor.
@@ -382,7 +383,7 @@ public class Element {
         if (allStates.isEmpty()) {
             status = Status.SKIPPED;
         } else if (failOnPendingOrUndefined && (allStates.contains(Status.PENDING) ||
-                allStates.contains(Status.UNDEFINED))) {
+                                                allStates.contains(Status.UNDEFINED))) {
             status = Status.FAILED;
         } else {
             status = Status.getHighestBasicState(allStates);
@@ -553,9 +554,9 @@ public class Element {
      */
     public long getTotalDuration() {
         return before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum() +
-                backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
-                steps.stream().mapToLong(Step::getTotalDuration).sum() +
-                after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
+               backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
+               steps.stream().mapToLong(Step::getTotalDuration).sum() +
+               after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
     }
 
     /**
@@ -814,8 +815,26 @@ public class Element {
      *
      * @param isMultiRunParent true if this scenario is the last of multiple runs.
      */
-    public void setMultiRunParent(final boolean isMultiRunParent) {
+    public void isMultiRunParent(final boolean isMultiRunParent) {
         this.isMultiRunParent = isMultiRunParent;
+    }
+
+    /**
+     * Set the parent scenario of this multi-run scenario.
+     *
+     * @param multiRunParent The parent scenario.
+     */
+    public void setMultiRunParent(final Element multiRunParent) {
+        this.multiRunParent = multiRunParent;
+    }
+
+    /**
+     * Get the parent scenario of this multi-run scenario.
+     *
+     * @return The parent scenario.
+     */
+    public Element getMultiRunParent() {
+        return multiRunParent;
     }
 
     /**

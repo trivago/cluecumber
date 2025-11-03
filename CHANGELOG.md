@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.12.0] - 2025-11-03
+
+### Added
+
+* Rerun scenarios are now linked to jump from a rerun child directly to the parent and from a parent to all children (
+  #381).
+* Exceptions can now be completely shown from the start page (#385)
+
+### Fixed
+
+* Feature description did not preserve line breaks (#384)
+* Fixed feature name column width on overview page
+
+### Changed
+
+* Updated JUnit Jupiter to `6.0.1`
+* Updated Mockito to `5.20.0`
+* Updated GSON to `2.13.2`
+* Updated Dagger to `2.57.2`
+* Updated Maven Compiler plugin to `3.14.1`
+* Updated Maven Enforcer plugin to `3.6.2`
+* Updated Maven GPG Plugin to `3.2.8`
+* Updated Maven Javadoc plugin to `3.12.0`
+* Updated Maven Surefire plugin to `3.5.4`
+* Updated Maven Flatten plugin to `1.7.3`
+
 ## [3.11.2] - 2025-05-27
 
 ### Fixed
@@ -50,7 +76,7 @@ Back to [Readme](README.md).
 
 * "Copy to clipboard" button for step outputs, docstrings, text attachments and exception messages (#371)
 * Custom logo capability (#367)
-* New failures page that shows scenarios based on their exception (#362) 
+* New failures page that shows scenarios based on their exception (#362)
 * Tree view now takes the directory structure into account (#366)
 
 ### Changed
@@ -1018,6 +1044,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.12.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.12.0
 
 [3.11.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.2
 

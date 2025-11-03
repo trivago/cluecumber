@@ -70,7 +70,7 @@ limitations under the License.
                     </b>
                 </#if>
                 <#if subheadline != "">
-                    <p style="float: left; clear: left;">${subheadline}</p>
+                    <p style="float: left; clear: left; white-space: pre-wrap;">${subheadline}</p>
                 </#if>
             </div>
             <#nested>
