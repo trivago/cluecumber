@@ -143,6 +143,11 @@ Valid URLs that start with a protocol (http, https, ftp) are automatically recog
 If a parameter name starts with an underscore (`_`), only the value is displayed.
 
 ```java
+var parameters = new LinkedHashMap<String, String>();
+parameters.put("Custom_Parameter", "This is a test");
+parameters.put("Custom_URL", "http://www.google.com");
+parameters.put("_Text", "This is a long text that is displayed without the key. This can be used to display longer texts in the report!");
+
 new CluecumberCore.Builder()
         .setCustomParameters(parameters)
         .build().generateReports(jsonDirectory, reportDirectory);
