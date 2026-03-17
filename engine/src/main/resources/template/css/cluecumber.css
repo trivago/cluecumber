@@ -140,6 +140,17 @@ table.table {
     vertical-align: top;
 }
 
+/* Scenario detail step data tables: columns use natural width, table sizes to content */
+.scenarioDataTable .table {
+    width: auto;
+    max-width: 100%;
+}
+
+/* First row is the header row (table has td only, no thead/th) */
+.scenarioDataTable .table tr:first-child td {
+    font-weight: bold !important;
+}
+
 table.table-fit {
     width: 100%;
     margin-bottom: 0;
@@ -280,12 +291,55 @@ span.keyword {
     color: darkblue;
 }
 
-p.firstException {
+/* When full error is expanded, hide the one-line summary so we switch between summary and full view */
+.firstExceptionContainer:has(div.collapse.show) .exc-summary {
+    display: none !important;
+}
+
+/* Shared exception box styling for both summary and full view (expansion feel), full width in table cell */
+.firstException {
     color: indianred;
     word-break: break-word;
     border: 1px solid indianred;
     padding: 0.5rem;
     margin-top: .5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Same flex layout for both: content left, link(s) on same line top right – no extra row */
+.firstException.exc-summary,
+.firstException.firstException-expanded,
+.firstException.firstException-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.firstException .exception-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.firstException .exception-links-top {
+    flex-shrink: 0;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+
+.firstException .exception-pre {
+    color: indianred;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
 }
 
 tr.even td, tr.odd td {

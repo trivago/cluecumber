@@ -29,6 +29,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
   - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
   - [Auto-expand Previous Runs](#auto-expand-previous-runs)
   - [Auto-expand Attachments](#auto-expand-attachments)
+  - [Auto-expand Error Messages](#auto-expand-error-messages)
 - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
   - [Defining the report start page](#defining-the-report-start-page)
   - [Defining a custom report title](#defining-a-custom-report-title)
@@ -304,6 +305,20 @@ to `true`, they are automatically expanded.
 
 <configuration>
     <expandAttachments>true|false</expandAttachments>
+    ...
+</configuration>
+```
+
+## Auto-expand Error Messages
+
+The `expandErrorMessages` option can be set to `true` to expand error messages by default on the scenario summary and
+scenario sequence pages. If not set, it defaults to `false`, so the "More" link must be clicked to show the full
+error message. This option does not affect the scenario detail page.
+
+```xml
+
+<configuration>
+    <expandErrorMessages>true|false</expandErrorMessages>
     ...
 </configuration>
 ```

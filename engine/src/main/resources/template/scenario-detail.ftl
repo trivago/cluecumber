@@ -243,8 +243,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
                             <#if (step.rows?size > 0) >
                                 <div class="row w-100 p-3 m-0 scenarioDataTable">
-                                    <div class="w-100 text-left border border-dark table-responsive">
-                                        <table class="table table-hover small table-striped text-left pb-0">
+                                    <div class="w-100 text-left table-responsive">
+                                        <table class="table table-hover small table-striped text-left pb-0 border border-dark">
                                             <#list step.rows as row>
                                                 <tr>
                                                     <#list row.cells as cell>
@@ -261,7 +261,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <div class="row w-100 p-3 m-0">
                                         <button onclick="copyText('step_${step.index}_docstring')" type="button"
                                                 class="btn-clipboard">
-                                            Copy to clipboard
+                                            Copy
                                         </button>
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>
@@ -345,8 +345,8 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
 
                             <#if (step.rows?size > 0) >
                                 <div class="row w-100 p-3 m-0 scenarioDataTable">
-                                    <div class="w-100 text-left border border-dark table-responsive">
-                                        <table class="table table-hover small table-striped text-left pb-0">
+                                    <div class="w-100 text-left table-responsive">
+                                        <table class="table table-hover small table-striped text-left pb-0 border border-dark">
                                             <#list step.rows as row>
                                                 <tr>
                                                     <#list row.cells as cell>
@@ -363,7 +363,7 @@ preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html"
                                     <div class="row w-100 p-3 m-0">
                                         <button onclick="copyText('step_${step.index}_docstring')" type="button"
                                                 class="btn-clipboard">
-                                            Copy to clipboard
+                                            Copy
                                         </button>
                                         <div class="w-100 text-left border">
                                             <pre class="text-secondary small p-2">${step.docString.returnWithClickableLinks()}</pre>

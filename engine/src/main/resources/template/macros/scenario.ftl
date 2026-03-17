@@ -111,24 +111,34 @@ limitations under the License.
                                                 </#if>
 
                                                 <#if element.firstException?has_content>
-                                                    <div class="firstExceptionContainer">
-                                                        <p class="firstException text-left small text-gray"
-                                                           style="word-break: break-word">
-                                                            ${element.firstExceptionSummary}
-                                                            <a class="btn-link" data-toggle="collapse"
-                                                               href="#exc_${element.scenarioIndex}" role="button"
-                                                               aria-expanded="false"
-                                                               aria-controls="exc_${element.scenarioIndex}">More</a>
-                                                        </p>
-                                                        <div class="collapse mt-2" id="exc_${element.scenarioIndex}">
-                                                            <button onclick="copyText('exc_pre_${element.scenarioIndex}')"
-                                                                    type="button" class="btn-clipboard">
-                                                                Copy to clipboard
-                                                            </button>
-                                                            <div class="w-100 text-left border border-danger"
-                                                                 id="exc_pre_${element.scenarioIndex}">
-                                                                <pre class="text-danger small p-2"
-                                                                     style="white-space: pre-wrap; word-break: break-word">${element.firstException}</pre>
+                                                    <div class="firstExceptionContainer w-100">
+                                                        <div class="firstException exc-summary w-100 text-left small">
+                                                            <div class="exception-content">
+                                                                <pre class="exception-pre">${element.firstExceptionSummary}</pre>
+                                                            </div>
+                                                            <div class="exception-links-top">
+                                                                <a class="btn-link exception-link" data-toggle="collapse"
+                                                                   href="#exc_${element.scenarioIndex}" role="button"
+                                                                   aria-expanded="false"
+                                                                   aria-controls="exc_${element.scenarioIndex}">More</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="collapse mt-2 ${expandErrorMessages?then("show", "")}" id="exc_${element.scenarioIndex}">
+                                                            <div class="firstException firstException-expanded w-100 text-left small">
+                                                                <div class="exception-content">
+                                                                    <pre class="exception-pre"
+                                                                         id="exc_pre_${element.scenarioIndex}">${element.firstException}</pre>
+                                                                </div>
+                                                                <div class="exception-links-top">
+                                                                    <button onclick="copyText('exc_pre_${element.scenarioIndex}')"
+                                                                            type="button" class="btn-clipboard">
+                                                                        Copy
+                                                                    </button>
+                                                                    <a class="btn-link exception-link" data-toggle="collapse"
+                                                                       href="#exc_${element.scenarioIndex}" role="button"
+                                                                       aria-expanded="true"
+                                                                       aria-controls="exc_${element.scenarioIndex}">Less</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -193,7 +203,7 @@ limitations under the License.
                     </#if>
                     <#if isTextAttachment>
                         <button onclick="copyText('expandable${attachmentID}')" type="button" class="btn-clipboard">
-                            Copy to clipboard
+                            Copy
                         </button>
                     </#if>
                 </div>
@@ -233,12 +243,16 @@ limitations under the License.
 
 <#macro errorMessage step>
     <#if step.result.hasErrorMessage()>
-        <div class="row w-100 p-3 m-0 scenarioErrorMessage">
-            <button onclick="copyText('${step.index!0}_errorMessage')" type="button" class="btn-clipboard">
-                Copy to clipboard
-            </button>
-            <div class="w-100 text-left border border-danger" id="${step.index!0}_errorMessage">
-                <pre class="text-danger small p-2">${step.result.returnErrorMessageWithClickableLinks()}</pre>
+        <div class="col-12 mt-2">
+            <div class="firstException firstException-detail w-100 text-left small">
+                <div class="exception-content">
+                    <pre class="exception-pre" id="${step.index!0}_errorMessage">${step.result.returnErrorMessageWithClickableLinks()}</pre>
+                </div>
+                <div class="exception-links-top">
+                    <button onclick="copyText('${step.index!0}_errorMessage')" type="button" class="btn-clipboard">
+                        Copy
+                    </button>
+                </div>
             </div>
         </div>
     </#if>
@@ -258,7 +272,7 @@ limitations under the License.
                      id="expandableOutput${step.index!0}_${sectionId}">
                     <button onclick="copyText('expandableOutput${step.index!0}_${sectionId}')" type="button"
                             class="btn-clipboard">
-                        Copy to clipboard
+                        Copy
                     </button>
                     <pre class="embedding-content small embedded-txt">${step.output?join("<br>")}</pre>
                 </div>

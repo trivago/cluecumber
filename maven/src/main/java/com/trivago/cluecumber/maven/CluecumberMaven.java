@@ -150,6 +150,12 @@ public final class CluecumberMaven extends AbstractMojo {
     private boolean expandAttachments;
 
     /**
+     * Custom flag that determines if error messages on scenario summary and scenario sequence pages should be expanded (default: false).
+     */
+    @Parameter(property = "reporting.expandErrorMessages", defaultValue = "false")
+    private boolean expandErrorMessages;
+
+    /**
      * Custom hex color for passed scenarios (e.g. '#00ff00')'.
      */
     @Parameter(property = "reporting.customStatusColorPassed")
@@ -218,6 +224,7 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setExpandStepHooks(expandStepHooks)
                     .setGroupPreviousScenarioRuns(groupPreviousScenarioRuns)
                     .setExpandPreviousScenarioRuns(expandPreviousScenarioRuns)
+                    .setExpandErrorMessages(expandErrorMessages)
                     .setStartPage(Settings.StartPage.valueOf(startPage.toUpperCase()))
                     .setCustomPageTitle(customPageTitle)
                     .setCustomStatusColorSkipped(customStatusColorSkipped)

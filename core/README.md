@@ -26,6 +26,7 @@ _Clear and concise JVM reporting for the Cucumber BDD JSON format_
   - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
   - [Auto-expand Previous Scenario Runs](#auto-expand-previous-scenario-runs)
   - [Auto-expand Attachments](#auto-expand-attachments)
+  - [Auto-expand Error Messages](#auto-expand-error-messages)
 - [Optional Configuration Parameters for Changing the Report Appearance](#optional-configuration-parameters-for-changing-the-report-appearance)
   - [Defining the report start page](#defining-the-report-start-page)
   - [Defining a custom report title](#defining-a-custom-report-title)
@@ -46,7 +47,7 @@ _Clear and concise JVM reporting for the Cucumber BDD JSON format_
 <dependency>
   <groupId>com.trivago.rta</groupId>
   <artifactId>cluecumber-core</artifactId>
-  <version>3.12.0</version>
+  <version>3.13.0</version>
 </dependency>
 ```
 
@@ -267,6 +268,18 @@ to `true`, they are automatically expanded.
 ```java
 new CluecumberCore.Builder()
         .setExpandAttachments(true)
+        .build().generateReports(jsonDirectory, reportDirectory);
+```
+
+## Auto-expand Error Messages
+
+The `expandErrorMessages` option can be set to `true` to expand error messages by default on the scenario summary and
+scenario sequence pages. If not set, it defaults to `false`, so the "More" link must be clicked to show the full
+error message. This option does not affect the scenario detail page.
+
+```java
+new CluecumberCore.Builder()
+        .setExpandErrorMessages(true)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 

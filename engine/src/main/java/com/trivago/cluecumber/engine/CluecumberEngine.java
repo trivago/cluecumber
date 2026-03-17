@@ -279,6 +279,15 @@ public final class CluecumberEngine {
     }
 
     /**
+     * Whether to expand error messages on scenario summary and scenario sequence pages or not.
+     *
+     * @param expandErrorMessages If true, error messages will be expanded by default.
+     */
+    public void setExpandErrorMessages(final boolean expandErrorMessages) {
+        propertyManager.setExpandErrorMessages(expandErrorMessages);
+    }
+
+    /**
      * Custom CSS file to override default styles.
      *
      * @param customCss The path to a CSS file.

@@ -35,6 +35,7 @@ public class PageCollection implements Cloneable {
     private boolean expandSubSections;
     private boolean groupPreviousScenarioRuns;
     private boolean expandPreviousScenarioRuns;
+    private boolean expandErrorMessages;
     private List<CustomParameter> customParameters;
     private CustomParamDisplayMode displayMode;
     private List<Link> links;
@@ -200,6 +201,24 @@ public class PageCollection implements Cloneable {
      */
     public void setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
         this.expandPreviousScenarioRuns = expandPreviousScenarioRuns;
+    }
+
+    /**
+     * Check if error messages on scenario summary and scenario sequence pages should be expanded.
+     *
+     * @return true if they should be expanded.
+     */
+    public boolean isExpandErrorMessages() {
+        return expandErrorMessages;
+    }
+
+    /**
+     * Set if error messages on scenario summary and scenario sequence pages should be expanded.
+     *
+     * @param expandErrorMessages true if they should be expanded.
+     */
+    public void setExpandErrorMessages(final boolean expandErrorMessages) {
+        this.expandErrorMessages = expandErrorMessages;
     }
 
     /**

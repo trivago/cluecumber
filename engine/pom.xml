@@ -27,7 +27,7 @@
     </organization>
 
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tinylog-impl.version>2.8.0-M1</tinylog-impl.version>
         <freemarker.version>2.3.34</freemarker.version>
