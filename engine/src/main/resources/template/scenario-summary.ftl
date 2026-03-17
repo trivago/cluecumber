@@ -167,23 +167,49 @@ preheadlineLink=preheadlineLink>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const button = document.getElementById('multiRunButton');
-            if (!button) return;
-            const target = document.querySelector(button.getAttribute('data-target'));
-
-            button.addEventListener('click', function() {
-                if (target.classList.contains('show')) {
-                    button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
-                } else {
-                    button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+            if (button) {
+                const target = document.querySelector(button.getAttribute('data-target'));
+                if (target) {
+                    button.addEventListener('click', function() {
+                        if (target.classList.contains('show')) {
+                            button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+                        } else {
+                            button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+                        }
+                    });
+                    target.addEventListener('shown.bs.collapse', function() {
+                        button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+                    });
+                    target.addEventListener('hidden.bs.collapse', function() {
+                        button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+                    });
                 }
-            });
+            }
 
-            target.addEventListener('shown.bs.collapse', function() {
-                button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
-            });
-
-            target.addEventListener('hidden.bs.collapse', function() {
-                button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+            // More/Less: hide summary first when expanding; show summary on Less click (not on hidden.bs.collapse)
+            document.querySelectorAll('.firstExceptionContainer').forEach(function(container) {
+                const collapseEl = container.querySelector('.collapse');
+                const collapseId = collapseEl ? collapseEl.id : null;
+                if (!collapseId) return;
+                const moreLink = container.querySelector('a[href="#' + collapseId + '"][aria-expanded="false"]');
+                if (moreLink) {
+                    moreLink.addEventListener('click', function() {
+                        container.classList.remove('error-show-summary');
+                        container.classList.add('error-expanding');
+                    }, true);
+                }
+                if (collapseEl) {
+                    collapseEl.addEventListener('shown.bs.collapse', function() {
+                        container.classList.remove('error-expanding');
+                    });
+                }
+                container.addEventListener('click', function(e) {
+                    const link = e.target.closest('a[data-toggle="collapse"][href="#' + collapseId + '"]');
+                    if (link && link.getAttribute('aria-expanded') === 'true') {
+                        container.classList.remove('error-expanding');
+                        container.classList.add('error-show-summary');
+                    }
+                }, true);
             });
         });
     </script>

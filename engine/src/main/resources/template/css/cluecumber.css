@@ -292,8 +292,14 @@ span.keyword {
 }
 
 /* When full error is expanded, hide the one-line summary so we switch between summary and full view */
-.firstExceptionContainer:has(div.collapse.show) .exc-summary {
+.firstExceptionContainer:has(div.collapse.show) .exc-summary,
+.firstExceptionContainer.error-expanding .exc-summary {
     display: none !important;
+}
+
+/* When collapse is hidden, explicitly show summary (avoids toggle bugs after multiple More/Less cycles) */
+.firstExceptionContainer.error-show-summary .exc-summary {
+    display: flex !important;
 }
 
 /* Shared exception box styling for both summary and full view (expansion feel), full width in table cell */
