@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [3.13.0] - UNRELEASED
+## [3.13.0] - 2026-03-17
 
 ### Added
 
@@ -18,6 +18,16 @@ Back to [Readme](README.md).
 * Minimum required Java version is now 17
 * More readable data table formatting
 * More consistent error message formatting
+* Dependency updates
+  * Maven Compiler plugin `3.15.0`
+  * Maven Central Publishing plugin `0.10.0`
+  * Maven Surefire plugin `3.5.5`
+  * Maven Source plugin `3.4.0`
+  * Maven Resources plugin `3.5.0`
+  * Maven Release plugin `3.3.1`
+  * Maven Jar plugin `3.5.0`
+  * Mockito `5.23.0`
+  * Dagger `2.59.2`
 
 ## [3.12.0] - 2025-11-03
 

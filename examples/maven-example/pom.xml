@@ -87,7 +87,7 @@
                     <expandOutputs>false</expandOutputs>
 
                     <!-- Optional property to expand error messages in the scenario overview pages (default: false) -->
-                    <expandErrorMessages>true</expandErrorMessages>
+                    <expandErrorMessages>false</expandErrorMessages>
 
                     <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
                     <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>
