@@ -57,6 +57,7 @@ public class CluecumberCore {
         cluecumberEngine.setExpandStepHooks(builder.expandStepHooks);
         cluecumberEngine.setGroupPreviousScenarioRuns(builder.groupPreviousScenarioRuns);
         cluecumberEngine.setExpandPreviousScenarioRuns(builder.expandPreviousScenarioRuns);
+        cluecumberEngine.setExpandErrorMessages(builder.expandErrorMessages);
         cluecumberEngine.setFailScenariosOnPendingOrUndefinedSteps(builder.failScenariosOnPendingOrUndefinedSteps);
         cluecumberEngine.setLogLevel(builder.logLevel);
         cluecumberEngine.setStartPage(builder.startPage);
@@ -95,6 +96,7 @@ public class CluecumberCore {
         private boolean expandStepHooks;
         private boolean groupPreviousScenarioRuns;
         private boolean expandPreviousScenarioRuns;
+        private boolean expandErrorMessages;
         private String logLevel;
         private String startPage;
         private boolean failScenariosOnPendingOrUndefinedSteps;
@@ -312,6 +314,17 @@ public class CluecumberCore {
          */
         public Builder setExpandPreviousScenarioRuns(final boolean expandPreviousScenarioRuns) {
             this.expandPreviousScenarioRuns = expandPreviousScenarioRuns;
+            return this;
+        }
+
+        /**
+         * Whether to expand error messages on scenario summary and scenario sequence pages or not.
+         *
+         * @param expandErrorMessages If true, error messages will be expanded by default.
+         * @return The {@link Builder}.
+         */
+        public Builder setExpandErrorMessages(final boolean expandErrorMessages) {
+            this.expandErrorMessages = expandErrorMessages;
             return this;
         }
 

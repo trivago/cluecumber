@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.13.0] - 2026-03-17
+
+### Added
+
+* New `expandErrorMessages` option to expand or collapse error messages by default on scenario overview pages (default: false) (#391)
+
+### Changed
+
+* Minimum required Java version is now 17
+* More readable data table formatting
+* More consistent error message formatting
+* Dependency updates
+  * Maven Compiler plugin `3.15.0`
+  * Maven Central Publishing plugin `0.10.0`
+  * Maven Surefire plugin `3.5.5`
+  * Maven Source plugin `3.4.0`
+  * Maven Resources plugin `3.5.0`
+  * Maven Release plugin `3.3.1`
+  * Maven Jar plugin `3.5.0`
+  * Mockito `5.23.0`
+  * Dagger `2.59.2`
+
 ## [3.12.0] - 2025-11-03
 
 ### Added
@@ -1044,6 +1066,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.13.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.13.0
 
 [3.12.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.12.0
 

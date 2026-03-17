@@ -6,13 +6,11 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.12.0</version>
+    <version>3.13.0</version>
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -80,13 +78,16 @@
                     <!-- Optional custom logo (needs to be an image) -->
                     <customLogo>${project.basedir}/custom/logo.png</customLogo>
 
-                    <!-- Optional properties to expand scenario hooks, step hooks, doc strings, attachments and step outputs when scenario details are shown (default: false) -->
+                    <!-- Optional properties to expand scenario hooks, step hooks, doc strings, attachments, step outputs when scenario details are shown (default: false) -->
                     <expandSubSections>false</expandSubSections>
                     <expandBeforeAfterHooks>true</expandBeforeAfterHooks>
                     <expandStepHooks>false</expandStepHooks>
                     <expandDocStrings>false</expandDocStrings>
                     <expandAttachments>false</expandAttachments>
                     <expandOutputs>false</expandOutputs>
+
+                    <!-- Optional property to expand error messages in the scenario overview pages (default: false) -->
+                    <expandErrorMessages>false</expandErrorMessages>
 
                     <!-- Optional mode to group scenario runs and expand or collapse (previous runs) children element by default -->
                     <groupPreviousScenarioRuns>true</groupPreviousScenarioRuns>

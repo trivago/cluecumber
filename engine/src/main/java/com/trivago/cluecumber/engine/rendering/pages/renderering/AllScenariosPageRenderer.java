@@ -236,6 +236,7 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
         addCustomParametersToReportDetails(clone, propertyManager.getCustomParameters());
         clone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
         clone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
+        clone.setExpandErrorMessages(propertyManager.isExpandErrorMessages());
         return clone;
     }
 }

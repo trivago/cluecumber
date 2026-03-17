@@ -153,8 +153,8 @@ limitations under the License.
 
     function copyText(elementId) {
         let text = document.getElementById(elementId).innerText;
-        if (text.startsWith("Copy to clipboard")) {
-            text = text.substring(18);
+        if (text.startsWith("Copy")) {
+            text = text.substring(4).trim();
         }
         navigator.clipboard.writeText(text)
             .catch((error) => {

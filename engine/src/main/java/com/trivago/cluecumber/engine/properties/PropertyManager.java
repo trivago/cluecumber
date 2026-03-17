@@ -61,6 +61,7 @@ public class PropertyManager {
     private boolean expandOutputs = false;
     private boolean groupPreviousScenarioRuns = false;
     private boolean expandPreviousScenarioRuns = false;
+    private boolean expandErrorMessages = false;
     private String customCssFile;
     private String customFaviconFile;
     private String customLogoFile;
@@ -403,6 +404,24 @@ public class PropertyManager {
     }
 
     /**
+     * This determines whether error messages on scenario summary and scenario sequence pages should be expanded by default.
+     *
+     * @return true means they should be expanded.
+     */
+    public boolean isExpandErrorMessages() {
+        return expandErrorMessages;
+    }
+
+    /**
+     * Set whether error messages on scenario summary and scenario sequence pages should be expanded by default.
+     *
+     * @param expandErrorMessages true means error messages should be expanded.
+     */
+    public void setExpandErrorMessages(final boolean expandErrorMessages) {
+        this.expandErrorMessages = expandErrorMessages;
+    }
+
+    /**
      * Get the custom CSS file path.
      *
      * @return The path.
@@ -597,6 +616,7 @@ public class PropertyManager {
         logger.info("- custom parameters display mode   : " + customParametersDisplayMode, DEFAULT);
         logger.info("- group previous scenario runs     : " + groupPreviousScenarioRuns, DEFAULT);
         logger.info("- expand previous scenario runs    : " + expandPreviousScenarioRuns, DEFAULT);
+        logger.info("- expand error messages            : " + expandErrorMessages, DEFAULT);
 
         if (!customNavigationLinks.isEmpty()) {
             customNavigationLinks.entrySet().stream().map(
