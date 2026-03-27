@@ -76,7 +76,8 @@ public class Embedding {
      * @param data The data string.
      */
     public void decodeData(final String data) {
-        decodedData = new String(Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        String rawDecodedData = new String(Base64.getDecoder().decode(data.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        decodedData = rawDecodedData;
         switch (mimeType) {
             case HTML:
                 decodedData = decodedData.replaceAll("\"", "'")
@@ -85,12 +86,16 @@ public class Embedding {
                 break;
             case XML:
             case APPLICATION_XML:
-                decodedData = decodedData.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-                break;
+            case JSON:
             case TXT:
+                decodedData = RenderingUtils.renderAnsiToHtml(rawDecodedData);
+                if (mimeType == MimeType.TXT) {
+                    isExternalContent = RenderingUtils.isUrl(rawDecodedData);
+                }
+                break;
             case PDF:
             case MP4:
-                isExternalContent = RenderingUtils.isUrl(decodedData);
+                isExternalContent = RenderingUtils.isUrl(rawDecodedData);
                 break;
             case UNKNOWN:
                 break;
