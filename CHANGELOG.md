@@ -9,13 +9,21 @@ Back to [Readme](README.md).
 
 ## [3.14.0] - UNRELEASED
 
+### Added
 
+* ANSI color support for text attachments, made for [Karate 2](https://docs.karatelabs.io/getting-started/whats-new-v2/)
+  request and response logs
+
+### Changed
+
+* All charts now have the same height for consistency
 
 ## [3.13.0] - 2026-03-17
 
 ### Added
 
-* New `expandErrorMessages` option to expand or collapse error messages by default on scenario overview pages (default: false) (#391)
+* New `expandErrorMessages` option to expand or collapse error messages by default on scenario overview pages (default:
+  false) (#391)
 
 ### Changed
 
@@ -23,15 +31,15 @@ Back to [Readme](README.md).
 * More readable data table formatting
 * More consistent error message formatting
 * Dependency updates
-  * Maven Compiler plugin `3.15.0`
-  * Maven Central Publishing plugin `0.10.0`
-  * Maven Surefire plugin `3.5.5`
-  * Maven Source plugin `3.4.0`
-  * Maven Resources plugin `3.5.0`
-  * Maven Release plugin `3.3.1`
-  * Maven Jar plugin `3.5.0`
-  * Mockito `5.23.0`
-  * Dagger `2.59.2`
+    * Maven Compiler plugin `3.15.0`
+    * Maven Central Publishing plugin `0.10.0`
+    * Maven Surefire plugin `3.5.5`
+    * Maven Source plugin `3.4.0`
+    * Maven Resources plugin `3.5.0`
+    * Maven Release plugin `3.3.1`
+    * Maven Jar plugin `3.5.0`
+    * Mockito `5.23.0`
+    * Dagger `2.59.2`
 
 ## [3.12.0] - 2025-11-03
 
