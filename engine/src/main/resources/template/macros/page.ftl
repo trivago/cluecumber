@@ -98,7 +98,7 @@ limitations under the License.
 </#macro>
 
 <#macro graph>
-    <div id="canvas-holder" class="w-auto h-auto text-center" style="min-height: 10rem;" data-cluecumber-item="chart">
-        <canvas id="chart-area" class="w-100"></canvas>
+    <div id="canvas-holder" class="w-100 text-center" data-cluecumber-item="chart">
+        <canvas id="chart-area" class="chart-canvas"></canvas>
     </div>
 </#macro>

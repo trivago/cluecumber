@@ -323,7 +323,7 @@ public class RenderingUtils {
             }
 
             StringBuilder span = new StringBuilder("<span");
-            if (classes.length() > 0) {
+            if (!classes.isEmpty()) {
                 span.append(" class=\"").append(classes).append("\"");
             }
             span.append('>');
@@ -331,7 +331,7 @@ public class RenderingUtils {
         }
 
         private void appendClass(final StringBuilder classes, final String value) {
-            if (classes.length() > 0) {
+            if (!classes.isEmpty()) {
                 classes.append(' ');
             }
             classes.append(value);

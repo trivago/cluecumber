@@ -238,7 +238,6 @@ iframe {
     font-family: "cluecumber", serif;
     font-style: normal;
     font-weight: normal;
-    speak: none;
 
     display: inline-block;
     text-decoration: inherit;
@@ -264,8 +263,20 @@ iframe {
     content: '\e802';
 }
 
-[data-cluecumber-item="chart"] div {
-    height: 20rem;
+[data-cluecumber-item="chart"] {
+    height: 20rem !important;
+}
+
+.chart-canvas {
+    height: 100% !important;
+    width: 100% !important;
+    display: block;
+}
+
+[data-cluecumber-item="chart"].chart-pie {
+    width: 20rem !important;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .card-body .card {
