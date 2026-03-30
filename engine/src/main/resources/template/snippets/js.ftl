@@ -53,8 +53,20 @@ limitations under the License.
             // Chart
             <#if (reportDetails.chartJson?has_content)>
             var canvas = document.getElementById('chart-area');
+            const chartConfig = ${reportDetails.chartJson};
+            if (chartConfig.type === "pie") {
+                const holder = document.getElementById('canvas-holder');
+                if (holder) {
+                    holder.classList.add('chart-pie');
+                    const size = holder.clientHeight;
+                    if (size > 0) {
+                        canvas.width = size;
+                        canvas.height = size;
+                    }
+                }
+            }
             const ctx = canvas.getContext("2d");
-            const chart = new Chart(ctx, ${reportDetails.chartJson});
+            const chart = new Chart(ctx, chartConfig);
             let original;
             if (chart.config.type === "pie") {
                 original = Chart.defaults.pie.legend.onClick;

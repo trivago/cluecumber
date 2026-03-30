@@ -84,7 +84,7 @@ public class EmbeddingTest {
         String encodeString = Base64.getEncoder().encodeToString(originalInput.getBytes());
         embedding.setMimeType(MimeType.XML);
         embedding.decodeData(encodeString);
-        assertEquals(embedding.getDecodedData(), "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;heading&gt;Reminder&lt;/heading&gt;&lt;body&gt;Don't forget me this weekend!&lt;/body&gt;&lt;/note&gt;");
+        assertEquals(embedding.getDecodedData(), "&#60;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&#62;&#60;note&#62;&#60;to&#62;Tove&#60;/to&#62;&#60;from&#62;Jani&#60;/from&#62;&#60;heading&#62;Reminder&#60;/heading&#62;&#60;body&#62;Don't forget me this weekend!&#60;/body&#62;&#60;/note&#62;");
     }
 
     @Test

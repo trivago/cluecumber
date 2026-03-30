@@ -26,6 +26,8 @@ public class Options {
     private Scales scales;
     private Legend legend;
     private List<String> events;
+    private Boolean responsive;
+    private Boolean maintainAspectRatio;
 
     /**
      * Default constructor.
@@ -86,5 +88,41 @@ public class Options {
      */
     public void setEvents(final List<String> events) {
         this.events = events;
+    }
+
+    /**
+     * Get if responsive rendering is enabled.
+     *
+     * @return true if responsive.
+     */
+    public Boolean getResponsive() {
+        return responsive;
+    }
+
+    /**
+     * Set responsive rendering.
+     *
+     * @param responsive true to enable responsive charts.
+     */
+    public void setResponsive(final Boolean responsive) {
+        this.responsive = responsive;
+    }
+
+    /**
+     * Get if aspect ratio is maintained.
+     *
+     * @return true if aspect ratio is maintained.
+     */
+    public Boolean getMaintainAspectRatio() {
+        return maintainAspectRatio;
+    }
+
+    /**
+     * Set aspect ratio maintenance.
+     *
+     * @param maintainAspectRatio true to keep aspect ratio.
+     */
+    public void setMaintainAspectRatio(final Boolean maintainAspectRatio) {
+        this.maintainAspectRatio = maintainAspectRatio;
     }
 }

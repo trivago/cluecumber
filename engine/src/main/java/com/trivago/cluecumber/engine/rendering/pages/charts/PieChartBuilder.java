@@ -89,6 +89,8 @@ public class PieChartBuilder {
         chart.setData(data);
 
         final Options options = new Options();
+        options.setResponsive(true);
+        options.setMaintainAspectRatio(true);
         List<String> events = new ArrayList<>();
         events.add("click");
         events.add("mousemove");
@@ -98,13 +100,6 @@ public class PieChartBuilder {
         return chart;
     }
 
-    private static class ValueSet {
-        private final float value;
-        private final String color;
-
-        ValueSet(final float value, final String color) {
-            this.value = value;
-            this.color = color;
-        }
+    private record ValueSet(float value, String color) {
     }
 }

@@ -94,6 +94,50 @@ a, .btn-link {
     padding: .5rem;
 }
 
+.ansi-bold {
+    font-weight: 600;
+}
+
+.ansi-underline {
+    text-decoration: underline;
+}
+
+.ansi-fg-black { color: #000000; }
+.ansi-fg-red { color: #cc0000; }
+.ansi-fg-green { color: #4e9a06; }
+.ansi-fg-yellow { color: #c4a000; }
+.ansi-fg-blue { color: #3465a4; }
+.ansi-fg-magenta { color: #75507b; }
+.ansi-fg-cyan { color: #06989a; }
+.ansi-fg-white { color: #d3d7cf; }
+
+.ansi-fg-bright-black { color: #555753; }
+.ansi-fg-bright-red { color: #ef2929; }
+.ansi-fg-bright-green { color: #8ae234; }
+.ansi-fg-bright-yellow { color: #fce94f; }
+.ansi-fg-bright-blue { color: #729fcf; }
+.ansi-fg-bright-magenta { color: #ad7fa8; }
+.ansi-fg-bright-cyan { color: #34e2e2; }
+.ansi-fg-bright-white { color: #eeeeec; }
+
+.ansi-bg-black { background-color: #000000; }
+.ansi-bg-red { background-color: #cc0000; }
+.ansi-bg-green { background-color: #4e9a06; }
+.ansi-bg-yellow { background-color: #c4a000; }
+.ansi-bg-blue { background-color: #3465a4; }
+.ansi-bg-magenta { background-color: #75507b; }
+.ansi-bg-cyan { background-color: #06989a; }
+.ansi-bg-white { background-color: #d3d7cf; }
+
+.ansi-bg-bright-black { background-color: #555753; }
+.ansi-bg-bright-red { background-color: #ef2929; }
+.ansi-bg-bright-green { background-color: #8ae234; }
+.ansi-bg-bright-yellow { background-color: #fce94f; }
+.ansi-bg-bright-blue { background-color: #729fcf; }
+.ansi-bg-bright-magenta { background-color: #ad7fa8; }
+.ansi-bg-bright-cyan { background-color: #34e2e2; }
+.ansi-bg-bright-white { background-color: #eeeeec; }
+
 .navbar, .card {
     margin: 0 0 .5rem 0;
 }
@@ -194,7 +238,6 @@ iframe {
     font-family: "cluecumber", serif;
     font-style: normal;
     font-weight: normal;
-    speak: none;
 
     display: inline-block;
     text-decoration: inherit;
@@ -220,8 +263,20 @@ iframe {
     content: '\e802';
 }
 
-[data-cluecumber-item="chart"] div {
-    height: 20rem;
+[data-cluecumber-item="chart"] {
+    height: 20rem !important;
+}
+
+.chart-canvas {
+    height: 100% !important;
+    width: 100% !important;
+    display: block;
+}
+
+[data-cluecumber-item="chart"].chart-pie {
+    width: 20rem !important;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .card-body .card {

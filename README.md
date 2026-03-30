@@ -12,12 +12,13 @@ This project creates aggregated test reports from Cucumber compatible JSON files
 by [Cucumber BDD](https://github.com/cucumber), [Karate](https://github.com/intuit/karate) and other frameworks.
 
 Cluecumber comes in two flavors:
-* [__Cluecumber Core__](core) -  generates reports from Java code
+* [__Cluecumber Core__](core) -  generates reports from Java code, e.g., within Karate runners.
 * [__Cluecumber Maven__](maven) - generates reports from Maven
 
-The look can be adjusted by setting
-* optional custom CSS
+Setting can adjust the look of the generated reports, e.g., by adding:
+* optional custom logo
 * optional custom favicon
+* optional custom CSS
 * Custom parameters
 
 ![Cluecumber animation](documentation/img/cluecumber.gif)

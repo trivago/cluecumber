@@ -146,6 +146,8 @@ public class StackedBarChartBuilder {
         chart.setData(data);
 
         Options options = new Options();
+        options.setResponsive(true);
+        options.setMaintainAspectRatio(false);
         Scales scales = new Scales();
         List<Axis> xAxes = new ArrayList<>();
         Axis xAxis = new Axis();
