@@ -33,8 +33,8 @@ limitations under the License.
     <!DOCTYPE html>
     <html lang="en">
     <base href="${base}">
-    <head title="${title}">
-        <title>${title}</title>
+    <head>
+        <title>${title?html}</title>
         <link rel="icon" href="img/favicon.png" type="image/png"/>
         <script>
             const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
@@ -55,22 +55,22 @@ limitations under the License.
                     <img src="img/logo.png" alt="Logo" class="img-fluid" style="max-width: 300px; max-height: 100px; float: right;"/>
                     <div id="logo-container"></div>
                     <h3 style="vertical-align: bottom; float: left;">
-                        <span style="vertical-align: bottom; display: inline-block;">${headline}</span>
+                        <span style="vertical-align: bottom; display: inline-block;">${headline?html}</span>
                     </h3>
                 </#if>
                 <#if preheadline != "">
                     <b style="float: left; clear: left;">
-                        <span data-toggle="tooltip" title="${subsubheadline}">
+                        <span data-toggle="tooltip" title="${subsubheadline?html}">
                         <#if preheadlineLink != "">
-                            <a href="${preheadlineLink}">${preheadline}</a>
+                            <a href="${preheadlineLink}">${preheadline?html}</a>
                         <#else>
-                            ${preheadline}
+                            ${preheadline?html}
                         </#if>
                         </span>
                     </b>
                 </#if>
                 <#if subheadline != "">
-                    <p style="float: left; clear: left; white-space: pre-wrap;">${subheadline}</p>
+                    <p style="float: left; clear: left; white-space: pre-wrap;">${subheadline?html}</p>
                 </#if>
             </div>
             <#nested>

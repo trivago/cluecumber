@@ -79,11 +79,10 @@ limitations under the License.
                             <tbody>
                             <#assign counter = 0>
                             <#list reports as report>
-                                <#assign tooltipText = "">
+                                <#assign tooltipText = "${report.uri?html}">
                                 <#if report.description?has_content>
-                                    <#assign tooltipText = "${report.description} | ">
+                                    <#assign tooltipText = "${tooltipText}<br />${common.tooltipMultilineHtml(report.description)}">
                                 </#if>
-                                <#assign tooltipText = "${tooltipText}${report.uri}">
 
                                 <#list report.elements as element>
                                     <#assign counter = counter + 1>
@@ -93,7 +92,7 @@ limitations under the License.
                                                 <td class="text-right">${counter}</td>
                                             </#if>
                                             <td class="text-left">
-                                                <span data-toggle="tooltip" title="${tooltipText}">
+                                                <span data-toggle="tooltip" data-html="true" title="${tooltipText}">
                                                     <a href="pages/feature-scenarios/feature_${report.featureIndex?c}.html">${report.name?html}</a>
                                                 </span>
                                             </td>

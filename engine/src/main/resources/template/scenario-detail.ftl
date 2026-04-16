@@ -24,10 +24,10 @@ limitations under the License.
 title="${pageTitle} - Scenario Detail"
 base="../.."
 highlight=""
-headline="${element.name?html}"
-subheadline="${element.description?html}"
+headline="${element.name}"
+subheadline="${element.description}"
 subsubheadline="${element.featureUri}"
-preheadline="${element.featureName?html}"
+preheadline="${element.featureName}"
 preheadlineLink="pages/feature-scenarios/feature_${element.featureIndex?c}.html">
 
     <#if hasCustomParameters()>

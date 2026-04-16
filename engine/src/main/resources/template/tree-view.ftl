@@ -37,12 +37,12 @@ preheadlineLink="">
                             <li>
                                 <#if child.features??>
                                     <#list child.features as feature, scenarios>
-                                        <#assign tooltipText = "${feature.uri}">
+                                        <#assign tooltipText = "${feature.uri?html}">
                                         <#if feature.description?has_content>
-                                            <#assign tooltipText = "${tooltipText} | ${feature.description}">
+                                            <#assign tooltipText = "${tooltipText}<br />${common.tooltipMultilineHtml(feature.description)}">
                                         </#if>
 
-                                        <span data-toggle="tooltip" title="${tooltipText}">
+                                        <span data-toggle="tooltip" data-html="true" title="${tooltipText}">
                                             <a href="pages/feature-scenarios/feature_${feature.index?c}.html"><strong>${feature.name?html}</strong></a>
                                         </span>
 

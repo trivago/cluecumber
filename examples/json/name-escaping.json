@@ -1,0 +1,23 @@
+[
+  {
+    "line": 1,
+    "uri": "file:src/test/resources/features/edge-case.feature",
+    "id": "cucumber-java-feature",
+    "keyword": "Feature",
+    "name": "Cucumber Java Feature",
+    "description": "  This would work fine if I remove the \"double quotes\" or the > sign. (breaks the report, comment this line to fix the report)\n  Additional description of my special feature.",
+    "elements": [
+      {
+        "start_timestamp": "2026-04-16T08:30:14.188Z",
+        "line": 6,
+        "id": "cucumber-java-feature;you-see-what-happens?",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "You see what happens?",
+        "description": "",
+        "steps": []
+      }
+    ],
+    "tags": []
+  }
+]
