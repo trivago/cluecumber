@@ -15,8 +15,11 @@ test: ## Test locally and open the report
 .Phony: test
 
 show-versions: ## Show most recent dependency versions
-	./mvnw versions:display-dependency-updates -U -ntp
-	./mvnw versions:display-plugin-updates -U -ntp
+	@./mvnw versions:display-dependency-updates versions:display-plugin-updates -ntp 2>/dev/null \
+		| "./maven-dependency-updates-table.sh" "."
+	@./mvnw versions:display-dependency-updates versions:display-plugin-updates -ntp 2>/dev/null \
+		| "./maven-dependency-updates-table.sh" "./examples/maven-example"
+
 .Phony: show-versions
 
 deploy: ## Deploy the plugin

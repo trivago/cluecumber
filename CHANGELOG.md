@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [3.14.1] - 2026-04-16
+
+### Fixed
+
+* Escaping for feature headings, descriptions, and tooltips (#396)
+* Stuck tooltips after browser back/forward or DataTables redraw
+
+### Changed
+
+* Reformatted feature tooltips
+
 ## [3.14.0] - 2026-03-30
 
 ### Added
@@ -1078,6 +1089,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[3.14.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.1
 
 [3.14.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.0
 

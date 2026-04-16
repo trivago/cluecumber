@@ -35,3 +35,16 @@ limitations under the License.
         <#return "${word}" />
     </#if>
 </#function>
+
+<#-- HTML-escapes each line and joins with br tags for Bootstrap tooltips with data-html="true". -->
+<#function tooltipMultilineHtml text>
+    <#assign normalized = text?replace('\r\n', '\n')?replace('\r', '\n')>
+    <#assign parts = normalized?split('\n')>
+    <#assign out = parts[0]?html>
+    <#if parts?size gt 1>
+        <#list parts[1..] as part>
+            <#assign out = out + "<br />" + part?html>
+        </#list>
+    </#if>
+    <#return out>
+</#function>

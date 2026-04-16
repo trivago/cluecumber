@@ -43,7 +43,7 @@ limitations under the License.
     <#assign headline = "Scenarios in Feature">
     <#assign pageName = "Scenarios in Feature">
     <#assign highlight = "feature_summary">
-    <#assign subheadline = "${featureFilter.description?html}">
+    <#assign subheadline = "${featureFilter.description}">
     <#assign subsubheadline = "${featureFilter.uri}">
     <#assign preheadline = "${featureFilter.name}">
     <#assign preheadlineLink="pages/feature-scenarios/feature_${featureFilter.index?c}.html">

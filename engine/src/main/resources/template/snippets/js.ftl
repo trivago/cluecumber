@@ -22,10 +22,28 @@ limitations under the License.
 <script src="js/Chart.bundle.min.js"></script>
 
 <script>
+    /**
+     * Dispose existing Bootstrap tooltips, drop orphaned tip nodes, then attach fresh instances.
+     * Needed so HTML tooltips do not stick after bfcache back/forward or DataTables redraws.
+     */
+    function initCluecumberTooltips() {
+        $('[data-toggle="tooltip"]').each(function () {
+            var $el = $(this);
+            try {
+                if ($el.data('bs.tooltip')) {
+                    $el.tooltip('dispose');
+                }
+            } catch (ignore) {
+            }
+        });
+        $('.tooltip').remove();
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+
     $(document).ready(function () {
             // Data tables
             $('.renderAsDataTable').on('draw.dt', function () {
-                $('[data-toggle="tooltip"]').tooltip();
+                initCluecumberTooltips();
             }).DataTable({
                 "oLanguage": {
                     "sSearch": "Search:"
@@ -48,7 +66,24 @@ limitations under the License.
             $("a.grouped_elements").fancybox();
 
             // Tool tips
-            $('[data-toggle="tooltip"]').tooltip();
+            initCluecumberTooltips();
+
+            $(window).on('pagehide', function () {
+                $('[data-toggle="tooltip"]').each(function () {
+                    try {
+                        if ($(this).data('bs.tooltip')) {
+                            $(this).tooltip('hide');
+                        }
+                    } catch (ignore) {
+                    }
+                });
+            });
+
+            $(window).on('pageshow', function (event) {
+                if (event.originalEvent && event.originalEvent.persisted) {
+                    initCluecumberTooltips();
+                }
+            });
 
             // Chart
             <#if (reportDetails.chartJson?has_content)>
