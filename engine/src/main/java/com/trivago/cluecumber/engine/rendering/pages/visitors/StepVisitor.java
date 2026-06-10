@@ -48,7 +48,7 @@ public class StepVisitor implements PageVisitor {
      * The constructor for dependency injection.
      *
      * @param fileIO                   The {@link FileIO} instance.
-     * @param templateEngine           The Freemarker template engine.
+     * @param templateEngine           The Pebble template engine.
      * @param propertyManager          The {@link PropertyManager} instance.
      * @param allStepsPageRenderer     The renderer for scenario step pages.
      * @param allScenariosPageRenderer The renderer for the scenario pages.

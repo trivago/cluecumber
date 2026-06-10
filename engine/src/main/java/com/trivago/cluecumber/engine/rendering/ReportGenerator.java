@@ -145,7 +145,7 @@ public class ReportGenerator {
             copyFileFromJarToReportDirectory("/css/cluecumber-additional.css");
         }
 
-        // Render the custom-css.ftl and copy it to the css directory
+        // Render the custom-css.peb and copy it to the css directory
         fileIO.writeContentToFile(customCssRenderer.getRenderedCustomCssContent(
                 templateEngine.getTemplate(TemplateEngine.Template.CUSTOM_CSS)
         ), reportDirectory + "/css/cluecumber-custom.css");
@@ -205,7 +205,7 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/js/jquery.min.js");
         copyFileFromJarToReportDirectory("/js/bootstrap.min.js");
         copyFileFromJarToReportDirectory("/js/popper.min.js");
-        copyFileFromJarToReportDirectory("/js/Chart.bundle.min.js");
+        copyFileFromJarToReportDirectory("/js/chart.min.js");
         copyFileFromJarToReportDirectory("/js/datatables.min.js");
         copyFileFromJarToReportDirectory("/js/jquery.fancybox.min.js");
     }

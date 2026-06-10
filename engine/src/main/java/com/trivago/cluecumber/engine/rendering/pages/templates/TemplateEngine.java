@@ -17,12 +17,13 @@ package com.trivago.cluecumber.engine.rendering.pages.templates;
 
 import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * This class manages the Freemarker templates.
+ * This class manages the Pebble templates.
  */
 @Singleton
 public class TemplateEngine {
@@ -46,12 +47,12 @@ public class TemplateEngine {
      * @return The requested template.
      * @throws CluecumberException In case the template cannot be found.
      */
-    public freemarker.template.Template getTemplate(final Template template) throws CluecumberException {
+    public PebbleTemplate getTemplate(final Template template) throws CluecumberException {
         return templateConfiguration.getTemplate(template.fileName);
     }
 
     /**
-     * The enum that defines the different Freemarker template names.
+     * The enum that defines the different Pebble template names.
      */
     public enum Template {
         /**
@@ -106,7 +107,7 @@ public class TemplateEngine {
         }
 
         /**
-         * Get the file name of the Freemarker template.
+         * Get the file name of the Pebble template.
          *
          * @return The template file name.
          */

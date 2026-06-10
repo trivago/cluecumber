@@ -32,15 +32,15 @@ public class Settings {
      */
     public final static String NAME = "Cluecumber Report";
     /**
-     * The file extension for Freemarker template files.
+     * The file extension for Pebble template files.
      */
-    public static final String TEMPLATE_FILE_EXTENSION = ".ftl";
+    public static final String TEMPLATE_FILE_EXTENSION = ".peb";
     /**
      * The file extension for HTML files.
      */
     public static final String HTML_FILE_EXTENSION = ".html";
     /**
-     * The folder for Freemarker template files.
+     * The folder for Pebble template files.
      */
     public static final String BASE_TEMPLATE_PATH = "/template";
     /**

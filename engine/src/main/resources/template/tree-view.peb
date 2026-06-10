@@ -1,0 +1,79 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+{% import "macros/page" as page %}
+{% import "macros/common" as common %}
+
+{% macro renderTree(node) %}
+    {% if node.children is not empty %}
+        <ol>
+            {% for child in node.children.values() %}
+                <li>
+                    {% if child.features is not null %}
+                        {% for entry in child.features %}
+                            {% set feature = entry.key %}
+                            {% set scenarios = entry.value %}
+                            {% set tooltipText = feature.uri %}
+                            {% if feature.description is not empty %}
+                                {% set tooltipText = tooltipText ~ "<br />" ~ common.tooltipMultilineHtml(feature.description) %}
+                            {% endif %}
+
+                            <span data-toggle="tooltip" data-html="true" title="{{ tooltipText|raw }}">
+                                <a href="pages/feature-scenarios/feature_{{ feature.index }}.html"><strong>{{ feature.name }}</strong></a>
+                            </span>
+
+                            {% if scenarios is not null %}
+                                <ul>
+                                    {% for scenario in scenarios %}
+                                        {% if ((not scenario.isMultiRunParent() and not scenario.isMultiRunChild()) or scenario.isMultiRunParent()) %}
+                                            <li style="list-style-type: square;">
+                                                <a href="pages/scenario-detail/scenario_{{ scenario.scenarioIndex }}.html"
+                                                   style="word-break: break-all">{{ scenario.name }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            <hr>
+                        {% endfor %}
+                    {% else %}
+                        <em>{{ child.name }}/</em>
+                    {% endif %}
+                    {{ renderTree(child) }}
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+{% endmacro %}
+
+{% set title = pageTitle ~ " - Tree View" %}
+{% set base = ".." %}
+{% set highlight = "tree_view" %}
+{% set headline = "Feature and Scenario Tree" %}
+{% set subheadline = "" %}
+{% set subsubheadline = "" %}
+{% set preheadline = "" %}
+{% set preheadlineLink = "" %}
+{% include "macros/page-start" %}
+
+    <div class="row" id="tree-view">
+        {{ page.cardStart("12", numberOfFeatures ~ " " ~ common.pluralizeFn("Feature", numberOfFeatures) ~ " with " ~ numberOfScenarios ~ " " ~ common.pluralizeFn("Scenario", numberOfScenarios), "", "") }}
+            <div class="tree-view">
+                {{ renderTree(rootTreeNode) }}
+            </div>
+        {{ page.cardEnd() }}
+    </div>
+{% include "macros/page-end" %}

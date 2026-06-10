@@ -1,7 +1,7 @@
 package com.trivago.cluecumber.engine.rendering.pages.templates;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +22,10 @@ public class TemplateEngineTest {
 
     @Test
     public void getTemplateTest() throws CluecumberException {
-        Template returnTemplate = mock(Template.class);
+        PebbleTemplate returnTemplate = mock(PebbleTemplate.class);
         when(returnTemplate.getName()).thenReturn("MyTemplate");
         when(templateConfiguration.getTemplate(TemplateEngine.Template.SCENARIO_DETAILS.getFileName())).thenReturn(returnTemplate);
-        final Template template = templateEngine.getTemplate(TemplateEngine.Template.SCENARIO_DETAILS);
+        final PebbleTemplate template = templateEngine.getTemplate(TemplateEngine.Template.SCENARIO_DETAILS);
         assertEquals(template.getName(), "MyTemplate");
     }
 }

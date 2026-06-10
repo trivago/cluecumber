@@ -19,8 +19,8 @@ import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.CustomParameter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.Link;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.PageCollection;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
+import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateContextFactory;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -45,22 +45,23 @@ public class PageRenderer {
     /**
      * Return the completely rendered template content using a page collection.
      *
-     * @param template       The Freemarker template.
+     * @param template       The Pebble template.
      * @param pageCollection The page collection to take the data from.
      * @return The fully rendered content.
      * @throws CluecumberException In case of a rendering error.
      */
-    String processedContent(final Template template, final Object pageCollection, final List<Link> navigation)
+    String processedContent(final PebbleTemplate template, final Object pageCollection, final List<Link> navigation)
             throws CluecumberException {
 
         if (pageCollection instanceof PageCollection) {
             ((PageCollection) pageCollection).setNavigationLinks(navigation);
         }
 
-        Writer stringWriter = new StringWriter();
+        final Map<String, Object> context = TemplateContextFactory.create(pageCollection);
+        final Writer stringWriter = new StringWriter();
         try {
-            template.process(pageCollection, stringWriter);
-        } catch (TemplateException | IOException e) {
+            template.evaluate(stringWriter, context);
+        } catch (IOException e) {
             throw new CluecumberException("Could not render page content: " + e.getMessage());
         }
         return stringWriter.toString();
@@ -78,11 +79,11 @@ public class PageRenderer {
         if (customParameterMap == null || customParameterMap.isEmpty()) {
             return;
         }
-        List<CustomParameter> customParameters = new ArrayList<>();
+        final List<CustomParameter> customParameters = new ArrayList<>();
         customParameterMap.forEach((key, value) -> {
             if (value != null && !value.trim().isEmpty()) {
-                String newKey = key.replace("_", " ");
-                CustomParameter customParameter = new CustomParameter(newKey, value);
+                final String newKey = key.replace("_", " ");
+                final CustomParameter customParameter = new CustomParameter(newKey, value);
                 customParameters.add(customParameter);
             }
         });

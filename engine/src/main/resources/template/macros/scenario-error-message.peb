@@ -1,0 +1,15 @@
+
+{% if step.result.hasErrorMessage() %}
+        <div class="col-12 mt-2">
+            <div class="firstException firstException-detail w-100 text-left small">
+                <div class="exception-content">
+                    <pre class="exception-pre" id="{{ step.index|default(0) }}_errorMessage">{{ step.result.returnErrorMessageWithClickableLinks()|raw }}</pre>
+                </div>
+                <div class="exception-links-top">
+                    <button onclick="copyText('{{ step.index|default(0) }}_errorMessage')" type="button" class="btn-clipboard">
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endif %}

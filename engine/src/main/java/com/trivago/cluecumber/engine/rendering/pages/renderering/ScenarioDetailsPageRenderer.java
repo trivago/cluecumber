@@ -26,7 +26,7 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.charts.StackedBarChartBuilder;
 import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -64,13 +64,13 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content.
      *
      * @param scenarioDetailsPageCollection The {@link ScenarioDetailsPageCollection} instance.
-     * @param template                      The {@link Template} instance.
+     * @param template                      The {@link PebbleTemplate} instance.
      * @return The HTML string.
      * @throws CluecumberException Thrown on any errors.
      */
     public String getRenderedContent(
             final ScenarioDetailsPageCollection scenarioDetailsPageCollection,
-            final Template template) throws CluecumberException {
+            final PebbleTemplate template) throws CluecumberException {
 
         scenarioDetailsPageCollection.setExpandBeforeAfterHooks(propertyManager.isExpandBeforeAfterHooks());
         scenarioDetailsPageCollection.setExpandStepHooks(propertyManager.isExpandStepHooks());

@@ -59,6 +59,6 @@ public class FileIOTest {
 
     @Test
     public void isExistingFileExistingFileTest() {
-        assertTrue(fileIO.isExistingFile("src/test/resources/test.ftl"));
+        assertTrue(fileIO.isExistingFile("src/test/resources/test.peb"));
     }
 }

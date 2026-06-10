@@ -49,8 +49,8 @@ public class FileSystemManagerTest {
 
     @Test
     public void copyResourceFromJarTest() throws CluecumberException {
-        String newLocation = testFolder.toString().concat("/test.ftl");
-        fileSystemManager.copyResourceFromJar("/test.ftl", newLocation);
+        String newLocation = testFolder.toString().concat("/test.peb");
+        fileSystemManager.copyResourceFromJar("/test.peb", newLocation);
         assertTrue(new File(newLocation).isFile());
     }
 

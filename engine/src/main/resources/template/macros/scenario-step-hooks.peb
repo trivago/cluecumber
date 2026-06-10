@@ -1,0 +1,23 @@
+
+{% for hook in hooks %}
+        {% if hook.hasContent() %}
+            <div class="stepHook collapse {{ expandStepHooks ? "show" : "" }}" id="step_{{ stepIndex }}_stepHooks">
+                <div class="row row_{{ hook.consolidatedStatusString }} table-row-{{ hook.consolidatedStatusString }}">
+                    <div class="col-9 text-left">
+                        <i>{{ hook.glueMethodName }}</i>
+                    </div>
+                    <div class="col-2 text-left small">
+                        <span class="nobr">{{ hook.result.returnDurationString() }}</span>
+                    </div>
+                    <div class="col-1 text-right">
+                        {{ common.status(hook.consolidatedStatusString) }}
+                    </div>
+                    {% set step = hook %}
+                    {% include "macros/scenario-error-message" %}
+                    {% set sectionId = "hook" %}
+                    {% include "macros/scenario-output" %}
+                    {% include "macros/scenario-attachments" %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}

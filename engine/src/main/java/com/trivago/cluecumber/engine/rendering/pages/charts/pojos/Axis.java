@@ -22,8 +22,7 @@ package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 public class Axis {
     private Ticks ticks;
     private boolean stacked;
-    private ScaleLabel scaleLabel;
-    private float stepSize;
+    private ScaleLabel title;
 
     /**
      * Default constructor.
@@ -69,38 +68,20 @@ public class Axis {
     }
 
     /**
-     * Get the scale label for this axis.
+     * Get the title for this axis.
      *
-     * @return The label.
+     * @return The title configuration.
      */
-    public ScaleLabel getScaleLabel() {
-        return scaleLabel;
+    public ScaleLabel getTitle() {
+        return title;
     }
 
     /**
-     * Set the scale label for this axis.
+     * Set the title for this axis.
      *
-     * @param scaleLabel The label.
+     * @param title The title configuration.
      */
-    public void setScaleLabel(final ScaleLabel scaleLabel) {
-        this.scaleLabel = scaleLabel;
-    }
-
-    /**
-     * Get the step size for this axis.
-     *
-     * @return The step size.
-     */
-    public float getStepSize() {
-        return stepSize;
-    }
-
-    /**
-     * Set the step size for this axis.
-     *
-     * @param stepSize The step size.
-     */
-    public void setStepSize(final float stepSize) {
-        this.stepSize = stepSize;
+    public void setTitle(final ScaleLabel title) {
+        this.title = title;
     }
 }

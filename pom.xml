@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <revision>3.14.1</revision>
+        <revision>4.0.0</revision>
         <maven.version>3.9.9</maven.version>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,7 +31,12 @@
         <maven.compile.encoding>UTF-8</maven.compile.encoding>
         <maven.gpg.plugin.version>3.2.8</maven.gpg.plugin.version>
         <nexus.staging.maven.plugin.version>1.7.0</nexus.staging.maven.plugin.version>
-        <junit-jupiter.version>6.0.1</junit-jupiter.version>
+        <junit-jupiter.version>6.1.0</junit-jupiter.version>
+        <pebble.version>4.1.2</pebble.version>
+        <gson.version>2.14.0</gson.version>
+        <maven-artifact.version>3.9.6</maven-artifact.version>
+        <maven-model.version>3.9.6</maven-model.version>
+        <maven-plugin-api.version>3.9.9</maven-plugin-api.version>
         <mockito-core.version>5.23.0</mockito-core.version>
         <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
@@ -110,6 +115,31 @@
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito-core.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.pebbletemplates</groupId>
+                <artifactId>pebble</artifactId>
+                <version>${pebble.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-artifact</artifactId>
+                <version>${maven-artifact.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-model</artifactId>
+                <version>${maven-model.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>${maven-plugin-api.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

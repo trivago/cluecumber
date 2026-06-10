@@ -1,0 +1,500 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+{% import "macros/page" as page %}
+{% import "macros/common" as common %}
+
+{% set title = pageTitle ~ " - Scenario Detail" %}
+{% set base = "../.." %}
+{% set highlight = "" %}
+{% set headline = element.name %}
+{% set subheadline = element.description %}
+{% set subsubheadline = element.featureUri %}
+{% set preheadline = element.featureName %}
+{% set preheadlineLink = "pages/feature-scenarios/feature_" ~ element.featureIndex ~ ".html" %}
+{% include "macros/page-start" %}
+
+    {% if _model.hasCustomParameters() %}
+        {% include "macros/custom-parameters-card" %}
+    {% endif %}
+
+    <div class="row" id="scenario-detail">
+        {{ page.cardStart("6", "Step Results", "", "") }}
+            {{ page.graph() }}
+        {{ page.cardEnd() }}
+
+        {{ page.cardStart("3", "Summary", "", "") }}
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    {{ element.totalNumberOfSteps }} {{ common.pluralizeFn("Step", element.totalNumberOfSteps) }}
+                </li>
+                <li class="list-group-item">
+                    {{ element.totalNumberOfPassedSteps }} passed {{ common.status("passed") }}
+                    <br>
+                    {{ element.totalNumberOfFailedSteps }} failed {{ common.status("failed") }}
+                    <br>
+                    {{ element.totalNumberOfSkippedSteps }} skipped {{ common.status("skipped") }}
+                </li>
+            </ul>
+            {% if element.tags is not empty %}
+                <hr>
+                {% for tag in element.tags %}
+                    <a href="pages/tag-scenarios/tag_{{ tag.getUrlFriendlyName() }}.html"
+                       class="btn btn-link" style="word-break: break-all;">{{ tag.name }}</a>
+                {% endfor %}
+            {% endif %}
+        {{ page.cardEnd() }}
+
+        {{ page.cardStart("3", "Scenario Info", "", "") }}
+            <li class="list-group-item">
+                {% if element.startTimestamp is not empty %}
+                    <b>Start</b><br>{{ element.startDateString }} {{ element.startTimeString }}<br>
+                {% endif %}
+                {% if element.startTimestamp is not empty %}
+                    <b>End</b><br>{{ element.endDateString }} {{ element.endTimeString }}<br>
+                {% endif %}
+                <b>Total</b><br>{{ element.returnTotalDurationString() }}
+            </li>
+            {% set numberOfChildren = element.getMultiRunChildren()|length %}
+            {% if groupPreviousScenarioRuns and element.isMultiRunParent() %}
+                <hr>
+                <div class="alert alert-secondary" role="alert">
+                    Final of {{ numberOfChildren + 1 }} {{ common.pluralizeFn("run", numberOfChildren + 1) }}, previous:
+                    <ol style="list-style: none; padding: 0; margin: 0;" reversed>
+                        {% for childElement in element.getMultiRunChildren() %}
+                            <li>
+                                <a href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html"
+                                   style="word-break: break-all">
+                                    {{ childElement.startDateString }}, {{ childElement.startTimeString }}
+                                    {{ common.status(childElement.status.statusString) }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% endif %}
+            {% if groupPreviousScenarioRuns and element.isMultiRunChild() %}
+                <hr>
+                <div class="alert alert-secondary" role="alert">
+                    This is part
+                    of {{ element.getMultiRunParent().getMultiRunChildren()|length + 1 }}
+                    {{ common.pluralizeFn("run", element.getMultiRunParent().getMultiRunChildren()|length + 1) }}.
+                    <br>Latest: <a
+                            href="pages/scenario-detail/scenario_{{ element.getMultiRunParent().scenarioIndex }}.html">
+                        {{ element.getMultiRunParent().startDateString }}, {{ element.getMultiRunParent().startTimeString }}
+                        {{ common.status(element.getMultiRunParent().status.statusString) }}
+                    </a>
+                </div>
+            {% endif %}
+
+            {% if (element.hasHooks() and element.hasHooksWithContent()) or
+            element.hasSubSections() or
+            (element.hasStepHooks() and element.hasStepHooksWithContent()) or
+            element.hasDocStrings() %}
+                <hr>
+            {% endif %}
+
+            {% if element.hasSubSections() %}
+                <button class="btn w-75 m-2" type="button" id="sub-sections-button"
+                        data-cluecumber-item="sub-sections-button">{{ expandSubSections ? 'Hide' : 'Show' }} Sub
+                    Sections
+                </button>
+            {% endif %}
+            {% if element.hasHooks() and element.hasHooksWithContent() %}
+                <button class="btn w-75 m-2" type="button" id="before-after-hooks-button"
+                        data-cluecumber-item="before-after-hooks-button">{{ expandBeforeAfterHooks ? 'Hide' : 'Show' }}
+                    Hooks
+                </button>
+            {% endif %}
+            {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
+                <button class="btn w-75 m-2" type="button" id="step-hooks-button"
+                        data-cluecumber-item="step-hooks-button">{{ expandStepHooks ? 'Hide' : 'Show' }} Step Hooks
+                </button>
+            {% endif %}
+            {% if element.hasDocStrings() %}
+                <button class="btn w-75 m-2" type="button" id="doc-strings-button"
+                        data-cluecumber-item="doc-strings-button">{{ expandDocStrings ? 'Hide' : 'Show' }}
+                    DocStrings
+                </button>
+            {% endif %}
+            {% if element.hasAttachments() %}
+                <button class="btn w-75 m-2" type="button" id="attachments-button"
+                        data-cluecumber-item="attachments-button">{{ expandAttachments ? 'Hide' : 'Show' }}
+                    Attachments
+                </button>
+            {% endif %}
+            {% if element.hasOutputs() %}
+                <button class="btn w-75 m-2" type="button" id="outputs-button"
+                        data-cluecumber-item="outputs-button">{{ expandOutputs ? 'Hide' : 'Show' }} Step
+                    Outputs
+                </button>
+            {% endif %}
+        {{ page.cardEnd() }}
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% if element.before is not empty and element.anyBeforeHookHasContent() %}
+            <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
+                {{ page.cardStart("12", "Before Hooks", "", "") }}
+                    <li class="list-group-item">
+                        {% for before in element.before %}
+                            {% if before.hasContent() or before.isFailed() %}
+                                <div class="row row_{{ before.consolidatedStatusString }} table-row-{{ before.consolidatedStatusString }}">
+                                    <div class="col-9 text-left">
+                                        <span class="text-left">{{ loop.index }}.</span>
+                                        <i>{{ before.glueMethodName }}</i>
+                                    </div>
+                                    <div class="col-2 text-left small">
+                                        {{ before.result.returnDurationString() }}
+                                    </div>
+                                    <div class="col-1 text-right">
+                                        {{ common.status(before.consolidatedStatusString) }}
+                                    </div>
+                                    {% set step = before %}{% include "macros/scenario-error-message" %}
+                                    {% set step = before %}{% set sectionId = "before" %}{% include "macros/scenario-output" %}
+                                    {% set step = before %}{% include "macros/scenario-attachments" %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                {{ page.cardEnd() }}
+            </div>
+        {% endif %}
+
+        {% if element.backgroundSteps is not empty %}
+            {{ page.cardStart("12", "Background Steps", "", "") }}
+                <li class="list-group-item">
+
+                    {% set oldCollapseLevel = 0 %}
+                    {% set lastLevelChange = 0 %}
+                    {% set openDivs = 0 %}
+
+                    {% for step in element.backgroundSteps %}
+                        {% set stepIndex = step.index %}{% set hooks = step.before %}{% include "macros/scenario-step-hooks" %}
+
+                        {% set sectionChange = step.collapseLevel - oldCollapseLevel %}
+                        {% set oldCollapseLevel = step.collapseLevel %}
+                        {% set stepCounter = loop.index %}
+
+                        {% if sectionChange > 0 %}
+                            {% for n in 1..sectionChange %}
+                                {% set openDivs = openDivs + 1 %}
+                                <div style="padding-left: 2em;" id="section_{{ stepCounter }}"
+                                class="scenarioSubSection collapse {{ expandSubSections ? 'show' : '' }}">
+                            {% endfor %}
+                        {% elseif sectionChange < 0 %}
+                            {% for n in sectionChange..-1 %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
+
+                            <div class="col-9 text-left">
+                                <span class="text-left">{{ loop.index }}.</span>
+                                {% set stepName = step.returnNameWithArguments() %}
+                                <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
+                                    <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
+                                                class="keyword">{{ step.keyword }}</span> {{ stepName }}</a>
+                                </span>
+                                {% if step.hasSubSections() %}
+                                    <button type="button" class="btn-clipboard sectionExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#section_{{ loop.index + 1 }}">Sub Section
+                                    </button>
+                                {% endif %}
+                                {% if step.docString is not null and step.docString.value is not null %}
+                                    <button type="button" class="btn-clipboard docstringExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_{{ step.index }}_docstring">DocString
+                                    </button>
+                                {% endif %}
+                                {% if step.hasHooksWithContent() %}
+                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_{{ step.index }}_stepHooks">Step Hooks
+                                    </button>
+                                {% endif %}
+                            </div>
+                            <div class="col-2 text-left small">
+                                {{ step.result.returnDurationString() }}
+                            </div>
+                            <div class="col-1 text-right">
+                                {{ common.status(step.consolidatedStatusString) }}
+                            </div>
+
+                            {% if step.rows is not empty %}
+                                <div class="row w-100 p-3 m-0 scenarioDataTable">
+                                    <div class="w-100 text-left table-responsive">
+                                        <table class="table table-hover small table-striped text-left pb-0 border border-dark">
+                                            {% for row in step.rows %}
+                                                <tr>
+                                                    {% for cell in row.cells %}
+                                                        <td>{{ cell }}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if step.docString is not null and step.docString.value is not null %}
+                                <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
+                                    <div class="row w-100 p-3 m-0">
+                                        <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
+                                                class="btn-clipboard">
+                                            Copy
+                                        </button>
+                                        <div class="w-100 text-left border">
+                                            <pre class="text-secondary small p-2">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% set step = step %}{% include "macros/scenario-error-message" %}
+                            {% set step = step %}{% set sectionId = "background" %}{% include "macros/scenario-output" %}
+                            {% set step = step %}{% include "macros/scenario-attachments" %}
+                        </div>
+                        {% set stepIndex = step.index %}{% set hooks = step.after %}{% include "macros/scenario-step-hooks" %}
+                    {% endfor %}
+                </li>
+            {{ page.cardEnd() }}
+        {% endif %}
+
+        {% if element.steps is not empty %}
+            {{ page.cardStart("12", "Steps", "", "") }}
+                <li class="list-group-item">
+
+                    {% set oldCollapseLevel = 0 %}
+                    {% set lastLevelChange = 0 %}
+                    {% set openDivs = 0 %}
+
+                    {% for step in element.steps %}
+                        {% set stepIndex = step.index %}{% set hooks = step.before %}{% include "macros/scenario-step-hooks" %}
+
+                        {% set sectionChange = step.collapseLevel - oldCollapseLevel %}
+                        {% set oldCollapseLevel = step.collapseLevel %}
+                        {% set stepCounter = loop.index %}
+
+                        {% if sectionChange > 0 %}
+                            {% for n in 1..sectionChange %}
+                                {% set openDivs = openDivs + 1 %}
+                                <div style="padding-left: 2em;" id="section_{{ stepCounter }}"
+                                class="scenarioSubSection collapse {{ expandSubSections ? 'show' : '' }}">
+                            {% endfor %}
+                        {% elseif sectionChange < 0 %}
+                            {% for n in sectionChange..-1 %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
+
+                            <div class="col-9 text-left">
+                                <span class="text-left">{{ loop.index }}.</span>
+                                {% set stepName = step.returnNameWithArguments() %}
+                                <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
+                                    <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
+                                                class="keyword">{{ step.keyword }}</span> {{ stepName }}</a>
+                                </span>
+                                {% if step.hasSubSections() %}
+                                    <button type="button" class="btn-clipboard sectionExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#section_{{ loop.index + 1 }}">Sub Section
+                                    </button>
+                                {% endif %}
+                                {% if step.docString is not null and step.docString.value is not null %}
+                                    <button type="button" class="btn-clipboard docstringExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_{{ step.index }}_docstring">DocString
+                                    </button>
+                                {% endif %}
+                                {% if step.hasHooksWithContent() %}
+                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
+                                            data-toggle="collapse"
+                                            aria-expanded="false"
+                                            data-target="#step_{{ step.index }}_stepHooks">Step Hooks
+                                    </button>
+                                {% endif %}
+                            </div>
+                            <div class="col-2 text-left small">
+                                {{ step.result.returnDurationString() }}
+                            </div>
+                            <div class="col-1 text-right">
+                                {{ common.status(step.consolidatedStatusString) }}
+                            </div>
+
+                            {% if step.rows is not empty %}
+                                <div class="row w-100 p-3 m-0 scenarioDataTable">
+                                    <div class="w-100 text-left table-responsive">
+                                        <table class="table table-hover small table-striped text-left pb-0 border border-dark">
+                                            {% for row in step.rows %}
+                                                <tr>
+                                                    {% for cell in row.cells %}
+                                                        <td>{{ cell }}</td>
+                                                    {% endfor %}
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if step.docString is not null and step.docString.value is not null %}
+                                <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
+                                    <div class="row w-100 p-3 m-0">
+                                        <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
+                                                class="btn-clipboard">
+                                            Copy
+                                        </button>
+                                        <div class="w-100 text-left border">
+                                            <pre class="text-secondary small p-2">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% set step = step %}{% include "macros/scenario-error-message" %}
+                            {% set step = step %}{% set sectionId = "main" %}{% include "macros/scenario-output" %}
+                            {% set step = step %}{% include "macros/scenario-attachments" %}
+                        </div>
+                        {% set stepIndex = step.index %}{% set hooks = step.after %}{% include "macros/scenario-step-hooks" %}
+                    {% endfor %}
+                </li>
+            {{ page.cardEnd() }}
+        {% endif %}
+
+        {% if element.after is not empty and element.anyAfterHookHasContent() %}
+            <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
+                {{ page.cardStart("12", "After Hooks", "", "") }}
+                    <li class="list-group-item">
+                        {% for after in element.after %}
+                            {% if after.hasContent() or after.isFailed() %}
+                                <div class="row row_{{ after.consolidatedStatusString }} table-row-{{ after.consolidatedStatusString }}">
+                                    <div class="col-9 text-left">
+                                        <span class="text-left">{{ loop.index }}.</span>
+                                        <i>{{ after.glueMethodName }}</i>
+                                    </div>
+                                    <div class="col-2 text-left small">
+                                        {{ after.result.returnDurationString() }}
+                                    </div>
+                                    <div class="col-1 text-right">
+                                        {{ common.status(after.consolidatedStatusString) }}
+                                    </div>
+                                    {% set step = after %}{% include "macros/scenario-error-message" %}
+                                    {% set step = after %}{% set sectionId = "after" %}{% include "macros/scenario-output" %}
+                                    {% set step = after %}{% include "macros/scenario-attachments" %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                {{ page.cardEnd() }}
+            </div>
+        {% endif %}
+    </ul>
+
+    <script>
+        let classState = {};
+
+        function toggleHooks(className, defaultValue) {
+            if (classState[className] === undefined) {
+                classState[className] = defaultValue;
+            }
+            classState[className] = !classState[className];
+            let rootElements = document.getElementsByClassName(className);
+            for (const rootElement of rootElements) {
+                if (classState[className]) {
+                    rootElement.classList.add('show');
+                } else {
+                    rootElement.classList.remove('show');
+                }
+            }
+        }
+
+        function toggleCollapsableSection(className, defaultValue) {
+            if (classState[className] === undefined) {
+                classState[className] = defaultValue;
+            }
+            classState[className] = !classState[className];
+            if (classState[className]) {
+                $(className).collapse('show');
+            } else {
+                $(className).collapse('hide');
+            }
+        }
+
+        function toggleCollapsableAttachments(className, defaultValue) {
+            if (classState[className] === undefined) {
+                classState[className] = defaultValue;
+            }
+            classState[className] = !classState[className];
+            let rootElements = document.getElementsByClassName(className);
+            for (const rootElement of rootElements) {
+                let collapsableElements = rootElement.getElementsByClassName('collapse');
+                for (const collapsableElement of collapsableElements) {
+                    if (classState[className]) {
+                        collapsableElement.classList.add('show');
+                    } else {
+                        collapsableElement.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        {% if element.hasSubSections() %}
+        document.getElementById('sub-sections-button').addEventListener('click', function (event) {
+            toggleCollapsableSection('.scenarioSubSection', {{ expandSubSections ? "true" : "false" }});
+            event.target.textContent = classState['.scenarioSubSection'] ? 'Hide Sub Sections' : 'Show Sub Sections';
+        });
+        {% endif %}
+
+        {% if element.hasHooks() and element.hasHooksWithContent() %}
+        document.getElementById('before-after-hooks-button').addEventListener('click', function (event) {
+            toggleHooks('scenarioHook', {{ expandBeforeAfterHooks ? "true" : "false" }});
+            event.target.textContent = classState['scenarioHook'] ? 'Hide Hooks' : 'Show Hooks';
+        });
+        {% endif %}
+
+        {% if element.hasDocStrings() %}
+        document.getElementById('doc-strings-button').addEventListener('click', function (event) {
+            toggleCollapsableSection('.scenarioDocstring', {{ expandDocStrings ? "true" : "false" }});
+            event.target.textContent = classState['.scenarioDocstring'] ? 'Hide DocStrings' : 'Show DocStrings';
+        });
+        {% endif %}
+        {% if element.hasAttachments() %}
+        document.getElementById('attachments-button').addEventListener('click', function (event) {
+            toggleCollapsableAttachments('scenarioAttachment', {{ expandAttachments ? "true" : "false" }});
+            event.target.textContent = classState['scenarioAttachment'] ? 'Hide Attachments' : 'Show Attachments';
+        });
+        {% endif %}
+        {% if element.hasOutputs() %}
+        document.getElementById('outputs-button').addEventListener('click', function (event) {
+            toggleCollapsableAttachments('scenarioOutputs', {{ expandOutputs ? "true" : "false" }});
+            event.target.textContent = classState['scenarioOutputs'] ? 'Hide Step Outputs' : 'Show Step Outputs';
+        });
+        {% endif %}
+
+        {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
+        document.getElementById('step-hooks-button').addEventListener('click', function (event) {
+            toggleCollapsableSection('.stepHook', {{ expandStepHooks ? "true" : "false" }});
+            event.target.textContent = classState['.stepHook'] ? 'Hide Step Hooks' : 'Show Step Hooks';
+        });
+        {% endif %}
+    </script>
+{% include "macros/page-end" %}

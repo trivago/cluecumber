@@ -1,0 +1,82 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+{% import "macros/page" as page %}
+{% import "macros/common" as common %}
+
+{% set title = pageTitle ~ " - All Tags" %}
+{% set base = ".." %}
+{% set highlight = "tag_summary" %}
+{% set headline = "All Tags" %}
+{% set subheadline = "" %}
+{% set subsubheadline = "" %}
+{% set preheadline = "" %}
+{% set preheadlineLink = "" %}
+{% include "macros/page-start" %}
+
+    {% if _model.hasCustomParameters() %}
+        {% include "macros/custom-parameters-card" %}
+    {% endif %}
+
+    <div class="row" id="tag-summary">
+        {{ page.cardStart("9", "Tag Summary Result Chart", "", "") }}
+            {{ page.graph() }}
+        {{ page.cardEnd() }}
+        {{ page.cardStart("3", "Tag Summary", "", "") }}
+            <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
+                <li class="list-group-item">{{ totalNumberOfTags }} {{ common.pluralizeFn("Tag", totalNumberOfTags) }} in
+                    <br>
+                    {{ totalNumberOfScenarios }} Tagged {{ common.pluralizeFn("Scenario", totalNumberOfScenarios) }}
+                </li>
+                <li class="list-group-item">
+                    {{ totalNumberOfPassed }} passed {{ common.status("passed") }}
+                    <br>
+                    {{ totalNumberOfFailed }} failed {{ common.status("failed") }}
+                    <br>
+                    {{ totalNumberOfSkipped }} skipped {{ common.status("skipped") }}
+                </li>
+            </ul>
+        {{ page.cardEnd() }}
+    </div>
+
+    <div class="row" id="available-tags">
+        {{ page.cardStart("12", totalNumberOfTags ~ " " ~ common.pluralizeFn("Tag", totalNumberOfTags), "", "") }}
+            <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
+                <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Total</th>
+                    <th class="passedCell">{{ common.status("passed") }}</th>
+                    <th class="failedCell">{{ common.status("failed") }}</th>
+                    <th class="skippedCell">{{ common.status("skipped") }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entry in tagResultCounts %}
+                    <tr>
+                        <td class="text-left"><a
+                                    href="pages/tag-scenarios/tag_{{ entry.key.getUrlFriendlyName() }}.html">{{ entry.key.name }}</a></td>
+                        <td class="text-center"><strong>{{ entry.value.total }}</strong></td>
+                        <td class="text-center passedCell">{{ entry.value.passed }}</td>
+                        <td class="text-center failedCell">{{ entry.value.failed }}</td>
+                        <td class="text-center skippedCell">{{ entry.value.skipped }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {{ page.cardEnd() }}
+    </div>
+{% include "macros/page-end" %}

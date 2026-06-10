@@ -1,0 +1,280 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/datatables.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/chart.min.js"></script>
+
+<script>
+    /**
+     * Dispose existing Bootstrap tooltips, drop orphaned tip nodes, then attach fresh instances.
+     * Needed so HTML tooltips do not stick after bfcache back/forward or DataTables redraws.
+     */
+    function initCluecumberTooltips() {
+        $('[data-toggle="tooltip"]').each(function () {
+            var $el = $(this);
+            try {
+                if ($el.data('bs.tooltip')) {
+                    $el.tooltip('dispose');
+                }
+            } catch (ignore) {
+            }
+        });
+        $('.tooltip').remove();
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+
+    $(document).ready(function () {
+            // Data tables
+            $('.renderAsDataTable').on('draw.dt', function () {
+                initCluecumberTooltips();
+            }).DataTable({
+                "oLanguage": {
+                    "sSearch": "Search:"
+                },
+                "pageLength": 25,
+                "responsive": true
+            });
+
+            $(".collapse").click(function () {
+                $(this).toggleClass("expanded");
+            });
+
+            $('.collapse').on('shown.bs.collapse', function (e) {
+                $(e.target).find("iframe").each(function (index, iframe) {
+                    resizeIframe(iframe);
+                })
+            });
+
+            // Lightbox
+            $("a.grouped_elements").fancybox();
+
+            // Tool tips
+            initCluecumberTooltips();
+
+            $(window).on('pagehide', function () {
+                $('[data-toggle="tooltip"]').each(function () {
+                    try {
+                        if ($(this).data('bs.tooltip')) {
+                            $(this).tooltip('hide');
+                        }
+                    } catch (ignore) {
+                    }
+                });
+            });
+
+            $(window).on('pageshow', function (event) {
+                if (event.originalEvent && event.originalEvent.persisted) {
+                    initCluecumberTooltips();
+                }
+            });
+
+            function toggleVisibilityByStatus(statusText, show) {
+                const card = $("#card_" + statusText);
+                if (card !== undefined) {
+                    if (show) {
+                        card.show();
+                    } else {
+                        card.hide();
+                    }
+                }
+
+                const row = $(".table-row-" + statusText);
+                if (row !== undefined) {
+                    if (show) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            }
+
+            // Chart
+            {% if reportDetails.chartJson is not empty %}
+            let cluecumberChart = null;
+            const cluecumberChartConfig = {{ reportDetails.chartJson|raw }};
+            let cluecumberChartResizeTimer = null;
+            let cluecumberChartLastSize = {width: 0, height: 0};
+
+            function scheduleCluecumberChartRender() {
+                clearTimeout(cluecumberChartResizeTimer);
+                cluecumberChartResizeTimer = setTimeout(renderCluecumberChart, 150);
+            }
+
+            function resetCluecumberChartCanvas(canvas) {
+                canvas.removeAttribute('width');
+                canvas.removeAttribute('height');
+                canvas.removeAttribute('style');
+            }
+
+            function buildCluecumberChartConfig() {
+                const chartConfig = JSON.parse(JSON.stringify(cluecumberChartConfig));
+                chartConfig.options = chartConfig.options || {};
+                const isPieChart = chartConfig.type === "pie";
+                const originalLegendClick = Chart.defaults.plugins.legend.onClick;
+
+                chartConfig.options.responsive = true;
+                if (isPieChart) {
+                    chartConfig.options.maintainAspectRatio = true;
+                    chartConfig.options.aspectRatio = 1;
+                    chartConfig.options.layout = chartConfig.options.layout || {};
+                    chartConfig.options.layout.padding = 8;
+                    chartConfig.options.onClick = function (evt, elements) {
+                        if (elements.length === 0) return;
+                        const index = elements[0].index;
+                        this.toggleDataVisibility(index);
+                        this.update();
+                        const label = this.data.labels[index];
+                        toggleVisibilityByStatus(label, this.getDataVisibility(index));
+                    };
+                } else {
+                    chartConfig.options.maintainAspectRatio = false;
+                    {% if reportDetails.chartUrlLookup is not empty %}
+                    const chartUrls = {
+                        {% for entry in reportDetails.chartUrlLookup %}
+                        "{{ entry.key|escape('js') }}": "{{ entry.value }}",
+                        {% endfor %}
+                    };
+                    chartConfig.options.onClick = function (evt, elements) {
+                        if (elements.length === 0) return;
+                        const index = elements[0].index;
+                        const label = this.data.labels[index];
+                        if (label == null) return;
+                        const urlSnippet = chartUrls[label];
+                        if (urlSnippet == null) return;
+                        window.location.href = urlSnippet;
+                    };
+                    {% endif %}
+                }
+
+                chartConfig.options.plugins = chartConfig.options.plugins || {};
+                chartConfig.options.plugins.legend = chartConfig.options.plugins.legend || {};
+                chartConfig.options.plugins.legend.labels = chartConfig.options.plugins.legend.labels || {};
+                if (isPieChart) {
+                    chartConfig.options.plugins.legend.labels.boxWidth = 12;
+                    chartConfig.options.plugins.legend.labels.padding = 10;
+                }
+                chartConfig.options.plugins.legend.onClick = function (evt, legendItem, legend) {
+                    originalLegendClick.call(this, evt, legendItem, legend);
+                    toggleVisibilityByStatus(legendItem.text, !legendItem.hidden);
+                };
+
+                return chartConfig;
+            }
+
+            function destroyCluecumberChart() {
+                if (cluecumberChart) {
+                    cluecumberChart.destroy();
+                    cluecumberChart = null;
+                }
+            }
+
+            function renderCluecumberChart() {
+                requestAnimationFrame(function () {
+                    const canvas = document.getElementById('chart-area');
+                    const holder = document.getElementById('canvas-holder');
+                    if (!canvas || !holder) {
+                        return;
+                    }
+
+                    const width = holder.clientWidth;
+                    const height = holder.clientHeight;
+                    if (width <= 0 || height <= 0) {
+                        scheduleCluecumberChartRender();
+                        return;
+                    }
+
+                    if (cluecumberChart
+                        && cluecumberChartLastSize.width === width
+                        && cluecumberChartLastSize.height === height) {
+                        return;
+                    }
+
+                    const chartConfig = buildCluecumberChartConfig();
+                    const isPieChart = chartConfig.type === "pie";
+
+                    holder.classList.toggle('chart-pie', isPieChart);
+
+                    destroyCluecumberChart();
+                    resetCluecumberChartCanvas(canvas);
+
+                    cluecumberChartLastSize = {width: width, height: height};
+                    cluecumberChart = new Chart(canvas, chartConfig);
+                });
+            }
+
+            renderCluecumberChart();
+            $(window).on('resize', scheduleCluecumberChartRender);
+            if (typeof ResizeObserver !== 'undefined') {
+                const chartHolder = document.getElementById('canvas-holder');
+                if (chartHolder) {
+                    new ResizeObserver(scheduleCluecumberChartRender).observe(chartHolder);
+                }
+            }
+            {% endif %}
+
+            if ({{ expandBeforeAfterHooks ? "true" : "false" }}) {
+                $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+            }
+            if ({{ expandStepHooks ? "true" : "false" }}) {
+                $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
+            }
+            if ({{ expandDocStrings ? "true" : "false" }}) {
+                $(".scenarioDocstring").collapse("show");
+            }
+            if ({{ expandPreviousScenarioRuns ? "true" : "false" }}) {
+                $("[data-cluecumber-item='multi-run-button']").click();
+            }
+
+            document.getElementById('dark-light-mode-switch').addEventListener('click', darkLightModeSwitch);
+        }
+    );
+
+    function darkLightModeSwitch() {
+        document.documentElement.classList.toggle('dark-mode');
+        const isDarkMode = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        updateDarkLightModeButton(isDarkMode);
+    }
+
+    function updateDarkLightModeButton(isDarkMode) {
+        const button = document.getElementById('dark-light-mode-switch');
+        button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+    }
+
+    function resizeIframe(iframe) {
+        setInterval(function () {
+            try {
+                iframe.height = iframe.contentWindow.document.body.scrollHeight + 25 + "px";
+            } catch (e) {
+            }
+        }, 500);
+    }
+
+    function copyText(elementId) {
+        let text = document.getElementById(elementId).innerText;
+        if (text.startsWith("Copy")) {
+            text = text.substring(4).trim();
+        }
+        navigator.clipboard.writeText(text)
+            .catch((error) => {
+                console.error('Failed to copy text from ' + elementId + ':', error);
+            });
+    }
+</script>

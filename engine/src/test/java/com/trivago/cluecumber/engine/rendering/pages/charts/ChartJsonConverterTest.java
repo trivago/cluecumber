@@ -74,36 +74,30 @@ public class ChartJsonConverterTest {
                 "  },\n" +
                 "  \"options\": {\n" +
                 "    \"scales\": {\n" +
-                "      \"xAxes\": [\n" +
-                "        {\n" +
-                "          \"ticks\": {\n" +
-                "            \"min\": 0,\n" +
-                "            \"stepSize\": 0.0,\n" +
-                "            \"display\": true\n" +
-                "          },\n" +
-                "          \"stacked\": false,\n" +
-                "          \"scaleLabel\": {\n" +
-                "            \"display\": true,\n" +
-                "            \"labelString\": \"Step Number\"\n" +
-                "          },\n" +
-                "          \"stepSize\": 0.0\n" +
+                "      \"x\": {\n" +
+                "        \"ticks\": {\n" +
+                "          \"min\": 0,\n" +
+                "          \"stepSize\": 0.0,\n" +
+                "          \"display\": true\n" +
+                "        },\n" +
+                "        \"stacked\": false,\n" +
+                "        \"title\": {\n" +
+                "          \"display\": true,\n" +
+                "          \"text\": \"Step Number\"\n" +
                 "        }\n" +
-                "      ],\n" +
-                "      \"yAxes\": [\n" +
-                "        {\n" +
-                "          \"ticks\": {\n" +
-                "            \"min\": 0,\n" +
-                "            \"stepSize\": 0.0,\n" +
-                "            \"display\": true\n" +
-                "          },\n" +
-                "          \"stacked\": true,\n" +
-                "          \"scaleLabel\": {\n" +
-                "            \"display\": true,\n" +
-                "            \"labelString\": \"Step Runtime\"\n" +
-                "          },\n" +
-                "          \"stepSize\": 0.0\n" +
+                "      },\n" +
+                "      \"y\": {\n" +
+                "        \"ticks\": {\n" +
+                "          \"min\": 0,\n" +
+                "          \"stepSize\": 0.0,\n" +
+                "          \"display\": true\n" +
+                "        },\n" +
+                "        \"stacked\": true,\n" +
+                "        \"title\": {\n" +
+                "          \"display\": true,\n" +
+                "          \"text\": \"Step Runtime\"\n" +
                 "        }\n" +
-                "      ]\n" +
+                "      }\n" +
                 "    }\n" +
                 "  },\n" +
                 "  \"type\": \"bar\"\n" +
@@ -159,28 +153,24 @@ public class ChartJsonConverterTest {
 
         Options options = new Options();
         Scales scales = new Scales();
-        List<Axis> xAxes = new ArrayList<>();
         Axis xAxis = new Axis();
         Ticks xTicks = new Ticks();
         xAxis.setTicks(xTicks);
-        ScaleLabel xScaleLabel = new ScaleLabel();
-        xScaleLabel.setDisplay(true);
-        xScaleLabel.setLabelString("Step Number");
-        xAxis.setScaleLabel(xScaleLabel);
-        xAxes.add(xAxis);
-        scales.setxAxes(xAxes);
+        ScaleLabel xTitle = new ScaleLabel();
+        xTitle.setDisplay(true);
+        xTitle.setText("Step Number");
+        xAxis.setTitle(xTitle);
+        scales.setX(xAxis);
 
-        List<Axis> yAxes = new ArrayList<>();
         Axis yAxis = new Axis();
         yAxis.setStacked(true);
         Ticks yTicks = new Ticks();
         yAxis.setTicks(yTicks);
-        ScaleLabel yScaleLabel = new ScaleLabel();
-        yScaleLabel.setDisplay(true);
-        yScaleLabel.setLabelString("Step Runtime");
-        yAxis.setScaleLabel(yScaleLabel);
-        yAxes.add(yAxis);
-        scales.setyAxes(yAxes);
+        ScaleLabel yTitle = new ScaleLabel();
+        yTitle.setDisplay(true);
+        yTitle.setText("Step Runtime");
+        yAxis.setTitle(yTitle);
+        scales.setY(yAxis);
 
         options.setScales(scales);
         chart.setOptions(options);

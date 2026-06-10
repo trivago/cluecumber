@@ -1,0 +1,103 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+{% import "macros/page" as page %}
+{% import "macros/common" as common %}
+
+{% set title = pageTitle ~ " - All Steps" %}
+{% set base = ".." %}
+{% set highlight = "step_summary" %}
+{% set headline = "All Steps" %}
+{% set subheadline = "" %}
+{% set subsubheadline = "" %}
+{% set preheadline = "" %}
+{% set preheadlineLink = "" %}
+{% include "macros/page-start" %}
+
+    {% if _model.hasCustomParameters() %}
+        {% include "macros/custom-parameters-card" %}
+    {% endif %}
+
+    <div class="row" id="step-summary">
+        {{ page.cardStart("9", "Step Summary Result Chart", "", "") }}
+            {{ page.graph() }}
+        {{ page.cardEnd() }}
+        {{ page.cardStart("3", "Step Summary", "", "") }}
+            <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
+                <li class="list-group-item">
+                    {{ totalNumberOfSteps }} {{ common.pluralizeFn("Step", totalNumberOfSteps) }} from
+                    <br>
+                    {{ totalNumberOfScenarios }} {{ common.pluralizeFn("Scenario", totalNumberOfScenarios) }}
+                </li>
+                <li class="list-group-item">
+                    {{ totalNumberOfPassed }} passed {{ common.status("passed") }}
+                    <br>
+                    {{ totalNumberOfFailed }} failed {{ common.status("failed") }}
+                    <br>
+                    {{ totalNumberOfSkipped }} skipped{{ common.status("skipped") }}
+                </li>
+            </ul>
+        {{ page.cardEnd() }}
+    </div>
+
+    <div class="row" id="available-steps">
+        {{ page.cardStart("12", totalNumberOfSteps ~ " " ~ common.pluralizeFn("Step", totalNumberOfSteps), "", "") }}
+            <table id="step_summary" class="table table-hover renderAsDataTable"
+                   data-cluecumber-item="step-summary-table">
+                <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Total</th>
+                    <th class="passedCell">{{ common.status("passed") }}</th>
+                    <th class="failedCell">{{ common.status("failed") }}</th>
+                    <th class="skippedCell">{{ common.status("skipped") }}</th>
+                    <th>Min Time</th>
+                    <th>Max Time</th>
+                    <th>Ø Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for entry in stepResultCounts %}
+                    {% set step = entry.key %}
+                    {% set stepResultCount = entry.value %}
+                    <tr>
+                        <td class="text-left">
+                            <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
+                                <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html">{{ step.returnNameWithArgumentPlaceholders() }}</a>
+                            </span>
+                        </td>
+                        <td class="text-center"><strong>{{ stepResultCount.total }}</strong></td>
+                        <td class="text-center passedCell">{{ stepResultCount.passed }}</td>
+                        <td class="text-center failedCell">{{ stepResultCount.failed }}</td>
+                        <td class="text-center skippedCell">{{ stepResultCount.skipped }}</td>
+                        <td class="text-right small">
+                            {% if _model.getMinimumTimeScenarioIndexFromStep(step) > -1 %}
+                                <a href="pages/scenario-detail/scenario_{{ _model.getMinimumTimeScenarioIndexFromStep(step) }}.html">{{ _model.getMinimumTimeFromStep(step) }}</a>
+                            {% endif %}
+                        </td>
+                        <td class="text-right small">
+                            {% if _model.getMaximumTimeScenarioIndexFromStep(step) > -1 %}
+                                <a href="pages/scenario-detail/scenario_{{ _model.getMaximumTimeScenarioIndexFromStep(step) }}.html">{{ _model.getMaximumTimeFromStep(step) }}</a>
+                            {% endif %}
+                        </td>
+                        <td class="text-right small">{{ _model.getAverageTimeFromStep(step) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {{ page.cardEnd() }}
+    </div>
+{% include "macros/page-end" %}

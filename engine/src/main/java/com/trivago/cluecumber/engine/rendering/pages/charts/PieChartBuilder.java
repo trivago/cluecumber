@@ -91,10 +91,6 @@ public class PieChartBuilder {
         final Options options = new Options();
         options.setResponsive(true);
         options.setMaintainAspectRatio(true);
-        List<String> events = new ArrayList<>();
-        events.add("click");
-        events.add("mousemove");
-        options.setEvents(events);
         chart.setOptions(options);
         chart.setType(ChartConfiguration.Type.pie);
         return chart;

@@ -15,16 +15,14 @@
  */
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
-import java.util.List;
-
 /**
  * The axes of the chart.
  */
 @SuppressWarnings("unused")
 public class Scales {
 
-    private List<Axis> xAxes;
-    private List<Axis> yAxes;
+    private Axis x;
+    private Axis y;
 
     /**
      * Default constructor.
@@ -34,38 +32,38 @@ public class Scales {
     }
 
     /**
-     * Get the x axes.
+     * Get the x axis.
      *
-     * @return The {@link Axis} list.
+     * @return The {@link Axis} instance.
      */
-    public List<Axis> getxAxes() {
-        return xAxes;
+    public Axis getX() {
+        return x;
     }
 
     /**
-     * Set the x axes.
+     * Set the x axis.
      *
-     * @param xAxes The {@link Axis} list.
+     * @param x The {@link Axis} instance.
      */
-    public void setxAxes(final List<Axis> xAxes) {
-        this.xAxes = xAxes;
+    public void setX(final Axis x) {
+        this.x = x;
     }
 
     /**
-     * Get the y axes.
+     * Get the y axis.
      *
-     * @return The {@link Axis} list.
+     * @return The {@link Axis} instance.
      */
-    public List<Axis> getyAxes() {
-        return yAxes;
+    public Axis getY() {
+        return y;
     }
 
     /**
-     * Set the x axes.
+     * Set the y axis.
      *
-     * @param yAxes The {@link Axis} list.
+     * @param y The {@link Axis} instance.
      */
-    public void setyAxes(final List<Axis> yAxes) {
-        this.yAxes = yAxes;
+    public void setY(final Axis y) {
+        this.y = y;
     }
 }

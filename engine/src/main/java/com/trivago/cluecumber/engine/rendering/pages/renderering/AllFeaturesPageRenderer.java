@@ -26,7 +26,7 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.ResultCount;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -67,12 +67,12 @@ public class AllFeaturesPageRenderer extends PageWithChartRenderer {
      * Return the rendered page content.
      *
      * @param allFeaturesPageCollection The {@link AllFeaturesPageCollection} instance.
-     * @param template                  The Freemarker template.
+     * @param template                  The Pebble template.
      * @return The rendered page content as a string.
      * @throws CluecumberException Thrown in case of any error.
      */
     public String getRenderedContent(
-            final AllFeaturesPageCollection allFeaturesPageCollection, final Template template)
+            final AllFeaturesPageCollection allFeaturesPageCollection, final PebbleTemplate template)
             throws CluecumberException {
 
         addChartJsonToReportDetails(allFeaturesPageCollection);

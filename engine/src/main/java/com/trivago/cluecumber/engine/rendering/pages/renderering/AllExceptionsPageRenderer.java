@@ -25,7 +25,7 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.StackedBarChartBuild
 import com.trivago.cluecumber.engine.rendering.pages.charts.pojos.Chart;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.ResultCount;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllExceptionsPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -65,12 +65,12 @@ public class AllExceptionsPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content.
      *
      * @param allExceptionsPageCollection The {@link AllExceptionsPageCollection} instance.
-     * @param template              THe {@link Template} instance.
+     * @param template              The {@link PebbleTemplate} instance.
      * @return The HTML string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContent(
-            final AllExceptionsPageCollection allExceptionsPageCollection, final Template template)
+            final AllExceptionsPageCollection allExceptionsPageCollection, final PebbleTemplate template)
             throws CluecumberException {
 
         addChartJsonToReportDetails(allExceptionsPageCollection);

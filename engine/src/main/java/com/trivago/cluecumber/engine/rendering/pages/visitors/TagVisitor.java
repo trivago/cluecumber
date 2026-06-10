@@ -48,7 +48,7 @@ public class TagVisitor implements PageVisitor {
      * The constructor for dependency injection.
      *
      * @param fileIO                   The {@link FileIO} instance.
-     * @param templateEngine           The Freemarker template engine.
+     * @param templateEngine           The Pebble template engine.
      * @param propertyManager          The {@link PropertyManager} instance.
      * @param allTagsPageRenderer      The renderer for tag pages.
      * @param allScenariosPageRenderer The renderer for the scenario pages.

@@ -2,7 +2,7 @@ package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.StartPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ public class StartPageRendererTest {
 
     @Test
     public void startPageRendererTest() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         StartPageCollection startPageCollection = mock(StartPageCollection.class);
         String processedContent = startPageRenderer.processedContent(template, startPageCollection, null);
         assertEquals(processedContent, "");
