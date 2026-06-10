@@ -1,0 +1,26 @@
+---
+description: Core development principles for Cluecumber (YAGNI, dependency-first, minimal diffs)
+alwaysApply: true
+---
+
+# Cluecumber development guidelines
+
+Follow `CONTRIBUTING.md` (Development guidelines section). Summary:
+
+## Do
+
+- **YAGNI** — implement only what the task requires.
+- **Dependency-first** — use native Chart.js/Pebble/Bootstrap/DataTables behavior before custom JS, resize handlers, or layout logic.
+- **Minimal diffs** — smallest correct change; match existing conventions in the file/module.
+- **Pebble** — use `{% include %}` when partials need page context; never put `.peb` in import/include paths.
+- **Chart.js 4** — set handlers on config *before* `new Chart()`; avoid mutating `chart.options` after create if charts may be recreated.
+- **Verify** — run affected Maven tests; regenerate example report after template/CSS/JS changes.
+
+## Avoid
+
+- Speculative abstractions, config, or “future-proof” code.
+- Custom implementations of what a dependency already supports.
+- Drive-by refactors, extra tests that assert the obvious, or docs/CHANGELOG unless requested or API behavior changed.
+- Over-engineered error handling and one-off helper extraction.
+
+When unsure, prefer the simpler approach that relies on the library’s documented behavior.
