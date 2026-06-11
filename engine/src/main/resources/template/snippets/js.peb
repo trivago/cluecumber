@@ -232,8 +232,7 @@ limitations under the License.
                 chartConfig.options.plugins.legend = chartConfig.options.plugins.legend || {};
                 chartConfig.options.plugins.legend.labels = chartConfig.options.plugins.legend.labels || {};
                 if (isPieChart) {
-                    chartConfig.options.plugins.legend.labels.boxWidth = 12;
-                    chartConfig.options.plugins.legend.labels.padding = 10;
+                    chartConfig.options.plugins.legend.display = false;
                 }
                 chartConfig.options.plugins.legend.onClick = function (evt, legendItem, legend) {
                     originalLegendClick.call(this, evt, legendItem, legend);

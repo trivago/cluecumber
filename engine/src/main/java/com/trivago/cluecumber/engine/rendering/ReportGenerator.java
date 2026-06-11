@@ -191,14 +191,6 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/css/datatables.min.css");
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
 
-        // Copy webfont resources
-        fileSystemManager.createDirectory(reportDirectory + "/font");
-        copyFileFromJarToReportDirectory("/font/cluecumber.eot");
-        copyFileFromJarToReportDirectory("/font/cluecumber.svg");
-        copyFileFromJarToReportDirectory("/font/cluecumber.ttf");
-        copyFileFromJarToReportDirectory("/font/cluecumber.woff");
-        copyFileFromJarToReportDirectory("/font/cluecumber.woff2");
-
         // Copy Javascript resources
         fileSystemManager.createDirectory(reportDirectory + "/js");
         copyFileFromJarToReportDirectory("/js/jquery.min.js");

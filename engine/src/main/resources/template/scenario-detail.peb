@@ -154,7 +154,7 @@ limitations under the License.
                             {% if before.hasContent() or before.isFailed() %}
                                 <div class="row row_{{ before.consolidatedStatusString }} table-row-{{ before.consolidatedStatusString }}">
                                     <div class="col-9 text-left">
-                                        <span class="text-left">{{ loop.index }}.</span>
+                                        <span class="text-left">{{ loop.index + 1 }}.</span>
                                         <i>{{ before.glueMethodName }}</i>
                                     </div>
                                     <div class="col-2 text-left small">
@@ -204,7 +204,7 @@ limitations under the License.
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
 
                             <div class="col-9 text-left">
-                                <span class="text-left">{{ loop.index }}.</span>
+                                <span class="text-left">{{ loop.index + 1 }}.</span>
                                 {% set stepName = step.returnNameWithArguments() %}
                                 <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
                                     <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
@@ -307,7 +307,7 @@ limitations under the License.
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
 
                             <div class="col-9 text-left">
-                                <span class="text-left">{{ loop.index }}.</span>
+                                <span class="text-left">{{ loop.index + 1 }}.</span>
                                 {% set stepName = step.returnNameWithArguments() %}
                                 <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
                                     <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
@@ -388,7 +388,7 @@ limitations under the License.
                             {% if after.hasContent() or after.isFailed() %}
                                 <div class="row row_{{ after.consolidatedStatusString }} table-row-{{ after.consolidatedStatusString }}">
                                     <div class="col-9 text-left">
-                                        <span class="text-left">{{ loop.index }}.</span>
+                                        <span class="text-left">{{ loop.index + 1 }}.</span>
                                         <i>{{ after.glueMethodName }}</i>
                                     </div>
                                     <div class="col-2 text-left small">
