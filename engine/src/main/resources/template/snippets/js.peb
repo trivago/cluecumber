@@ -202,11 +202,15 @@ limitations under the License.
                     chartConfig.options.layout.padding = 8;
                     chartConfig.options.onClick = function (evt, elements) {
                         if (elements.length === 0) return;
-                        const index = elements[0].index;
-                        this.toggleDataVisibility(index);
-                        this.update();
-                        const label = this.data.labels[index];
-                        toggleVisibilityByStatus(label, this.getDataVisibility(index));
+                        const label = this.data.labels[elements[0].index];
+                        if (label == null) return;
+                        const anchorId = 'anchor-' + label;
+                        if (document.getElementById(anchorId)) {
+                            document.location.hash = anchorId;
+                        }
+                    };
+                    chartConfig.options.onHover = function (evt, elements) {
+                        evt.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
                     };
                 } else {
                     chartConfig.options.maintainAspectRatio = false;

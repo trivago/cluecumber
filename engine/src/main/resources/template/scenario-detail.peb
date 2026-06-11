@@ -208,7 +208,7 @@ limitations under the License.
                                 {% set stepName = step.returnNameWithArguments() %}
                                 <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
                                     <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
-                                                class="keyword">{{ step.keyword }}</span> {{ stepName }}</a>
+                                                class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
                                 </span>
                                 {% if step.hasSubSections() %}
                                     <button type="button" class="btn-clipboard sectionExpansionButton"
@@ -311,7 +311,7 @@ limitations under the License.
                                 {% set stepName = step.returnNameWithArguments() %}
                                 <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
                                     <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
-                                                class="keyword">{{ step.keyword }}</span> {{ stepName }}</a>
+                                                class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
                                 </span>
                                 {% if step.hasSubSections() %}
                                     <button type="button" class="btn-clipboard sectionExpansionButton"

@@ -155,15 +155,19 @@ h1, h2, h3, h4, h5 {
     flex-shrink: 0;
 }
 
-.cluecumber-theme-toggle {
+.cluecumber-header .cluecumber-theme-toggle {
     margin: 0;
     width: 2.25rem;
     height: 2.25rem;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
     padding: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    box-sizing: border-box;
+    aspect-ratio: 1;
     background: transparent;
     border-color: rgba(255, 255, 255, 0.5);
     color: #fff;
@@ -175,6 +179,8 @@ h1, h2, h3, h4, h5 {
 
 .cluecumber-header-date {
     white-space: nowrap;
+    font-size: var(--cluecumber-font-size);
+    line-height: var(--cluecumber-line-height);
     color: rgba(255, 255, 255, 0.75);
 }
 
@@ -238,6 +244,8 @@ h1, h2, h3, h4, h5 {
 .cluecumber-preheadline {
     margin-bottom: 0.25rem;
     font-weight: 600;
+    font-size: var(--cluecumber-font-size);
+    line-height: var(--cluecumber-line-height);
 }
 
 .cluecumber-subheadline {
@@ -801,17 +809,23 @@ tr.odd td {
 }
 
 button,
-.btn {
+.btn,
+[role=button],
+[type=button],
+[type=reset],
+[type=submit] {
     width: auto;
     margin-bottom: 0;
     white-space: inherit;
+    font-size: var(--cluecumber-font-size);
+    line-height: var(--cluecumber-line-height);
 }
 
 .btn-clipboard {
     border: none;
     background: transparent;
     padding: 0.15rem 0.5rem;
-    font-size: var(--cluecumber-font-size-small);
+    font-size: var(--cluecumber-font-size);
     line-height: var(--cluecumber-line-height);
     color: var(--pico-muted-color);
     cursor: pointer;
@@ -980,7 +994,6 @@ pre {
 }
 
 .small,
-.cluecumber-header-date,
 .cluecumber-footer small {
     font-size: var(--cluecumber-font-size-small);
     line-height: var(--cluecumber-line-height);

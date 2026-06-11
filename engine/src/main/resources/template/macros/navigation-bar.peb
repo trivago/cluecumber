@@ -58,7 +58,7 @@ limitations under the License.
         </div>
     </nav>
     <div class="cluecumber-header-actions">
-        <small class="cluecumber-header-date">{{ reportDetails.date }}</small>
+        <span class="cluecumber-header-date">{{ reportDetails.date }}</span>
         <button type="button" id="dark-light-mode-switch" class="cluecumber-theme-toggle secondary outline"
                 aria-label="Switch to dark mode" title="Dark mode">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.15em" height="1.15em"
