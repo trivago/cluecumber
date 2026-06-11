@@ -22,6 +22,9 @@ limitations under the License.
     --cluecumber-footer-text: #a5abae;
     --cluecumber-link: #06284d;
     --cluecumber-page-bg: #fdfdfe;
+    --cluecumber-font-size: 0.9rem;
+    --cluecumber-font-size-small: 0.7rem;
+    --cluecumber-line-height: 1.5;
 }
 
 html {
@@ -32,8 +35,8 @@ html {
 body {
     padding-top: var(--cluecumber-header-height);
     margin-bottom: 4rem;
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: var(--cluecumber-font-size);
+    line-height: var(--cluecumber-line-height);
 }
 
 [data-theme="light"] body {
@@ -67,9 +70,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-page-title h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 
 /* Fixed report header */
@@ -84,7 +85,7 @@ h1, h2, h3, h4, h5 {
     justify-content: space-between;
     gap: 1rem;
     min-height: var(--cluecumber-header-height);
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     background-color: var(--cluecumber-nav-bg);
     color: #fff;
     border-bottom: none;
@@ -139,11 +140,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-nav-panel a.customLink {
-    color: darkgoldenrod;
+    color: #ffd54f;
+    font-weight: 600;
 }
 
 .cluecumber-nav-panel a.customLink:hover {
-    color: orange;
+    color: #fff59d;
 }
 
 .cluecumber-header-actions {
@@ -153,13 +155,22 @@ h1, h2, h3, h4, h5 {
     flex-shrink: 0;
 }
 
-.cluecumber-header-actions button {
+.cluecumber-theme-toggle {
     margin: 0;
-    width: auto;
-    padding: 0.35rem 0.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     background: transparent;
     border-color: rgba(255, 255, 255, 0.5);
     color: #fff;
+}
+
+.cluecumber-theme-toggle svg {
+    display: block;
 }
 
 .cluecumber-header-date {
@@ -186,12 +197,23 @@ h1, h2, h3, h4, h5 {
 
 .cluecumber-template {
     padding: 2.5rem 1rem;
-    text-align: center;
+    text-align: left;
 }
 
 .cluecumber-page-header {
+    margin: 0;
+    padding: 0;
     text-align: left;
-    margin-bottom: 1rem;
+}
+
+.cluecumber-page-header :is(h1, h2, h3, h4, h5, h6, p) {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.cluecumber-page-header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .cluecumber-page-title {
@@ -199,6 +221,10 @@ h1, h2, h3, h4, h5 {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+    margin-bottom: 0;
+}
+
+.row.cluecumber-page-header-row {
     margin-bottom: 0.5rem;
 }
 
@@ -258,7 +284,9 @@ h1, h2, h3, h4, h5 {
 
 /* Cards — reset Pico article spacing inside our grid cards */
 .row > .cluecumber-card,
-.row > .card {
+.row > .card,
+.cluecumber-template article.cluecumber-card {
+    margin: 0;
     margin-bottom: 0;
 }
 
@@ -385,6 +413,65 @@ h1, h2, h3, h4, h5 {
 .col-2 { grid-column: span 2; }
 .col-1 { grid-column: span 1; }
 .col-12 { grid-column: span 12; }
+
+/* Step detail blocks span full row width (Bootstrap flex w-100 behavior) */
+.list-group-item > .row > .row,
+.list-group-item > .row > .scenarioDocstring,
+.list-group-item > .row > .col-12,
+.list-group-item > .row > .firstExceptionContainer,
+.scenarioHook .list-group-item .row > .row {
+    grid-column: 1 / -1;
+}
+
+.scenarioAttachment > *,
+.scenarioOutputs > *,
+.scenarioDataTable > *,
+.scenarioDocstring > .row > * {
+    grid-column: 1 / -1;
+}
+
+/* Karate sub-steps — indent name column only so duration/status columns stay aligned */
+.scenarioSubSection > .row > .col-9 {
+    padding-left: 2em;
+}
+
+.scenarioSubSection .scenarioSubSection > .row > .col-9 {
+    padding-left: 4em;
+}
+
+.scenarioSubSection .scenarioSubSection .scenarioSubSection > .row > .col-9 {
+    padding-left: 6em;
+}
+
+/* Attachments and step outputs */
+.scenarioAttachment,
+.scenarioOutputs {
+    margin-top: 0.5rem;
+    border: 1px solid var(--pico-muted-border-color);
+    border-radius: var(--pico-border-radius);
+    background: var(--pico-card-background-color, var(--pico-secondary-background));
+}
+
+.embedded-image {
+    max-width: 45%;
+    border: 1px solid var(--pico-muted-border-color);
+    margin: 10px;
+}
+
+.embedded-mp4 {
+    max-width: 50%;
+}
+
+.embedded-txt {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.embedded-html,
+.embedded-file {
+    display: block;
+    width: 100%;
+}
 
 @media (max-width: 767.98px) {
     .cluecumber-nav-toggle {
@@ -724,7 +811,8 @@ button,
     border: none;
     background: transparent;
     padding: 0.15rem 0.5rem;
-    font-size: small;
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
     color: var(--pico-muted-color);
     cursor: pointer;
     box-shadow: none;
@@ -830,8 +918,8 @@ span.keyword {
 
 .firstException .exception-links-top .btn-link,
 .firstException .exception-links-top .btn-clipboard {
-    font-size: small;
-    line-height: 1.5;
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
     padding: 0.15rem 0.5rem;
     margin: 0;
     text-decoration: none;
@@ -845,7 +933,8 @@ span.keyword {
     color: indianred;
     white-space: pre-wrap;
     word-break: break-word;
-    font-size: inherit;
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
     margin: 0;
     padding: 0;
     border: none;
@@ -886,6 +975,15 @@ span.keyword {
 pre {
     margin: 0;
     white-space: pre-wrap;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.small,
+.cluecumber-header-date,
+.cluecumber-footer small {
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
 }
 
 iframe {
@@ -903,7 +1001,6 @@ iframe {
 .mt-2 { margin-top: 0.5rem; }
 .mb-0 { margin-bottom: 0; }
 .mb-2 { margin-bottom: 0.5rem; }
-.small { font-size: 0.875rem; }
 .border { border: 1px solid var(--pico-muted-border-color); }
 .border-bottom { border-bottom: 1px solid var(--pico-muted-border-color); }
 .border-dark { border-color: var(--pico-muted-border-color); }

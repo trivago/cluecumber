@@ -24,7 +24,6 @@
                         {% if attachment.image %}
                             <a class="grouped_elements" rel="images" href="attachments/{{ attachment.filename }}">
                                 <img src="attachments/{{ attachment.filename }}" class="embedded-image"
-                                     style="max-width: 45%; border: grey solid 1px; margin: 10px;"
                                      alt="Attachment {{ attachment.filename }}"/>
                             </a>
                         {% elseif attachment.mimeType == "HTML" %}
@@ -35,7 +34,7 @@
                             <pre class="embedding-content small embedded-txt">{{ attachment.decodedData }}</pre>
                         {% elseif attachment.mimeType == "MP4" %}
                             {% if attachment.externalContent %}
-                                <video controls="controls" class="embedded-mp4" style="max-width:50%;">
+                                <video controls="controls" class="embedded-mp4">
                                     <source src="{{ attachment.decodedData }}" type="video/mp4"/>
                                 </video>
                             {% endif %}

@@ -192,7 +192,7 @@ limitations under the License.
                         {% if sectionChange > 0 %}
                             {% for n in 1..sectionChange %}
                                 {% set openDivs = openDivs + 1 %}
-                                <div style="padding-left: 2em;" id="section_{{ stepCounter }}"
+                                <div id="section_{{ stepCounter }}"
                                 class="scenarioSubSection collapse {{ expandSubSections ? 'show' : '' }}">
                             {% endfor %}
                         {% elseif sectionChange < 0 %}
@@ -295,7 +295,7 @@ limitations under the License.
                         {% if sectionChange > 0 %}
                             {% for n in 1..sectionChange %}
                                 {% set openDivs = openDivs + 1 %}
-                                <div style="padding-left: 2em;" id="section_{{ stepCounter }}"
+                                <div id="section_{{ stepCounter }}"
                                 class="scenarioSubSection collapse {{ expandSubSections ? 'show' : '' }}">
                             {% endfor %}
                         {% elseif sectionChange < 0 %}

@@ -332,8 +332,17 @@ limitations under the License.
 
     function updateDarkLightModeButton(isDarkMode) {
         const button = document.getElementById('dark-light-mode-switch');
-        if (button) {
-            button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        if (!button) {
+            return;
+        }
+        if (isDarkMode) {
+            button.setAttribute('aria-label', 'Switch to light mode');
+            button.title = 'Light mode';
+            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.15em" height="1.15em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 18a1 1 0 0 1 0 2 1 1 0 0 1 0-2zm0-14a1 1 0 0 1 0 2 1 1 0 0 1 0-2zm8 7a1 1 0 0 1 2 0 1 1 0 0 1-2 0zM2 12a1 1 0 0 1 2 0 1 1 0 0 1-2 0zm16.95 5.95a1 1 0 0 1 1.41 1.41 1 1 0 0 1-1.41-1.41zm-13.9-13.9a1 1 0 0 1 1.41 1.41 1 1 0 0 1-1.41-1.41zM20.54 6.46a1 1 0 0 1 1.41-1.41 1 1 0 0 1-1.41 1.41zM4.05 17.95a1 1 0 0 1 1.41-1.41 1 1 0 0 1-1.41 1.41zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>';
+        } else {
+            button.setAttribute('aria-label', 'Switch to dark mode');
+            button.title = 'Dark mode';
+            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.15em" height="1.15em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
         }
     }
 

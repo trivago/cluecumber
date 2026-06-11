@@ -37,26 +37,30 @@ limitations under the License.
 {% include "macros/navigation-bar" %}
 <main class="container">
     <div class="cluecumber-template">
-        <header class="cluecumber-page-header">
-            {% if headline != "" %}
-                <div class="cluecumber-page-title">
-                    <h3>{{ headline }}</h3>
-                    <img src="img/logo.png" alt="Logo" class="cluecumber-logo"/>
-                </div>
-                <div id="logo-container"></div>
-            {% endif %}
-            {% if preheadline != "" %}
-                <p class="cluecumber-preheadline">
-                    <span data-toggle="tooltip" title="{{ subsubheadline }}">
-                    {% if preheadlineLink != "" %}
-                        <a href="{{ preheadlineLink }}">{{ preheadline }}</a>
-                    {% else %}
-                        {{ preheadline }}
+        <div class="row cluecumber-page-header-row">
+            <div class="col-md-12">
+                <div class="cluecumber-page-header">
+                    {% if headline != "" %}
+                        <div class="cluecumber-page-title">
+                            <h3>{{ headline }}</h3>
+                            <img src="img/logo.png" alt="Logo" class="cluecumber-logo"/>
+                        </div>
+                        <div id="logo-container"></div>
                     {% endif %}
-                    </span>
-                </p>
-            {% endif %}
-            {% if subheadline != "" %}
-                <p class="cluecumber-subheadline white-space-pre-wrap">{{ subheadline }}</p>
-            {% endif %}
-        </header>
+                    {% if preheadline != "" %}
+                        <p class="cluecumber-preheadline">
+                            <span data-toggle="tooltip" title="{{ subsubheadline }}">
+                            {% if preheadlineLink != "" %}
+                                <a href="{{ preheadlineLink }}">{{ preheadline }}</a>
+                            {% else %}
+                                {{ preheadline }}
+                            {% endif %}
+                            </span>
+                        </p>
+                    {% endif %}
+                    {% if subheadline != "" %}
+                        <p class="cluecumber-subheadline white-space-pre-wrap">{{ subheadline }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>

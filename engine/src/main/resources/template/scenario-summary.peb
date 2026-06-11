@@ -166,6 +166,7 @@ limitations under the License.
         document.addEventListener('DOMContentLoaded', function() {
             const button = document.getElementById('multiRunButton');
             if (button) {
+                const totalNumberOfMultiRunChildren = {{ totalNumberOfMultiRunChildren }};
                 const target = document.querySelector(button.getAttribute('data-target'));
                 if (target) {
                     button.addEventListener('click', function() {
