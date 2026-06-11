@@ -35,7 +35,7 @@ limitations under the License.
         {{ page.cardStart("9", "Exception Summary Result Chart", "", "") }}
             {{ page.graph() }}
         {{ page.cardEnd() }}
-        {{ page.cardStart("3", "Exception Summary", "", "") }}
+        {{ page.cardStart("3", "Exception Summary", "", "cluecumber-card-centered") }}
             <ul class="list-group list-group-flush" data-cluecumber-item="exception-summary">
                 <li class="list-group-item">{{ totalNumberOfExceptions }} {{ common.pluralizeFn("Exception", totalNumberOfExceptions) }} in
                     <br>

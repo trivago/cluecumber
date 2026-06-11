@@ -54,7 +54,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-maven</artifactId>
-    <version>3.11.0</version>
+    <version>4.0.0</version>
     <executions>
         <execution>
             <id>report</id>

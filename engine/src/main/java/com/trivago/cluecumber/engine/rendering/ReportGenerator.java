@@ -186,11 +186,10 @@ public class ReportGenerator {
 
         // Copy CSS resources
         fileSystemManager.createDirectory(reportDirectory + "/css");
-        copyFileFromJarToReportDirectory("/css/bootstrap.min.css");
+        copyFileFromJarToReportDirectory("/css/pico.zinc.min.css");
         copyFileFromJarToReportDirectory("/css/cluecumber.css");
         copyFileFromJarToReportDirectory("/css/datatables.min.css");
         copyFileFromJarToReportDirectory("/css/jquery.fancybox.min.css");
-        copyFileFromJarToReportDirectory("/css/dataTables.bootstrap4.min.css");
 
         // Copy webfont resources
         fileSystemManager.createDirectory(reportDirectory + "/font");
@@ -203,8 +202,8 @@ public class ReportGenerator {
         // Copy Javascript resources
         fileSystemManager.createDirectory(reportDirectory + "/js");
         copyFileFromJarToReportDirectory("/js/jquery.min.js");
-        copyFileFromJarToReportDirectory("/js/bootstrap.min.js");
-        copyFileFromJarToReportDirectory("/js/popper.min.js");
+        copyFileFromJarToReportDirectory("/js/cluecumber-theme.js");
+        copyFileFromJarToReportDirectory("/js/cluecumber-storage.html");
         copyFileFromJarToReportDirectory("/js/chart.min.js");
         copyFileFromJarToReportDirectory("/js/datatables.min.js");
         copyFileFromJarToReportDirectory("/js/jquery.fancybox.min.js");

@@ -35,7 +35,7 @@ limitations under the License.
         {{ page.cardStart("9", "Feature Summary Result Chart", "", "") }}
             {{ page.graph() }}
         {{ page.cardEnd() }}
-        {{ page.cardStart("3", "Feature Summary", "", "") }}
+        {{ page.cardStart("3", "Feature Summary", "", "cluecumber-card-centered") }}
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     {{ totalNumberOfFeatures }} {{ common.pluralizeFn("Feature", totalNumberOfFeatures) }}<br>

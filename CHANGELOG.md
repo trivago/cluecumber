@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.0.0] - 2026-06-11
+
+### Changed
+
+* Replaced Freemarker with Pebble for HTML report templates (`.ftl` → `.peb`)
+* Upgraded Chart.js from 2.x to 4.4.9; chart configuration and rendering updated accordingly
+* Centralized dependency versions in the parent POM
+
+### Removed
+
+* Freemarker dependency and all `.ftl` template files
+
+__Note:__ This is a major release. Custom Freemarker templates must be migrated to Pebble syntax and use the `.peb` file extension.
+
 ## [3.14.1] - 2026-04-16
 
 ### Fixed
@@ -1089,6 +1103,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[4.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.0
 
 [3.14.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.1
 

@@ -93,7 +93,7 @@ limitations under the License.
         {{ page.cardStart("6", "Scenario Results", "", "") }}
             {{ page.graph() }}
         {{ page.cardEnd() }}
-        {{ page.cardStart("3", "Scenario Summary", "", "") }}
+        {{ page.cardStart("3", "Scenario Summary", "", "cluecumber-card-centered") }}
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" data-cluecumber-item="scenario-summary">
                     {{ totalNumberOfScenarios }} {{ common.pluralizeFn("Scenario", totalNumberOfScenarios) }}
@@ -123,13 +123,13 @@ limitations under the License.
 
             {% if _model.hasMultiRunChildren() %}
                 <hr>
-                <button id="multiRunButton" class="btn w-75 m-2 collapsed" type="button" data-toggle="collapse"
-                        aria-expanded="true" data-cluecumber-item="multi-run-button"
-                        data-target=".multiRunChildren">Toggle {{ totalNumberOfMultiRunChildren }} Previous Runs
+                <button id="multiRunButton" class="secondary outline w-75 m-2" type="button" data-toggle="collapse"
+                        aria-expanded="false" data-cluecumber-item="multi-run-button"
+                        data-target=".multiRunChildren">Show {{ totalNumberOfMultiRunChildren }} Previous Runs
                 </button>
             {% endif %}
         {{ page.cardEnd() }}
-        {{ page.cardStart("3", "Test Suite Info", "", "") }}
+        {{ page.cardStart("3", "Test Suite Info", "", "cluecumber-card-centered") }}
             <ul class="list-group list-group-flush">
                 {% set startDateTimeString = _model.returnStartDateTimeString() %}
                 <li class="list-group-item" data-cluecumber-item="total-start">

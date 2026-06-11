@@ -13,53 +13,52 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -#}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            {% for link in navigationLinks %}
-                <li class="nav-item">
-                    {% set highlightClass = "" %}
-                    {% if link.name == highlight %}
-                        {% set highlightClass = "text-white" %}
-                    {% endif %}
-                    {% if link.type == "INTERNAL" %}
-                        {% if link.name == "scenario_summary" %}
-                            {% set linkName = "All Scenarios" %}
-                        {% elseif link.name == "rerun_scenarios" %}
-                            {% set linkName = "Rerun Scenarios" %}
-                        {% elseif link.name == "scenario_sequence" %}
-                            {% set linkName = "Scenario Sequence" %}
-                        {% elseif link.name == "tag_summary" %}
-                            {% set linkName = "All Tags" %}
-                        {% elseif link.name == "step_summary" %}
-                            {% set linkName = "All Steps" %}
-                        {% elseif link.name == "feature_summary" %}
-                            {% set linkName = "All Features" %}
-                        {% elseif link.name == "exception_summary" %}
-                            {% set linkName = "All Exceptions" %}
-                        {% elseif link.name == "tree_view" %}
-                            {% set linkName = "Tree View" %}
-                        {% else %}
-                            {% set linkName = link.name %}
+<header class="cluecumber-header">
+    <nav aria-label="Report navigation">
+        <button type="button" class="cluecumber-nav-toggle secondary outline"
+                aria-expanded="false" aria-controls="navbarSupportedContent"
+                aria-label="Toggle navigation">Menu</button>
+        <div class="collapse cluecumber-nav-panel" id="navbarSupportedContent">
+            <ul>
+                {% for link in navigationLinks %}
+                    <li>
+                        {% set highlightClass = "" %}
+                        {% if link.name == highlight %}
+                            {% set highlightClass = "active" %}
                         {% endif %}
-                        <a class="nav-link {{ highlightClass }}" href="{{ link.target }}">{{ linkName }}</a>
-                    {% elseif link.type == "EXTERNAL" %}
-                        {% if link.target is not null %}
-                            <a class="nav-link customLink" href="{{ link.target }}" target="_blank">{{ link.name }}</a>
+                        {% if link.type == "INTERNAL" %}
+                            {% if link.name == "scenario_summary" %}
+                                {% set linkName = "All Scenarios" %}
+                            {% elseif link.name == "rerun_scenarios" %}
+                                {% set linkName = "Rerun Scenarios" %}
+                            {% elseif link.name == "scenario_sequence" %}
+                                {% set linkName = "Scenario Sequence" %}
+                            {% elseif link.name == "tag_summary" %}
+                                {% set linkName = "All Tags" %}
+                            {% elseif link.name == "step_summary" %}
+                                {% set linkName = "All Steps" %}
+                            {% elseif link.name == "feature_summary" %}
+                                {% set linkName = "All Features" %}
+                            {% elseif link.name == "exception_summary" %}
+                                {% set linkName = "All Exceptions" %}
+                            {% elseif link.name == "tree_view" %}
+                                {% set linkName = "Tree View" %}
+                            {% else %}
+                                {% set linkName = link.name %}
+                            {% endif %}
+                            <a class="{{ highlightClass }}" href="{{ link.target }}">{{ linkName }}</a>
+                        {% elseif link.type == "EXTERNAL" %}
+                            {% if link.target is not null %}
+                                <a class="customLink" href="{{ link.target }}" target="_blank">{{ link.name }}</a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-        <button id="dark-light-mode-switch" class="btn btn-secondary btn-sm text-sm-center">Dark Mode</button>
-        <span class="text-light">{{ reportDetails.date }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </nav>
+    <div class="cluecumber-header-actions">
+        <button type="button" id="dark-light-mode-switch" class="secondary outline">Dark Mode</button>
+        <small class="cluecumber-header-date">{{ reportDetails.date }}</small>
     </div>
-</nav>
-<script>
-    updateDarkLightModeButton(isDarkMode);
-</script>
+</header>

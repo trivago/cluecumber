@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -#}
 
-<footer class="footer navbar-dark">
-    <div class="container-fluid">
-        <span><a href="https://github.com/trivago/cluecumber-report-plugin" target="_blank" class="text-white">{{ reportDetails.generatorName }}</a> - Report generated on {{ reportDetails.date }}.</span>
-    </div>
+<footer class="cluecumber-footer">
+    <small><a href="https://github.com/trivago/cluecumber-report-plugin" target="_blank">{{ reportDetails.generatorName }}</a> — Report generated on {{ reportDetails.date }}.</small>
 </footer>

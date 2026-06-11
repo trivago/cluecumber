@@ -39,7 +39,7 @@ limitations under the License.
                                 <ul>
                                     {% for scenario in scenarios %}
                                         {% if ((not scenario.isMultiRunParent() and not scenario.isMultiRunChild()) or scenario.isMultiRunParent()) %}
-                                            <li style="list-style-type: square;">
+                                            <li>
                                                 <a href="pages/scenario-detail/scenario_{{ scenario.scenarioIndex }}.html"
                                                    style="word-break: break-all">{{ scenario.name }}</a>
                                             </li>

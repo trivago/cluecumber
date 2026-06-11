@@ -18,11 +18,14 @@ limitations under the License.
 <html lang="en">
 <head>
     <title>Redirecting to {{ startPage.pageName }}</title>
-    {% if redirectToFirstScenario %}
-        <meta http-equiv="refresh" content="0; url=pages/scenario-detail/scenario_1.html">
-    {% else %}
-        <meta http-equiv="refresh" content="0; url=pages/{{ startPage.pageName }}.html">
-    {% endif %}
+    <script src="js/cluecumber-theme.js"></script>
+    <script>
+        {% if redirectToFirstScenario %}
+        CluecumberTheme.redirectWithStoredTheme('pages/scenario-detail/scenario_1.html');
+        {% else %}
+        CluecumberTheme.redirectWithStoredTheme('pages/{{ startPage.pageName }}.html');
+        {% endif %}
+    </script>
 </head>
 <body>
 </body>

@@ -10,7 +10,7 @@ Follow `CONTRIBUTING.md` (Development guidelines section). Summary:
 ## Do
 
 - **YAGNI** — implement only what the task requires.
-- **Dependency-first** — use native Chart.js/Pebble/Bootstrap/DataTables behavior before custom JS, resize handlers, or layout logic.
+- **Dependency-first** — use native Chart.js/Pebble/Pico CSS/DataTables behavior before custom JS, resize handlers, or layout logic.
 - **Minimal diffs** — smallest correct change; match existing conventions in the file/module.
 - **Pebble** — use `{% include %}` when partials need page context; never put `.peb` in import/include paths.
 - **Chart.js 4** — set handlers on config *before* `new Chart()`; avoid mutating `chart.options` after create if charts may be recreated.

@@ -15,21 +15,19 @@ limitations under the License.
 -#}
 
 {% macro cardStart(width, title, subtitle, classes) %}
-    <div class="col-12 col-md-{{ width }} {{ classes }} h-auto" data-cluecumber-item="card">
-        <div class="card shadow h-100">
-            {% if title != "" %}
-                <div class="card-header">{{ title }}</div>
-            {% endif %}
-            {% if subtitle != "" %}
-                <div class="card-header text-secondary">{{ subtitle }}</div>
-            {% endif %}
-            <div class="card-body">
+    <article class="cluecumber-card col-md-{{ width }} {{ classes }}" data-cluecumber-item="card">
+        {% if title != "" %}
+            <header>{{ title }}</header>
+        {% endif %}
+        {% if subtitle != "" %}
+            <p class="cluecumber-card-subtitle">{{ subtitle }}</p>
+        {% endif %}
+        <div class="cluecumber-card-body">
 {% endmacro %}
 
 {% macro cardEnd() %}
-            </div>
         </div>
-    </div>
+    </article>
 {% endmacro %}
 
 {% macro graph() %}

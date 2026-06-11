@@ -36,7 +36,7 @@ limitations under the License.
             {{ page.graph() }}
         {{ page.cardEnd() }}
 
-        {{ page.cardStart("3", "Summary", "", "") }}
+        {{ page.cardStart("3", "Summary", "", "cluecumber-card-centered") }}
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     {{ element.totalNumberOfSteps }} {{ common.pluralizeFn("Step", element.totalNumberOfSteps) }}
@@ -58,7 +58,7 @@ limitations under the License.
             {% endif %}
         {{ page.cardEnd() }}
 
-        {{ page.cardStart("3", "Scenario Info", "", "") }}
+        {{ page.cardStart("3", "Scenario Info", "", "cluecumber-card-centered") }}
             <li class="list-group-item">
                 {% if element.startTimestamp is not empty %}
                     <b>Start</b><br>{{ element.startDateString }} {{ element.startTimeString }}<br>
@@ -432,11 +432,9 @@ limitations under the License.
                 classState[className] = defaultValue;
             }
             classState[className] = !classState[className];
-            if (classState[className]) {
-                $(className).collapse('show');
-            } else {
-                $(className).collapse('hide');
-            }
+            document.querySelectorAll(className).forEach(function (el) {
+                el.classList.toggle('show', classState[className]);
+            });
         }
 
         function toggleCollapsableAttachments(className, defaultValue) {

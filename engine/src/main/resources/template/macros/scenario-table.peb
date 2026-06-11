@@ -10,34 +10,32 @@
     allRequested %}
         <a class="anchor" id="anchor-{{ status }}"></a>
         <div class="row" id="card_{{ status }}" data-cluecumber-item="scenario-summary-table">
-            <div class=" col-sm-12">
-                <div class="card shadow">
-
+            <article class="cluecumber-card col-sm-12">
                     {% if status == "skipped" %}
-                            <div class="card-header border-color-skipped">
+                            <header class="border-color-skipped">
                                 {{ numberOfScenarios }}
                                 {{ common.pluralizeFn("skipped Scenario", numberOfScenarios) }}
                                 {{ common.status("skipped") }}
-                            </div>
+                            </header>
                     {% elseif status == "failed" %}
-                            <div class="card-header border-color-failed">
+                            <header class="border-color-failed">
                                 {{ numberOfScenarios }}
                                 {{ common.pluralizeFn("failed Scenario", numberOfScenarios) }}
                                 {{ common.status("failed") }}
-                            </div>
+                            </header>
                     {% elseif status == "passed" %}
-                            <div class="card-header border-color-passed">
+                            <header class="border-color-passed">
                                 {{ numberOfScenarios }}
                                 {{ common.pluralizeFn("passed Scenario", numberOfScenarios) }}
                                 {{ common.status("passed") }}
-                            </div>
+                            </header>
                     {% elseif status == "all" %}
-                            <div class="card-header">
+                            <header>
                                 {{ numberOfScenarios }} {{ common.pluralizeFn("Scenario", numberOfScenarios) }}
-                            </div>
+                            </header>
                     {% endif %}
 
-                    <div class="card-body">
+                    <div class="cluecumber-card-body">
                         <table id="results_{{ status }}" class="table table-hover renderAsDataTable">
                             <thead>
                             <tr>
@@ -152,7 +150,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
+            </article>
         </div>
     {% endif %}

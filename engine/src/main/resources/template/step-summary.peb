@@ -35,7 +35,7 @@ limitations under the License.
         {{ page.cardStart("9", "Step Summary Result Chart", "", "") }}
             {{ page.graph() }}
         {{ page.cardEnd() }}
-        {{ page.cardStart("3", "Step Summary", "", "") }}
+        {{ page.cardStart("3", "Step Summary", "", "cluecumber-card-centered") }}
             <ul class="list-group list-group-flush" data-cluecumber-item="step-summary">
                 <li class="list-group-item">
                     {{ totalNumberOfSteps }} {{ common.pluralizeFn("Step", totalNumberOfSteps) }} from

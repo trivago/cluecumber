@@ -15,35 +15,113 @@ limitations under the License.
 -#}
 
 <script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="js/datatables.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
 <script src="js/chart.min.js"></script>
 
 <script>
+    function removeCluecumberTooltips() {
+        document.querySelectorAll('.cluecumber-tooltip').forEach(function (tip) {
+            tip.remove();
+        });
+    }
+
+    function positionCluecumberTooltip(el, tip) {
+        const rect = el.getBoundingClientRect();
+        tip.style.left = Math.max(8, rect.left) + 'px';
+        tip.style.top = (rect.bottom + 6) + 'px';
+    }
+
     /**
-     * Dispose existing Bootstrap tooltips, drop orphaned tip nodes, then attach fresh instances.
-     * Needed so HTML tooltips do not stick after bfcache back/forward or DataTables redraws.
+     * Lightweight HTML tooltips for report tables and tree view.
+     * Re-init after DataTables redraws and bfcache navigation.
      */
     function initCluecumberTooltips() {
-        $('[data-toggle="tooltip"]').each(function () {
-            var $el = $(this);
-            try {
-                if ($el.data('bs.tooltip')) {
-                    $el.tooltip('dispose');
-                }
-            } catch (ignore) {
+        removeCluecumberTooltips();
+        document.querySelectorAll('[data-toggle="tooltip"]').forEach(function (el) {
+            if (el._cluecumberTooltipInit) {
+                return;
             }
+            el._cluecumberTooltipInit = true;
+            const html = el.getAttribute('data-html') === 'true';
+            const content = el.getAttribute('title');
+            if (!content) {
+                return;
+            }
+            el.removeAttribute('title');
+            el.addEventListener('mouseenter', function () {
+                removeCluecumberTooltips();
+                const tip = document.createElement('div');
+                tip.className = 'cluecumber-tooltip';
+                if (html) {
+                    tip.innerHTML = content;
+                } else {
+                    tip.textContent = content;
+                }
+                document.body.appendChild(tip);
+                positionCluecumberTooltip(el, tip);
+                el._cluecumberTooltip = tip;
+            });
+            el.addEventListener('mouseleave', function () {
+                if (el._cluecumberTooltip) {
+                    el._cluecumberTooltip.remove();
+                    el._cluecumberTooltip = null;
+                }
+            });
         });
-        $('.tooltip').remove();
-        $('[data-toggle="tooltip"]').tooltip();
+    }
+
+    function initCluecumberCollapse() {
+        document.addEventListener('click', function (e) {
+            const trigger = e.target.closest('[data-toggle="collapse"]');
+            if (!trigger) {
+                return;
+            }
+            const targetSelector = trigger.getAttribute('data-target') || trigger.getAttribute('href');
+            if (!targetSelector || !targetSelector.startsWith('#') && !targetSelector.startsWith('.')) {
+                return;
+            }
+            if (targetSelector.startsWith('#')) {
+                e.preventDefault();
+            }
+            const targets = document.querySelectorAll(targetSelector);
+            if (targets.length === 0) {
+                return;
+            }
+            const willShow = !Array.from(targets).every(function (target) {
+                return target.classList.contains('show');
+            });
+            targets.forEach(function (target) {
+                target.classList.toggle('show', willShow);
+                target.dispatchEvent(new Event(willShow ? 'shown.bs.collapse' : 'hidden.bs.collapse', {bubbles: true}));
+            });
+            trigger.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+        });
+    }
+
+    function initCluecumberNav() {
+        const toggle = document.querySelector('.cluecumber-nav-toggle');
+        const panel = document.getElementById('navbarSupportedContent');
+        if (!toggle || !panel) {
+            return;
+        }
+        toggle.addEventListener('click', function () {
+            const expanded = panel.classList.toggle('show');
+            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        });
     }
 
     $(document).ready(function () {
-            // Data tables
+            CluecumberTheme.init(function () {
+                CluecumberTheme.decorateInternalLinks();
+            });
+
+            initCluecumberCollapse();
+            initCluecumberNav();
+
             $('.renderAsDataTable').on('draw.dt', function () {
                 initCluecumberTooltips();
+                CluecumberTheme.decorateInternalLinks();
             }).DataTable({
                 "oLanguage": {
                     "sSearch": "Search:"
@@ -52,35 +130,22 @@ limitations under the License.
                 "responsive": true
             });
 
-            $(".collapse").click(function () {
-                $(this).toggleClass("expanded");
-            });
-
             $('.collapse').on('shown.bs.collapse', function (e) {
                 $(e.target).find("iframe").each(function (index, iframe) {
                     resizeIframe(iframe);
-                })
+                });
             });
 
-            // Lightbox
             $("a.grouped_elements").fancybox();
-
-            // Tool tips
             initCluecumberTooltips();
 
             $(window).on('pagehide', function () {
-                $('[data-toggle="tooltip"]').each(function () {
-                    try {
-                        if ($(this).data('bs.tooltip')) {
-                            $(this).tooltip('hide');
-                        }
-                    } catch (ignore) {
-                    }
-                });
+                removeCluecumberTooltips();
             });
 
             $(window).on('pageshow', function (event) {
                 if (event.originalEvent && event.originalEvent.persisted) {
+                    updateDarkLightModeButton(document.documentElement.getAttribute('data-theme') === 'dark');
                     initCluecumberTooltips();
                 }
             });
@@ -105,16 +170,16 @@ limitations under the License.
                 }
             }
 
-            // Chart
             {% if reportDetails.chartJson is not empty %}
             let cluecumberChart = null;
             const cluecumberChartConfig = {{ reportDetails.chartJson|raw }};
             let cluecumberChartResizeTimer = null;
             let cluecumberChartLastSize = {width: 0, height: 0};
+            let cluecumberChartHasRendered = false;
 
             function scheduleCluecumberChartRender() {
                 clearTimeout(cluecumberChartResizeTimer);
-                cluecumberChartResizeTimer = setTimeout(renderCluecumberChart, 150);
+                cluecumberChartResizeTimer = setTimeout(renderCluecumberChart, 200);
             }
 
             function resetCluecumberChartCanvas(canvas) {
@@ -175,6 +240,8 @@ limitations under the License.
                     toggleVisibilityByStatus(legendItem.text, !legendItem.hidden);
                 };
 
+                chartConfig.options.animation = false;
+
                 return chartConfig;
             }
 
@@ -216,46 +283,59 @@ limitations under the License.
 
                     cluecumberChartLastSize = {width: width, height: height};
                     cluecumberChart = new Chart(canvas, chartConfig);
+                    cluecumberChartHasRendered = true;
                 });
             }
 
-            renderCluecumberChart();
-            $(window).on('resize', scheduleCluecumberChartRender);
+            scheduleCluecumberChartRender();
+            $(window).on('resize', function () {
+                if (cluecumberChartHasRendered) {
+                    scheduleCluecumberChartRender();
+                }
+            });
             if (typeof ResizeObserver !== 'undefined') {
                 const chartHolder = document.getElementById('canvas-holder');
                 if (chartHolder) {
-                    new ResizeObserver(scheduleCluecumberChartRender).observe(chartHolder);
+                    new ResizeObserver(function () {
+                        if (cluecumberChartHasRendered) {
+                            scheduleCluecumberChartRender();
+                        }
+                    }).observe(chartHolder);
                 }
             }
             {% endif %}
 
             if ({{ expandBeforeAfterHooks ? "true" : "false" }}) {
-                $(".btn-outline-secondary[data-cluecumber-item='before-after-hooks-button']").click();
+                document.querySelector("[data-cluecumber-item='before-after-hooks-button']")?.click();
             }
             if ({{ expandStepHooks ? "true" : "false" }}) {
-                $(".btn-outline-secondary[data-cluecumber-item='step-hooks-button']").click();
+                document.querySelector("[data-cluecumber-item='step-hooks-button']")?.click();
             }
             if ({{ expandDocStrings ? "true" : "false" }}) {
-                $(".scenarioDocstring").collapse("show");
+                document.querySelectorAll('.scenarioDocstring').forEach(function (el) {
+                    el.classList.add('show');
+                });
             }
             if ({{ expandPreviousScenarioRuns ? "true" : "false" }}) {
-                $("[data-cluecumber-item='multi-run-button']").click();
+                document.querySelector("[data-cluecumber-item='multi-run-button']")?.click();
             }
 
-            document.getElementById('dark-light-mode-switch').addEventListener('click', darkLightModeSwitch);
+            updateDarkLightModeButton(document.documentElement.getAttribute('data-theme') === 'dark');
+
+            const darkModeSwitch = document.getElementById('dark-light-mode-switch');
+            if (darkModeSwitch) {
+                darkModeSwitch.addEventListener('click', function () {
+                    CluecumberTheme.toggle();
+                });
+            }
         }
     );
 
-    function darkLightModeSwitch() {
-        document.documentElement.classList.toggle('dark-mode');
-        const isDarkMode = document.documentElement.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-        updateDarkLightModeButton(isDarkMode);
-    }
-
     function updateDarkLightModeButton(isDarkMode) {
         const button = document.getElementById('dark-light-mode-switch');
-        button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        if (button) {
+            button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        }
     }
 
     function resizeIframe(iframe) {

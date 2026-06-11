@@ -17,33 +17,36 @@ limitations under the License.
 <html lang="en">
 <base href="{{ base }}">
 <head>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var theme = params.get('cluecumber-theme');
+            if (theme === 'dark' || theme === 'light') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        })();
+    </script>
     <title>{{ title }}</title>
     <link rel="icon" href="img/favicon.png" type="image/png"/>
-    <script>
-        const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
-        if (isDarkMode) {
-            document.documentElement.classList.add('dark-mode');
-        }
-    </script>
+    <script src="js/cluecumber-theme.js"></script>
     {% include "../snippets/common_headers" %}
     {% include "../snippets/css" %}
     {% include "../snippets/js" %}
 </head>
 <body>
 {% include "macros/navigation-bar" %}
-<main role="main" class="container">
+<main class="container">
     <div class="cluecumber-template">
-        <div class="col-12 h-auto text-left clearfix">
+        <header class="cluecumber-page-header">
             {% if headline != "" %}
-                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-2 mb-2">
-                    <h3 class="mb-0 order-2 order-md-1">{{ headline }}</h3>
-                    <img src="img/logo.png" alt="Logo" class="img-fluid order-1 order-md-2"
-                         style="max-width: 300px; max-height: 100px;"/>
+                <div class="cluecumber-page-title">
+                    <h3>{{ headline }}</h3>
+                    <img src="img/logo.png" alt="Logo" class="cluecumber-logo"/>
                 </div>
                 <div id="logo-container"></div>
             {% endif %}
             {% if preheadline != "" %}
-                <b class="d-block">
+                <p class="cluecumber-preheadline">
                     <span data-toggle="tooltip" title="{{ subsubheadline }}">
                     {% if preheadlineLink != "" %}
                         <a href="{{ preheadlineLink }}">{{ preheadline }}</a>
@@ -51,9 +54,9 @@ limitations under the License.
                         {{ preheadline }}
                     {% endif %}
                     </span>
-                </b>
+                </p>
             {% endif %}
             {% if subheadline != "" %}
-                <p class="mb-0 white-space-pre-wrap">{{ subheadline }}</p>
+                <p class="cluecumber-subheadline white-space-pre-wrap">{{ subheadline }}</p>
             {% endif %}
-        </div>
+        </header>

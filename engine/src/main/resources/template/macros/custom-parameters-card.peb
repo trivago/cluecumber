@@ -14,31 +14,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -#}
 <div class="row" id="custom-parameters">
-    <div class="col-12 col-md-12 customParameters h-auto" data-cluecumber-item="card">
-        <div class="card shadow h-100">
-            <div class="card-body">
-                <table class="table table-fit">
-                    <tbody>
-                    {% for customParameter in customParameters %}
-                        <tr>
-                            {% if not customParameter.key.startsWith(' ') %}
-                                <td class="text-left text-nowrap"><strong>{{ customParameter.key }}:</strong></td>
-                                <td class="text-left wrap">
-                                    {% if customParameter.url or customParameter.relativeUrl %}
-                                        <a href="{{ customParameter.value }}" style="word-break: break-all;"
-                                           target="_blank">{{ customParameter.value }}</a>
-                                    {% else %}
-                                        {{ customParameter.value }}
-                                    {% endif %}
-                                </td>
-                            {% else %}
-                                <td class="text-left noKey" colspan="2">{{ customParameter.value }}</td>
-                            {% endif %}
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+    <article class="cluecumber-card col-md-12 customParameters" data-cluecumber-item="card">
+        <div class="cluecumber-card-body">
+            <table class="table table-fit">
+                <tbody>
+                {% for customParameter in customParameters %}
+                    <tr>
+                        {% if not customParameter.key.startsWith(' ') %}
+                            <td class="text-left text-nowrap"><strong>{{ customParameter.key }}:</strong></td>
+                            <td class="text-left wrap">
+                                {% if customParameter.url or customParameter.relativeUrl %}
+                                    <a href="{{ customParameter.value }}" style="word-break: break-all;"
+                                       target="_blank">{{ customParameter.value }}</a>
+                                {% else %}
+                                    {{ customParameter.value }}
+                                {% endif %}
+                            </td>
+                        {% else %}
+                            <td class="text-left noKey" colspan="2">{{ customParameter.value }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </div>
+    </article>
 </div>
