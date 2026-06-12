@@ -27,10 +27,6 @@ limitations under the License.
 {% set preheadlineLink = "pages/feature-scenarios/feature_" ~ element.featureIndex ~ ".html" %}
 {% include "macros/page-start" %}
 
-    {% if _model.hasCustomParameters() %}
-        {% include "macros/custom-parameters-card" %}
-    {% endif %}
-
     <div class="row" id="scenario-detail">
         {{ page.cardStart("6", "Step Results", "", "") }}
             {{ page.graph() }}

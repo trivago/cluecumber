@@ -85,10 +85,6 @@ limitations under the License.
 {% set title = pageTitle ~ " - " ~ pageName %}
 {% include "macros/page-start" %}
 
-    {% if _model.hasCustomParameters() %}
-        {% include "macros/custom-parameters-card" %}
-    {% endif %}
-
     <div class="row" id="scenario-summary">
         {{ page.cardStart("6", "Scenario Results", "", "") }}
             {{ page.graph() }}

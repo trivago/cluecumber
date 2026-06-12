@@ -27,10 +27,6 @@ limitations under the License.
 {% set preheadlineLink = "" %}
 {% include "macros/page-start" %}
 
-    {% if _model.hasCustomParameters() %}
-        {% include "macros/custom-parameters-card" %}
-    {% endif %}
-
     <div class="row" id="step-summary">
         {{ page.cardStart("9", "Step Summary Result Chart", "", "") }}
             {{ page.graph() }}

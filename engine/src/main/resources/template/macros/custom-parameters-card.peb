@@ -13,8 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -#}
-<div class="row" id="custom-parameters">
-    <article class="cluecumber-card cluecumber-col-12 customParameters" data-cluecumber-item="card">
+<article class="cluecumber-card customParameters cluecumber-page-intro-parameters" id="custom-parameters" data-cluecumber-item="card">
         <div class="cluecumber-card-body">
             <table class="table table-fit">
                 <tbody>
@@ -37,6 +36,5 @@ limitations under the License.
                 {% endfor %}
                 </tbody>
             </table>
-        </div>
-    </article>
-</div>
+    </div>
+</article>

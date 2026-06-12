@@ -39,28 +39,34 @@ limitations under the License.
     <div class="cluecumber-template">
         <div class="row cluecumber-page-header-row">
             <div class="cluecumber-col-12">
-                <div class="cluecumber-page-header">
-                    {% if headline != "" %}
-                        <div class="cluecumber-page-title">
-                            <h3>{{ headline }}</h3>
+                {% if headline != "" or _model.hasCustomParameters() %}
+                    <div class="cluecumber-page-intro">
+                        <div class="cluecumber-page-intro-title">
+                            {% if headline != "" %}
+                                <div class="cluecumber-page-headlines">
+                                    <h3>{{ headline }}</h3>
+                                    {% if preheadline != "" %}
+                                        <p class="cluecumber-preheadline">
+                                            <span data-toggle="tooltip" title="{{ subsubheadline }}">
+                                            {% if preheadlineLink != "" %}
+                                                <a href="{{ preheadlineLink }}">{{ preheadline }}</a>
+                                            {% else %}
+                                                {{ preheadline }}
+                                            {% endif %}
+                                            </span>
+                                        </p>
+                                    {% endif %}
+                                    {% if subheadline != "" %}
+                                        <p class="cluecumber-subheadline white-space-pre-wrap">{{ subheadline }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
                             <img src="img/logo.png" alt="Logo" class="cluecumber-logo"/>
                         </div>
-                        <div id="logo-container"></div>
-                    {% endif %}
-                    {% if preheadline != "" %}
-                        <p class="cluecumber-preheadline">
-                            <span data-toggle="tooltip" title="{{ subsubheadline }}">
-                            {% if preheadlineLink != "" %}
-                                <a href="{{ preheadlineLink }}">{{ preheadline }}</a>
-                            {% else %}
-                                {{ preheadline }}
-                            {% endif %}
-                            </span>
-                        </p>
-                    {% endif %}
-                    {% if subheadline != "" %}
-                        <p class="cluecumber-subheadline white-space-pre-wrap">{{ subheadline }}</p>
-                    {% endif %}
-                </div>
+                        {% if _model.hasCustomParameters() %}
+                            {% include "macros/custom-parameters-card" %}
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         </div>
