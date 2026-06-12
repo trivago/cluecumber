@@ -100,13 +100,6 @@ limitations under the License.
                 </div>
             {% endif %}
 
-            {% if (element.hasHooks() and element.hasHooksWithContent()) or
-            element.hasSubSections() or
-            (element.hasStepHooks() and element.hasStepHooksWithContent()) or
-            element.hasDocStrings() %}
-                <hr>
-            {% endif %}
-
             {% if element.hasSubSections() %}
                 <button class="secondary outline" type="button" id="sub-sections-button"
                         data-cluecumber-item="sub-sections-button">{{ expandSubSections ? 'Hide' : 'Show' }} Sub

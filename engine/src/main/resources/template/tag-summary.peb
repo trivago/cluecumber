@@ -54,7 +54,7 @@ limitations under the License.
 
     <div class="row" id="available-tags">
         {{ page.cardStart("12", totalNumberOfTags ~ " " ~ common.pluralizeFn("Tag", totalNumberOfTags), "", "") }}
-            <table id="tag_summary" class="table cluecumber-table renderAsDataTable" data-cluecumber-item="tag-summary-table">
+            <table id="tag_summary" class="table cluecumber-table renderAsDataTable cluecumber-table-summary" data-cluecumber-item="tag-summary-table">
                 <thead>
                 <tr>
                     <th>Tag</th>

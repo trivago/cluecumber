@@ -5,18 +5,22 @@
                 {% set attachmentID = attachment.hashCode()|abs %}
                 {% set isTextAttachment = attachment.mimeType == "TXT" or attachment.mimeType == "XML" or attachment.mimeType == "JSON" or attachment.mimeType == "APPLICATION_XML" %}
                 <div class="scenarioAttachment-header">
-                    <a class="btn-link" data-toggle="collapse" href="#expandable{{ attachmentID }}" role="button"
-                       aria-expanded="false" aria-controls="expandable{{ attachmentID }}">Toggle</a> |
-                    {% if attachment.name != "" %}
-                        {{ attachment.name }} ({{ attachment.mimeType }} attachment)
-                    {% else %}
-                        {{ attachment.mimeType }} attachment
-                    {% endif %}
-                    {% if isTextAttachment %}
-                        <button onclick="copyText('expandable{{ attachmentID }}')" type="button" class="btn-clipboard">
-                            Copy
-                        </button>
-                    {% endif %}
+                    <span class="scenarioAttachment-label">
+                        {% if attachment.name != "" %}
+                            {{ attachment.name }} ({{ attachment.mimeType }} attachment)
+                        {% else %}
+                            {{ attachment.mimeType }} attachment
+                        {% endif %}
+                    </span>
+                    <div class="exception-links-top">
+                        <button type="button" class="cluecumber-exception-action secondary outline"
+                                data-toggle="collapse" data-target="#expandable{{ attachmentID }}"
+                                aria-expanded="false" aria-controls="expandable{{ attachmentID }}">Toggle</button>
+                        {% if isTextAttachment %}
+                            <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"
+                                    onclick="copyText('expandable{{ attachmentID }}')">Copy</button>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="collapse {{ expandAttachments ? "show" : "" }}"
                      id="expandable{{ attachmentID }}">

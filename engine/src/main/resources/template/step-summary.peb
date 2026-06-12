@@ -55,7 +55,7 @@ limitations under the License.
 
     <div class="row" id="available-steps">
         {{ page.cardStart("12", totalNumberOfSteps ~ " " ~ common.pluralizeFn("Step", totalNumberOfSteps), "", "") }}
-            <table id="step_summary" class="table cluecumber-table renderAsDataTable"
+            <table id="step_summary" class="table cluecumber-table renderAsDataTable cluecumber-table-summary cluecumber-table-summary-steps"
                    data-cluecumber-item="step-summary-table">
                 <thead>
                 <tr>

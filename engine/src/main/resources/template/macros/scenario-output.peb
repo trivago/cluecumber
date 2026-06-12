@@ -2,17 +2,19 @@
 {% if step.hasOutputs() %}
         <div class="row scenarioOutputs">
             <div class="scenarioOutputs-header">
-                <a class="btn-link" data-toggle="collapse" href="#expandableOutput{{ step.index|default(0) }}_{{ sectionId }}"
-                   role="button"
-                   aria-expanded="false" aria-controls="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">Toggle</a> |
-                Step Output
+                <span class="scenarioOutputs-label">Step Output</span>
+                <div class="exception-links-top">
+                    <button type="button" class="cluecumber-exception-action secondary outline"
+                            data-toggle="collapse"
+                            data-target="#expandableOutput{{ step.index|default(0) }}_{{ sectionId }}"
+                            aria-expanded="false"
+                            aria-controls="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">Toggle</button>
+                    <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"
+                            onclick="copyText('expandableOutput{{ step.index|default(0) }}_{{ sectionId }}')">Copy</button>
+                </div>
             </div>
             <div class="collapse {{ expandOutputs ? "show" : "" }}"
                  id="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">
-                <button onclick="copyText('expandableOutput{{ step.index|default(0) }}_{{ sectionId }}')" type="button"
-                        class="btn-clipboard">
-                    Copy
-                </button>
                 <pre class="embedding-content cluecumber-text-small embedded-txt">{{ step.output|join("<br>")|raw }}</pre>
             </div>
         </div>

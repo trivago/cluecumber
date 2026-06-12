@@ -54,7 +54,7 @@ limitations under the License.
 
     <div class="row" id="available-features">
         {{ page.cardStart("12", totalNumberOfFeatures ~ " " ~ common.pluralizeFn("Feature", totalNumberOfFeatures), "", "") }}
-            <table id="feature_summary" class="table cluecumber-table renderAsDataTable">
+            <table id="feature_summary" class="table cluecumber-table renderAsDataTable cluecumber-table-summary">
                 <thead>
                 <tr>
                     <th>Feature</th>

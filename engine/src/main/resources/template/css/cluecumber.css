@@ -96,6 +96,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-header nav {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -127,7 +128,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-nav-panel a {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 700;
     text-decoration: none;
     padding: 0.25rem 0;
 }
@@ -138,7 +140,6 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-nav-panel a.active {
-    font-weight: 700;
     text-decoration: underline;
 }
 
@@ -286,13 +287,19 @@ h1, h2, h3, h4, h5 {
     .row > .cluecumber-col-6 { grid-column: span 6; }
     .row > .cluecumber-col-9 { grid-column: span 9; }
     .row > .cluecumber-col-12 { grid-column: span 12; }
+}
 
+@media (min-width: 1024px) {
     .cluecumber-nav-toggle {
         display: none !important;
     }
 
     .cluecumber-nav-panel {
         display: block !important;
+    }
+
+    .cluecumber-nav-panel ul {
+        flex-wrap: nowrap;
     }
 }
 
@@ -350,6 +357,16 @@ h1, h2, h3, h4, h5 {
 .cluecumber-card-body {
     padding: 1.25rem;
     flex: 1;
+}
+
+.cluecumber-card:has(.dataTables_wrapper) {
+    overflow: visible;
+}
+
+.cluecumber-card-body:has(.dataTables_wrapper) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 0;
 }
 
 .cluecumber-card .cluecumber-card {
@@ -456,14 +473,62 @@ h1, h2, h3, h4, h5 {
 
 .scenarioAttachment-header,
 .scenarioOutputs-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
     padding: 0.25rem 0;
     margin-bottom: 0.5rem;
     border-bottom: var(--cluecumber-border);
     font-size: var(--cluecumber-font-size-small);
 }
 
+.scenarioAttachment-label,
+.scenarioOutputs-label {
+    flex: 1;
+    min-width: 0;
+}
+
+.scenarioAttachment-header .exception-links-top,
+.scenarioOutputs-header .exception-links-top {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    min-width: 2.75rem;
+}
+
+.scenarioAttachment-header .exception-links-top .cluecumber-exception-action,
+.scenarioOutputs-header .exception-links-top .cluecumber-exception-action {
+    width: 100%;
+    min-width: 4.25rem;
+}
+
+.scenarioAttachment:not(:has(.collapse.show)) .cluecumber-collapsible-copy-action,
+.scenarioOutputs:not(:has(.collapse.show)) .cluecumber-collapsible-copy-action {
+    display: none;
+}
+
+.cluecumber-inline-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.multiRunExpansionButton {
+    margin-top: 0.5rem;
+}
+
 .scenarioDataTable {
     padding: 1rem;
+}
+
+.scenarioDataTable > .table-responsive {
+    grid-column: 1 / -1;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 .scenarioDataTable .table {
@@ -508,7 +573,7 @@ h1, h2, h3, h4, h5 {
     width: 100%;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 1023.98px) {
     .cluecumber-nav-toggle {
         display: inline-block;
     }
@@ -517,12 +582,20 @@ h1, h2, h3, h4, h5 {
         display: none;
     }
 
+    .cluecumber-header {
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 0.5rem 1rem;
+    }
+
     .cluecumber-nav-panel.show {
         display: block;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: var(--cluecumber-header-height);
         left: 0;
         right: 0;
+        width: 100%;
+        z-index: 1001;
         padding: 0.75rem 1rem;
         background-color: var(--cluecumber-chrome-bg);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -531,17 +604,13 @@ h1, h2, h3, h4, h5 {
 
     .cluecumber-nav-panel ul {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
     }
 
-    .cluecumber-header {
-        flex-wrap: wrap;
-        align-items: flex-start;
-    }
-
-    .cluecumber-header-actions {
-        width: 100%;
-        justify-content: space-between;
+    .cluecumber-nav-panel a {
+        display: block;
+        white-space: nowrap;
+        padding: 0.5rem 0;
     }
 
     .cluecumber-step-name,
@@ -557,6 +626,11 @@ h1, h2, h3, h4, h5 {
     .table-responsive-mobile {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .cluecumber-card .cluecumber-table.dataTable {
+        table-layout: auto;
+        min-width: 38rem;
     }
 }
 
@@ -615,14 +689,82 @@ table {
     word-break: normal;
 }
 
+.cluecumber-col-started,
+.cluecumber-datetime {
+    min-width: 5.5rem;
+}
+
+.cluecumber-col-duration,
+.cluecumber-duration {
+    min-width: 6.5rem;
+    white-space: nowrap;
+}
+
 .cluecumber-datetime,
 .cluecumber-duration {
     font-variant-numeric: tabular-nums;
 }
 
+.cluecumber-datetime {
+    line-height: 1.25;
+}
+
+.cluecumber-table-sequence .cluecumber-col-index { width: 3%; }
+.cluecumber-table-sequence .cluecumber-col-feature { width: 16%; }
+.cluecumber-table-sequence .cluecumber-col-started { width: 7%; }
+.cluecumber-table-sequence .cluecumber-col-duration { width: 9%; }
+.cluecumber-table-sequence .cluecumber-col-status { width: 4%; }
+
+/* Summary tables (features, exceptions, steps, tags) */
+.cluecumber-table-summary th:first-child,
+.cluecumber-table-summary td:first-child {
+    width: 58%;
+    overflow-wrap: break-word;
+}
+
+.cluecumber-table-summary th:nth-child(2),
+.cluecumber-table-summary td:nth-child(2) {
+    width: 8%;
+    white-space: nowrap;
+}
+
+.cluecumber-table-summary .passedCell,
+.cluecumber-table-summary .failedCell,
+.cluecumber-table-summary .skippedCell {
+    width: 6%;
+    white-space: nowrap;
+}
+
+.cluecumber-table-summary-steps th:first-child,
+.cluecumber-table-summary-steps td:first-child {
+    width: 42%;
+}
+
+.cluecumber-table-summary-steps th:nth-child(2),
+.cluecumber-table-summary-steps td:nth-child(2) {
+    width: 6%;
+}
+
+.cluecumber-table-summary-steps .passedCell,
+.cluecumber-table-summary-steps .failedCell,
+.cluecumber-table-summary-steps .skippedCell {
+    width: 5%;
+}
+
+.cluecumber-table-summary-steps th:nth-child(n+6),
+.cluecumber-table-summary-steps td:nth-child(n+6) {
+    width: 9%;
+    white-space: nowrap;
+}
+
 .scenarioDataTable .table {
-    width: auto;
+    width: max-content;
     max-width: 100%;
+    table-layout: auto;
+}
+
+.scenarioDataTable .table td {
+    white-space: nowrap;
 }
 
 .scenarioDataTable .table tr:first-child td {
@@ -1046,19 +1188,24 @@ span.keyword {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 0.25rem;
+    align-items: stretch;
+    gap: 0.35rem;
     min-width: 2.75rem;
 }
 
-.firstException .exception-links-top :is(.btn-link, .btn-clipboard) {
-    padding: 0.15rem 0.5rem;
+.cluecumber-exception-action {
     margin: 0;
-    text-decoration: none;
+    padding: 0.15rem 0.5rem;
+    box-sizing: border-box;
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
+    text-align: center;
+    white-space: nowrap;
 }
 
-.firstException .exception-links-top .btn-link:hover {
-    text-decoration: underline;
+.firstException .exception-links-top .cluecumber-exception-action {
+    width: 100%;
+    min-width: 4.25rem;
 }
 
 .firstException .exception-pre {
@@ -1116,8 +1263,7 @@ pre {
     line-height: inherit;
 }
 
-.firstException .exception-pre,
-.firstException .exception-links-top :is(.btn-link, .btn-clipboard) {
+.firstException .exception-pre {
     font-size: var(--cluecumber-font-size-small);
     line-height: var(--cluecumber-line-height);
 }

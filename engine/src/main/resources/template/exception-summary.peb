@@ -54,7 +54,7 @@ limitations under the License.
 
     <div class="row" id="available-exceptions">
         {{ page.cardStart("12", totalNumberOfExceptions ~ " " ~ common.pluralizeFn("Exception", totalNumberOfExceptions), "", "") }}
-            <table id="exception_summary" class="table cluecumber-table renderAsDataTable" data-cluecumber-item="exception-summary-table">
+            <table id="exception_summary" class="table cluecumber-table renderAsDataTable cluecumber-table-summary" data-cluecumber-item="exception-summary-table">
                 <thead>
                 <tr>
                     <th>Exception</th>
