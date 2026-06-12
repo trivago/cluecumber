@@ -40,14 +40,14 @@
                             <thead>
                             <tr>
                                 {% if allRequested %}
-                                    <th class="cluecumber-align-right">#</th>
+                                    <th class="cluecumber-align-right cluecumber-col-index">#</th>
                                 {% endif %}
-                                <th style="width: 20%;">Feature</th>
-                                <th>Scenario</th>
-                                <th class="cluecumber-align-center">Started</th>
-                                <th class="cluecumber-align-center">Duration</th>
+                                <th class="cluecumber-col-feature">Feature</th>
+                                <th class="cluecumber-col-scenario">Scenario</th>
+                                <th class="cluecumber-align-center cluecumber-col-started">Started</th>
+                                <th class="cluecumber-align-center cluecumber-col-duration">Duration</th>
                                 {% if allRequested %}
-                                    <th class="cluecumber-align-center">Status</th>
+                                    <th class="cluecumber-align-center cluecumber-col-status">Status</th>
                                 {% endif %}
                             </tr>
                             </thead>
@@ -61,14 +61,13 @@
                                             {% if allRequested %}
                                                 <td class="cluecumber-align-right">{{ counter }}</td>
                                             {% endif %}
-                                            <td>
+                                            <td class="cluecumber-feature-cell">
                                                 <span data-toggle="tooltip" data-html="true" title="{{ common.reportTooltip(report.uri, report.description)|raw }}">
                                                     <a href="pages/feature-scenarios/feature_{{ report.featureIndex }}.html">{{ report.name }}</a>
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html"
-                                                   style="word-break: break-all">{{ element.name }}</a>
+                                                <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
 
                                                 {% if element.isMultiRunParent() %}
                                                     <button type="button" class="btn-clipboard multiRunExpansionButton"
@@ -83,7 +82,7 @@
                                                     <div class="firstExceptionContainer">
                                                         <div class="firstException exc-summary cluecumber-text-small">
                                                             <div class="exception-content">
-                                                                <pre class="exception-pre">{{ element.firstExceptionSummary }}</pre>
+                                                                <pre class="exception-pre">{{ element.firstExceptionSummary|raw }}</pre>
                                                             </div>
                                                             <div class="exception-links-top">
                                                                 <a class="btn-link exception-link" data-toggle="collapse"
@@ -96,7 +95,7 @@
                                                             <div class="firstException firstException-expanded cluecumber-text-small">
                                                                 <div class="exception-content">
                                                                     <pre class="exception-pre"
-                                                                         id="exc_pre_{{ element.scenarioIndex }}">{{ element.firstException }}</pre>
+                                                                         id="exc_pre_{{ element.scenarioIndex }}">{{ element.firstException|raw }}</pre>
                                                                 </div>
                                                                 <div class="exception-links-top">
                                                                     <a class="btn-link exception-link" data-toggle="collapse"
@@ -126,7 +125,7 @@
                                                                     </a>
                                                                     {% if childElement.firstExceptionSummary != "" %}
                                                                         <p class="firstException cluecumber-text-small cluecumber-muted"
-                                                                           style="word-break: break-word">{{ childElement.firstExceptionSummary }}</p>
+                                                                           style="word-break: break-word">{{ childElement.firstExceptionSummary|raw }}</p>
                                                                     {% endif %}
                                                                 </li>
                                                             {% endfor %}
@@ -134,10 +133,10 @@
                                                     </div>
                                                 {% endif %}
                                             </td>
-                                            <td class="cluecumber-align-center cluecumber-text-small" data-order="{{ element.startTimestamp }}">
-                                                {{ element.startDateString }}<br>{{ element.startTimeString }}
+                                            <td class="cluecumber-align-center cluecumber-text-small cluecumber-datetime" data-order="{{ element.startTimestamp }}">
+                                                <span class="nobr">{{ element.startDateString }} {{ element.startTimeString }}</span>
                                             </td>
-                                            <td class="cluecumber-align-center cluecumber-text-small" data-order="{{ element.totalDuration }}">
+                                            <td class="cluecumber-align-center cluecumber-text-small cluecumber-duration" data-order="{{ element.totalDuration }}">
                                                 <span class="nobr">{{ element.returnTotalDurationString() }}</span>
                                             </td>
                                             {% if allRequested %}

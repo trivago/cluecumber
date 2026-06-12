@@ -173,11 +173,19 @@ window.CluecumberTheme = (function () {
             }, '*');
         }
 
-        if (frame.contentWindow) {
-            sendMessage();
-        } else {
-            frame.addEventListener('load', sendMessage, {once: true});
+        function sendWhenReady() {
+            try {
+                if (frame.contentDocument && frame.contentDocument.readyState === 'complete') {
+                    sendMessage();
+                } else {
+                    frame.addEventListener('load', sendMessage, {once: true});
+                }
+            } catch (error) {
+                frame.addEventListener('load', sendMessage, {once: true});
+            }
         }
+
+        sendWhenReady();
     }
 
     function persistToSharedStorage(dark) {
@@ -200,10 +208,27 @@ window.CluecumberTheme = (function () {
     }
 
     function redirectWithStoredTheme(targetPath) {
-        readFromSharedStorage(function (dark) {
-            var theme = dark ? 'dark' : 'light';
+        var urlTheme = readThemeFromUrl();
+        if (urlTheme) {
+            window.location.replace(withThemeParam(targetPath, urlTheme));
+            return;
+        }
+
+        var redirected = false;
+        function go(theme) {
+            if (redirected) {
+                return;
+            }
+            redirected = true;
             window.location.replace(withThemeParam(targetPath, theme));
+        }
+
+        readFromSharedStorage(function (dark) {
+            go(dark ? 'dark' : 'light');
         });
+        setTimeout(function () {
+            go('light');
+        }, 500);
     }
 
     bindLinkThemeHandler();

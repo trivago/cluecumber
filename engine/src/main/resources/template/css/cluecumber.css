@@ -584,6 +584,42 @@ table {
     vertical-align: top;
 }
 
+/* Scenario overview tables */
+.cluecumber-card .cluecumber-table.dataTable {
+    table-layout: fixed;
+}
+
+.cluecumber-col-feature { width: 18%; }
+.cluecumber-col-started { width: 11%; }
+.cluecumber-col-duration { width: 10%; }
+.cluecumber-col-index { width: 4%; }
+.cluecumber-col-status { width: 6%; }
+
+.cluecumber-feature-cell a {
+    color: var(--pico-muted-color);
+    font-size: var(--cluecumber-font-size-small);
+    text-decoration: none;
+}
+
+.cluecumber-feature-cell a:hover {
+    color: var(--cluecumber-link);
+    text-decoration: underline;
+}
+
+[data-theme="dark"] .cluecumber-feature-cell a:hover {
+    color: var(--cluecumber-link-dark);
+}
+
+.cluecumber-scenario-link {
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.cluecumber-datetime,
+.cluecumber-duration {
+    font-variant-numeric: tabular-nums;
+}
+
 .scenarioDataTable .table {
     width: auto;
     max-width: 100%;
@@ -967,13 +1003,28 @@ span.keyword {
 }
 
 .firstException {
-    color: indianred;
+    color: var(--failed-color, #fc7180);
     word-break: break-word;
-    border: 1px solid indianred;
-    padding: 0.5rem;
+    border: none;
+    border-left: 3px solid var(--failed-color, #fc7180);
+    border-radius: 0;
+    background-color: color-mix(in srgb, var(--failed-color, #fc7180) 10%, transparent);
+    padding: 0.35rem 0.5rem 0.35rem 0.65rem;
     margin-top: 0.5rem;
     width: 100%;
     box-sizing: border-box;
+}
+
+.table-row-failed .firstException {
+    color: var(--failed-color, #fc7180);
+    border-left-color: var(--failed-color, #fc7180);
+    background-color: color-mix(in srgb, var(--failed-color, #fc7180) 10%, transparent);
+}
+
+.table-row-skipped .firstException {
+    color: var(--pico-color);
+    border-left-color: var(--skipped-color, #f7c42b);
+    background-color: color-mix(in srgb, var(--skipped-color, #f7c42b) 16%, var(--pico-background-color));
 }
 
 .firstException.exc-summary,
@@ -1011,13 +1062,21 @@ span.keyword {
 }
 
 .firstException .exception-pre {
-    color: indianred;
+    color: inherit;
     white-space: pre-wrap;
     word-break: break-word;
     margin: 0;
     padding: 0;
     border: none;
     background: transparent;
+}
+
+.firstException.exc-summary .exception-pre {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    white-space: normal;
 }
 
 .multiRunChildren {
