@@ -131,9 +131,13 @@ limitations under the License.
             });
 
             $('.collapse').on('shown.bs.collapse', function (e) {
-                $(e.target).find("iframe").each(function (index, iframe) {
+                $(e.target).find("iframe.embedded-html").each(function (index, iframe) {
                     resizeIframe(iframe);
                 });
+            });
+
+            $('iframe.embedded-html').each(function (index, iframe) {
+                resizeIframe(iframe);
             });
 
             $("a.grouped_elements").fancybox();
@@ -351,12 +355,46 @@ limitations under the License.
     }
 
     function resizeIframe(iframe) {
-        setInterval(function () {
+        function applyHeight() {
             try {
-                iframe.height = iframe.contentWindow.document.body.scrollHeight + 25 + "px";
+                const doc = iframe.contentWindow.document;
+                const height = Math.max(
+                    doc.documentElement.scrollHeight,
+                    doc.body.scrollHeight
+                );
+                iframe.style.height = (height + 25) + 'px';
+                iframe.classList.add('is-sized');
             } catch (e) {
             }
-        }, 500);
+        }
+
+        function bind() {
+            applyHeight();
+            if (iframe.dataset.cluecumberResizeBound) {
+                return;
+            }
+            iframe.dataset.cluecumberResizeBound = 'true';
+            try {
+                const body = iframe.contentWindow.document.body;
+                if (typeof ResizeObserver !== 'undefined' && body) {
+                    const observer = new ResizeObserver(applyHeight);
+                    observer.observe(body);
+                    iframe._cluecumberResizeObserver = observer;
+                }
+            } catch (e) {
+            }
+        }
+
+        try {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            if (doc && doc.readyState === 'complete') {
+                bind();
+            } else {
+                iframe.addEventListener('load', bind, {once: true});
+            }
+        } catch (e) {
+            iframe.addEventListener('load', bind, {once: true});
+        }
     }
 
     function copyText(elementId) {

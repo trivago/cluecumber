@@ -13,13 +13,13 @@
                         {% endif %}
                     </span>
                     <div class="exception-links-top">
-                        <button type="button" class="cluecumber-exception-action secondary outline"
-                                data-toggle="collapse" data-target="#expandable{{ attachmentID }}"
-                                aria-expanded="false" aria-controls="expandable{{ attachmentID }}">Toggle</button>
                         {% if isTextAttachment %}
                             <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"
                                     onclick="copyText('expandable{{ attachmentID }}')">Copy</button>
                         {% endif %}
+                        <button type="button" class="cluecumber-exception-action secondary outline"
+                                data-toggle="collapse" data-target="#expandable{{ attachmentID }}"
+                                aria-expanded="false" aria-controls="expandable{{ attachmentID }}">Toggle</button>
                     </div>
                 </div>
                 <div class="collapse {{ expandAttachments ? "show" : "" }}"
@@ -31,8 +31,8 @@
                         </a>
                     {% elseif attachment.mimeType == "HTML" %}
                         <iframe src="attachments/{{ attachment.filename }}"
-                                srcdoc="{{ attachment.decodedData }}" width="100%" height="1"
-                                onload="resizeIframe(this);" class="embedded-html"></iframe>
+                                srcdoc="{{ attachment.decodedData }}" width="100%"
+                                class="embedded-html is-pending-size"></iframe>
                     {% elseif isTextAttachment %}
                         <pre class="embedding-content cluecumber-text-small embedded-txt">{{ attachment.decodedData }}</pre>
                     {% elseif attachment.mimeType == "MP4" %}

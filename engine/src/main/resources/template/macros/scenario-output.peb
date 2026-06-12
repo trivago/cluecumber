@@ -4,13 +4,13 @@
             <div class="scenarioOutputs-header">
                 <span class="scenarioOutputs-label">Step Output</span>
                 <div class="exception-links-top">
+                    <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"
+                            onclick="copyText('expandableOutput{{ step.index|default(0) }}_{{ sectionId }}')">Copy</button>
                     <button type="button" class="cluecumber-exception-action secondary outline"
                             data-toggle="collapse"
                             data-target="#expandableOutput{{ step.index|default(0) }}_{{ sectionId }}"
                             aria-expanded="false"
                             aria-controls="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">Toggle</button>
-                    <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"
-                            onclick="copyText('expandableOutput{{ step.index|default(0) }}_{{ sectionId }}')">Copy</button>
                 </div>
             </div>
             <div class="collapse {{ expandOutputs ? "show" : "" }}"

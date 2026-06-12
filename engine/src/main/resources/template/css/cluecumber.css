@@ -502,10 +502,16 @@ h1, h2, h3, h4, h5 {
 .scenarioAttachment,
 .scenarioOutputs {
     margin-top: 0.5rem;
-    padding: 1rem;
     border: var(--cluecumber-border);
     border-radius: var(--pico-border-radius);
     background: var(--pico-card-background-color, var(--pico-secondary-background));
+}
+
+.scenarioAttachment.row,
+.scenarioOutputs.row {
+    padding: 0.4rem 0.75rem;
+    margin-bottom: 0.5rem;
+    gap: 0;
 }
 
 .scenarioAttachment-header,
@@ -513,12 +519,18 @@ h1, h2, h3, h4, h5 {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
-    padding: 0.25rem 0;
+    padding: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+    font-size: var(--cluecumber-font-size-small);
+}
+
+.scenarioAttachment:has(.collapse.show) .scenarioAttachment-header,
+.scenarioOutputs:has(.collapse.show) .scenarioOutputs-header {
     margin-bottom: 0.5rem;
     border-bottom: var(--cluecumber-border);
-    font-size: var(--cluecumber-font-size-small);
 }
 
 .scenarioAttachment-label,
@@ -531,15 +543,15 @@ h1, h2, h3, h4, h5 {
 .scenarioOutputs-header .exception-links-top {
     flex-shrink: 0;
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
     gap: 0.35rem;
-    min-width: 2.75rem;
+    min-width: auto;
 }
 
 .scenarioAttachment-header .exception-links-top .cluecumber-exception-action,
 .scenarioOutputs-header .exception-links-top .cluecumber-exception-action {
-    width: 100%;
+    width: auto;
     min-width: 4.25rem;
 }
 
@@ -608,6 +620,12 @@ h1, h2, h3, h4, h5 {
 .embedded-file {
     display: block;
     width: 100%;
+}
+
+.embedded-html.is-pending-size:not(.is-sized) {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 @media (max-width: 1023.98px) {
