@@ -434,17 +434,37 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-list-item .row:hover,
-.cluecumber-table tbody tr:hover,
 .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
 .dataTables_paginate .page-link:hover {
     background-color: var(--cluecumber-hover-bg);
 }
 
+.cluecumber-table tbody tr:hover td,
+.cluecumber-table tbody tr:hover th {
+    background-color: var(--cluecumber-hover-bg);
+}
+
 [data-theme="dark"] .cluecumber-list-item .row:hover,
-[data-theme="dark"] .cluecumber-table tbody tr:hover,
 [data-theme="dark"] .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
 [data-theme="dark"] .dataTables_paginate .page-link:hover {
     background-color: var(--cluecumber-hover-bg-dark);
+}
+
+[data-theme="dark"] .cluecumber-table tbody tr:hover td,
+[data-theme="dark"] .cluecumber-table tbody tr:hover th {
+    background-color: var(--cluecumber-hover-bg-dark);
+}
+
+.cluecumber-list-item > .row[class*="table-row-"],
+.scenarioSubSection > .row[class*="table-row-"],
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"] {
+    border-bottom: var(--cluecumber-border);
+}
+
+.cluecumber-list-item > .row[class*="table-row-"]:last-child,
+.scenarioSubSection > .row[class*="table-row-"]:last-child,
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:last-child {
+    border-bottom: none;
 }
 
 .cluecumber-step-name { grid-column: span 9; }
