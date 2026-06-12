@@ -36,12 +36,12 @@ limitations under the License.
             {{ page.graph() }}
         {{ page.cardEnd() }}
         {{ page.cardStart("3", "Tag Summary", "", "cluecumber-card-centered") }}
-            <ul class="list-group list-group-flush" data-cluecumber-item="tag-summary">
-                <li class="list-group-item">{{ totalNumberOfTags }} {{ common.pluralizeFn("Tag", totalNumberOfTags) }} in
+            <ul class="cluecumber-list" data-cluecumber-item="tag-summary">
+                <li class="cluecumber-list-item">{{ totalNumberOfTags }} {{ common.pluralizeFn("Tag", totalNumberOfTags) }} in
                     <br>
                     {{ totalNumberOfScenarios }} Tagged {{ common.pluralizeFn("Scenario", totalNumberOfScenarios) }}
                 </li>
-                <li class="list-group-item">
+                <li class="cluecumber-list-item">
                     {{ totalNumberOfPassed }} passed {{ common.status("passed") }}
                     <br>
                     {{ totalNumberOfFailed }} failed {{ common.status("failed") }}
@@ -54,7 +54,7 @@ limitations under the License.
 
     <div class="row" id="available-tags">
         {{ page.cardStart("12", totalNumberOfTags ~ " " ~ common.pluralizeFn("Tag", totalNumberOfTags), "", "") }}
-            <table id="tag_summary" class="table table-hover renderAsDataTable" data-cluecumber-item="tag-summary-table">
+            <table id="tag_summary" class="table cluecumber-table renderAsDataTable" data-cluecumber-item="tag-summary-table">
                 <thead>
                 <tr>
                     <th>Tag</th>
@@ -67,12 +67,12 @@ limitations under the License.
                 <tbody>
                 {% for entry in tagResultCounts %}
                     <tr>
-                        <td class="text-left"><a
+                        <td class="cluecumber-align-left"><a
                                     href="pages/tag-scenarios/tag_{{ entry.key.getUrlFriendlyName() }}.html">{{ entry.key.name }}</a></td>
-                        <td class="text-center"><strong>{{ entry.value.total }}</strong></td>
-                        <td class="text-center passedCell">{{ entry.value.passed }}</td>
-                        <td class="text-center failedCell">{{ entry.value.failed }}</td>
-                        <td class="text-center skippedCell">{{ entry.value.skipped }}</td>
+                        <td class="cluecumber-align-center"><strong>{{ entry.value.total }}</strong></td>
+                        <td class="cluecumber-align-center passedCell">{{ entry.value.passed }}</td>
+                        <td class="cluecumber-align-center failedCell">{{ entry.value.failed }}</td>
+                        <td class="cluecumber-align-center skippedCell">{{ entry.value.skipped }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

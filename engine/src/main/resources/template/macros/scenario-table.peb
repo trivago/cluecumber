@@ -10,7 +10,7 @@
     allRequested %}
         <a class="anchor" id="anchor-{{ status }}"></a>
         <div class="row" id="card_{{ status }}" data-cluecumber-item="scenario-summary-table">
-            <article class="cluecumber-card col-sm-12">
+            <article class="cluecumber-card cluecumber-col-12">
                     {% if status == "skipped" %}
                             <header class="border-color-skipped">
                                 {{ numberOfScenarios }}
@@ -36,18 +36,18 @@
                     {% endif %}
 
                     <div class="cluecumber-card-body">
-                        <table id="results_{{ status }}" class="table table-hover renderAsDataTable">
+                        <table id="results_{{ status }}" class="table cluecumber-table renderAsDataTable">
                             <thead>
                             <tr>
                                 {% if allRequested %}
-                                    <th class="text-left">#</th>
+                                    <th class="cluecumber-align-right">#</th>
                                 {% endif %}
-                                <th class="text-left" style="width: 20%;">Feature</th>
-                                <th class="text-left">Scenario</th>
-                                <th class="text-center">Started</th>
-                                <th class="text-center">Duration</th>
+                                <th style="width: 20%;">Feature</th>
+                                <th>Scenario</th>
+                                <th class="cluecumber-align-center">Started</th>
+                                <th class="cluecumber-align-center">Duration</th>
                                 {% if allRequested %}
-                                    <th class="text-center">Status</th>
+                                    <th class="cluecumber-align-center">Status</th>
                                 {% endif %}
                             </tr>
                             </thead>
@@ -59,14 +59,14 @@
                                     {% if (skippedRequested and element.skipped) or (failedRequested and element.failed) or (passedRequested and element.passed) or allRequested %}
                                         <tr class="table-row-{{ element.status.statusString }}">
                                             {% if allRequested %}
-                                                <td class="text-right">{{ counter }}</td>
+                                                <td class="cluecumber-align-right">{{ counter }}</td>
                                             {% endif %}
-                                            <td class="text-left">
+                                            <td>
                                                 <span data-toggle="tooltip" data-html="true" title="{{ common.reportTooltip(report.uri, report.description)|raw }}">
                                                     <a href="pages/feature-scenarios/feature_{{ report.featureIndex }}.html">{{ report.name }}</a>
                                                 </span>
                                             </td>
-                                            <td class="text-left">
+                                            <td>
                                                 <a href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html"
                                                    style="word-break: break-all">{{ element.name }}</a>
 
@@ -80,8 +80,8 @@
                                                 {% endif %}
 
                                                 {% if element.firstException is not empty %}
-                                                    <div class="firstExceptionContainer w-100">
-                                                        <div class="firstException exc-summary w-100 text-left small">
+                                                    <div class="firstExceptionContainer">
+                                                        <div class="firstException exc-summary cluecumber-text-small">
                                                             <div class="exception-content">
                                                                 <pre class="exception-pre">{{ element.firstExceptionSummary }}</pre>
                                                             </div>
@@ -92,8 +92,8 @@
                                                                    aria-controls="exc_{{ element.scenarioIndex }}">More</a>
                                                             </div>
                                                         </div>
-                                                        <div class="collapse mt-2 {{ expandErrorMessages ? "show" : "" }}" id="exc_{{ element.scenarioIndex }}">
-                                                            <div class="firstException firstException-expanded w-100 text-left small">
+                                                        <div class="collapse {{ expandErrorMessages ? "show" : "" }}" id="exc_{{ element.scenarioIndex }}">
+                                                            <div class="firstException firstException-expanded cluecumber-text-small">
                                                                 <div class="exception-content">
                                                                     <pre class="exception-pre"
                                                                          id="exc_pre_{{ element.scenarioIndex }}">{{ element.firstException }}</pre>
@@ -125,7 +125,7 @@
                                                                         {{ common.status(childElement.status.statusString) }}
                                                                     </a>
                                                                     {% if childElement.firstExceptionSummary != "" %}
-                                                                        <p class="firstException text-left small text-gray"
+                                                                        <p class="firstException cluecumber-text-small cluecumber-muted"
                                                                            style="word-break: break-word">{{ childElement.firstExceptionSummary }}</p>
                                                                     {% endif %}
                                                                 </li>
@@ -134,14 +134,14 @@
                                                     </div>
                                                 {% endif %}
                                             </td>
-                                            <td class="text-center small" data-order="{{ element.startTimestamp }}">
+                                            <td class="cluecumber-align-center cluecumber-text-small" data-order="{{ element.startTimestamp }}">
                                                 {{ element.startDateString }}<br>{{ element.startTimeString }}
                                             </td>
-                                            <td class="text-center small" data-order="{{ element.totalDuration }}">
+                                            <td class="cluecumber-align-center cluecumber-text-small" data-order="{{ element.totalDuration }}">
                                                 <span class="nobr">{{ element.returnTotalDurationString() }}</span>
                                             </td>
                                             {% if allRequested %}
-                                                <td class="text-center">{{ common.status(element.status.statusString) }}</td>
+                                                <td class="cluecumber-align-center">{{ common.status(element.status.statusString) }}</td>
                                             {% endif %}
                                         </tr>
                                     {% endif %}

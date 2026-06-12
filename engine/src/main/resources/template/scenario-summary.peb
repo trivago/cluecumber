@@ -94,11 +94,11 @@ limitations under the License.
             {{ page.graph() }}
         {{ page.cardEnd() }}
         {{ page.cardStart("3", "Scenario Summary", "", "cluecumber-card-centered") }}
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+            <ul class="cluecumber-list">
+                <li class="cluecumber-list-item" data-cluecumber-item="scenario-summary">
                     {{ totalNumberOfScenarios }} {{ common.pluralizeFn("Scenario", totalNumberOfScenarios) }}
                 </li>
-                <li class="list-group-item" data-cluecumber-item="scenario-summary">
+                <li class="cluecumber-list-item" data-cluecumber-item="scenario-summary">
                     {% if scenarioSequence %}
                         {{ totalNumberOfPassedScenarios }} passed {{ common.status("passed") }}
                         <br>
@@ -123,16 +123,16 @@ limitations under the License.
 
             {% if _model.hasMultiRunChildren() %}
                 <hr>
-                <button id="multiRunButton" class="secondary outline w-75 m-2" type="button" data-toggle="collapse"
+                <button id="multiRunButton" class="secondary outline" type="button" data-toggle="collapse"
                         aria-expanded="false" data-cluecumber-item="multi-run-button"
                         data-target=".multiRunChildren">Show {{ totalNumberOfMultiRunChildren }} Previous Runs
                 </button>
             {% endif %}
         {{ page.cardEnd() }}
         {{ page.cardStart("3", "Test Suite Info", "", "cluecumber-card-centered") }}
-            <ul class="list-group list-group-flush">
+            <ul class="cluecumber-list">
                 {% set startDateTimeString = _model.returnStartDateTimeString() %}
-                <li class="list-group-item" data-cluecumber-item="total-start">
+                <li class="cluecumber-list-item" data-cluecumber-item="total-start">
                     {% if startDateTimeString is not empty %}
                         <b>Start</b><br>{{ startDateTimeString }}<br>
                     {% endif %}

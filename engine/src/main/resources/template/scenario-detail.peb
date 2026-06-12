@@ -37,11 +37,11 @@ limitations under the License.
         {{ page.cardEnd() }}
 
         {{ page.cardStart("3", "Summary", "", "cluecumber-card-centered") }}
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
+            <ul class="cluecumber-list">
+                <li class="cluecumber-list-item">
                     {{ element.totalNumberOfSteps }} {{ common.pluralizeFn("Step", element.totalNumberOfSteps) }}
                 </li>
-                <li class="list-group-item">
+                <li class="cluecumber-list-item">
                     {{ element.totalNumberOfPassedSteps }} passed {{ common.status("passed") }}
                     <br>
                     {{ element.totalNumberOfFailedSteps }} failed {{ common.status("failed") }}
@@ -53,13 +53,13 @@ limitations under the License.
                 <hr>
                 {% for tag in element.tags %}
                     <a href="pages/tag-scenarios/tag_{{ tag.getUrlFriendlyName() }}.html"
-                       class="btn btn-link" style="word-break: break-all;">{{ tag.name }}</a>
+                       class="btn-link" style="word-break: break-all;">{{ tag.name }}</a>
                 {% endfor %}
             {% endif %}
         {{ page.cardEnd() }}
 
         {{ page.cardStart("3", "Scenario Info", "", "cluecumber-card-centered") }}
-            <li class="list-group-item">
+            <li class="cluecumber-list-item">
                 {% if element.startTimestamp is not empty %}
                     <b>Start</b><br>{{ element.startDateString }} {{ element.startTimeString }}<br>
                 {% endif %}
@@ -108,36 +108,36 @@ limitations under the License.
             {% endif %}
 
             {% if element.hasSubSections() %}
-                <button class="btn w-75 m-2" type="button" id="sub-sections-button"
+                <button class="secondary outline" type="button" id="sub-sections-button"
                         data-cluecumber-item="sub-sections-button">{{ expandSubSections ? 'Hide' : 'Show' }} Sub
                     Sections
                 </button>
             {% endif %}
             {% if element.hasHooks() and element.hasHooksWithContent() %}
-                <button class="btn w-75 m-2" type="button" id="before-after-hooks-button"
+                <button class="secondary outline" type="button" id="before-after-hooks-button"
                         data-cluecumber-item="before-after-hooks-button">{{ expandBeforeAfterHooks ? 'Hide' : 'Show' }}
                     Hooks
                 </button>
             {% endif %}
             {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
-                <button class="btn w-75 m-2" type="button" id="step-hooks-button"
+                <button class="secondary outline" type="button" id="step-hooks-button"
                         data-cluecumber-item="step-hooks-button">{{ expandStepHooks ? 'Hide' : 'Show' }} Step Hooks
                 </button>
             {% endif %}
             {% if element.hasDocStrings() %}
-                <button class="btn w-75 m-2" type="button" id="doc-strings-button"
+                <button class="secondary outline" type="button" id="doc-strings-button"
                         data-cluecumber-item="doc-strings-button">{{ expandDocStrings ? 'Hide' : 'Show' }}
                     DocStrings
                 </button>
             {% endif %}
             {% if element.hasAttachments() %}
-                <button class="btn w-75 m-2" type="button" id="attachments-button"
+                <button class="secondary outline" type="button" id="attachments-button"
                         data-cluecumber-item="attachments-button">{{ expandAttachments ? 'Hide' : 'Show' }}
                     Attachments
                 </button>
             {% endif %}
             {% if element.hasOutputs() %}
-                <button class="btn w-75 m-2" type="button" id="outputs-button"
+                <button class="secondary outline" type="button" id="outputs-button"
                         data-cluecumber-item="outputs-button">{{ expandOutputs ? 'Hide' : 'Show' }} Step
                     Outputs
                 </button>
@@ -145,22 +145,22 @@ limitations under the License.
         {{ page.cardEnd() }}
     </div>
 
-    <ul class="list-group list-group-flush">
+    <ul class="cluecumber-list">
         {% if element.before is not empty and element.anyBeforeHookHasContent() %}
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "Before Hooks", "", "") }}
-                    <li class="list-group-item">
+                    <li class="cluecumber-list-item">
                         {% for before in element.before %}
                             {% if before.hasContent() or before.isFailed() %}
                                 <div class="row row_{{ before.consolidatedStatusString }} table-row-{{ before.consolidatedStatusString }}">
-                                    <div class="col-9 text-left">
-                                        <span class="text-left">{{ loop.index + 1 }}.</span>
+                                    <div class="cluecumber-step-name">
+                                        <span>{{ loop.index + 1 }}.</span>
                                         <i>{{ before.glueMethodName }}</i>
                                     </div>
-                                    <div class="col-2 text-left small">
+                                    <div class="cluecumber-step-duration cluecumber-text-small">
                                         {{ before.result.returnDurationString() }}
                                     </div>
-                                    <div class="col-1 text-right">
+                                    <div class="cluecumber-step-status cluecumber-align-right">
                                         {{ common.status(before.consolidatedStatusString) }}
                                     </div>
                                     {% set step = before %}{% include "macros/scenario-error-message" %}
@@ -176,7 +176,7 @@ limitations under the License.
 
         {% if element.backgroundSteps is not empty %}
             {{ page.cardStart("12", "Background Steps", "", "") }}
-                <li class="list-group-item">
+                <li class="cluecumber-list-item">
 
                     {% set oldCollapseLevel = 0 %}
                     {% set lastLevelChange = 0 %}
@@ -203,8 +203,8 @@ limitations under the License.
 
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
 
-                            <div class="col-9 text-left">
-                                <span class="text-left">{{ loop.index + 1 }}.</span>
+                            <div class="cluecumber-step-name">
+                                <span>{{ loop.index + 1 }}.</span>
                                 {% set stepName = step.returnNameWithArguments() %}
                                 <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
                                     <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
@@ -232,17 +232,17 @@ limitations under the License.
                                     </button>
                                 {% endif %}
                             </div>
-                            <div class="col-2 text-left small">
+                            <div class="cluecumber-step-duration cluecumber-text-small">
                                 {{ step.result.returnDurationString() }}
                             </div>
-                            <div class="col-1 text-right">
+                            <div class="cluecumber-step-status cluecumber-align-right">
                                 {{ common.status(step.consolidatedStatusString) }}
                             </div>
 
                             {% if step.rows is not empty %}
-                                <div class="row w-100 p-3 m-0 scenarioDataTable">
-                                    <div class="w-100 text-left table-responsive">
-                                        <table class="table table-hover small table-striped text-left pb-0 border border-dark">
+                                <div class="row scenarioDataTable">
+                                    <div class="table-responsive">
+                                        <table class="table cluecumber-table cluecumber-text-small">
                                             {% for row in step.rows %}
                                                 <tr>
                                                     {% for cell in row.cells %}
@@ -256,15 +256,11 @@ limitations under the License.
                             {% endif %}
                             {% if step.docString is not null and step.docString.value is not null %}
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
-                                    <div class="row w-100 p-3 m-0">
-                                        <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
-                                                class="btn-clipboard">
-                                            Copy
-                                        </button>
-                                        <div class="w-100 text-left border">
-                                            <pre class="text-secondary small p-2">{{ step.docString.returnWithClickableLinks() }}</pre>
-                                        </div>
-                                    </div>
+                                    <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
+                                            class="btn-clipboard">
+                                        Copy
+                                    </button>
+                                    <pre class="cluecumber-muted cluecumber-text-small">{{ step.docString.returnWithClickableLinks() }}</pre>
                                 </div>
                             {% endif %}
                             {% set step = step %}{% include "macros/scenario-error-message" %}
@@ -279,7 +275,7 @@ limitations under the License.
 
         {% if element.steps is not empty %}
             {{ page.cardStart("12", "Steps", "", "") }}
-                <li class="list-group-item">
+                <li class="cluecumber-list-item">
 
                     {% set oldCollapseLevel = 0 %}
                     {% set lastLevelChange = 0 %}
@@ -306,8 +302,8 @@ limitations under the License.
 
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
 
-                            <div class="col-9 text-left">
-                                <span class="text-left">{{ loop.index + 1 }}.</span>
+                            <div class="cluecumber-step-name">
+                                <span>{{ loop.index + 1 }}.</span>
                                 {% set stepName = step.returnNameWithArguments() %}
                                 <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
                                     <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
@@ -335,17 +331,17 @@ limitations under the License.
                                     </button>
                                 {% endif %}
                             </div>
-                            <div class="col-2 text-left small">
+                            <div class="cluecumber-step-duration cluecumber-text-small">
                                 {{ step.result.returnDurationString() }}
                             </div>
-                            <div class="col-1 text-right">
+                            <div class="cluecumber-step-status cluecumber-align-right">
                                 {{ common.status(step.consolidatedStatusString) }}
                             </div>
 
                             {% if step.rows is not empty %}
-                                <div class="row w-100 p-3 m-0 scenarioDataTable">
-                                    <div class="w-100 text-left table-responsive">
-                                        <table class="table table-hover small table-striped text-left pb-0 border border-dark">
+                                <div class="row scenarioDataTable">
+                                    <div class="table-responsive">
+                                        <table class="table cluecumber-table cluecumber-text-small">
                                             {% for row in step.rows %}
                                                 <tr>
                                                     {% for cell in row.cells %}
@@ -359,15 +355,11 @@ limitations under the License.
                             {% endif %}
                             {% if step.docString is not null and step.docString.value is not null %}
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
-                                    <div class="row w-100 p-3 m-0">
-                                        <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
-                                                class="btn-clipboard">
-                                            Copy
-                                        </button>
-                                        <div class="w-100 text-left border">
-                                            <pre class="text-secondary small p-2">{{ step.docString.returnWithClickableLinks() }}</pre>
-                                        </div>
-                                    </div>
+                                    <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
+                                            class="btn-clipboard">
+                                        Copy
+                                    </button>
+                                    <pre class="cluecumber-muted cluecumber-text-small">{{ step.docString.returnWithClickableLinks() }}</pre>
                                 </div>
                             {% endif %}
                             {% set step = step %}{% include "macros/scenario-error-message" %}
@@ -383,18 +375,18 @@ limitations under the License.
         {% if element.after is not empty and element.anyAfterHookHasContent() %}
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "After Hooks", "", "") }}
-                    <li class="list-group-item">
+                    <li class="cluecumber-list-item">
                         {% for after in element.after %}
                             {% if after.hasContent() or after.isFailed() %}
                                 <div class="row row_{{ after.consolidatedStatusString }} table-row-{{ after.consolidatedStatusString }}">
-                                    <div class="col-9 text-left">
-                                        <span class="text-left">{{ loop.index + 1 }}.</span>
+                                    <div class="cluecumber-step-name">
+                                        <span>{{ loop.index + 1 }}.</span>
                                         <i>{{ after.glueMethodName }}</i>
                                     </div>
-                                    <div class="col-2 text-left small">
+                                    <div class="cluecumber-step-duration cluecumber-text-small">
                                         {{ after.result.returnDurationString() }}
                                     </div>
-                                    <div class="col-1 text-right">
+                                    <div class="cluecumber-step-status cluecumber-align-right">
                                         {{ common.status(after.consolidatedStatusString) }}
                                     </div>
                                     {% set step = after %}{% include "macros/scenario-error-message" %}

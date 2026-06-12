@@ -270,8 +270,7 @@ h1, h2, h3, h4, h5 {
     align-items: start;
 }
 
-.row > [class*="col-md-"],
-.row > .col-sm-12 {
+.row > [class*="cluecumber-col-"] {
     grid-column: span 12;
     min-width: 0;
 }
@@ -283,10 +282,10 @@ h1, h2, h3, h4, h5 {
         justify-content: space-between;
     }
 
-    .row > .col-md-3 { grid-column: span 3; }
-    .row > .col-md-6 { grid-column: span 6; }
-    .row > .col-md-9 { grid-column: span 9; }
-    .row > .col-md-12 { grid-column: span 12; }
+    .row > .cluecumber-col-3 { grid-column: span 3; }
+    .row > .cluecumber-col-6 { grid-column: span 6; }
+    .row > .cluecumber-col-9 { grid-column: span 9; }
+    .row > .cluecumber-col-12 { grid-column: span 12; }
 
     .cluecumber-nav-toggle {
         display: none !important;
@@ -297,16 +296,14 @@ h1, h2, h3, h4, h5 {
     }
 }
 
-/* Cards — reset Pico article spacing inside our grid cards */
+/* Cards */
 .row > .cluecumber-card,
-.row > .card,
 .cluecumber-template article.cluecumber-card {
     margin: 0;
     margin-bottom: 0;
 }
 
-.cluecumber-card,
-.card {
+.cluecumber-card {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -320,8 +317,7 @@ h1, h2, h3, h4, h5 {
     overflow: hidden;
 }
 
-.cluecumber-card > header,
-.card-header {
+.cluecumber-card > header {
     margin: 0;
     padding: 0.5rem 1.25rem;
     font-size: 1rem;
@@ -329,20 +325,18 @@ h1, h2, h3, h4, h5 {
     text-align: center;
     color: #fff;
     background-color: var(--cluecumber-card-header-bg);
-    border-bottom-width: thick;
-    border-bottom-style: solid;
-    border-bottom-color: var(--pico-muted-border-color);
+    border-bottom: thick solid var(--pico-muted-border-color);
 }
 
-:is(.cluecumber-card > header, .card-header).border-color-passed {
+.cluecumber-card > header.border-color-passed {
     border-bottom-color: var(--passed-color, currentColor);
 }
 
-:is(.cluecumber-card > header, .card-header).border-color-failed {
+.cluecumber-card > header.border-color-failed {
     border-bottom-color: var(--failed-color, currentColor);
 }
 
-:is(.cluecumber-card > header, .card-header).border-color-skipped {
+.cluecumber-card > header.border-color-skipped {
     border-bottom-color: var(--skipped-color, currentColor);
 }
 
@@ -353,23 +347,27 @@ h1, h2, h3, h4, h5 {
     font-size: var(--cluecumber-font-size);
 }
 
-.cluecumber-card-body,
-.card-body {
+.cluecumber-card-body {
     padding: 1.25rem;
     flex: 1;
 }
 
-.cluecumber-card .cluecumber-card,
-.card-body .card {
+.cluecumber-card .cluecumber-card {
     margin-top: 1rem;
     box-shadow: none;
 }
 
 .cluecumber-card.cluecumber-card-centered,
 .cluecumber-card.cluecumber-card-centered .cluecumber-card-body,
-.cluecumber-card.cluecumber-card-centered .list-group-item,
-.cluecumber-card.cluecumber-card-centered .alert,
+.cluecumber-card.cluecumber-card-centered .cluecumber-list-item,
+.cluecumber-card.cluecumber-card-centered .alert {
+    text-align: center;
+}
+
 .cluecumber-card.cluecumber-card-centered button {
+    display: block;
+    width: 75%;
+    margin: 0.5rem auto;
     text-align: center;
 }
 
@@ -377,25 +375,21 @@ h1, h2, h3, h4, h5 {
     padding-inline-start: 0;
 }
 
-
-/* Lists — override Pico list markers inside summary cards (not tree view) */
-.cluecumber-card .list-group {
+/* Summary lists inside cards */
+.cluecumber-card .cluecumber-list {
     margin: 0;
     padding: 0;
     padding-inline-start: 0;
     list-style: none;
 }
 
-.cluecumber-card .list-group-item {
+.cluecumber-list-item {
     list-style: none;
     padding: 0.5rem 0;
-}
-
-.list-group-flush .list-group-item {
     border-bottom: 1px solid var(--pico-muted-border-color);
 }
 
-.list-group-flush .list-group-item:last-child {
+.cluecumber-list-item:last-child {
     border-bottom: none;
     margin-bottom: 0;
 }
@@ -405,61 +399,93 @@ h1, h2, h3, h4, h5 {
     border-bottom: none;
 }
 
-.list-group-item .row:hover,
-.table-hover tbody tr:hover,
+.cluecumber-list-item .row:hover,
+.cluecumber-table tbody tr:hover,
 .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
 .dataTables_paginate .page-link:hover {
     background-color: var(--cluecumber-hover-bg);
 }
 
-[data-theme="dark"] .list-group-item .row:hover,
-[data-theme="dark"] .table-hover tbody tr:hover,
+[data-theme="dark"] .cluecumber-list-item .row:hover,
+[data-theme="dark"] .cluecumber-table tbody tr:hover,
 [data-theme="dark"] .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
 [data-theme="dark"] .dataTables_paginate .page-link:hover {
     background-color: var(--cluecumber-hover-bg-dark);
 }
 
-.col-9 { grid-column: span 9; }
-.col-2 { grid-column: span 2; }
-.col-1 { grid-column: span 1; }
-.col-12 { grid-column: span 12; }
+.cluecumber-step-name { grid-column: span 9; }
+.cluecumber-step-duration { grid-column: span 2; }
+.cluecumber-step-status { grid-column: span 1; }
+.cluecumber-step-full { grid-column: span 12; }
 
-/* Step detail blocks span full row width (Bootstrap flex w-100 behavior) */
-.list-group-item > .row > .row,
-.list-group-item > .row > .scenarioDocstring,
-.list-group-item > .row > .col-12,
-.list-group-item > .row > .firstExceptionContainer,
-.scenarioHook .list-group-item .row > .row {
+.cluecumber-list-item > .row > .row,
+.cluecumber-list-item > .row > .scenarioDocstring,
+.cluecumber-list-item > .row > .cluecumber-step-full,
+.cluecumber-list-item > .row > .firstExceptionContainer,
+.scenarioHook .cluecumber-list-item .row > .row {
     grid-column: 1 / -1;
 }
 
 .scenarioAttachment > *,
 .scenarioOutputs > *,
-.scenarioDataTable > *,
-.scenarioDocstring > .row > * {
+.scenarioDataTable,
+.scenarioDocstring {
     grid-column: 1 / -1;
 }
 
-/* Karate sub-steps — indent name column only so duration/status columns stay aligned */
-.scenarioSubSection > .row > .col-9 {
+.scenarioSubSection > .row > .cluecumber-step-name {
     padding-left: 2em;
 }
 
-.scenarioSubSection .scenarioSubSection > .row > .col-9 {
+.scenarioSubSection .scenarioSubSection > .row > .cluecumber-step-name {
     padding-left: 4em;
 }
 
-.scenarioSubSection .scenarioSubSection .scenarioSubSection > .row > .col-9 {
+.scenarioSubSection .scenarioSubSection .scenarioSubSection > .row > .cluecumber-step-name {
     padding-left: 6em;
 }
 
-/* Attachments and step outputs */
 .scenarioAttachment,
 .scenarioOutputs {
     margin-top: 0.5rem;
+    padding: 1rem;
     border: var(--cluecumber-border);
     border-radius: var(--pico-border-radius);
     background: var(--pico-card-background-color, var(--pico-secondary-background));
+}
+
+.scenarioAttachment-header,
+.scenarioOutputs-header {
+    padding: 0.25rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: var(--cluecumber-border);
+    font-size: var(--cluecumber-font-size-small);
+}
+
+.scenarioDataTable {
+    padding: 1rem;
+}
+
+.scenarioDataTable .table {
+    border: var(--cluecumber-border);
+}
+
+.scenarioDocstring {
+    padding: 1rem;
+}
+
+.scenarioDocstring pre {
+    padding: 0.5rem;
+    border: var(--cluecumber-border);
+}
+
+.firstExceptionContainer,
+.firstException {
+    width: 100%;
+}
+
+.firstExceptionContainer .collapse {
+    margin-top: 0.5rem;
 }
 
 .embedded-image {
@@ -518,9 +544,9 @@ h1, h2, h3, h4, h5 {
         justify-content: space-between;
     }
 
-    .col-9,
-    .col-2,
-    .col-1 {
+    .cluecumber-step-name,
+    .cluecumber-step-duration,
+    .cluecumber-step-status {
         grid-column: span 12;
     }
 
@@ -582,18 +608,66 @@ table.table-fit td:nth-child(2) {
     word-break: break-all;
 }
 
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-.text-center { text-align: center; }
+.cluecumber-text-small,
+.cluecumber-footer {
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
+}
 
-/* DataTables — reset Pico form/list styles on table controls */
+.cluecumber-align-left { text-align: left; }
+.cluecumber-align-right { text-align: right; }
+.cluecumber-align-center { text-align: center; }
+
+/* DataTables — Bootstrap integration emits .row / .col-*; override cluecumber grid */
 .dataTables_wrapper {
     text-align: left;
 }
 
+.dataTables_wrapper > .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.75rem;
+}
+
+.dataTables_wrapper > .row > [class*="col-"] {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .dataTables_wrapper > .row > .col-md-6 {
+        flex: 0 0 calc(50% - 0.5rem);
+        max-width: calc(50% - 0.5rem);
+    }
+
+    .dataTables_wrapper > .row > .col-md-5 {
+        flex: 0 0 calc(41.666667% - 0.5rem);
+        max-width: calc(41.666667% - 0.5rem);
+    }
+
+    .dataTables_wrapper > .row > .col-md-7 {
+        flex: 0 0 calc(58.333333% - 0.5rem);
+        max-width: calc(58.333333% - 0.5rem);
+    }
+}
+
+.dataTables_wrapper > .row > .col-md-6:last-child,
+.dataTables_wrapper > .row > .col-md-7 {
+    text-align: right;
+}
+
+.dataTables_wrapper table.dataTable {
+    width: 100% !important;
+}
+
 .dataTables_length,
 .dataTables_filter {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
 }
 
 .dataTables_length label,
@@ -605,8 +679,7 @@ table.table-fit td:nth-child(2) {
 }
 
 .dataTables_length select,
-.dataTables_wrapper .custom-select,
-.dataTables_wrapper .form-control {
+.dataTables_wrapper .custom-select {
     width: auto;
     min-width: 4.5rem;
     display: inline-block;
@@ -619,24 +692,38 @@ table.table-fit td:nth-child(2) {
     cursor: pointer;
 }
 
-.dataTables_filter input {
-    margin: 0;
+.dataTables_filter input[type="search"],
+.dataTables_wrapper .form-control[type="search"] {
+    --pico-border-radius: 0.25rem;
+    --pico-form-element-spacing-vertical: 0.25rem;
     width: auto;
     min-width: 12rem;
+    height: auto;
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    min-height: unset;
+    font-size: inherit;
+    line-height: normal;
+    border-radius: 0.25rem;
+    background-image: none;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .dataTables_info {
-    margin-top: 0.75rem;
+    margin-top: 0;
 }
 
 .dataTables_paginate {
-    margin-top: 0.75rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
 }
 
 .dataTables_paginate .pagination,
 .dataTables_paginate ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.35rem;
     list-style: none;
@@ -796,7 +883,6 @@ tr.odd td {
 }
 
 button,
-.btn,
 [role=button],
 [type=button],
 [type=reset],
@@ -841,7 +927,6 @@ i {
     padding: 0.5rem 1rem 0.3rem 1rem;
 }
 
-.customParameters .card-header,
 .customParameters > header {
     background: var(--pico-secondary-background);
     color: var(--pico-color);
@@ -972,8 +1057,6 @@ pre {
     line-height: inherit;
 }
 
-.small,
-.cluecumber-footer small,
 .firstException .exception-pre,
 .firstException .exception-links-top :is(.btn-link, .btn-clipboard) {
     font-size: var(--cluecumber-font-size-small);
@@ -985,19 +1068,5 @@ iframe {
     padding: 5px 5px 0 5px;
 }
 
-.w-100 { width: 100%; }
-.w-75 { width: 75%; }
-.m-0 { margin: 0; }
-.m-2 { margin: 0.5rem; }
-.p-1 { padding: 0.25rem; }
-.p-2 { padding: 0.5rem; }
-.p-3 { padding: 1rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mb-0 { margin-bottom: 0; }
-.mb-2 { margin-bottom: 0.5rem; }
-.border { border: var(--cluecumber-border); }
-.border-bottom { border-bottom: var(--cluecumber-border); }
-.border-dark { border-color: var(--pico-muted-border-color); }
-.text-secondary,
-.text-gray { color: var(--pico-muted-color); }
-.text-danger { color: var(--pico-del-color, #c62828); }
+.cluecumber-muted { color: var(--pico-muted-color); }
+.cluecumber-danger { color: var(--pico-del-color, #c62828); }

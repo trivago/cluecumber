@@ -15,7 +15,7 @@ limitations under the License.
 -#}
 
 {% macro cardStart(width, title, subtitle, classes) %}
-    <article class="cluecumber-card col-md-{{ width }} {{ classes }}" data-cluecumber-item="card">
+    <article class="cluecumber-card cluecumber-col-{{ width }} {{ classes }}" data-cluecumber-item="card">
         {% if title != "" %}
             <header>{{ title }}</header>
         {% endif %}

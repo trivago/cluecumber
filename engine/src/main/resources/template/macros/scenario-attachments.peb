@@ -1,10 +1,10 @@
 
 {% if step.embeddings is not null %}
         {% for attachment in step.embeddings %}
-            <div class="row w-100 p-3 m-0 scenarioAttachment">
+            <div class="row scenarioAttachment">
                 {% set attachmentID = attachment.hashCode()|abs %}
                 {% set isTextAttachment = attachment.mimeType == "TXT" or attachment.mimeType == "XML" or attachment.mimeType == "JSON" or attachment.mimeType == "APPLICATION_XML" %}
-                <div class="w-100 p-1 m-0 border-bottom small text-left">
+                <div class="scenarioAttachment-header">
                     <a class="btn-link" data-toggle="collapse" href="#expandable{{ attachmentID }}" role="button"
                        aria-expanded="false" aria-controls="expandable{{ attachmentID }}">Toggle</a> |
                     {% if attachment.name != "" %}
@@ -18,33 +18,31 @@
                         </button>
                     {% endif %}
                 </div>
-                <div class="w-100 text-left m-auto">
-                    <div class="w-100 text-left m-auto collapse {{ expandAttachments ? "show" : "" }}"
-                         id="expandable{{ attachmentID }}">
-                        {% if attachment.image %}
-                            <a class="grouped_elements" rel="images" href="attachments/{{ attachment.filename }}">
-                                <img src="attachments/{{ attachment.filename }}" class="embedded-image"
-                                     alt="Attachment {{ attachment.filename }}"/>
-                            </a>
-                        {% elseif attachment.mimeType == "HTML" %}
-                            <iframe src="attachments/{{ attachment.filename }}"
-                                    srcdoc="{{ attachment.decodedData }}" width="100%" height="1"
-                                    onload="resizeIframe(this);" class="embedded-html"></iframe>
-                        {% elseif isTextAttachment %}
-                            <pre class="embedding-content small embedded-txt">{{ attachment.decodedData }}</pre>
-                        {% elseif attachment.mimeType == "MP4" %}
-                            {% if attachment.externalContent %}
-                                <video controls="controls" class="embedded-mp4">
-                                    <source src="{{ attachment.decodedData }}" type="video/mp4"/>
-                                </video>
-                            {% endif %}
-                        {% elseif attachment.mimeType == "UNKNOWN" %}
-                            <p class="small text-danger">Unknown content type.</p>
-                        {% else %}
-                            <embed src="attachments/{{ attachment.filename }}" class="embedded-file" width="100%"
-                                   height="500"/>
+                <div class="collapse {{ expandAttachments ? "show" : "" }}"
+                     id="expandable{{ attachmentID }}">
+                    {% if attachment.image %}
+                        <a class="grouped_elements" rel="images" href="attachments/{{ attachment.filename }}">
+                            <img src="attachments/{{ attachment.filename }}" class="embedded-image"
+                                 alt="Attachment {{ attachment.filename }}"/>
+                        </a>
+                    {% elseif attachment.mimeType == "HTML" %}
+                        <iframe src="attachments/{{ attachment.filename }}"
+                                srcdoc="{{ attachment.decodedData }}" width="100%" height="1"
+                                onload="resizeIframe(this);" class="embedded-html"></iframe>
+                    {% elseif isTextAttachment %}
+                        <pre class="embedding-content cluecumber-text-small embedded-txt">{{ attachment.decodedData }}</pre>
+                    {% elseif attachment.mimeType == "MP4" %}
+                        {% if attachment.externalContent %}
+                            <video controls="controls" class="embedded-mp4">
+                                <source src="{{ attachment.decodedData }}" type="video/mp4"/>
+                            </video>
                         {% endif %}
-                    </div>
+                    {% elseif attachment.mimeType == "UNKNOWN" %}
+                        <p class="cluecumber-text-small cluecumber-danger">Unknown content type.</p>
+                    {% else %}
+                        <embed src="attachments/{{ attachment.filename }}" class="embedded-file" width="100%"
+                               height="500"/>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

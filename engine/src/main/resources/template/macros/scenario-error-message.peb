@@ -1,7 +1,7 @@
 
 {% if step.result.hasErrorMessage() %}
-        <div class="col-12 mt-2">
-            <div class="firstException firstException-detail w-100 text-left small">
+        <div class="cluecumber-step-full">
+            <div class="firstException firstException-detail cluecumber-text-small">
                 <div class="exception-content">
                     <pre class="exception-pre" id="{{ step.index|default(0) }}_errorMessage">{{ step.result.returnErrorMessageWithClickableLinks()|raw }}</pre>
                 </div>

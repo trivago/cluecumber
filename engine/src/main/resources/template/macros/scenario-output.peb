@@ -1,21 +1,19 @@
 
 {% if step.hasOutputs() %}
-        <div class="row w-100 p-3 m-0 scenarioOutputs">
-            <div class="w-100 p-1 m-0 border-bottom small text-left">
+        <div class="row scenarioOutputs">
+            <div class="scenarioOutputs-header">
                 <a class="btn-link" data-toggle="collapse" href="#expandableOutput{{ step.index|default(0) }}_{{ sectionId }}"
                    role="button"
                    aria-expanded="false" aria-controls="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">Toggle</a> |
                 Step Output
             </div>
-            <div class="w-100 text-left m-auto">
-                <div class="w-100 text-left-sm m-auto collapse {{ expandOutputs ? "show" : "" }}"
-                     id="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">
-                    <button onclick="copyText('expandableOutput{{ step.index|default(0) }}_{{ sectionId }}')" type="button"
-                            class="btn-clipboard">
-                        Copy
-                    </button>
-                    <pre class="embedding-content small embedded-txt">{{ step.output|join("<br>")|raw }}</pre>
-                </div>
+            <div class="collapse {{ expandOutputs ? "show" : "" }}"
+                 id="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">
+                <button onclick="copyText('expandableOutput{{ step.index|default(0) }}_{{ sectionId }}')" type="button"
+                        class="btn-clipboard">
+                    Copy
+                </button>
+                <pre class="embedding-content cluecumber-text-small embedded-txt">{{ step.output|join("<br>")|raw }}</pre>
             </div>
         </div>
     {% endif %}
