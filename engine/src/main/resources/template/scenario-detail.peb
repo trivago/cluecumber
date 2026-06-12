@@ -132,9 +132,7 @@ limitations under the License.
                 </button>
             {% endif %}
         {{ page.cardEnd() }}
-    </div>
 
-    <ul class="cluecumber-list">
         {% if element.before is not empty and element.anyBeforeHookHasContent() %}
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "Before Hooks", "", "") }}
@@ -193,32 +191,35 @@ limitations under the License.
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
 
                             <div class="cluecumber-step-name">
-                                <span>{{ loop.index + 1 }}.</span>
-                                {% set stepName = step.returnNameWithArguments() %}
-                                <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
-                                    <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
-                                                class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
+                                <span class="cluecumber-step-name-text">
+                                    <span>{{ loop.index + 1 }}.</span>
+                                    {% set stepName = step.returnNameWithArguments() %}
+                                    <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
+                                        <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
+                                                    class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
+                                    </span>
                                 </span>
-                                {% if step.hasSubSections() %}
-                                    <button type="button" class="btn-clipboard sectionExpansionButton"
-                                            data-toggle="collapse"
-                                            aria-expanded="false"
-                                            data-target="#section_{{ loop.index + 1 }}">Sub Section
-                                    </button>
-                                {% endif %}
-                                {% if step.docString is not null and step.docString.value is not null %}
-                                    <button type="button" class="btn-clipboard docstringExpansionButton"
-                                            data-toggle="collapse"
-                                            aria-expanded="false"
-                                            data-target="#step_{{ step.index }}_docstring">DocString
-                                    </button>
-                                {% endif %}
-                                {% if step.hasHooksWithContent() %}
-                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
-                                            data-toggle="collapse"
-                                            aria-expanded="false"
-                                            data-target="#step_{{ step.index }}_stepHooks">Step Hooks
-                                    </button>
+                                {% if step.hasSubSections() or (step.docString is not null and step.docString.value is not null) or step.hasHooksWithContent() %}
+                                    <div class="exception-links-top">
+                                        {% if step.hasSubSections() %}
+                                            <button type="button" class="cluecumber-exception-action secondary outline sectionExpansionButton"
+                                                    data-toggle="collapse"
+                                                    aria-expanded="false"
+                                                    data-target="#section_{{ loop.index + 1 }}">Sub Section</button>
+                                        {% endif %}
+                                        {% if step.docString is not null and step.docString.value is not null %}
+                                            <button type="button" class="cluecumber-exception-action secondary outline docstringExpansionButton"
+                                                    data-toggle="collapse"
+                                                    aria-expanded="false"
+                                                    data-target="#step_{{ step.index }}_docstring">DocString</button>
+                                        {% endif %}
+                                        {% if step.hasHooksWithContent() %}
+                                            <button type="button" class="cluecumber-exception-action secondary outline stepHooksExpansionButton"
+                                                    data-toggle="collapse"
+                                                    aria-expanded="false"
+                                                    data-target="#step_{{ step.index }}_stepHooks">Step Hooks</button>
+                                        {% endif %}
+                                    </div>
                                 {% endif %}
                             </div>
                             <div class="cluecumber-step-duration cluecumber-text-small">
@@ -246,7 +247,7 @@ limitations under the License.
                             {% if step.docString is not null and step.docString.value is not null %}
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
                                     <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
-                                            class="btn-clipboard">
+                                            class="cluecumber-exception-action secondary outline">
                                         Copy
                                     </button>
                                     <pre class="cluecumber-muted cluecumber-text-small">{{ step.docString.returnWithClickableLinks() }}</pre>
@@ -292,32 +293,35 @@ limitations under the License.
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}">
 
                             <div class="cluecumber-step-name">
-                                <span>{{ loop.index + 1 }}.</span>
-                                {% set stepName = step.returnNameWithArguments() %}
-                                <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
-                                    <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
-                                                class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
+                                <span class="cluecumber-step-name-text">
+                                    <span>{{ loop.index + 1 }}.</span>
+                                    {% set stepName = step.returnNameWithArguments() %}
+                                    <span data-toggle="tooltip" title="{{ step.glueMethodName }}">
+                                        <a href="pages/step-scenarios/step_{{ step.getUrlFriendlyName() }}.html"><span
+                                                    class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
+                                    </span>
                                 </span>
-                                {% if step.hasSubSections() %}
-                                    <button type="button" class="btn-clipboard sectionExpansionButton"
-                                            data-toggle="collapse"
-                                            aria-expanded="false"
-                                            data-target="#section_{{ loop.index + 1 }}">Sub Section
-                                    </button>
-                                {% endif %}
-                                {% if step.docString is not null and step.docString.value is not null %}
-                                    <button type="button" class="btn-clipboard docstringExpansionButton"
-                                            data-toggle="collapse"
-                                            aria-expanded="false"
-                                            data-target="#step_{{ step.index }}_docstring">DocString
-                                    </button>
-                                {% endif %}
-                                {% if step.hasHooksWithContent() %}
-                                    <button type="button" class="btn-clipboard stepHooksExpansionButton"
-                                            data-toggle="collapse"
-                                            aria-expanded="false"
-                                            data-target="#step_{{ step.index }}_stepHooks">Step Hooks
-                                    </button>
+                                {% if step.hasSubSections() or (step.docString is not null and step.docString.value is not null) or step.hasHooksWithContent() %}
+                                    <div class="exception-links-top">
+                                        {% if step.hasSubSections() %}
+                                            <button type="button" class="cluecumber-exception-action secondary outline sectionExpansionButton"
+                                                    data-toggle="collapse"
+                                                    aria-expanded="false"
+                                                    data-target="#section_{{ loop.index + 1 }}">Sub Section</button>
+                                        {% endif %}
+                                        {% if step.docString is not null and step.docString.value is not null %}
+                                            <button type="button" class="cluecumber-exception-action secondary outline docstringExpansionButton"
+                                                    data-toggle="collapse"
+                                                    aria-expanded="false"
+                                                    data-target="#step_{{ step.index }}_docstring">DocString</button>
+                                        {% endif %}
+                                        {% if step.hasHooksWithContent() %}
+                                            <button type="button" class="cluecumber-exception-action secondary outline stepHooksExpansionButton"
+                                                    data-toggle="collapse"
+                                                    aria-expanded="false"
+                                                    data-target="#step_{{ step.index }}_stepHooks">Step Hooks</button>
+                                        {% endif %}
+                                    </div>
                                 {% endif %}
                             </div>
                             <div class="cluecumber-step-duration cluecumber-text-small">
@@ -345,7 +349,7 @@ limitations under the License.
                             {% if step.docString is not null and step.docString.value is not null %}
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
                                     <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
-                                            class="btn-clipboard">
+                                            class="cluecumber-exception-action secondary outline">
                                         Copy
                                     </button>
                                     <pre class="cluecumber-muted cluecumber-text-small">{{ step.docString.returnWithClickableLinks() }}</pre>
@@ -388,7 +392,7 @@ limitations under the License.
                 {{ page.cardEnd() }}
             </div>
         {% endif %}
-    </ul>
+    </div>
 
     <script>
         let classState = {};

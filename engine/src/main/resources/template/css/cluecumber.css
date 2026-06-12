@@ -21,13 +21,19 @@ limitations under the License.
     --cluecumber-footer-text: #a5abae;
     --cluecumber-link: #06284d;
     --cluecumber-link-dark: #8cb8e8;
+    --cluecumber-link-hover: #004a8f;
     --cluecumber-page-bg: #fdfdfe;
+    --cluecumber-header-fg: #fff;
     --cluecumber-font-size: 0.9rem;
     --cluecumber-font-size-small: 0.7rem;
     --cluecumber-line-height: 1.5;
     --cluecumber-hover-bg: rgba(0, 0, 0, 0.075);
     --cluecumber-hover-bg-dark: rgba(255, 255, 255, 0.08);
     --cluecumber-border: 1px solid var(--pico-muted-border-color);
+    --cluecumber-action-min-width: 4.25rem;
+    --cluecumber-action-gap: 0.35rem;
+    --cluecumber-block-padding-x: 0.75rem;
+    --cluecumber-card-surface: var(--pico-card-background-color, var(--pico-secondary-background));
 }
 
 html {
@@ -53,7 +59,7 @@ body {
 
 [data-theme="light"] main a:hover,
 [data-theme="light"] main .btn-link:hover {
-    color: #004a8f;
+    color: var(--cluecumber-link-hover);
 }
 
 [data-theme="dark"] .btn-link,
@@ -72,10 +78,6 @@ h1, h2, h3, h4, h5 {
     white-space: pre-line;
 }
 
-.cluecumber-page-title h3 {
-    font-size: 1.5rem;
-}
-
 /* Fixed report header */
 .cluecumber-header {
     position: fixed;
@@ -90,7 +92,7 @@ h1, h2, h3, h4, h5 {
     min-height: var(--cluecumber-header-height);
     padding: 0.5rem 2rem;
     background-color: var(--cluecumber-chrome-bg);
-    color: #fff;
+    color: var(--cluecumber-header-fg);
     border-bottom: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
@@ -110,7 +112,7 @@ h1, h2, h3, h4, h5 {
     width: auto;
     background: transparent;
     border-color: rgba(255, 255, 255, 0.5);
-    color: #fff;
+    color: var(--cluecumber-header-fg);
 }
 
 .cluecumber-nav-panel ul {
@@ -136,7 +138,7 @@ h1, h2, h3, h4, h5 {
 
 .cluecumber-nav-panel a:hover,
 .cluecumber-nav-panel a.active {
-    color: #fff;
+    color: var(--cluecumber-header-fg);
 }
 
 .cluecumber-nav-panel a.active {
@@ -174,7 +176,7 @@ h1, h2, h3, h4, h5 {
     aspect-ratio: 1;
     background: transparent;
     border-color: rgba(255, 255, 255, 0.5);
-    color: #fff;
+    color: var(--cluecumber-header-fg);
 }
 
 .cluecumber-theme-toggle svg {
@@ -248,6 +250,7 @@ h1, h2, h3, h4, h5 {
 .cluecumber-page-headlines h3 {
     margin-top: 0;
     margin-bottom: 0;
+    font-size: 1.5rem;
 }
 
 .cluecumber-page-headlines {
@@ -255,7 +258,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .row.cluecumber-page-header-row {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     padding-bottom: 0;
 }
 
@@ -283,13 +286,12 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Grid layout (replaces Bootstrap grid) */
-.cluecumber-grid,
 .row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 1rem;
     width: 100%;
-    padding: 0.85rem;
+    padding: 0;
     margin-bottom: 1rem;
     align-items: start;
 }
@@ -304,6 +306,10 @@ h1, h2, h3, h4, h5 {
     .row > .cluecumber-col-6 { grid-column: span 6; }
     .row > .cluecumber-col-9 { grid-column: span 9; }
     .row > .cluecumber-col-12 { grid-column: span 12; }
+}
+
+.row > .scenarioHook {
+    grid-column: 1 / -1;
 }
 
 @media (min-width: 1024px) {
@@ -347,7 +353,7 @@ h1, h2, h3, h4, h5 {
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
-    color: #fff;
+    color: var(--cluecumber-header-fg);
     background-color: var(--cluecumber-card-header-bg);
     border-bottom: thick solid var(--pico-muted-border-color);
 }
@@ -384,6 +390,15 @@ h1, h2, h3, h4, h5 {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     min-width: 0;
+}
+
+.cluecumber-card-body:has(> .cluecumber-list-item > .row[class*="table-row-"]) {
+    padding: 0;
+}
+
+.cluecumber-card-body > .cluecumber-list-item:has(> .row[class*="table-row-"]) {
+    padding: 0;
+    border-bottom: none;
 }
 
 .cluecumber-card .cluecumber-card {
@@ -455,19 +470,61 @@ h1, h2, h3, h4, h5 {
     background-color: var(--cluecumber-hover-bg-dark);
 }
 
+.cluecumber-list-item > .row,
+.scenarioSubSection > .row,
+.scenarioHook .cluecumber-list-item > .row,
+.stepHook > .row {
+    margin-bottom: 0;
+    padding: 0;
+}
+
 .cluecumber-list-item > .row[class*="table-row-"],
 .scenarioSubSection > .row[class*="table-row-"],
-.scenarioHook .cluecumber-list-item > .row[class*="table-row-"] {
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"],
+.stepHook > .row[class*="table-row-"] {
     border-bottom: var(--cluecumber-border);
+    padding: 0.85rem 1.25rem;
 }
 
 .cluecumber-list-item > .row[class*="table-row-"]:last-child,
 .scenarioSubSection > .row[class*="table-row-"]:last-child,
-.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:last-child {
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:last-child,
+.stepHook > .row[class*="table-row-"]:last-child {
     border-bottom: none;
 }
 
-.cluecumber-step-name { grid-column: span 9; }
+.cluecumber-step-name {
+    grid-column: span 9;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cluecumber-step-name:has(.exception-links-top) {
+    justify-content: space-between;
+}
+
+.cluecumber-step-name-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.cluecumber-step-name .exception-links-top {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--cluecumber-action-gap);
+    min-width: auto;
+}
+
+.cluecumber-step-name .exception-links-top .cluecumber-exception-action {
+    width: auto;
+    min-width: var(--cluecumber-action-min-width);
+}
+
 .cluecumber-step-duration { grid-column: span 2; }
 .cluecumber-step-status { grid-column: span 1; }
 .cluecumber-step-full { grid-column: span 12; }
@@ -476,7 +533,8 @@ h1, h2, h3, h4, h5 {
 .cluecumber-list-item > .row > .scenarioDocstring,
 .cluecumber-list-item > .row > .cluecumber-step-full,
 .cluecumber-list-item > .row > .firstExceptionContainer,
-.scenarioHook .cluecumber-list-item .row > .row {
+.scenarioHook .cluecumber-list-item .row > .row,
+.stepHook > .row > .row {
     grid-column: 1 / -1;
 }
 
@@ -499,23 +557,20 @@ h1, h2, h3, h4, h5 {
     padding-left: 6em;
 }
 
-.scenarioAttachment,
-.scenarioOutputs {
+:is(.scenarioAttachment, .scenarioOutputs) {
     margin-top: 0.5rem;
     border: var(--cluecumber-border);
     border-radius: var(--pico-border-radius);
-    background: var(--pico-card-background-color, var(--pico-secondary-background));
+    background: var(--cluecumber-card-surface);
 }
 
-.scenarioAttachment.row,
-.scenarioOutputs.row {
-    padding: 0.4rem 0.75rem;
+:is(.scenarioAttachment, .scenarioOutputs).row {
+    padding: 0.4rem var(--cluecumber-block-padding-x);
     margin-bottom: 0.5rem;
     gap: 0;
 }
 
-.scenarioAttachment-header,
-.scenarioOutputs-header {
+:is(.scenarioAttachment-header, .scenarioOutputs-header) {
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -527,32 +582,14 @@ h1, h2, h3, h4, h5 {
     font-size: var(--cluecumber-font-size-small);
 }
 
-.scenarioAttachment:has(.collapse.show) .scenarioAttachment-header,
-.scenarioOutputs:has(.collapse.show) .scenarioOutputs-header {
+:is(.scenarioAttachment, .scenarioOutputs):has(.collapse.show) :is(.scenarioAttachment-header, .scenarioOutputs-header) {
     margin-bottom: 0.5rem;
     border-bottom: var(--cluecumber-border);
 }
 
-.scenarioAttachment-label,
-.scenarioOutputs-label {
+:is(.scenarioAttachment-label, .scenarioOutputs-label) {
     flex: 1;
     min-width: 0;
-}
-
-.scenarioAttachment-header .exception-links-top,
-.scenarioOutputs-header .exception-links-top {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.35rem;
-    min-width: auto;
-}
-
-.scenarioAttachment-header .exception-links-top .cluecumber-exception-action,
-.scenarioOutputs-header .exception-links-top .cluecumber-exception-action {
-    width: auto;
-    min-width: 4.25rem;
 }
 
 .scenarioAttachment:not(:has(.collapse.show)) .cluecumber-collapsible-copy-action,
@@ -560,10 +597,30 @@ h1, h2, h3, h4, h5 {
     display: none;
 }
 
-.cluecumber-inline-actions {
+.cluecumber-list-item .firstException .exception-links-top,
+.stepHook .firstException .exception-links-top,
+.scenarioHook .cluecumber-list-item .firstException .exception-links-top,
+:is(.scenarioAttachment-header, .scenarioOutputs-header) .exception-links-top {
+    flex-shrink: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    min-width: var(--cluecumber-action-min-width);
+    flex-direction: row;
+    align-items: center;
+    gap: var(--cluecumber-action-gap);
+}
+
+.cluecumber-list-item .firstException .exception-links-top .cluecumber-exception-action,
+.stepHook .firstException .exception-links-top .cluecumber-exception-action,
+.scenarioHook .cluecumber-list-item .firstException .exception-links-top .cluecumber-exception-action,
+:is(.scenarioAttachment-header, .scenarioOutputs-header) .exception-links-top .cluecumber-exception-action {
+    width: 100%;
+    min-width: var(--cluecumber-action-min-width);
+}
+
+.cluecumber-list-item .firstException.firstException-detail,
+.stepHook .firstException.firstException-detail,
+.scenarioHook .cluecumber-list-item .firstException.firstException-detail {
+    padding-right: var(--cluecumber-block-padding-x);
 }
 
 .multiRunExpansionButton {
@@ -676,11 +733,6 @@ h1, h2, h3, h4, h5 {
 
     [data-cluecumber-item="chart"] {
         height: 16rem;
-    }
-
-    .table-responsive-mobile {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .cluecumber-card .cluecumber-table.dataTable {
@@ -1127,19 +1179,6 @@ button,
     line-height: var(--cluecumber-line-height);
 }
 
-.btn-clipboard {
-    border: none;
-    background: transparent;
-    padding: 0.15rem 0.5rem;
-    color: var(--pico-muted-color);
-    cursor: pointer;
-    box-shadow: none;
-}
-
-.btn-clipboard:hover {
-    color: var(--pico-primary);
-}
-
 .btn-link,
 a.btn-link {
     background: transparent;
@@ -1208,7 +1247,6 @@ span.keyword {
     background-color: color-mix(in srgb, var(--failed-color, #fc7180) 10%, transparent);
     padding: 0.35rem 0.5rem 0.35rem 0.65rem;
     margin-top: 0.5rem;
-    width: 100%;
     box-sizing: border-box;
 }
 
@@ -1244,7 +1282,7 @@ span.keyword {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.35rem;
+    gap: var(--cluecumber-action-gap);
     min-width: 2.75rem;
 }
 
@@ -1260,7 +1298,7 @@ span.keyword {
 
 .firstException .exception-links-top .cluecumber-exception-action {
     width: 100%;
-    min-width: 4.25rem;
+    min-width: var(--cluecumber-action-min-width);
 }
 
 .firstException .exception-pre {
@@ -1271,6 +1309,8 @@ span.keyword {
     padding: 0;
     border: none;
     background: transparent;
+    font-size: var(--cluecumber-font-size-small);
+    line-height: var(--cluecumber-line-height);
 }
 
 .firstException.exc-summary .exception-pre {
@@ -1286,10 +1326,10 @@ span.keyword {
 }
 
 .alert {
-    padding: 0.75rem 1rem;
+    padding: var(--cluecumber-block-padding-x) 1rem;
     border: var(--cluecumber-border);
     border-radius: var(--pico-border-radius);
-    background: var(--pico-card-background-color, var(--pico-secondary-background));
+    background: var(--cluecumber-card-surface);
     color: var(--pico-color);
     text-align: left;
 }
@@ -1316,11 +1356,6 @@ pre {
     margin: 0;
     font-size: inherit;
     line-height: inherit;
-}
-
-.firstException .exception-pre {
-    font-size: var(--cluecumber-font-size-small);
-    line-height: var(--cluecumber-line-height);
 }
 
 iframe {
