@@ -249,7 +249,7 @@ new CluecumberCore.Builder()
         .setExpandStepHooks(true)
         .setExpandDocStrings(true)
         .setExpandOutputs(true)
-        .expandSubSections(true)
+        .setExpandSubSections(true)
         .build().generateReports(jsonDirectory, reportDirectory);
 ```
 
@@ -432,12 +432,12 @@ new CluecumberCore.Builder()
 ## Building
 
 Cluecumber requires Java >= 11.
-It is available in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22)
+It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core&smo=true)
 .
 
 ## License
 
-Copyright 2018 - 2022 trivago N.V.
+Copyright 2018 - 2026 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
 License. You may obtain a copy of the License at

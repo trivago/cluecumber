@@ -66,7 +66,7 @@ public class ReportJsonPostProcessorTest {
 
         assertEquals(report.getElements().size(), 2);
         assertEquals(report.getElements().get(1).getTags().size(), 1);
-        reportJsonPostProcessor.postDeserialize(report, null, null);
+        reportJsonPostProcessor.process(report);
         assertEquals(report.getElements().size(), 1);
         Element firstElement = report.getElements().get(0);
         assertEquals(firstElement.getTags().size(), 2);
@@ -79,10 +79,5 @@ public class ReportJsonPostProcessorTest {
         assertEquals(firstElementBackgroundSteps.size(), 2);
         assertEquals(firstElementBackgroundSteps.get(0).getName(), "background step 1");
         assertEquals(firstElementBackgroundSteps.get(1).getName(), "background step 2");
-    }
-
-    @Test
-    public void postSerializeTest() {
-        reportJsonPostProcessor.postSerialize(null, null, null);
     }
 }

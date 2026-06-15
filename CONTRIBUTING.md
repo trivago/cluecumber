@@ -24,7 +24,7 @@ Use what libraries already provide before writing custom logic.
 |------|--------|--------|
 | Charts (Chart.js) | `responsive`, `aspectRatio`, built-in resize | Manual canvas sizing, custom `ResizeObserver` loops, post-create option mutation |
 | Templates (Pebble) | `{% include %}`, standard filters/tests | Reimplementing Freemarker patterns that Pebble does not support |
-| Layout (Bootstrap) | Grid, utilities, responsive breakpoints | Parallel custom layout systems |
+| Layout (Pico CSS) | Semantic tokens, grid, utilities | Parallel custom layout systems |
 | Tables | DataTables responsive mode | Custom table reflow logic |
 
 **Rule of thumb:** if a dependency documents a way to do something, try that first. Custom code is justified only when native behavior is insufficient or buggy — and then keep the workaround as small as possible.

@@ -571,15 +571,15 @@ h1, h2, h3, h4, h5 {
     grid-column: 1 / -1;
 }
 
-.scenarioSubSection > .row > .cluecumber-step-name {
+.scenarioSubSection > .row > :is(.cluecumber-step-name, .scenarioDocstring, .scenarioDataTable, .cluecumber-step-full, .firstExceptionContainer, .scenarioAttachment, .scenarioOutputs) {
     padding-left: 2em;
 }
 
-.scenarioSubSection .scenarioSubSection > .row > .cluecumber-step-name {
+.scenarioSubSection .scenarioSubSection > .row > :is(.cluecumber-step-name, .scenarioDocstring, .scenarioDataTable, .cluecumber-step-full, .firstExceptionContainer, .scenarioAttachment, .scenarioOutputs) {
     padding-left: 4em;
 }
 
-.scenarioSubSection .scenarioSubSection .scenarioSubSection > .row > .cluecumber-step-name {
+.scenarioSubSection .scenarioSubSection .scenarioSubSection > .row > :is(.cluecumber-step-name, .scenarioDocstring, .scenarioDataTable, .cluecumber-step-full, .firstExceptionContainer, .scenarioAttachment, .scenarioOutputs) {
     padding-left: 6em;
 }
 
@@ -638,7 +638,13 @@ h1, h2, h3, h4, h5 {
     justify-content: space-between;
     align-items: flex-start;
     gap: 0.5rem;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.35rem 0.5rem 0.35rem 0.65rem;
     padding-right: var(--cluecumber-block-padding-x);
+    border: var(--cluecumber-border);
+    border-radius: var(--pico-border-radius);
+    background: var(--cluecumber-card-surface);
 }
 
 .scenarioDocstring-body .exception-content {
@@ -648,8 +654,9 @@ h1, h2, h3, h4, h5 {
 
 .scenarioDocstring pre {
     margin: 0;
-    padding: 0.5rem;
-    border: var(--cluecumber-border);
+    padding: 0;
+    border: none;
+    background: transparent;
 }
 
 .multiRunExpansionButton {

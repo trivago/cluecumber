@@ -14,12 +14,23 @@ Back to [Readme](README.md).
 * Replaced Freemarker with Pebble for HTML report templates (`.ftl` → `.peb`)
 * Upgraded Chart.js from 2.x to 4.4.9; chart configuration and rendering updated accordingly
 * Centralized dependency versions in the parent POM
+* Replaced Bootstrap with Pico CSS; report layout, spacing, and buttons refreshed
+* Status icons are now SVG instead of webfont symbols
+* Bar chart legends removed for cleaner diagrams
+* DocString Copy button aligned with exception message layout
+
+### Fixed
+
+* Scenario overview table row hover on rows with Previous Runs
+* Steps list alignment and related spacing on scenario detail pages
 
 ### Removed
 
 * Freemarker dependency and all `.ftl` template files
+* Bootstrap, Popper, and related CSS/JS dependencies
+* gson-fire dependency; JSON post-processing and MimeType fallback now use plain Gson
 
-__Note:__ This is a major release. Custom Freemarker templates must be migrated to Pebble syntax and use the `.peb` file extension.
+__Note:__ This is a major release. Custom Freemarker templates must be migrated to Pebble (`.peb`). Custom CSS targeting Bootstrap classes may need updating for Pico CSS / new markup.
 
 ## [3.14.1] - 2026-04-16
 
