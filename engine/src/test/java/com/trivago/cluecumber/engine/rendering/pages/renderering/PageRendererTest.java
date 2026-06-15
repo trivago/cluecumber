@@ -3,13 +3,14 @@ package com.trivago.cluecumber.engine.rendering.pages.renderering;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.PageCollection;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.io.Writer;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -29,7 +30,7 @@ public class PageRendererTest {
 
     @Test
     public void processedContentTest() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         PageCollection pageCollection = mock(PageCollection.class);
         String processedContent = pageWithChartRenderer.processedContent(template, pageCollection, null);
         assertEquals(processedContent, "");
@@ -37,16 +38,16 @@ public class PageRendererTest {
 
     @Test
     public void processedContentTemplateExceptionTest() throws Exception {
-        Template template = mock(Template.class);
-        doThrow(new TemplateException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
+        PebbleTemplate template = mock(PebbleTemplate.class);
+        doThrow(new IOException("Test")).when(template).evaluate(any(StringWriter.class), any(Map.class));
         PageCollection pageCollection = mock(PageCollection.class);
         assertThrows(CluecumberException.class, () -> pageWithChartRenderer.processedContent(template, pageCollection, null));
     }
 
     @Test
     public void processedContentIoExceptionTest() throws Exception {
-        Template template = mock(Template.class);
-        doThrow(new IOException("Test", null)).when(template).process(any(PageCollection.class), any(Writer.class));
+        PebbleTemplate template = mock(PebbleTemplate.class);
+        doThrow(new IOException("Test")).when(template).evaluate(any(StringWriter.class), any(Map.class));
         PageCollection pageCollection = mock(PageCollection.class);
         assertThrows(CluecumberException.class, () -> pageWithChartRenderer.processedContent(template, pageCollection, null));
     }

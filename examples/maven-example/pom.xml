@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>maven-example</artifactId>
-    <version>3.14.1</version>
+    <version>4.0.0</version>
     <packaging>pom</packaging>
 
     <properties>

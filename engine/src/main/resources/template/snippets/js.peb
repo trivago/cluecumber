@@ -1,0 +1,407 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+<script src="js/jquery.min.js"></script>
+<script src="js/datatables.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/chart.min.js"></script>
+
+<script>
+    function removeCluecumberTooltips() {
+        document.querySelectorAll('.cluecumber-tooltip').forEach(function (tip) {
+            tip.remove();
+        });
+    }
+
+    function positionCluecumberTooltip(el, tip) {
+        const rect = el.getBoundingClientRect();
+        tip.style.left = Math.max(8, rect.left) + 'px';
+        tip.style.top = (rect.bottom + 6) + 'px';
+    }
+
+    /**
+     * Lightweight HTML tooltips for report tables and tree view.
+     * Re-init after DataTables redraws and bfcache navigation.
+     */
+    function initCluecumberTooltips() {
+        removeCluecumberTooltips();
+        document.querySelectorAll('[data-toggle="tooltip"]').forEach(function (el) {
+            if (el._cluecumberTooltipInit) {
+                return;
+            }
+            el._cluecumberTooltipInit = true;
+            const html = el.getAttribute('data-html') === 'true';
+            const content = el.getAttribute('title');
+            if (!content) {
+                return;
+            }
+            el.removeAttribute('title');
+            el.addEventListener('mouseenter', function () {
+                removeCluecumberTooltips();
+                const tip = document.createElement('div');
+                tip.className = 'cluecumber-tooltip';
+                if (html) {
+                    tip.innerHTML = content;
+                } else {
+                    tip.textContent = content;
+                }
+                document.body.appendChild(tip);
+                positionCluecumberTooltip(el, tip);
+                el._cluecumberTooltip = tip;
+            });
+            el.addEventListener('mouseleave', function () {
+                if (el._cluecumberTooltip) {
+                    el._cluecumberTooltip.remove();
+                    el._cluecumberTooltip = null;
+                }
+            });
+        });
+    }
+
+    function initCluecumberCollapse() {
+        document.addEventListener('click', function (e) {
+            const trigger = e.target.closest('[data-toggle="collapse"]');
+            if (!trigger) {
+                return;
+            }
+            const targetSelector = trigger.getAttribute('data-target') || trigger.getAttribute('href');
+            if (!targetSelector || !targetSelector.startsWith('#') && !targetSelector.startsWith('.')) {
+                return;
+            }
+            if (targetSelector.startsWith('#')) {
+                e.preventDefault();
+            }
+            const targets = document.querySelectorAll(targetSelector);
+            if (targets.length === 0) {
+                return;
+            }
+            const willShow = !Array.from(targets).every(function (target) {
+                return target.classList.contains('show');
+            });
+            targets.forEach(function (target) {
+                target.classList.toggle('show', willShow);
+                target.dispatchEvent(new Event(willShow ? 'shown.bs.collapse' : 'hidden.bs.collapse', {bubbles: true}));
+            });
+            trigger.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+        });
+    }
+
+    function initCluecumberNav() {
+        const toggle = document.querySelector('.cluecumber-nav-toggle');
+        const panel = document.getElementById('navbarSupportedContent');
+        if (!toggle || !panel) {
+            return;
+        }
+        toggle.addEventListener('click', function () {
+            const expanded = panel.classList.toggle('show');
+            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        });
+    }
+
+    $(document).ready(function () {
+            CluecumberTheme.init(function () {
+                CluecumberTheme.decorateInternalLinks();
+            });
+
+            initCluecumberCollapse();
+            initCluecumberNav();
+
+            $('.renderAsDataTable').on('draw.dt', function () {
+                initCluecumberTooltips();
+                CluecumberTheme.decorateInternalLinks();
+            }).DataTable({
+                "oLanguage": {
+                    "sSearch": "Search:"
+                },
+                "pageLength": 25,
+                "responsive": true
+            });
+
+            $('.collapse').on('shown.bs.collapse', function (e) {
+                $(e.target).find("iframe.embedded-html").each(function (index, iframe) {
+                    resizeIframe(iframe);
+                });
+            });
+
+            $('iframe.embedded-html').each(function (index, iframe) {
+                resizeIframe(iframe);
+            });
+
+            $("a.grouped_elements").fancybox();
+            initCluecumberTooltips();
+
+            $(window).on('pagehide', function () {
+                removeCluecumberTooltips();
+            });
+
+            $(window).on('pageshow', function (event) {
+                if (event.originalEvent && event.originalEvent.persisted) {
+                    updateDarkLightModeButton(document.documentElement.getAttribute('data-theme') === 'dark');
+                    initCluecumberTooltips();
+                }
+            });
+
+            function toggleVisibilityByStatus(statusText, show) {
+                const card = $("#card_" + statusText);
+                if (card !== undefined) {
+                    if (show) {
+                        card.show();
+                    } else {
+                        card.hide();
+                    }
+                }
+
+                const row = $(".table-row-" + statusText);
+                if (row !== undefined) {
+                    if (show) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                }
+            }
+
+            {% if reportDetails.chartJson is not empty %}
+            let cluecumberChart = null;
+            const cluecumberChartConfig = {{ reportDetails.chartJson|raw }};
+            let cluecumberChartResizeTimer = null;
+            let cluecumberChartLastSize = {width: 0, height: 0};
+            let cluecumberChartHasRendered = false;
+
+            function scheduleCluecumberChartResize() {
+                clearTimeout(cluecumberChartResizeTimer);
+                cluecumberChartResizeTimer = setTimeout(renderCluecumberChart, 200);
+            }
+
+            function resetCluecumberChartCanvas(canvas) {
+                canvas.removeAttribute('width');
+                canvas.removeAttribute('height');
+                canvas.removeAttribute('style');
+            }
+
+            function buildCluecumberChartConfig() {
+                const chartConfig = JSON.parse(JSON.stringify(cluecumberChartConfig));
+                chartConfig.options = chartConfig.options || {};
+                const isPieChart = chartConfig.type === "pie";
+
+                chartConfig.options.responsive = true;
+                if (isPieChart) {
+                    chartConfig.options.maintainAspectRatio = true;
+                    chartConfig.options.aspectRatio = 1;
+                    chartConfig.options.layout = chartConfig.options.layout || {};
+                    chartConfig.options.layout.padding = 8;
+                    chartConfig.options.onClick = function (evt, elements) {
+                        if (elements.length === 0) return;
+                        const label = this.data.labels[elements[0].index];
+                        if (label == null) return;
+                        const anchorId = 'anchor-' + label;
+                        if (document.getElementById(anchorId)) {
+                            document.location.hash = anchorId;
+                        }
+                    };
+                    chartConfig.options.onHover = function (evt, elements) {
+                        evt.native.target.style.cursor = elements.length > 0 ? 'pointer' : 'default';
+                    };
+                } else {
+                    chartConfig.options.maintainAspectRatio = false;
+                    {% if reportDetails.chartUrlLookup is not empty %}
+                    const chartUrls = {
+                        {% for entry in reportDetails.chartUrlLookup %}
+                        "{{ entry.key|escape('js') }}": "{{ entry.value }}",
+                        {% endfor %}
+                    };
+                    chartConfig.options.onClick = function (evt, elements) {
+                        if (elements.length === 0) return;
+                        const index = elements[0].index;
+                        const label = this.data.labels[index];
+                        if (label == null) return;
+                        const urlSnippet = chartUrls[label];
+                        if (urlSnippet == null) return;
+                        window.location.href = urlSnippet;
+                    };
+                    {% endif %}
+                }
+
+                chartConfig.options.plugins = chartConfig.options.plugins || {};
+                chartConfig.options.plugins.legend = chartConfig.options.plugins.legend || {};
+                chartConfig.options.plugins.legend.labels = chartConfig.options.plugins.legend.labels || {};
+                chartConfig.options.plugins.legend.display = false;
+
+                chartConfig.options.animation = false;
+
+                return chartConfig;
+            }
+
+            function destroyCluecumberChart() {
+                if (cluecumberChart) {
+                    cluecumberChart.destroy();
+                    cluecumberChart = null;
+                }
+            }
+
+            function renderCluecumberChart() {
+                requestAnimationFrame(function () {
+                    const canvas = document.getElementById('chart-area');
+                    const holder = document.getElementById('canvas-holder');
+                    if (!canvas || !holder) {
+                        return;
+                    }
+
+                    const width = holder.clientWidth;
+                    const height = holder.clientHeight;
+                    if (width <= 0 || height <= 0) {
+                        if (cluecumberChartHasRendered) {
+                            scheduleCluecumberChartResize();
+                        } else {
+                            requestAnimationFrame(renderCluecumberChart);
+                        }
+                        return;
+                    }
+
+                    if (cluecumberChart
+                        && cluecumberChartLastSize.width === width
+                        && cluecumberChartLastSize.height === height) {
+                        return;
+                    }
+
+                    const chartConfig = buildCluecumberChartConfig();
+                    const isPieChart = chartConfig.type === "pie";
+
+                    holder.classList.toggle('chart-pie', isPieChart);
+
+                    destroyCluecumberChart();
+                    resetCluecumberChartCanvas(canvas);
+
+                    cluecumberChartLastSize = {width: width, height: height};
+                    cluecumberChart = new Chart(canvas, chartConfig);
+                    cluecumberChartHasRendered = true;
+                });
+            }
+
+            renderCluecumberChart();
+            $(window).on('resize', function () {
+                if (cluecumberChartHasRendered) {
+                    scheduleCluecumberChartResize();
+                }
+            });
+            if (typeof ResizeObserver !== 'undefined') {
+                const chartHolder = document.getElementById('canvas-holder');
+                if (chartHolder) {
+                    new ResizeObserver(function () {
+                        if (cluecumberChartHasRendered) {
+                            scheduleCluecumberChartResize();
+                        }
+                    }).observe(chartHolder);
+                }
+            }
+            {% endif %}
+
+            if ({{ expandBeforeAfterHooks ? "true" : "false" }}) {
+                document.querySelector("[data-cluecumber-item='before-after-hooks-button']")?.click();
+            }
+            if ({{ expandStepHooks ? "true" : "false" }}) {
+                document.querySelector("[data-cluecumber-item='step-hooks-button']")?.click();
+            }
+            if ({{ expandDocStrings ? "true" : "false" }}) {
+                document.querySelectorAll('.scenarioDocstring').forEach(function (el) {
+                    el.classList.add('show');
+                });
+            }
+            if ({{ expandPreviousScenarioRuns ? "true" : "false" }}) {
+                document.querySelector("[data-cluecumber-item='multi-run-button']")?.click();
+            }
+
+            updateDarkLightModeButton(document.documentElement.getAttribute('data-theme') === 'dark');
+
+            const darkModeSwitch = document.getElementById('dark-light-mode-switch');
+            if (darkModeSwitch) {
+                darkModeSwitch.addEventListener('click', function () {
+                    CluecumberTheme.toggle();
+                });
+            }
+        }
+    );
+
+    function updateDarkLightModeButton(isDarkMode) {
+        const button = document.getElementById('dark-light-mode-switch');
+        if (!button) {
+            return;
+        }
+        if (isDarkMode) {
+            button.setAttribute('aria-label', 'Switch to light mode');
+            button.title = 'Light mode';
+            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.15em" height="1.15em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 18a1 1 0 0 1 0 2 1 1 0 0 1 0-2zm0-14a1 1 0 0 1 0 2 1 1 0 0 1 0-2zm8 7a1 1 0 0 1 2 0 1 1 0 0 1-2 0zM2 12a1 1 0 0 1 2 0 1 1 0 0 1-2 0zm16.95 5.95a1 1 0 0 1 1.41 1.41 1 1 0 0 1-1.41-1.41zm-13.9-13.9a1 1 0 0 1 1.41 1.41 1 1 0 0 1-1.41-1.41zM20.54 6.46a1 1 0 0 1 1.41-1.41 1 1 0 0 1-1.41 1.41zM4.05 17.95a1 1 0 0 1 1.41-1.41 1 1 0 0 1-1.41 1.41zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>';
+        } else {
+            button.setAttribute('aria-label', 'Switch to dark mode');
+            button.title = 'Dark mode';
+            button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.15em" height="1.15em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        }
+    }
+
+    function resizeIframe(iframe) {
+        function applyHeight() {
+            try {
+                const doc = iframe.contentWindow.document;
+                const height = Math.max(
+                    doc.documentElement.scrollHeight,
+                    doc.body.scrollHeight
+                );
+                iframe.style.height = (height + 25) + 'px';
+                iframe.classList.add('is-sized');
+            } catch (e) {
+            }
+        }
+
+        function bind() {
+            applyHeight();
+            if (iframe.dataset.cluecumberResizeBound) {
+                return;
+            }
+            iframe.dataset.cluecumberResizeBound = 'true';
+            try {
+                const body = iframe.contentWindow.document.body;
+                if (typeof ResizeObserver !== 'undefined' && body) {
+                    const observer = new ResizeObserver(applyHeight);
+                    observer.observe(body);
+                    iframe._cluecumberResizeObserver = observer;
+                }
+            } catch (e) {
+            }
+        }
+
+        try {
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            if (doc && doc.readyState === 'complete') {
+                bind();
+            } else {
+                iframe.addEventListener('load', bind, {once: true});
+            }
+        } catch (e) {
+            iframe.addEventListener('load', bind, {once: true});
+        }
+    }
+
+    function copyText(elementId) {
+        let text = document.getElementById(elementId).innerText;
+        if (text.startsWith("Copy")) {
+            text = text.substring(4).trim();
+        }
+        navigator.clipboard.writeText(text)
+            .catch((error) => {
+                console.error('Failed to copy text from ' + elementId + ':', error);
+            });
+    }
+</script>

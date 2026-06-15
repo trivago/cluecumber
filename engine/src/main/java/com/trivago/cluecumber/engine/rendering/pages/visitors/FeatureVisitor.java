@@ -51,7 +51,7 @@ public class FeatureVisitor implements PageVisitor {
      * The constructor for dependency injection.
      *
      * @param fileIO                   The {@link FileIO} instance.
-     * @param templateEngine           The Freemarker template engine.
+     * @param templateEngine           The Pebble template engine.
      * @param propertyManager          The {@link PropertyManager} instance.
      * @param allFeaturesPageRenderer  The renderer for the feature pages.
      * @param allScenariosPageRenderer The renderer for the scenario pages.

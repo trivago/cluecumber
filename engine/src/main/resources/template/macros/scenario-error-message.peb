@@ -1,0 +1,14 @@
+
+{% if step.result.hasErrorMessage() %}
+        <div class="cluecumber-step-full">
+            <div class="firstException firstException-detail cluecumber-text-small">
+                <div class="exception-content">
+                    <pre class="exception-pre" id="{{ step.index|default(0) }}_errorMessage">{{ step.result.returnErrorMessageWithClickableLinks()|raw }}</pre>
+                </div>
+                <div class="exception-links-top">
+                    <button type="button" class="cluecumber-exception-action secondary outline"
+                            onclick="copyText('{{ step.index|default(0) }}_errorMessage')">Copy</button>
+                </div>
+            </div>
+        </div>
+    {% endif %}

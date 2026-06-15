@@ -30,9 +30,6 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <tinylog-impl.version>2.8.0-M1</tinylog-impl.version>
-        <freemarker.version>2.3.34</freemarker.version>
-        <gson-fire.version>1.9.0</gson-fire.version>
-        <gson.version>2.13.2</gson.version>
         <dagger.version>2.59.2</dagger.version>
         <property-aggregator.version>1.5.0</property-aggregator.version>
         <properties-maven-plugin.version>1.1.0</properties-maven-plugin.version>
@@ -47,17 +44,10 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>${gson.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.gsonfire</groupId>
-            <artifactId>gson-fire</artifactId>
-            <version>${gson-fire.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>${freemarker.version}</version>
+            <groupId>io.pebbletemplates</groupId>
+            <artifactId>pebble</artifactId>
         </dependency>
         <dependency>
             <groupId>org.tinylog</groupId>

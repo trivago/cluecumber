@@ -15,16 +15,14 @@
  */
 package com.trivago.cluecumber.engine.json.processors;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.trivago.cluecumber.engine.exceptions.filesystem.FileCreationException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
+import com.trivago.cluecumber.engine.json.JsonPostProcessor;
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Embedding;
 import com.trivago.cluecumber.engine.json.pojo.ResultMatch;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
-import io.gsonfire.PostProcessor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -36,7 +34,7 @@ import java.util.List;
  * This enriches the scenarios with feature information and adds a feature index to every feature.
  */
 @Singleton
-public class ElementJsonPostProcessor implements PostProcessor<Element> {
+public class ElementJsonPostProcessor implements JsonPostProcessor<Element> {
 
     private final PropertyManager propertyManager;
     private final FileIO fileIO;
@@ -65,12 +63,10 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
     /**
      * This processes attachments and adds the toggle to fail on pending or undefined steps to each scenario.
      *
-     * @param element     The current scenario.
-     * @param jsonElement The current JSON being processed (not used).
-     * @param gson        The {@link Gson} instance for JSON processing.
+     * @param element The current scenario.
      */
     @Override
-    public void postDeserialize(final Element element, final JsonElement jsonElement, final Gson gson) {
+    public void process(final Element element) {
         element.setFailOnPendingOrUndefined(propertyManager.isFailScenariosOnPendingOrUndefinedSteps());
         processAttachments(element);
     }
@@ -125,17 +121,5 @@ public class ElementJsonPostProcessor implements PostProcessor<Element> {
         // Clear attachment data to reduce memory
         embedding.setData("");
         return filename;
-    }
-
-    /**
-     * Unused method.
-     *
-     * @param jsonElement The current JSON element
-     * @param element     The current scenario.
-     * @param gson        The {@link Gson} instance for JSON processing.
-     */
-    @Override
-    public void postSerialize(final JsonElement jsonElement, final Element element, final Gson gson) {
-        // not used
     }
 }

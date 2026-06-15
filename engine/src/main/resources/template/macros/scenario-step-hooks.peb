@@ -1,0 +1,23 @@
+
+{% for hook in hooks %}
+        {% if hook.hasContent() %}
+            <div class="stepHook collapse {{ expandStepHooks ? "show" : "" }}" id="step_{{ stepIndex }}_stepHooks">
+                <div class="row row_{{ hook.consolidatedStatusString }} table-row-{{ hook.consolidatedStatusString }}">
+                    <div class="cluecumber-step-name">
+                        <i>{{ hook.glueMethodName }}</i>
+                    </div>
+                    <div class="cluecumber-step-duration cluecumber-text-small">
+                        <span class="nobr">{{ hook.result.returnDurationString() }}</span>
+                    </div>
+                    <div class="cluecumber-step-status cluecumber-align-right">
+                        {{ common.status(hook.consolidatedStatusString) }}
+                    </div>
+                    {% set step = hook %}
+                    {% include "macros/scenario-error-message" %}
+                    {% set sectionId = "hook" %}
+                    {% include "macros/scenario-output" %}
+                    {% include "macros/scenario-attachments" %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}

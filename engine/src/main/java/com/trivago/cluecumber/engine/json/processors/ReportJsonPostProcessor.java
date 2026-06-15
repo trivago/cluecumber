@@ -15,13 +15,11 @@
  */
 package com.trivago.cluecumber.engine.json.processors;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import com.trivago.cluecumber.engine.json.JsonPostProcessor;
 import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.pojo.Step;
 import com.trivago.cluecumber.engine.json.pojo.Tag;
-import io.gsonfire.PostProcessor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -35,7 +33,7 @@ import java.util.stream.Stream;
  * scenarios and adds feature information to scenarios.
  */
 @Singleton
-public class ReportJsonPostProcessor implements PostProcessor<Report> {
+public class ReportJsonPostProcessor implements JsonPostProcessor<Report> {
 
     private final List<String> featureUris;
 
@@ -51,12 +49,10 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
     /**
      * Adds feature indices, merges background scenarios into scenarios and adds feature information to scenarios.
      *
-     * @param report      The {@link Report} instance.
-     * @param jsonElement The {@link JsonElement} that is being deserialized, unused here.
-     * @param gson        The {@link Gson} instance for JSON conversion.
+     * @param report The {@link Report} instance.
      */
     @Override
-    public void postDeserialize(final Report report, final JsonElement jsonElement, final Gson gson) {
+    public void process(final Report report) {
         addFeatureIndex(report);
         addFeatureInformationToScenarios(report);
         mergeBackgroundScenarios(report);
@@ -104,17 +100,5 @@ public class ReportJsonPostProcessor implements PostProcessor<Report> {
             featureUris.add(featureName);
         }
         report.setFeatureIndex(featureUris.indexOf(featureName));
-    }
-
-    /**
-     * Unused post serialize hook.
-     *
-     * @param jsonElement The {@link JsonElement} that was deserialized.
-     * @param report      The {@link Report} instance.
-     * @param gson        The {@link Gson} instance.
-     */
-    @Override
-    public void postSerialize(final JsonElement jsonElement, final Report report, final Gson gson) {
-        // not used
     }
 }

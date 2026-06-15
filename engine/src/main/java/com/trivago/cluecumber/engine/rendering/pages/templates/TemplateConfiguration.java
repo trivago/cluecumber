@@ -17,19 +17,19 @@ package com.trivago.cluecumber.engine.rendering.pages.templates;
 
 import com.trivago.cluecumber.engine.constants.Settings;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateExceptionHandler;
+import io.pebbletemplates.pebble.PebbleEngine;
+import io.pebbletemplates.pebble.loader.ClasspathLoader;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * The base configuration for the Freemarker template engine.
+ * The base configuration for the Pebble template engine.
  */
 @Singleton
 public class TemplateConfiguration {
-    private Configuration cfg;
+    private PebbleEngine engine;
 
     /**
      * Default constructor.
@@ -39,34 +39,35 @@ public class TemplateConfiguration {
     }
 
     /**
-     * Initialize Freemarker.
+     * Initialize Pebble.
      *
      * @param basePath The base path for the templates.
      */
     public void init(final String basePath) {
-        cfg = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
-        cfg.setClassForTemplateLoading(this.getClass(), basePath);
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        cfg.setWhitespaceStripping(true);
-        cfg.setLogTemplateExceptions(false);
+        final ClasspathLoader loader = new ClasspathLoader();
+        String normalizedPath = basePath.startsWith("/") ? basePath.substring(1) : basePath;
+        final String prefix = normalizedPath.isEmpty() ? "" : (normalizedPath.endsWith("/") ? normalizedPath : normalizedPath + "/");
+        loader.setPrefix(prefix);
+        loader.setSuffix(Settings.TEMPLATE_FILE_EXTENSION);
+        engine = new PebbleEngine.Builder()
+                .loader(loader)
+                .strictVariables(false)
+                .build();
     }
 
     /**
      * Retrieve a template by template name.
      *
      * @param templateName The template name without file extension.
-     * @return The {@link Template} instance.
-     * @throws CluecumberException Thrown on missing or wrong templates.s
+     * @return The {@link PebbleTemplate} instance.
+     * @throws CluecumberException Thrown on missing or wrong templates.
      */
-    public Template getTemplate(final String templateName) throws CluecumberException {
-        Template template;
+    public PebbleTemplate getTemplate(final String templateName) throws CluecumberException {
         try {
-            template = cfg.getTemplate(templateName + Settings.TEMPLATE_FILE_EXTENSION);
+            return engine.getTemplate(templateName);
         } catch (Exception e) {
-            throw new CluecumberException("Template '" + templateName + "' was not found or not parsable: " +
-                    e.getMessage());
+            throw new CluecumberException("Template '" + templateName + "' was not found or not parsable: "
+                    + e.getMessage());
         }
-        return template;
     }
 }

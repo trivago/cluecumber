@@ -17,14 +17,15 @@ package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
+import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateContextFactory;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Map;
 
 /**
  * The renderer for the custom CSS styles.
@@ -47,22 +48,23 @@ public class CustomCssRenderer {
     /**
      * Return the completely rendered custom css content.
      *
-     * @param template The Freemarker template.
+     * @param template The Pebble template.
      * @return The fully rendered content.
      * @throws CluecumberException In case of a rendering error.
      */
-    public String getRenderedCustomCssContent(final Template template) throws CluecumberException {
-        Writer stringWriter = new StringWriter();
+    public String getRenderedCustomCssContent(final PebbleTemplate template) throws CluecumberException {
+        final Writer stringWriter = new StringWriter();
 
-        CustomStatusColors customStatusColors = new CustomStatusColors(
+        final CustomStatusColors customStatusColors = new CustomStatusColors(
                 propertyManager.getCustomStatusColorPassed(),
                 propertyManager.getCustomStatusColorFailed(),
                 propertyManager.getCustomStatusColorSkipped()
         );
 
+        final Map<String, Object> context = TemplateContextFactory.create(customStatusColors);
         try {
-            template.process(customStatusColors, stringWriter);
-        } catch (TemplateException | IOException e) {
+            template.evaluate(stringWriter, context);
+        } catch (IOException e) {
             throw new CluecumberException("Could not render custom css content: " + e.getMessage());
         }
         return stringWriter.toString();
@@ -78,7 +80,7 @@ public class CustomCssRenderer {
         private final String failedColor;
         private final String skippedColor;
 
-        CustomStatusColors(String passedColor, String failedColor, String skippedColor) {
+        CustomStatusColors(final String passedColor, final String failedColor, final String skippedColor) {
             this.passedColor = passedColor;
             this.failedColor = failedColor;
             this.skippedColor = skippedColor;
@@ -86,6 +88,7 @@ public class CustomCssRenderer {
 
         /**
          * Get the passed color.
+         *
          * @return The hex color string.
          */
         public String getPassedColor() {
@@ -94,6 +97,7 @@ public class CustomCssRenderer {
 
         /**
          * Get the failed color.
+         *
          * @return The hex color string.
          */
         public String getFailedColor() {
@@ -102,6 +106,7 @@ public class CustomCssRenderer {
 
         /**
          * Get the skipped color.
+         *
          * @return The hex color string.
          */
         public String getSkippedColor() {
@@ -109,4 +114,3 @@ public class CustomCssRenderer {
         }
     }
 }
-

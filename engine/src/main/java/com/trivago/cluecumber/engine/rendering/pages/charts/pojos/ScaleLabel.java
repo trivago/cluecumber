@@ -16,12 +16,13 @@
 package com.trivago.cluecumber.engine.rendering.pages.charts.pojos;
 
 /**
- * The
+ * Chart axis title configuration.
  */
+@SuppressWarnings("unused")
 public class ScaleLabel {
 
     private boolean display;
-    private String labelString;
+    private String text;
 
     /**
      * Default constructor.
@@ -32,6 +33,7 @@ public class ScaleLabel {
 
     /**
      * Whether the label should be displayed.
+     *
      * @return true if it should be displayed.
      */
     public boolean isDisplay() {
@@ -40,6 +42,7 @@ public class ScaleLabel {
 
     /**
      * Set if this label should be displayed.
+     *
      * @param display true if it should be displayed.
      */
     public void setDisplay(final boolean display) {
@@ -48,17 +51,19 @@ public class ScaleLabel {
 
     /**
      * Get the label.
+     *
      * @return The label string.
      */
-    public String getLabelString() {
-        return labelString;
+    public String getText() {
+        return text;
     }
 
     /**
      * Set the label.
-     * @param labelString The label string.
+     *
+     * @param text The label string.
      */
-    public void setLabelString(final String labelString) {
-        this.labelString = labelString;
+    public void setText(final String text) {
+        this.text = text;
     }
 }

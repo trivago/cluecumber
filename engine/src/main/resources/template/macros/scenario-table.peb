@@ -1,0 +1,152 @@
+
+{% set skippedRequested = status == "skipped" %}
+    {% set failedRequested = status == "failed" %}
+    {% set passedRequested = status == "passed" %}
+    {% set allRequested = status == "all" %}
+
+    {% if (skippedRequested and _model.hasSkippedScenarios()) or
+    (failedRequested and _model.hasFailedScenarios()) or
+    (passedRequested and _model.hasPassedScenarios()) or
+    allRequested %}
+        <a class="anchor" id="anchor-{{ status }}"></a>
+        <div class="row" id="card_{{ status }}" data-cluecumber-item="scenario-summary-table">
+            <article class="cluecumber-card cluecumber-col-12">
+                    {% if status == "skipped" %}
+                            <header class="border-color-skipped">
+                                {{ numberOfScenarios }}
+                                {{ common.pluralizeFn("skipped Scenario", numberOfScenarios) }}
+                                {{ common.status("skipped") }}
+                            </header>
+                    {% elseif status == "failed" %}
+                            <header class="border-color-failed">
+                                {{ numberOfScenarios }}
+                                {{ common.pluralizeFn("failed Scenario", numberOfScenarios) }}
+                                {{ common.status("failed") }}
+                            </header>
+                    {% elseif status == "passed" %}
+                            <header class="border-color-passed">
+                                {{ numberOfScenarios }}
+                                {{ common.pluralizeFn("passed Scenario", numberOfScenarios) }}
+                                {{ common.status("passed") }}
+                            </header>
+                    {% elseif status == "all" %}
+                            <header>
+                                {{ numberOfScenarios }} {{ common.pluralizeFn("Scenario", numberOfScenarios) }}
+                            </header>
+                    {% endif %}
+
+                    <div class="cluecumber-card-body">
+                        <table id="results_{{ status }}" class="table cluecumber-table renderAsDataTable{% if allRequested %} cluecumber-table-sequence{% endif %}">
+                            <thead>
+                            <tr>
+                                {% if allRequested %}
+                                    <th class="cluecumber-align-right cluecumber-col-index">#</th>
+                                {% endif %}
+                                <th class="cluecumber-col-feature">Feature</th>
+                                <th class="cluecumber-col-scenario">Scenario</th>
+                                <th class="cluecumber-align-center cluecumber-col-started">Started</th>
+                                <th class="cluecumber-align-center cluecumber-col-duration">Duration</th>
+                                {% if allRequested %}
+                                    <th class="cluecumber-align-center cluecumber-col-status">Status</th>
+                                {% endif %}
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% set counter = 0 %}
+                            {% for report in reports %}
+                                {% for element in report.elements %}
+                                    {% set counter = counter + 1 %}
+                                    {% if (skippedRequested and element.skipped) or (failedRequested and element.failed) or (passedRequested and element.passed) or allRequested %}
+                                        <tr class="table-row-{{ element.status.statusString }}">
+                                            {% if allRequested %}
+                                                <td class="cluecumber-align-right">{{ counter }}</td>
+                                            {% endif %}
+                                            <td class="cluecumber-feature-cell">
+                                                <span data-toggle="tooltip" data-html="true" title="{{ common.reportTooltip(report.uri, report.description)|raw }}">
+                                                    <a href="pages/feature-scenarios/feature_{{ report.featureIndex }}.html">{{ report.name }}</a>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
+
+                                                {% if element.isMultiRunParent() %}
+                                                    <button type="button" class="cluecumber-exception-action secondary outline multiRunExpansionButton"
+                                                            data-toggle="collapse"
+                                                            aria-expanded="false"
+                                                            data-target="#multiRun_{{ element.scenarioIndex }}">Previous
+                                                        Runs
+                                                    </button>
+                                                {% endif %}
+
+                                                {% if element.firstException is not empty %}
+                                                    <div class="firstExceptionContainer">
+                                                        <div class="firstException exc-summary cluecumber-text-small">
+                                                            <div class="exception-content">
+                                                                <pre class="exception-pre">{{ element.firstExceptionSummary|raw }}</pre>
+                                                            </div>
+                                                            <div class="exception-links-top">
+                                                                <button type="button" class="cluecumber-exception-action secondary outline"
+                                                                        data-toggle="collapse" data-target="#exc_{{ element.scenarioIndex }}"
+                                                                        aria-expanded="false"
+                                                                        aria-controls="exc_{{ element.scenarioIndex }}">More</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="collapse {{ expandErrorMessages ? "show" : "" }}" id="exc_{{ element.scenarioIndex }}">
+                                                            <div class="firstException firstException-expanded cluecumber-text-small">
+                                                                <div class="exception-content">
+                                                                    <pre class="exception-pre"
+                                                                         id="exc_pre_{{ element.scenarioIndex }}">{{ element.firstException|raw }}</pre>
+                                                                </div>
+                                                                <div class="exception-links-top">
+                                                                    <button type="button" class="cluecumber-exception-action secondary outline"
+                                                                            data-toggle="collapse" data-target="#exc_{{ element.scenarioIndex }}"
+                                                                            aria-expanded="true"
+                                                                            aria-controls="exc_{{ element.scenarioIndex }}">Less</button>
+                                                                    <button type="button" class="cluecumber-exception-action secondary outline"
+                                                                            onclick="copyText('exc_pre_{{ element.scenarioIndex }}')">Copy</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% if element.isMultiRunParent() %}
+                                                    <div id="multiRun_{{ element.scenarioIndex }}"
+                                                         class="multiRunChildren collapse">
+                                                        <ol type="a" reversed>
+                                                            {% for childElement in element.getMultiRunChildren() %}
+                                                                <li>
+                                                                    <a href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html"
+                                                                       style="word-break: break-all">Previous run from
+                                                                        {{ childElement.startDateString }}
+                                                                        , {{ childElement.startTimeString }}
+                                                                        {{ common.status(childElement.status.statusString) }}
+                                                                    </a>
+                                                                    {% if childElement.firstExceptionSummary != "" %}
+                                                                        <p class="firstException cluecumber-text-small cluecumber-muted"
+                                                                           style="word-break: break-word">{{ childElement.firstExceptionSummary|raw }}</p>
+                                                                    {% endif %}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ol>
+                                                    </div>
+                                                {% endif %}
+                                            </td>
+                                            <td class="cluecumber-align-center cluecumber-text-small cluecumber-datetime" data-order="{{ element.startTimestamp }}">
+                                                {{ element.startDateString }}<br>{{ element.startTimeString }}
+                                            </td>
+                                            <td class="cluecumber-align-center cluecumber-text-small cluecumber-duration" data-order="{{ element.totalDuration }}">
+                                                <span class="nobr">{{ element.returnTotalDurationString() }}</span>
+                                            </td>
+                                            {% if allRequested %}
+                                                <td class="cluecumber-align-center">{{ common.status(element.status.statusString) }}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+            </article>
+        </div>
+    {% endif %}

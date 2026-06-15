@@ -7,7 +7,7 @@ import com.trivago.cluecumber.engine.json.pojo.Step;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ public class ScenarioDetailsPageRendererTest {
 
     @Test
     public void testContentRendering() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         Element element = new Element();
         List<Step> steps = new ArrayList<>();
         element.setSteps(steps);

@@ -32,7 +32,7 @@ public class ElementJsonPostProcessorTest {
     public void postDesiralizeAddScenarioIndexBackgroundScenarioTest() {
         Element element = new Element();
         assertEquals(element.getScenarioIndex(), 0);
-        elementJsonPostProcessor.postDeserialize(element, null, null);
+        elementJsonPostProcessor.process(element);
         assertEquals(element.getScenarioIndex(), 0);
     }
 
@@ -67,12 +67,7 @@ public class ElementJsonPostProcessorTest {
 
         assertEquals(embedding.getData(), "123");
 
-        elementJsonPostProcessor.postDeserialize(element, null, null);
+        elementJsonPostProcessor.process(element);
         assertEquals(embedding.getFilename(), "attachment001.png");
-    }
-
-    @Test
-    public void postSerializeTest() {
-        elementJsonPostProcessor.postSerialize(null, null, null);
     }
 }

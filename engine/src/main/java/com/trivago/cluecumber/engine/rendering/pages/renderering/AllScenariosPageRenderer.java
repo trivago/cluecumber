@@ -27,7 +27,7 @@ import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.charts.PieChartBuilder;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -65,12 +65,12 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content.
      *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContent(
-            final AllScenariosPageCollection allScenariosPageCollection, final Template template)
+            final AllScenariosPageCollection allScenariosPageCollection, final PebbleTemplate template)
             throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
@@ -82,12 +82,12 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content for the reruns page.
      *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRendererContentByReruns(final AllScenariosPageCollection allScenariosPageCollection,
-                                             final Template template) throws CluecumberException {
+                                             final PebbleTemplate template) throws CluecumberException {
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
 
         for (Report report : allScenariosPageCollectionClone.getReports()) {
@@ -106,14 +106,14 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content after applying a tag filter.
      *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @param tag                        The {@link Tag} instance to filter by.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContentByTagFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
-            final Template template,
+            final PebbleTemplate template,
             final Tag tag) throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
@@ -135,14 +135,14 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content after applying an exception filter.
      *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @param exceptionClass             The exception class to filter by.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContentByExceptionFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
-            final Template template,
+            final PebbleTemplate template,
             final String exceptionClass) throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
@@ -165,14 +165,14 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content after applying a step filter.
      *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @param step                       The {@link Step} instance to filter by.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContentByStepFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
-            final Template template,
+            final PebbleTemplate template,
             final Step step) throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
@@ -193,14 +193,14 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
      * Get the rendered HTML content after applying a feature filter.
      *
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @param feature                    The {@link Feature} instance to filter by.
      * @return The HTML content as a string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContentByFeatureFilter(
             final AllScenariosPageCollection allScenariosPageCollection,
-            final Template template,
+            final PebbleTemplate template,
             final Feature feature) throws CluecumberException {
 
         AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);

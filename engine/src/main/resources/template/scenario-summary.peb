@@ -1,0 +1,208 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+{% import "macros/page" as page %}
+{% import "macros/common" as common %}
+
+{% if tagFilter is not null %}
+    {% set base = "./../.." %}
+    {% set headline = "Scenarios tagged with" %}
+    {% set pageName = "Tagged Scenarios" %}
+    {% set highlight = "tag_summary" %}
+    {% set subheadline = tagFilter.name %}
+    {% set subsubheadline = "" %}
+    {% set preheadline = "" %}
+    {% set preheadlineLink = "" %}
+{% elseif exceptionFilter is not null %}
+    {% set base = "./../.." %}
+    {% set headline = "Scenarios with Exception" %}
+    {% set pageName = "Scenarios with Exception" %}
+    {% set highlight = "exception_summary" %}
+    {% set subheadline = exceptionFilter %}
+    {% set subsubheadline = "" %}
+    {% set preheadline = "" %}
+    {% set preheadlineLink = "" %}
+{% elseif featureFilter is not null %}
+    {% set base = "./../.." %}
+    {% set headline = "Scenarios in Feature" %}
+    {% set pageName = "Scenarios in Feature" %}
+    {% set highlight = "feature_summary" %}
+    {% set subheadline = featureFilter.description %}
+    {% set subsubheadline = featureFilter.uri %}
+    {% set preheadline = featureFilter.name %}
+    {% set preheadlineLink = "pages/feature-scenarios/feature_" ~ featureFilter.index ~ ".html" %}
+{% elseif stepFilter is not null %}
+    {% set base = "./../.." %}
+    {% set headline = "Scenarios using Step" %}
+    {% set pageName = "Scenarios with Step" %}
+    {% set highlight = "step_summary" %}
+    {% set subheadline = stepFilter.returnNameWithArgumentPlaceholders() %}
+    {% set subsubheadline = "" %}
+    {% set preheadline = "" %}
+    {% set preheadlineLink = "" %}
+{% elseif scenarioSequence %}
+    {% set base = "./.." %}
+    {% set headline = "Scenario Sequence" %}
+    {% set pageName = "Scenario Sequence" %}
+    {% set highlight = "scenario_sequence" %}
+    {% set subheadline = "" %}
+    {% set subsubheadline = "" %}
+    {% set preheadline = "" %}
+    {% set preheadlineLink = "" %}
+{% elseif reruns %}
+    {% set base = "./.." %}
+    {% set headline = "Rerun Scenarios" %}
+    {% set pageName = "Rerun Scenarios" %}
+    {% set highlight = "rerun_scenarios" %}
+    {% set subheadline = "" %}
+    {% set subsubheadline = "" %}
+    {% set preheadline = "" %}
+    {% set preheadlineLink = "" %}
+{% else %}
+    {% set base = "./.." %}
+    {% set headline = "All Scenarios" %}
+    {% set pageName = "All Scenarios" %}
+    {% set highlight = "scenario_summary" %}
+    {% set subheadline = "" %}
+    {% set subsubheadline = "" %}
+    {% set preheadline = "" %}
+    {% set preheadlineLink = "" %}
+{% endif %}
+
+{% set title = pageTitle ~ " - " ~ pageName %}
+{% include "macros/page-start" %}
+
+    <div class="row" id="scenario-summary">
+        {{ page.cardStart("6", "Scenario Results", "", "") }}
+            {{ page.graph() }}
+        {{ page.cardEnd() }}
+        {{ page.cardStart("3", "Scenario Summary", "", "cluecumber-card-centered") }}
+            <ul class="cluecumber-list">
+                <li class="cluecumber-list-item" data-cluecumber-item="scenario-summary">
+                    {{ totalNumberOfScenarios }} {{ common.pluralizeFn("Scenario", totalNumberOfScenarios) }}
+                </li>
+                <li class="cluecumber-list-item" data-cluecumber-item="scenario-summary">
+                    {% if scenarioSequence %}
+                        {{ totalNumberOfPassedScenarios }} passed {{ common.status("passed") }}
+                        <br>
+                        {{ totalNumberOfFailedScenarios }} failed {{ common.status("failed") }}
+                        <br>
+                        {{ totalNumberOfSkippedScenarios }} skipped {{ common.status("skipped") }}
+                    {% else %}
+                        <a href="javascript:"
+                           onclick="document.location.hash='anchor-passed';">{{ totalNumberOfPassedScenarios }}
+                            passed</a> {{ common.status("passed") }}
+                        <br>
+                        <a href="javascript:"
+                           onclick="document.location.hash='anchor-failed';">{{ totalNumberOfFailedScenarios }}
+                            failed</a> {{ common.status("failed") }}
+                        <br>
+                        <a href="javascript:"
+                           onclick="document.location.hash='anchor-skipped';">{{ totalNumberOfSkippedScenarios }}
+                            skipped</a> {{ common.status("skipped") }}
+                    {% endif %}
+                </li>
+            </ul>
+
+            {% if _model.hasMultiRunChildren() %}
+                <hr>
+                <button id="multiRunButton" class="secondary outline" type="button" data-toggle="collapse"
+                        aria-expanded="false" data-cluecumber-item="multi-run-button"
+                        data-target=".multiRunChildren">Show {{ totalNumberOfMultiRunChildren }} Previous Runs
+                </button>
+            {% endif %}
+        {{ page.cardEnd() }}
+        {{ page.cardStart("3", "Test Suite Info", "", "cluecumber-card-centered") }}
+            <ul class="cluecumber-list">
+                {% set startDateTimeString = _model.returnStartDateTimeString() %}
+                <li class="cluecumber-list-item" data-cluecumber-item="total-start">
+                    {% set endDateTimeString = _model.returnEndDateTimeString() %}
+                    {% set timingStart = startDateTimeString %}
+                    {% set timingEnd = endDateTimeString %}
+                    {% set timingTotal = totalDurationString %}
+                    {% include "macros/timing-info" %}
+                </li>
+            </ul>
+        {{ page.cardEnd() }}
+    </div>
+
+    {% if scenarioSequence %}
+        {% set status = "all" %}
+{% set numberOfScenarios = totalNumberOfScenarios %}
+{% include "macros/scenario-table" %}
+    {% else %}
+        {% set status = "failed" %}
+{% set numberOfScenarios = totalNumberOfFailedScenarios %}
+{% include "macros/scenario-table" %}
+        {% set status = "skipped" %}
+{% set numberOfScenarios = totalNumberOfSkippedScenarios %}
+{% include "macros/scenario-table" %}
+        {% set status = "passed" %}
+{% set numberOfScenarios = totalNumberOfPassedScenarios %}
+{% include "macros/scenario-table" %}
+    {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const button = document.getElementById('multiRunButton');
+            if (button) {
+                const totalNumberOfMultiRunChildren = {{ totalNumberOfMultiRunChildren }};
+                const target = document.querySelector(button.getAttribute('data-target'));
+                if (target) {
+                    button.addEventListener('click', function() {
+                        if (target.classList.contains('show')) {
+                            button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+                        } else {
+                            button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+                        }
+                    });
+                    target.addEventListener('shown.bs.collapse', function() {
+                        button.textContent = `Hide ${totalNumberOfMultiRunChildren} Previous Runs`;
+                    });
+                    target.addEventListener('hidden.bs.collapse', function() {
+                        button.textContent = `Show ${totalNumberOfMultiRunChildren} Previous Runs`;
+                    });
+                }
+            }
+
+            // More/Less: hide summary first when expanding; show summary on Less click (not on hidden.bs.collapse)
+            document.querySelectorAll('.firstExceptionContainer').forEach(function(container) {
+                const collapseEl = container.querySelector('.collapse');
+                const collapseId = collapseEl ? collapseEl.id : null;
+                if (!collapseId) return;
+                const moreButton = container.querySelector('[data-toggle="collapse"][data-target="#' + collapseId + '"][aria-expanded="false"]');
+                if (moreButton) {
+                    moreButton.addEventListener('click', function() {
+                        container.classList.remove('error-show-summary');
+                        container.classList.add('error-expanding');
+                    }, true);
+                }
+                if (collapseEl) {
+                    collapseEl.addEventListener('shown.bs.collapse', function() {
+                        container.classList.remove('error-expanding');
+                    });
+                }
+                container.addEventListener('click', function(e) {
+                    const button = e.target.closest('[data-toggle="collapse"][data-target="#' + collapseId + '"]');
+                    if (button && button.getAttribute('aria-expanded') === 'true') {
+                        container.classList.remove('error-expanding');
+                        container.classList.add('error-show-summary');
+                    }
+                }, true);
+            });
+        });
+    </script>
+{% include "macros/page-end" %}

@@ -22,7 +22,7 @@ You can add different options as explained in the [Cluecumber Maven Readme](../.
 
 ## Run the project
 
-To run the project you need to have at least Java 11 and Maven 3.3.9 installed on your system.
+To run the project you need to have Java 17 and Maven 3.9.9 installed on your system.
 
 Just run the Maven command `mvn clean verify` to see the report generation of Cluecumber in action.
 This can also be run via `make test` from Cluecumber's root directory.

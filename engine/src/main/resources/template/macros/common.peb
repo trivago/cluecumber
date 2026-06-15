@@ -1,0 +1,67 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+
+{% macro status(status) %}
+    {% if status == "failed" %}
+        {% set colorClass = "color-failed" %}
+    {% elseif status == "skipped" %}
+        {% set colorClass = "color-skipped" %}
+    {% else %}
+        {% set colorClass = "color-passed" %}
+    {% endif %}
+    <svg class="cluecumber-status-icon {{ colorClass }}" data-toggle="tooltip" title="{{ status }}"
+         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1em" height="1em"
+         role="img" aria-label="{{ status }}">
+        {% if status == "failed" %}
+            <path fill="currentColor" transform="translate(0,850) scale(1,-1)"
+                  d="M724 112q0-22-15-38l-76-76q-16-15-38-15t-38 15l-164 165-164-165q-16-15-38-15t-38 15l-76 76q-16 16-16 38t16 38l164 164-164 164q-16 16-16 38t16 38l76 76q16 16 38 16t38-16l164-164 164 164q16 16 38 16t38-16l76-76q15-15 15-38t-15-38l-164-164 164-164q15-15 15-38z"/>
+        {% elseif status == "skipped" %}
+            <path fill="currentColor" transform="translate(0,850) scale(1,-1)"
+                  d="M1000 493q0-15-11-25l-285-286q-11-11-25-11t-25 11-11 25v143h-125q-55 0-98-3t-86-12-74-24-59-39-45-56-27-77-10-101q0-31 3-69 0-4 2-13t1-15q0-8-5-14t-13-6q-9 0-15 10-4 5-8 12t-7 17-6 13q-71 159-71 252 0 111 30 186 90 225 488 225h125v143q0 14 11 25t25 10 25-10l285-286q11-11 11-25z"/>
+        {% else %}
+            <path fill="currentColor" transform="translate(0,850) scale(1,-1)"
+                  d="M933 534q0-22-16-38l-404-404-76-76q-16-15-38-15t-38 15l-76 76-202 202q-15 16-15 38t15 38l76 76q16 16 38 16t38-16l164-165 366 367q16 16 38 16t38-16l76-76q16-15 16-38z"/>
+        {% endif %}
+    </svg>
+{% endmacro %}
+
+{% macro pluralizeFn(word, unitCount) %}
+    {% if unitCount == 0 or unitCount > 1 %}
+        {{ word }}s
+    {% else %}
+        {{ word }}
+    {% endif %}
+{% endmacro %}
+
+{# HTML-escapes each line and joins with br tags for Bootstrap tooltips with data-html="true". #}
+{% macro tooltipMultilineHtml(text) %}
+    {% set normalized = text.replace('\r\n', '\n').replace('\r', '\n') %}
+    {% set parts = normalized.split('\n') %}
+    {% for part in parts %}
+        {% if not loop.first %}
+            <br />
+        {% endif %}
+        {{ part }}
+    {% endfor %}
+{% endmacro %}
+
+{% macro tagLink(tag) %}
+    <a href="pages/tag-scenarios/tag_{{ tag.getUrlFriendlyName() }}.html" class="cluecumber-tag">{{ tag.name }}</a>
+{% endmacro %}
+
+{% macro reportTooltip(uri, description) %}
+    {{ uri }}{% if description is not empty %}<br />{% endif %}{{ tooltipMultilineHtml(description) }}
+{% endmacro %}

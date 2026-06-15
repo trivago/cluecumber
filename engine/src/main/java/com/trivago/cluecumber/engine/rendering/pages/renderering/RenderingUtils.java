@@ -64,6 +64,32 @@ public class RenderingUtils {
     }
 
     /**
+     * Convert nanoseconds to a human-readable total runtime string, including days and hours when needed.
+     *
+     * @param nanoseconds The amount of nanoseconds.
+     * @return The human-readable string representation.
+     */
+    public static String convertNanosecondsToTotalTimeString(final long nanoseconds) {
+        Duration duration = Duration.ofMillis(nanoseconds / MICROSECOND_FACTOR);
+        long days = duration.toDays();
+        Duration afterDays = duration.minusDays(days);
+        long hours = afterDays.toHours();
+        Duration afterHours = afterDays.minusHours(hours);
+        long minutes = afterHours.toMinutes();
+        Duration afterMinutes = afterHours.minusMinutes(minutes);
+        long seconds = afterMinutes.getSeconds();
+        long milliseconds = afterMinutes.minusSeconds(seconds).toMillis();
+
+        if (days > 0) {
+            return String.format("%dd %dh %02dm %02ds", days, hours, minutes, seconds);
+        }
+        if (hours > 0) {
+            return String.format("%dh %02dm %02ds %03dms", hours, minutes, seconds, milliseconds);
+        }
+        return String.format("%dm %02ds %03dms", minutes, seconds, milliseconds);
+    }
+
+    /**
      * Convert nanoseconds to milliseconds.
      *
      * @param nanoseconds The amount of nanoseconds.

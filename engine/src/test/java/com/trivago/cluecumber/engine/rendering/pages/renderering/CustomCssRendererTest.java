@@ -2,15 +2,16 @@ package com.trivago.cluecumber.engine.rendering.pages.renderering;
 
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
 import com.trivago.cluecumber.engine.properties.PropertyManager;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.Version;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -25,12 +26,20 @@ public class CustomCssRendererTest {
     }
 
     @Test
-    public void getRenderedCustomCssContentTest() throws IOException, CluecumberException {
+    public void getRenderedCustomCssContentTest() throws CluecumberException, java.io.IOException {
         when(propertyManager.getCustomStatusColorPassed()).thenReturn("passed");
         when(propertyManager.getCustomStatusColorFailed()).thenReturn("failed");
         when(propertyManager.getCustomStatusColorSkipped()).thenReturn("skipped");
-        Template template = new Template("test", "${passedColor} - ${failedColor} - ${skippedColor}", new Configuration(new Version("2.3.0")));
+
+        PebbleTemplate template = mock(PebbleTemplate.class);
+        doAnswer(invocation -> {
+            StringWriter writer = invocation.getArgument(0);
+            Map<String, Object> context = invocation.getArgument(1);
+            writer.write(context.get("passedColor") + " - " + context.get("failedColor") + " - " + context.get("skippedColor"));
+            return null;
+        }).when(template).evaluate(any(StringWriter.class), any(Map.class));
+
         String renderedCustomCssContent = customCssRenderer.getRenderedCustomCssContent(template);
-        assertEquals(renderedCustomCssContent, "passed - failed - skipped");
+        assertEquals("passed - failed - skipped", renderedCustomCssContent);
     }
 }

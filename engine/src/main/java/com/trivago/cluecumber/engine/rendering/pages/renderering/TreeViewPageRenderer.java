@@ -22,7 +22,7 @@ import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllFeaturesPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.TreeViewPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -58,14 +58,14 @@ public class TreeViewPageRenderer extends PageRenderer {
      *
      * @param allFeaturesPageCollection  The {@link AllFeaturesPageCollection} instance.
      * @param allScenariosPageCollection The {@link AllScenariosPageCollection} instance.
-     * @param template                   The Freemarker {@link Template} instance.
+     * @param template                   The {@link PebbleTemplate} instance.
      * @return The page content as string.
      * @throws CluecumberException Thrown on any error.
      */
     public String getRenderedContent(
             final AllFeaturesPageCollection allFeaturesPageCollection,
             final AllScenariosPageCollection allScenariosPageCollection,
-            final Template template)
+            final PebbleTemplate template)
             throws CluecumberException {
 
         Set<Feature> features = allFeaturesPageCollection.getFeatures()

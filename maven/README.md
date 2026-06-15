@@ -54,7 +54,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
 <plugin>
     <groupId>com.trivago.rta</groupId>
     <artifactId>cluecumber-maven</artifactId>
-    <version>3.11.0</version>
+    <version>4.0.0</version>
     <executions>
         <execution>
             <id>report</id>
@@ -484,7 +484,7 @@ directly from the command line.
 
 __Note:__ If you want this invocation to consider the configuration that is included in your POM file,
 the `configuration` block must be outside of your `executions` block. Otherwise, it only applies to the
-specified execution and is ignored when you run `mvn cluecumber-report:reporting` from the command line:
+specified execution and is ignored when you run `mvn cluecumber:reporting` from the command line:
 
 ```xml
 
@@ -533,7 +533,7 @@ Also define it in the Cluecumber section in your POM:
 ```xml
 
 <customParameters>
-    <My_Parameter_Name>${someProperty}</Base_Url>
+    <My_Parameter_Name>${someProperty}</My_Parameter_Name>
 </customParameters>
 ```
 
@@ -549,13 +549,13 @@ __Note:__ If you don't pass this property, Cluecumber will ignore it and not sho
 
 ## Building
 
-Cluecumber requires Java >= 11 and Maven >= 3.3.9.
+Cluecumber requires Java >= 17 and Maven >= 3.9.9.
 It is available
-in [Maven central](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.trivago.rta%22%20AND%20a%3A%22cluecumber-report-plugin%22).
+in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-maven&smo=true).
 
 ## License
 
-Copyright 2018 - 2022 trivago N.V.
+Copyright 2018 - 2026 trivago N.V.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
 License. You may obtain a copy of the License at

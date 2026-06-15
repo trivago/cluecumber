@@ -11,7 +11,7 @@ import com.trivago.cluecumber.engine.properties.PropertyManager;
 import com.trivago.cluecumber.engine.rendering.pages.charts.ChartJsonConverter;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.Feature;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.AllScenariosPageCollection;
-import freemarker.template.Template;
+import io.pebbletemplates.pebble.template.PebbleTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +38,14 @@ public class AllScenariosPageRendererTest {
 
     @Test
     public void testContentRendering() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         allScenariosPageRenderer.getRenderedContent(allScenariosPageCollection, template);
     }
 
     @Test
     public void getRenderedContentParametersTest() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Map<String, String> customParameters = new HashMap<>();
         customParameters.put("key", "value");
@@ -55,7 +55,7 @@ public class AllScenariosPageRendererTest {
 
     @Test
     public void getRenderedContentByTagFilterTest() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Tag tag = new Tag();
         tag.setName("test");
@@ -75,7 +75,7 @@ public class AllScenariosPageRendererTest {
 
     @Test
     public void getRenderedContentByStepFilterTest() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
 
         Step step = new Step();
@@ -95,7 +95,7 @@ public class AllScenariosPageRendererTest {
 
     @Test
     public void getRenderedContentByFeatureFilterTest() throws CluecumberException {
-        Template template = mock(Template.class);
+        PebbleTemplate template = mock(PebbleTemplate.class);
         AllScenariosPageCollection allScenariosPageCollection = new AllScenariosPageCollection("");
         Report report = new Report();
         report.setFeatureIndex(12);

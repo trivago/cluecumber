@@ -16,6 +16,7 @@
 package com.trivago.cluecumber.engine.json;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.trivago.cluecumber.engine.constants.MimeType;
 import com.trivago.cluecumber.engine.exceptions.CluecumberException;
@@ -23,7 +24,6 @@ import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.processors.ElementJsonPostProcessor;
 import com.trivago.cluecumber.engine.json.processors.ReportJsonPostProcessor;
-import io.gsonfire.GsonFireBuilder;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -34,7 +34,9 @@ import javax.inject.Singleton;
 @Singleton
 public class JsonPojoConverter {
 
-    private final Gson gsonParserWithProcessors;
+    private final Gson gson;
+    private final ReportJsonPostProcessor reportJsonPostProcessor;
+    private final ElementJsonPostProcessor elementJsonPostProcessor;
 
     /**
      * The constructor for dependency injection.
@@ -47,11 +49,11 @@ public class JsonPojoConverter {
             final ReportJsonPostProcessor reportJsonPostProcessor,
             final ElementJsonPostProcessor elementJsonPostProcessor
     ) {
-        GsonFireBuilder builder = new GsonFireBuilder()
-                .registerPostProcessor(Report.class, reportJsonPostProcessor)
-                .registerPostProcessor(Element.class, elementJsonPostProcessor)
-                .enumDefaultValue(MimeType.class, MimeType.UNKNOWN);
-        gsonParserWithProcessors = builder.createGson();
+        this.reportJsonPostProcessor = reportJsonPostProcessor;
+        this.elementJsonPostProcessor = elementJsonPostProcessor;
+        gson = new GsonBuilder()
+                .registerTypeAdapter(MimeType.class, new MimeTypeTypeAdapter())
+                .create();
     }
 
     /**
@@ -64,9 +66,18 @@ public class JsonPojoConverter {
     public Report[] convertJsonToReportPojos(final String json) throws CluecumberException {
         Report[] reports;
         try {
-            reports = gsonParserWithProcessors.fromJson(json, Report[].class);
+            reports = gson.fromJson(json, Report[].class);
         } catch (JsonParseException e) {
             throw new CluecumberException(e.getMessage());
+        }
+        if (reports == null) {
+            return null;
+        }
+        for (Report report : reports) {
+            for (Element element : report.getElements()) {
+                elementJsonPostProcessor.process(element);
+            }
+            reportJsonPostProcessor.process(report);
         }
         return reports;
     }

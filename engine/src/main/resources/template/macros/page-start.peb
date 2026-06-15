@@ -1,0 +1,72 @@
+{#-
+Copyright 2023 trivago N.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-#}
+<!DOCTYPE html>
+<html lang="en">
+<base href="{{ base }}">
+<head>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var theme = params.get('cluecumber-theme');
+            if (theme === 'dark' || theme === 'light') {
+                document.documentElement.setAttribute('data-theme', theme);
+            }
+        })();
+    </script>
+    <title>{{ title }}</title>
+    <link rel="icon" href="img/favicon.png" type="image/png"/>
+    <script src="js/cluecumber-theme.js"></script>
+    {% include "../snippets/common_headers" %}
+    {% include "../snippets/css" %}
+    {% include "../snippets/js" %}
+</head>
+<body>
+{% include "macros/navigation-bar" %}
+<main class="container">
+    <div class="cluecumber-template">
+        <div class="row cluecumber-page-header-row">
+            <div class="cluecumber-col-12">
+                {% if headline != "" or _model.hasCustomParameters() %}
+                    <div class="cluecumber-page-intro">
+                        <div class="cluecumber-page-intro-title">
+                            {% if headline != "" %}
+                                <div class="cluecumber-page-headlines">
+                                    <h3>{{ headline }}</h3>
+                                    {% if preheadline != "" %}
+                                        <p class="cluecumber-preheadline">
+                                            <span data-toggle="tooltip" title="{{ subsubheadline }}">
+                                            {% if preheadlineLink != "" %}
+                                                <a href="{{ preheadlineLink }}">{{ preheadline }}</a>
+                                            {% else %}
+                                                {{ preheadline }}
+                                            {% endif %}
+                                            </span>
+                                        </p>
+                                    {% endif %}
+                                    {% if subheadline != "" %}
+                                        <p class="cluecumber-subheadline white-space-pre-wrap">{{ subheadline }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            <img src="img/logo.png" alt="Logo" class="cluecumber-logo"/>
+                        </div>
+                        {% if _model.hasCustomParameters() %}
+                            {% include "macros/custom-parameters-card" %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>

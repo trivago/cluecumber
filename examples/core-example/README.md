@@ -21,7 +21,7 @@ This example uses the default configuration for all options. You can add differe
 
 ## Run the project
 
-To run the project you need to have at least Java 11 and Maven 3.3.9 installed on your system.
+To run the project you need to have Java 17 and Maven 3.9.9 installed on your system.
 
 Just execute the `Main` class to see the report generation of Cluecumber in action.
 

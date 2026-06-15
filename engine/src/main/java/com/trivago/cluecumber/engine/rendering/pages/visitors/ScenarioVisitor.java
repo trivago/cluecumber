@@ -53,7 +53,7 @@ public class ScenarioVisitor implements PageVisitor {
      * The constructor for dependency injection.
      *
      * @param fileIO                      The {@link FileIO} instance.
-     * @param templateEngine              The Freemarker template engine.
+     * @param templateEngine              The Pebble template engine.
      * @param propertyManager             The {@link PropertyManager} instance.
      * @param allScenariosPageRenderer    The renderer for the scenario pages.
      * @param scenarioDetailsPageRenderer The renderer for scenario detail pages.
