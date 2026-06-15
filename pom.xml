@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <revision>4.0.0</revision>
+        <revision>4.0.1</revision>
         <maven.version>3.9.9</maven.version>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
