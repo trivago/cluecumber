@@ -549,7 +549,7 @@ __Note:__ If you don't pass this property, Cluecumber will ignore it and not sho
 
 ## Building
 
-Cluecumber requires Java >= 11 and Maven >= 3.9.9.
+Cluecumber requires Java >= 17 and Maven >= 3.9.9.
 It is available
 in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-maven&smo=true).
 

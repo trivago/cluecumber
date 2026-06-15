@@ -431,7 +431,7 @@ new CluecumberCore.Builder()
 
 ## Building
 
-Cluecumber requires Java >= 11.
+Cluecumber requires Java >= 17.
 It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core&smo=true)
 .
 
