@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.0.1] - 2026-06-15
+
+### Fixed
+
+* Layout bug on long scenario names with reruns
+
 ## [4.0.0] - 2026-06-15
 
 ### Added
