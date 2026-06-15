@@ -196,7 +196,6 @@ limitations under the License.
                 const chartConfig = JSON.parse(JSON.stringify(cluecumberChartConfig));
                 chartConfig.options = chartConfig.options || {};
                 const isPieChart = chartConfig.type === "pie";
-                const originalLegendClick = Chart.defaults.plugins.legend.onClick;
 
                 chartConfig.options.responsive = true;
                 if (isPieChart) {
@@ -239,13 +238,7 @@ limitations under the License.
                 chartConfig.options.plugins = chartConfig.options.plugins || {};
                 chartConfig.options.plugins.legend = chartConfig.options.plugins.legend || {};
                 chartConfig.options.plugins.legend.labels = chartConfig.options.plugins.legend.labels || {};
-                if (isPieChart) {
-                    chartConfig.options.plugins.legend.display = false;
-                }
-                chartConfig.options.plugins.legend.onClick = function (evt, legendItem, legend) {
-                    originalLegendClick.call(this, evt, legendItem, legend);
-                    toggleVisibilityByStatus(legendItem.text, !legendItem.hidden);
-                };
+                chartConfig.options.plugins.legend.display = false;
 
                 chartConfig.options.animation = false;
 
