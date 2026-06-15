@@ -255,11 +255,11 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
 
         // Return total runtime if no timestamps exist...
         if (earliestStartDateTime == null || latestEndDateTime == null) {
-            return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+            return RenderingUtils.convertNanosecondsToTotalTimeString(getTotalDuration());
         }
 
         // ...else return the calculated runtime.
-        return RenderingUtils.convertNanosecondsToTimeString(
+        return RenderingUtils.convertNanosecondsToTotalTimeString(
                 ChronoUnit.NANOS.between(earliestStartDateTime, latestEndDateTime)
         );
     }

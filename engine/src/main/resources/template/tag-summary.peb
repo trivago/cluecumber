@@ -63,8 +63,7 @@ limitations under the License.
                 <tbody>
                 {% for entry in tagResultCounts %}
                     <tr>
-                        <td class="cluecumber-align-left"><a
-                                    href="pages/tag-scenarios/tag_{{ entry.key.getUrlFriendlyName() }}.html">{{ entry.key.name }}</a></td>
+                        <td class="cluecumber-align-left">{{ common.tagLink(entry.key) }}</td>
                         <td class="cluecumber-align-center"><strong>{{ entry.value.total }}</strong></td>
                         <td class="cluecumber-align-center passedCell">{{ entry.value.passed }}</td>
                         <td class="cluecumber-align-center failedCell">{{ entry.value.failed }}</td>

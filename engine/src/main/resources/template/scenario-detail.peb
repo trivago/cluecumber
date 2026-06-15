@@ -47,22 +47,20 @@ limitations under the License.
             </ul>
             {% if element.tags is not empty %}
                 <hr>
-                {% for tag in element.tags %}
-                    <a href="pages/tag-scenarios/tag_{{ tag.getUrlFriendlyName() }}.html"
-                       class="btn-link" style="word-break: break-all;">{{ tag.name }}</a>
-                {% endfor %}
+                <div class="cluecumber-tags">
+                    {% for tag in element.tags %}
+                        {{ common.tagLink(tag) }}
+                    {% endfor %}
+                </div>
             {% endif %}
         {{ page.cardEnd() }}
 
         {{ page.cardStart("3", "Scenario Info", "", "cluecumber-card-centered") }}
             <li class="cluecumber-list-item">
-                {% if element.startTimestamp is not empty %}
-                    <b>Start</b><br>{{ element.startDateString }} {{ element.startTimeString }}<br>
-                {% endif %}
-                {% if element.startTimestamp is not empty %}
-                    <b>End</b><br>{{ element.endDateString }} {{ element.endTimeString }}<br>
-                {% endif %}
-                <b>Total</b><br>{{ element.returnTotalDurationString() }}
+                {% set timingStart = element.startTimestamp is not empty ? element.startDateString ~ ' ' ~ element.startTimeString : '' %}
+                {% set timingEnd = element.startTimestamp is not empty ? element.endDateString ~ ' ' ~ element.endTimeString : '' %}
+                {% set timingTotal = element.returnTotalDurationString() %}
+                {% include "macros/timing-info" %}
             </li>
             {% set numberOfChildren = element.getMultiRunChildren()|length %}
             {% if groupPreviousScenarioRuns and element.isMultiRunParent() %}

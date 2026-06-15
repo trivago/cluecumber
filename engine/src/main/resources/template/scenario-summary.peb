@@ -129,14 +129,11 @@ limitations under the License.
             <ul class="cluecumber-list">
                 {% set startDateTimeString = _model.returnStartDateTimeString() %}
                 <li class="cluecumber-list-item" data-cluecumber-item="total-start">
-                    {% if startDateTimeString is not empty %}
-                        <b>Start</b><br>{{ startDateTimeString }}<br>
-                    {% endif %}
                     {% set endDateTimeString = _model.returnEndDateTimeString() %}
-                    {% if endDateTimeString is not empty %}
-                        <b>End</b><br>{{ endDateTimeString }}<br>
-                    {% endif %}
-                    <b>Total</b><br>{{ totalDurationString }}
+                    {% set timingStart = startDateTimeString %}
+                    {% set timingEnd = endDateTimeString %}
+                    {% set timingTotal = totalDurationString %}
+                    {% include "macros/timing-info" %}
                 </li>
             </ul>
         {{ page.cardEnd() }}

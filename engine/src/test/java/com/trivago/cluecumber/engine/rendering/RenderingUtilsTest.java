@@ -21,6 +21,13 @@ public class RenderingUtilsTest {
     }
 
     @Test
+    public void convertNanosecondsToTotalTimeStringTest() {
+        assertEquals("0m 05s 000ms", RenderingUtils.convertNanosecondsToTotalTimeString(5_000_000_000L));
+        assertEquals("1h 30m 00s 000ms", RenderingUtils.convertNanosecondsToTotalTimeString(5_400_000_000_000L));
+        assertEquals("1d 2h 30m 05s", RenderingUtils.convertNanosecondsToTotalTimeString(95_405_000_000_000L));
+    }
+
+    @Test
     public void convertNanosecondsToMillisecondsTest() {
         long milliseconds = RenderingUtils.convertNanosecondsToMilliseconds(1234567890000L);
         assertEquals(milliseconds, 1234567L);

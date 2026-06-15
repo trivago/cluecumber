@@ -565,7 +565,7 @@ public class Element {
      * @return the time string.
      */
     public String returnTotalDurationString() {
-        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+        return RenderingUtils.convertNanosecondsToTotalTimeString(getTotalDuration());
     }
 
     /**

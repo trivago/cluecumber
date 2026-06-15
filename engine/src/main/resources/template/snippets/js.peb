@@ -181,7 +181,7 @@ limitations under the License.
             let cluecumberChartLastSize = {width: 0, height: 0};
             let cluecumberChartHasRendered = false;
 
-            function scheduleCluecumberChartRender() {
+            function scheduleCluecumberChartResize() {
                 clearTimeout(cluecumberChartResizeTimer);
                 cluecumberChartResizeTimer = setTimeout(renderCluecumberChart, 200);
             }
@@ -263,7 +263,11 @@ limitations under the License.
                     const width = holder.clientWidth;
                     const height = holder.clientHeight;
                     if (width <= 0 || height <= 0) {
-                        scheduleCluecumberChartRender();
+                        if (cluecumberChartHasRendered) {
+                            scheduleCluecumberChartResize();
+                        } else {
+                            requestAnimationFrame(renderCluecumberChart);
+                        }
                         return;
                     }
 
@@ -287,10 +291,10 @@ limitations under the License.
                 });
             }
 
-            scheduleCluecumberChartRender();
+            renderCluecumberChart();
             $(window).on('resize', function () {
                 if (cluecumberChartHasRendered) {
-                    scheduleCluecumberChartRender();
+                    scheduleCluecumberChartResize();
                 }
             });
             if (typeof ResizeObserver !== 'undefined') {
@@ -298,7 +302,7 @@ limitations under the License.
                 if (chartHolder) {
                     new ResizeObserver(function () {
                         if (cluecumberChartHasRendered) {
-                            scheduleCluecumberChartRender();
+                            scheduleCluecumberChartResize();
                         }
                     }).observe(chartHolder);
                 }

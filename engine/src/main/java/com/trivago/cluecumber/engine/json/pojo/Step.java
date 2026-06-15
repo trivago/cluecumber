@@ -285,7 +285,7 @@ public class Step extends ResultMatch {
      * @return The duration string.
      */
     public String returnTotalDurationString() {
-        return RenderingUtils.convertNanosecondsToTimeString(getTotalDuration());
+        return RenderingUtils.convertNanosecondsToTotalTimeString(getTotalDuration());
     }
 
     /**

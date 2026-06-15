@@ -58,6 +58,10 @@ limitations under the License.
     {% endfor %}
 {% endmacro %}
 
+{% macro tagLink(tag) %}
+    <a href="pages/tag-scenarios/tag_{{ tag.getUrlFriendlyName() }}.html" class="cluecumber-tag">{{ tag.name }}</a>
+{% endmacro %}
+
 {% macro reportTooltip(uri, description) %}
     {{ uri }}{% if description is not empty %}<br />{% endif %}{{ tooltipMultilineHtml(description) }}
 {% endmacro %}

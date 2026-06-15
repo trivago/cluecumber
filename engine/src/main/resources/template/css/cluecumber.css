@@ -438,6 +438,82 @@ h1, h2, h3, h4, h5 {
     padding-inline-start: 0;
 }
 
+.cluecumber-timing-info {
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.cluecumber-timing-stat dt {
+    margin: 0;
+    font-size: var(--cluecumber-font-size-small);
+    font-weight: 600;
+    color: var(--pico-muted-color);
+}
+
+.cluecumber-timing-stat dd {
+    margin: 0.15rem 0 0;
+}
+
+.cluecumber-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem;
+    align-items: flex-start;
+}
+
+.cluecumber-card-centered .cluecumber-tags {
+    justify-content: center;
+}
+
+.cluecumber-tag {
+    display: inline-block;
+    max-width: 100%;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    background-color: color-mix(in srgb, var(--pico-primary) 12%, var(--pico-background-color));
+    border: 1px solid color-mix(in srgb, var(--pico-primary) 24%, var(--pico-muted-border-color));
+    color: var(--pico-primary);
+    font-size: var(--cluecumber-font-size-small);
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+    text-align: center;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.cluecumber-tag:hover,
+.cluecumber-tag:focus-visible {
+    background-color: color-mix(in srgb, var(--pico-primary) 20%, var(--pico-background-color));
+    color: var(--pico-primary);
+    text-decoration: none;
+}
+
+[data-theme="light"] .cluecumber-tag {
+    color: var(--cluecumber-link);
+    background-color: color-mix(in srgb, var(--cluecumber-link) 10%, var(--pico-background-color));
+    border-color: color-mix(in srgb, var(--cluecumber-link) 22%, var(--pico-muted-border-color));
+}
+
+[data-theme="light"] .cluecumber-tag:hover,
+[data-theme="light"] .cluecumber-tag:focus-visible {
+    color: var(--cluecumber-link-hover);
+    background-color: color-mix(in srgb, var(--cluecumber-link) 16%, var(--pico-background-color));
+}
+
+[data-theme="dark"] .cluecumber-tag {
+    color: var(--cluecumber-link-dark);
+    background-color: color-mix(in srgb, var(--cluecumber-link-dark) 14%, var(--pico-background-color));
+    border-color: color-mix(in srgb, var(--cluecumber-link-dark) 30%, var(--pico-muted-border-color));
+}
+
+[data-theme="dark"] .cluecumber-tag:hover,
+[data-theme="dark"] .cluecumber-tag:focus-visible {
+    color: var(--cluecumber-link-dark);
+    background-color: color-mix(in srgb, var(--cluecumber-link-dark) 22%, var(--pico-background-color));
+}
+
 .cluecumber-card .cluecumber-list {
     margin: 0;
     padding: 0;
