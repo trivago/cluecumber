@@ -67,15 +67,16 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
-
                                                 {% if element.isMultiRunParent() %}
-                                                    <button type="button" class="cluecumber-exception-action secondary outline multiRunExpansionButton"
-                                                            data-toggle="collapse"
-                                                            aria-expanded="false"
-                                                            data-target="#multiRun_{{ element.scenarioIndex }}">Previous
-                                                        Runs
-                                                    </button>
+                                                    <div class="cluecumber-scenario-cell-header">
+                                                        <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
+                                                        <button type="button" class="cluecumber-exception-action secondary outline multiRunExpansionButton"
+                                                                data-toggle="collapse"
+                                                                aria-expanded="false"
+                                                                data-target="#multiRun_{{ element.scenarioIndex }}">Previous Runs</button>
+                                                    </div>
+                                                {% else %}
+                                                    <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
                                                 {% endif %}
 
                                                 {% if element.firstException is not empty %}

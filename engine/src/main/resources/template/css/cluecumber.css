@@ -735,18 +735,21 @@ h1, h2, h3, h4, h5 {
     background: transparent;
 }
 
-.multiRunExpansionButton {
+.cluecumber-scenario-cell-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.cluecumber-scenario-cell-header .cluecumber-scenario-link {
+    flex: 1;
+    min-width: 0;
+}
+
+.cluecumber-scenario-cell-header .multiRunExpansionButton {
+    flex-shrink: 0;
     margin-top: 0;
-}
-
-.cluecumber-table td:has(.multiRunExpansionButton) .multiRunExpansionButton {
-    float: right;
-    margin-left: 0.5rem;
-}
-
-.cluecumber-table td:has(.multiRunExpansionButton) .firstExceptionContainer,
-.cluecumber-table td:has(.multiRunExpansionButton) .multiRunChildren {
-    clear: both;
 }
 
 .multiRunChildren {
