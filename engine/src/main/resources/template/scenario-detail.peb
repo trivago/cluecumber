@@ -246,11 +246,15 @@ limitations under the License.
                             {% endif %}
                             {% if step.docString is not null and step.docString.value is not null %}
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
-                                    <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
-                                            class="cluecumber-exception-action secondary outline">
-                                        Copy
-                                    </button>
-                                    <pre class="cluecumber-muted cluecumber-text-small">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                    <div class="scenarioDocstring-body cluecumber-text-small">
+                                        <div class="exception-content">
+                                            <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                        </div>
+                                        <div class="exception-links-top">
+                                            <button type="button" class="cluecumber-exception-action secondary outline"
+                                                    onclick="copyText('step_{{ step.index }}_docstring_pre')">Copy</button>
+                                        </div>
+                                    </div>
                                 </div>
                             {% endif %}
                             {% set step = step %}{% include "macros/scenario-error-message" %}
@@ -348,11 +352,15 @@ limitations under the License.
                             {% endif %}
                             {% if step.docString is not null and step.docString.value is not null %}
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
-                                    <button onclick="copyText('step_{{ step.index }}_docstring')" type="button"
-                                            class="cluecumber-exception-action secondary outline">
-                                        Copy
-                                    </button>
-                                    <pre class="cluecumber-muted cluecumber-text-small">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                    <div class="scenarioDocstring-body cluecumber-text-small">
+                                        <div class="exception-content">
+                                            <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                        </div>
+                                        <div class="exception-links-top">
+                                            <button type="button" class="cluecumber-exception-action secondary outline"
+                                                    onclick="copyText('step_{{ step.index }}_docstring_pre')">Copy</button>
+                                        </div>
+                                    </div>
                                 </div>
                             {% endif %}
                             {% set step = step %}{% include "macros/scenario-error-message" %}
