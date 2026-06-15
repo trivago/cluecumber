@@ -7,22 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [4.0.0] - 2026-06-11
+## [4.0.0] - 2026-06-15
+
+### Added
+
+* Total duration strings now include hours and days when test runs exceed one hour or one day
 
 ### Changed
 
 * Replaced Freemarker with Pebble for HTML report templates (`.ftl` → `.peb`)
 * Upgraded Chart.js from 2.x to 4.4.9; chart configuration and rendering updated accordingly
-* Centralized dependency versions in the parent POM
 * Replaced Bootstrap with Pico CSS; report layout, spacing, and buttons refreshed
+* Better responsive design for mobile devices
+* Much better report page display performance
+* Native dark mode support with url parameter
 * Status icons are now SVG instead of webfont symbols
 * Bar chart legends removed for cleaner diagrams
-* DocString Copy button aligned with exception message layout
+* Tags are displayed as pill-style chips that wrap cleanly for long tag names
+* Start/End/Total timing information uses a compact stat layout on scenario detail and test suite summary pages
+* Charts render immediately on page load; resize debouncing applies only after the first render
+* Aligned button layout and positioning
+* Centralized dependency versions in the parent POM
 
 ### Fixed
 
 * Scenario overview table row hover on rows with Previous Runs
 * Steps list alignment and related spacing on scenario detail pages
+* Docstrings and nested step content indentation aligned with sub-section levels
 
 ### Removed
 
@@ -30,7 +41,7 @@ Back to [Readme](README.md).
 * Bootstrap, Popper, and related CSS/JS dependencies
 * gson-fire dependency; JSON post-processing and MimeType fallback now use plain Gson
 
-__Note:__ This is a major release. Custom Freemarker templates must be migrated to Pebble (`.peb`). Custom CSS targeting Bootstrap classes may need updating for Pico CSS / new markup.
+__Note:__ This is a major release. Custom CSS targeting Bootstrap classes may need updating for Pico CSS / new markup.
 
 ## [3.14.1] - 2026-04-16
 
