@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.0.2] - 2026-06-16
+
+### Fixed
+
+* Karate docstrings included raw characters instead of escaped ones
+* Data tables were assumed to have headers (#399)
+
 ## [4.0.1] - 2026-06-15
 
 ### Fixed
@@ -1131,6 +1138,10 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[4.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.2
+
+[4.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.1
 
 [4.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.0
 

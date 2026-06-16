@@ -246,7 +246,7 @@ limitations under the License.
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
                                     <div class="scenarioDocstring-body cluecumber-text-small">
                                         <div class="exception-content">
-                                            <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                            <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks()|raw }}</pre>
                                         </div>
                                         <div class="exception-links-top">
                                             <button type="button" class="cluecumber-exception-action secondary outline"
@@ -352,7 +352,7 @@ limitations under the License.
                                 <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
                                     <div class="scenarioDocstring-body cluecumber-text-small">
                                         <div class="exception-content">
-                                            <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks() }}</pre>
+                                            <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks()|raw }}</pre>
                                         </div>
                                         <div class="exception-links-top">
                                             <button type="button" class="cluecumber-exception-action secondary outline"

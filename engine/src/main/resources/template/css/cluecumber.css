@@ -1017,10 +1017,6 @@ table {
     white-space: nowrap;
 }
 
-.scenarioDataTable .table tr:first-child td {
-    font-weight: bold !important;
-}
-
 table.table-fit {
     width: 100%;
     margin-bottom: 0;
