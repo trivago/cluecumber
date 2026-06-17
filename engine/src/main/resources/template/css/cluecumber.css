@@ -259,6 +259,18 @@ h1, h2, h3, h4, h5 {
     margin: 0;
 }
 
+.cluecumber-multi-run-row {
+    margin-bottom: 1rem;
+}
+
+.cluecumber-multi-run-card .cluecumber-multi-run-detail {
+    margin-top: 0;
+    padding: 0;
+    border-left: none;
+    background-color: transparent;
+    border-radius: 0;
+}
+
 .cluecumber-page-headlines {
     margin-bottom: 0;
 }
@@ -425,6 +437,10 @@ h1, h2, h3, h4, h5 {
 .cluecumber-card.cluecumber-card-centered .cluecumber-list-item,
 .cluecumber-card.cluecumber-card-centered .alert {
     text-align: center;
+}
+
+.cluecumber-card-centered .cluecumber-multi-run-detail {
+    text-align: left;
 }
 
 .cluecumber-card.cluecumber-card-centered button {
@@ -752,8 +768,90 @@ h1, h2, h3, h4, h5 {
     margin-top: 0;
 }
 
-.multiRunChildren {
-    margin-top: 1rem;
+.cluecumber-scenario-cell-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.cluecumber-run-label {
+    color: var(--pico-muted-color);
+}
+
+.cluecumber-run-badge {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    border-radius: var(--pico-border-radius);
+    background-color: color-mix(in srgb, var(--pico-muted-color) 12%, var(--pico-background-color));
+    border: 1px solid var(--pico-muted-border-color);
+    color: var(--pico-muted-color);
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.multiRunChildren,
+.cluecumber-multi-run-detail {
+    margin-top: 0.75rem;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+    border-left: 3px solid var(--pico-muted-border-color);
+    background-color: color-mix(in srgb, var(--pico-muted-color) 6%, var(--pico-background-color));
+    border-radius: 0 var(--pico-border-radius) var(--pico-border-radius) 0;
+}
+
+.cluecumber-multi-run-item-current .cluecumber-multi-run-item-header {
+    font-weight: 600;
+}
+
+.cluecumber-multi-run-summary {
+    margin: 0;
+}
+
+.cluecumber-multi-run-list {
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cluecumber-multi-run-item {
+    list-style: none;
+}
+
+.cluecumber-multi-run-detail .cluecumber-run-label {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.cluecumber-multi-run-item-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+}
+
+.cluecumber-multi-run-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.cluecumber-card-centered .cluecumber-multi-run-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cluecumber-multi-run-link {
+    word-break: break-word;
 }
 
 /* --- 8. Exceptions --- */
@@ -786,6 +884,15 @@ h1, h2, h3, h4, h5 {
     padding: 0.35rem 0.5rem 0.35rem 0.65rem;
     margin-top: 0.5rem;
     box-sizing: border-box;
+}
+
+[data-theme="dark"] .firstException {
+    color: var(--pico-color);
+    background-color: color-mix(in srgb, var(--failed-color, #fc7180) 16%, var(--pico-background-color));
+}
+
+[data-theme="dark"] .firstException a {
+    color: var(--cluecumber-link-dark);
 }
 
 .table-row-skipped .firstException {

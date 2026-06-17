@@ -27,6 +27,14 @@ limitations under the License.
 {% set preheadlineLink = "pages/feature-scenarios/feature_" ~ element.featureIndex ~ ".html" %}
 {% include "macros/page-start" %}
 
+    {% if groupPreviousScenarioRuns and (element.isMultiRunParent() or element.isMultiRunChild()) %}
+        <div class="row cluecumber-multi-run-row">
+            {{ page.cardStart("12", "Run History", "", "cluecumber-multi-run-card") }}
+                {% include "macros/scenario-multi-run-info" %}
+            {{ page.cardEnd() }}
+        </div>
+    {% endif %}
+
     <div class="row" id="scenario-detail">
         {{ page.cardStart("6", "Step Results", "", "") }}
             {{ page.graph() }}
@@ -62,37 +70,6 @@ limitations under the License.
                 {% set timingTotal = element.returnTotalDurationString() %}
                 {% include "macros/timing-info" %}
             </li>
-            {% set numberOfChildren = element.getMultiRunChildren()|length %}
-            {% if groupPreviousScenarioRuns and element.isMultiRunParent() %}
-                <hr>
-                <div class="alert alert-secondary" role="alert">
-                    Final of {{ numberOfChildren + 1 }} {{ common.pluralizeFn("run", numberOfChildren + 1) }}, previous:
-                    <ol style="list-style: none; padding: 0; margin: 0;" reversed>
-                        {% for childElement in element.getMultiRunChildren() %}
-                            <li>
-                                <a href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html"
-                                   style="word-break: break-all">
-                                    {{ childElement.startDateString }}, {{ childElement.startTimeString }}
-                                    {{ common.status(childElement.status.statusString) }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ol>
-                </div>
-            {% endif %}
-            {% if groupPreviousScenarioRuns and element.isMultiRunChild() %}
-                <hr>
-                <div class="alert alert-secondary" role="alert">
-                    This is part
-                    of {{ element.getMultiRunParent().getMultiRunChildren()|length + 1 }}
-                    {{ common.pluralizeFn("run", element.getMultiRunParent().getMultiRunChildren()|length + 1) }}.
-                    <br>Latest: <a
-                            href="pages/scenario-detail/scenario_{{ element.getMultiRunParent().scenarioIndex }}.html">
-                        {{ element.getMultiRunParent().startDateString }}, {{ element.getMultiRunParent().startTimeString }}
-                        {{ common.status(element.getMultiRunParent().status.statusString) }}
-                    </a>
-                </div>
-            {% endif %}
 
             {% if element.hasSubSections() %}
                 <button class="secondary outline" type="button" id="sub-sections-button"

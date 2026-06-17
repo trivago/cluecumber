@@ -1,0 +1,60 @@
+{% if element.isMultiRunParent() %}
+    {% set latestRun = element %}
+{% else %}
+    {% set latestRun = element.getMultiRunParent() %}
+{% endif %}
+{% set totalRuns = latestRun.getMultiRunChildren()|length + 1 %}
+<div class="cluecumber-multi-run-detail">
+    {% if element.isMultiRunParent() %}
+        <p class="cluecumber-run-label cluecumber-text-small">Latest run · {{ totalRuns }} of {{ totalRuns }} {{ common.status(element.status.statusString) }}</p>
+        <p class="cluecumber-multi-run-summary cluecumber-text-small cluecumber-muted">This scenario ran {{ totalRuns }} {% if totalRuns == 1 %}time{% else %}times{% endif %}. Earlier attempts are listed below, newest first.</p>
+        <ol class="cluecumber-multi-run-list">
+            {% for childElement in latestRun.getMultiRunChildren() %}
+                {% set runNumber = loop.revindex + 1 %}
+                <li class="cluecumber-multi-run-item">
+                    <div class="cluecumber-multi-run-item-header">
+                        <span class="cluecumber-run-badge cluecumber-text-small">Run {{ runNumber }} of {{ totalRuns }}</span>
+                        <div class="cluecumber-multi-run-item-meta">
+                            <a class="cluecumber-multi-run-link" href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html">{{ childElement.startDateString }}, {{ childElement.startTimeString }}</a>
+                            {{ common.status(childElement.status.statusString) }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        {% for childElement in latestRun.getMultiRunChildren() %}
+            {% if childElement.scenarioIndex == element.scenarioIndex %}
+                <p class="cluecumber-run-label cluecumber-text-small">Run {{ loop.revindex + 1 }} of {{ totalRuns }} {{ common.status(element.status.statusString) }}</p>
+            {% endif %}
+        {% endfor %}
+        <p class="cluecumber-multi-run-summary cluecumber-text-small cluecumber-muted">This scenario ran {{ totalRuns }} {% if totalRuns == 1 %}time{% else %}times{% endif %}. You are viewing an earlier attempt.</p>
+        <ol class="cluecumber-multi-run-list">
+            <li class="cluecumber-multi-run-item">
+                <div class="cluecumber-multi-run-item-header">
+                    <span class="cluecumber-run-badge cluecumber-text-small">Latest · run {{ totalRuns }} of {{ totalRuns }}</span>
+                    <div class="cluecumber-multi-run-item-meta">
+                        <a class="cluecumber-multi-run-link" href="pages/scenario-detail/scenario_{{ latestRun.scenarioIndex }}.html">{{ latestRun.startDateString }}, {{ latestRun.startTimeString }}</a>
+                        {{ common.status(latestRun.status.statusString) }}
+                    </div>
+                </div>
+            </li>
+            {% for childElement in latestRun.getMultiRunChildren() %}
+                {% set runNumber = loop.revindex + 1 %}
+                <li class="cluecumber-multi-run-item{% if childElement.scenarioIndex == element.scenarioIndex %} cluecumber-multi-run-item-current{% endif %}">
+                    <div class="cluecumber-multi-run-item-header">
+                        <span class="cluecumber-run-badge cluecumber-text-small">Run {{ runNumber }} of {{ totalRuns }}</span>
+                        <div class="cluecumber-multi-run-item-meta">
+                            {% if childElement.scenarioIndex == element.scenarioIndex %}
+                                <span class="cluecumber-multi-run-link">{{ childElement.startDateString }}, {{ childElement.startTimeString }}</span>
+                            {% else %}
+                                <a class="cluecumber-multi-run-link" href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html">{{ childElement.startDateString }}, {{ childElement.startTimeString }}</a>
+                            {% endif %}
+                            {{ common.status(childElement.status.statusString) }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+</div>

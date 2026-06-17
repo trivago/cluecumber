@@ -68,64 +68,44 @@
                                             </td>
                                             <td>
                                                 {% if element.isMultiRunParent() %}
+                                                    {% set totalRuns = element.getMultiRunChildren()|length + 1 %}
+                                                    {% set previousRuns = element.getMultiRunChildren()|length %}
                                                     <div class="cluecumber-scenario-cell-header">
-                                                        <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
+                                                        <div class="cluecumber-scenario-cell-title">
+                                                            <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
+                                                            <span class="cluecumber-run-label cluecumber-text-small">Latest run · {{ totalRuns }} of {{ totalRuns }} {{ common.status(element.status.statusString) }}</span>
+                                                        </div>
                                                         <button type="button" class="cluecumber-exception-action secondary outline multiRunExpansionButton"
                                                                 data-toggle="collapse"
                                                                 aria-expanded="false"
-                                                                data-target="#multiRun_{{ element.scenarioIndex }}">Previous Runs</button>
+                                                                data-target="#multiRun_{{ element.scenarioIndex }}">{{ previousRuns }} earlier {% if previousRuns == 1 %}run{% else %}runs{% endif %}</button>
                                                     </div>
                                                 {% else %}
                                                     <a class="cluecumber-scenario-link" href="pages/scenario-detail/scenario_{{ element.scenarioIndex }}.html">{{ element.name }}</a>
                                                 {% endif %}
 
                                                 {% if element.firstException is not empty %}
-                                                    <div class="firstExceptionContainer">
-                                                        <div class="firstException exc-summary cluecumber-text-small">
-                                                            <div class="exception-content">
-                                                                <pre class="exception-pre">{{ element.firstExceptionSummary|raw }}</pre>
-                                                            </div>
-                                                            <div class="exception-links-top">
-                                                                <button type="button" class="cluecumber-exception-action secondary outline"
-                                                                        data-toggle="collapse" data-target="#exc_{{ element.scenarioIndex }}"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="exc_{{ element.scenarioIndex }}">More</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="collapse {{ expandErrorMessages ? "show" : "" }}" id="exc_{{ element.scenarioIndex }}">
-                                                            <div class="firstException firstException-expanded cluecumber-text-small">
-                                                                <div class="exception-content">
-                                                                    <pre class="exception-pre"
-                                                                         id="exc_pre_{{ element.scenarioIndex }}">{{ element.firstException|raw }}</pre>
-                                                                </div>
-                                                                <div class="exception-links-top">
-                                                                    <button type="button" class="cluecumber-exception-action secondary outline"
-                                                                            data-toggle="collapse" data-target="#exc_{{ element.scenarioIndex }}"
-                                                                            aria-expanded="true"
-                                                                            aria-controls="exc_{{ element.scenarioIndex }}">Less</button>
-                                                                    <button type="button" class="cluecumber-exception-action secondary outline"
-                                                                            onclick="copyText('exc_pre_{{ element.scenarioIndex }}')">Copy</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {% set exceptionElement = element %}
+                                                    {% include "macros/scenario-exception-overview" %}
                                                 {% endif %}
                                                 {% if element.isMultiRunParent() %}
                                                     <div id="multiRun_{{ element.scenarioIndex }}"
                                                          class="multiRunChildren collapse">
-                                                        <ol type="a" reversed>
+                                                        <p class="cluecumber-multi-run-summary cluecumber-text-small cluecumber-muted">This scenario ran {{ totalRuns }} {% if totalRuns == 1 %}time{% else %}times{% endif %}. Earlier attempts are listed below, newest first.</p>
+                                                        <ol class="cluecumber-multi-run-list">
                                                             {% for childElement in element.getMultiRunChildren() %}
-                                                                <li>
-                                                                    <a href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html"
-                                                                       style="word-break: break-all">Previous run from
-                                                                        {{ childElement.startDateString }}
-                                                                        , {{ childElement.startTimeString }}
+                                                                {% set runNumber = loop.revindex + 1 %}
+                                                                <li class="cluecumber-multi-run-item">
+                                                                    <div class="cluecumber-multi-run-item-header">
+                                                                        <span class="cluecumber-run-badge cluecumber-text-small">Run {{ runNumber }} of {{ totalRuns }}</span>
+                                                                        <a class="cluecumber-multi-run-link"
+                                                                           href="pages/scenario-detail/scenario_{{ childElement.scenarioIndex }}.html">
+                                                                            {{ childElement.startDateString }}, {{ childElement.startTimeString }}
+                                                                        </a>
                                                                         {{ common.status(childElement.status.statusString) }}
-                                                                    </a>
-                                                                    {% if childElement.firstExceptionSummary != "" %}
-                                                                        <p class="firstException cluecumber-text-small cluecumber-muted"
-                                                                           style="word-break: break-word">{{ childElement.firstExceptionSummary|raw }}</p>
-                                                                    {% endif %}
+                                                                    </div>
+                                                                    {% set exceptionElement = childElement %}
+                                                                    {% include "macros/scenario-exception-overview" %}
                                                                 </li>
                                                             {% endfor %}
                                                         </ol>
@@ -133,6 +113,9 @@
                                                 {% endif %}
                                             </td>
                                             <td class="cluecumber-align-center cluecumber-text-small cluecumber-datetime" data-order="{{ element.startTimestamp }}">
+                                                {% if element.isMultiRunParent() %}
+                                                    <span class="cluecumber-run-badge cluecumber-text-small">Latest</span><br>
+                                                {% endif %}
                                                 {{ element.startDateString }}<br>{{ element.startTimeString }}
                                             </td>
                                             <td class="cluecumber-align-center cluecumber-text-small cluecumber-duration" data-order="{{ element.totalDuration }}">

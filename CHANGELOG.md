@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.1.0] - UNRELEASED
+
+### Fixed
+
+* Contrast of error messages in dark mode (#404)
+
+### Added
+
+* New panel for all previous runs of a scenario above the scenario details
+
+### Changed
+
+* Previous run exceptions are now behaving like their parent scenarios (#405)
+* Previous run display shows more information and is more concise
+* Updated Sonatype plugin to `0.11.0`
+
 ## [4.0.2] - 2026-06-16
 
 ### Fixed
@@ -1138,6 +1154,8 @@ the core component is now the reporting engine that is the base for other forms 
 ## [0.0.2] - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
+
+[4.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.1.0
 
 [4.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.2
 

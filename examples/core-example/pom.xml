@@ -6,7 +6,7 @@
 
     <groupId>blog.softwaretester</groupId>
     <artifactId>core-example</artifactId>
-    <version>4.0.2</version>
+    <version>4.1.0</version>
     <packaging>jar</packaging>
 
     <properties>
