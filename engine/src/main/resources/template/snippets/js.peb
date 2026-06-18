@@ -309,21 +309,6 @@ limitations under the License.
             }
             {% endif %}
 
-            if ({{ expandBeforeAfterHooks ? "true" : "false" }}) {
-                document.querySelector("[data-cluecumber-item='before-after-hooks-button']")?.click();
-            }
-            if ({{ expandStepHooks ? "true" : "false" }}) {
-                document.querySelector("[data-cluecumber-item='step-hooks-button']")?.click();
-            }
-            if ({{ expandDocStrings ? "true" : "false" }}) {
-                document.querySelectorAll('.scenarioDocstring').forEach(function (el) {
-                    el.classList.add('show');
-                });
-            }
-            if ({{ expandPreviousScenarioRuns ? "true" : "false" }}) {
-                document.querySelector("[data-cluecumber-item='multi-run-button']")?.click();
-            }
-
             updateDarkLightModeButton(document.documentElement.getAttribute('data-theme') === 'dark');
 
             const darkModeSwitch = document.getElementById('dark-light-mode-switch');

@@ -11,6 +11,7 @@ Back to [Readme](README.md).
 
 ### Fixed
 
+* `expandBeforeAfterHooks` setting was ignored
 * Contrast of error messages in dark mode (#404)
 
 ### Added

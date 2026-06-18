@@ -120,8 +120,8 @@ limitations under the License.
             {% if _model.hasMultiRunChildren() %}
                 <hr>
                 <button id="multiRunButton" class="secondary outline" type="button" data-toggle="collapse"
-                        aria-expanded="false" data-cluecumber-item="multi-run-button"
-                        data-target=".multiRunChildren">Show {{ totalNumberOfMultiRunChildren }} Previous Runs
+                        aria-expanded="{{ expandPreviousScenarioRuns ? 'true' : 'false' }}" data-cluecumber-item="multi-run-button"
+                        data-target=".multiRunChildren">{{ expandPreviousScenarioRuns ? 'Hide' : 'Show' }} {{ totalNumberOfMultiRunChildren }} Previous Runs
                 </button>
             {% endif %}
         {{ page.cardEnd() }}

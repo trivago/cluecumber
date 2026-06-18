@@ -220,7 +220,7 @@ limitations under the License.
                                 </div>
                             {% endif %}
                             {% if step.docString is not null and step.docString.value is not null %}
-                                <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
+                                <div class="scenarioDocstring collapse {{ expandDocStrings ? 'show' : '' }}" id="step_{{ step.index }}_docstring">
                                     <div class="scenarioDocstring-body cluecumber-text-small">
                                         <div class="exception-content">
                                             <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks()|raw }}</pre>
@@ -326,7 +326,7 @@ limitations under the License.
                                 </div>
                             {% endif %}
                             {% if step.docString is not null and step.docString.value is not null %}
-                                <div class="scenarioDocstring collapse" id="step_{{ step.index }}_docstring">
+                                <div class="scenarioDocstring collapse {{ expandDocStrings ? 'show' : '' }}" id="step_{{ step.index }}_docstring">
                                     <div class="scenarioDocstring-body cluecumber-text-small">
                                         <div class="exception-content">
                                             <pre class="cluecumber-muted" id="step_{{ step.index }}_docstring_pre">{{ step.docString.returnWithClickableLinks()|raw }}</pre>
@@ -379,6 +379,25 @@ limitations under the License.
 
     <script>
         let classState = {};
+
+        {% if element.hasHooks() and element.hasHooksWithContent() %}
+        classState['scenarioHook'] = {{ expandBeforeAfterHooks ? "true" : "false" }};
+        {% endif %}
+        {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
+        classState['.stepHook'] = {{ expandStepHooks ? "true" : "false" }};
+        {% endif %}
+        {% if element.hasSubSections() %}
+        classState['.scenarioSubSection'] = {{ expandSubSections ? "true" : "false" }};
+        {% endif %}
+        {% if element.hasDocStrings() %}
+        classState['.scenarioDocstring'] = {{ expandDocStrings ? "true" : "false" }};
+        {% endif %}
+        {% if element.hasAttachments() %}
+        classState['scenarioAttachment'] = {{ expandAttachments ? "true" : "false" }};
+        {% endif %}
+        {% if element.hasOutputs() %}
+        classState['scenarioOutputs'] = {{ expandOutputs ? "true" : "false" }};
+        {% endif %}
 
         function toggleHooks(className, defaultValue) {
             if (classState[className] === undefined) {
