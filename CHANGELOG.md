@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [4.1.0] - UNRELEASED
+## [4.1.0] - 2026-06-18
 
 ### Fixed
 
@@ -20,6 +20,7 @@ Back to [Readme](README.md).
 
 ### Changed
 
+* Navigation links are shortened to fit on smaller screens
 * Previous run exceptions are now behaving like their parent scenarios (#405)
 * Previous run display shows more information and is more concise
 * Updated Sonatype plugin to `0.11.0`
