@@ -31,14 +31,14 @@
                         </a>
                     {% elseif attachment.mimeType == "HTML" %}
                         <iframe src="attachments/{{ attachment.filename }}"
-                                srcdoc="{{ attachment.decodedData }}" width="100%"
+                                srcdoc="{{ attachment.decodedData|raw }}" width="100%"
                                 class="embedded-html is-pending-size"></iframe>
                     {% elseif isTextAttachment %}
-                        <pre class="embedding-content cluecumber-text-small embedded-txt">{{ attachment.decodedData }}</pre>
+                        <pre class="embedding-content cluecumber-text-small embedded-txt">{{ attachment.decodedData|raw }}</pre>
                     {% elseif attachment.mimeType == "MP4" %}
                         {% if attachment.externalContent %}
                             <video controls="controls" class="embedded-mp4">
-                                <source src="{{ attachment.decodedData }}" type="video/mp4"/>
+                                <source src="{{ attachment.decodedData|raw }}" type="video/mp4"/>
                             </video>
                         {% endif %}
                     {% elseif attachment.mimeType == "UNKNOWN" %}

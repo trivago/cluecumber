@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [4.1.0] - 2026-06-18
+## [4.2.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.2.0) - UNRELEASED
+
+### Fixed
+
+* Wrong encoding of text attachments (#407)
+* 
+
+## [4.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.1.0) - 2026-06-18
 
 ### Fixed
 
@@ -25,20 +32,20 @@ Back to [Readme](README.md).
 * Previous run display shows more information and is more concise
 * Updated Sonatype plugin to `0.11.0`
 
-## [4.0.2] - 2026-06-16
+## [4.0.2](https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.2) - 2026-06-16
 
 ### Fixed
 
 * Karate docstrings included raw characters instead of escaped ones
 * Data tables were assumed to have headers (#399)
 
-## [4.0.1] - 2026-06-15
+## [4.0.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.1) - 2026-06-15
 
 ### Fixed
 
 * Layout bug on long scenario names with reruns
 
-## [4.0.0] - 2026-06-15
+## [4.0.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.0) - 2026-06-15
 
 ### Added
 
@@ -74,7 +81,7 @@ Back to [Readme](README.md).
 
 __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may need updating for Pico CSS / new markup.
 
-## [3.14.1] - 2026-04-16
+## [3.14.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.1) - 2026-04-16
 
 ### Fixed
 
@@ -85,7 +92,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Reformatted feature tooltips
 
-## [3.14.0] - 2026-03-30
+## [3.14.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.0) - 2026-03-30
 
 ### Added
 
@@ -96,7 +103,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * All charts now have the same height for consistency
 
-## [3.13.0] - 2026-03-17
+## [3.13.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.13.0) - 2026-03-17
 
 ### Added
 
@@ -119,7 +126,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
     * Mockito `5.23.0`
     * Dagger `2.59.2`
 
-## [3.12.0] - 2025-11-03
+## [3.12.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.12.0) - 2025-11-03
 
 ### Added
 
@@ -145,7 +152,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Updated Maven Surefire plugin to `3.5.4`
 * Updated Maven Flatten plugin to `1.7.3`
 
-## [3.11.2] - 2025-05-27
+## [3.11.2](https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.2) - 2025-05-27
 
 ### Fixed
 
@@ -168,7 +175,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * OpenPojo dependency and tests
 
-## [3.11.1] - 2025-04-25
+## [3.11.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.1) - 2025-04-25
 
 ### Fixed
 
@@ -182,7 +189,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Updated Dagger to `2.56.1`
 * Downgraded Maven wrapper to stable version `3.9.9` for release process
 
-## [3.11.0] - 2025-02-19
+## [3.11.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.0) - 2025-02-19
 
 ### Added
 
@@ -202,7 +209,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Correct pluralization for zero elements everywhere
 
-## [3.10.0] - 2025-01-06
+## [3.10.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.10.0) - 2025-01-06
 
 ### Added
 
@@ -224,7 +231,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * JUnit Jupiter updated to `5.11.4`
 * Mockito updated to `5.15.2`
 
-## [3.9.0] - 2024-11-05
+## [3.9.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.9.0) - 2024-11-05
 
 ### Fixed
 
@@ -240,19 +247,19 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Allow report generation even if `<customParametersFile>` defined file does not exist (#357)
 * Updated JUnit Jupiter, Mockito, JavaDoc and GPG plugins
 
-## [3.8.2] - 2024-10-30
+## [3.8.2](https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.2) - 2024-10-30
 
 ### Added
 
 * Dark mode
 
-## [3.8.1] - 2024-09-12
+## [3.8.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.1) - 2024-09-12
 
 ### Changed
 
 * Much safer detection of multi-run scenarios when using `groupPreviousScenarioRuns`
 
-## [3.8.0] - 2024-09-06
+## [3.8.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.0) - 2024-09-06
 
 ### Fixed
 
@@ -275,25 +282,25 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Build and test process uses Maven 4 wrapper
 * Aligned all dependency versions to non alpha/beta versions
 
-## [3.7.1] - 2024-07-12
+## [3.7.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.7.1) - 2024-07-12
 
 ### Fixed
 
 * `failedScenariosOnPendingOrUndefinedSteps` setting is ignored (#341)
 
-## [3.7.0] - 2024-07-09
+## [3.7.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.7.0) - 2024-07-09
 
 ### Added
 
 * Custom favicon definition through property (#340)
 
-## [3.6.3] - 2024-06-10
+## [3.6.3](https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.3) - 2024-06-10
 
 ### Changed
 
 * Cached slow method results to speed up report generation (#343), contributed by @simonstratmann
 
-## [3.6.2] - 2024-03-25
+## [3.6.2](https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.2) - 2024-03-25
 
 ### Fixed
 
@@ -304,7 +311,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * More pleasant layout of scenario times and previous test runs
 
-## [3.6.1] - 2024-03-15
+## [3.6.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.1) - 2024-03-15
 
 ### Fixed
 
@@ -315,7 +322,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Toggle buttons for all steps, hooks, attachments, outputs and sub sections have now specific "Hide" and "Show" labels
 
-## [3.6.0] - 2024-03-14
+## [3.6.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.0) - 2024-03-14
 
 ### Fixed
 
@@ -337,7 +344,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Re-arranged summary and timing information
 * Updated dependencies
 
-## [3.5.1] - 2023-11-13
+## [3.5.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.1) - 2023-11-13
 
 ### Changed
 
@@ -349,14 +356,14 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Grouping scenarios crashed Cluecumber when no start time existed
 
-## [3.5.0] - 2023-11-02
+## [3.5.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.0) - 2023-11-02
 
 ### Added
 
 * `groupPreviousScenarioRuns` mode for a compact view when there are multiple runs of the same scenario [#245]
 * `expandPreviousScenarioRuns` to set default state of expanded or collapsed of the previous runs of the same scenario
 
-## [3.4.0] - 2023-08-10
+## [3.4.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.4.0) - 2023-08-10
 
 ### Fixed
 
@@ -369,13 +376,13 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Charts show small bars for steps with a time of 0 instead of none at all
 * Before and after hooks are not shown in the step charts anymore
 
-## [3.3.1] - 2023-08-08
+## [3.3.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.3.1) - 2023-08-08
 
 ### Fixed
 
 * Wrong relative links from bar charts to detail pages
 
-## [3.3.0] - 2023-08-07
+## [3.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.3.0) - 2023-08-07
 
 ### Fixed
 
@@ -386,7 +393,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Charts in "All Tags", "All Features" and "All Steps" can now be clicked and redirect to the according detail page
 
-## [3.2.2] - 2023-05-12
+## [3.2.2](https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.2) - 2023-05-12
 
 ### Fixed
 
@@ -396,7 +403,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Updated dependencies
 
-## [3.2.1] - 2023-03-21
+## [3.2.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.1) - 2023-03-21
 
 ### Fixed
 
@@ -406,7 +413,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Code clean-up
 
-## [3.2.0] - 2023-03-10
+## [3.2.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.0) - 2023-03-10
 
 ### Changed
 
@@ -418,7 +425,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 
 * Full javadoc coverage
 
-## [3.1.0] - 2023-01-17
+## [3.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.1.0) - 2023-01-17
 
 ### Added
 
@@ -435,13 +442,13 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Clearer custom parameters box
 * Tags are now displayed as buttons
 
-## [3.0.2] - 2022-12-22
+## [3.0.2](https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.2) - 2022-12-22
 
 ### Fixed
 
 * Exception message for non-given step was not shown in overview (#302)
 
-## [3.0.1] - 2022-12-15
+## [3.0.1](https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.1) - 2022-12-15
 
 ### Fixed
 
@@ -453,7 +460,7 @@ __Note:__ This is a major release. Custom CSS targeting Bootstrap classes may ne
 * Changed alignment to top for tables
 * Changed error message display to dark red
 
-## [3.0.0] - 2022-12-03
+## [3.0.0](https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.0) - 2022-12-03
 
 This marks a new chapter in Cluecumber development.
 
@@ -473,32 +480,32 @@ the core component is now the reporting engine that is the base for other forms 
 
 * New example projects for Cluecumber Core and Cluecumber Maven.
 
-## [2.9.4] - 2022-10-19
+## [2.9.4](https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4) - 2022-10-19
 
 ### Changed
 
 * Using new JQuery because of appsec vulnerability (#294)
 
-## [2.9.3] - 2022-09-29
+## [2.9.3](https://github.com/trivago/cluecumber-report-plugin/tree/2.9.3) - 2022-09-29
 
 ### Added
 
 * Custom parameter values starting with `./`, `../` or `#` are now interpreted as relative URLs
 * Custom navigation links without values are now hidden
 
-## [2.9.2] - 2022-09-27
+## [2.9.2](https://github.com/trivago/cluecumber-report-plugin/tree/2.9.2) - 2022-09-27
 
 ### Fixed
 
 * #293 - unescaped html in exception messages
 
-## [2.9.1] - 2022-09-26
+## [2.9.1](https://github.com/trivago/cluecumber-report-plugin/tree/2.9.1) - 2022-09-26
 
 ### Added
 
 * Display error messages on scenario overview pages
 
-## [2.9.0] - 2022-09-24
+## [2.9.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.9.0) - 2022-09-24
 
 ### Added
 
@@ -517,7 +524,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Reworked navigation for future improvements
 * #280 - moved deployment to GitHub actions
 
-## [2.8.0] - 2022-01-18
+## [2.8.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.8.0) - 2022-01-18
 
 ### Added
 
@@ -526,13 +533,13 @@ the core component is now the reporting engine that is the base for other forms 
 * New `expandAttachments` option to expand or collapse attachments by default
 * Attachments are collapsed by default and can be expanded (#279, base implementation contributed by beirtipol)
 
-## [2.7.1] - 2021-11-05
+## [2.7.1](https://github.com/trivago/cluecumber-report-plugin/tree/2.7.1) - 2021-11-05
 
 ### Changed
 
 * Updated dependencies
 
-## [2.7.0] - 2021-05-11
+## [2.7.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.7.0) - 2021-05-11
 
 ### Added
 
@@ -542,13 +549,13 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Updated dependencies
 
-## [2.6.1] - 2020-11-27
+## [2.6.1](https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1) - 2020-11-27
 
 ### Fixed
 
 * After hooks with content were not displayed anymore
 
-## [2.6.0] - 2020-11-27
+## [2.6.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.6.0) - 2020-11-27
 
 ### Fixed
 
@@ -563,7 +570,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Only hooks with outputs are considered and displayed in the scenario detail pages (#211)
 * Various design cleanups
 
-## [2.5.0] - 2020-05-11
+## [2.5.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.5.0) - 2020-05-11
 
 ### Added
 
@@ -575,7 +582,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Feature URL is displayed on scenario summary and feature summary pages (#233)
 * Automatic redirect to scenario detail page if only one scenario exists
 
-## [2.4.0] - 2020-05-04
+## [2.4.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.4.0) - 2020-05-04
 
 ### Added
 
@@ -586,7 +593,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Cluecumber did not consider line breaks in scenario outputs (#244)
 * Cluecumber failed on missing json files (#247)
 
-## [2.3.4] - 2020-02-11
+## [2.3.4](https://github.com/trivago/cluecumber-report-plugin/tree/2.3.4) - 2020-02-11
 
 ### Added
 
@@ -597,14 +604,14 @@ the core component is now the reporting engine that is the base for other forms 
 * Unknown steps are now reported as skipped by default (unless `failScenariosOnPendingOrUndefinedSteps` is set to
   true) (#236)
 
-## [2.3.3] - 2020-01-27
+## [2.3.3](https://github.com/trivago/cluecumber-report-plugin/tree/2.3.3) - 2020-01-27
 
 ### Fixed
 
 * Broken links on special characters in tabs (#231)
 * Before hook attachments of legacy Cucumber versions were ignored and caused rendering errors (#323)
 
-## [2.3.2] - 2020-01-23
+## [2.3.2](https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2) - 2020-01-23
 
 ### Fixed
 
@@ -614,13 +621,13 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Explicit html element ids for better custom css styling (#228, contributed by Labouh)
 
-## [2.3.1] - 2019-10-15
+## [2.3.1](https://github.com/trivago/cluecumber-report-plugin/tree/2.3.1) - 2019-10-15
 
 ### Fixed
 
 * Chart y axis step size in scenario view
 
-## [2.3.0] - 2019-10-14
+## [2.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.3.0) - 2019-10-14
 
 ### Added
 
@@ -635,7 +642,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Chart y axis step size adapts to displayed values
 
-## [2.2.0] - 2019-07-17
+## [2.2.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0) - 2019-07-17
 
 ### Added
 
@@ -655,7 +662,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Wrong y axis scale labels in stacked bar charts
 * Missing `All Features` navigation link
 
-## [2.1.0] - 2019-06-25
+## [2.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0) - 2019-06-25
 
 ### Added
 
@@ -671,7 +678,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Refined navigation (#177)
 * Increased max report width
 
-## [2.0.1] - 2019-06-15
+## [2.0.1](https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1) - 2019-06-15
 
 ### Fixed
 
@@ -682,7 +689,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Better error messages for missing files
 
-## [2.0.0] - 2019-06-14
+## [2.0.0](https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0) - 2019-06-14
 
 ### Added
 
@@ -698,7 +705,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Major internal architecture change to ease future extension
 
-## [1.11.0] - 2019-05-21
+## [1.11.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0) - 2019-05-21
 
 ### Fixed
 
@@ -715,13 +722,13 @@ the core component is now the reporting engine that is the base for other forms 
 * Cloner dependency
 * JSoup dependency
 
-## [1.10.2] - 2019-04-29
+## [1.10.2](https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2) - 2019-04-29
 
 ### Changed
 
 * Version change for Nexus redeploy error
 
-## [1.10.1] - 2019-04-29
+## [1.10.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1) - 2019-04-29
 
 ### Fixed
 
@@ -732,7 +739,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * more resilient mime type handling
 
-## [1.10.0] - 2019-04-16
+## [1.10.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.10.0) - 2019-04-16
 
 ### Fixed
 
@@ -751,7 +758,7 @@ the core component is now the reporting engine that is the base for other forms 
 * `Scenario Sequence` is now not based on start time if it exists in the json file
 * Minor design changes
 
-## [1.9.0] - 2019-04-10
+## [1.9.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0) - 2019-04-10
 
 ### Added
 
@@ -763,13 +770,13 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Minimum and maximum step times are now only calculated for non-skipped steps
 
-## [1.8.1] - 2019-04-03
+## [1.8.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1) - 2019-04-03
 
 ### Fixed
 
 * `All Steps` shows scenario states instead of step states (#147)
 
-## [1.8.0] - 2019-03-27
+## [1.8.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0) - 2019-03-27
 
 ### Added
 
@@ -780,7 +787,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Usage of symbols instead of text in tables for `passed`, `failed` and `skipped`
 
-## [1.7.3] - 2019-03-05
+## [1.7.3](https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3) - 2019-03-05
 
 ### Fixed
 
@@ -790,19 +797,19 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Links starting with `file:` are converted to clickable links (#142, contributed by gazler22)
 
-## [1.7.2] - 2019-03-05
+## [1.7.2](https://github.com/trivago/cluecumber-report-plugin/tree/1.7.2) - 2019-03-05
 
 ### Fixed
 
 * Step times did not take step hook times into account (#135)
 
-## [1.7.1] - 2019-02-28
+## [1.7.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1) - 2019-02-28
 
 ### Fixed
 
 * Ordering by status on Scenario Sequence page (#133, contributed by @monofrei)
 
-## [1.7.0] - 2019-02-20
+## [1.7.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0) - 2019-02-20
 
 ### Added
 
@@ -831,19 +838,19 @@ the core component is now the reporting engine that is the base for other forms 
 * Updated all js dependencies
 * Small design changes for expansion buttons to make them less prominent
 
-## [1.6.5] - 2019-01-21
+## [1.6.5](https://github.com/trivago/cluecumber-report-plugin/tree/1.6.5) - 2019-01-21
 
 ### Fixed
 
 * HTML attachments in hooks have the wrong size (#121)
 
-## [1.6.4] - 2019-01-16
+## [1.6.4](https://github.com/trivago/cluecumber-report-plugin/tree/1.6.4) - 2019-01-16
 
 ### Fixed
 
 * Long scenario names break the layout (#119)
 
-## [1.6.3] - 2019-01-08
+## [1.6.3](https://github.com/trivago/cluecumber-report-plugin/tree/1.6.3) - 2019-01-08
 
 ### Fixed
 
@@ -860,20 +867,20 @@ the core component is now the reporting engine that is the base for other forms 
 * Multiple Scenario outputs are now displayed together
 * minor design changes
 
-## [1.6.2] - 2018-12-13
+## [1.6.2](https://github.com/trivago/cluecumber-report-plugin/tree/1.6.2) - 2018-12-13
 
 ### Fixed
 
 * Links to scenario details did not work for scenario indices over 1000
 * Long custom parameters (URLs) broke the layout
 
-## [1.6.1] - 2018-12-13
+## [1.6.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.6.1) - 2018-12-13
 
 ### Fixed
 
 * Long URLs in doc strings and stack traces broke the layout
 
-## [1.6.0] - 2018-12-12
+## [1.6.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.6.0) - 2018-12-12
 
 ### Added
 
@@ -885,14 +892,14 @@ the core component is now the reporting engine that is the base for other forms 
 * Minor design changes
 * Custom parameters are now formatted evenly
 
-## [1.5.0] - 2018-11-08
+## [1.5.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0) - 2018-11-08
 
 ### Added
 
 * Full support for png, gif, png, jpg, svg, html, xml, json, text and pdf attachments (contributed by @Rameshwar244)
 * Minor design improvements
 
-## [1.4.2] - 2018-10-16
+## [1.4.2](https://github.com/trivago/cluecumber-report-plugin/tree/1.4.2) - 2018-10-16
 
 ### Fixed
 
@@ -903,7 +910,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Option to hide/show step hooks on the "Scenario Details" page (only present if the scenario has step hooks in at least
   one step)
 
-## [1.4.1] - 2018-10-09
+## [1.4.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1) - 2018-10-09
 
 ### Added
 
@@ -913,7 +920,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Corrected typo on `All Tags` page.
 
-## [1.4.0] - 2018-09-06
+## [1.4.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0) - 2018-09-06
 
 ### Changed
 
@@ -932,7 +939,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Long data tables broke the layout
 
-## [1.3.0] - 2018-08-21
+## [1.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0) - 2018-08-21
 
 ### Added
 
@@ -946,7 +953,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Data tables now use the full report width
 * Stack traces are now formatted
 
-## [1.2.1] - 2018-07-31
+## [1.2.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1) - 2018-07-31
 
 ### Fixed
 
@@ -955,7 +962,7 @@ the core component is now the reporting engine that is the base for other forms 
     * Scenarios with ONLY skipped steps and skipped or passing hooks will be reported as skipped
     * Scenarios with failing scenario or step hooks are reported as failed
 
-## [1.2.0] - 2018-07-27
+## [1.2.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0) - 2018-07-27
 
 ### Fixed
 
@@ -974,13 +981,13 @@ the core component is now the reporting engine that is the base for other forms 
 * Cleaned up "All Features" and "All Tags" charts
 * Aligned and streamlined design on all pages
 
-## [1.1.1] - 2018-07-03
+## [1.1.1](https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1) - 2018-07-03
 
 ### Fixed
 
 * Page rendering error on certain step name characters
 
-## [1.1.0] - 2018-07-03
+## [1.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0) - 2018-07-03
 
 ### Added
 
@@ -996,7 +1003,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Parameter highlighting with regex characters does not crash report generation
 * Correct chart labels for steps
 
-## [1.0.0] - 2018-06-21
+## [1.0.0](https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0) - 2018-06-21
 
 ### Added
 
@@ -1006,7 +1013,7 @@ the core component is now the reporting engine that is the base for other forms 
 * New page "Scenarios by Feature"
 * Parameters in steps are now highlighted
 
-## [0.8.0] - 2018-06-10
+## [0.8.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0) - 2018-06-10
 
 ### Fixed
 
@@ -1022,7 +1029,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Capitalization of scenario names
 
-## [0.7.1] - 2018-05-08
+## [0.7.1](https://github.com/trivago/cluecumber-report-plugin/tree/0.7.1) - 2018-05-08
 
 ### Added
 
@@ -1032,7 +1039,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Chart was not rendered when a scenario contained step data tables
 
-## [0.7.0] - 2018-04-18
+## [0.7.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.0.7) - 2018-04-18
 
 ### Changed
 
@@ -1040,7 +1047,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Updated all dependencies
 * Completely changed freemarker code to be better extensible
 
-## [0.6.0] - 2018-04-12
+## [0.6.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.6.0) - 2018-04-12
 
 ### Added
 
@@ -1054,7 +1061,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 * Table header error on tab overview page
 
-## [0.5.0] - 2018-03-19
+## [0.5.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.5.0) - 2018-03-19
 
 ### Added
 
@@ -1065,7 +1072,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Background Scenario steps are now rendered correctly
 * Various small bug fixes
 
-## [0.3.0] - 2018-02-19
+## [0.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.3.0) - 2018-02-19
 
 ### Added
 
@@ -1081,7 +1088,7 @@ the core component is now the reporting engine that is the base for other forms 
 * Before and after steps have a lower opacity to focus on test steps.
 * Internal organization of page types allows easier extension.
 
-## [0.2.0] - 2018-01-16
+## [0.2.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0) - 2018-01-16
 
 ### Added
 
@@ -1096,19 +1103,19 @@ the core component is now the reporting engine that is the base for other forms 
 
 - Report generation is now much more resilient if information is missing in the JSON sources
 
-## [0.1.1] - 2017-12-12
+## [0.1.1](https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1) - 2017-12-12
 
 ### Removed
 
 - Unnecessary log outputs for attachments
 
-## [0.1.0] - 2017-12-12
+## [0.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0) - 2017-12-12
 
 ### Added
 
 - Support for Cucumber 2 attachments
 
-## [0.0.6] - 2017-11-29
+## [0.0.6](https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6) - 2017-11-29
 
 ### Fixed
 
@@ -1119,7 +1126,7 @@ the core component is now the reporting engine that is the base for other forms 
 
 - More unit tests
 
-## [0.0.5] - 2017-11-20
+## [0.0.5](https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5) - 2017-11-20
 
 ### Fixed
 
@@ -1135,7 +1142,7 @@ the core component is now the reporting engine that is the base for other forms 
 - Tool tips for feature file names
 - Tool tips for scenario step method signatures
 
-## [0.0.4] - 2017-11-20
+## [0.0.4](https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4) - 2017-11-20
 
 ### Added
 
@@ -1146,207 +1153,13 @@ the core component is now the reporting engine that is the base for other forms 
 
 - Corrupt or empty JSON files do not fail report generation anymore
 
-## [0.0.3] - 2017-11-15
+## [0.0.3](https://github.com/trivago/cluecumber-report-plugin/tree/0.0.3) - 2017-11-15
 
 ### Fixed
 
 - handling of scenarios without steps
 - handling of undefined steps
 
-## [0.0.2] - 2017-11-14
+## [0.0.2](https://github.com/trivago/cluecumber-report-plugin/tree/0.0.2) - 2017-11-14
 
 Initial project version on GitHub and Maven Central.
-
-[4.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.1.0
-
-[4.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.2
-
-[4.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.1
-
-[4.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v4.0.0
-
-[3.14.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.1
-
-[3.14.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.14.0
-
-[3.13.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.13.0
-
-[3.12.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.12.0
-
-[3.11.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.2
-
-[3.11.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.1
-
-[3.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.11.0
-
-[3.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.10.0
-
-[3.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.9.0
-
-[3.8.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.2
-
-[3.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.1
-
-[3.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.8.0
-
-[3.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.7.1
-
-[3.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.7.0
-
-[3.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.3
-
-[3.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.2
-
-[3.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.1
-
-[3.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.6.0
-
-[3.5.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.1
-
-[3.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.5.0
-
-[3.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.4.0
-
-[3.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.3.1
-
-[3.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.3.0
-
-[3.2.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.2
-
-[3.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.1
-
-[3.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.2.0
-
-[3.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.1.0
-
-[3.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.2
-
-[3.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.1
-
-[3.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/v3.0.0
-
-[2.9.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.4
-
-[2.9.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.3
-
-[2.9.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.2
-
-[2.9.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.1
-
-[2.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.9.0
-
-[2.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.8.0
-
-[2.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.1
-
-[2.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.7.0
-
-[2.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.1
-
-[2.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.6.0
-
-[2.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.5.0
-
-[2.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.4.0
-
-[2.3.4]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.4
-
-[2.3.3]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.3
-
-[2.3.2]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.2
-
-[2.3.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.1
-
-[2.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.3.0
-
-[2.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.2.0
-
-[2.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.1
-
-[2.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.1.0
-
-[2.0.1]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.1
-
-[2.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/2.0.0
-
-[1.11.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.11.0
-
-[1.10.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.2
-
-[1.10.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.1
-
-[1.10.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.10.0
-
-[1.9.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.9.0
-
-[1.8.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.1
-
-[1.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.8.0
-
-[1.7.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.3
-
-[1.7.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.2
-
-[1.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.1
-
-[1.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.7.0
-
-[1.6.5]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.5
-
-[1.6.4]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.4
-
-[1.6.3]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.3
-
-[1.6.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.2
-
-[1.6.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.1
-
-[1.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.6.0
-
-[1.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.5.0
-
-[1.4.2]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.2
-
-[1.4.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.1
-
-[1.4.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.4.0
-
-[1.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.3.0
-
-[1.2.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.1
-
-[1.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.2.0
-
-[1.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.1
-
-[1.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.1.0
-
-[1.0.0]: https://github.com/trivago/cluecumber-report-plugin/tree/1.0.0
-
-[0.8.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.8.0
-
-[0.7.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.7.1
-
-[0.6.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.6.0
-
-[0.5.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.5.0
-
-[0.3.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.3.0
-
-[0.2.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.2.0
-
-[0.1.1]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.1
-
-[0.1.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.1.0
-
-[0.7.0]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.7
-
-[0.0.6]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.6
-
-[0.0.5]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.5
-
-[0.0.4]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.4
-
-[0.0.3]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.3
-
-[0.0.2]: https://github.com/trivago/cluecumber-report-plugin/tree/0.0.2
