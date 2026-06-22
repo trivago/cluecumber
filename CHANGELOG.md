@@ -12,7 +12,8 @@ Back to [Readme](README.md).
 ### Fixed
 
 * Wrong encoding of text attachments (#407)
-* 
+* Hooks were not displayed when they did not have content leading to seemingly wrong skipped scenario times (#408)
+* Aligned exception display in hooks
 
 ## [4.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.1.0) - 2026-06-18
 

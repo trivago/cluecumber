@@ -111,6 +111,35 @@ limitations under the License.
         });
     }
 
+    function initFirstExceptionContainers() {
+        document.querySelectorAll('.firstExceptionContainer').forEach(function(container) {
+            const collapseEl = container.querySelector('.collapse');
+            const collapseId = collapseEl ? collapseEl.id : null;
+            if (!collapseId) {
+                return;
+            }
+            const moreButton = container.querySelector('[data-toggle="collapse"][data-target="#' + collapseId + '"][aria-expanded="false"]');
+            if (moreButton) {
+                moreButton.addEventListener('click', function() {
+                    container.classList.remove('error-show-summary');
+                    container.classList.add('error-expanding');
+                }, true);
+            }
+            if (collapseEl) {
+                collapseEl.addEventListener('shown.bs.collapse', function() {
+                    container.classList.remove('error-expanding');
+                });
+            }
+            container.addEventListener('click', function(e) {
+                const button = e.target.closest('[data-toggle="collapse"][data-target="#' + collapseId + '"]');
+                if (button && button.getAttribute('aria-expanded') === 'true') {
+                    container.classList.remove('error-expanding');
+                    container.classList.add('error-show-summary');
+                }
+            }, true);
+        });
+    }
+
     $(document).ready(function () {
             CluecumberTheme.init(function () {
                 CluecumberTheme.decorateInternalLinks();
@@ -118,6 +147,7 @@ limitations under the License.
 
             initCluecumberCollapse();
             initCluecumberNav();
+            initFirstExceptionContainers();
 
             $('.renderAsDataTable').on('draw.dt', function () {
                 initCluecumberTooltips();

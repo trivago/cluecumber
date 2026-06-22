@@ -127,4 +127,16 @@ public class Result {
     public String returnErrorMessageWithClickableLinks() {
         return RenderingUtils.turnUrlsIntoLinks(RenderingUtils.escapeHTML(errorMessage));
     }
+
+    /**
+     * Get the first line of the error message for collapsed exception display.
+     *
+     * @return The escaped error message summary.
+     */
+    public String returnErrorMessageSummary() {
+        if (!hasErrorMessage()) {
+            return "";
+        }
+        return RenderingUtils.escapeHTML(errorMessage.split("\n")[0].trim());
+    }
 }

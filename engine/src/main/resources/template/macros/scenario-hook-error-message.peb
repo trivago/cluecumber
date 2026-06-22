@@ -1,0 +1,8 @@
+
+{% if hook.result.hasErrorMessage() %}
+        <div class="cluecumber-step-full">
+            {% set exceptionSummary = hook.result.returnErrorMessageSummary() %}
+            {% set exceptionFull = hook.result.returnErrorMessageWithClickableLinks() %}
+            {% include "macros/scenario-exception-block" with {"exceptionId": exceptionId, "exceptionSummary": exceptionSummary, "exceptionFull": exceptionFull} %}
+        </div>
+    {% endif %}

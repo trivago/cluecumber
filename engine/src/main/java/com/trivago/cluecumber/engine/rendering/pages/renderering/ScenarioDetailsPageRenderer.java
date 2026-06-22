@@ -80,6 +80,7 @@ public class ScenarioDetailsPageRenderer extends PageWithChartRenderer {
         scenarioDetailsPageCollection.setExpandSubSections(propertyManager.isExpandSubSections());
         scenarioDetailsPageCollection.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
         scenarioDetailsPageCollection.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
+        scenarioDetailsPageCollection.setExpandErrorMessages(propertyManager.isExpandErrorMessages());
 
         addChartJsonToReportDetails(scenarioDetailsPageCollection);
 

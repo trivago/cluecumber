@@ -77,13 +77,13 @@ limitations under the License.
                     Sections
                 </button>
             {% endif %}
-            {% if element.hasHooks() and element.hasHooksWithContent() %}
+            {% if element.hasHooks() %}
                 <button class="secondary outline" type="button" id="before-after-hooks-button"
                         data-cluecumber-item="before-after-hooks-button">{{ expandBeforeAfterHooks ? 'Hide' : 'Show' }}
                     Hooks
                 </button>
             {% endif %}
-            {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
+            {% if element.hasStepHooks() %}
                 <button class="secondary outline" type="button" id="step-hooks-button"
                         data-cluecumber-item="step-hooks-button">{{ expandStepHooks ? 'Hide' : 'Show' }} Step Hooks
                 </button>
@@ -108,12 +108,11 @@ limitations under the License.
             {% endif %}
         {{ page.cardEnd() }}
 
-        {% if element.before is not empty and element.anyBeforeHookHasContent() %}
+        {% if element.before is not empty %}
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "Before Hooks", "", "") }}
                     <li class="cluecumber-list-item">
                         {% for before in element.before %}
-                            {% if before.hasContent() or before.isFailed() %}
                                 <div class="row row_{{ before.consolidatedStatusString }} table-row-{{ before.consolidatedStatusString }}">
                                     <div class="cluecumber-step-name">
                                         <span>{{ loop.index + 1 }}.</span>
@@ -125,11 +124,11 @@ limitations under the License.
                                     <div class="cluecumber-step-status cluecumber-align-right">
                                         {{ common.status(before.consolidatedStatusString) }}
                                     </div>
-                                    {% set step = before %}{% include "macros/scenario-error-message" %}
+                                    {% set hookExceptionId = "before_" ~ loop.index %}
+                                    {% include "macros/scenario-hook-error-message" with {"hook": before, "exceptionId": hookExceptionId} %}
                                     {% set step = before %}{% set sectionId = "before" %}{% include "macros/scenario-output" %}
                                     {% set step = before %}{% include "macros/scenario-attachments" %}
                                 </div>
-                            {% endif %}
                         {% endfor %}
                     </li>
                 {{ page.cardEnd() }}
@@ -174,7 +173,7 @@ limitations under the License.
                                                     class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
                                     </span>
                                 </span>
-                                {% if step.hasSubSections() or (step.docString is not null and step.docString.value is not null) or step.hasHooksWithContent() %}
+                                {% if step.hasSubSections() or (step.docString is not null and step.docString.value is not null) or step.hasHooks() %}
                                     <div class="exception-links-top">
                                         {% if step.hasSubSections() %}
                                             <button type="button" class="cluecumber-exception-action secondary outline sectionExpansionButton"
@@ -188,7 +187,7 @@ limitations under the License.
                                                     aria-expanded="false"
                                                     data-target="#step_{{ step.index }}_docstring">DocString</button>
                                         {% endif %}
-                                        {% if step.hasHooksWithContent() %}
+                                        {% if step.hasHooks() %}
                                             <button type="button" class="cluecumber-exception-action secondary outline stepHooksExpansionButton"
                                                     data-toggle="collapse"
                                                     aria-expanded="false"
@@ -280,7 +279,7 @@ limitations under the License.
                                                     class="keyword">{{ step.keyword }}</span> {{ stepName|raw }}</a>
                                     </span>
                                 </span>
-                                {% if step.hasSubSections() or (step.docString is not null and step.docString.value is not null) or step.hasHooksWithContent() %}
+                                {% if step.hasSubSections() or (step.docString is not null and step.docString.value is not null) or step.hasHooks() %}
                                     <div class="exception-links-top">
                                         {% if step.hasSubSections() %}
                                             <button type="button" class="cluecumber-exception-action secondary outline sectionExpansionButton"
@@ -294,7 +293,7 @@ limitations under the License.
                                                     aria-expanded="false"
                                                     data-target="#step_{{ step.index }}_docstring">DocString</button>
                                         {% endif %}
-                                        {% if step.hasHooksWithContent() %}
+                                        {% if step.hasHooks() %}
                                             <button type="button" class="cluecumber-exception-action secondary outline stepHooksExpansionButton"
                                                     data-toggle="collapse"
                                                     aria-expanded="false"
@@ -348,12 +347,11 @@ limitations under the License.
             {{ page.cardEnd() }}
         {% endif %}
 
-        {% if element.after is not empty and element.anyAfterHookHasContent() %}
+        {% if element.after is not empty %}
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "After Hooks", "", "") }}
                     <li class="cluecumber-list-item">
                         {% for after in element.after %}
-                            {% if after.hasContent() or after.isFailed() %}
                                 <div class="row row_{{ after.consolidatedStatusString }} table-row-{{ after.consolidatedStatusString }}">
                                     <div class="cluecumber-step-name">
                                         <span>{{ loop.index + 1 }}.</span>
@@ -365,11 +363,11 @@ limitations under the License.
                                     <div class="cluecumber-step-status cluecumber-align-right">
                                         {{ common.status(after.consolidatedStatusString) }}
                                     </div>
-                                    {% set step = after %}{% include "macros/scenario-error-message" %}
+                                    {% set hookExceptionId = "after_" ~ loop.index %}
+                                    {% include "macros/scenario-hook-error-message" with {"hook": after, "exceptionId": hookExceptionId} %}
                                     {% set step = after %}{% set sectionId = "after" %}{% include "macros/scenario-output" %}
                                     {% set step = after %}{% include "macros/scenario-attachments" %}
                                 </div>
-                            {% endif %}
                         {% endfor %}
                     </li>
                 {{ page.cardEnd() }}
@@ -380,10 +378,10 @@ limitations under the License.
     <script>
         let classState = {};
 
-        {% if element.hasHooks() and element.hasHooksWithContent() %}
+        {% if element.hasHooks() %}
         classState['scenarioHook'] = {{ expandBeforeAfterHooks ? "true" : "false" }};
         {% endif %}
-        {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
+        {% if element.hasStepHooks() %}
         classState['.stepHook'] = {{ expandStepHooks ? "true" : "false" }};
         {% endif %}
         {% if element.hasSubSections() %}
@@ -449,7 +447,7 @@ limitations under the License.
         });
         {% endif %}
 
-        {% if element.hasHooks() and element.hasHooksWithContent() %}
+        {% if element.hasHooks() %}
         document.getElementById('before-after-hooks-button').addEventListener('click', function (event) {
             toggleHooks('scenarioHook', {{ expandBeforeAfterHooks ? "true" : "false" }});
             event.target.textContent = classState['scenarioHook'] ? 'Hide Hooks' : 'Show Hooks';
@@ -475,7 +473,7 @@ limitations under the License.
         });
         {% endif %}
 
-        {% if element.hasStepHooks() and element.hasStepHooksWithContent() %}
+        {% if element.hasStepHooks() %}
         document.getElementById('step-hooks-button').addEventListener('click', function (event) {
             toggleCollapsableSection('.stepHook', {{ expandStepHooks ? "true" : "false" }});
             event.target.textContent = classState['.stepHook'] ? 'Hide Step Hooks' : 'Show Step Hooks';

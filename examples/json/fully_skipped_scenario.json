@@ -1,0 +1,349 @@
+[
+  {
+    "line": 2,
+    "uri": "file:target/features/fully_skipped_scenario.feature",
+    "id": "fully-skipped-feature",
+    "keyword": "Feature",
+    "name": "Fully Skipped Feature",
+    "description": "",
+    "elements": [
+      {
+        "start_timestamp": "2026-06-22T11:09:03.816Z",
+        "line": 9,
+        "id": "fully-skipped-feature;fully-skipped-scenario",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "name": "Fully skipped scenario",
+        "description": "",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "line": 10,
+            "match": {
+              "location": "somelocation.givenWithConfiguration(io.cucumber.datatable.DataTable)"
+            },
+            "name": "I am on the page with configuration",
+            "result": {
+              "duration": 9000,
+              "status": "skipped"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "param1",
+                  "value1"
+                ]
+              },
+              {
+                "cells": [
+                  "param2",
+                  "5"
+                ]
+              }
+            ],
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 29000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 3000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "When ",
+            "line": 13,
+            "match": {
+              "location": "somelocation.closeOverlayIfVisible()"
+            },
+            "name": "I close the overlay if visible",
+            "result": {
+              "duration": 3000,
+              "status": "skipped"
+            },
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 3000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "And ",
+            "line": 14,
+            "match": {
+              "location": "somelocation.navigateToSection()"
+            },
+            "name": "I navigate to the section",
+            "result": {
+              "duration": 2000,
+              "status": "skipped"
+            },
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 3000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "And ",
+            "line": 15,
+            "match": {
+              "location": "somelocation.clickItem()"
+            },
+            "name": "I click an item",
+            "result": {
+              "duration": 2000,
+              "status": "skipped"
+            },
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 3000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "And ",
+            "line": 16,
+            "match": {
+              "location": "somelocation.clickActionButton()"
+            },
+            "name": "I click the action button",
+            "result": {
+              "duration": 3000,
+              "status": "skipped"
+            },
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 3000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "Then ",
+            "line": 17,
+            "match": {
+              "location": "somelocation.verifyNewWindowOpened()"
+            },
+            "name": "a new window is opened",
+            "result": {
+              "duration": 2000,
+              "status": "skipped"
+            },
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          },
+          {
+            "keyword": "And ",
+            "line": 18,
+            "match": {
+              "location": "somelocation.verifyLogsExist(int,int,java.util.List)",
+              "arguments": [
+                {
+                  "val": "8001",
+                  "offset": 22
+                },
+                {
+                  "val": "1",
+                  "offset": 59
+                }
+              ]
+            },
+            "name": "logs with page id 8001 exist 1 times",
+            "result": {
+              "duration": 3000,
+              "status": "skipped"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "filterKey",
+                  "filterValue"
+                ]
+              }
+            ],
+            "before": [
+              {
+                "match": {
+                  "location": "somelocation.beforeStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 3000,
+                  "status": "skipped"
+                }
+              }
+            ],
+            "after": [
+              {
+                "match": {
+                  "location": "somelocation.afterStep(io.cucumber.java.Scenario)"
+                },
+                "result": {
+                  "duration": 2000,
+                  "status": "skipped"
+                }
+              }
+            ]
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "somelocation.beforeScenario(io.cucumber.java.Scenario)"
+            },
+            "result": {
+              "duration": 295369000,
+              "status": "skipped",
+              "error_message": "org.opentest4j.TestAbortedException: assumption was not met"
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "somelocation.teardownInterception()"
+            },
+            "result": {
+              "duration": 5092537000,
+              "status": "passed"
+            }
+          },
+          {
+            "match": {
+              "location": "somelocation.afterScenario(io.cucumber.java.Scenario)"
+            },
+            "result": {
+              "duration": 104218000,
+              "status": "passed"
+            }
+          },
+          {
+            "match": {
+              "location": "somelocation.tearDownInstrumentation()"
+            },
+            "result": {
+              "duration": 157000,
+              "status": "passed"
+            }
+          },
+          {
+            "match": {
+              "location": "somelocation.cleanupTestData()"
+            },
+            "result": {
+              "duration": 1191000,
+              "status": "passed"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@skip"
+          }
+        ]
+      }
+    ],
+    "tags": []
+  }
+]

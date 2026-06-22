@@ -934,9 +934,9 @@ h1, h2, h3, h4, h5 {
 }
 
 :is(
-    .cluecumber-list-item .firstException,
-    .stepHook .firstException,
-    .scenarioHook .cluecumber-list-item .firstException,
+    .cluecumber-list-item .firstException.firstException-detail,
+    .stepHook .firstException.firstException-detail,
+    .scenarioHook .cluecumber-list-item .firstException.firstException-detail,
     :is(.scenarioAttachment-header, .scenarioOutputs-header)
 ) .exception-links-top {
     flex-shrink: 0;
@@ -948,11 +948,11 @@ h1, h2, h3, h4, h5 {
 }
 
 :is(
-    .firstException .exception-links-top,
+    .firstException:not(.firstException-detail) .exception-links-top,
     .scenarioDocstring .exception-links-top,
-    .cluecumber-list-item .firstException .exception-links-top,
-    .stepHook .firstException .exception-links-top,
-    .scenarioHook .cluecumber-list-item .firstException .exception-links-top
+    .cluecumber-list-item .firstException:not(.firstException-detail) .exception-links-top,
+    .stepHook .firstException:not(.firstException-detail) .exception-links-top,
+    .scenarioHook .cluecumber-list-item .firstException:not(.firstException-detail) .exception-links-top
 ) .cluecumber-exception-action {
     width: 100%;
     min-width: var(--cluecumber-action-min-width);
@@ -960,6 +960,15 @@ h1, h2, h3, h4, h5 {
 
 :is(.scenarioAttachment-header, .scenarioOutputs-header) .exception-links-top .cluecumber-exception-action {
     width: auto;
+}
+
+:is(
+    .cluecumber-list-item .firstException.firstException-detail,
+    .stepHook .firstException.firstException-detail,
+    .scenarioHook .cluecumber-list-item .firstException.firstException-detail
+) .exception-links-top .cluecumber-exception-action {
+    width: auto;
+    min-width: var(--cluecumber-action-min-width);
 }
 
 :is(

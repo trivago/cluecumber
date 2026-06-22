@@ -35,4 +35,11 @@ public class ResultTest {
         String error = result.returnErrorMessageWithClickableLinks();
         assertEquals(error, "Error in <a href='https://google.com' target='_blank'>https://google.com</a> found!");
     }
+
+    @Test
+    public void returnErrorMessageSummaryTest() {
+        assertEquals("", result.returnErrorMessageSummary());
+        result.setErrorMessage("org.opentest4j.TestAbortedException: assumption was not met\nExpecting value to be false");
+        assertEquals("org.opentest4j.TestAbortedException: assumption was not met", result.returnErrorMessageSummary());
+    }
 }

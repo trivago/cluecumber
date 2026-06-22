@@ -9,6 +9,9 @@ import com.trivago.cluecumber.engine.json.processors.ReportJsonPostProcessor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -141,5 +144,20 @@ public class JsonPojoConverterTest {
     @Test
     public void convertJsonToReportPojosInvalidTest() {
         assertThrows(CluecumberException.class, () -> pojoConverter.convertJsonToReportPojos("!$%&§/"));
+    }
+
+    @Test
+    public void fullySkippedScenarioTotalDurationTest() throws CluecumberException, java.io.IOException {
+        Path jsonPath = Path.of("..", "examples", "json", "fully_skipped_scenario.json").toAbsolutePath().normalize();
+        String json = Files.readString(jsonPath);
+        Report[] reports = pojoConverter.convertJsonToReportPojos(json);
+        Element element = reports[0].getElements().get(0);
+
+        assertEquals(5_493_557_000L, element.getTotalDuration());
+
+        long afterHookDuration = element.getAfter().stream()
+                .mapToLong(hook -> hook.getResult().getDuration())
+                .sum();
+        assertEquals(5_198_103_000L, afterHookDuration);
     }
 }

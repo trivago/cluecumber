@@ -1,0 +1,29 @@
+    <div class="firstExceptionContainer">
+        <div class="firstException exc-summary cluecumber-text-small">
+            <div class="exception-content">
+                <pre class="exception-pre">{{ exceptionSummary|raw }}</pre>
+            </div>
+            <div class="exception-links-top">
+                <button type="button" class="cluecumber-exception-action secondary outline"
+                        data-toggle="collapse" data-target="#exc_{{ exceptionId }}"
+                        aria-expanded="false"
+                        aria-controls="exc_{{ exceptionId }}">More</button>
+            </div>
+        </div>
+        <div class="collapse {{ expandErrorMessages ? "show" : "" }}" id="exc_{{ exceptionId }}">
+            <div class="firstException firstException-expanded cluecumber-text-small">
+                <div class="exception-content">
+                    <pre class="exception-pre"
+                         id="exc_pre_{{ exceptionId }}">{{ exceptionFull|raw }}</pre>
+                </div>
+                <div class="exception-links-top">
+                    <button type="button" class="cluecumber-exception-action secondary outline"
+                            data-toggle="collapse" data-target="#exc_{{ exceptionId }}"
+                            aria-expanded="true"
+                            aria-controls="exc_{{ exceptionId }}">Less</button>
+                    <button type="button" class="cluecumber-exception-action secondary outline"
+                            onclick="copyText('exc_pre_{{ exceptionId }}')">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>

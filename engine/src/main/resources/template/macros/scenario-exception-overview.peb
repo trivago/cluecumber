@@ -1,31 +1,3 @@
 {% if exceptionElement.firstException is not empty %}
-    <div class="firstExceptionContainer">
-        <div class="firstException exc-summary cluecumber-text-small">
-            <div class="exception-content">
-                <pre class="exception-pre">{{ exceptionElement.firstExceptionSummary|raw }}</pre>
-            </div>
-            <div class="exception-links-top">
-                <button type="button" class="cluecumber-exception-action secondary outline"
-                        data-toggle="collapse" data-target="#exc_{{ exceptionElement.scenarioIndex }}"
-                        aria-expanded="false"
-                        aria-controls="exc_{{ exceptionElement.scenarioIndex }}">More</button>
-            </div>
-        </div>
-        <div class="collapse {{ expandErrorMessages ? "show" : "" }}" id="exc_{{ exceptionElement.scenarioIndex }}">
-            <div class="firstException firstException-expanded cluecumber-text-small">
-                <div class="exception-content">
-                    <pre class="exception-pre"
-                         id="exc_pre_{{ exceptionElement.scenarioIndex }}">{{ exceptionElement.firstException|raw }}</pre>
-                </div>
-                <div class="exception-links-top">
-                    <button type="button" class="cluecumber-exception-action secondary outline"
-                            data-toggle="collapse" data-target="#exc_{{ exceptionElement.scenarioIndex }}"
-                            aria-expanded="true"
-                            aria-controls="exc_{{ exceptionElement.scenarioIndex }}">Less</button>
-                    <button type="button" class="cluecumber-exception-action secondary outline"
-                            onclick="copyText('exc_pre_{{ exceptionElement.scenarioIndex }}')">Copy</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include "macros/scenario-exception-block" with {"exceptionId": exceptionElement.scenarioIndex, "exceptionSummary": exceptionElement.firstExceptionSummary, "exceptionFull": exceptionElement.firstException} %}
 {% endif %}
