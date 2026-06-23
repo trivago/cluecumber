@@ -15,20 +15,30 @@ limitations under the License.
 */
 
 window.CluecumberTheme = (function () {
-    var STORAGE_FRAME_ID = 'cluecumber-storage-frame';
-    var STORAGE_HTML = 'js/cluecumber-storage.html';
     var STORAGE_KEY = 'darkMode';
+    var LEGACY_STORAGE_KEY = 'cluecumber-dark-mode';
+    var SESSION_KEY = 'cluecumber-theme';
     var THEME_PARAM = 'cluecumber-theme';
-    var IFRAME_TIMEOUT_MS = 3000;
     var linkHandlerBound = false;
 
     function isFileProtocol() {
         return window.location.protocol === 'file:';
     }
 
-    function readStoredThemeSync() {
+    function prefersDark() {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function readLocalStorageTheme() {
         try {
             var value = localStorage.getItem(STORAGE_KEY);
+            if (value === null) {
+                var legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+                if (legacy === 'enabled' || legacy === 'disabled') {
+                    localStorage.setItem(STORAGE_KEY, legacy);
+                    value = legacy;
+                }
+            }
             if (value === 'enabled') {
                 return 'dark';
             }
@@ -40,38 +50,76 @@ window.CluecumberTheme = (function () {
         return null;
     }
 
-    function writeStoredThemeSync(dark) {
+    function readSessionTheme() {
         try {
-            localStorage.setItem(STORAGE_KEY, dark ? 'enabled' : 'disabled');
+            var value = sessionStorage.getItem(SESSION_KEY);
+            if (value === 'dark' || value === 'light') {
+                return value;
+            }
         } catch (error) {
-        }
-    }
-
-    function readThemeFromUrl() {
-        var params = new URLSearchParams(window.location.search);
-        var value = params.get(THEME_PARAM);
-        if (value === 'dark' || value === 'light') {
-            return value;
         }
         return null;
     }
 
-    function readThemeForBoot() {
-        if (isFileProtocol()) {
-            return readThemeFromUrl() || readStoredThemeSync();
+    function readThemeFromUrl() {
+        try {
+            var params = new URLSearchParams(window.location.search);
+            var value = params.get(THEME_PARAM);
+            if (value === 'dark' || value === 'light') {
+                return value;
+            }
+        } catch (error) {
         }
-        return readStoredThemeSync();
+        return null;
     }
 
-    function resolveReportAssetUrl(relativePath) {
-        var path = window.location.href.split('#')[0].split('?')[0];
-        var pagesMarker = '/pages/';
-        var pagesIdx = path.indexOf(pagesMarker);
-        if (pagesIdx !== -1) {
-            return path.substring(0, pagesIdx) + '/' + relativePath;
+    function getTheme() {
+        var urlTheme = readThemeFromUrl();
+        if (urlTheme) {
+            return urlTheme;
         }
-        var lastSlash = path.lastIndexOf('/');
-        return path.substring(0, lastSlash + 1) + relativePath;
+
+        if (!isFileProtocol()) {
+            var stored = readLocalStorageTheme();
+            if (stored) {
+                return stored;
+            }
+            return 'light';
+        }
+
+        var fileStored = readLocalStorageTheme();
+        if (fileStored) {
+            return fileStored;
+        }
+
+        var sessionTheme = readSessionTheme();
+        if (sessionTheme) {
+            return sessionTheme;
+        }
+
+        return prefersDark() ? 'dark' : 'light';
+    }
+
+    function persistTheme(theme) {
+        var dark = theme === 'dark';
+        if (!isFileProtocol()) {
+            try {
+                localStorage.setItem(STORAGE_KEY, dark ? 'enabled' : 'disabled');
+                localStorage.removeItem(LEGACY_STORAGE_KEY);
+            } catch (error) {
+            }
+            return;
+        }
+
+        try {
+            sessionStorage.setItem(SESSION_KEY, theme);
+        } catch (error) {
+        }
+        try {
+            localStorage.setItem(STORAGE_KEY, dark ? 'enabled' : 'disabled');
+            localStorage.removeItem(LEGACY_STORAGE_KEY);
+        } catch (error) {
+        }
     }
 
     function isInternalHref(href) {
@@ -174,111 +222,21 @@ window.CluecumberTheme = (function () {
         }, true);
     }
 
-    function getStorageFrame() {
-        var frame = document.getElementById(STORAGE_FRAME_ID);
-        if (!frame) {
-            frame = document.createElement('iframe');
-            frame.id = STORAGE_FRAME_ID;
-            frame.src = resolveReportAssetUrl(STORAGE_HTML);
-            frame.hidden = true;
-            frame.title = '';
-            document.documentElement.appendChild(frame);
-        }
-        return frame;
-    }
-
-    function postToStorageFrame(type, dark, callback) {
-        var frame = getStorageFrame();
-        var handled = false;
-        var timeoutId = null;
-
-        function finish(darkResult) {
-            if (handled) {
-                return;
-            }
-            handled = true;
-            window.removeEventListener('message', onMessage);
-            if (timeoutId !== null) {
-                clearTimeout(timeoutId);
-            }
-            if (callback) {
-                callback(darkResult);
-            }
-        }
-
-        function onMessage(event) {
-            if (!event.data || event.data.type !== 'cluecumber-theme') {
-                return;
-            }
-            finish(event.data.dark);
-        }
-
-        window.addEventListener('message', onMessage);
-
-        if (callback) {
-            timeoutId = setTimeout(function () {
-                finish(false);
-            }, IFRAME_TIMEOUT_MS);
-        }
-
-        function sendMessage() {
-            if (!frame.contentWindow) {
-                return;
-            }
-            frame.contentWindow.postMessage({
-                type: type,
-                dark: dark
-            }, '*');
-        }
-
-        function sendWhenReady() {
-            try {
-                if (frame.contentDocument && frame.contentDocument.readyState === 'complete') {
-                    sendMessage();
-                } else {
-                    frame.addEventListener('load', sendMessage, {once: true});
-                }
-            } catch (error) {
-                frame.addEventListener('load', sendMessage, {once: true});
-            }
-        }
-
-        sendWhenReady();
-    }
-
-    function persistToSharedStorage(dark) {
-        writeStoredThemeSync(dark);
-        if (isFileProtocol()) {
-            postToStorageFrame('cluecumber-set-theme', dark);
-        }
-    }
-
-    function readFromSharedStorage(callback) {
-        postToStorageFrame('cluecumber-get-theme', null, callback);
-    }
-
     (function applyEarlyTheme() {
-        var theme = readThemeForBoot();
-        if (theme === 'dark' || theme === 'light') {
-            applyTheme(theme);
-        }
+        applyTheme(getTheme());
     })();
 
     bindLinkThemeHandler();
 
     return {
         init: function (onReady) {
-            var theme = readThemeForBoot()
-                || document.documentElement.getAttribute('data-theme');
-            if (theme === 'dark' || theme === 'light') {
-                applyTheme(theme);
-                writeStoredThemeSync(theme === 'dark');
-                if (isFileProtocol()) {
-                    updateUrlTheme(theme);
-                    postToStorageFrame('cluecumber-set-theme', theme === 'dark');
-                    if (document.body) {
-                        decorateInternalLinks();
-                    }
+            var theme = getTheme();
+            applyTheme(theme);
+            persistTheme(theme);
+            if (isFileProtocol()) {
+                updateUrlTheme(theme);
+                if (document.body) {
+                    decorateInternalLinks();
                 }
             }
             if (onReady) {
@@ -286,10 +244,10 @@ window.CluecumberTheme = (function () {
             }
         },
         toggle: function () {
-            var isDark = document.documentElement.getAttribute('data-theme') !== 'dark';
-            var theme = isDark ? 'dark' : 'light';
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var theme = isDark ? 'light' : 'dark';
             applyTheme(theme);
-            persistToSharedStorage(isDark);
+            persistTheme(theme);
             if (isFileProtocol()) {
                 updateUrlTheme(theme);
                 if (document.body) {
@@ -298,38 +256,11 @@ window.CluecumberTheme = (function () {
             }
         },
         redirectWithStoredTheme: function (targetPath) {
-            if (!isFileProtocol()) {
-                window.location.replace(targetPath);
+            if (isFileProtocol()) {
+                window.location.replace(withThemeParam(targetPath, getTheme()));
                 return;
             }
-
-            var urlTheme = readThemeFromUrl();
-            if (urlTheme) {
-                window.location.replace(withThemeParam(targetPath, urlTheme));
-                return;
-            }
-
-            var syncTheme = readStoredThemeSync();
-            if (syncTheme) {
-                window.location.replace(withThemeParam(targetPath, syncTheme));
-                return;
-            }
-
-            var redirected = false;
-            function go(theme) {
-                if (redirected) {
-                    return;
-                }
-                redirected = true;
-                window.location.replace(withThemeParam(targetPath, theme));
-            }
-
-            readFromSharedStorage(function (dark) {
-                go(dark ? 'dark' : 'light');
-            });
-            setTimeout(function () {
-                go('light');
-            }, IFRAME_TIMEOUT_MS);
+            window.location.replace(targetPath);
         },
         decorateInternalLinks: decorateInternalLinks
     };

@@ -8,6 +8,19 @@
 <script>
     (function () {
         var STORAGE_KEY = 'darkMode';
+        var LEGACY_STORAGE_KEY = 'cluecumber-dark-mode';
+
+        function readDarkModeEnabled() {
+            var value = localStorage.getItem(STORAGE_KEY);
+            if (value === null) {
+                var legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+                if (legacy === 'enabled' || legacy === 'disabled') {
+                    localStorage.setItem(STORAGE_KEY, legacy);
+                    value = legacy;
+                }
+            }
+            return value === 'enabled';
+        }
 
         window.addEventListener('message', function (event) {
             var data = event.data;
@@ -23,12 +36,13 @@
             if (data.type === 'cluecumber-get-theme') {
                 source.postMessage({
                     type: 'cluecumber-theme',
-                    dark: localStorage.getItem(STORAGE_KEY) === 'enabled'
+                    dark: readDarkModeEnabled()
                 }, '*');
             }
 
             if (data.type === 'cluecumber-set-theme') {
                 localStorage.setItem(STORAGE_KEY, data.dark ? 'enabled' : 'disabled');
+                localStorage.removeItem(LEGACY_STORAGE_KEY);
                 source.postMessage({
                     type: 'cluecumber-theme',
                     dark: data.dark

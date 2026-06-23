@@ -106,6 +106,10 @@
                     <customNavigationLinks>
                         <Test_Blog>https://www.softwaretester.blog</Test_Blog>
                     </customNavigationLinks>
+
+                    <customViews>
+                        <Custom_View>https://trivago.de</Custom_View>
+                    </customViews>
                 </configuration>
             </plugin>
         </plugins>
