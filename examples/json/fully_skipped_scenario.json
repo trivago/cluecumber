@@ -241,7 +241,7 @@
               "location": "somelocation.verifyLogsExist(int,int,java.util.List)",
               "arguments": [
                 {
-                  "val": "8001",
+                  "val": "1234",
                   "offset": 22
                 },
                 {
@@ -250,7 +250,7 @@
                 }
               ]
             },
-            "name": "logs with page id 8001 exist 1 times",
+            "name": "logs with id 1234 exist 1 times",
             "result": {
               "duration": 3000,
               "status": "skipped"

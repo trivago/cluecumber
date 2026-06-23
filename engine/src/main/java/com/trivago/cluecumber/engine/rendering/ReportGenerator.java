@@ -194,11 +194,11 @@ public class ReportGenerator {
         // Copy Javascript resources
         fileSystemManager.createDirectory(reportDirectory + "/js");
         copyFileFromJarToReportDirectory("/js/jquery.min.js");
-        copyFileFromJarToReportDirectory("/js/cluecumber-theme.js");
-        copyFileFromJarToReportDirectory("/js/cluecumber-storage.html");
         copyFileFromJarToReportDirectory("/js/chart.min.js");
         copyFileFromJarToReportDirectory("/js/datatables.min.js");
         copyFileFromJarToReportDirectory("/js/jquery.fancybox.min.js");
+        copyFileFromJarToReportDirectory("/js/cluecumber-theme.js");
+        copyFileFromJarToReportDirectory("/js/cluecumber-storage.html");
     }
 
     /**

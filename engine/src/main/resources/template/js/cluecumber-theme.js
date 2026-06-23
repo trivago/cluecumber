@@ -17,8 +17,35 @@ limitations under the License.
 window.CluecumberTheme = (function () {
     var STORAGE_FRAME_ID = 'cluecumber-storage-frame';
     var STORAGE_HTML = 'js/cluecumber-storage.html';
+    var STORAGE_KEY = 'darkMode';
     var THEME_PARAM = 'cluecumber-theme';
+    var IFRAME_TIMEOUT_MS = 3000;
     var linkHandlerBound = false;
+
+    function isFileProtocol() {
+        return window.location.protocol === 'file:';
+    }
+
+    function readStoredThemeSync() {
+        try {
+            var value = localStorage.getItem(STORAGE_KEY);
+            if (value === 'enabled') {
+                return 'dark';
+            }
+            if (value === 'disabled') {
+                return 'light';
+            }
+        } catch (error) {
+        }
+        return null;
+    }
+
+    function writeStoredThemeSync(dark) {
+        try {
+            localStorage.setItem(STORAGE_KEY, dark ? 'enabled' : 'disabled');
+        } catch (error) {
+        }
+    }
 
     function readThemeFromUrl() {
         var params = new URLSearchParams(window.location.search);
@@ -27,6 +54,13 @@ window.CluecumberTheme = (function () {
             return value;
         }
         return null;
+    }
+
+    function readThemeForBoot() {
+        if (isFileProtocol()) {
+            return readThemeFromUrl() || readStoredThemeSync();
+        }
+        return readStoredThemeSync();
     }
 
     function resolveReportAssetUrl(relativePath) {
@@ -74,6 +108,9 @@ window.CluecumberTheme = (function () {
     }
 
     function applyTheme(theme) {
+        if (theme !== 'dark' && theme !== 'light') {
+            return;
+        }
         document.documentElement.setAttribute('data-theme', theme);
         if (typeof updateDarkLightModeButton === 'function') {
             updateDarkLightModeButton(theme === 'dark');
@@ -81,6 +118,9 @@ window.CluecumberTheme = (function () {
     }
 
     function updateUrlTheme(theme) {
+        if (!isFileProtocol()) {
+            return;
+        }
         try {
             var url = new URL(window.location.href);
             url.searchParams.set(THEME_PARAM, theme);
@@ -90,6 +130,10 @@ window.CluecumberTheme = (function () {
     }
 
     function decorateInternalLinks() {
+        if (!isFileProtocol()) {
+            return;
+        }
+
         var theme = document.documentElement.getAttribute('data-theme');
         if (theme !== 'dark' && theme !== 'light') {
             return;
@@ -108,7 +152,7 @@ window.CluecumberTheme = (function () {
     }
 
     function bindLinkThemeHandler() {
-        if (linkHandlerBound) {
+        if (!isFileProtocol() || linkHandlerBound) {
             return;
         }
         linkHandlerBound = true;
@@ -146,22 +190,36 @@ window.CluecumberTheme = (function () {
     function postToStorageFrame(type, dark, callback) {
         var frame = getStorageFrame();
         var handled = false;
+        var timeoutId = null;
 
-        function onMessage(event) {
-            if (!event.data || event.data.type !== 'cluecumber-theme') {
-                return;
-            }
+        function finish(darkResult) {
             if (handled) {
                 return;
             }
             handled = true;
             window.removeEventListener('message', onMessage);
+            if (timeoutId !== null) {
+                clearTimeout(timeoutId);
+            }
             if (callback) {
-                callback(event.data.dark);
+                callback(darkResult);
             }
         }
 
+        function onMessage(event) {
+            if (!event.data || event.data.type !== 'cluecumber-theme') {
+                return;
+            }
+            finish(event.data.dark);
+        }
+
         window.addEventListener('message', onMessage);
+
+        if (callback) {
+            timeoutId = setTimeout(function () {
+                finish(false);
+            }, IFRAME_TIMEOUT_MS);
+        }
 
         function sendMessage() {
             if (!frame.contentWindow) {
@@ -189,73 +247,90 @@ window.CluecumberTheme = (function () {
     }
 
     function persistToSharedStorage(dark) {
-        postToStorageFrame('cluecumber-set-theme', dark);
+        writeStoredThemeSync(dark);
+        if (isFileProtocol()) {
+            postToStorageFrame('cluecumber-set-theme', dark);
+        }
     }
 
     function readFromSharedStorage(callback) {
         postToStorageFrame('cluecumber-get-theme', null, callback);
     }
 
-    function setTheme(theme, persist) {
-        applyTheme(theme);
-        updateUrlTheme(theme);
-        if (persist) {
-            persistToSharedStorage(theme === 'dark');
+    (function applyEarlyTheme() {
+        var theme = readThemeForBoot();
+        if (theme === 'dark' || theme === 'light') {
+            applyTheme(theme);
         }
-        if (document.body) {
-            decorateInternalLinks();
-        }
-    }
-
-    function redirectWithStoredTheme(targetPath) {
-        var urlTheme = readThemeFromUrl();
-        if (urlTheme) {
-            window.location.replace(withThemeParam(targetPath, urlTheme));
-            return;
-        }
-
-        var redirected = false;
-        function go(theme) {
-            if (redirected) {
-                return;
-            }
-            redirected = true;
-            window.location.replace(withThemeParam(targetPath, theme));
-        }
-
-        readFromSharedStorage(function (dark) {
-            go(dark ? 'dark' : 'light');
-        });
-        setTimeout(function () {
-            go('light');
-        }, 500);
-    }
+    })();
 
     bindLinkThemeHandler();
 
     return {
         init: function (onReady) {
-            var theme = readThemeFromUrl() || document.documentElement.getAttribute('data-theme');
+            var theme = readThemeForBoot()
+                || document.documentElement.getAttribute('data-theme');
             if (theme === 'dark' || theme === 'light') {
-                setTheme(theme, true);
-                if (onReady) {
-                    onReady();
+                applyTheme(theme);
+                writeStoredThemeSync(theme === 'dark');
+                if (isFileProtocol()) {
+                    updateUrlTheme(theme);
+                    postToStorageFrame('cluecumber-set-theme', theme === 'dark');
+                    if (document.body) {
+                        decorateInternalLinks();
+                    }
                 }
+            }
+            if (onReady) {
+                onReady();
+            }
+        },
+        toggle: function () {
+            var isDark = document.documentElement.getAttribute('data-theme') !== 'dark';
+            var theme = isDark ? 'dark' : 'light';
+            applyTheme(theme);
+            persistToSharedStorage(isDark);
+            if (isFileProtocol()) {
+                updateUrlTheme(theme);
+                if (document.body) {
+                    decorateInternalLinks();
+                }
+            }
+        },
+        redirectWithStoredTheme: function (targetPath) {
+            if (!isFileProtocol()) {
+                window.location.replace(targetPath);
                 return;
             }
 
-            readFromSharedStorage(function (dark) {
-                setTheme(dark ? 'dark' : 'light', false);
-                if (onReady) {
-                    onReady();
+            var urlTheme = readThemeFromUrl();
+            if (urlTheme) {
+                window.location.replace(withThemeParam(targetPath, urlTheme));
+                return;
+            }
+
+            var syncTheme = readStoredThemeSync();
+            if (syncTheme) {
+                window.location.replace(withThemeParam(targetPath, syncTheme));
+                return;
+            }
+
+            var redirected = false;
+            function go(theme) {
+                if (redirected) {
+                    return;
                 }
+                redirected = true;
+                window.location.replace(withThemeParam(targetPath, theme));
+            }
+
+            readFromSharedStorage(function (dark) {
+                go(dark ? 'dark' : 'light');
             });
+            setTimeout(function () {
+                go('light');
+            }, IFRAME_TIMEOUT_MS);
         },
-        toggle: function () {
-            var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            setTheme(theme, true);
-        },
-        redirectWithStoredTheme: redirectWithStoredTheme,
         decorateInternalLinks: decorateInternalLinks
     };
 })();

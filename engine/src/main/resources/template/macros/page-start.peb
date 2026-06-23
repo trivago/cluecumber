@@ -17,18 +17,9 @@ limitations under the License.
 <html lang="en">
 <base href="{{ base }}">
 <head>
-    <script>
-        (function () {
-            var params = new URLSearchParams(window.location.search);
-            var theme = params.get('cluecumber-theme');
-            if (theme === 'dark' || theme === 'light') {
-                document.documentElement.setAttribute('data-theme', theme);
-            }
-        })();
-    </script>
+    <script src="js/cluecumber-theme.js"></script>
     <title>{{ title }}</title>
     <link rel="icon" href="img/favicon.png" type="image/png"/>
-    <script src="js/cluecumber-theme.js"></script>
     {% include "../snippets/common_headers" %}
     {% include "../snippets/css" %}
     {% include "../snippets/js" %}
