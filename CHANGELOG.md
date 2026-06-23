@@ -17,7 +17,7 @@ Back to [Readme](README.md).
 
 ### Added
 
-
+* Custom embedded views via `customViews` property — navigation links that open content in an iframe inside the report (#400)
 
 ### Changed
 

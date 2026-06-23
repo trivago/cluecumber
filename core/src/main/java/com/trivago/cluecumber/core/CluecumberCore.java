@@ -42,6 +42,7 @@ public class CluecumberCore {
         cluecumberEngine.setCustomFavicon(builder.customFavicon);
         cluecumberEngine.setCustomLogo(builder.customLogo);
         cluecumberEngine.setCustomNavigationLinks(builder.customNavigationLinks);
+        cluecumberEngine.setCustomViews(builder.customViews);
         cluecumberEngine.setCustomPageTitle(builder.customPageTitle);
         cluecumberEngine.setCustomParameters(builder.customParameters);
         cluecumberEngine.setCustomParametersDisplayMode(builder.customParametersDisplayMode);
@@ -82,6 +83,7 @@ public class CluecumberCore {
         private String customFavicon;
         private String customLogo;
         private LinkedHashMap<String, String> customNavigationLinks;
+        private LinkedHashMap<String, String> customViews;
         private String customPageTitle;
         private LinkedHashMap<String, String> customParameters;
         private String customParametersDisplayMode;
@@ -160,6 +162,17 @@ public class CluecumberCore {
          */
         public Builder setCustomNavigationLinks(final LinkedHashMap<String, String> customNavigationLinks) {
             this.customNavigationLinks = customNavigationLinks;
+            return this;
+        }
+
+        /**
+         * Custom embedded views to display in the report navigation.
+         *
+         * @param customViews A map of custom key value pairs (key is the link name, value is the URL to embed).
+         * @return The {@link Builder}.
+         */
+        public Builder setCustomViews(final LinkedHashMap<String, String> customViews) {
+            this.customViews = customViews;
             return this;
         }
 

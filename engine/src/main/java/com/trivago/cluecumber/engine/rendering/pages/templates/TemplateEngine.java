@@ -98,7 +98,11 @@ public class TemplateEngine {
         /**
          * Start page template.
          */
-        START_PAGE("index");
+        START_PAGE("index"),
+        /**
+         * Custom embedded view template.
+         */
+        CUSTOM_VIEW("custom-view");
 
         private final String fileName;
 

@@ -22,6 +22,7 @@ public class Link {
     private final String name;
     private final String target;
     private final LinkType type;
+    private final String highlight;
 
     /**
      * Default constructor.
@@ -31,9 +32,22 @@ public class Link {
      * @param type   The type of link (see {@link LinkType}).
      */
     public Link(String name, String target, LinkType type) {
+        this(name, target, type, name);
+    }
+
+    /**
+     * Constructor with an explicit navigation highlight key.
+     *
+     * @param name      The name to display.
+     * @param target    The link target.
+     * @param type      The type of link (see {@link LinkType}).
+     * @param highlight The value matched by the page {@code highlight} variable.
+     */
+    public Link(String name, String target, LinkType type, String highlight) {
         this.name = name;
         this.target = target;
         this.type = type;
+        this.highlight = highlight;
     }
 
     /**
@@ -61,5 +75,23 @@ public class Link {
      */
     public LinkType getType() {
         return type;
+    }
+
+    /**
+     * Get the navigation highlight key for this link.
+     *
+     * @return The highlight key.
+     */
+    public String getHighlight() {
+        return highlight;
+    }
+
+    /**
+     * Create a navigation bar separator entry.
+     *
+     * @return A separator link.
+     */
+    public static Link navigationSeparator() {
+        return new Link("", "", LinkType.SEPARATOR, "");
     }
 }

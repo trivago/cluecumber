@@ -21,9 +21,12 @@ limitations under the License.
         <div class="collapse cluecumber-nav-panel" id="navbarSupportedContent">
             <ul>
                 {% for link in navigationLinks %}
+                    {% if link.type == "SEPARATOR" %}
+                    <li class="cluecumber-nav-separator" aria-hidden="true"></li>
+                    {% else %}
                     <li>
                         {% set highlightClass = "" %}
-                        {% if link.name == highlight %}
+                        {% if link.highlight == highlight %}
                             {% set highlightClass = "active" %}
                         {% endif %}
                         {% if link.type == "INTERNAL" %}
@@ -49,10 +52,22 @@ limitations under the License.
                             <a class="{{ highlightClass }}" href="{{ link.target }}">{{ linkName }}</a>
                         {% elseif link.type == "EXTERNAL" %}
                             {% if link.target is not null %}
-                                <a class="customLink" href="{{ link.target }}" target="_blank">{{ link.name }}</a>
+                                <a class="cluecumber-nav-external-link" href="{{ link.target }}" target="_blank"
+                                   rel="noopener noreferrer" title="Opens in new tab">
+                                    {{ link.name }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="0.85em"
+                                         height="0.85em" aria-hidden="true" focusable="false"
+                                         class="cluecumber-nav-external-icon">
+                                        <path fill="currentColor"
+                                              d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/>
+                                    </svg>
+                                </a>
                             {% endif %}
+                        {% elseif link.type == "EMBEDDED" %}
+                            <a class="{{ highlightClass }}" href="{{ link.target }}">{{ link.name }}</a>
                         {% endif %}
                     </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>

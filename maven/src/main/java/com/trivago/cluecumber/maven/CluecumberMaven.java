@@ -78,6 +78,12 @@ public final class CluecumberMaven extends AbstractMojo {
     private LinkedHashMap<String, String> customNavigationLinks = new LinkedHashMap<>();
 
     /**
+     * Custom embedded views shown in the report navigation bar.
+     */
+    @Parameter(property = "reporting.customViews")
+    private LinkedHashMap<String, String> customViews = new LinkedHashMap<>();
+
+    /**
      * Mark scenarios as failed if they contain pending or undefined steps (default: false).
      */
     @Parameter(property = "reporting.failScenariosOnPendingOrUndefinedSteps", defaultValue = "false")
@@ -211,6 +217,7 @@ public final class CluecumberMaven extends AbstractMojo {
                     .setCustomFaviconFile(customFavicon)
                     .setCustomLogoFile(customLogo)
                     .setCustomNavigationLinks(customNavigationLinks)
+                    .setCustomViews(customViews)
                     .setCustomParameters(customParameters)
                     .setCustomParametersDisplayMode(Settings.CustomParamDisplayMode.valueOf(customParametersDisplayMode.toUpperCase()))
                     .setCustomParametersFile(customParametersFile)

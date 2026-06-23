@@ -24,6 +24,7 @@ _Clear and concise Maven reporting for the Cucumber BDD JSON format_
     - [Add Custom Information Using a File](#add-custom-information-using-a-file)
     - [Where to Display Custom Parameters](#where-to-display-custom-parameters)
   - [Add custom navigation links](#add-custom-navigation-links)
+  - [Add custom embedded views](#add-custom-embedded-views)
   - [Skip Report Generation](#skip-report-generation)
   - [Fail Scenarios on Pending or Undefined Steps](#fail-scenarios-on-pending-or-undefined-steps)
   - [Auto-expand Certain Report Sections](#auto-expand-certain-report-sections)
@@ -232,6 +233,29 @@ These links will be added to the right of the navigation bar. If there are under
 these are replaces with spaces for the link name:
 
 ![Custom link](../documentation/img/custom_link.png)
+
+## Add custom embedded views
+
+If you want to show external or local pages inside the report (instead of opening a new browser tab),
+use the `customViews` property. Each entry adds a navigation link that opens the URL in an iframe on a report page.
+
+```xml
+
+<configuration>
+    <customViews>
+        <Release_Notes>https://example.com/release-notes</Release_Notes>
+        <Local_Dashboard>./dashboard/index.html</Local_Dashboard>
+    </customViews>
+    ...
+</configuration>
+```
+
+Underscores in the property key are replaced with spaces for the link name, same as for `customNavigationLinks`.
+Relative URLs are resolved from the report `pages/` directory.
+
+Custom embedded views appear in the navigation bar before external custom links, separated from the standard report pages by a divider.
+
+Note: Some websites block iframe embedding via `X-Frame-Options` or Content Security Policy.
 
 ## Skip Report Generation
 

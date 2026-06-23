@@ -123,6 +123,14 @@ public class Settings {
      * The name of the tree view page.
      */
     public static final String RERUN_SCENARIOS_PAGE = "rerun-scenarios";
+    /**
+     * The folder of custom embedded view pages.
+     */
+    public static final String CUSTOM_VIEW_PAGE_PATH = "custom-views";
+    /**
+     * The first part of the name of custom embedded view pages.
+     */
+    public static final String CUSTOM_VIEW_PAGE_FRAGMENT = "/" + CUSTOM_VIEW_PAGE_PATH + "/";
 
 
     /**

@@ -22,16 +22,19 @@ import com.trivago.cluecumber.engine.exceptions.filesystem.MissingFileException;
 import com.trivago.cluecumber.engine.exceptions.properties.WrongOrMissingPropertyException;
 import com.trivago.cluecumber.engine.filesystem.FileIO;
 import com.trivago.cluecumber.engine.logging.CluecumberLogger;
+import com.trivago.cluecumber.engine.rendering.pages.pojos.CustomView;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.Link;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.LinkType;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import static com.trivago.cluecumber.engine.logging.CluecumberLogger.CluecumberLogLevel.COMPACT;
@@ -50,6 +53,7 @@ public class PropertyManager {
     private final PropertiesFileLoader propertiesFileLoader;
     private final Map<String, String> customParameters = new LinkedHashMap<>();
     private final Map<String, String> customNavigationLinks = new LinkedHashMap<>();
+    private final Map<String, String> customViews = new LinkedHashMap<>();
     private String sourceJsonReportDirectory;
     private String generatedHtmlReportDirectory;
     private boolean failScenariosOnPendingOrUndefinedSteps = false;
@@ -224,6 +228,57 @@ public class PropertyManager {
     }
 
     /**
+     * Set custom embedded views to appear in the report navigation.
+     * The map key represents the caption to display in the navigation, the value is the URL to embed.
+     *
+     * @param customViews The map of key value pairs.
+     */
+    public void setCustomViews(final Map<String, String> customViews) {
+        if (customViews == null) {
+            return;
+        }
+        this.customViews.putAll(customViews);
+    }
+
+    /**
+     * Get the configured custom embedded views.
+     *
+     * @return The list of {@link com.trivago.cluecumber.engine.rendering.pages.pojos.CustomView} instances.
+     */
+    public List<CustomView> getCustomViews() {
+        List<CustomView> views = new LinkedList<>();
+        Set<String> usedSlugs = new HashSet<>();
+
+        for (Map.Entry<String, String> entry : customViews.entrySet()) {
+            String value = entry.getValue();
+            if (value == null || value.trim().isEmpty()) {
+                continue;
+            }
+            String slug = toCustomViewSlug(entry.getKey(), usedSlugs);
+            String displayName = entry.getKey().replace("_", " ");
+            String highlight = "custom_view_" + slug.replace('-', '_');
+            views.add(new CustomView(displayName, value.trim(), slug, highlight));
+        }
+
+        return views;
+    }
+
+    private String toCustomViewSlug(final String key, final Set<String> usedSlugs) {
+        String slug = key.toLowerCase().replace('_', '-').replaceAll("[^a-z0-9-]", "");
+        if (slug.isEmpty()) {
+            slug = "view";
+        }
+
+        String candidate = slug;
+        int suffix = 1;
+        while (usedSlugs.contains(candidate)) {
+            candidate = slug + "-" + suffix++;
+        }
+        usedSlugs.add(candidate);
+        return candidate;
+    }
+
+    /**
      * Get the custom navigation links to appear next to the default Cluecumber navigation.
      * The map key represents the caption to be display in the navigation, the value is the actual URL to link to.
      *
@@ -231,6 +286,15 @@ public class PropertyManager {
      */
     public List<Link> getNavigationLinks() {
         List<Link> links = new LinkedList<>(Navigation.internalLinks);
+
+        getCustomViews().forEach(customView -> links.add(new Link(
+                customView.getDisplayName(),
+                Settings.PAGES_DIRECTORY + Settings.CUSTOM_VIEW_PAGE_FRAGMENT + customView.getSlug()
+                        + Settings.HTML_FILE_EXTENSION,
+                LinkType.EMBEDDED,
+                customView.getHighlight()
+        )));
+
         customNavigationLinks.forEach((key, value) -> {
             String linkName = key.replace("_", " ");
             links.add(new Link(linkName, value, LinkType.EXTERNAL));
@@ -238,7 +302,22 @@ public class PropertyManager {
 
         links.removeIf(link -> !groupPreviousScenarioRuns && link.getName().equals("rerun_scenarios"));
 
-        return links;
+        return withNavigationSeparator(links);
+    }
+
+    private List<Link> withNavigationSeparator(final List<Link> links) {
+        List<Link> navigationLinks = new LinkedList<>();
+        boolean separatorAdded = false;
+
+        for (Link link : links) {
+            if (!separatorAdded && link.getType() != LinkType.INTERNAL) {
+                navigationLinks.add(Link.navigationSeparator());
+                separatorAdded = true;
+            }
+            navigationLinks.add(link);
+        }
+
+        return navigationLinks;
     }
 
     /**
@@ -621,6 +700,13 @@ public class PropertyManager {
         if (!customNavigationLinks.isEmpty()) {
             customNavigationLinks.entrySet().stream().map(
                     entry -> "- custom navigation link           : " +
+                             entry.getKey() + " -> " + entry.getValue()).forEach(
+                    logString -> logger.info(logString, DEFAULT));
+        }
+
+        if (!customViews.isEmpty()) {
+            customViews.entrySet().stream().map(
+                    entry -> "- custom embedded view             : " +
                              entry.getKey() + " -> " + entry.getValue()).forEach(
                     logString -> logger.info(logString, DEFAULT));
         }

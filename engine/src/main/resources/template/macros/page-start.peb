@@ -35,10 +35,11 @@ limitations under the License.
     {% include "../snippets/css" %}
     {% include "../snippets/js" %}
 </head>
-<body>
+<body{% if bodyClass is defined and bodyClass != "" %} class="{{ bodyClass }}"{% endif %}>
 {% include "macros/navigation-bar" %}
 <main class="container">
     <div class="cluecumber-template">
+        {% if skipPageHeader is not defined or not skipPageHeader %}
         <div class="row cluecumber-page-header-row">
             <div class="cluecumber-col-12">
                 {% if headline != "" or _model.hasCustomParameters() %}
@@ -72,3 +73,4 @@ limitations under the License.
                 {% endif %}
             </div>
         </div>
+        {% endif %}

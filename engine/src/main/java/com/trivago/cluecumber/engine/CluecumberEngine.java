@@ -198,6 +198,15 @@ public final class CluecumberEngine {
     }
 
     /**
+     * Custom embedded views to display in the report navigation.
+     *
+     * @param customViews A map of custom key value pairs (key is the link name, value is the URL to embed).
+     */
+    public void setCustomViews(final LinkedHashMap<String, String> customViews) {
+        propertyManager.setCustomViews(customViews);
+    }
+
+    /**
      * Whether to fail scenarios when steps are pending or undefined.
      *
      * @param failScenariosOnPendingOrUndefinedSteps On true, it will fail scenarios with pending or undefined steps.

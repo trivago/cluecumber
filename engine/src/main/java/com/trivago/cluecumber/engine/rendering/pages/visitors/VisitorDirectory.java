@@ -36,6 +36,7 @@ public class VisitorDirectory {
      * @param tagVisitor       The {@link TagVisitor} instance.
      * @param exceptionVisitor The {@link ExceptionVisitor} instance.
      * @param stepVisitor      The {@link StepVisitor} instance.
+     * @param customViewVisitor The {@link CustomViewVisitor} instance.
      */
     @Inject
     public VisitorDirectory(
@@ -43,7 +44,8 @@ public class VisitorDirectory {
             final FeatureVisitor featureVisitor,
             final TagVisitor tagVisitor,
             final ExceptionVisitor exceptionVisitor,
-            final StepVisitor stepVisitor
+            final StepVisitor stepVisitor,
+            final CustomViewVisitor customViewVisitor
     ) {
         visitors = new ArrayList<>();
         visitors.add(scenarioVisitor);
@@ -51,6 +53,7 @@ public class VisitorDirectory {
         visitors.add(tagVisitor);
         visitors.add(exceptionVisitor);
         visitors.add(stepVisitor);
+        visitors.add(customViewVisitor);
     }
 
     /**

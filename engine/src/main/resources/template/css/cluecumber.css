@@ -159,13 +159,24 @@ h1, h2, h3, h4, h5 {
     text-decoration: underline;
 }
 
-.cluecumber-nav-panel a.customLink {
-    color: #ffd54f;
-    font-weight: 600;
+.cluecumber-nav-external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
-.cluecumber-nav-panel a.customLink:hover {
-    color: #fff59d;
+.cluecumber-nav-external-icon {
+    opacity: 0.75;
+    flex-shrink: 0;
+}
+
+.cluecumber-nav-separator {
+    align-self: center;
+    width: 1px;
+    height: 1.1em;
+    margin: 0 0.15rem;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.35);
 }
 
 .cluecumber-header-actions {
@@ -1529,6 +1540,59 @@ iframe {
     overflow: hidden;
 }
 
+.cluecumber-embedded-view-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin-bottom: 0;
+    padding-top: 0;
+    overflow: hidden;
+}
+
+.cluecumber-embedded-view-page .cluecumber-header {
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+}
+
+.cluecumber-embedded-view-page main.container {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    max-width: none;
+    margin: 0;
+}
+
+.cluecumber-embedded-view-page .cluecumber-template {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.cluecumber-embedded-view-page .cluecumber-embedded-view-row {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0;
+}
+
+.cluecumber-embedded-view-page .cluecumber-embedded-view-row .cluecumber-col-12 {
+    height: 100%;
+    padding: 0;
+}
+
+.cluecumber-embedded-view-page .cluecumber-embedded-view {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border: 0;
+}
+
 .ansi-bold { font-weight: 600; }
 .ansi-underline { text-decoration: underline; }
 
@@ -1622,6 +1686,13 @@ iframe {
         display: block;
         white-space: nowrap;
         padding: 0.5rem 0;
+    }
+
+    .cluecumber-nav-separator {
+        align-self: stretch;
+        width: auto;
+        height: 1px;
+        margin: 0.35rem 0;
     }
 
     .cluecumber-step-name,

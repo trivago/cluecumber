@@ -108,6 +108,19 @@ limitations under the License.
         toggle.addEventListener('click', function () {
             const expanded = panel.classList.toggle('show');
             toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            document.querySelectorAll('iframe.cluecumber-embedded-view').forEach(function (iframe) {
+                if (typeof iframe._cluecumberRefreshEmbeddedView === 'function') {
+                    iframe._cluecumberRefreshEmbeddedView();
+                }
+            });
+        });
+    }
+
+    function refreshEmbeddedViews() {
+        document.querySelectorAll('iframe.cluecumber-embedded-view').forEach(function (iframe) {
+            if (typeof iframe._cluecumberRefreshEmbeddedView === 'function') {
+                iframe._cluecumberRefreshEmbeddedView();
+            }
         });
     }
 
@@ -169,6 +182,15 @@ limitations under the License.
             $('iframe.embedded-html').each(function (index, iframe) {
                 resizeIframe(iframe);
             });
+
+            document.querySelectorAll('iframe.cluecumber-embedded-view').forEach(function (iframe) {
+                resizeEmbeddedView(iframe);
+            });
+
+            if (document.body.classList.contains('cluecumber-embedded-view-page')) {
+                refreshEmbeddedViews();
+                window.addEventListener('resize', refreshEmbeddedViews);
+            }
 
             $("a.grouped_elements").fancybox();
             initCluecumberTooltips();
@@ -363,6 +385,47 @@ limitations under the License.
             button.setAttribute('aria-label', 'Switch to dark mode');
             button.title = 'Dark mode';
             button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.15em" height="1.15em" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+        }
+    }
+
+    function resizeEmbeddedView(iframe) {
+        function availableHeight() {
+            var main = iframe.closest('main');
+            if (main) {
+                return main.clientHeight;
+            }
+            return window.innerHeight;
+        }
+
+        function applyHeight() {
+            var available = availableHeight();
+            try {
+                var doc = iframe.contentWindow.document;
+                var contentHeight = Math.max(
+                    doc.documentElement.scrollHeight,
+                    doc.body ? doc.body.scrollHeight : 0
+                );
+                iframe.style.height = Math.min(contentHeight + 25, available) + 'px';
+            } catch (error) {
+                iframe.style.height = available + 'px';
+            }
+        }
+
+        function bind() {
+            applyHeight();
+        }
+
+        iframe._cluecumberRefreshEmbeddedView = applyHeight;
+
+        try {
+            var doc = iframe.contentDocument || iframe.contentWindow.document;
+            if (doc && doc.readyState === 'complete') {
+                bind();
+            } else {
+                iframe.addEventListener('load', bind, {once: true});
+            }
+        } catch (error) {
+            iframe.addEventListener('load', bind, {once: true});
         }
     }
 

@@ -26,5 +26,13 @@ public enum LinkType {
     /**
      * External link.
      */
-    EXTERNAL
+    EXTERNAL,
+    /**
+     * In-report page that embeds external content in an iframe.
+     */
+    EMBEDDED,
+    /**
+     * Visual separator between standard and custom navigation entries.
+     */
+    SEPARATOR
 }
