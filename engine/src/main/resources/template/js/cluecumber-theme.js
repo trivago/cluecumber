@@ -15,18 +15,16 @@ limitations under the License.
 */
 
 window.CluecumberTheme = (function () {
+    var STORAGE_FRAME_ID = 'cluecumber-storage-frame';
+    var STORAGE_HTML = 'js/cluecumber-storage.html';
     var STORAGE_KEY = 'darkMode';
     var LEGACY_STORAGE_KEY = 'cluecumber-dark-mode';
-    var SESSION_KEY = 'cluecumber-theme';
     var THEME_PARAM = 'cluecumber-theme';
+    var STORAGE_TIMEOUT_MS = 3000;
     var linkHandlerBound = false;
 
     function isFileProtocol() {
         return window.location.protocol === 'file:';
-    }
-
-    function prefersDark() {
-        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
 
     function readLocalStorageTheme() {
@@ -50,15 +48,12 @@ window.CluecumberTheme = (function () {
         return null;
     }
 
-    function readSessionTheme() {
+    function writeLocalStorageTheme(theme) {
         try {
-            var value = sessionStorage.getItem(SESSION_KEY);
-            if (value === 'dark' || value === 'light') {
-                return value;
-            }
+            localStorage.setItem(STORAGE_KEY, theme === 'dark' ? 'enabled' : 'disabled');
+            localStorage.removeItem(LEGACY_STORAGE_KEY);
         } catch (error) {
         }
-        return null;
     }
 
     function readThemeFromUrl() {
@@ -73,60 +68,125 @@ window.CluecumberTheme = (function () {
         return null;
     }
 
-    function getTheme() {
+    function resolveReportAssetUrl(relativePath) {
+        var path = window.location.href.split('#')[0].split('?')[0];
+        var pagesMarker = '/pages/';
+        var pagesIdx = path.indexOf(pagesMarker);
+        if (pagesIdx !== -1) {
+            return path.substring(0, pagesIdx) + '/' + relativePath;
+        }
+        var lastSlash = path.lastIndexOf('/');
+        return path.substring(0, lastSlash + 1) + relativePath;
+    }
+
+    function getStorageFrame() {
+        var frame = document.getElementById(STORAGE_FRAME_ID);
+        if (!frame) {
+            frame = document.createElement('iframe');
+            frame.id = STORAGE_FRAME_ID;
+            frame.src = resolveReportAssetUrl(STORAGE_HTML);
+            frame.hidden = true;
+            frame.title = '';
+            document.documentElement.appendChild(frame);
+        }
+        return frame;
+    }
+
+    function postToStorage(type, theme, callback) {
+        var frame = getStorageFrame();
+        var handled = false;
+        var timeoutId = null;
+
+        function finish(result) {
+            if (handled) {
+                return;
+            }
+            handled = true;
+            window.removeEventListener('message', onMessage);
+            if (timeoutId !== null) {
+                clearTimeout(timeoutId);
+            }
+            if (callback) {
+                callback(result);
+            }
+        }
+
+        function onMessage(event) {
+            if (!event.data || event.data.type !== 'cluecumber-theme') {
+                return;
+            }
+            if (frame.contentWindow && event.source !== frame.contentWindow) {
+                return;
+            }
+            finish(event.data.theme || null);
+        }
+
+        window.addEventListener('message', onMessage);
+        timeoutId = setTimeout(function () {
+            finish(null);
+        }, STORAGE_TIMEOUT_MS);
+
+        function send() {
+            if (!frame.contentWindow) {
+                return;
+            }
+            frame.contentWindow.postMessage({
+                type: type,
+                theme: theme
+            }, '*');
+        }
+
+        frame.addEventListener('load', send, {once: true});
+        send();
+    }
+
+    function readSharedTheme(callback) {
+        if (!isFileProtocol()) {
+            callback(null);
+            return;
+        }
+        postToStorage('cluecumber-get-theme', null, callback);
+    }
+
+    function writeSharedTheme(theme, callback) {
+        if (!isFileProtocol()) {
+            if (callback) {
+                callback();
+            }
+            return;
+        }
+        postToStorage('cluecumber-set-theme', theme, function () {
+            if (callback) {
+                callback();
+            }
+        });
+    }
+
+    function getHttpTheme() {
+        var stored = readLocalStorageTheme();
+        if (stored) {
+            return stored;
+        }
+        return 'light';
+    }
+
+    function getEarlyTheme() {
         var urlTheme = readThemeFromUrl();
         if (urlTheme) {
             return urlTheme;
         }
-
-        if (!isFileProtocol()) {
-            var stored = readLocalStorageTheme();
-            if (stored) {
-                return stored;
-            }
+        if (isFileProtocol()) {
             return 'light';
         }
-
-        var fileStored = readLocalStorageTheme();
-        if (fileStored) {
-            return fileStored;
-        }
-
-        var sessionTheme = readSessionTheme();
-        if (sessionTheme) {
-            return sessionTheme;
-        }
-
-        return prefersDark() ? 'dark' : 'light';
-    }
-
-    function persistTheme(theme) {
-        var dark = theme === 'dark';
-        if (!isFileProtocol()) {
-            try {
-                localStorage.setItem(STORAGE_KEY, dark ? 'enabled' : 'disabled');
-                localStorage.removeItem(LEGACY_STORAGE_KEY);
-            } catch (error) {
-            }
-            return;
-        }
-
-        try {
-            sessionStorage.setItem(SESSION_KEY, theme);
-        } catch (error) {
-        }
-        try {
-            localStorage.setItem(STORAGE_KEY, dark ? 'enabled' : 'disabled');
-            localStorage.removeItem(LEGACY_STORAGE_KEY);
-        } catch (error) {
-        }
+        return getHttpTheme();
     }
 
     function isInternalHref(href) {
         return href
             && href.charAt(0) !== '#'
             && href.indexOf('://') === -1
-            && href.indexOf('mailto:') !== 0;
+            && href.indexOf('mailto:') !== 0
+            && href.indexOf('javascript:') !== 0;
     }
 
     function withThemeParam(href, theme) {
@@ -153,6 +213,14 @@ window.CluecumberTheme = (function () {
         params.set(THEME_PARAM, theme);
         var serialized = params.toString();
         return path + (serialized ? '?' + serialized : '') + hash;
+    }
+
+    function currentTheme() {
+        var theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark' || theme === 'light') {
+            return theme;
+        }
+        return 'light';
     }
 
     function applyTheme(theme) {
@@ -182,11 +250,7 @@ window.CluecumberTheme = (function () {
             return;
         }
 
-        var theme = document.documentElement.getAttribute('data-theme');
-        if (theme !== 'dark' && theme !== 'light') {
-            return;
-        }
-
+        var theme = currentTheme();
         document.querySelectorAll('a[href]').forEach(function (link) {
             if (link.target === '_blank' || link.hasAttribute('download')) {
                 return;
@@ -214,53 +278,77 @@ window.CluecumberTheme = (function () {
             if (!isInternalHref(href)) {
                 return;
             }
-            var theme = document.documentElement.getAttribute('data-theme');
-            if (theme !== 'dark' && theme !== 'light') {
-                return;
-            }
-            link.setAttribute('href', withThemeParam(href, theme));
+            link.setAttribute('href', withThemeParam(href, currentTheme()));
         }, true);
     }
 
+    function finishFileTheme(theme) {
+        applyTheme(theme);
+        updateUrlTheme(theme);
+        if (document.body) {
+            decorateInternalLinks();
+        }
+    }
+
+    function resolveFileTheme(callback) {
+        var urlTheme = readThemeFromUrl();
+        if (urlTheme) {
+            writeSharedTheme(urlTheme, function () {
+                callback(urlTheme);
+            });
+            return;
+        }
+        readSharedTheme(function (storedTheme) {
+            callback(storedTheme || 'light');
+        });
+    }
+
     (function applyEarlyTheme() {
-        applyTheme(getTheme());
+        applyTheme(getEarlyTheme());
     })();
 
     bindLinkThemeHandler();
 
     return {
         init: function (onReady) {
-            var theme = getTheme();
-            applyTheme(theme);
-            persistTheme(theme);
             if (isFileProtocol()) {
-                updateUrlTheme(theme);
-                if (document.body) {
-                    decorateInternalLinks();
-                }
+                resolveFileTheme(finishFileTheme);
+            } else {
+                applyTheme(getHttpTheme());
             }
             if (onReady) {
                 onReady();
             }
         },
         toggle: function () {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            var isDark = currentTheme() === 'dark';
             var theme = isDark ? 'light' : 'dark';
             applyTheme(theme);
-            persistTheme(theme);
             if (isFileProtocol()) {
-                updateUrlTheme(theme);
-                if (document.body) {
-                    decorateInternalLinks();
-                }
-            }
-        },
-        redirectWithStoredTheme: function (targetPath) {
-            if (isFileProtocol()) {
-                window.location.replace(withThemeParam(targetPath, getTheme()));
+                writeSharedTheme(theme, function () {
+                    updateUrlTheme(theme);
+                    if (document.body) {
+                        decorateInternalLinks();
+                    }
+                });
                 return;
             }
-            window.location.replace(targetPath);
+            writeLocalStorageTheme(theme);
+        },
+        redirectWithStoredTheme: function (targetPath) {
+            if (!isFileProtocol()) {
+                window.location.replace(targetPath);
+                return;
+            }
+            resolveFileTheme(function (theme) {
+                window.location.replace(withThemeParam(targetPath, theme));
+            });
+        },
+        hrefWithTheme: function (href) {
+            if (!isFileProtocol()) {
+                return href;
+            }
+            return withThemeParam(href, currentTheme());
         },
         decorateInternalLinks: decorateInternalLinks
     };

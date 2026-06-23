@@ -260,7 +260,7 @@ limitations under the License.
                         if (label == null) return;
                         const urlSnippet = chartUrls[label];
                         if (urlSnippet == null) return;
-                        window.location.href = urlSnippet;
+                        window.location.href = CluecumberTheme.hrefWithTheme(urlSnippet);
                     };
                     {% endif %}
                 }

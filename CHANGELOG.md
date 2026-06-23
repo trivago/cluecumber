@@ -22,7 +22,7 @@ Back to [Readme](README.md).
 ### Changed
 
 * Scenario hooks are now always displayed in the detail page
-* Dark mode preference is persisted in local storage when the report is served over HTTP; when opened as a local file, the OS theme is used by default and the toggle is kept for the browser session via URL state
+* Dark mode preference is persisted in local storage when the report is served over HTTP; when opened as a local file, the default is light mode and the toggle preference is shared across report pages
 
 ## [4.1.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.1.0) - 2026-06-18
 

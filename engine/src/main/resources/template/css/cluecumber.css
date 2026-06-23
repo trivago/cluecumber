@@ -297,7 +297,9 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-subheadline {
+    margin-top: 0.25rem;
     margin-bottom: 0;
+    color: var(--pico-muted-color);
 }
 
 .cluecumber-logo {

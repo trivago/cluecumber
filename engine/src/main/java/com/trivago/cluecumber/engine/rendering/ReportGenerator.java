@@ -198,6 +198,7 @@ public class ReportGenerator {
         copyFileFromJarToReportDirectory("/js/datatables.min.js");
         copyFileFromJarToReportDirectory("/js/jquery.fancybox.min.js");
         copyFileFromJarToReportDirectory("/js/cluecumber-theme.js");
+        copyFileFromJarToReportDirectory("/js/cluecumber-storage.html");
     }
 
     /**

@@ -10,7 +10,7 @@
         var STORAGE_KEY = 'darkMode';
         var LEGACY_STORAGE_KEY = 'cluecumber-dark-mode';
 
-        function readDarkModeEnabled() {
+        function readTheme() {
             var value = localStorage.getItem(STORAGE_KEY);
             if (value === null) {
                 var legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
@@ -19,12 +19,18 @@
                     value = legacy;
                 }
             }
-            return value === 'enabled';
+            if (value === 'enabled') {
+                return 'dark';
+            }
+            if (value === 'disabled') {
+                return 'light';
+            }
+            return null;
         }
 
         window.addEventListener('message', function (event) {
             var data = event.data;
-            if (!data || typeof data.type !== 'string' || data.type.indexOf('cluecumber-') !== 0) {
+            if (!data || typeof data.type !== 'string') {
                 return;
             }
 
@@ -36,16 +42,16 @@
             if (data.type === 'cluecumber-get-theme') {
                 source.postMessage({
                     type: 'cluecumber-theme',
-                    dark: readDarkModeEnabled()
+                    theme: readTheme()
                 }, '*');
             }
 
             if (data.type === 'cluecumber-set-theme') {
-                localStorage.setItem(STORAGE_KEY, data.dark ? 'enabled' : 'disabled');
+                localStorage.setItem(STORAGE_KEY, data.theme === 'dark' ? 'enabled' : 'disabled');
                 localStorage.removeItem(LEGACY_STORAGE_KEY);
                 source.postMessage({
                     type: 'cluecumber-theme',
-                    dark: data.dark
+                    theme: data.theme
                 }, '*');
             }
         });

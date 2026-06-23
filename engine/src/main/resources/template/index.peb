@@ -17,6 +17,17 @@ limitations under the License.
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        (function () {
+            var match = location.search.match(/[?&]cluecumber-theme=(dark|light)/);
+            if (match) {
+                document.documentElement.setAttribute('data-theme', match[1]);
+            } else if (location.protocol === 'file:') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <iframe id="cluecumber-storage-frame" src="js/cluecumber-storage.html" hidden title=""></iframe>
     <title>Redirecting to {{ startPage.pageName }}</title>
     <script src="js/cluecumber-theme.js"></script>
     <script>
