@@ -31,7 +31,9 @@ import io.pebbletemplates.pebble.template.PebbleTemplate;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -116,16 +118,11 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final PebbleTemplate template,
             final Tag tag) throws CluecumberException {
 
-        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        Map<Integer, List<Element>> matchingElementsByReportIndex =
+                allScenariosPageCollection.getElementsByTagAndReportIndex().getOrDefault(tag, Collections.emptyMap());
+        AllScenariosPageCollection allScenariosPageCollectionClone =
+                getFilteredAllScenariosPageCollectionClone(allScenariosPageCollection, matchingElementsByReportIndex);
         allScenariosPageCollectionClone.setTagFilter(tag);
-
-        allScenariosPageCollectionClone.getReports().forEach(report -> {
-            List<Element> elements = report.getElements()
-                    .stream()
-                    .filter(element -> element.getTags().contains(tag))
-                    .collect(Collectors.toList());
-            report.setElements(elements);
-        });
 
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
@@ -145,16 +142,12 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final PebbleTemplate template,
             final String exceptionClass) throws CluecumberException {
 
-        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        Map<Integer, List<Element>> matchingElementsByReportIndex =
+                allScenariosPageCollection.getElementsByExceptionAndReportIndex()
+                        .getOrDefault(exceptionClass, Collections.emptyMap());
+        AllScenariosPageCollection allScenariosPageCollectionClone =
+                getFilteredAllScenariosPageCollectionClone(allScenariosPageCollection, matchingElementsByReportIndex);
         allScenariosPageCollectionClone.setExceptionFilter(exceptionClass);
-
-        allScenariosPageCollectionClone.getReports().forEach(report -> {
-            List<Element> elements = report.getElements()
-                    .stream()
-                    .filter(element -> element.getFirstExceptionClass().equals(exceptionClass))
-                    .collect(Collectors.toList());
-            report.setElements(elements);
-        });
 
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
@@ -175,15 +168,11 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
             final PebbleTemplate template,
             final Step step) throws CluecumberException {
 
-        AllScenariosPageCollection allScenariosPageCollectionClone = getAllScenariosPageCollectionClone(allScenariosPageCollection);
+        Map<Integer, List<Element>> matchingElementsByReportIndex =
+                allScenariosPageCollection.getElementsByStepAndReportIndex().getOrDefault(step, Collections.emptyMap());
+        AllScenariosPageCollection allScenariosPageCollectionClone =
+                getFilteredAllScenariosPageCollectionClone(allScenariosPageCollection, matchingElementsByReportIndex);
         allScenariosPageCollectionClone.setStepFilter(step);
-        for (Report report : allScenariosPageCollectionClone.getReports()) {
-            List<Element> elements = report.getElements()
-                    .stream()
-                    .filter(element -> element.getSteps().contains(step) || element.getBackgroundSteps().contains(step))
-                    .collect(Collectors.toList());
-            report.setElements(elements);
-        }
 
         addChartJsonToReportDetails(allScenariosPageCollectionClone);
         return processedContent(template, allScenariosPageCollectionClone, propertyManager.getNavigationLinks());
@@ -227,12 +216,36 @@ public class AllScenariosPageRenderer extends PageWithChartRenderer {
 
     private AllScenariosPageCollection getAllScenariosPageCollectionClone(
             final AllScenariosPageCollection allScenariosPageCollection) throws CluecumberException {
-        AllScenariosPageCollection clone;
         try {
-            clone = allScenariosPageCollection.clone();
+            return finalizeClone(allScenariosPageCollection.clone());
         } catch (CloneNotSupportedException e) {
             throw new CluecumberException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
         }
+    }
+
+    /**
+     * Get a clone of the given {@link AllScenariosPageCollection} that contains only the reports that have
+     * at least one element matching the given report-index-to-elements map, instead of a full clone of all
+     * reports. Rendering the "scenarios by tag/step/exception" pages for every one of the potentially many
+     * unique tags/steps/exceptions otherwise requires carrying around (and repeatedly computing statistics
+     * for) reports that will not be part of the rendered page anyway.
+     *
+     * @param allScenariosPageCollection    The source {@link AllScenariosPageCollection} instance.
+     * @param matchingElementsByReportIndex A map of original report index to its matching elements.
+     * @return The filtered clone.
+     * @throws CluecumberException Thrown on any error.
+     */
+    private AllScenariosPageCollection getFilteredAllScenariosPageCollectionClone(
+            final AllScenariosPageCollection allScenariosPageCollection,
+            final Map<Integer, List<Element>> matchingElementsByReportIndex) throws CluecumberException {
+        try {
+            return finalizeClone(allScenariosPageCollection.cloneWithOnlyMatchingReports(matchingElementsByReportIndex));
+        } catch (CloneNotSupportedException e) {
+            throw new CluecumberException("Clone of AllScenariosPageCollection not supported: " + e.getMessage());
+        }
+    }
+
+    private AllScenariosPageCollection finalizeClone(final AllScenariosPageCollection clone) {
         addCustomParametersToReportDetails(clone, propertyManager.getCustomParameters());
         clone.setGroupPreviousScenarioRuns(propertyManager.isGroupPreviousScenarioRuns());
         clone.setExpandPreviousScenarioRuns(propertyManager.isExpandPreviousScenarioRuns());
