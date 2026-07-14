@@ -20,6 +20,8 @@ Setting can adjust the look of the generated reports, e.g., by adding:
 * optional custom favicon
 * optional custom CSS
 * Custom parameters
+* Custom links
+* Custom embedded views
 
 ![Cluecumber animation](documentation/img/cluecumber.gif)
 
@@ -43,6 +45,8 @@ Cluecumber generates the following report pages:
 * __Scenario by Exception__: all scenarios that failed with a specific exception type
 * __Tree View__: all features and scenarios in a tree for an easy overview of the test suite
 
+Additionally, you can specify custom links or embedded views.
+
 ## Changelog
 
 All changes are documented in the [full changelog](CHANGELOG.md).
@@ -53,10 +57,6 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 
 Cluecumber requires Java >= 17 and Maven >= 3.9.9 to build from source. Runtime use of `cluecumber-core` requires Java >= 17 (via `cluecumber-engine`).
 It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core+a%3Acluecumber-maven&smo=true).
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=trivago/cluecumber-report-plugin&type=Date)](https://star-history.com/#trivago/cluecumber-report-plugin&Date)
 
 ## License
 
