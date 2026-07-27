@@ -46,7 +46,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -60,6 +64,12 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     private Feature featureFilter;
     private Step stepFilter;
     private String exceptionFilter;
+
+    // Lazily computed and cached lookup indices, so that rendering the "scenarios by X" pages for every
+    // unique tag/step/exception does not require a full re-scan of all reports and elements for each of them.
+    private Map<Tag, Map<Integer, List<Element>>> elementsByTagAndReportIndex;
+    private Map<Step, Map<Integer, List<Element>>> elementsByStepAndReportIndex;
+    private Map<String, Map<Integer, List<Element>>> elementsByExceptionAndReportIndex;
 
     /**
      * Constructor.
@@ -429,6 +439,84 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
+     * Group all elements by tag and the index of their originating report.
+     * <p>
+     * This is computed once and cached instead of being recomputed for every unique tag, since the
+     * "scenarios by tag" page is rendered once per unique tag and a full re-scan of all reports and
+     * elements for each of them can be very expensive for reports with many scenarios and tags.
+     *
+     * @return A map of tag to a map of report index to the matching elements of that report.
+     */
+    public Map<Tag, Map<Integer, List<Element>>> getElementsByTagAndReportIndex() {
+        if (elementsByTagAndReportIndex == null) {
+            elementsByTagAndReportIndex = new HashMap<>();
+            for (int reportIndex = 0; reportIndex < reports.size(); reportIndex++) {
+                for (Element element : reports.get(reportIndex).getElements()) {
+                    for (Tag tag : new HashSet<>(element.getTags())) {
+                        elementsByTagAndReportIndex
+                                .computeIfAbsent(tag, key -> new HashMap<>())
+                                .computeIfAbsent(reportIndex, key -> new ArrayList<>())
+                                .add(element);
+                    }
+                }
+            }
+        }
+        return elementsByTagAndReportIndex;
+    }
+
+    /**
+     * Group all elements (including background steps) by step and the index of their originating report.
+     * <p>
+     * This is computed once and cached instead of being recomputed for every unique step, since the
+     * "scenarios by step" page is rendered once per unique step and a full re-scan of all reports and
+     * elements for each of them can be very expensive for reports with many scenarios and steps.
+     *
+     * @return A map of step to a map of report index to the matching elements of that report.
+     */
+    public Map<Step, Map<Integer, List<Element>>> getElementsByStepAndReportIndex() {
+        if (elementsByStepAndReportIndex == null) {
+            elementsByStepAndReportIndex = new HashMap<>();
+            for (int reportIndex = 0; reportIndex < reports.size(); reportIndex++) {
+                for (Element element : reports.get(reportIndex).getElements()) {
+                    final Set<Step> distinctSteps = new HashSet<>(element.getSteps());
+                    distinctSteps.addAll(element.getBackgroundSteps());
+                    for (Step step : distinctSteps) {
+                        elementsByStepAndReportIndex
+                                .computeIfAbsent(step, key -> new HashMap<>())
+                                .computeIfAbsent(reportIndex, key -> new ArrayList<>())
+                                .add(element);
+                    }
+                }
+            }
+        }
+        return elementsByStepAndReportIndex;
+    }
+
+    /**
+     * Group all elements by their first exception class and the index of their originating report.
+     * <p>
+     * This is computed once and cached instead of being recomputed for every unique exception, since the
+     * "scenarios by exception" page is rendered once per unique exception and a full re-scan of all reports
+     * and elements for each of them can be very expensive for reports with many scenarios and exceptions.
+     *
+     * @return A map of exception class to a map of report index to the matching elements of that report.
+     */
+    public Map<String, Map<Integer, List<Element>>> getElementsByExceptionAndReportIndex() {
+        if (elementsByExceptionAndReportIndex == null) {
+            elementsByExceptionAndReportIndex = new HashMap<>();
+            for (int reportIndex = 0; reportIndex < reports.size(); reportIndex++) {
+                for (Element element : reports.get(reportIndex).getElements()) {
+                    elementsByExceptionAndReportIndex
+                            .computeIfAbsent(element.getFirstExceptionClass(), key -> new HashMap<>())
+                            .computeIfAbsent(reportIndex, key -> new ArrayList<>())
+                            .add(element);
+                }
+            }
+        }
+        return elementsByExceptionAndReportIndex;
+    }
+
+    /**
      * Function to clone the {@link AllScenariosPageCollection} including all included data.
      *
      * @return The clone of the {@link AllScenariosPageCollection}
@@ -440,12 +528,55 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
         clone.setStepFilter(null);
         clone.setTagFilter(null);
         clone.setExceptionFilter(null);
+        // A clone only ever holds a (filtered) subset of reports, so any lookup index cached on the
+        // source collection would be stale and must be recomputed if it were ever accessed on the clone.
+        clone.elementsByTagAndReportIndex = null;
+        clone.elementsByStepAndReportIndex = null;
+        clone.elementsByExceptionAndReportIndex = null;
         clone.clearReports();
         List<Report> clonedReports = new ArrayList<>();
         for (Report r : getReports()) {
             clonedReports.add((Report) r.clone());
         }
         clone.addReports(clonedReports);
+        return clone;
+    }
+
+    /**
+     * Clone this collection, but include only the reports that have at least one matching element
+     * (narrowed down to just those matching elements), as given by a report-index-to-elements map
+     * such as the ones returned by {@link #getElementsByTagAndReportIndex()}.
+     * <p>
+     * This is used instead of {@link #clone()} for the "scenarios by tag/step/exception" pages: since
+     * most reports typically do not match a given tag/step/exception, cloning and carrying around all
+     * of them (and repeatedly re-computing statistics like chart counts or start/end times over all of
+     * them) for every one of the potentially many unique tags/steps/exceptions is very wasteful.
+     *
+     * @param matchingElementsByReportIndex A map of original report index to its matching elements.
+     * @return The filtered clone, containing only reports that have at least one matching element.
+     */
+    public AllScenariosPageCollection cloneWithOnlyMatchingReports(
+            final Map<Integer, List<Element>> matchingElementsByReportIndex) throws CloneNotSupportedException {
+        final AllScenariosPageCollection clone = (AllScenariosPageCollection) super.clone();
+        clone.setFeatureFilter(null);
+        clone.setStepFilter(null);
+        clone.setTagFilter(null);
+        clone.setExceptionFilter(null);
+        clone.elementsByTagAndReportIndex = null;
+        clone.elementsByStepAndReportIndex = null;
+        clone.elementsByExceptionAndReportIndex = null;
+        clone.clearReports();
+        List<Report> filteredReports = new ArrayList<>();
+        for (int reportIndex = 0; reportIndex < reports.size(); reportIndex++) {
+            List<Element> matchingElements = matchingElementsByReportIndex.get(reportIndex);
+            if (matchingElements == null || matchingElements.isEmpty()) {
+                continue;
+            }
+            Report reportClone = (Report) reports.get(reportIndex).clone();
+            reportClone.setElements(new ArrayList<>(matchingElements));
+            filteredReports.add(reportClone);
+        }
+        clone.addReports(filteredReports);
         return clone;
     }
 
