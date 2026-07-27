@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.3.0) - 2026-07-27
+
+### Fixed
+
+* Quadratic performance of tag/step/exception scenario filtering (#410 by @simonstratmann)
+
+### Added
+
+* Property unit tests (by @vasiliy-mikhailov)
+
+### Changed
+
+* Dependency updates
+    * JUnit Jupiter `6.1.2`
+    * Dagger `2.60.1`
+    * Maven Jar plugin `3.5.1`
+    * Maven Flatten plugin `1.8.0`
+
 ## [4.2.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.2.0) - 2026-06-23
 
 ### Fixed
