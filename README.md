@@ -58,6 +58,10 @@ All changes are documented in the [full changelog](CHANGELOG.md).
 Cluecumber requires Java >= 17 and Maven >= 3.9.9 to build from source. Runtime use of `cluecumber-core` requires Java >= 17 (via `cluecumber-engine`).
 It is available in [Maven central](https://central.sonatype.com/search?q=g%3Acom.trivago.rta++a%3Acluecumber-core+a%3Acluecumber-maven&smo=true).
 
+## Star History
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=trivago/cluecumber&type=date&legend=top-left)](https://star-history.dera.page/#trivago/cluecumber&type=date&legend=top-left)
+
 ## License
 
 Copyright 2018 - 2026 trivago N.V.
