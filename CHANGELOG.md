@@ -19,6 +19,11 @@ Back to [Readme](README.md).
 * Step lists show status-colored left borders; nested Karate calls use a guide line and clearer attachment log panels
 * Scenario detail view options are grouped in a compact toolbar
 * Attachment header rows toggle expand/collapse
+* Dependency updates
+    * JUnit Jupiter `6.1.3`
+    * Tinylog `2.8.0`
+    * Maven Compiler plugin `3.16.0`
+    * Maven Surefire plugin `3.6.0`
 
 ## [4.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.3.0) - 2026-07-27
 
