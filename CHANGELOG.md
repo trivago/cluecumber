@@ -7,11 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
-## [4.3.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.3.1) - 2026-09-08
+## [4.4.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.0) - 2026-09-08
 
 ### Fixed
 
 * Nested Karate step attachments (e.g. `karate.log` in called features) no longer collapse to a single grid column
+
+### Changed
+
+* Report chrome uses lighter header/footer surfaces and left-accent card headers instead of flat gray bars
+* Step lists show status-colored left borders; nested Karate calls use a guide line and clearer attachment log panels
+* Scenario detail view options are grouped in a compact toolbar
+* Attachment header rows toggle expand/collapse
 
 ## [4.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.3.0) - 2026-07-27
 

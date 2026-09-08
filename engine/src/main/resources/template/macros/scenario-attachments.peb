@@ -4,14 +4,17 @@
             <div class="row scenarioAttachment">
                 {% set attachmentID = attachment.hashCode()|abs %}
                 {% set isTextAttachment = attachment.mimeType == "TXT" or attachment.mimeType == "XML" or attachment.mimeType == "JSON" or attachment.mimeType == "APPLICATION_XML" %}
-                <div class="scenarioAttachment-header">
-                    <span class="scenarioAttachment-label">
+                <div class="scenarioAttachment-header cluecumber-collapsible-header"
+                     data-toggle="collapse"
+                     data-target="#expandable{{ attachmentID }}"
+                     aria-expanded="{{ expandAttachments ? 'true' : 'false' }}"
+                     aria-controls="expandable{{ attachmentID }}">
+                    <div class="scenarioAttachment-title">
+                        <span class="scenarioAttachment-label">{{ attachment.getFileEnding() }} attachment</span>
                         {% if attachment.name != "" %}
-                            {{ attachment.name }} ({{ attachment.mimeType }} attachment)
-                        {% else %}
-                            {{ attachment.mimeType }} attachment
+                            <span class="scenarioAttachment-name">{{ attachment.name }}</span>
                         {% endif %}
-                    </span>
+                    </div>
                     <div class="exception-links-top">
                         {% if isTextAttachment %}
                             <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"

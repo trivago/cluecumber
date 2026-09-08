@@ -204,6 +204,8 @@ public class Embedding {
                 return "txt";
             case PDF:
                 return "pdf";
+            case MP4:
+                return "mp4";
             default:
                 return "unknown";
         }

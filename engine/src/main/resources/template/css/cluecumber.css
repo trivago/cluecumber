@@ -20,17 +20,19 @@ limitations under the License.
 
 :root {
     --cluecumber-header-height: 3rem;
-    --cluecumber-chrome-bg: #3a3a3a;
-    --cluecumber-card-header-bg: #676767;
-    --cluecumber-footer-text: #a5abae;
+    --cluecumber-chrome-bg: var(--pico-card-background-color, var(--pico-background-color));
+    --cluecumber-card-header-bg: transparent;
+    --cluecumber-footer-text: var(--pico-muted-color);
     --cluecumber-link: #06284d;
     --cluecumber-link-dark: #8cb8e8;
     --cluecumber-link-hover: #004a8f;
-    --cluecumber-page-bg: #fdfdfe;
-    --cluecumber-header-fg: #fff;
-    --cluecumber-font-size: 0.9rem;
-    --cluecumber-font-size-small: 0.7rem;
+    --cluecumber-page-bg: var(--pico-background-color);
+    --cluecumber-header-fg: var(--pico-color);
+    --cluecumber-font-size: 1rem;
+    --cluecumber-font-size-small: 0.8125rem;
+    --cluecumber-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --cluecumber-line-height: 1.5;
+    --cluecumber-step-accent-width: 4px;
     --cluecumber-hover-bg: rgba(0, 0, 0, 0.075);
     --cluecumber-hover-bg-dark: rgba(255, 255, 255, 0.08);
     --cluecumber-border: 1px solid var(--pico-muted-border-color);
@@ -40,7 +42,7 @@ limitations under the License.
     --cluecumber-button-padding-x: 0.35rem;
     --cluecumber-button-hover-bg: rgba(58, 74, 95, 0.14);
     --cluecumber-button-hover-bg-dark: rgba(255, 255, 255, 0.16);
-    --cluecumber-header-button-hover-bg: rgba(255, 255, 255, 0.18);
+    --cluecumber-header-button-hover-bg: var(--cluecumber-button-hover-bg);
     --cluecumber-block-padding-x: 0.75rem;
     --cluecumber-card-body-padding: 1.25rem;
     --cluecumber-step-row-padding-y: 0.85rem;
@@ -107,8 +109,8 @@ h1, h2, h3, h4, h5 {
     padding: 0.5rem 2rem;
     background-color: var(--cluecumber-chrome-bg);
     color: var(--cluecumber-header-fg);
-    border-bottom: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    border-bottom: var(--cluecumber-border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .cluecumber-header nav {
@@ -125,7 +127,7 @@ h1, h2, h3, h4, h5 {
     padding: 0.35rem 0.75rem;
     width: auto;
     background: transparent;
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--pico-muted-border-color);
     color: var(--cluecumber-header-fg);
 }
 
@@ -144,10 +146,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-nav-panel a {
-    color: rgba(255, 255, 255, 0.75);
-    font-weight: 700;
+    color: var(--pico-muted-color);
+    font-weight: 500;
     text-decoration: none;
-    padding: 0.25rem 0;
+    padding: 0.25rem 0.35rem;
+    border-radius: var(--pico-border-radius);
 }
 
 .cluecumber-nav-panel a:hover,
@@ -156,7 +159,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-nav-panel a.active {
-    text-decoration: underline;
+    text-decoration: none;
+    background-color: color-mix(in srgb, var(--pico-primary) 12%, var(--pico-background-color));
 }
 
 .cluecumber-nav-external-link {
@@ -176,7 +180,7 @@ h1, h2, h3, h4, h5 {
     height: 1.1em;
     margin: 0 0.15rem;
     padding: 0;
-    background-color: rgba(255, 255, 255, 0.35);
+    background-color: var(--pico-muted-border-color);
 }
 
 .cluecumber-header-actions {
@@ -200,7 +204,7 @@ h1, h2, h3, h4, h5 {
     box-sizing: border-box;
     aspect-ratio: 1;
     background: transparent;
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--pico-muted-border-color);
     color: var(--cluecumber-header-fg);
 }
 
@@ -210,9 +214,9 @@ h1, h2, h3, h4, h5 {
 
 .cluecumber-header-date {
     white-space: nowrap;
-    font-size: var(--cluecumber-font-size);
+    font-size: var(--cluecumber-font-size-small);
     line-height: var(--cluecumber-line-height);
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--pico-muted-color);
 }
 
 .cluecumber-footer {
@@ -223,7 +227,7 @@ h1, h2, h3, h4, h5 {
     line-height: 2rem;
     padding: 1rem;
     text-align: center;
-    border-top: none;
+    border-top: var(--cluecumber-border);
     background-color: var(--cluecumber-chrome-bg);
     color: var(--cluecumber-footer-text);
     font-size: var(--cluecumber-font-size-small);
@@ -388,25 +392,27 @@ h1, h2, h3, h4, h5 {
 
 .cluecumber-card > header {
     margin: 0;
-    padding: 0.5rem var(--cluecumber-card-body-padding);
-    font-size: 1rem;
+    padding: 0.65rem var(--cluecumber-card-body-padding);
+    font-size: 0.9375rem;
     font-weight: 600;
-    text-align: center;
-    color: var(--cluecumber-header-fg);
+    text-align: left;
+    letter-spacing: 0.01em;
+    color: var(--pico-color);
     background-color: var(--cluecumber-card-header-bg);
-    border-bottom: thick solid var(--pico-muted-border-color);
+    border-bottom: var(--cluecumber-border);
+    border-left: var(--cluecumber-step-accent-width) solid var(--pico-muted-border-color);
 }
 
 .cluecumber-card > header.border-color-passed {
-    border-bottom-color: var(--passed-color, currentColor);
+    border-left-color: var(--passed-color, currentColor);
 }
 
 .cluecumber-card > header.border-color-failed {
-    border-bottom-color: var(--failed-color, currentColor);
+    border-left-color: var(--failed-color, currentColor);
 }
 
 .cluecumber-card > header.border-color-skipped {
-    border-bottom-color: var(--skipped-color, currentColor);
+    border-left-color: var(--skipped-color, currentColor);
 }
 
 .cluecumber-card-subtitle {
@@ -457,10 +463,30 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-card.cluecumber-card-centered button {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 75%;
     margin: 0.5rem auto;
     text-align: center;
+}
+
+.cluecumber-view-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+}
+
+.cluecumber-card-centered .cluecumber-view-toolbar button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1 1 auto;
+    min-width: min(100%, 9rem);
+    margin: 0;
 }
 
 .cluecumber-card.cluecumber-card-centered .alert ol {
@@ -619,7 +645,25 @@ h1, h2, h3, h4, h5 {
 :is(.cluecumber-list-item, .scenarioSubSection) > .row[class*="table-row-"],
 :is(.scenarioHook .cluecumber-list-item, .stepHook) > .row[class*="table-row-"] {
     border-bottom: var(--cluecumber-border);
+    border-left: var(--cluecumber-step-accent-width) solid transparent;
     padding: var(--cluecumber-step-row-padding-y) var(--cluecumber-card-body-padding);
+}
+
+.row.table-row-passed {
+    border-left-color: var(--passed-color, transparent);
+}
+
+.row.table-row-failed {
+    border-left-color: var(--failed-color, transparent);
+}
+
+.row.table-row-skipped {
+    border-left-color: var(--skipped-color, transparent);
+}
+
+.cluecumber-step-duration {
+    grid-column: span 2;
+    font-variant-numeric: tabular-nums;
 }
 
 :is(.cluecumber-list-item, .scenarioSubSection) > .row[class*="table-row-"]:last-child,
@@ -659,7 +703,6 @@ h1, h2, h3, h4, h5 {
     min-width: var(--cluecumber-action-min-width);
 }
 
-.cluecumber-step-duration { grid-column: span 2; }
 .cluecumber-step-status { grid-column: span 1; }
 .cluecumber-step-full { grid-column: span 12; }
 
@@ -675,6 +718,23 @@ h1, h2, h3, h4, h5 {
 .scenarioDataTable,
 .scenarioDocstring {
     grid-column: 1 / -1;
+}
+
+.scenarioSubSection {
+    margin-left: 0.5rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--pico-muted-border-color);
+}
+
+.scenarioSubSection > .row > .cluecumber-step-name {
+    color: var(--pico-muted-color);
+    font-size: var(--cluecumber-font-size-small);
+}
+
+.scenarioSubSection > .row:has(.scenarioAttachment) > .cluecumber-step-name,
+.scenarioSubSection > .row:has(.scenarioOutputs) > .cluecumber-step-name {
+    color: inherit;
+    font-size: inherit;
 }
 
 .scenarioSubSection > .row > :is(.cluecumber-step-name, .scenarioDocstring, .scenarioDataTable, .cluecumber-step-full, .firstExceptionContainer, .scenarioAttachment, .scenarioOutputs) {
@@ -694,10 +754,11 @@ h1, h2, h3, h4, h5 {
     border: var(--cluecumber-border);
     border-radius: var(--pico-border-radius);
     background: var(--cluecumber-card-surface);
+    overflow: hidden;
 }
 
 :is(.scenarioAttachment, .scenarioOutputs).row {
-    padding: 0.4rem var(--cluecumber-block-padding-x);
+    padding: 0;
     margin-bottom: 0.5rem;
     gap: 0;
 }
@@ -708,15 +769,60 @@ h1, h2, h3, h4, h5 {
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
-    padding: 0;
+    padding: 0.45rem 0.65rem;
     margin-bottom: 0;
-    border-bottom: none;
+    border-bottom: var(--cluecumber-border);
     font-size: var(--cluecumber-font-size-small);
+    background: color-mix(in srgb, var(--pico-muted-border-color) 18%, var(--pico-background-color));
+}
+
+:is(.scenarioAttachment-header, .scenarioOutputs-header).cluecumber-collapsible-header {
+    cursor: pointer;
+}
+
+:is(.scenarioAttachment-header, .scenarioOutputs-header).cluecumber-collapsible-header:hover {
+    background: color-mix(in srgb, var(--pico-muted-border-color) 28%, var(--pico-background-color));
+}
+
+.scenarioAttachment-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+    flex: 1;
 }
 
 :is(.scenarioAttachment-label, .scenarioOutputs-label) {
-    flex: 1;
+    flex: 0 0 auto;
     min-width: 0;
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    font-size: var(--cluecumber-font-size-small);
+    font-weight: 600;
+    color: var(--pico-color);
+    background: color-mix(in srgb, var(--pico-primary) 10%, var(--pico-background-color));
+    border: 1px solid var(--pico-muted-border-color);
+    border-radius: calc(var(--pico-border-radius) * 0.75);
+}
+
+.scenarioAttachment-name {
+    font-size: var(--cluecumber-font-size-small);
+    font-weight: 500;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--pico-muted-color);
+}
+
+:is(.scenarioAttachment-header, .scenarioOutputs-header) .exception-links-top {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+}
+
+:is(.scenarioAttachment-header, .scenarioOutputs-header) .cluecumber-exception-action {
+    padding: 0.15rem 0.45rem;
+    font-size: var(--cluecumber-font-size-small);
 }
 
 .scenarioAttachment:not(:has(.collapse.show)) .cluecumber-collapsible-copy-action,
@@ -1504,6 +1610,7 @@ pre {
     margin: 0;
     font-size: inherit;
     line-height: inherit;
+    font-family: var(--cluecumber-font-family-mono);
 }
 
 iframe {
@@ -1512,7 +1619,20 @@ iframe {
 }
 
 .embedding-content {
-    padding: 0.5rem;
+    padding: 0;
+}
+
+pre.embedding-content.embedded-txt {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    max-height: 24rem;
+    overflow: auto;
+    font-family: var(--cluecumber-font-family-mono);
+    font-size: var(--cluecumber-font-size-small);
+    line-height: 1.45;
+    background: color-mix(in srgb, var(--pico-muted-border-color) 22%, var(--pico-background-color));
+    border-top: var(--cluecumber-border);
+    border-radius: 0;
 }
 
 .embedded-image {
@@ -1674,8 +1794,8 @@ iframe {
         z-index: 1001;
         padding: 0.75rem 1rem;
         background-color: var(--cluecumber-chrome-bg);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-bottom: var(--cluecumber-border);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     }
 
     .cluecumber-nav-panel ul {

@@ -71,6 +71,9 @@ limitations under the License.
                 {% include "macros/timing-info" %}
             </li>
 
+            {% if element.hasSubSections() or element.hasHooks() or element.hasStepHooks() or element.hasDocStrings() or element.hasAttachments() or element.hasOutputs() %}
+                <div class="cluecumber-view-toolbar" role="toolbar" aria-label="View options">
+            {% endif %}
             {% if element.hasSubSections() %}
                 <button class="secondary outline" type="button" id="sub-sections-button"
                         data-cluecumber-item="sub-sections-button">{{ expandSubSections ? 'Hide' : 'Show' }} Sub
@@ -105,6 +108,9 @@ limitations under the License.
                         data-cluecumber-item="outputs-button">{{ expandOutputs ? 'Hide' : 'Show' }} Step
                     Outputs
                 </button>
+            {% endif %}
+            {% if element.hasSubSections() or element.hasHooks() or element.hasStepHooks() or element.hasDocStrings() or element.hasAttachments() or element.hasOutputs() %}
+                </div>
             {% endif %}
         {{ page.cardEnd() }}
 

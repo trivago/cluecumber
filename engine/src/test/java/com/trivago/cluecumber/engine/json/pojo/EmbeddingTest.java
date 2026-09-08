@@ -122,6 +122,8 @@ public class EmbeddingTest {
         assertEquals(embedding.getFileEnding(), "txt");
         embedding.setMimeType(MimeType.PDF);
         assertEquals(embedding.getFileEnding(), "pdf");
+        embedding.setMimeType(MimeType.MP4);
+        assertEquals(embedding.getFileEnding(), "mp4");
         embedding.setMimeType(MimeType.UNKNOWN);
         assertEquals(embedding.getFileEnding(), "unknown");
     }

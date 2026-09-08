@@ -1,7 +1,11 @@
 
 {% if step.hasOutputs() %}
         <div class="row scenarioOutputs">
-            <div class="scenarioOutputs-header">
+            <div class="scenarioOutputs-header cluecumber-collapsible-header"
+                 data-toggle="collapse"
+                 data-target="#expandableOutput{{ step.index|default(0) }}_{{ sectionId }}"
+                 aria-expanded="{{ expandOutputs ? 'true' : 'false' }}"
+                 aria-controls="expandableOutput{{ step.index|default(0) }}_{{ sectionId }}">
                 <span class="scenarioOutputs-label">Step Output</span>
                 <div class="exception-links-top">
                     <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"

@@ -73,6 +73,9 @@ limitations under the License.
 
     function initCluecumberCollapse() {
         document.addEventListener('click', function (e) {
+            if (e.target.closest('.cluecumber-collapsible-copy-action')) {
+                return;
+            }
             const trigger = e.target.closest('[data-toggle="collapse"]');
             if (!trigger) {
                 return;
@@ -95,7 +98,11 @@ limitations under the License.
                 target.classList.toggle('show', willShow);
                 target.dispatchEvent(new Event(willShow ? 'shown.bs.collapse' : 'hidden.bs.collapse', {bubbles: true}));
             });
-            trigger.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+            document.querySelectorAll('[data-toggle="collapse"]').forEach(function (control) {
+                if ((control.getAttribute('data-target') || control.getAttribute('href')) === targetSelector) {
+                    control.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+                }
+            });
         });
     }
 
