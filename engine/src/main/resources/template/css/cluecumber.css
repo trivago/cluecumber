@@ -664,6 +664,7 @@ h1, h2, h3, h4, h5 {
 .cluecumber-step-full { grid-column: span 12; }
 
 .cluecumber-list-item > .row > :is(.row, .scenarioDocstring, .cluecumber-step-full, .firstExceptionContainer),
+.cluecumber-list-item .row > :is(.row, .scenarioDocstring, .cluecumber-step-full, .firstExceptionContainer),
 .scenarioHook .cluecumber-list-item .row > .row,
 .stepHook > .row > .row {
     grid-column: 1 / -1;

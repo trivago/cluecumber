@@ -1,0 +1,73 @@
+[
+  {
+    "id": "nested-karate-log-attachment",
+    "uri": "features/api/Search.feature",
+    "name": "API search reporting",
+    "description": "",
+    "keyword": "Feature",
+    "line": 1,
+    "elements": [
+      {
+        "id": "nested-karate-log-attachment;logs-response-in-nested-call",
+        "name": "Logs API response inside nested feature call",
+        "description": "",
+        "keyword": "Scenario",
+        "line": 3,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "* ",
+            "name": "call read('CallApi.feature')",
+            "line": 4,
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "keyword": "> ",
+            "name": "features/api/CallApi.feature",
+            "line": 4,
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "keyword": "> * ",
+            "name": "def response = { status: 'OK', items: [{ id: 101, name: 'Sample Hotel' }] }",
+            "line": 5,
+            "result": {
+              "status": "passed",
+              "duration": 500000
+            }
+          },
+          {
+            "keyword": "> * ",
+            "name": "karate.log(response)",
+            "line": 6,
+            "result": {
+              "status": "passed",
+              "duration": 100000
+            },
+            "embeddings": [
+              {
+                "mime_type": "text/plain",
+                "data": "WwogIHsKICAgICJoZWFkZXJzIjogewogICAgICAic3RhdHVzIjogMCwKICAgICAgInN0YXR1c05hbWUiOiAiT0siLAogICAgICAibWV0aG9kIjogInNlYXJjaEl0ZW1zIiwKICAgICAgInJlc3BvbnNlVHlwZSI6ICJ1bmFyeSIKICAgIH0sCiAgICAiYm9keSI6IHsKICAgICAgInN0YXR1cyI6ICJPSyIsCiAgICAgICJpdGVtcyI6IFsKICAgICAgICB7CiAgICAgICAgICAiaWQiOiAxMDEsCiAgICAgICAgICAibmFtZSI6ICJTYW1wbGUgSG90ZWwiCiAgICAgICAgfQogICAgICBdCiAgICB9CiAgfQpd"
+              }
+            ]
+          },
+          {
+            "keyword": "* ",
+            "name": "match response.status == 'OK'",
+            "line": 7,
+            "result": {
+              "status": "passed",
+              "duration": 200000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

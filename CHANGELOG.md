@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.3.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.3.1) - 2026-09-08
+
+### Fixed
+
+* Nested Karate step attachments (e.g. `karate.log` in called features) no longer collapse to a single grid column
+
 ## [4.3.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.3.0) - 2026-07-27
 
 ### Fixed
