@@ -28,8 +28,8 @@ limitations under the License.
     --cluecumber-link-hover: #004a8f;
     --cluecumber-page-bg: var(--pico-background-color);
     --cluecumber-header-fg: var(--pico-color);
-    --cluecumber-font-size: 1rem;
-    --cluecumber-font-size-small: 0.8125rem;
+    --cluecumber-font-size: 0.9375rem;
+    --cluecumber-font-size-small: 0.75rem;
     --cluecumber-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --cluecumber-line-height: 1.5;
     --cluecumber-step-accent-width: 4px;

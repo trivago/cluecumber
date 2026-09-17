@@ -23,6 +23,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -30,6 +31,9 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings("unused")
 public class Element {
+
+    private static final Pattern KARATE_CALL_STEP = Pattern.compile("(?i)\\b(callonce|call)\\s+read\\s*\\(");
+
     private List<ResultMatch> before = new ArrayList<>();
     private int line;
     private boolean isMultiRunParent = false;
@@ -553,10 +557,43 @@ public class Element {
      * @return the duration in nanoseconds.
      */
     public long getTotalDuration() {
+        final boolean excludeKarateFlattenedSteps = isKarateStyleScenario();
         return before.stream().mapToLong(beforeStep -> beforeStep.getResult().getDuration()).sum() +
-               backgroundSteps.stream().mapToLong(Step::getTotalDuration).sum() +
-               steps.stream().mapToLong(Step::getTotalDuration).sum() +
+               sumStepDurations(backgroundSteps, excludeKarateFlattenedSteps) +
+               sumStepDurations(steps, excludeKarateFlattenedSteps) +
                after.stream().mapToLong(afterStep -> afterStep.getResult().getDuration()).sum();
+    }
+
+    private long sumStepDurations(final List<Step> steps, final boolean excludeKarateFlattenedSteps) {
+        return steps.stream()
+                .filter(step -> !excludeKarateFlattenedSteps || !isKarateFlattenedStep(step))
+                .mapToLong(Step::getTotalDuration)
+                .sum();
+    }
+
+    private boolean isKarateStyleScenario() {
+        boolean hasCallStep = false;
+        boolean hasFlattenedStep = false;
+        for (Step step : getAllStepsIncludingBackgroundSteps()) {
+            if (isKarateCallStep(step)) {
+                hasCallStep = true;
+            }
+            if (isKarateFlattenedStep(step)) {
+                hasFlattenedStep = true;
+            }
+            if (hasCallStep && hasFlattenedStep) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isKarateFlattenedStep(final Step step) {
+        return step.getCollapseLevel() > 0 || step.getKeyword().startsWith(">");
+    }
+
+    private static boolean isKarateCallStep(final Step step) {
+        return KARATE_CALL_STEP.matcher(step.getName()).find();
     }
 
     /**

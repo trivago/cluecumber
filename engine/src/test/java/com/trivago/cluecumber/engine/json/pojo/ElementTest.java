@@ -262,6 +262,79 @@ public class ElementTest {
     }
 
     @Test
+    public void karateCallScenarioTotalDurationExcludesFlattenedStepsTest() {
+        List<Step> steps = new ArrayList<>();
+
+        Step factoryStep = new Step();
+        Result factoryResult = new Result();
+        factoryResult.setDuration(5_000_000L);
+        factoryStep.setResult(factoryResult);
+        factoryStep.setName("def Factory = callonce read('Factory.feature')");
+        steps.add(factoryStep);
+
+        Step callStep = new Step();
+        Result callResult = new Result();
+        callResult.setDuration(45_000_000L);
+        callStep.setResult(callResult);
+        callStep.setName("call read('CallService.feature')");
+        steps.add(callStep);
+
+        Step flattenedPathStep = new Step();
+        Result flattenedPathResult = new Result();
+        flattenedPathResult.setDuration(0L);
+        flattenedPathStep.setResult(flattenedPathResult);
+        flattenedPathStep.setKeyword("> ");
+        flattenedPathStep.setCollapseLevel(1);
+        flattenedPathStep.setName("path/CallService.feature");
+        steps.add(flattenedPathStep);
+
+        Step flattenedCallStep = new Step();
+        Result flattenedCallResult = new Result();
+        flattenedCallResult.setDuration(44_000_000L);
+        flattenedCallStep.setResult(flattenedCallResult);
+        flattenedCallStep.setKeyword("> * ");
+        flattenedCallStep.setCollapseLevel(1);
+        flattenedCallStep.setName("def response = callService(...)");
+        steps.add(flattenedCallStep);
+
+        Step matchStep = new Step();
+        Result matchResult = new Result();
+        matchResult.setDuration(2_000_000L);
+        matchStep.setResult(matchResult);
+        matchStep.setName("match responseBody ...");
+        steps.add(matchStep);
+
+        element.setSteps(steps);
+
+        assertEquals(52_000_000L, element.getTotalDuration());
+    }
+
+    @Test
+    public void karateFlattenedStepsWithoutCallReadKeepNaiveTotalDurationTest() {
+        List<Step> steps = new ArrayList<>();
+
+        Step topLevelStep = new Step();
+        Result topLevelResult = new Result();
+        topLevelResult.setDuration(10_000_000L);
+        topLevelStep.setResult(topLevelResult);
+        topLevelStep.setName("def x = 1");
+        steps.add(topLevelStep);
+
+        Step flattenedStep = new Step();
+        Result flattenedResult = new Result();
+        flattenedResult.setDuration(20_000_000L);
+        flattenedStep.setResult(flattenedResult);
+        flattenedStep.setKeyword("> * ");
+        flattenedStep.setCollapseLevel(1);
+        flattenedStep.setName("nested detail");
+        steps.add(flattenedStep);
+
+        element.setSteps(steps);
+
+        assertEquals(30_000_000L, element.getTotalDuration());
+    }
+
+    @Test
     public void stepSummaryTest() {
         List<Step> steps = new ArrayList<>();
 

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.4.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.1) - 2026-09-17
+
+### Fixed
+
+* Karate scenario duration no longer double-counts flattened `call read(...)` sub-steps
+
+### Changed
+
+* Slightly reduced default font size for better readability
+
 ## [4.4.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.0) - 2026-09-08
 
 ### Fixed
