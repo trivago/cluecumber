@@ -1,20 +1,25 @@
 
-{% for hook in hooks %}
-            <div class="stepHook collapse {{ expandStepHooks ? "show" : "" }}" id="step_{{ stepIndex }}_stepHooks">
-                <div class="row row_{{ hook.consolidatedStatusString }} table-row-{{ hook.consolidatedStatusString }}">
-                    <div class="cluecumber-step-name">
-                        <i>{{ hook.glueMethodName }}</i>
-                    </div>
-                    <div class="cluecumber-step-duration cluecumber-text-small">
-                        <span class="nobr">{{ hook.result.returnDurationString() }}</span>
-                    </div>
-                    <div class="cluecumber-step-status cluecumber-align-right">
-                        {{ common.status(hook.consolidatedStatusString) }}
-                    </div>
-                    {% set hookExceptionId = "step_" ~ stepIndex ~ "_hook_" ~ loop.index %}
-                    {% include "macros/scenario-hook-error-message" with {"hook": hook, "exceptionId": hookExceptionId} %}
-                    {% include "macros/scenario-output" with {"step": hook, "sectionId": "hook"} %}
-                    {% include "macros/scenario-attachments" with {"step": hook} %}
+{% if hooks is not empty %}
+    {% for hook in hooks %}
+        <div class="stepHookRow">
+            <div class="row row_{{ hook.consolidatedStatusString }} table-row-{{ hook.consolidatedStatusString }} cluecumber-text-small">
+                <div class="cluecumber-step-name">
+                    {% if loop.first %}
+                        <span class="stepHookPhase-label">{% if hookPhase == "before" %}Before{% else %}After{% endif %}</span>
+                    {% endif %}
+                    <i>{{ hook.glueMethodName }}</i>
                 </div>
+                <div class="cluecumber-step-duration cluecumber-text-small">
+                    <span class="nobr">{{ hook.result.returnDurationString() }}</span>
+                </div>
+                <div class="cluecumber-step-status cluecumber-align-right">
+                    {{ common.status(hook.consolidatedStatusString) }}
+                </div>
+                {% set hookExceptionId = "step_" ~ stepIndex ~ "_" ~ hookPhase ~ "_hook_" ~ loop.index %}
+                {% include "macros/scenario-hook-error-message" with {"hook": hook, "exceptionId": hookExceptionId} %}
+                {% include "macros/scenario-output" with {"step": hook, "sectionId": "hook"} %}
+                {% include "macros/scenario-attachments" with {"step": hook} %}
             </div>
+        </div>
     {% endfor %}
+{% endif %}

@@ -437,11 +437,13 @@ h1, h2, h3, h4, h5 {
     min-width: 0;
 }
 
-.cluecumber-card-body:has(> .cluecumber-list-item > .row[class*="table-row-"]) {
+.cluecumber-card-body:has(> .cluecumber-list-item > .row[class*="table-row-"]),
+.cluecumber-card-body:has(> .cluecumber-list-item > .stepGroup > .row[class*="table-row-"]) {
     padding: 0;
 }
 
-.cluecumber-card-body > .cluecumber-list-item:has(> .row[class*="table-row-"]) {
+.cluecumber-card-body > .cluecumber-list-item:has(> .row[class*="table-row-"]),
+.cluecumber-card-body > .cluecumber-list-item:has(> .stepGroup > .row[class*="table-row-"]) {
     padding: 0;
     border-bottom: none;
 }
@@ -593,9 +595,10 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-list-item > .row[class*="table-row-"]:hover,
+.cluecumber-list-item > .stepGroup > .row[class*="table-row-"]:hover,
 .scenarioSubSection > .row[class*="table-row-"]:hover,
-.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:hover,
-.stepHook > .row[class*="table-row-"]:hover {
+.scenarioSubSection > .stepGroup > .row[class*="table-row-"]:hover,
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:hover {
     background-color: var(--cluecumber-button-hover-bg);
     border-color: var(--pico-secondary);
     color: var(--pico-secondary);
@@ -614,9 +617,10 @@ h1, h2, h3, h4, h5 {
 }
 
 [data-theme="dark"] .cluecumber-list-item > .row[class*="table-row-"]:hover,
+[data-theme="dark"] .cluecumber-list-item > .stepGroup > .row[class*="table-row-"]:hover,
 [data-theme="dark"] .scenarioSubSection > .row[class*="table-row-"]:hover,
-[data-theme="dark"] .scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:hover,
-[data-theme="dark"] .stepHook > .row[class*="table-row-"]:hover {
+[data-theme="dark"] .scenarioSubSection > .stepGroup > .row[class*="table-row-"]:hover,
+[data-theme="dark"] .scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:hover {
     background-color: var(--cluecumber-button-hover-bg-dark);
     border-color: var(--pico-secondary);
     color: var(--pico-secondary);
@@ -637,13 +641,17 @@ h1, h2, h3, h4, h5 {
 /* --- 7. Scenario detail --- */
 
 :is(.cluecumber-list-item, .scenarioSubSection) > .row,
-:is(.scenarioHook .cluecumber-list-item, .stepHook) > .row {
+.cluecumber-list-item > .stepGroup > .row,
+.scenarioSubSection > .stepGroup > .row,
+:is(.scenarioHook .cluecumber-list-item, .stepHookRow) > .row {
     margin-bottom: 0;
     padding: 0;
 }
 
 :is(.cluecumber-list-item, .scenarioSubSection) > .row[class*="table-row-"],
-:is(.scenarioHook .cluecumber-list-item, .stepHook) > .row[class*="table-row-"] {
+.cluecumber-list-item > .stepGroup > .row[class*="table-row-"],
+.scenarioSubSection > .stepGroup > .row[class*="table-row-"],
+:is(.scenarioHook .cluecumber-list-item, .stepHookRow) > .row[class*="table-row-"] {
     border-bottom: var(--cluecumber-border);
     border-left: var(--cluecumber-step-accent-width) solid transparent;
     padding: var(--cluecumber-step-row-padding-y) var(--cluecumber-card-body-padding);
@@ -667,7 +675,7 @@ h1, h2, h3, h4, h5 {
 }
 
 :is(.cluecumber-list-item, .scenarioSubSection) > .row[class*="table-row-"]:last-child,
-:is(.scenarioHook .cluecumber-list-item, .stepHook) > .row[class*="table-row-"]:last-child {
+:is(.scenarioHook .cluecumber-list-item, .stepHookRow) > .row[class*="table-row-"]:last-child {
     border-bottom: none;
 }
 
@@ -707,9 +715,10 @@ h1, h2, h3, h4, h5 {
 .cluecumber-step-full { grid-column: span 12; }
 
 .cluecumber-list-item > .row > :is(.row, .scenarioDocstring, .cluecumber-step-full, .firstExceptionContainer),
+.cluecumber-list-item > .stepGroup > .row > :is(.row, .scenarioDocstring, .cluecumber-step-full, .firstExceptionContainer),
 .cluecumber-list-item .row > :is(.row, .scenarioDocstring, .cluecumber-step-full, .firstExceptionContainer),
 .scenarioHook .cluecumber-list-item .row > .row,
-.stepHook > .row > .row {
+.stepHookRow > .row > .row {
     grid-column: 1 / -1;
 }
 
@@ -718,6 +727,62 @@ h1, h2, h3, h4, h5 {
 .scenarioDataTable,
 .scenarioDocstring {
     grid-column: 1 / -1;
+}
+
+.stepGroup-hasHooks:not(.show) .stepHookRow {
+    display: none;
+}
+
+.stepGroup-hasHooks.show .stepHookRow > .row[class*="table-row-"] {
+    padding-block: 0.35rem;
+    padding-inline-start: calc(var(--cluecumber-card-body-padding) + 0.5rem);
+    opacity: 0.88;
+}
+
+.stepGroup-hasHooks.show .stepHookRow > .row.table-row-passed {
+    border-left-color: transparent;
+}
+
+.stepHookPhase-label {
+    color: var(--pico-muted-color);
+    font-weight: normal;
+    margin-inline-end: 0.5rem;
+}
+
+.stepHookPhase-label::after {
+    content: "·";
+    margin-inline-start: 0.5rem;
+    color: var(--pico-muted-border-color);
+}
+
+.stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepHookRow > .row[class*="table-row-"],
+.stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepHookRow > .row[class*="table-row-"] {
+    background-color: var(--cluecumber-button-hover-bg);
+    border-color: var(--pico-secondary);
+    color: var(--pico-secondary);
+    opacity: 1;
+}
+
+.stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepGroup-step.row[class*="table-row-"],
+.stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepGroup-step.row[class*="table-row-"] {
+    background-color: var(--cluecumber-button-hover-bg);
+    border-color: var(--pico-secondary);
+    color: var(--pico-secondary);
+}
+
+[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepHookRow > .row[class*="table-row-"],
+[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepHookRow > .row[class*="table-row-"] {
+    background-color: var(--cluecumber-button-hover-bg-dark);
+    border-color: var(--pico-secondary);
+    color: var(--pico-secondary);
+    opacity: 1;
+}
+
+[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepGroup-step.row[class*="table-row-"],
+[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepGroup-step.row[class*="table-row-"] {
+    background-color: var(--cluecumber-button-hover-bg-dark);
+    border-color: var(--pico-secondary);
+    color: var(--pico-secondary);
 }
 
 .scenarioSubSection {
@@ -1055,7 +1120,7 @@ h1, h2, h3, h4, h5 {
 
 :is(
     .cluecumber-list-item .firstException.firstException-detail,
-    .stepHook .firstException.firstException-detail,
+    .stepHookRow .firstException.firstException-detail,
     .scenarioHook .cluecumber-list-item .firstException.firstException-detail,
     :is(.scenarioAttachment-header, .scenarioOutputs-header)
 ) .exception-links-top {
@@ -1071,7 +1136,7 @@ h1, h2, h3, h4, h5 {
     .firstException:not(.firstException-detail) .exception-links-top,
     .scenarioDocstring .exception-links-top,
     .cluecumber-list-item .firstException:not(.firstException-detail) .exception-links-top,
-    .stepHook .firstException:not(.firstException-detail) .exception-links-top,
+    .stepHookRow .firstException:not(.firstException-detail) .exception-links-top,
     .scenarioHook .cluecumber-list-item .firstException:not(.firstException-detail) .exception-links-top
 ) .cluecumber-exception-action {
     width: 100%;
@@ -1084,7 +1149,7 @@ h1, h2, h3, h4, h5 {
 
 :is(
     .cluecumber-list-item .firstException.firstException-detail,
-    .stepHook .firstException.firstException-detail,
+    .stepHookRow .firstException.firstException-detail,
     .scenarioHook .cluecumber-list-item .firstException.firstException-detail
 ) .exception-links-top .cluecumber-exception-action {
     width: auto;
@@ -1093,7 +1158,7 @@ h1, h2, h3, h4, h5 {
 
 :is(
     .cluecumber-list-item .firstException.firstException-detail,
-    .stepHook .firstException.firstException-detail,
+    .stepHookRow .firstException.firstException-detail,
     .scenarioHook .cluecumber-list-item .firstException.firstException-detail
 ) {
     padding-right: var(--cluecumber-block-padding-x);

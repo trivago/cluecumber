@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.4.2](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.2) - 2026-10-29
+
+### Fixed
+
+* Expanded step hooks on scenario detail pages no longer reuse duplicate element ids when a step has multiple hooks
+
+### Changed
+
+* Step hooks are grouped with their step (guide line, before/after labels) while keeping Cucumber execution order
+* Expanded step hooks use compact secondary styling so steps stay the visual focus
+* Hovering a step or one of its hooks highlights the whole step-and-hooks group on scenario detail pages
+* Step-hook report markup uses `.stepGroup` / `.stepHookRow` instead of `.stepHook` (update custom CSS if needed)
+* Dependency updates
+    * Gson `2.15.0`
+    * Mockito `5.24.0`
+    * Tinylog `2.8.1`
+    * Maven Central Publishing plugin `0.12.0`
+
 ## [4.4.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.1) - 2026-09-17
 
 ### Fixed
