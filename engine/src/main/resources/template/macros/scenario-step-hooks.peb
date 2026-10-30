@@ -1,8 +1,9 @@
 
 {% if hooks is not empty %}
     {% for hook in hooks %}
+        {% set rowIndex = stripeRowOffset + loop.index %}
         <div class="stepHookRow">
-            <div class="row row_{{ hook.consolidatedStatusString }} table-row-{{ hook.consolidatedStatusString }} cluecumber-text-small">
+            <div class="row row_{{ hook.consolidatedStatusString }} table-row-{{ hook.consolidatedStatusString }} cluecumber-text-small{% if rowIndex is odd %} cluecumber-row--stripe{% endif %}">
                 <div class="cluecumber-step-name">
                     {% if loop.first %}
                         <span class="stepHookPhase-label">{% if hookPhase == "before" %}Before{% else %}After{% endif %}</span>

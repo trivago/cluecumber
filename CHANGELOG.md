@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.4.3](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.3) - 2026-10-29
+
+### Fixed
+
+* Scenario detail “Show Step Hooks” / “Hide Step Hooks” toolbar control again toggles its label (per-step buttons remain “Toggle Hooks”)
+
+### Changed
+
+* Scenario detail toolbar uses “Show Scenario Hooks” / “Hide Scenario Hooks” for before/after hooks (distinct from step hooks)
+* Stronger zebra striping and row hover on summary tables and scenario detail (step hooks highlight with their step)
+* Dependency updates
+    * Maven Install plugin `3.2.0`
+    * Maven Surefire plugin `3.6.1`
+
 ## [4.4.2](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.2) - 2026-10-29
 
 ### Fixed

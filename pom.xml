@@ -21,7 +21,7 @@
     </modules>
 
     <properties>
-        <revision>4.4.2</revision>
+        <revision>4.4.3</revision>
         <maven.version>3.9.9</maven.version>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,13 +38,13 @@
         <maven-model.version>3.9.6</maven-model.version>
         <maven-plugin-api.version>3.9.9</maven-plugin-api.version>
         <mockito-core.version>5.24.0</mockito-core.version>
-        <maven-surefire-plugin.version>3.6.0</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.6.1</maven-surefire-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven-release-plugin.version>3.3.1</maven-release-plugin.version>
         <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
-        <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
+        <maven-install-plugin.version>3.2.0</maven-install-plugin.version>
         <maven-jar-plugin.version>3.5.1</maven-jar-plugin.version>
         <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
         <flatten-maven-plugin.version>1.8.0</flatten-maven-plugin.version>

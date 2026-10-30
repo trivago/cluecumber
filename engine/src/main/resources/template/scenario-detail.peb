@@ -83,12 +83,13 @@ limitations under the License.
             {% if element.hasHooks() %}
                 <button class="secondary outline" type="button" id="before-after-hooks-button"
                         data-cluecumber-item="before-after-hooks-button">{{ expandBeforeAfterHooks ? 'Hide' : 'Show' }}
-                    Hooks
+                    Scenario Hooks
                 </button>
             {% endif %}
             {% if element.hasStepHooks() %}
                 <button class="secondary outline" type="button" id="step-hooks-button"
-                        data-cluecumber-item="step-hooks-button">Toggle Hooks
+                        data-cluecumber-item="step-hooks-button">{{ expandStepHooks ? 'Hide' : 'Show' }} Step
+                    Hooks
                 </button>
             {% endif %}
             {% if element.hasDocStrings() %}
@@ -118,8 +119,10 @@ limitations under the License.
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "Before Hooks", "", "") }}
                     <li class="cluecumber-list-item">
+                        {% set listRow = 0 %}
                         {% for before in element.before %}
-                                <div class="row row_{{ before.consolidatedStatusString }} table-row-{{ before.consolidatedStatusString }}">
+                            {% set listRow = listRow + 1 %}
+                                <div class="row row_{{ before.consolidatedStatusString }} table-row-{{ before.consolidatedStatusString }}{% if listRow is odd %} cluecumber-row--stripe{% endif %}">
                                     <div class="cluecumber-step-name">
                                         <span>{{ loop.index + 1 }}.</span>
                                         <i>{{ before.glueMethodName }}</i>
@@ -148,6 +151,7 @@ limitations under the License.
                     {% set oldCollapseLevel = 0 %}
                     {% set lastLevelChange = 0 %}
                     {% set openDivs = 0 %}
+                    {% set listRow = 0 %}
 
                     {% for step in element.backgroundSteps %}
                         {% set sectionChange = step.collapseLevel - oldCollapseLevel %}
@@ -169,9 +173,11 @@ limitations under the License.
                         {% if step.hasHooks() %}
                         <div class="stepGroup stepGroup-hasHooks {{ expandStepHooks ? 'show' : '' }}" id="step_{{ step.index }}_stepHooks">
                         {% endif %}
-                        {% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
+                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
+                        {% set listRow = listRow + step.before|length %}
 
-                        <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}{% if step.hasHooks() %} stepGroup-step{% endif %}">
+                        {% set listRow = listRow + 1 %}
+                        <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}{% if step.hasHooks() %} stepGroup-step{% endif %}{% if listRow is odd %} cluecumber-row--stripe{% endif %}">
 
                             <div class="cluecumber-step-name">
                                 <span class="cluecumber-step-name-text">
@@ -216,6 +222,7 @@ limitations under the License.
                                 <div class="row scenarioDataTable">
                                     <div class="table-responsive">
                                         <table class="table cluecumber-table cluecumber-text-small">
+                                            <tbody>
                                             {% for row in step.rows %}
                                                 <tr>
                                                     {% for cell in row.cells %}
@@ -223,6 +230,7 @@ limitations under the License.
                                                     {% endfor %}
                                                 </tr>
                                             {% endfor %}
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -244,7 +252,8 @@ limitations under the License.
                             {% set step = step %}{% set sectionId = "background" %}{% include "macros/scenario-output" %}
                             {% set step = step %}{% include "macros/scenario-attachments" %}
                         </div>
-                        {% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
+                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
+                        {% set listRow = listRow + step.after|length %}
                         {% if step.hasHooks() %}
                         </div>
                         {% endif %}
@@ -260,6 +269,7 @@ limitations under the License.
                     {% set oldCollapseLevel = 0 %}
                     {% set lastLevelChange = 0 %}
                     {% set openDivs = 0 %}
+                    {% set listRow = 0 %}
 
                     {% for step in element.steps %}
                         {% set sectionChange = step.collapseLevel - oldCollapseLevel %}
@@ -281,9 +291,11 @@ limitations under the License.
                         {% if step.hasHooks() %}
                         <div class="stepGroup stepGroup-hasHooks {{ expandStepHooks ? 'show' : '' }}" id="step_{{ step.index }}_stepHooks">
                         {% endif %}
-                        {% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
+                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
+                        {% set listRow = listRow + step.before|length %}
 
-                        <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}{% if step.hasHooks() %} stepGroup-step{% endif %}">
+                        {% set listRow = listRow + 1 %}
+                        <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}{% if step.hasHooks() %} stepGroup-step{% endif %}{% if listRow is odd %} cluecumber-row--stripe{% endif %}">
 
                             <div class="cluecumber-step-name">
                                 <span class="cluecumber-step-name-text">
@@ -328,6 +340,7 @@ limitations under the License.
                                 <div class="row scenarioDataTable">
                                     <div class="table-responsive">
                                         <table class="table cluecumber-table cluecumber-text-small">
+                                            <tbody>
                                             {% for row in step.rows %}
                                                 <tr>
                                                     {% for cell in row.cells %}
@@ -335,6 +348,7 @@ limitations under the License.
                                                     {% endfor %}
                                                 </tr>
                                             {% endfor %}
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -356,7 +370,8 @@ limitations under the License.
                             {% set step = step %}{% set sectionId = "main" %}{% include "macros/scenario-output" %}
                             {% set step = step %}{% include "macros/scenario-attachments" %}
                         </div>
-                        {% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
+                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
+                        {% set listRow = listRow + step.after|length %}
                         {% if step.hasHooks() %}
                         </div>
                         {% endif %}
@@ -369,8 +384,10 @@ limitations under the License.
             <div class="scenarioHook collapse {{ expandBeforeAfterHooks ? 'show' : '' }}">
                 {{ page.cardStart("12", "After Hooks", "", "") }}
                     <li class="cluecumber-list-item">
+                        {% set listRow = 0 %}
                         {% for after in element.after %}
-                                <div class="row row_{{ after.consolidatedStatusString }} table-row-{{ after.consolidatedStatusString }}">
+                            {% set listRow = listRow + 1 %}
+                                <div class="row row_{{ after.consolidatedStatusString }} table-row-{{ after.consolidatedStatusString }}{% if listRow is odd %} cluecumber-row--stripe{% endif %}">
                                     <div class="cluecumber-step-name">
                                         <span>{{ loop.index + 1 }}.</span>
                                         <i>{{ after.glueMethodName }}</i>
@@ -468,7 +485,7 @@ limitations under the License.
         {% if element.hasHooks() %}
         document.getElementById('before-after-hooks-button').addEventListener('click', function (event) {
             toggleHooks('scenarioHook', {{ expandBeforeAfterHooks ? "true" : "false" }});
-            event.target.textContent = classState['scenarioHook'] ? 'Hide Hooks' : 'Show Hooks';
+            event.target.textContent = classState['scenarioHook'] ? 'Hide Scenario Hooks' : 'Show Scenario Hooks';
         });
         {% endif %}
 
@@ -494,7 +511,7 @@ limitations under the License.
         {% if element.hasStepHooks() %}
         document.getElementById('step-hooks-button').addEventListener('click', function (event) {
             toggleCollapsableSection('.stepGroup-hasHooks', {{ expandStepHooks ? "true" : "false" }});
-            event.target.textContent = 'Toggle Hooks';
+            event.target.textContent = classState['.stepGroup-hasHooks'] ? 'Hide Step Hooks' : 'Show Step Hooks';
         });
         {% endif %}
     </script>

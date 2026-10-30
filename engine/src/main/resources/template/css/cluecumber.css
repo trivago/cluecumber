@@ -47,6 +47,22 @@ limitations under the License.
     --cluecumber-card-body-padding: 1.25rem;
     --cluecumber-step-row-padding-y: 0.85rem;
     --cluecumber-card-surface: var(--pico-card-background-color, var(--pico-secondary-background));
+    --cluecumber-row-stripe-bg: color-mix(in srgb, var(--pico-muted-border-color) 28%, var(--pico-background-color));
+    --cluecumber-row-hover-bg: color-mix(in srgb, var(--pico-color) 10%, var(--pico-background-color));
+    --cluecumber-row-hover-stripe-bg: color-mix(in srgb, var(--pico-color) 14%, var(--pico-background-color));
+    --cluecumber-row-group-hover-bg: color-mix(in srgb, var(--pico-color) 13%, var(--pico-background-color));
+    --cluecumber-step-hook-indent: 1.25rem;
+}
+
+[data-theme="light"] {
+    --cluecumber-chrome-bg: color-mix(in srgb, var(--pico-color) 6%, var(--cluecumber-page-bg));
+}
+
+[data-theme="dark"] {
+    --cluecumber-chrome-bg: color-mix(in srgb, #000 10%, var(--pico-background-color));
+    --cluecumber-row-hover-bg: color-mix(in srgb, #fff 10%, var(--pico-background-color));
+    --cluecumber-row-hover-stripe-bg: color-mix(in srgb, #fff 14%, var(--pico-background-color));
+    --cluecumber-row-group-hover-bg: color-mix(in srgb, #fff 14%, var(--pico-background-color));
 }
 
 /* --- 2. Base layout & theme --- */
@@ -594,14 +610,20 @@ h1, h2, h3, h4, h5 {
     border-bottom: none;
 }
 
-.cluecumber-list-item > .row[class*="table-row-"]:hover,
-.cluecumber-list-item > .stepGroup > .row[class*="table-row-"]:hover,
-.scenarioSubSection > .row[class*="table-row-"]:hover,
-.scenarioSubSection > .stepGroup > .row[class*="table-row-"]:hover,
-.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:hover {
-    background-color: var(--cluecumber-button-hover-bg);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
+:is(.cluecumber-list-item, .scenarioSubSection) > .row[class*="table-row-"]:not(.cluecumber-row--stripe):hover,
+.cluecumber-list-item > .stepGroup > .row[class*="table-row-"]:not(.cluecumber-row--stripe):hover,
+.scenarioSubSection > .stepGroup > .row[class*="table-row-"]:not(.cluecumber-row--stripe):hover,
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:not(.cluecumber-row--stripe):hover,
+.stepHookRow > .row[class*="table-row-"]:not(.cluecumber-row--stripe):hover {
+    background-color: var(--cluecumber-row-hover-bg);
+}
+
+:is(.cluecumber-list-item, .scenarioSubSection) > .row[class*="table-row-"].cluecumber-row--stripe:hover,
+.cluecumber-list-item > .stepGroup > .row[class*="table-row-"].cluecumber-row--stripe:hover,
+.scenarioSubSection > .stepGroup > .row[class*="table-row-"].cluecumber-row--stripe:hover,
+.scenarioHook .cluecumber-list-item > .row[class*="table-row-"].cluecumber-row--stripe:hover,
+.stepHookRow > .row[class*="table-row-"].cluecumber-row--stripe:hover {
+    background-color: var(--cluecumber-row-hover-stripe-bg);
 }
 
 .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
@@ -611,31 +633,11 @@ h1, h2, h3, h4, h5 {
     color: var(--pico-secondary);
 }
 
-.cluecumber-table tbody tr:hover td,
-.cluecumber-table tbody tr:hover th {
-    background-color: var(--cluecumber-hover-bg);
-}
-
-[data-theme="dark"] .cluecumber-list-item > .row[class*="table-row-"]:hover,
-[data-theme="dark"] .cluecumber-list-item > .stepGroup > .row[class*="table-row-"]:hover,
-[data-theme="dark"] .scenarioSubSection > .row[class*="table-row-"]:hover,
-[data-theme="dark"] .scenarioSubSection > .stepGroup > .row[class*="table-row-"]:hover,
-[data-theme="dark"] .scenarioHook .cluecumber-list-item > .row[class*="table-row-"]:hover {
-    background-color: var(--cluecumber-button-hover-bg-dark);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-}
-
 [data-theme="dark"] .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
 [data-theme="dark"] .dataTables_paginate .page-link:hover {
     background-color: var(--cluecumber-button-hover-bg-dark);
     border-color: var(--pico-secondary);
     color: var(--pico-secondary);
-}
-
-[data-theme="dark"] .cluecumber-table tbody tr:hover td,
-[data-theme="dark"] .cluecumber-table tbody tr:hover th {
-    background-color: var(--cluecumber-hover-bg-dark);
 }
 
 /* --- 7. Scenario detail --- */
@@ -733,14 +735,16 @@ h1, h2, h3, h4, h5 {
     display: none;
 }
 
-.stepGroup-hasHooks.show .stepHookRow > .row[class*="table-row-"] {
-    padding-block: 0.35rem;
-    padding-inline-start: calc(var(--cluecumber-card-body-padding) + 0.5rem);
-    opacity: 0.88;
+.stepGroup-hasHooks.show .stepGroup-step.row[class*="table-row-"]:has(+ .stepHookRow) {
+    border-bottom: none;
 }
 
-.stepGroup-hasHooks.show .stepHookRow > .row.table-row-passed {
-    border-left-color: transparent;
+.stepHookRow .cluecumber-step-name {
+    padding-inline-start: var(--cluecumber-step-hook-indent);
+}
+
+.row[class*="table-row-"].cluecumber-row--stripe {
+    background-color: var(--cluecumber-row-stripe-bg);
 }
 
 .stepHookPhase-label {
@@ -755,34 +759,9 @@ h1, h2, h3, h4, h5 {
     color: var(--pico-muted-border-color);
 }
 
-.stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepHookRow > .row[class*="table-row-"],
-.stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepHookRow > .row[class*="table-row-"] {
-    background-color: var(--cluecumber-button-hover-bg);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-    opacity: 1;
-}
-
-.stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepGroup-step.row[class*="table-row-"],
-.stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepGroup-step.row[class*="table-row-"] {
-    background-color: var(--cluecumber-button-hover-bg);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-}
-
-[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepHookRow > .row[class*="table-row-"],
-[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepHookRow > .row[class*="table-row-"] {
-    background-color: var(--cluecumber-button-hover-bg-dark);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-    opacity: 1;
-}
-
-[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepHookRow:hover) .stepGroup-step.row[class*="table-row-"],
-[data-theme="dark"] .stepGroup-hasHooks.show:has(.stepGroup-step:hover) .stepGroup-step.row[class*="table-row-"] {
-    background-color: var(--cluecumber-button-hover-bg-dark);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
+.stepGroup-hasHooks.show:has(.stepGroup-step:hover) :is(.stepGroup-step, .stepHookRow > .row)[class*="table-row-"],
+.stepGroup-hasHooks.show:has(.stepHookRow:hover) :is(.stepGroup-step, .stepHookRow > .row)[class*="table-row-"] {
+    background-color: var(--cluecumber-row-group-hover-bg);
 }
 
 .scenarioSubSection {
@@ -1336,6 +1315,27 @@ table.table-fit td:nth-child(2) {
 tr.even td,
 tr.odd td {
     border-bottom: 1px solid var(--pico-muted-border-color);
+}
+
+.cluecumber-card .table tbody tr:nth-child(odd) td,
+.cluecumber-card .table tbody tr:nth-child(odd) th,
+.cluecumber-table.dataTable tbody tr.odd td,
+.cluecumber-table.dataTable tbody tr.odd th {
+    background-color: var(--cluecumber-row-stripe-bg);
+}
+
+.cluecumber-card .table tbody tr:nth-child(even):hover td,
+.cluecumber-card .table tbody tr:nth-child(even):hover th,
+.cluecumber-table.dataTable tbody tr.even:hover td,
+.cluecumber-table.dataTable tbody tr.even:hover th {
+    background-color: var(--cluecumber-row-hover-bg);
+}
+
+.cluecumber-card .table tbody tr:nth-child(odd):hover td,
+.cluecumber-card .table tbody tr:nth-child(odd):hover th,
+.cluecumber-table.dataTable tbody tr.odd:hover td,
+.cluecumber-table.dataTable tbody tr.odd:hover th {
+    background-color: var(--cluecumber-row-hover-stripe-bg);
 }
 
 /* DataTables — Bootstrap integration emits .row / .col-*; override cluecumber grid */
