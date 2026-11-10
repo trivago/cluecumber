@@ -25,7 +25,6 @@ Back to [Readme](README.md).
     * Maven Enforcer plugin `3.7.0`
     * Maven Flatten plugin `1.9.0`
     * Maven Plugin plugin `3.16.0`
-    * Maven Plugin plugin `3.16.0`
 
 ## [4.4.3](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.3) - 2026-10-29
 
