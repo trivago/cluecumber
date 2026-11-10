@@ -75,37 +75,37 @@ limitations under the License.
                 <div class="cluecumber-view-toolbar" role="toolbar" aria-label="View options">
             {% endif %}
             {% if element.hasSubSections() %}
-                <button class="secondary outline" type="button" id="sub-sections-button"
+                <button class="secondary" type="button" id="sub-sections-button"
                         data-cluecumber-item="sub-sections-button">{{ expandSubSections ? 'Hide' : 'Show' }} Sub
                     Sections
                 </button>
             {% endif %}
             {% if element.hasHooks() %}
-                <button class="secondary outline" type="button" id="before-after-hooks-button"
+                <button class="secondary" type="button" id="before-after-hooks-button"
                         data-cluecumber-item="before-after-hooks-button">{{ expandBeforeAfterHooks ? 'Hide' : 'Show' }}
                     Scenario Hooks
                 </button>
             {% endif %}
             {% if element.hasStepHooks() %}
-                <button class="secondary outline" type="button" id="step-hooks-button"
+                <button class="secondary" type="button" id="step-hooks-button"
                         data-cluecumber-item="step-hooks-button">{{ expandStepHooks ? 'Hide' : 'Show' }} Step
                     Hooks
                 </button>
             {% endif %}
             {% if element.hasDocStrings() %}
-                <button class="secondary outline" type="button" id="doc-strings-button"
+                <button class="secondary" type="button" id="doc-strings-button"
                         data-cluecumber-item="doc-strings-button">{{ expandDocStrings ? 'Hide' : 'Show' }}
                     DocStrings
                 </button>
             {% endif %}
             {% if element.hasAttachments() %}
-                <button class="secondary outline" type="button" id="attachments-button"
+                <button class="secondary" type="button" id="attachments-button"
                         data-cluecumber-item="attachments-button">{{ expandAttachments ? 'Hide' : 'Show' }}
                     Attachments
                 </button>
             {% endif %}
             {% if element.hasOutputs() %}
-                <button class="secondary outline" type="button" id="outputs-button"
+                <button class="secondary" type="button" id="outputs-button"
                         data-cluecumber-item="outputs-button">{{ expandOutputs ? 'Hide' : 'Show' }} Step
                     Outputs
                 </button>
@@ -173,8 +173,6 @@ limitations under the License.
                         {% if step.hasHooks() %}
                         <div class="stepGroup stepGroup-hasHooks {{ expandStepHooks ? 'show' : '' }}" id="step_{{ step.index }}_stepHooks">
                         {% endif %}
-                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
-                        {% set listRow = listRow + step.before|length %}
 
                         {% set listRow = listRow + 1 %}
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}{% if step.hasHooks() %} stepGroup-step{% endif %}{% if listRow is odd %} cluecumber-row--stripe{% endif %}">
@@ -204,9 +202,11 @@ limitations under the License.
                                         {% endif %}
                                         {% if step.hasHooks() %}
                                             <button type="button" class="cluecumber-exception-action secondary outline stepHooksExpansionButton"
+                                                    data-cluecumber-open-close
+                                                    data-cluecumber-toggle-suffix="Hooks"
                                                     data-toggle="collapse"
                                                     aria-expanded="{{ expandStepHooks ? 'true' : 'false' }}"
-                                                    data-target="#step_{{ step.index }}_stepHooks">Toggle Hooks</button>
+                                                    data-target="#step_{{ step.index }}_stepHooks">{{ expandStepHooks ? 'Close Hooks' : 'Open Hooks' }}</button>
                                         {% endif %}
                                     </div>
                                 {% endif %}
@@ -217,6 +217,11 @@ limitations under the License.
                             <div class="cluecumber-step-status cluecumber-align-right">
                                 {{ common.status(step.consolidatedStatusString) }}
                             </div>
+
+                            {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
+                            {% set listRow = listRow + step.before|length %}
+                            {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
+                            {% set listRow = listRow + step.after|length %}
 
                             {% if step.rows is not empty %}
                                 <div class="row scenarioDataTable">
@@ -252,8 +257,6 @@ limitations under the License.
                             {% set step = step %}{% set sectionId = "background" %}{% include "macros/scenario-output" %}
                             {% set step = step %}{% include "macros/scenario-attachments" %}
                         </div>
-                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
-                        {% set listRow = listRow + step.after|length %}
                         {% if step.hasHooks() %}
                         </div>
                         {% endif %}
@@ -291,8 +294,6 @@ limitations under the License.
                         {% if step.hasHooks() %}
                         <div class="stepGroup stepGroup-hasHooks {{ expandStepHooks ? 'show' : '' }}" id="step_{{ step.index }}_stepHooks">
                         {% endif %}
-                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
-                        {% set listRow = listRow + step.before|length %}
 
                         {% set listRow = listRow + 1 %}
                         <div class="row row_{{ step.consolidatedStatusString }} table-row-{{ step.consolidatedStatusString }}{% if step.hasHooks() %} stepGroup-step{% endif %}{% if listRow is odd %} cluecumber-row--stripe{% endif %}">
@@ -322,9 +323,11 @@ limitations under the License.
                                         {% endif %}
                                         {% if step.hasHooks() %}
                                             <button type="button" class="cluecumber-exception-action secondary outline stepHooksExpansionButton"
+                                                    data-cluecumber-open-close
+                                                    data-cluecumber-toggle-suffix="Hooks"
                                                     data-toggle="collapse"
                                                     aria-expanded="{{ expandStepHooks ? 'true' : 'false' }}"
-                                                    data-target="#step_{{ step.index }}_stepHooks">Toggle Hooks</button>
+                                                    data-target="#step_{{ step.index }}_stepHooks">{{ expandStepHooks ? 'Close Hooks' : 'Open Hooks' }}</button>
                                         {% endif %}
                                     </div>
                                 {% endif %}
@@ -335,6 +338,11 @@ limitations under the License.
                             <div class="cluecumber-step-status cluecumber-align-right">
                                 {{ common.status(step.consolidatedStatusString) }}
                             </div>
+
+                            {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.before %}{% set hookPhase = "before" %}{% include "macros/scenario-step-hooks" %}
+                            {% set listRow = listRow + step.before|length %}
+                            {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
+                            {% set listRow = listRow + step.after|length %}
 
                             {% if step.rows is not empty %}
                                 <div class="row scenarioDataTable">
@@ -370,8 +378,6 @@ limitations under the License.
                             {% set step = step %}{% set sectionId = "main" %}{% include "macros/scenario-output" %}
                             {% set step = step %}{% include "macros/scenario-attachments" %}
                         </div>
-                        {% set stripeRowOffset = listRow %}{% set stepIndex = step.index %}{% set stepDisplayIndex = loop.index + 1 %}{% set hooks = step.after %}{% set hookPhase = "after" %}{% include "macros/scenario-step-hooks" %}
-                        {% set listRow = listRow + step.after|length %}
                         {% if step.hasHooks() %}
                         </div>
                         {% endif %}
@@ -468,10 +474,13 @@ limitations under the License.
                 for (const collapsableElement of collapsableElements) {
                     if (classState[className]) {
                         collapsableElement.classList.add('show');
+                        collapsableElement.dispatchEvent(new Event('shown.bs.collapse', {bubbles: true}));
+                        refreshEmbeddedHtmlIframes(collapsableElement);
                     } else {
                         collapsableElement.classList.remove('show');
                     }
                 }
+                syncOpenCloseCollapseLabels(rootElement);
             }
         }
 
@@ -512,6 +521,7 @@ limitations under the License.
         document.getElementById('step-hooks-button').addEventListener('click', function (event) {
             toggleCollapsableSection('.stepGroup-hasHooks', {{ expandStepHooks ? "true" : "false" }});
             event.target.textContent = classState['.stepGroup-hasHooks'] ? 'Hide Step Hooks' : 'Show Step Hooks';
+            syncOpenCloseCollapseLabels();
         });
         {% endif %}
     </script>

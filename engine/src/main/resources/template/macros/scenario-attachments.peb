@@ -20,9 +20,10 @@
                             <button type="button" class="cluecumber-exception-action secondary outline cluecumber-collapsible-copy-action"
                                     onclick="copyText('expandable{{ attachmentID }}')">Copy</button>
                         {% endif %}
-                        <button type="button" class="cluecumber-exception-action secondary outline"
+                        <button type="button" class="cluecumber-exception-action secondary outline" data-cluecumber-open-close
                                 data-toggle="collapse" data-target="#expandable{{ attachmentID }}"
-                                aria-expanded="false" aria-controls="expandable{{ attachmentID }}">Toggle</button>
+                                aria-expanded="{{ expandAttachments ? 'true' : 'false' }}"
+                                aria-controls="expandable{{ attachmentID }}">{{ expandAttachments ? 'Close' : 'Open' }}</button>
                     </div>
                 </div>
                 <div class="collapse {{ expandAttachments ? "show" : "" }}"
@@ -33,17 +34,20 @@
                                  alt="Attachment {{ attachment.filename }}"/>
                         </a>
                     {% elseif attachment.mimeType == "HTML" %}
-                        <iframe src="attachments/{{ attachment.filename }}"
-                                srcdoc="{{ attachment.decodedData|raw }}" width="100%"
-                                class="embedded-html is-pending-size"></iframe>
+                        <template class="cluecumber-embedded-html-source" hidden>{{ attachment.decodedData|raw }}</template>
+                        <iframe src="attachments/{{ attachment.filename }}" width="100%"
+                                class="embedded-html is-pending-size"
+                                title="{{ attachment.name != '' ? attachment.name : 'HTML attachment' }}"></iframe>
                     {% elseif isTextAttachment %}
                         <pre class="embedding-content cluecumber-text-small embedded-txt">{{ attachment.decodedData|raw }}</pre>
                     {% elseif attachment.mimeType == "MP4" %}
-                        {% if attachment.externalContent %}
-                            <video controls="controls" class="embedded-mp4">
+                        <video controls="controls" class="embedded-mp4">
+                            {% if attachment.externalContent %}
                                 <source src="{{ attachment.decodedData|raw }}" type="video/mp4"/>
-                            </video>
-                        {% endif %}
+                            {% else %}
+                                <source src="attachments/{{ attachment.filename }}" type="video/mp4"/>
+                            {% endif %}
+                        </video>
                     {% elseif attachment.mimeType == "UNKNOWN" %}
                         <p class="cluecumber-text-small cluecumber-danger">Unknown content type.</p>
                     {% else %}

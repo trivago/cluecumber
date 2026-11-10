@@ -28,10 +28,11 @@ limitations under the License.
     --cluecumber-link-hover: #004a8f;
     --cluecumber-page-bg: var(--pico-background-color);
     --cluecumber-header-fg: var(--pico-color);
-    --cluecumber-font-size: 0.9375rem;
+    --cluecumber-font-size: 0.875rem;
     --cluecumber-font-size-small: 0.75rem;
     --cluecumber-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --cluecumber-line-height: 1.5;
+    --cluecumber-attachment-content-max-height: 24rem;
     --cluecumber-step-accent-width: 4px;
     --cluecumber-hover-bg: rgba(0, 0, 0, 0.075);
     --cluecumber-hover-bg-dark: rgba(255, 255, 255, 0.08);
@@ -40,9 +41,14 @@ limitations under the License.
     --cluecumber-action-gap: 0.35rem;
     --cluecumber-button-padding-y: 0.1rem;
     --cluecumber-button-padding-x: 0.35rem;
-    --cluecumber-button-hover-bg: rgba(58, 74, 95, 0.14);
-    --cluecumber-button-hover-bg-dark: rgba(255, 255, 255, 0.16);
-    --cluecumber-header-button-hover-bg: var(--cluecumber-button-hover-bg);
+    --cluecumber-button-surface-bg: color-mix(in srgb, var(--pico-secondary) 12%, var(--pico-background-color));
+    --cluecumber-button-surface-border: color-mix(in srgb, var(--pico-secondary) 32%, var(--pico-muted-border-color));
+    --cluecumber-button-surface-fg: var(--pico-secondary);
+    --cluecumber-button-surface-hover-bg: var(--pico-secondary);
+    --cluecumber-button-surface-hover-fg: var(--pico-secondary-inverse);
+    --cluecumber-button-hover-bg: var(--cluecumber-button-surface-hover-bg);
+    --cluecumber-button-hover-bg-dark: var(--cluecumber-button-surface-hover-bg);
+    --cluecumber-header-button-hover-bg: var(--cluecumber-button-surface-hover-bg);
     --cluecumber-block-padding-x: 0.75rem;
     --cluecumber-card-body-padding: 1.25rem;
     --cluecumber-step-row-padding-y: 0.85rem;
@@ -63,6 +69,9 @@ limitations under the License.
     --cluecumber-row-hover-bg: color-mix(in srgb, #fff 10%, var(--pico-background-color));
     --cluecumber-row-hover-stripe-bg: color-mix(in srgb, #fff 14%, var(--pico-background-color));
     --cluecumber-row-group-hover-bg: color-mix(in srgb, #fff 14%, var(--pico-background-color));
+    --cluecumber-button-surface-bg: color-mix(in srgb, var(--pico-secondary) 24%, var(--pico-background-color));
+    --cluecumber-button-surface-border: color-mix(in srgb, var(--pico-secondary) 45%, var(--pico-muted-border-color));
+    --cluecumber-button-surface-fg: var(--pico-secondary);
 }
 
 /* --- 2. Base layout & theme --- */
@@ -409,7 +418,7 @@ h1, h2, h3, h4, h5 {
 .cluecumber-card > header {
     margin: 0;
     padding: 0.65rem var(--cluecumber-card-body-padding);
-    font-size: 0.9375rem;
+    font-size: var(--cluecumber-font-size);
     font-weight: 600;
     text-align: left;
     letter-spacing: 0.01em;
@@ -480,7 +489,7 @@ h1, h2, h3, h4, h5 {
     text-align: left;
 }
 
-.cluecumber-card.cluecumber-card-centered button {
+.cluecumber-card.cluecumber-card-centered .cluecumber-card-body > button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -490,8 +499,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-view-toolbar {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
     justify-content: center;
     gap: 0.35rem;
     margin-top: 0.75rem;
@@ -501,10 +510,10 @@ h1, h2, h3, h4, h5 {
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     text-align: center;
-    flex: 1 1 auto;
-    min-width: min(100%, 9rem);
     margin: 0;
+    padding: 0.35rem 0.75rem;
 }
 
 .cluecumber-card.cluecumber-card-centered .alert ol {
@@ -627,17 +636,10 @@ h1, h2, h3, h4, h5 {
 }
 
 .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
-.dataTables_paginate .page-link:hover {
-    background-color: var(--cluecumber-button-hover-bg);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-}
-
-[data-theme="dark"] .dataTables_paginate .paginate_button:hover:not(.disabled):not(.current),
-[data-theme="dark"] .dataTables_paginate .page-link:hover {
-    background-color: var(--cluecumber-button-hover-bg-dark);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
+.dataTables_paginate .page-link:hover:not(.active) {
+    background-color: var(--cluecumber-button-surface-hover-bg);
+    border-color: var(--cluecumber-button-surface-hover-bg);
+    color: var(--cluecumber-button-surface-hover-fg);
 }
 
 /* --- 7. Scenario detail --- */
@@ -798,7 +800,8 @@ h1, h2, h3, h4, h5 {
     border: var(--cluecumber-border);
     border-radius: var(--pico-border-radius);
     background: var(--cluecumber-card-surface);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
 }
 
 :is(.scenarioAttachment, .scenarioOutputs).row {
@@ -864,7 +867,7 @@ h1, h2, h3, h4, h5 {
     gap: 0.25rem;
 }
 
-:is(.scenarioAttachment-header, .scenarioOutputs-header) .cluecumber-exception-action {
+:is(.scenarioAttachment-header, .scenarioOutputs-header) .exception-links-top .cluecumber-exception-action {
     padding: 0.15rem 0.45rem;
     font-size: var(--cluecumber-font-size-small);
 }
@@ -1463,13 +1466,14 @@ tr.odd td {
     display: inline-block;
     margin: 0;
     padding: 0.35rem 0.65rem;
-    border: 1px solid var(--pico-muted-border-color);
+    border: 1px solid var(--cluecumber-button-surface-border);
     border-radius: var(--pico-border-radius);
-    background: var(--pico-background-color);
-    color: var(--pico-color);
+    background: var(--cluecumber-button-surface-bg);
+    color: var(--cluecumber-button-surface-fg);
     text-decoration: none;
     cursor: pointer;
     box-shadow: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .dataTables_paginate .paginate_button.current,
@@ -1509,7 +1513,7 @@ tr.odd td {
     margin-inline: auto;
 }
 
-.cluecumber-template :is(button, [role=button], [type=button], [type=reset], [type=submit]) {
+.cluecumber-template :is(button, [role=button], [type=button], [type=reset], [type=submit]):not(.cluecumber-outline-control):not(.cluecumber-collapsible-copy-action):not(.cluecumber-exception-action) {
     width: auto;
     margin-bottom: 0;
     white-space: inherit;
@@ -1522,27 +1526,30 @@ tr.odd td {
     transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.cluecumber-template :is(button, [role=button], [type=button], [type=reset], [type=submit]):is(:hover, :focus-visible):not(:disabled):not(.btn-link),
-.cluecumber-header :is(button, [role=button], [type=button]):is(:hover, :focus-visible):not(:disabled) {
+.cluecumber-template .cluecumber-outline-control:is(button, [type=button]) {
+    width: auto;
+    margin-bottom: 0;
+    white-space: inherit;
+    font-size: var(--cluecumber-font-size);
+    line-height: var(--cluecumber-line-height);
+    padding: 0.35rem 0.75rem;
+    min-height: 0;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+:is(.cluecumber-template, .cluecumber-header) :is(button, [role=button], [type=button], [type=reset], [type=submit]).secondary:not(.btn-link):not(:disabled) {
+    background-color: var(--cluecumber-button-surface-bg);
+    border-color: var(--cluecumber-button-surface-border);
+    color: var(--cluecumber-button-surface-fg);
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.cluecumber-template :is(button, [role=button], [type=button], [type=reset], [type=submit]).secondary:not(.btn-link):not(:disabled):is(:hover, :focus-visible),
+.cluecumber-header :is(button, [role=button], [type=button]).secondary:not(.btn-link):not(:disabled):is(:hover, :focus-visible) {
     box-shadow: none;
-}
-
-.cluecumber-template :is(button, [role=button], [type=button], [type=reset], [type=submit]):is(:hover, :focus-visible):not(:disabled):not(.btn-link) {
-    background-color: var(--cluecumber-button-hover-bg);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-}
-
-[data-theme="dark"] .cluecumber-template :is(button, [role=button], [type=button], [type=reset], [type=submit]):is(:hover, :focus-visible):not(:disabled):not(.btn-link) {
-    background-color: var(--cluecumber-button-hover-bg-dark);
-    border-color: var(--pico-secondary);
-    color: var(--pico-secondary);
-}
-
-.cluecumber-header :is(button, [role=button], [type=button]):is(:hover, :focus-visible):not(:disabled) {
-    background-color: var(--cluecumber-header-button-hover-bg);
-    border-color: var(--cluecumber-header-fg);
-    color: var(--cluecumber-header-fg);
+    background-color: var(--cluecumber-button-surface-hover-bg);
+    border-color: var(--cluecumber-button-surface-hover-bg);
+    color: var(--cluecumber-button-surface-hover-fg);
 }
 
 .btn-link,
@@ -1690,7 +1697,7 @@ iframe {
 pre.embedding-content.embedded-txt {
     margin: 0;
     padding: 0.75rem 1rem;
-    max-height: 24rem;
+    max-height: var(--cluecumber-attachment-content-max-height);
     overflow: auto;
     font-family: var(--cluecumber-font-family-mono);
     font-size: var(--cluecumber-font-size-small);
@@ -1724,6 +1731,29 @@ pre.embedding-content.embedded-txt {
     visibility: hidden;
     height: 0;
     overflow: hidden;
+}
+
+.collapse.show .embedded-html.is-pending-size:not(.is-sized) {
+    visibility: visible;
+    min-height: 4rem;
+    height: auto;
+}
+
+.embedded-html.is-sized:not(.is-capped) {
+    overflow: hidden;
+}
+
+.embedded-html.is-sized.is-capped {
+    max-height: var(--cluecumber-attachment-content-max-height);
+    overflow-y: auto;
+}
+
+.stepGroup-hasHooks .stepGroup-step > .stepHookRow > .row {
+    padding-block: 0.45rem;
+}
+
+.stepGroup-step > .stepHookRow {
+    grid-column: 1 / -1;
 }
 
 .cluecumber-embedded-view-page {

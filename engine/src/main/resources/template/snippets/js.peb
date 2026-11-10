@@ -97,12 +97,38 @@ limitations under the License.
             targets.forEach(function (target) {
                 target.classList.toggle('show', willShow);
                 target.dispatchEvent(new Event(willShow ? 'shown.bs.collapse' : 'hidden.bs.collapse', {bubbles: true}));
+                if (willShow) {
+                    refreshEmbeddedHtmlIframes(target);
+                }
             });
             document.querySelectorAll('[data-toggle="collapse"]').forEach(function (control) {
                 if ((control.getAttribute('data-target') || control.getAttribute('href')) === targetSelector) {
                     control.setAttribute('aria-expanded', willShow ? 'true' : 'false');
                 }
             });
+            syncOpenCloseCollapseLabels();
+        });
+    }
+
+    function syncOpenCloseCollapseLabels(scope) {
+        const root = scope && scope.querySelectorAll ? scope : document;
+        root.querySelectorAll('[data-cluecumber-open-close]').forEach(function (control) {
+            const targetSelector = control.getAttribute('data-target') || control.getAttribute('href');
+            if (!targetSelector || !targetSelector.startsWith('#')) {
+                return;
+            }
+            const target = document.querySelector(targetSelector);
+            if (!target) {
+                return;
+            }
+            const isOpen = target.classList.contains('show');
+            const suffix = control.getAttribute('data-cluecumber-toggle-suffix');
+            if (suffix) {
+                control.textContent = isOpen ? 'Close ' + suffix : 'Open ' + suffix;
+            } else {
+                control.textContent = isOpen ? 'Close' : 'Open';
+            }
+            control.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
     }
 
@@ -436,36 +462,306 @@ limitations under the License.
         }
     }
 
-    function resizeIframe(iframe) {
-        function applyHeight() {
-            try {
-                const doc = iframe.contentWindow.document;
-                const height = Math.max(
-                    doc.documentElement.scrollHeight,
-                    doc.body.scrollHeight
-                );
-                iframe.style.height = (height + 25) + 'px';
-                iframe.classList.add('is-sized');
-            } catch (e) {
+    function attachmentIframeIsVisible(iframe) {
+        const collapse = iframe.closest('.collapse');
+        if (collapse && !collapse.classList.contains('show')) {
+            return false;
+        }
+        return iframe.offsetParent !== null || (collapse !== null && collapse.classList.contains('show'));
+    }
+
+    function measureIframeContentHeight(doc) {
+        const html = doc.documentElement;
+        const body = doc.body;
+        const heights = [
+            html ? html.scrollHeight : 0,
+            html ? html.offsetHeight : 0,
+            body ? body.scrollHeight : 0,
+            body ? body.offsetHeight : 0
+        ];
+        if (body) {
+            const bodyTop = body.getBoundingClientRect().top;
+            body.querySelectorAll('table').forEach(function (table) {
+                const rect = table.getBoundingClientRect();
+                heights.push(Math.ceil(rect.bottom - bodyTop));
+            });
+            Array.prototype.forEach.call(body.children, function (child) {
+                heights.push(child.offsetTop + child.offsetHeight);
+            });
+        }
+        return Math.max.apply(null, heights);
+    }
+
+    function embeddedHtmlProbeWidth(iframe) {
+        const width = iframe.getBoundingClientRect().width;
+        if (width > 0) {
+            return width;
+        }
+        const collapse = iframe.closest('.collapse');
+        if (collapse) {
+            const collapseWidth = collapse.getBoundingClientRect().width;
+            if (collapseWidth > 0) {
+                return collapseWidth;
             }
+        }
+        const attachment = iframe.closest('.scenarioAttachment');
+        if (attachment) {
+            const attachmentWidth = attachment.getBoundingClientRect().width;
+            if (attachmentWidth > 0) {
+                return attachmentWidth;
+            }
+        }
+        return 0;
+    }
+
+    const cluecumberEmbeddedHtmlMarkupCache = new Map();
+
+    function resolveEmbeddedHtmlSourceUrl(iframe) {
+        const src = iframe.getAttribute('src');
+        if (!src) {
+            return null;
+        }
+        try {
+            return new URL(src, document.baseURI).href;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function fetchEmbeddedHtmlMarkup(iframe) {
+        const url = resolveEmbeddedHtmlSourceUrl(iframe);
+        if (!url) {
+            return Promise.resolve('');
+        }
+        if (cluecumberEmbeddedHtmlMarkupCache.has(url)) {
+            return Promise.resolve(cluecumberEmbeddedHtmlMarkupCache.get(url));
+        }
+        return fetch(url).then(function (response) {
+            if (!response.ok) {
+                return '';
+            }
+            return response.text();
+        }).then(function (markup) {
+            cluecumberEmbeddedHtmlMarkupCache.set(url, markup);
+            return markup;
+        }).catch(function () {
+            return '';
+        });
+    }
+
+    function measureEmbeddedHtmlMarkupHeight(iframe, markup) {
+        if (!markup || !markup.trim()) {
+            return 0;
+        }
+        const probeWidth = embeddedHtmlProbeWidth(iframe);
+        if (probeWidth <= 0) {
+            return 0;
+        }
+        const probe = document.createElement('div');
+        probe.className = 'cluecumber-embedded-html-probe';
+        probe.setAttribute('aria-hidden', 'true');
+        probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;box-sizing:border-box;width:'
+            + probeWidth + 'px;';
+        probe.innerHTML = markup;
+        document.body.appendChild(probe);
+        const probeHeight = Math.ceil(probe.scrollHeight);
+        probe.remove();
+        return probeHeight > 0 ? probeHeight : 0;
+    }
+
+    function embeddedHtmlBodyMarkup(doc) {
+        if (!doc || !doc.body) {
+            return '';
+        }
+        return doc.body.innerHTML ? doc.body.innerHTML.trim() : '';
+    }
+
+    function embeddedHtmlMarkupFromTemplate(iframe) {
+        const attachment = iframe.closest('.scenarioAttachment');
+        if (!attachment) {
+            return '';
+        }
+        const template = attachment.querySelector('template.cluecumber-embedded-html-source');
+        if (!template) {
+            return '';
+        }
+        const markup = template.innerHTML;
+        return markup ? markup.trim() : '';
+    }
+
+    function measureEmbeddedHtmlContentHeight(iframe, doc, markup) {
+        const probeWidth = embeddedHtmlProbeWidth(iframe);
+        if (probeWidth <= 0) {
+            return 0;
+        }
+        const fromMarkup = markup || embeddedHtmlBodyMarkup(doc);
+        if (fromMarkup) {
+            const probeHeight = measureEmbeddedHtmlMarkupHeight(iframe, fromMarkup);
+            if (probeHeight > 0) {
+                return probeHeight;
+            }
+        }
+        if (doc) {
+            return measureIframeContentHeight(doc);
+        }
+        return 0;
+    }
+
+    function attachmentHtmlMaxHeightPx() {
+        const raw = getComputedStyle(document.documentElement)
+            .getPropertyValue('--cluecumber-attachment-content-max-height')
+            .trim();
+        if (!raw) {
+            return 384;
+        }
+        const value = parseFloat(raw);
+        if (Number.isNaN(value)) {
+            return 384;
+        }
+        if (raw.endsWith('rem')) {
+            const rootFont = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+            return value * rootFont;
+        }
+        return value;
+    }
+
+    function ensureEmbeddedHtmlDocumentStyles(doc) {
+        if (!doc || !doc.documentElement) {
+            return;
+        }
+        let head = doc.head;
+        if (!head) {
+            head = doc.createElement('head');
+            const body = doc.body;
+            if (body) {
+                doc.documentElement.insertBefore(head, body);
+            } else {
+                doc.documentElement.appendChild(head);
+            }
+        }
+        if (doc.getElementById('cluecumber-embedded-html-reset')) {
+            return;
+        }
+        const style = doc.createElement('style');
+        style.id = 'cluecumber-embedded-html-reset';
+        style.textContent = 'html,body{margin:0;padding:0;}';
+        head.appendChild(style);
+    }
+
+    function resolveEmbeddedHtmlIframeHeight(iframe, doc, markup) {
+        const natural = measureEmbeddedHtmlContentHeight(iframe, doc, markup);
+        const maxPx = attachmentHtmlMaxHeightPx();
+        const slack = 48;
+        if (natural <= 0) {
+            return {applied: false, needsRetry: embeddedHtmlProbeWidth(iframe) <= 0};
+        }
+        const content = natural + slack;
+        if (content <= maxPx) {
+            return {applied: true, height: content, capped: false, needsRetry: false};
+        }
+        return {applied: true, height: maxPx, capped: true, needsRetry: false};
+    }
+
+    function applyEmbeddedHtmlIframeHeight(iframe, doc, markup) {
+        if (doc) {
+            ensureEmbeddedHtmlDocumentStyles(doc);
+        }
+        const resolved = resolveEmbeddedHtmlIframeHeight(iframe, doc, markup);
+        if (!resolved.applied) {
+            return false;
+        }
+        iframe.style.height = resolved.height + 'px';
+        iframe.style.minHeight = '0';
+        iframe.classList.add('is-sized');
+        iframe.classList.toggle('is-capped', resolved.capped);
+        return true;
+    }
+
+    function applyEmbeddedHtmlIframeHeightFromSources(iframe, doc, markup) {
+        if (applyEmbeddedHtmlIframeHeight(iframe, doc, markup)) {
+            return true;
+        }
+        return applyEmbeddedHtmlIframeHeight(iframe, null, markup);
+    }
+
+    function refreshEmbeddedHtmlIframes(root) {
+        const scope = root && root.querySelectorAll ? root : document;
+        const iframes = root && root.querySelectorAll
+            ? root.querySelectorAll('iframe.embedded-html')
+            : scope.querySelectorAll('iframe.embedded-html');
+        iframes.forEach(function (iframe) {
+            if (typeof iframe._cluecumberApplyEmbeddedHtmlHeight === 'function') {
+                iframe._cluecumberApplyEmbeddedHtmlHeight();
+            } else {
+                resizeIframe(iframe);
+            }
+        });
+    }
+
+    function resizeIframe(iframe) {
+        function applyHeightWithMarkup(markup) {
+            if (!attachmentIframeIsVisible(iframe)) {
+                return;
+            }
+            let doc = null;
+            try {
+                doc = iframe.contentWindow.document;
+            } catch (ignored) {
+            }
+            const bodyMarkup = doc ? embeddedHtmlBodyMarkup(doc) : '';
+            const combined = bodyMarkup || markup || '';
+            if (!applyEmbeddedHtmlIframeHeightFromSources(iframe, doc, combined)) {
+                if (embeddedHtmlProbeWidth(iframe) <= 0) {
+                    requestAnimationFrame(function () {
+                        applyHeightWithMarkup(combined);
+                    });
+                }
+            }
+        }
+
+        function applyHeight() {
+            if (!attachmentIframeIsVisible(iframe)) {
+                return;
+            }
+            let doc = null;
+            try {
+                doc = iframe.contentWindow.document;
+            } catch (ignored) {
+            }
+            if (doc && doc.readyState !== 'complete') {
+                return;
+            }
+            const bodyMarkup = doc ? embeddedHtmlBodyMarkup(doc) : '';
+            if (bodyMarkup) {
+                applyHeightWithMarkup(bodyMarkup);
+                return;
+            }
+            const templateMarkup = embeddedHtmlMarkupFromTemplate(iframe);
+            if (templateMarkup) {
+                applyHeightWithMarkup(templateMarkup);
+                return;
+            }
+            fetchEmbeddedHtmlMarkup(iframe).then(function (markup) {
+                if (!markup.trim()) {
+                    return;
+                }
+                applyHeightWithMarkup(markup);
+            });
+        }
+
+        iframe._cluecumberApplyEmbeddedHtmlHeight = applyHeight;
+
+        if (iframe.dataset.cluecumberResizeBound === 'true') {
+            applyHeight();
+            return;
         }
 
         function bind() {
             applyHeight();
-            if (iframe.dataset.cluecumberResizeBound) {
-                return;
-            }
             iframe.dataset.cluecumberResizeBound = 'true';
-            try {
-                const body = iframe.contentWindow.document.body;
-                if (typeof ResizeObserver !== 'undefined' && body) {
-                    const observer = new ResizeObserver(applyHeight);
-                    observer.observe(body);
-                    iframe._cluecumberResizeObserver = observer;
-                }
-            } catch (e) {
-            }
         }
+
+        iframe.addEventListener('load', applyHeight);
 
         try {
             const doc = iframe.contentDocument || iframe.contentWindow.document;

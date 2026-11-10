@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.5.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.0) - UNRELEASED
+
+### Fixed
+
+* Binary mp4 attachments now play inline from the report `attachments/` folder
+* HTML attachment iframes show and resize correctly when toggling individual attachments or Show/Hide Attachments
+
+### Changed
+
+* Attachment and step output collapses use Open / Close labels; per-step hook controls use Open Hooks / Close Hooks and stay in sync when expanding from the toolbar
+* Step before/after hooks on scenario detail appear directly under their step header for clearer grouping
+* Scenario detail view toolbar controls use compact equal-width button styling
+* HTML and text attachments share the same max content height with scrolling
+* Slightly smaller default report font size
+* Dependency updates
+    * Maven Enforcer plugin `3.7.0`
+    * Maven Flatten plugin `1.9.0`
+    * Maven Plugin plugin `3.16.0`
+    * Maven Plugin plugin `3.16.0`
+
 ## [4.4.3](https://github.com/trivago/cluecumber-report-plugin/tree/v4.4.3) - 2026-10-29
 
 ### Fixed
