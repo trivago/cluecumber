@@ -327,6 +327,26 @@ limitations under the License.
 
                 chartConfig.options.animation = false;
 
+                const chartFontSize = parseFloat(getComputedStyle(document.body).fontSize) || 18;
+                const chartFontFamily = getComputedStyle(document.body).fontFamily;
+                if (!isPieChart && chartConfig.options.scales) {
+                    Object.keys(chartConfig.options.scales).forEach(function (scaleKey) {
+                        const scale = chartConfig.options.scales[scaleKey];
+                        if (!scale) {
+                            return;
+                        }
+                        scale.ticks = scale.ticks || {};
+                        scale.ticks.font = scale.ticks.font || {};
+                        scale.ticks.font.size = chartFontSize;
+                        scale.ticks.font.family = chartFontFamily;
+                        if (scale.title) {
+                            scale.title.font = scale.title.font || {};
+                            scale.title.font.size = chartFontSize;
+                            scale.title.font.family = chartFontFamily;
+                        }
+                    });
+                }
+
                 return chartConfig;
             }
 

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.5.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.1) - 2026-11-13
+
+### Fixed
+
+* Report pages now use a consistent font size matching the All Scenarios overview
+
+### Changed
+
+* Pebble template engine updated to `4.1.3`
+
 ## [4.5.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.0) - 2026-11-10
 
 ### Fixed

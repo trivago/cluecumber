@@ -28,8 +28,8 @@ limitations under the License.
     --cluecumber-link-hover: #004a8f;
     --cluecumber-page-bg: var(--pico-background-color);
     --cluecumber-header-fg: var(--pico-color);
-    --cluecumber-font-size: 0.875rem;
-    --cluecumber-font-size-small: 0.75rem;
+    --cluecumber-font-size: 1.125rem;
+    --cluecumber-font-size-small: 0.875rem;
     --cluecumber-font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --cluecumber-line-height: 1.5;
     --cluecumber-attachment-content-max-height: 24rem;
@@ -58,6 +58,38 @@ limitations under the License.
     --cluecumber-row-hover-stripe-bg: color-mix(in srgb, var(--pico-color) 14%, var(--pico-background-color));
     --cluecumber-row-group-hover-bg: color-mix(in srgb, var(--pico-color) 13%, var(--pico-background-color));
     --cluecumber-step-hook-indent: 1.25rem;
+    --pico-font-size: 100%;
+}
+
+/* Keep report typography consistent; Pico otherwise scales --pico-font-size by viewport. */
+@media (min-width: 576px) {
+    :root {
+        --pico-font-size: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --pico-font-size: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --pico-font-size: 100%;
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --pico-font-size: 100%;
+    }
+}
+
+@media (min-width: 1536px) {
+    :root {
+        --pico-font-size: 100%;
+    }
 }
 
 [data-theme="light"] {
@@ -86,6 +118,12 @@ body {
     margin-bottom: 4rem;
     font-size: var(--cluecumber-font-size);
     line-height: var(--cluecumber-line-height);
+}
+
+:is(.cluecumber-template, .cluecumber-header)
+    :is(input, select, textarea, optgroup):not([type="checkbox"]):not([type="radio"]) {
+    font-size: inherit;
+    line-height: inherit;
 }
 
 [data-theme="light"] body {
