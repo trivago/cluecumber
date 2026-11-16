@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.5.2](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.2) - 2026-11-16
+
+### Fixed
+
+* Scenario detail pages inherit the same base font size as other report pages (Pico list item sizing)
+
+### Changed
+
+* Dependency updates
+    * Maven Artifact `3.10.1`
+    * Maven Model `3.10.1`
+    * Maven Plugin API `3.10.1`
+
 ## [4.5.1](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.1) - 2026-11-13
 
 ### Fixed

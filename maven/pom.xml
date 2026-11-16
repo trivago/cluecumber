@@ -42,10 +42,10 @@
         <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <maven-artifact.version>3.9.6</maven-artifact.version>
-        <maven-model.version>3.9.6</maven-model.version>
+        <maven-artifact.version>3.10.1</maven-artifact.version>
+        <maven-model.version>3.10.1</maven-model.version>
         <maven-plugin-annotations.version>3.10.1</maven-plugin-annotations.version>
-        <maven-plugin-api.version>3.9.9</maven-plugin-api.version>
+        <maven-plugin-api.version>3.10.1</maven-plugin-api.version>
         <javax.inject.version>1</javax.inject.version>
         <maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
         <maven-plugin-plugin.version>3.16.0</maven-plugin-plugin.version>
