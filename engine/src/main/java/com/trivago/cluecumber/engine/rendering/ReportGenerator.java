@@ -99,14 +99,21 @@ public class ReportGenerator {
                 propertyManager.getStartPage() == Settings.StartPage.ALL_SCENARIOS &&
                 allScenariosPageCollection.getTotalNumberOfScenarios() == 1;
 
-        generateStartPage(redirectToFirstScenarioPage);
+        generateStartPage(redirectToFirstScenarioPage, allScenariosPageCollection);
         for (PageVisitor visitor : visitors) {
             allScenariosPageCollection.accept(visitor);
         }
     }
 
-    private void generateStartPage(boolean redirectToFirstScenarioPage) throws CluecumberException {
-        StartPageCollection startPageCollection = new StartPageCollection(propertyManager.getStartPage(), redirectToFirstScenarioPage);
+    private void generateStartPage(
+            final boolean redirectToFirstScenarioPage,
+            final AllScenariosPageCollection allScenariosPageCollection
+    ) throws CluecumberException {
+        final int redirectScenarioIndex = redirectToFirstScenarioPage
+                ? allScenariosPageCollection.getSoleScenarioDetailIndex()
+                : 1;
+        StartPageCollection startPageCollection = new StartPageCollection(
+                propertyManager.getStartPage(), redirectToFirstScenarioPage, redirectScenarioIndex);
         fileIO.writeContentToFile(startPageRenderer.getRenderedContent(
                 templateEngine.getTemplate(TemplateEngine.Template.START_PAGE),
                 startPageCollection,

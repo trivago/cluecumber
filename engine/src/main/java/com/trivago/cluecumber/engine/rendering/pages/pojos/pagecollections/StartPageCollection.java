@@ -24,16 +24,19 @@ import com.trivago.cluecumber.engine.constants.Settings;
 public class StartPageCollection {
     private Settings.StartPage startPage;
     private boolean redirectToFirstScenario;
+    private int redirectScenarioIndex;
 
     /**
      * Default constructor.
      *
      * @param startPage               The {@link com.trivago.cluecumber.engine.constants.Settings.StartPage} enum.
-     * @param redirectToFirstScenario true if it should redirect to the first scenario.
+     * @param redirectToFirstScenario true if it should redirect to the sole scenario detail page.
+     * @param redirectScenarioIndex   scenario detail index when redirecting to the sole scenario (ignored otherwise).
      */
-    public StartPageCollection(Settings.StartPage startPage, boolean redirectToFirstScenario) {
+    public StartPageCollection(final Settings.StartPage startPage, final boolean redirectToFirstScenario, final int redirectScenarioIndex) {
         this.startPage = startPage;
         this.redirectToFirstScenario = redirectToFirstScenario;
+        this.redirectScenarioIndex = redirectScenarioIndex;
     }
 
     /**
@@ -52,5 +55,14 @@ public class StartPageCollection {
      */
     public boolean isRedirectToFirstScenario() {
         return redirectToFirstScenario;
+    }
+
+    /**
+     * Scenario detail page index used when redirecting to the sole scenario.
+     *
+     * @return The scenario index.
+     */
+    public int getRedirectScenarioIndex() {
+        return redirectScenarioIndex;
     }
 }

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.5.3](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.3) - 2026-11-17
+
+### Fixed
+
+* Report `index.html` redirects to the correct sole scenario detail page when `groupPreviousScenarioRuns` groups reruns (no longer hardcoded to `scenario_1.html`)
+
 ## [4.5.2](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.2) - 2026-11-16
 
 ### Fixed

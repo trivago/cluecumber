@@ -32,7 +32,7 @@ limitations under the License.
     <script src="js/cluecumber-theme.js"></script>
     <script>
         {% if redirectToFirstScenario %}
-        CluecumberTheme.redirectWithStoredTheme('pages/scenario-detail/scenario_1.html');
+        CluecumberTheme.redirectWithStoredTheme('pages/scenario-detail/scenario_{{ redirectScenarioIndex }}.html');
         {% else %}
         CluecumberTheme.redirectWithStoredTheme('pages/{{ startPage.pageName }}.html');
         {% endif %}

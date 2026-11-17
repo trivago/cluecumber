@@ -145,6 +145,20 @@ public class AllScenariosPageCollection extends PageCollection implements Visita
     }
 
     /**
+     * Return the scenario detail index of the sole scenario in this report.
+     *
+     * @return The scenario index, or {@code 1} when no scenario element exists.
+     */
+    public int getSoleScenarioDetailIndex() {
+        return reports.stream()
+                .flatMap(report -> report.getElements().stream())
+                .filter(Element::isScenario)
+                .mapToInt(Element::getScenarioIndex)
+                .findFirst()
+                .orElse(1);
+    }
+
+    /**
      * Check if there are failed scenarios.
      *
      * @return true if there are failed scenarios.

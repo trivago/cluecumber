@@ -14,6 +14,15 @@ test: ## Test locally and open the report
 	open examples/maven-example/target/cluecumber-report/index.html
 .Phony: test
 
+core-example: ## Run Cluecumber Core example and open the report
+	./mvnw -q -pl core,engine install -ntp
+	./mvnw -q -f examples/core-example/pom.xml compile
+	./mvnw -q -f examples/core-example/pom.xml \
+		org.codehaus.mojo:exec-maven-plugin:3.5.0:java \
+		-Dexec.mainClass=com.trivago.coreexample.Main
+	open examples/core-example/target/cluecumber_report/index.html
+.PHONY: core-example
+
 show-versions: ## Show most recent dependency versions
 	@./mvnw versions:display-dependency-updates versions:display-plugin-updates -ntp 2>/dev/null \
 		| "./maven-dependency-updates-table.sh" "."

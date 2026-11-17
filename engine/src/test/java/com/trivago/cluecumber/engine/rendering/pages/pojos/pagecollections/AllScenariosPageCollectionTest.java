@@ -4,6 +4,7 @@ import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.pojo.Result;
 import com.trivago.cluecumber.engine.json.pojo.Step;
+import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.engine.json.processors.ElementMultipleRunsPreProcessor;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.CustomParameter;
 import org.junit.jupiter.api.BeforeEach;
@@ -197,6 +198,39 @@ public class AllScenariosPageCollectionTest {
         assertFalse(allScenariosPageCollection.hasMultiRunChildren());
         allScenariosPageCollection.addReports(reports.toArray(new Report[0]));
         assertTrue(allScenariosPageCollection.hasMultiRunChildren());
+    }
+
+    @Test
+    public void getSoleScenarioDetailIndexReturnsGroupedParentIndexTest() {
+        List<Report> reports = new ArrayList<>();
+        Report report = new Report();
+        List<Element> elements = new ArrayList<>();
+
+        Element element = new Element();
+        element.setName("Scenario 1");
+        element.setType("scenario");
+        element.setId("feature1-scenario1");
+        element.setLine(3);
+        element.setStartTimestamp("2019-04-11T08:00:21.123Z");
+        elements.add(element);
+
+        element = new Element();
+        element.setName("Scenario 1");
+        element.setType("scenario");
+        element.setId("feature1-scenario1");
+        element.setLine(3);
+        element.setStartTimestamp("2019-04-11T08:00:25.829Z");
+        elements.add(element);
+
+        report.setElements(elements);
+        reports.add(report);
+
+        new ElementIndexPreProcessor().process(reports);
+        new ElementMultipleRunsPreProcessor().addMultipleRunsInformationToScenarios(reports);
+        allScenariosPageCollection.addReports(reports.toArray(new Report[0]));
+
+        assertEquals(1, allScenariosPageCollection.getTotalNumberOfScenarios());
+        assertEquals(2, allScenariosPageCollection.getSoleScenarioDetailIndex());
     }
 
     @Test

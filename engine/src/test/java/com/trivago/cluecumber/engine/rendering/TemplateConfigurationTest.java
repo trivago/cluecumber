@@ -7,6 +7,7 @@ import com.trivago.cluecumber.engine.json.pojo.Element;
 import com.trivago.cluecumber.engine.json.pojo.Report;
 import com.trivago.cluecumber.engine.json.processors.ElementIndexPreProcessor;
 import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.ScenarioDetailsPageCollection;
+import com.trivago.cluecumber.engine.rendering.pages.pojos.pagecollections.StartPageCollection;
 import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateConfiguration;
 import com.trivago.cluecumber.engine.rendering.pages.templates.TemplateContextFactory;
 import io.pebbletemplates.pebble.template.PebbleTemplate;
@@ -55,6 +56,20 @@ public class TemplateConfigurationTest {
         context.put("skippedColor", "skipped");
         template.evaluate(writer, context);
         assertFalse(writer.toString().isEmpty());
+    }
+
+    @Test
+    public void indexRedirectsToDynamicScenarioIndexTest() throws CluecumberException, java.io.IOException {
+        templateConfiguration.init(Settings.BASE_TEMPLATE_PATH);
+        StartPageCollection collection = new StartPageCollection(Settings.StartPage.ALL_SCENARIOS, true, 2);
+        Map<String, Object> context = TemplateContextFactory.create(collection);
+        PebbleTemplate template = templateConfiguration.getTemplate("index");
+        StringWriter writer = new StringWriter();
+        template.evaluate(writer, context);
+        String html = writer.toString();
+
+        assertTrue(html.contains("scenario_2.html"));
+        assertFalse(html.contains("scenario_1.html"));
     }
 
     @Test
