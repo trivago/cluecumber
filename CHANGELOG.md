@@ -17,12 +17,6 @@ Back to [Readme](README.md).
 * Rounded inline exception summaries in scenario overview tables
 * Page titles in a shared header card with optional custom parameters
 
-### Fixed
-
-* Hover highlight on even rows in scenario overview tables
-* Scenario detail chart row: matching card height and vertical view-toolbar toggles
-* Mobile nav active-state alignment, scenario table `#` sort icons, nav pills and hover vs current page (wrap, no horizontal scroll)
-
 ## [4.5.3](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.3) - 2026-11-17
 
 ### Fixed
