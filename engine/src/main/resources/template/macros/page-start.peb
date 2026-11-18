@@ -43,11 +43,11 @@ limitations under the License.
         <div class="row cluecumber-page-header-row">
             <div class="cluecumber-col-12">
                 {% if headline != "" or _model.hasCustomParameters() %}
-                    <div class="cluecumber-page-intro">
+                    <div class="cluecumber-page-intro cluecumber-page-intro-card">
                         <div class="cluecumber-page-intro-title">
                             {% if headline != "" %}
                                 <div class="cluecumber-page-headlines">
-                                    <h3>{{ headline }}</h3>
+                                    <h1>{{ headline }}</h1>
                                     {% if preheadline != "" %}
                                         <p class="cluecumber-preheadline">
                                             <span data-toggle="tooltip" title="{{ subsubheadline }}">

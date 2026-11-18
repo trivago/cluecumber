@@ -64,12 +64,14 @@ limitations under the License.
         {{ page.cardEnd() }}
 
         {{ page.cardStart("3", "Scenario Info", "", "cluecumber-card-centered") }}
-            <li class="cluecumber-list-item">
-                {% set timingStart = element.startTimestamp is not empty ? element.startDateString ~ ' ' ~ element.startTimeString : '' %}
-                {% set timingEnd = element.startTimestamp is not empty ? element.endDateString ~ ' ' ~ element.endTimeString : '' %}
-                {% set timingTotal = element.returnTotalDurationString() %}
-                {% include "macros/timing-info" %}
-            </li>
+            <ul class="cluecumber-list">
+                <li class="cluecumber-list-item">
+                    {% set timingStart = element.startTimestamp is not empty ? element.startDateString ~ ' ' ~ element.startTimeString : '' %}
+                    {% set timingEnd = element.startTimestamp is not empty ? element.endDateString ~ ' ' ~ element.endTimeString : '' %}
+                    {% set timingTotal = element.returnTotalDurationString() %}
+                    {% include "macros/timing-info" %}
+                </li>
+            </ul>
 
             {% if element.hasSubSections() or element.hasHooks() or element.hasStepHooks() or element.hasDocStrings() or element.hasAttachments() or element.hasOutputs() %}
                 <div class="cluecumber-view-toolbar" role="toolbar" aria-label="View options">

@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 Back to [Readme](README.md).
 
+## [4.6.0](https://github.com/trivago/cluecumber-report-plugin/tree/v4.6.0) - 2026-11-18
+
+### Changed
+
+* Report layout refresh: softer surfaces, updated cards and nav, mobile hamburger menu
+* Overview pages use `h1` titles; footer is in-flow in `main` (not viewport-fixed)
+* Card headers, table/list zebra striping, and DataTables scenario overview styling updated (custom CSS may need small tweaks)
+* Rounded inline exception summaries in scenario overview tables
+* Page titles in a shared header card with optional custom parameters
+
+### Fixed
+
+* Hover highlight on even rows in scenario overview tables
+* Scenario detail chart row: matching card height and vertical view-toolbar toggles
+* Mobile nav active-state alignment, scenario table `#` sort icons, nav pills and hover vs current page (wrap, no horizontal scroll)
+
 ## [4.5.3](https://github.com/trivago/cluecumber-report-plugin/tree/v4.5.3) - 2026-11-17
 
 ### Fixed

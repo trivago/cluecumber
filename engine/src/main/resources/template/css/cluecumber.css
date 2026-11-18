@@ -19,14 +19,21 @@ limitations under the License.
 /* --- 1. Design tokens --- */
 
 :root {
-    --cluecumber-header-height: 3rem;
-    --cluecumber-chrome-bg: var(--pico-card-background-color, var(--pico-background-color));
-    --cluecumber-card-header-bg: transparent;
+    --cluecumber-header-height: 3.5rem;
+    --cluecumber-nav-offset: var(--cluecumber-header-height);
+    --cluecumber-surface: #f8f9fb;
+    --cluecumber-surface-alt: #ffffff;
+    --cluecumber-border-color: #dde1e8;
+    --cluecumber-text-muted: #5c6570;
+    --cluecumber-accent-muted: rgba(6, 40, 77, 0.1);
+    --cluecumber-chrome-bg: var(--cluecumber-surface-alt);
+    --cluecumber-card-header-bg: var(--cluecumber-surface);
+    --cluecumber-card-title-size: 1.05rem;
     --cluecumber-footer-text: var(--pico-muted-color);
     --cluecumber-link: #06284d;
     --cluecumber-link-dark: #8cb8e8;
     --cluecumber-link-hover: #004a8f;
-    --cluecumber-page-bg: var(--pico-background-color);
+    --cluecumber-page-bg: var(--cluecumber-surface);
     --cluecumber-header-fg: var(--pico-color);
     --cluecumber-font-size: 1.125rem;
     --cluecumber-font-size-small: 0.875rem;
@@ -53,12 +60,14 @@ limitations under the License.
     --cluecumber-card-body-padding: 1.25rem;
     --cluecumber-step-row-padding-y: 0.85rem;
     --cluecumber-card-surface: var(--pico-card-background-color, var(--pico-secondary-background));
-    --cluecumber-row-stripe-bg: color-mix(in srgb, var(--pico-muted-border-color) 28%, var(--pico-background-color));
-    --cluecumber-row-hover-bg: color-mix(in srgb, var(--pico-color) 10%, var(--pico-background-color));
-    --cluecumber-row-hover-stripe-bg: color-mix(in srgb, var(--pico-color) 14%, var(--pico-background-color));
+    --cluecumber-row-stripe-bg: var(--cluecumber-surface);
+    --cluecumber-row-hover-bg: color-mix(in srgb, var(--pico-color) 8%, var(--cluecumber-surface-alt));
+    --cluecumber-row-hover-stripe-bg: color-mix(in srgb, var(--pico-color) 12%, var(--cluecumber-surface));
     --cluecumber-row-group-hover-bg: color-mix(in srgb, var(--pico-color) 13%, var(--pico-background-color));
     --cluecumber-step-hook-indent: 1.25rem;
     --pico-font-size: 100%;
+    --pico-box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06),
+        0 1px 3px rgba(16, 24, 40, 0.1);
 }
 
 /* Keep report typography consistent; Pico otherwise scales --pico-font-size by viewport. */
@@ -93,13 +102,20 @@ limitations under the License.
 }
 
 [data-theme="light"] {
-    --cluecumber-chrome-bg: color-mix(in srgb, var(--pico-color) 6%, var(--cluecumber-page-bg));
+    --cluecumber-chrome-bg: var(--cluecumber-surface-alt);
 }
 
 [data-theme="dark"] {
+    --cluecumber-surface: color-mix(in srgb, #000 6%, var(--pico-background-color));
+    --cluecumber-surface-alt: var(--pico-card-background-color, var(--pico-background-color));
+    --cluecumber-border-color: var(--pico-muted-border-color);
+    --cluecumber-text-muted: var(--pico-muted-color);
+    --cluecumber-accent-muted: color-mix(in srgb, var(--cluecumber-link-dark) 16%, transparent);
+    --cluecumber-page-bg: var(--cluecumber-surface);
     --cluecumber-chrome-bg: color-mix(in srgb, #000 10%, var(--pico-background-color));
-    --cluecumber-row-hover-bg: color-mix(in srgb, #fff 10%, var(--pico-background-color));
-    --cluecumber-row-hover-stripe-bg: color-mix(in srgb, #fff 14%, var(--pico-background-color));
+    --cluecumber-row-stripe-bg: color-mix(in srgb, var(--cluecumber-border-color) 18%, var(--cluecumber-surface-alt));
+    --cluecumber-row-hover-bg: color-mix(in srgb, #fff 10%, var(--cluecumber-surface-alt));
+    --cluecumber-row-hover-stripe-bg: color-mix(in srgb, #fff 14%, var(--cluecumber-surface));
     --cluecumber-row-group-hover-bg: color-mix(in srgb, #fff 14%, var(--pico-background-color));
     --cluecumber-button-surface-bg: color-mix(in srgb, var(--pico-secondary) 24%, var(--pico-background-color));
     --cluecumber-button-surface-border: color-mix(in srgb, var(--pico-secondary) 45%, var(--pico-muted-border-color));
@@ -111,13 +127,14 @@ limitations under the License.
 html {
     position: relative;
     min-height: 100%;
+    scroll-padding-top: var(--cluecumber-nav-offset);
 }
 
 body {
     padding-top: var(--cluecumber-header-height);
-    margin-bottom: 4rem;
+    margin-bottom: 0;
     font-size: var(--cluecumber-font-size);
-    line-height: var(--cluecumber-line-height);
+    line-height: 1.55;
 }
 
 :is(.cluecumber-template, .cluecumber-header)
@@ -169,11 +186,12 @@ h1, h2, h3, h4, h5 {
     justify-content: space-between;
     gap: 1rem;
     min-height: var(--cluecumber-header-height);
-    padding: 0.5rem 2rem;
+    overflow: visible;
+    padding: 0.5rem clamp(1rem, 3vw, 2rem);
     background-color: var(--cluecumber-chrome-bg);
     color: var(--cluecumber-header-fg);
-    border-bottom: var(--cluecumber-border);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid var(--cluecumber-border-color);
+    box-shadow: var(--pico-box-shadow);
 }
 
 .cluecumber-header nav {
@@ -182,16 +200,44 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     gap: 0.75rem;
     margin: 0;
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
 .cluecumber-nav-toggle {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.25rem;
     margin: 0;
-    padding: 0.35rem 0.75rem;
-    width: auto;
+    width: 2.25rem;
+    height: 2.25rem;
+    min-width: 2.25rem;
+    padding: 0;
     background: transparent;
-    border-color: var(--pico-muted-border-color);
+    border: none;
     color: var(--cluecumber-header-fg);
+    cursor: pointer;
+    border-radius: var(--pico-border-radius);
+}
+
+.cluecumber-nav-toggle:hover,
+.cluecumber-nav-toggle:focus {
+    color: var(--cluecumber-link-hover);
+    background: var(--cluecumber-accent-muted);
+}
+
+.cluecumber-nav-toggle span {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    margin-inline: auto;
+    background: currentColor;
+    border-radius: 1px;
+}
+
+.cluecumber-nav-panel {
+    overflow: visible;
 }
 
 .cluecumber-nav-panel ul {
@@ -209,21 +255,35 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-nav-panel a {
+    display: inline-block;
     color: var(--pico-muted-color);
     font-weight: 500;
     text-decoration: none;
-    padding: 0.25rem 0.35rem;
-    border-radius: var(--pico-border-radius);
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
 }
 
-.cluecumber-nav-panel a:hover,
-.cluecumber-nav-panel a.active {
-    color: var(--cluecumber-header-fg);
+.cluecumber-nav-panel a:hover:not(.active),
+.cluecumber-nav-panel a:focus-visible:not(.active) {
+    color: var(--cluecumber-link-hover);
+    background: color-mix(in srgb, var(--cluecumber-accent-muted) 50%, transparent);
 }
 
 .cluecumber-nav-panel a.active {
+    color: var(--cluecumber-link);
+    font-weight: 600;
     text-decoration: none;
-    background-color: color-mix(in srgb, var(--pico-primary) 12%, var(--pico-background-color));
+    background: var(--cluecumber-accent-muted);
+}
+
+[data-theme="dark"] .cluecumber-nav-panel a.active {
+    color: var(--cluecumber-link-dark);
+}
+
+[data-theme="dark"] .cluecumber-nav-panel a:hover:not(.active),
+[data-theme="dark"] .cluecumber-nav-panel a:focus-visible:not(.active) {
+    color: var(--cluecumber-link-dark);
 }
 
 .cluecumber-nav-external-link {
@@ -283,44 +343,69 @@ h1, h2, h3, h4, h5 {
 }
 
 .cluecumber-footer {
-    position: absolute;
-    bottom: 0;
+    box-sizing: border-box;
     width: 100%;
-    height: 4rem;
-    line-height: 2rem;
-    padding: 1rem;
-    text-align: center;
-    border-top: var(--cluecumber-border);
+    margin: 2.5rem 0 0;
+    padding: 1rem 1.25rem;
+    text-align: right;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: var(--cluecumber-text-muted);
+    border: 1px solid var(--cluecumber-border-color);
+    border-radius: 0.5rem;
     background-color: var(--cluecumber-chrome-bg);
-    color: var(--cluecumber-footer-text);
-    font-size: var(--cluecumber-font-size-small);
+    box-shadow: var(--pico-box-shadow);
 }
 
 .cluecumber-footer a {
-    color: var(--cluecumber-footer-text);
+    color: var(--cluecumber-text-muted);
 }
 
 /* --- 4. Page shell --- */
 
 .cluecumber-template {
-    padding: 2.5rem 1rem;
+    padding: 1.75rem 0 2rem;
     text-align: left;
 }
 
 .cluecumber-page-intro {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0;
     margin: 0;
     padding: 0;
     text-align: left;
+    background: var(--cluecumber-surface-alt);
+    border: 1px solid var(--cluecumber-border-color);
+    border-radius: 0.65rem;
+    box-shadow: var(--pico-box-shadow);
+    overflow: hidden;
 }
 
 .cluecumber-page-intro-title {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
+    margin: 0;
+    padding: 0.75rem var(--cluecumber-card-body-padding);
+    background-color: var(--cluecumber-card-header-bg);
+    border-bottom: 1px solid var(--cluecumber-border-color);
+}
+
+.cluecumber-page-intro:has(.cluecumber-page-intro-parameters) .cluecumber-page-intro-title {
+    border-bottom: 1px solid var(--cluecumber-border-color);
+}
+
+.cluecumber-page-intro:not(:has(.cluecumber-page-intro-parameters)) .cluecumber-page-intro-title {
+    border-bottom: none;
+}
+
+.cluecumber-page-intro .cluecumber-page-intro-parameters.cluecumber-card {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
 }
 
 .cluecumber-page-intro-title .cluecumber-page-headlines {
@@ -358,10 +443,16 @@ h1, h2, h3, h4, h5 {
     margin-right: 0;
 }
 
-.cluecumber-page-headlines h3 {
+.cluecumber-page-headlines h1 {
     margin-top: 0;
     margin-bottom: 0;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.cluecumber-page-intro-title:has(.cluecumber-preheadline, .cluecumber-subheadline) {
+    align-items: flex-start;
 }
 
 .cluecumber-page-headlines :is(.cluecumber-preheadline, .cluecumber-subheadline) {
@@ -377,6 +468,7 @@ h1, h2, h3, h4, h5 {
 .cluecumber-subheadline {
     margin-top: 0.25rem;
     margin-bottom: 0;
+    color: var(--cluecumber-text-muted);
     color: var(--pico-muted-color);
 }
 
@@ -389,9 +481,17 @@ h1, h2, h3, h4, h5 {
     height: auto;
 }
 
-.customParameters .cluecumber-card-body,
-.customParameters .cluecumber-card-body td {
-    padding: 0.5rem 1rem 0.3rem 1rem;
+.customParameters .cluecumber-card-body {
+    padding: 0.5rem 0.75rem 0.75rem;
+}
+
+.customParameters .cluecumber-card-body :is(td, th) {
+    padding: 0.65rem 1rem;
+    border: none;
+}
+
+.customParameters table.table-fit tbody tr {
+    border-radius: 0.35rem;
 }
 
 .customParameters > header {
@@ -412,7 +512,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .row.cluecumber-page-header-row {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     padding-bottom: 0;
 }
 
@@ -446,36 +546,48 @@ h1, h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
     text-align: left;
-    background: var(--pico-card-background-color, var(--pico-background-color));
-    border: 1px solid var(--pico-muted-border-color);
-    border-radius: var(--pico-border-radius);
-    box-shadow: var(--pico-card-box-shadow, 0 1px 2px rgba(0, 0, 0, 0.06));
+    background: var(--cluecumber-surface-alt);
+    border: 1px solid var(--cluecumber-border-color);
+    border-radius: 0.65rem;
+    box-shadow: var(--pico-box-shadow);
     overflow: hidden;
 }
 
 .cluecumber-card > header {
     margin: 0;
-    padding: 0.65rem var(--cluecumber-card-body-padding);
-    font-size: var(--cluecumber-font-size);
+    padding: 0.75rem var(--cluecumber-card-body-padding);
+    font-size: var(--cluecumber-card-title-size);
     font-weight: 600;
     text-align: left;
     letter-spacing: 0.01em;
     color: var(--pico-color);
     background-color: var(--cluecumber-card-header-bg);
-    border-bottom: var(--cluecumber-border);
-    border-left: var(--cluecumber-step-accent-width) solid var(--pico-muted-border-color);
+    border-bottom: 1px solid var(--cluecumber-border-color);
+    border-left: none;
+}
+
+.cluecumber-card > header:is(.border-color-passed, .border-color-failed, .border-color-skipped) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    border-left: var(--cluecumber-step-accent-width) solid transparent;
+    border-bottom: 1px solid var(--cluecumber-border-color) !important;
 }
 
 .cluecumber-card > header.border-color-passed {
-    border-left-color: var(--passed-color, currentColor);
+    border-left-color: var(--passed-color, currentColor) !important;
+    background: color-mix(in srgb, var(--passed-color, #60cc79) 10%, var(--cluecumber-surface-alt));
 }
 
 .cluecumber-card > header.border-color-failed {
-    border-left-color: var(--failed-color, currentColor);
+    border-left-color: var(--failed-color, currentColor) !important;
+    background: color-mix(in srgb, var(--failed-color, #fc7180) 10%, var(--cluecumber-surface-alt));
 }
 
 .cluecumber-card > header.border-color-skipped {
-    border-left-color: var(--skipped-color, currentColor);
+    border-left-color: var(--skipped-color, currentColor) !important;
+    background: color-mix(in srgb, var(--skipped-color, #f7c42b) 10%, var(--cluecumber-surface-alt));
 }
 
 .cluecumber-card-subtitle {
@@ -514,13 +626,38 @@ h1, h2, h3, h4, h5 {
 .cluecumber-card .cluecumber-card {
     margin-top: 1rem;
     box-shadow: none;
+    border-color: var(--cluecumber-border-color);
+}
+
+.cluecumber-card .cluecumber-card > header {
+    padding: 0.6rem var(--cluecumber-card-body-padding);
+    font-size: var(--cluecumber-font-size-small);
+    background: var(--cluecumber-surface-alt);
 }
 
 .cluecumber-card.cluecumber-card-centered,
-.cluecumber-card.cluecumber-card-centered .cluecumber-card-body,
 .cluecumber-card.cluecumber-card-centered .cluecumber-list-item,
 .cluecumber-card.cluecumber-card-centered .alert {
     text-align: center;
+}
+
+.cluecumber-card.cluecumber-card-centered .cluecumber-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    min-height: 0;
+    text-align: center;
+}
+
+.cluecumber-card.cluecumber-card-centered :is(.cluecumber-list, .cluecumber-tags, .cluecumber-view-toolbar) {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.cluecumber-card.cluecumber-card-centered .cluecumber-list-item {
+    border-bottom: none;
 }
 
 .cluecumber-card-centered .cluecumber-multi-run-detail {
@@ -539,7 +676,20 @@ h1, h2, h3, h4, h5 {
 .cluecumber-view-toolbar {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    align-items: start;
+    align-content: start;
     justify-content: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+}
+
+.cluecumber-card-centered .cluecumber-view-toolbar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    width: 75%;
+    margin-inline: auto;
     gap: 0.35rem;
     margin-top: 0.75rem;
 }
@@ -549,6 +699,9 @@ h1, h2, h3, h4, h5 {
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: unset;
     text-align: center;
     margin: 0;
     padding: 0.35rem 0.75rem;
@@ -652,6 +805,25 @@ h1, h2, h3, h4, h5 {
 .cluecumber-list-item:last-child {
     border-bottom: none;
     margin-bottom: 0;
+}
+
+.cluecumber-card:not(.cluecumber-card-centered) .cluecumber-list .cluecumber-list-item {
+    padding: 0.65rem 0.75rem;
+    margin-block: 0.2rem;
+    border-bottom: none;
+    border-radius: 0.35rem;
+}
+
+.cluecumber-card:not(.cluecumber-card-centered) .cluecumber-list .cluecumber-list-item:nth-child(odd) {
+    background-color: var(--cluecumber-row-stripe-bg);
+}
+
+.cluecumber-card:not(.cluecumber-card-centered) .cluecumber-list .cluecumber-list-item:nth-child(even):hover {
+    background-color: var(--cluecumber-row-hover-bg);
+}
+
+.cluecumber-card:not(.cluecumber-card-centered) .cluecumber-list .cluecumber-list-item:nth-child(odd):hover {
+    background-color: var(--cluecumber-row-hover-stripe-bg);
 }
 
 .cluecumber-card .table tbody tr:last-child td,
@@ -1086,7 +1258,7 @@ h1, h2, h3, h4, h5 {
     word-break: break-word;
     border: none;
     border-left: 3px solid var(--failed-color, #fc7180);
-    border-radius: 0;
+    border-radius: 0.35rem;
     background-color: color-mix(in srgb, var(--failed-color, #fc7180) 10%, transparent);
     padding: 0.35rem 0.5rem 0.35rem 0.65rem;
     margin-top: 0.5rem;
@@ -1360,25 +1532,78 @@ tr.odd td {
     border-bottom: 1px solid var(--pico-muted-border-color);
 }
 
+.customParameters table.table-fit tr.even td,
+.customParameters table.table-fit tr.odd td {
+    border-bottom: none;
+}
+
+.cluecumber-card .table tbody tr:nth-child(odd),
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd {
+    background-color: var(--cluecumber-row-stripe-bg);
+}
+
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even {
+    background-color: var(--cluecumber-surface-alt);
+}
+
 .cluecumber-card .table tbody tr:nth-child(odd) td,
 .cluecumber-card .table tbody tr:nth-child(odd) th,
-.cluecumber-table.dataTable tbody tr.odd td,
-.cluecumber-table.dataTable tbody tr.odd th {
-    background-color: var(--cluecumber-row-stripe-bg);
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd td,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd th,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even td,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even th {
+    background-color: transparent;
+}
+
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd td,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even td,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd th,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even th {
+    border-bottom: none;
+    padding: 0.75rem 1rem;
+}
+
+.cluecumber-card .table tbody tr:nth-child(even):hover,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even:hover {
+    background-color: var(--cluecumber-row-hover-bg);
 }
 
 .cluecumber-card .table tbody tr:nth-child(even):hover td,
 .cluecumber-card .table tbody tr:nth-child(even):hover th,
-.cluecumber-table.dataTable tbody tr.even:hover td,
-.cluecumber-table.dataTable tbody tr.even:hover th {
-    background-color: var(--cluecumber-row-hover-bg);
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even:hover td,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.even:hover th {
+    background-color: transparent;
+}
+
+.cluecumber-card .table tbody tr:nth-child(odd):hover,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd:hover {
+    background-color: var(--cluecumber-row-hover-stripe-bg);
 }
 
 .cluecumber-card .table tbody tr:nth-child(odd):hover td,
 .cluecumber-card .table tbody tr:nth-child(odd):hover th,
-.cluecumber-table.dataTable tbody tr.odd:hover td,
-.cluecumber-table.dataTable tbody tr.odd:hover th {
-    background-color: var(--cluecumber-row-hover-stripe-bg);
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd:hover td,
+.cluecumber-card .cluecumber-table.dataTable tbody tr.odd:hover th {
+    background-color: transparent;
+}
+
+.cluecumber-card .cluecumber-table.dataTable thead th {
+    padding: 0.65rem 1rem;
+    font-size: var(--cluecumber-font-size-small);
+    font-weight: 600;
+    background-color: var(--cluecumber-card-header-bg);
+    border-bottom: 1px solid var(--cluecumber-border-color);
+    vertical-align: bottom;
+}
+
+.cluecumber-card .cluecumber-table.dataTable thead th.cluecumber-col-index {
+    min-width: 3.25rem;
+    padding-right: 1.75rem;
+    text-align: right;
+}
+
+.cluecumber-table.dataTable .firstException {
+    margin-top: 0.35rem;
 }
 
 /* DataTables — Bootstrap integration emits .row / .col-*; override cluecumber grid */
@@ -1900,13 +2125,17 @@ pre.embedding-content.embedded-txt {
     }
 
     .cluecumber-nav-panel ul {
-        flex-wrap: nowrap;
+        gap: 0.25rem 0.65rem;
+    }
+
+    .cluecumber-nav-panel a {
+        padding: 0.3rem 0.65rem;
     }
 }
 
 @media (max-width: 1023.98px) {
     .cluecumber-nav-toggle {
-        display: inline-block;
+        display: inline-flex;
     }
 
     .cluecumber-nav-panel:not(.show) {
@@ -1939,9 +2168,11 @@ pre.embedding-content.embedded-txt {
     }
 
     .cluecumber-nav-panel a {
-        display: block;
+        display: flex;
+        align-items: center;
+        width: 100%;
         white-space: nowrap;
-        padding: 0.5rem 0;
+        padding: 0.5rem 0.75rem;
     }
 
     .cluecumber-nav-separator {

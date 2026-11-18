@@ -15,9 +15,13 @@ limitations under the License.
 -#}
 <header class="cluecumber-header">
     <nav aria-label="Report navigation">
-        <button type="button" class="cluecumber-nav-toggle secondary outline"
+        <button type="button" class="cluecumber-nav-toggle"
                 aria-expanded="false" aria-controls="navbarSupportedContent"
-                aria-label="Toggle navigation">Menu</button>
+                aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="collapse cluecumber-nav-panel" id="navbarSupportedContent">
             <ul>
                 {% for link in navigationLinks %}
